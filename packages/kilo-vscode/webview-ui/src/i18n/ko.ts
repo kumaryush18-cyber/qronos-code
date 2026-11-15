@@ -101,7 +101,7 @@ export const dict = {
     "대화가 되돌려졌습니다. 이 이전 되돌리기에서는 작업 영역 복원 상태를 확인할 수 없습니다.",
   "revert.banner.workspace.enableSnapshots": "스냅샷 활성화",
   "revert.disabled.agentBusy": "에이전트가 완료될 때까지 기다리세요",
-  "revert.error.body": "저장소가 사용 중일 수 있습니다. 다시 시도하거나 자세한 내용은 Kilo 로그를 확인하세요.",
+  "revert.error.body": "저장소가 사용 중일 수 있습니다. 다시 시도하거나 자세한 내용은 Qronos 로그를 확인하세요.",
   "command.session.compact": "세션 압축",
   "command.session.export": "세션 기록 내보내기",
 
@@ -235,9 +235,9 @@ export const dict = {
   "prompt.action.sandbox.enable": "샌드박스 활성화",
   "prompt.action.sandbox.disable": "샌드박스 비활성화",
   "prompt.action.sandbox.enabled":
-    "샌드박스가 활성화되어 있습니다. 에이전트 셸 명령은 프로젝트 및 Kilo 디렉터리로 제한됩니다.",
+    "샌드박스가 활성화되어 있습니다. 에이전트 셸 명령은 프로젝트 및 Qronos 디렉터리로 제한됩니다.",
   "prompt.action.sandbox.disabled":
-    "샌드박스가 비활성화되어 있습니다. 클릭하여 에이전트 셸 명령 쓰기를 프로젝트 및 Kilo 디렉터리로 제한합니다.",
+    "샌드박스가 비활성화되어 있습니다. 클릭하여 에이전트 셸 명령 쓰기를 프로젝트 및 Qronos 디렉터리로 제한합니다.",
   "prompt.action.sandbox.status.enabled": "샌드박스 활성화됨",
   "prompt.action.sandbox.status.disabled": "샌드박스 비활성화됨",
   "prompt.action.sandbox.filesystem": "파일 시스템",
@@ -246,7 +246,7 @@ export const dict = {
   "prompt.action.sandbox.network.blocked": "차단됨",
   "prompt.action.sandbox.network.allowed": "허용됨",
   "prompt.action.sandbox.unrestricted": "제한 없음",
-  "prompt.action.sandbox.description.enabled": "쓰기는 프로젝트 및 Kilo 디렉터리로 제한됩니다.",
+  "prompt.action.sandbox.description.enabled": "쓰기는 프로젝트 및 Qronos 디렉터리로 제한됩니다.",
   "prompt.action.sandbox.description.escalation":
     "권한 규칙과 자동 승인은 샌드박스 안에서 적용됩니다. 샌드박스를 벗어나야 하는 명령은 항상 확인합니다.",
   "prompt.action.sandbox.description.disabled": "클릭하면 파일 시스템 쓰기와 네트워크 액세스를 제한합니다.",
@@ -353,7 +353,7 @@ export const dict = {
   "session.messages.loadEarlier": "이전 메시지 로드",
   "session.messages.loading": "메시지 로드 중...",
 
-  "sidebar.topBar.label": "Kilo Code 탐색",
+  "sidebar.topBar.label": "Qronos Code 탐색",
   "sidebar.topBar.newTask": "새 작업",
   "sidebar.topBar.history": "기록",
   "sidebar.topBar.agentManager": "에이전트 관리자",
@@ -463,7 +463,7 @@ export const dict = {
     "task-tool 하위 에이전트의 기본 모델 및 추론 수준입니다. 호출하는 에이전트의 모델을 상속하려면 비워 두세요.",
   "settings.models.hidePromptTraining.title": "프롬프트를 학습에 사용하는 모델 숨기기",
   "settings.models.hidePromptTraining.description":
-    "제공업체가 사용자의 프롬프트를 학습에 사용할 수 있는 Kilo Gateway 모델을 숨깁니다.",
+    "제공업체가 사용자의 프롬프트를 학습에 사용할 수 있는 Qronos Gateway 모델을 숨깁니다.",
   "settings.providers.modeModels": "모드별 모델",
   "settings.providers.modeModels.description":
     "특정 모드의 기본 모델을 재정의합니다. 설정하지 않으면 전역 기본 모델이 사용됩니다.",
@@ -532,11 +532,11 @@ export const dict = {
   "settings.config.status.loadedLegacy": "레거시 구성 로드됨",
   "settings.config.status.notLoaded": "로드되지 않음",
   "settings.config.status.create": "찾을 수 없음 - 이 파일 만들기",
-  "settings.config.title": "{{scope}} Kilo 구성 파일 열기",
+  "settings.config.title": "{{scope}} Qronos 구성 파일 열기",
   "settings.config.placeholder":
     "구성 파일은 순서대로 병합됩니다. 로드됨으로 표시된 파일이 현재 설정에 영향을 미칩니다.",
-  "settings.config.noWorkspace": "로컬 Kilo 구성 파일을 편집하려면 작업 영역 폴더를 엽니다.",
-  "settings.config.openFailed": "{{scope}} Kilo 구성 파일을 열지 못했습니다: {{message}}",
+  "settings.config.noWorkspace": "로컬 Qronos 구성 파일을 편집하려면 작업 영역 폴더를 엽니다.",
+  "settings.config.openFailed": "{{scope}} Qronos 구성 파일을 열지 못했습니다: {{message}}",
   "settings.config.source.xdg": "XDG 글로벌 구성",
   "settings.config.source.homeKilo": "Home .kilo 구성",
   "settings.config.source.homeKilocode": "Home .kilocode 구성",
@@ -628,7 +628,7 @@ export const dict = {
   "deviceAuth.toast.codeCopied": "코드가 클립보드에 복사되었습니다",
   "deviceAuth.toast.errorCopied": "오류가 클립보드에 복사되었습니다",
   "deviceAuth.status.initiating": "로그인 시작 중...",
-  "deviceAuth.title": "Kilo Code에 로그인",
+  "deviceAuth.title": "Qronos Code에 로그인",
   "deviceAuth.step1": "1단계: 이 URL을 여세요",
   "deviceAuth.action.copyUrl": "URL 복사",
   "deviceAuth.action.openBrowser": "브라우저 열기",
@@ -651,7 +651,7 @@ export const dict = {
 
   "profile.title": "프로필",
   "profile.notLoggedIn": "로그인하지 않음",
-  "profile.action.login": "Kilo Code로 로그인",
+  "profile.action.login": "Qronos Code로 로그인",
   "profile.balance.title": "잔액",
   "profile.balance.refresh": "잔액 새로고침",
   "profile.usage.title": "요금제 및 사용량",
@@ -667,7 +667,7 @@ export const dict = {
   "profile.usage.plan.unknown": "요금제: 상태 알 수 없음",
   "profile.usage.action.manage": "관리",
   "profile.usage.action.managePlan": "{{plan}} 관리",
-  "profile.usage.routing": "요금제 결제가 활성화되어 있습니다. Kilo Gateway 라우팅은 {{state}}입니다.",
+  "profile.usage.routing": "요금제 결제가 활성화되어 있습니다. Qronos Gateway 라우팅은 {{state}}입니다.",
   "profile.usage.routingState.disabled": "비활성화 상태",
   "profile.usage.routingState.missing": "누락된 상태",
   "profile.usage.routingState.replaced": "대체된 상태",
@@ -693,11 +693,11 @@ export const dict = {
   "profile.usage.status.exhausted": "소진됨",
   "profile.action.dashboard": "대시보드",
   "profile.action.topUp": "충전",
-  "profile.pass.subscribe": "Kilo Pass를 구독하여 크레딧을 추가하고 보너스를 받으세요",
+  "profile.pass.subscribe": "Qronos Pass를 구독하여 크레딧을 추가하고 보너스를 받으세요",
   "profile.pass.bonus": "보너스",
   "profile.pass.usage": "이번 달 사용량",
   "profile.pass.paid": "유료",
-  "profile.pass.meter": "Kilo Pass 월간 사용량",
+  "profile.pass.meter": "Qronos Pass 월간 사용량",
   "profile.pass.renews": "갱신",
   "profile.action.logout": "로그아웃",
 
@@ -719,7 +719,7 @@ export const dict = {
 
   "settings.experimental.title": "실험적",
   "settings.language.title": "언어",
-  "settings.aboutKiloCode.title": "Kilo Code 정보",
+  "settings.aboutKiloCode.title": "Qronos Code 정보",
 
   "prompt.action.indexing": "인덱싱 설정",
   "settings.indexing.dimension.description": "비워두면 모델에서 임베딩 차원을 자동으로 감지합니다.",
@@ -741,9 +741,9 @@ export const dict = {
   "settings.indexing.model.description": "선택한 공급자의 기본 임베딩 모델을 재정의합니다.",
   "settings.indexing.model.title": "임베딩 모델",
   "settings.indexing.provider.description": "의미 검색을 위한 임베딩 생성에 사용할 공급자를 선택하세요.",
-  "settings.indexing.kiloModel.title": "Kilo 모델 프리셋",
-  "settings.indexing.kiloModel.description": "지원되는 Kilo 호스팅 임베딩 모델을 선택하세요.",
-  "settings.indexing.kiloSignIn.title": "Kilo 로그인이 필요합니다",
+  "settings.indexing.kiloModel.title": "Qronos 모델 프리셋",
+  "settings.indexing.kiloModel.description": "지원되는 Qronos 호스팅 임베딩 모델을 선택하세요.",
+  "settings.indexing.kiloSignIn.title": "Qronos 로그인이 필요합니다",
   "settings.indexing.kiloSignIn.description": "호스팅 임베딩을 사용하려면 Kilo에 로그인하세요.",
   "settings.indexing.provider.title": "임베딩 공급자",
   "settings.indexing.providerField.description": "공급자별 연결 설정.",
@@ -762,7 +762,7 @@ export const dict = {
   "settings.indexing.vectorStore.description": "인덱싱된 임베딩을 저장할 위치를 선택하세요.",
   "settings.indexing.vectorStore.title": "벡터 저장소",
 
-  "session.workspaceScope.description": "Kilo 채팅은 이 작업 영역의 첫 번째 폴더인 “{{folder}}”만 사용합니다.",
+  "session.workspaceScope.description": "Qronos 채팅은 이 작업 영역의 첫 번째 폴더인 “{{folder}}”만 사용합니다.",
   "session.workspaceScope.alternatives":
     "다른 폴더에서 작업하려면 해당 폴더를 별도 창에서 열거나 Agent Manager에 프로젝트로 추가하세요.",
   "session.workspaceScope.dismiss": "작업 영역 범위 안내 닫기",
@@ -807,7 +807,7 @@ export const dict = {
   "ui.sessionTurn.status.consideringNextSteps": "다음 단계 고려 중...",
 
   "dialog.model.noProviders": "공급자 없음",
-  "dialog.model.unavailable": "Kilo 모델을 사용할 수 없음",
+  "dialog.model.unavailable": "Qronos 모델을 사용할 수 없음",
 
   "prompt.placeholder.connecting": "서버에 연결 중...",
   "prompt.placeholder.error": "연결에 실패했습니다. 출력 패널을 확인하거나 확장 프로그램을 다시 시작하세요.",
@@ -849,7 +849,7 @@ export const dict = {
   "settings.aboutKiloCode.importSettings": "가져오기",
   "settings.aboutKiloCode.importSettings.invalidJson":
     "유효하지 않은 JSON 파일입니다. 올바른 설정 파일을 선택해 주세요.",
-  "settings.aboutKiloCode.importSettings.invalidConfig": "파일에 유효한 Kilo 설정이 포함되어 있지 않습니다.",
+  "settings.aboutKiloCode.importSettings.invalidConfig": "파일에 유효한 Qronos 설정이 포함되어 있지 않습니다.",
   "settings.aboutKiloCode.importSettings.tooLarge": "파일이 너무 큽니다. 설정 파일은 1 MB 이하여야 합니다.",
   "settings.aboutKiloCode.importSettings.newerVersion":
     "이 파일은 더 최신 버전의 Kilo에서 내보낸 것입니다. 일부 설정이 무시될 수 있습니다.",
@@ -876,7 +876,7 @@ export const dict = {
   "settings.browser.headless.title": "헤드리스 모드",
   "settings.browser.headless.description": "헤드리스 모드로 실행합니다 (브라우저 창이 표시되지 않음).",
 
-  "settings.language.description": 'Kilo Code UI의 언어를 선택하세요. "자동"은 VS Code 표시 언어를 사용합니다.',
+  "settings.language.description": 'Qronos Code UI의 언어를 선택하세요. "자동"은 VS Code 표시 언어를 사용합니다.',
   "settings.language.auto": "자동 (VS Code 언어)",
   "settings.language.current": "현재:",
 
@@ -921,7 +921,7 @@ export const dict = {
   "settings.experimental.batch.description": "여러 도구 호출의 배치 처리 활성화",
   "settings.experimental.imageGeneration.title": "이미지 생성",
   "settings.experimental.imageGeneration.description": "AI 이미지 생성 활성화",
-  "settings.agentBehaviour.sharedAgentBoard.title": "Kilo Swarm",
+  "settings.agentBehaviour.sharedAgentBoard.title": "Qronos Swarm",
   "settings.agentBehaviour.sharedAgentBoard.description":
     "메인 세션과 해당 세션의 작업을 맡은 하위 에이전트(중첩된 하위 에이전트 포함)가 보드를 공유합니다. 모든 작업에 사용하지 말고, 해결책을 병렬로 시도하거나 서로 보완하는 작업을 수행할 때 사용하세요.",
   "settings.experimental.imageGenerationModel.title": "이미지 모델",
@@ -933,18 +933,18 @@ export const dict = {
   "settings.models.speechToTextModel.customPlaceholder": "whisper-1",
   "settings.models.speechToTextBaseUrl.title": "음성 텍스트 변환 기본 URL",
   "settings.models.speechToTextBaseUrl.description":
-    "Kilo Gateway 대신 OpenAI 호환 변환 API를 사용합니다. 모델은 /models에서 읽고 오디오는 /audio/transcriptions로 전송됩니다. 비워 두면 Kilo Gateway를 사용합니다.",
+    "Qronos Gateway 대신 OpenAI 호환 변환 API를 사용합니다. 모델은 /models에서 읽고 오디오는 /audio/transcriptions로 전송됩니다. 비워 두면 Qronos Gateway를 사용합니다.",
   "settings.models.speechToTextBaseUrl.placeholder": "https://api.openai.com/v1",
   "settings.models.speechToTextApiKey.title": "음성 텍스트 변환 API 키",
   "settings.models.speechToTextApiKey.description":
-    "사용자 지정 변환 기본 URL로 전송되는 베어러 토큰입니다. Kilo 설정 파일에 저장됩니다.",
+    "사용자 지정 변환 기본 URL로 전송되는 베어러 토큰입니다. Qronos 설정 파일에 저장됩니다.",
   "settings.models.speechToTextApiKey.placeholder": "sk-...",
   "settings.models.speechToText.disabledDescription":
-    "Speech to Text를 사용하려면 Kilo 제공자를 활성화하고 로그인하거나, 아래에서 사용자 지정 변환 기본 URL을 설정하세요.",
+    "Speech to Text를 사용하려면 Qronos 제공자를 활성화하고 로그인하거나, 아래에서 사용자 지정 변환 기본 URL을 설정하세요.",
   "settings.models.speechToText.remoteDescription":
     "음성 입력은 원격 창에서 사용할 수 없습니다. 마이크를 사용하려면 로컬 창에서 Kilo를 여세요.",
   "settings.models.speechToTextModel.title": "음성 텍스트 변환 모델",
-  "settings.models.speechToTextModel.description": "음성 입력에 사용할 Kilo Gateway 변환 모델을 선택하세요.",
+  "settings.models.speechToTextModel.description": "음성 입력에 사용할 Qronos Gateway 변환 모델을 선택하세요.",
   "settings.experimental.nativeNotebookTools.title": "네이티브 노트북 도구",
   "settings.experimental.nativeNotebookTools.description":
     "VS Code 노트북을 읽고, 편집하고, 실행하는 실험적 도구를 활성화합니다",
@@ -977,7 +977,7 @@ export const dict = {
   "settings.experimental.mcpTimeout.description": "MCP 서버 요청의 타임아웃 시간 (밀리초)",
   "settings.experimental.remote.title": "Remote 제어",
   "settings.experimental.remote.description":
-    "Kilo Cloud를 통한 세션의 Remote 제어를 활성화합니다. 이는 이 컴퓨터의 CLI에도 영향을 미칩니다.",
+    "Qronos Cloud를 통한 세션의 Remote 제어를 활성화합니다. 이는 이 컴퓨터의 CLI에도 영향을 미칩니다.",
   "settings.experimental.remote.current": "현재 상태:",
   "settings.experimental.remote.startup": "시작 시 자동 활성화:",
   "settings.experimental.remote.active": "활성",
@@ -1068,7 +1068,7 @@ export const dict = {
   "settings.agentBehaviour.editMcp.env.help": "MCP 서버 프로세스에 전달되는 변수입니다.",
   "settings.agentBehaviour.editMcp.oauth": "OAuth",
   "settings.agentBehaviour.editMcp.oauth.help":
-    "서버가 사전 등록된 클라이언트를 요구하지 않는 한 자동으로 두세요. 클라이언트 시크릿은 Kilo 설정 파일에 저장됩니다.",
+    "서버가 사전 등록된 클라이언트를 요구하지 않는 한 자동으로 두세요. 클라이언트 시크릿은 Qronos 설정 파일에 저장됩니다.",
   "settings.agentBehaviour.editMcp.oauth.mode": "모드",
   "settings.agentBehaviour.editMcp.oauth.mode.automatic": "자동",
   "settings.agentBehaviour.editMcp.oauth.mode.disabled": "사용 안 함",
@@ -1135,7 +1135,7 @@ export const dict = {
     "각 MCP 도구를 직접 노출하는 대신 주문형 도구 검색을 지원하는 격리된 JavaScript 런타임을 통해 MCP 도구 호출을 라우팅합니다. 많은 MCP 도구가 연결되어 있을 때 컨텍스트를 절약합니다.",
   "settings.sandboxing.enabled.title": "샌드박스",
   "settings.sandboxing.enabled.description":
-    "에이전트 셸 명령을 프로젝트 및 Kilo 상태 디렉터리에 대한 쓰기를 제한하는 OS 수준의 샌드박스 내에서 실행",
+    "에이전트 셸 명령을 프로젝트 및 Qronos 상태 디렉터리에 대한 쓰기를 제한하는 OS 수준의 샌드박스 내에서 실행",
 
   "settings.autoApprove.description":
     "도구 실행 허용 방식을 정의합니다. 대부분의 도구 기본값은 '허용'입니다. doom_loop 및 external_directory의 기본값은 '확인'입니다.",
@@ -1175,7 +1175,7 @@ export const dict = {
   "settings.checkpoints.enable.description": "파일 편집 전 체크포인트를 생성하여 이전 상태를 복원할 수 있습니다",
   "settings.autoCleanup.enable.title": "자동 세션 정리 활성화",
   "settings.autoCleanup.enable.description":
-    "정해진 일 수가 지나면 오래된 세션 기록을 자동으로 삭제합니다. 이 컴퓨터의 모든 프로젝트와 모든 Kilo 클라이언트가 대상이며 이 창만이 아닙니다. 실행 중인 세션과 최근 분기가 있는 세션은 절대 삭제되지 않습니다. 삭제는 영구적입니다.",
+    "정해진 일 수가 지나면 오래된 세션 기록을 자동으로 삭제합니다. 이 컴퓨터의 모든 프로젝트와 모든 Qronos 클라이언트가 대상이며 이 창만이 아닙니다. 실행 중인 세션과 최근 분기가 있는 세션은 절대 삭제되지 않습니다. 삭제는 영구적입니다.",
   "settings.autoCleanup.defaultRetention.title": "세션 보관 기간(일)",
   "settings.autoCleanup.defaultRetention.description": "자동 정리가 세션 기록을 삭제하기 전까지 보관하는 기간입니다.",
   "settings.autoCleanup.lastRun.title": "마지막 정리",
@@ -1192,7 +1192,7 @@ export const dict = {
     "세션 삭제 중: {{processed}}/{{total}}개 처리됨({{deleted}}개 삭제, {{failed}}개 실패)",
   "settings.autoCleanup.runNow": "지금 정리 실행",
   "settings.autoCleanup.runNow.confirm":
-    "이 컴퓨터의 모든 프로젝트와 모든 Kilo 클라이언트에 걸쳐 만료된 세션을 영구적으로 삭제할까요?",
+    "이 컴퓨터의 모든 프로젝트와 모든 Qronos 클라이언트에 걸쳐 만료된 세션을 영구적으로 삭제할까요?",
   "settings.autoCleanup.stop": "정리 중지",
   "settings.autoCleanup.progress.cancelling": "세션 정리를 중지하는 중...",
   "settings.autoCleanup.lastRun.cancelled": "중단됨",
@@ -1225,7 +1225,7 @@ export const dict = {
   "settings.context.memory.storage.enable": "Enable memory to create project memory files.",
   "settings.context.memory.inspect": "검사",
   "chat.memory.project.disabled": "프로젝트 메모리 비활성화됨",
-  "chat.memory.project.empty": "This project doesn't have any memory yet. It will start showing after you use Kilo.",
+  "chat.memory.project.empty": "This project doesn't have any memory yet. It will start showing after you use Qronos.",
   "chat.memory.command.failed": "메모리 명령 실패",
   "chat.memory.updated": "Memory updated",
   "chat.memory.rebuild": "Memory index rebuilt",
@@ -1259,7 +1259,7 @@ export const dict = {
   "settings.display.username.title": "사용자 이름",
   "settings.display.username.description": "대화에 표시되는 사용자 정의 사용자 이름",
   "settings.display.fontSize.title": "글꼴 크기",
-  "settings.display.fontSize.description": "VS Code와 독립적으로 Kilo webview UI 글꼴 크기를 조정합니다.",
+  "settings.display.fontSize.description": "VS Code와 독립적으로 Qronos webview UI 글꼴 크기를 조정합니다.",
   "settings.display.reasoningDisplay.title": "추론 블록",
   "settings.display.reasoningDisplay.description":
     "추론 블록의 시작 표시 방식을 선택합니다. 펼침은 전체 텍스트를 표시하고, 미리보기는 짧은 스크롤 미리보기로 제한하며, 헤드라인은 열기 전까지 제목과 스트리밍 표시기만 표시합니다.",
@@ -1449,10 +1449,10 @@ export const dict = {
     "통합 브라우저에 설치된 Google Chrome을 사용합니다. 호환되는 Playwright Chromium 브라우저가 이미 설치된 경우에만 비활성화하세요.",
   "settings.experimental.browserLinks.title": "링크 열기 위치",
   "settings.experimental.browserLinks.description":
-    "Kilo 채팅에서 웹 링크를 여는 위치를 선택합니다. 통합 브라우저가 필요합니다.",
+    "Qronos 채팅에서 웹 링크를 여는 위치를 선택합니다. 통합 브라우저가 필요합니다.",
   "settings.experimental.browserLinks.external": "시스템 브라우저",
   "settings.experimental.browserLinks.integrated": "통합 브라우저",
   "chat.search.searchingHistory": "이전 메시지를 검색하는 중…",
   "browserTab.noSession": "세션에서 브라우저를 열어 로컬 애플리케이션이나 공개 HTTPS 페이지를 미리 보세요.",
-  "browserTab.disabled": "통합 브라우저가 비활성화되어 있습니다. Kilo 설정 > 실험에서 활성화하세요.",
+  "browserTab.disabled": "통합 브라우저가 비활성화되어 있습니다. Qronos 설정 > 실험에서 활성화하세요.",
 }

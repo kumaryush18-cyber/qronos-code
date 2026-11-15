@@ -442,9 +442,9 @@ export const dict = {
   "agentManager.import.noBranchesFound": "브랜치를 찾을 수 없습니다.",
   "agentManager.import.noBranchesHint": "위에 PR URL을 붙여넣거나 새 Worktree를 만드세요.",
   "agentManager.import.failed": "가져오기 실패",
-  "agentManager.caffeination.toggle": "Kilo 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않기",
-  "agentManager.caffeination.armed": "Kilo 에이전트용 절전 방지 모드가 활성화되었습니다. 클릭하여 비활성화",
-  "agentManager.caffeination.active": "Kilo 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않습니다",
+  "agentManager.caffeination.toggle": "Qronos 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않기",
+  "agentManager.caffeination.armed": "Qronos 에이전트용 절전 방지 모드가 활성화되었습니다. 클릭하여 비활성화",
+  "agentManager.caffeination.active": "Qronos 에이전트가 작업하는 동안 컴퓨터를 절전 모드로 전환하지 않습니다",
   "agentManager.caffeination.unavailable": "이 플랫폼에서는 절전 방지 모드를 사용할 수 없습니다",
   "agentManager.browser.title": "통합 브라우저",
   "agentManager.browser.url": "주소",
@@ -480,7 +480,7 @@ export const dict = {
   "agentManager.intro.title": "병렬 작업. 별도의 worktree.",
   "agentManager.intro.subtitle":
     "worktree는 작업을 위한 별도 폴더와 브랜치입니다. 에이전트가 같은 파일을 편집하지 않고 나란히 작업할 수 있습니다.",
-  "agentManager.intro.graph.agent": "Kilo 에이전트",
+  "agentManager.intro.graph.agent": "Qronos 에이전트",
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.updateTitle": "Kilo로 충돌 해결",
   "agentManager.intro.updateText":
@@ -506,12 +506,12 @@ export const dict = {
     "worktree를 사용해 작업을 병렬로 실행하고, 업무를 위임하고, 모든 에이전트의 진행 상황을 한곳에서 확인하세요.",
   "agentManager.splash.hide": "숨기기",
   "agentManager.splash.hideLabel": "Agent Manager 소개 숨기기",
-  "agentManager.splash.title": "Kilo 에이전트 함대를 일하게 하세요.",
+  "agentManager.splash.title": "Qronos 에이전트 함대를 일하게 하세요.",
   "agentManager.splash.subtitle":
     "worktree를 사용해 여러 작업을 병렬로 처리하고, 작업을 위임하고, 모든 에이전트의 진행 상황을 추적하며, 여러 작업 흐름을 한곳에서 계속 진행하세요.",
   "agentManager.splash.hint": "또는",
   "agentManager.splash.proceed": "아래 메시지 입력란에서 로컬로 진행하세요",
-  "agentManager.splash.folded.title": "Kilo 에이전트 함대를 일하게 하세요",
+  "agentManager.splash.folded.title": "Qronos 에이전트 함대를 일하게 하세요",
   "agentManager.splash.folded.note": "크로스 스택 기능, 작업 위임, 모델 비교 등",
   "agentManager.splash.showExamples": "예시 보기",
   "agentManager.splash.examples.crossStack.tag": "멀티 리포",
@@ -542,7 +542,7 @@ export const dict = {
   "agentManager.splash.examples.compare.feature1.name": "다중 버전 실행",
   "agentManager.splash.examples.compare.feature1.text": "같은 작업을 여러 버전으로 동시에 실행합니다.",
   "agentManager.splash.examples.compare.feature2.name": "모델 섞기",
-  "agentManager.splash.examples.compare.feature2.text": "동일한 작업에서 Kilo Auto, Claude, GPT를 비교합니다.",
+  "agentManager.splash.examples.compare.feature2.text": "동일한 작업에서 Qronos Auto, Claude, GPT를 비교합니다.",
   "agentManager.splash.examples.compare.feature3.name": "최선을 남기기",
   "agentManager.splash.examples.compare.feature3.text": "실제 diff를 나란히 보고 하나를 남기고 나머지는 버립니다.",
   "agentManager.worktree.health.absent-restorable": "폴더 삭제됨",
@@ -570,7 +570,7 @@ export const dict = {
   "agentManager.orphans.helpCheckout":
     "git 체크아웃이 남아 있다고 표시된 폴더에는 아직 .git 항목이 있으며 커밋하지 않은 작업이 남아 있을 수 있습니다. 이러한 폴더는 선택되지 않은 상태로 두므로 삭제하기 전에 열어서 확인하세요.",
   "agentManager.orphans.helpCauses":
-    "남은 폴더는 보통 중단된 삭제, Kilo 외부에서 제거된 worktree 또는 폴더가 제거된 뒤에 그 안에 기록한 도구 때문에 생깁니다. 아직 진행 중인 삭제는 여기에 표시되지 않습니다.",
+    "남은 폴더는 보통 중단된 삭제, Qronos 외부에서 제거된 worktree 또는 폴더가 제거된 뒤에 그 안에 기록한 도구 때문에 생깁니다. 아직 진행 중인 삭제는 여기에 표시되지 않습니다.",
   "agentManager.orphans.helpDelete":
     "삭제하면 선택한 폴더가 휴지통을 거치지 않고 디스크에서 영구적으로 제거됩니다. 브랜치와 사용 중인 worktree는 변경되지 않습니다. 크기는 각 폴더가 현재 디스크에서 차지하는 용량입니다.",
   "agentManager.orphans.helpMore": "더보기",

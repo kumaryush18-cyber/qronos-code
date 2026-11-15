@@ -444,9 +444,9 @@ export const dict = {
   "agentManager.import.noBranchesFound": "ブランチが見つかりません。",
   "agentManager.import.noBranchesHint": "上にPR URLを貼り付けるか、新しいWorktreeを作成してください。",
   "agentManager.import.failed": "インポートに失敗しました",
-  "agentManager.caffeination.toggle": "Kilo エージェントの作業中もコンピューターをスリープさせない",
-  "agentManager.caffeination.armed": "Kilo エージェント用のスリープ防止モードが有効です。クリックして無効にします",
-  "agentManager.caffeination.active": "Kilo エージェントの作業中もコンピューターをスリープさせません",
+  "agentManager.caffeination.toggle": "Qronos エージェントの作業中もコンピューターをスリープさせない",
+  "agentManager.caffeination.armed": "Qronos エージェント用のスリープ防止モードが有効です。クリックして無効にします",
+  "agentManager.caffeination.active": "Qronos エージェントの作業中もコンピューターをスリープさせません",
   "agentManager.caffeination.unavailable": "このプラットフォームではスリープ防止モードを利用できません",
   "agentManager.browser.title": "統合ブラウザー",
   "agentManager.browser.url": "アドレス",
@@ -485,7 +485,7 @@ export const dict = {
   "agentManager.intro.title": "並行タスク。分離された worktree。",
   "agentManager.intro.subtitle":
     "worktree はタスク用の分離されたフォルダとブランチです。エージェントは同じファイルを編集せず、並行して作業できます。",
-  "agentManager.intro.graph.agent": "Kilo エージェント",
+  "agentManager.intro.graph.agent": "Qronos エージェント",
   "agentManager.intro.graph.pr": "Pull request",
   "agentManager.intro.stage1.title": "あなたのリポジトリ",
   "agentManager.intro.stage1.text": "ローカルファイルは変更されません",
@@ -497,9 +497,9 @@ export const dict = {
   "agentManager.intro.stage4.title": "準備ができたら変更を戻す",
   "agentManager.intro.stage4.text":
     "各 worktree のエージェントに pull request を開くよう依頼します。または差分パネルで Apply を使い、変更を Local にコピーします。",
-  "agentManager.intro.updateTitle": "Kilo で競合を解決",
+  "agentManager.intro.updateTitle": "Qronos で競合を解決",
   "agentManager.intro.updateText":
-    "Local に変更を適用するか、pull request をマージする前に、その worktree のセッションで /update-from-base を実行してください。Kilo がベースブランチの最新変更をマージし、まずその worktree 内で競合を解決します。",
+    "Local に変更を適用するか、pull request をマージする前に、その worktree のセッションで /update-from-base を実行してください。Qronos がベースブランチの最新変更をマージし、まずその worktree 内で競合を解決します。",
   "agentManager.intro.prDetection":
     "PR バッジは各 worktree ブランチで自動的に更新されます（GitHub CLI へのサインインが必要です）。",
   "agentManager.intro.checksRunning": "チェック実行中",
@@ -514,12 +514,12 @@ export const dict = {
     "worktree を使ってタスクを並行して実行し、作業を委任し、すべてのエージェントの状況を1か所から確認しましょう。",
   "agentManager.splash.hide": "非表示",
   "agentManager.splash.hideLabel": "Agent Manager の紹介を非表示にする",
-  "agentManager.splash.title": "Kilo エージェントの艦隊を働かせよう。",
+  "agentManager.splash.title": "Qronos エージェントの艦隊を働かせよう。",
   "agentManager.splash.subtitle":
     "worktree を使って複数のタスクを並行して進め、作業を委任し、各エージェントの進捗を追い、複数の作業の流れを一か所から継続的に前進させましょう。",
   "agentManager.splash.hint": "または",
   "agentManager.splash.proceed": "下のメッセージ欄でローカルに作業を進める",
-  "agentManager.splash.folded.title": "Kilo エージェントの艦隊を働かせよう",
+  "agentManager.splash.folded.title": "Qronos エージェントの艦隊を働かせよう",
   "agentManager.splash.folded.note": "クロススタック機能、作業の委任、モデル比較など",
   "agentManager.splash.showExamples": "例を表示",
   "agentManager.splash.examples.crossStack.tag": "マルチリポ",
@@ -551,7 +551,7 @@ export const dict = {
   "agentManager.splash.examples.compare.feature1.name": "複数バージョンの実行",
   "agentManager.splash.examples.compare.feature1.text": "同じタスクを同時に複数バージョンで実行します。",
   "agentManager.splash.examples.compare.feature2.name": "モデルを組み合わせる",
-  "agentManager.splash.examples.compare.feature2.text": "同じ作業で Kilo Auto、Claude、GPT を比較します。",
+  "agentManager.splash.examples.compare.feature2.text": "同じ作業で Qronos Auto、Claude、GPT を比較します。",
   "agentManager.splash.examples.compare.feature3.name": "最良を残す",
   "agentManager.splash.examples.compare.feature3.text": "実際の差分を並べて確認し、1つを残して他は破棄します。",
   "agentManager.worktree.health.absent-restorable": "フォルダーが削除されています",
@@ -579,7 +579,7 @@ export const dict = {
   "agentManager.orphans.helpCheckout":
     "git チェックアウトが残っていると表示されているフォルダーには、まだ .git エントリがあり、コミットされていない作業が含まれている可能性があります。これらは選択されていないため、削除する前に開いて内容を確認してください。",
   "agentManager.orphans.helpCauses":
-    "残されたフォルダーは通常、中断された削除、Kilo の外で削除された worktree、または削除後にフォルダーへ書き込んだツールが原因で発生します。実行中の削除はここには表示されません。",
+    "残されたフォルダーは通常、中断された削除、Qronos の外で削除された worktree、または削除後にフォルダーへ書き込んだツールが原因で発生します。実行中の削除はここには表示されません。",
   "agentManager.orphans.helpDelete":
     "削除すると、選択したフォルダーはゴミ箱を経由せずにディスクから完全に削除されます。ブランチや使用中の worktree には影響しません。サイズは各フォルダーが現在ディスク上で占めている容量です。",
   "agentManager.orphans.helpMore": "さらに表示",

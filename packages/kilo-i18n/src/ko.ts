@@ -1,5 +1,5 @@
 export const dict = {
-  // Kilo Gateway provider translations
+  // Qronos Gateway provider translations
   "provider.connect.kiloGateway.byok.prefix": "더 많은 사용 통계를 보려면 ",
   "provider.connect.kiloGateway.byok.link": "Kilo's Gateway를 통해 BYOK",
   "provider.connect.kiloGateway.byok.suffix": "를 사용하세요.",
@@ -121,7 +121,7 @@ export const dict = {
     "스냅샷이 완료될 때까지 기다리세요. 초기 스냅샷이 만들어지면 이후 턴은 빠릅니다.",
   "snapshot.slowRepo.answer.disable": "이 프로젝트에서 비활성화",
   "snapshot.slowRepo.answer.disable.description":
-    "이 프로젝트의 Kilo 스냅샷을 끕니다. Kilo 변경에 대한 실행 취소/다시 실행은 사용할 수 없지만 git은 여전히 모든 것을 추적합니다.",
+    "이 프로젝트의 Qronos 스냅샷을 끕니다. Qronos 변경에 대한 실행 취소/다시 실행은 사용할 수 없지만 git은 여전히 모든 것을 추적합니다.",
 
   // Edit-tool header and shell-tool section labels
   "ui.messagePart.openInDiffViewer": "차이점 뷰어에서 열기",

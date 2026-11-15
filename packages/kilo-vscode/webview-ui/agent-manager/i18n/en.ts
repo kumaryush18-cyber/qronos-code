@@ -106,7 +106,7 @@ export const dict = {
   "agentManager.orphans.helpCheckout":
     "A folder flagged as containing a git checkout still has a .git entry inside and may hold uncommitted work. Those are left unselected, so open one and check it before you delete it.",
   "agentManager.orphans.helpCauses":
-    "Leftovers usually come from a deletion that was interrupted, a worktree removed outside Kilo, or a tool that wrote into the folder after it was removed. Deletions that are still running are not listed here.",
+    "Leftovers usually come from a deletion that was interrupted, a worktree removed outside Qronos, or a tool that wrote into the folder after it was removed. Deletions that are still running are not listed here.",
   "agentManager.orphans.helpDelete":
     "Deleting removes the selected folders from disk for good, without going through the Trash. No branch and no active worktree is touched. Sizes are what each folder takes up on disk right now.",
   "agentManager.orphans.helpMore": "Show more",
@@ -541,7 +541,7 @@ export const dict = {
     "Ask the agent in each worktree to open a pull request. Or use Apply in the diff panel to copy changes to Local.",
   "agentManager.intro.updateTitle": "Resolve conflicts with Qronos",
   "agentManager.intro.updateText":
-    "Before applying changes to Local or merging a pull request, run /update-from-base in that worktree's session. Kilo merges the latest base changes and resolves conflicts there first.",
+    "Before applying changes to Local or merging a pull request, run /update-from-base in that worktree's session. Qronos merges the latest base changes and resolves conflicts there first.",
   "agentManager.intro.prDetection":
     "PR badges update automatically for each worktree branch (GitHub CLI sign-in required).",
   "agentManager.intro.checksRunning": "Checks running",
