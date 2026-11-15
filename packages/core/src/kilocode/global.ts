@@ -70,3 +70,36 @@ export async function resolveState(p: string, fallback?: string) {
   console.warn(`[kilo] Cannot use state directory "${p}"; using "${fallback}" instead: ${msg}`)
   return fallback
 }
+
+/**
+ * qronos_change - one-time move of the old "kilo" app directories to "qronos".
+ *
+ * Every directory is moved only when the new path does not exist yet, so this
+ * runs at most once per directory and never overwrites user data. A failed move
+ * (e.g. the two paths are on different devices) falls back to a copy, and any
+ * remaining error is logged and ignored - startup must not depend on it.
+ */
+export async function migrateLegacyAppDirs(pairs: Array<{ next: string; legacy: string }>) {
+  for (const { next, legacy } of pairs) {
+    if (next === legacy) continue
+    const existing = await fs.stat(next).then(
+      (stat) => stat.isDirectory(),
+      () => false,
+    )
+    if (existing) continue
+    const legacyExists = await fs.stat(legacy).then(
+      (stat) => stat.isDirectory(),
+      () => false,
+    )
+    if (!legacyExists) continue
+    await fs.mkdir(path.dirname(next), { recursive: true })
+    const moved = await fs.rename(legacy, next).then(
+      () => true,
+      () => false,
+    )
+    if (moved) continue
+    await fs.cp(legacy, next, { recursive: true, force: false, errorOnExist: false }).catch((err: unknown) => {
+      console.warn(`[qronos] Could not migrate "${legacy}" to "${next}":`, err)
+    })
+  }
+}

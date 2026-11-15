@@ -64,7 +64,12 @@ export function pluginFiles(scope: Scope, directory: string, worktree?: string) 
   // Count validated parent steps instead of comparing raw paths. Windows path
   // comparisons can accept an ancestor whose spelling differs only in case.
   for (let step = 0; step <= depth; step++) {
-    dirs.push(current, path.join(current, ".kilo"), path.join(current, ".kilocode"))
+    dirs.push(
+      current,
+      path.join(current, ".qronos"),
+      path.join(current, ".kilo"),
+      path.join(current, ".kilocode"),
+    ) // qronos_change - .qronos first, Kilo names still read
     current = path.dirname(current)
   }
   // Enumerate candidates without an exists check: unreadable configs must not
@@ -74,17 +79,17 @@ export function pluginFiles(scope: Scope, directory: string, worktree?: string) 
 
 export function agentsDir(scope: Scope, directory: string) {
   if (scope === "global") return path.join(Global.Path.config, "agents")
-  return path.join(directory, ".kilo", "agents")
+  return path.join(directory, ".qronos", "agents") // qronos_change
 }
 
 export function skillsDir(scope: Scope, directory: string) {
-  if (scope === "global") return path.join(Global.Path.home, ".kilo", "skills")
-  return path.join(directory, ".kilo", "skills")
+  if (scope === "global") return path.join(Global.Path.config, "skills") // qronos_change - was ~/.kilo
+  return path.join(directory, ".qronos", "skills") // qronos_change
 }
 
 export function configRoot(scope: Scope, directory: string) {
   if (scope === "global") return Global.Path.config
-  return path.join(directory, ".kilo")
+  return path.join(directory, ".qronos") // qronos_change
 }
 
 /**
@@ -98,7 +103,11 @@ export async function scopeRoot(scope: Scope, directory: string, worktree?: stri
   if (scope === "global") return Global.Path.config
   const file = await KilocodeConfigOverlay.projectTarget({ directory, worktree })
   const dir = path.dirname(file)
-  return dir.endsWith(`${path.sep}.kilo`) || dir.endsWith(`${path.sep}.kilocode`) ? path.dirname(dir) : dir
+  return dir.endsWith(`${path.sep}.qronos`) ||
+    dir.endsWith(`${path.sep}.kilo`) ||
+    dir.endsWith(`${path.sep}.kilocode`)
+    ? path.dirname(dir)
+    : dir // qronos_change
 }
 
 export async function mcpsDir(scope: Scope, directory: string, worktree?: string) {

@@ -28,14 +28,23 @@ export interface Entry {
   virtual?: boolean
 }
 
-const SCHEMA = "https://app.kilo.ai/config.json"
+const SCHEMA = "https://qronos.me/config.json" // qronos_change - was app.kilo.ai
 
-const MODERN = ["kilo.jsonc", "kilo.json"]
+const MODERN = ["qronos.jsonc", "qronos.json", "kilo.jsonc", "kilo.json"] // qronos_change
 const LEGACY = ["opencode.jsonc", "opencode.json"]
 const FILES = [...MODERN, ...LEGACY]
-const GLOBAL = ["kilo.jsonc", "kilo.json", "opencode.jsonc", "opencode.json", "config.json"]
-const HOME = [".kilo", ".kilocode", ".opencode"]
+const GLOBAL = [
+  "qronos.jsonc",
+  "qronos.json",
+  "kilo.jsonc",
+  "kilo.json",
+  "opencode.jsonc",
+  "opencode.json",
+  "config.json",
+] // qronos_change
+const HOME = [".qronos", ".kilo", ".kilocode", ".opencode"] // qronos_change
 const SOURCES: Record<string, Source> = {
+  ".qronos": "sourceHomeKilo", // qronos_change
   ".kilo": "sourceHomeKilo",
   ".kilocode": "sourceHomeKilocode",
   ".opencode": "sourceHomeOpencode",
@@ -60,8 +69,13 @@ function ensure(list: Entry[], file: string, source: Source) {
 }
 
 export function globalFiles() {
-  const root = path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config"), "kilo")
-  const base = GLOBAL.map((file) => row(path.join(root, file), "sourceXdg")).filter((item) => item.exists)
+  const xdg = process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config")
+  const root = path.join(xdg, "qronos") // qronos_change - was "kilo"
+  // qronos_change - keep showing configs the user still has in the Kilo-era dir
+  const legacyRoot = path.join(xdg, "kilo")
+  const base = [...GLOBAL.map((file) => path.join(root, file)), ...GLOBAL.map((file) => path.join(legacyRoot, file))]
+    .map((file) => row(file, "sourceXdg"))
+    .filter((item) => item.exists)
   const dirs = HOME.flatMap((dir) => {
     const base = path.join(os.homedir(), dir)
     if (!existsSync(base)) return []
@@ -72,7 +86,7 @@ export function globalFiles() {
   const dir = extra
     ? ensure(
         FILES.map((file) => row(path.join(extra, file), "sourceEnvDir")).filter((item) => item.exists),
-        path.join(extra, "kilo.jsonc"),
+        path.join(extra, "qronos.jsonc"),
         "sourceEnvDir",
       )
     : []
@@ -88,23 +102,29 @@ export function globalFiles() {
       ]
     : []
 
-  return ensure([...base, ...dirs, ...env, ...dir, ...virtual], path.join(root, "kilo.jsonc"), "sourceXdg")
+  return ensure([...base, ...dirs, ...env, ...dir, ...virtual], path.join(root, "qronos.jsonc"), "sourceXdg")
 }
 
 export function localFiles(root: string) {
   const enabled = !process.env.KILO_DISABLE_PROJECT_CONFIG
-  const dirs = [path.join(root, ".kilo"), root, path.join(root, ".kilocode"), path.join(root, ".opencode")]
+  const dirs = [
+    path.join(root, ".qronos"),
+    path.join(root, ".kilo"),
+    root,
+    path.join(root, ".kilocode"),
+    path.join(root, ".opencode"),
+  ] // qronos_change - .qronos first
   const list = dirs.flatMap((dir) => FILES.map((file) => row(path.join(dir, file), localSource(root, dir), enabled)))
   return ensure(
     list.filter((item) => item.exists),
-    path.join(root, ".kilo", "kilo.jsonc"),
+    path.join(root, ".qronos", "qronos.jsonc"),
     "sourceProjectKilo",
   ).map((item) => (enabled ? item : { ...item, loaded: false }))
 }
 
 function localSource(root: string, dir: string) {
   if (dir === root) return "sourceProjectRoot"
-  if (dir.endsWith(`${path.sep}.kilo`)) return "sourceProjectKilo"
+  if (dir.endsWith(`${path.sep}.qronos`) || dir.endsWith(`${path.sep}.kilo`)) return "sourceProjectKilo"
   if (dir.endsWith(`${path.sep}.kilocode`)) return "sourceProjectKilocode"
   return "sourceProjectOpencode"
 }

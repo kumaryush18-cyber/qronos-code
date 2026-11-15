@@ -1044,21 +1044,29 @@ export class WorktreeManager {
 
   async ensureGitExclude(): Promise<void> {
     const target = await this.excludeTarget()
+    // qronos_change - ignore our own state under .qronos, plus both Kilo-era names
     const items = [
-      [".kilo/worktrees/", "Kilo Code agent worktrees"],
-      [".kilo/agent-manager.json", "Kilo Agent Manager state"],
-      [".kilo/setup-script", "Kilo Code worktree setup script"],
-      [".kilo/setup-script.sh", "Kilo Code worktree setup script"],
-      [".kilo/setup-script.ps1", "Kilo Code worktree setup script"],
-      [".kilo/setup-script.cmd", "Kilo Code worktree setup script"],
-      [".kilo/setup-script.bat", "Kilo Code worktree setup script"],
-      [".kilocode/worktrees/", "Kilo Code legacy agent worktrees"],
-      [".kilocode/agent-manager.json", "Kilo Agent Manager legacy state"],
-      [".kilocode/setup-script", "Kilo Code legacy worktree setup script"],
-      [".kilocode/setup-script.sh", "Kilo Code legacy worktree setup script"],
-      [".kilocode/setup-script.ps1", "Kilo Code legacy worktree setup script"],
-      [".kilocode/setup-script.cmd", "Kilo Code legacy worktree setup script"],
-      [".kilocode/setup-script.bat", "Kilo Code legacy worktree setup script"],
+      [".qronos/worktrees/", "Qronos Code agent worktrees"],
+      [".qronos/agent-manager.json", "Qronos Agent Manager state"],
+      [".qronos/setup-script", "Qronos Code worktree setup script"],
+      [".qronos/setup-script.sh", "Qronos Code worktree setup script"],
+      [".qronos/setup-script.ps1", "Qronos Code worktree setup script"],
+      [".qronos/setup-script.cmd", "Qronos Code worktree setup script"],
+      [".qronos/setup-script.bat", "Qronos Code worktree setup script"],
+      [".kilo/worktrees/", "Qronos Code legacy agent worktrees"],
+      [".kilo/agent-manager.json", "Qronos Agent Manager legacy state"],
+      [".kilo/setup-script", "Qronos Code legacy worktree setup script"],
+      [".kilo/setup-script.sh", "Qronos Code legacy worktree setup script"],
+      [".kilo/setup-script.ps1", "Qronos Code legacy worktree setup script"],
+      [".kilo/setup-script.cmd", "Qronos Code legacy worktree setup script"],
+      [".kilo/setup-script.bat", "Qronos Code legacy worktree setup script"],
+      [".kilocode/worktrees/", "Qronos Code legacy agent worktrees"],
+      [".kilocode/agent-manager.json", "Qronos Agent Manager legacy state"],
+      [".kilocode/setup-script", "Qronos Code legacy worktree setup script"],
+      [".kilocode/setup-script.sh", "Qronos Code legacy worktree setup script"],
+      [".kilocode/setup-script.ps1", "Qronos Code legacy worktree setup script"],
+      [".kilocode/setup-script.cmd", "Qronos Code legacy worktree setup script"],
+      [".kilocode/setup-script.bat", "Qronos Code legacy worktree setup script"],
     ] as const
 
     for (const [entry, comment] of items) {

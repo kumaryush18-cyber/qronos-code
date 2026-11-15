@@ -379,9 +379,9 @@ const layer = Layer.effect(
       yield* Effect.promise(() => resolveLoadedPlugins(data, options.path))
       if (!data.$schema) {
         // kilocode_change start
-        data.$schema = "https://app.kilo.ai/config.json"
+        data.$schema = "https://qronos.me/config.json"
         const original = options.original ?? text
-        const edits = modify(original, ["$schema"], "https://app.kilo.ai/config.json", {
+        const edits = modify(original, ["$schema"], "https://qronos.me/config.json", {
           formattingOptions: { insertSpaces: true, tabSize: 2 },
           getInsertionIndex: () => 0,
         })
@@ -452,7 +452,7 @@ const layer = Layer.effect(
         const file = globalConfigFile()
         if (!existsSync(file)) {
           yield* fs
-            .writeWithDirs(file, JSON.stringify({ $schema: "https://app.kilo.ai/config.json" }, null, 2))
+            .writeWithDirs(file, JSON.stringify({ $schema: "https://qronos.me/config.json" }, null, 2))
             .pipe(Effect.catch(() => Effect.void))
         }
       }
@@ -487,7 +487,7 @@ const layer = Layer.effect(
             .then(async (mod) => {
               const { provider, model, ...rest } = mod.default
               if (provider && model) result.model = `${provider}/${model}`
-              result["$schema"] = "https://app.kilo.ai/config.json" // kilocode_change
+              result["$schema"] = "https://qronos.me/config.json" // kilocode_change
               result = mergeConfig(result, rest)
               await fsNode.writeFile(path.join(Global.Path.config, "config.json"), JSON.stringify(result, null, 2))
               await fsNode.unlink(legacy)
@@ -716,7 +716,7 @@ const layer = Layer.effect(
                   })
                 : {}
               const remoteConfig = mergeConfig(isRecord(wellknown.config) ? wellknown.config : {}, fetchedConfig)
-              if (!remoteConfig.$schema) remoteConfig.$schema = "https://app.kilo.ai/config.json"
+              if (!remoteConfig.$schema) remoteConfig.$schema = "https://qronos.me/config.json"
               const next = yield* loadConfig(
                 JSON.stringify(remoteConfig),
                 {
@@ -783,7 +783,7 @@ const layer = Layer.effect(
 
         if (!Flag.KILO_DISABLE_PROJECT_CONFIG) {
           // kilocode_change start - also discover kilo.json project files
-          for (const name of ["kilo", "opencode"] as const) {
+          for (const name of ["qronos", "kilo", "opencode"] as const) { // qronos_change - qronos.json first
             for (const file of yield* ConfigPaths.files(name, ctx.directory, ctx.worktree).pipe(Effect.orDie)) {
               yield* merge(
                 file,
@@ -809,7 +809,7 @@ const layer = Layer.effect(
         const directories = yield* ConfigPaths.directories(ctx.directory, ctx.worktree)
         const primary = Flag.KILO_DISABLE_PROJECT_CONFIG
           ? []
-          : yield* primaryPaths(ctx.directory, ctx.worktree, [".kilocode", ".kilo"])
+          : yield* primaryPaths(ctx.directory, ctx.worktree, [".qronos", ".kilocode", ".kilo"]) // qronos_change
         // Load primary fallbacks before active-worktree config, then track them as local.
         directories.splice(1, 0, ...primary)
         const primarySet = new Set(primary)

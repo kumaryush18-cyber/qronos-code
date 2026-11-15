@@ -8,8 +8,13 @@ export namespace RulesMigrator {
   const home = () => process.env.KILO_TEST_HOME || process.env.HOME || process.env.USERPROFILE || os.homedir()
 
   // Directory-based rules (read from both .kilo and .kilocode)
-  const KILO_RULES_DIRS = [".kilo/rules", ".kilocode/rules"]
-  const globalRulesDirs = () => [path.join(home(), ".kilo", "rules"), path.join(home(), ".kilocode", "rules")]
+  // qronos_change - .qronos first, Kilo-era directories stay readable
+  const KILO_RULES_DIRS = [".qronos/rules", ".kilo/rules", ".kilocode/rules"]
+  const globalRulesDirs = () => [
+    path.join(home(), ".qronos", "rules"),
+    path.join(home(), ".kilo", "rules"),
+    path.join(home(), ".kilocode", "rules"),
+  ]
 
   // Known modes for mode-specific rule discovery
   const KNOWN_MODES = ["code", "architect", "ask", "debug", "orchestrator"]
@@ -89,7 +94,7 @@ export namespace RulesMigrator {
     for (const mode of KNOWN_MODES) {
       // Mode-specific directories (.kilo/rules-{mode}/*.md and .kilocode/rules-{mode}/*.md)
       const modeSeen = new Set<string>()
-      for (const prefix of [".kilo", ".kilocode"]) {
+      for (const prefix of [".qronos", ".kilo", ".kilocode"]) { // qronos_change
         const modeDir = path.join(projectDir, `${prefix}/rules-${mode}`)
         if (await isDirectory(modeDir)) {
           const files = await findMarkdownFiles(modeDir)

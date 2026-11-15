@@ -5,11 +5,12 @@ import os from "os"
 import { Context, Effect, Layer } from "effect"
 import { Flock } from "./util/flock"
 import { markNoIndex } from "./kilocode/spotlight" // kilocode_change
-import { ensureRealDir, resolveState } from "./kilocode/global" // kilocode_change
+import { ensureRealDir, migrateLegacyAppDirs, resolveState } from "./kilocode/global" // kilocode_change
 import { Flag } from "./flag/flag"
 import { makeGlobalNode } from "./effect/app-node"
 
-const app = "kilo" // kilocode_change
+const app = "qronos" // qronos_change - was "kilo"
+const legacyApp = "kilo" // qronos_change
 // kilocode_change start
 // Defensively strip newline characters from the resolved XDG paths.
 // If `$HOME` (or any `$XDG_*_HOME` override) has a trailing newline in
@@ -23,6 +24,14 @@ const data = path.join(clean(xdgData)!, app)
 const cache = path.join(clean(xdgCache)!, app)
 const config = path.join(clean(xdgConfig)!, app)
 const preferred = path.join(clean(xdgState)!, app)
+// qronos_change start - move ~/.{data,cache,config,state}/kilo to /qronos once
+await migrateLegacyAppDirs([
+  { next: data, legacy: path.join(clean(xdgData)!, legacyApp) },
+  { next: cache, legacy: path.join(clean(xdgCache)!, legacyApp) },
+  { next: config, legacy: path.join(clean(xdgConfig)!, legacyApp) },
+  { next: preferred, legacy: path.join(clean(xdgState)!, legacyApp) },
+])
+// qronos_change end
 const state = await resolveState(preferred, process.env.XDG_STATE_HOME ? undefined : path.join(data, "state"))
 // kilocode_change end
 const tmp = path.join(os.tmpdir(), app)

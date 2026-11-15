@@ -189,7 +189,7 @@ export const McpAuthCommand = effectCmd({
 
     if (servers.length === 0) {
       prompts.log.warn("No OAuth-capable MCP servers configured")
-      prompts.log.info("Remote MCP servers support OAuth by default. Add a remote server in kilo.json:") // kilocode_change
+      prompts.log.info("Remote MCP servers support OAuth by default. Add a remote server in qronos.json:") // kilocode_change
       prompts.log.info(`
   "mcp": {
     "my-server": {
@@ -396,6 +396,8 @@ export const McpLogoutCommand = effectCmd({
 async function resolveConfigPath(baseDir: string, global = false) {
   // kilocode_change start - prefer supported Kilo config directories over root files
   const roots = [
+    path.join(baseDir, "qronos.jsonc"), // qronos_change
+    path.join(baseDir, "qronos.json"), // qronos_change
     path.join(baseDir, "kilo.jsonc"),
     path.join(baseDir, "kilo.json"),
     path.join(baseDir, "opencode.jsonc"),
@@ -404,6 +406,11 @@ async function resolveConfigPath(baseDir: string, global = false) {
   const candidates = global
     ? roots
     : [
+        // qronos_change - our own directory first
+        path.join(baseDir, ".qronos", "qronos.jsonc"),
+        path.join(baseDir, ".qronos", "qronos.json"),
+        path.join(baseDir, ".qronos", "kilo.jsonc"),
+        path.join(baseDir, ".qronos", "kilo.json"),
         path.join(baseDir, ".kilo", "kilo.jsonc"),
         path.join(baseDir, ".kilo", "kilo.json"),
         path.join(baseDir, ".kilo", "opencode.jsonc"),
@@ -421,8 +428,8 @@ async function resolveConfigPath(baseDir: string, global = false) {
     }
   }
 
-  // Default to kilo.json if none exist
-  return path.join(baseDir, "kilo.json")
+  // Default to qronos.json if none exist  // qronos_change
+  return path.join(baseDir, "qronos.json")
   // kilocode_change end
 }
 

@@ -275,6 +275,7 @@ function baseline(
 function planEditRules(worktree: string) {
   return {
     "*": "deny" as const,
+    [path.join(".qronos", "plans", "*.md")]: "allow" as const, // qronos_change
     [path.join(".kilo", "plans", "*.md")]: "allow" as const,
     [path.join("plans", "*.md")]: "allow" as const,
     [path.join(".plans", "*.md")]: "allow" as const,

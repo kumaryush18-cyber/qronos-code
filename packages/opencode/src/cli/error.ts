@@ -67,7 +67,7 @@ export function FormatError(input: unknown): string | undefined {
       ...(suggestions.length ? ["Did you mean: " + suggestions.join(", ")] : []),
       ...(unavailable(providerModelNotFound) ? [unavailable(providerModelNotFound)] : []), // kilocode_change
       `Try: \`kilo models\` to list available models`, // kilocode_change
-      `Or check your kilo.json provider/model names`, // kilocode_change
+      `Or check your qronos.json provider/model names`, // kilocode_change
     ].join("\n")
   }
 

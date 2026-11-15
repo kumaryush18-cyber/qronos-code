@@ -16,11 +16,14 @@ export const PLATFORM = "agent-manager" as const
 /** Keep baseline snapshots without interrupting concurrently started agents. */
 export const SNAPSHOT_INITIALIZATION = "wait" as const
 
-/** Kilo config directory name (project-level and inside worktrees). */
-export const KILO_DIR = ".kilo"
+/** Config directory name (project-level and inside worktrees). */
+export const KILO_DIR = ".qronos" // qronos_change - was ".kilo"
 
 /** Legacy config directory name for backward compatibility reads. */
 export const LEGACY_DIR = ".kilocode"
+
+/** Every legacy directory name we still migrate from, oldest last. qronos_change */
+export const LEGACY_DIRS = [".kilo", LEGACY_DIR] as const
 
 /** Agent Manager files that should be migrated from .kilocode/ to .kilo/. */
 const AGENT_MANAGER_ITEMS = [
@@ -53,11 +56,13 @@ export interface MigrationResult {
  * Idempotent: safe to call on every startup.
  */
 export async function migrateAgentManagerData(root: string, log: (msg: string) => void): Promise<MigrationResult> {
-  const legacy = path.join(root, LEGACY_DIR)
   const target = path.join(root, KILO_DIR)
 
-  if (await isDirectory(legacy)) {
-    // Ensure .kilo/ exists
+  // qronos_change - migrate from every legacy directory, newest name first
+  for (const legacyName of LEGACY_DIRS) {
+    const legacy = path.join(root, legacyName)
+    if (!(await isDirectory(legacy))) continue
+    // Ensure the target directory exists
     try {
       await fs.promises.mkdir(target, { recursive: true })
     } catch {
@@ -77,7 +82,7 @@ export async function migrateAgentManagerData(root: string, log: (msg: string) =
 
       try {
         await fs.promises.rename(src, dst)
-        log(`Migrated ${item} from ${LEGACY_DIR} to ${KILO_DIR}`)
+        log(`Migrated ${item} from ${legacyName} to ${KILO_DIR}`)
       } catch (err) {
         // On Windows, rename can fail with EPERM/EBUSY if files are held open.
         // Will succeed on next startup.
@@ -156,7 +161,8 @@ async function fixGitWorktreeRefs(root: string, log: (msg: string) => void): Pro
     return 0
   }
 
-  const oldSegment = path.join(root, LEGACY_DIR) + path.sep
+  // qronos_change - refs can point at any legacy directory name
+  const oldSegments = LEGACY_DIRS.map((name) => path.join(root, name) + path.sep)
   const newSegment = path.join(root, KILO_DIR) + path.sep
   let fixed = 0
 
@@ -167,9 +173,11 @@ async function fixGitWorktreeRefs(root: string, log: (msg: string) => void): Pro
       const gitdirFile = path.join(gitWorktreesDir, entry.name, "gitdir")
       try {
         const content = await fs.promises.readFile(gitdirFile, "utf-8")
-        if (!content.includes(oldSegment)) continue
+        const stale = oldSegments.filter((segment) => content.includes(segment))
+        if (stale.length === 0) continue
 
-        const updated = content.replaceAll(oldSegment, newSegment)
+        let updated = content
+        for (const segment of stale) updated = updated.replaceAll(segment, newSegment)
         await fs.promises.writeFile(gitdirFile, updated)
 
         // Verify the write persisted — catch silent FS failures (e.g. read-only mount)

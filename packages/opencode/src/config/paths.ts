@@ -26,13 +26,13 @@ export const directories = Effect.fn("ConfigPaths.directories")(function* (direc
     Global.Path.config,
     ...(!Flag.KILO_DISABLE_PROJECT_CONFIG
       ? yield* afs.up({
-          targets: [".kilocode", ".kilo"], // kilocode_change
+          targets: [".qronos", ".kilocode", ".kilo"], // qronos_change - .qronos first, old names still read
           start: directory,
           stop: worktree,
         })
       : []),
     ...(yield* afs.up({
-      targets: [".kilocode", ".kilo"], // kilocode_change
+      targets: [".qronos", ".kilocode", ".kilo"], // qronos_change
       start: Global.Path.home,
       stop: Global.Path.home,
     })),

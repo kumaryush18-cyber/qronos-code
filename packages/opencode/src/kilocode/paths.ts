@@ -29,9 +29,10 @@ export namespace KilocodePaths {
     }
   }
 
-  /** Global Kilo directories in user home: ~/.kilocode and ~/.kilo (legacy first, .kilo wins later) */
+  /** Global directories in the user home. qronos_change - ~/.qronos is ours, the
+   * Kilo-era ~/.kilocode and ~/.kilo stay readable so nothing disappears. */
   export function globalDirs(): string[] {
-    return [path.join(home(), ".kilocode"), path.join(home(), ".kilo")]
+    return [path.join(home(), ".kilocode"), path.join(home(), ".kilo"), path.join(home(), ".qronos")]
   }
 
   /**
