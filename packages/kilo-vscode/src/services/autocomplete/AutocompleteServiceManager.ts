@@ -10,7 +10,7 @@ import type { KiloConnectionService } from "../cli-backend"
 import { hasValidCredentials } from "./fim"
 import { DEFAULT_AUTOCOMPLETE_MODEL, getAutocompleteModel } from "../../shared/autocomplete-models"
 
-const CONFIG_SECTION = "kilo-code.new.autocomplete"
+const CONFIG_SECTION = "qronos-code.new.autocomplete"
 
 export function selector(): vscode.DocumentSelector {
   return [{ scheme: "file" }, { scheme: "vscode-notebook-cell" }]
@@ -114,7 +114,7 @@ export class AutocompleteServiceManager {
     )
 
     this.config = vscode.workspace.onDidChangeConfiguration((event) => {
-      if (event.affectsConfiguration("kilo-code.new.language")) {
+      if (event.affectsConfiguration("qronos-code.new.language")) {
         this.updateStatusBar()
       }
     })
@@ -276,7 +276,7 @@ export class AutocompleteServiceManager {
   private async updateGlobalContext() {
     await vscode.commands.executeCommand(
       "setContext",
-      "kilocode.autocomplete.enableSmartInlineTaskKeybinding",
+      "qronos-code.autocomplete.enableSmartInlineTaskKeybinding",
       this.settings?.enableSmartInlineTaskKeybinding || false,
     )
   }
@@ -359,7 +359,7 @@ export class AutocompleteServiceManager {
     if (response === disableCopilot) {
       await vscode.commands.executeCommand("github.copilot.completions.disable")
     } else if (response === disableInlineAssist) {
-      await vscode.commands.executeCommand("kilo-code.new.autocomplete.disable")
+      await vscode.commands.executeCommand("qronos-code.new.autocomplete.disable")
     }
   }
 

@@ -16,7 +16,7 @@ Turn Keep Awake on or off with any of these controls:
 
 | Control | Action |
 |---|---|
-| Command Palette | Run **Toggle Keep Awake** (`kilo-code.new.toggleCaffeination`). |
+| Command Palette | Run **Toggle Keep Awake** (`qronos-code.new.toggleCaffeination`). |
 | Chat slash command | Type `/caffeinate`. The aliases `/caffenate` and `/keep-awake` also work. |
 | Agent Manager | Select the coffee icon in the Agent Manager header. |
 

@@ -118,7 +118,7 @@ export class BrowserTabProvider {
       return
     }
     const panel = vscode.window.createWebviewPanel(
-      "kilo-code.new.browser",
+      "qronos-code.new.browser",
       "Integrated Browser",
       vscode.ViewColumn.Active,
       {
@@ -289,7 +289,7 @@ export class BrowserTabProvider {
       return
     }
     if (message.type === "browserTab.openSettings") {
-      void vscode.commands.executeCommand("kilo-code.new.settingsButtonClicked", "experimental")
+      void vscode.commands.executeCommand("qronos-code.new.settingsButtonClicked", "experimental")
       return
     }
     if (message.type === "browserTab.openExternal") {

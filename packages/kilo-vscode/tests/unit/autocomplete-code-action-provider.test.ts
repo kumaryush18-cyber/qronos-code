@@ -9,6 +9,6 @@ describe("AutocompleteCodeActionProvider", () => {
     const provider = new AutocompleteCodeActionProvider()
     const actions = provider.provideCodeActions(document as never, range as never, {} as never, {} as never)
 
-    expect(actions?.at(0)?.command?.command).toBe("kilo-code.new.autocomplete.generateSuggestions")
+    expect(actions?.at(0)?.command?.command).toBe("qronos-code.new.autocomplete.generateSuggestions")
   })
 })

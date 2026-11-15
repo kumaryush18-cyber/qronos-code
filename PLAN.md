@@ -39,8 +39,8 @@ foundation. It must stay mergeable with upstream so future security fixes can be
 | D4 | P1 | `QRONOS_AI_GATEWAY_URL` has no legacy fallback → `KILO_AI_GATEWAY_URL` ignored, e2e hits production | `kilo-gateway/src/api/constants.ts:17` |
 | D5 | P1 | Hard-coded model IDs do not exist on the gateway (`claude-sonnet-5.5` vs `claude-5.5-sonnet`); defaults still `kilo-auto/free` | `provider-model.ts`, `constants.ts` |
 | D6 | P1 | Two provider IDs (`kilo` + `qronos`) for one gateway → duplicate picker entries | `provider-model.ts` |
-| D7 | P2 | 139 command IDs, 41 keybindings, 2 submenu IDs, 224 src refs still `kilo-code.*` | `package.json`, `src/**` |
-| D8 | P2 | Settings namespace is `kilo-code.*` with title "Kilo Code" | `package.json` contributes.configuration |
+| D7 | P2 | 139 command IDs, 41 keybindings, 2 submenu IDs, 224 src refs still `qronos-code.*` | `package.json`, `src/**` |
+| D8 | P2 | Settings namespace is `qronos-code.*` with title "Kilo Code" | `package.json` contributes.configuration |
 | D9 | P2 | 91 user-visible "Kilo" strings in `en.ts`, 22 locale files | `webview-ui/src/i18n/**` |
 | D10 | P2 | User-reachable Kilo URLs (feedback, credits, config schema, install, MCP metadata) | 18 hits across 3 packages |
 | D11 | P2 | `.vsix` = 87 MB / 386 MB unpacked, ships `playwright-core` + `chromium-bidi` | `.vscodeignore` |
@@ -113,7 +113,7 @@ Status: **next**. Detailed steps:
 - Scripted rename: manifest ids → keybindings → submenus → `src/**` → `tests/unit/**`.
 - Do not touch `packages/opencode/src`, `packages/core/src`, `packages/kilo-ui/src`
   (verified: zero command-id references).
-- **Gate:** zero `kilo-code.` command ids left in the extension package; `build:check` and
+- **Gate:** zero `qronos-code.` command ids left in the extension package; `build:check` and
   `test:unit` pass; all 41 keybindings verified by hand.
 
 ### Phase 6 — Remove visible Kilo text  *(D9, D10)*

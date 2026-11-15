@@ -41,7 +41,7 @@ export function registerCodeActions(
   }
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("kilo-code.new.explainCode", async () => {
+    vscode.commands.registerCommand("qronos-code.new.explainCode", async () => {
       const ctx = getEditorContext()
       if (!ctx) return
       const prompt = createPrompt("EXPLAIN", {
@@ -55,7 +55,7 @@ export function registerCodeActions(
       provider.postMessage({ type: "triggerTask", text: prompt, injectedTitle: "Explain selected code" })
     }),
 
-    vscode.commands.registerCommand("kilo-code.new.fixCode", async () => {
+    vscode.commands.registerCommand("qronos-code.new.fixCode", async () => {
       const ctx = getEditorContext()
       if (!ctx) return
       const prompt = createPrompt("FIX", {
@@ -70,7 +70,7 @@ export function registerCodeActions(
       provider.postMessage({ type: "triggerTask", text: prompt, injectedTitle: "Fix code problems" })
     }),
 
-    vscode.commands.registerCommand("kilo-code.new.improveCode", async () => {
+    vscode.commands.registerCommand("qronos-code.new.improveCode", async () => {
       const ctx = getEditorContext()
       if (!ctx) return
       const prompt = createPrompt("IMPROVE", {
@@ -84,7 +84,7 @@ export function registerCodeActions(
       provider.postMessage({ type: "triggerTask", text: prompt, injectedTitle: "Improve selected code" })
     }),
 
-    vscode.commands.registerCommand("kilo-code.new.addToContext", async () => {
+    vscode.commands.registerCommand("qronos-code.new.addToContext", async () => {
       const ctx = getEditorContext()
       if (!ctx) return
       const view = lastFocusedChat?.() ?? target()
@@ -101,7 +101,7 @@ export function registerCodeActions(
       })
     }),
 
-    vscode.commands.registerCommand("kilo-code.new.focusChatInput", async () => {
+    vscode.commands.registerCommand("qronos-code.new.focusChatInput", async () => {
       const view = target()
       if (!(await revealTarget(view))) return
       view.postMessage({ type: "action", action: "focusInput" })
@@ -113,7 +113,7 @@ export function registerCodeActions(
     // focus; invoking straight from the palette sidesteps that path
     // entirely, the same way terminalAddToContext etc. do. Toggles: the
     // webview closes the search bar itself if it's already open.
-    vscode.commands.registerCommand("kilo-code.new.toggleChatSearch", async () => {
+    vscode.commands.registerCommand("qronos-code.new.toggleChatSearch", async () => {
       const view = target()
       if (!(await revealTarget(view))) return
       view.postMessage({ type: "action", action: "focusSearch" })
@@ -123,7 +123,7 @@ export function registerCodeActions(
     // Agent Manager has its own tab bar, so redirect it to the sidebar. Prefer
     // the last focused chat: an editor tab can still report active while the
     // user works in the sidebar.
-    vscode.commands.registerCommand("kilo-code.new.showOpenTabs", async () => {
+    vscode.commands.registerCommand("qronos-code.new.showOpenTabs", async () => {
       const view = (() => {
         const last = lastFocusedChat?.()
         if (last) return last === agentManager ? provider : last

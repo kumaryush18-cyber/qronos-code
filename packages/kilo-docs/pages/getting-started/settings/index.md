@@ -172,7 +172,7 @@ Display changes apply as a draft. Click **Save** to keep them or **Discard** to 
 
 ### Markdown Diff Rendering
 
-Markdown files in Kilo diff viewers can be shown as rendered Markdown instead of a raw text diff. Use the eye/code toggle in a Markdown file header, or set `kilo-code.new.diff.renderMarkdown` to `true` to render Markdown files by default.
+Markdown files in Kilo diff viewers can be shown as rendered Markdown instead of a raw text diff. Use the eye/code toggle in a Markdown file header, or set `qronos-code.new.diff.renderMarkdown` to `true` to render Markdown files by default.
 
 ### Web Search
 

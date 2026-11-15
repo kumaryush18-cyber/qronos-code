@@ -103,7 +103,7 @@ import { createBrowserLifecycle } from "./browser-lifecycle"
 import { handleSessionLifecycle } from "./session-lifecycle"
 import { isRestrictedRoot } from "./home-workspace"
 export class AgentManagerProvider implements Disposable {
-  public static readonly viewType = "kilo-code.new.AgentManagerPanel"
+  public static readonly viewType = "qronos-code.new.AgentManagerPanel"
   private panel: PanelContext | undefined
   private outputChannel: OutputHandle
   private readonly registry: ProjectRegistry

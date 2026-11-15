@@ -24,7 +24,7 @@ Autocomplete is **enabled by default** and automatically shows inline suggestion
 Press `Cmd+L` (Mac) or `Ctrl+L` (Windows/Linux) to manually request a completion at your cursor position.
 
 {% callout type="note" %}
-This keybinding requires `kilo-code.new.autocomplete.enableSmartInlineTaskKeybinding` to be enabled in VS Code settings. It is **disabled by default**.
+This keybinding requires `qronos-code.new.autocomplete.enableSmartInlineTaskKeybinding` to be enabled in VS Code settings. It is **disabled by default**.
 {% /callout %}
 
 ## Provider and Model

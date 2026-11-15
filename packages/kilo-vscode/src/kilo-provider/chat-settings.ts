@@ -4,16 +4,16 @@ import { integratedBrowserLinkDestination } from "../services/browser-automation
 type Post = (msg: unknown) => void
 
 export function buildChatSettingsMessage() {
-  const config = vscode.workspace.getConfiguration("kilo-code.new.chat")
+  const config = vscode.workspace.getConfiguration("qronos-code.new.chat")
   return {
     type: "chatSettingsLoaded" as const,
     settings: {
       shiftTabCyclesVariant: config.get<boolean>("shiftTabCyclesVariant", true),
       agentManagerSplash:
-        vscode.workspace.getConfiguration("kilo-code.new.experimental").get<boolean>("agentManagerSplash", false) ===
+        vscode.workspace.getConfiguration("qronos-code.new.experimental").get<boolean>("agentManagerSplash", false) ===
         true,
       browserAutomation: vscode.workspace
-        .getConfiguration("kilo-code.new.experimental")
+        .getConfiguration("qronos-code.new.experimental")
         .get("browserAutomation", false),
       agentManagerBrowserOpenLinksIn: integratedBrowserLinkDestination(),
       workspaceTrusted: vscode.workspace.isTrusted,
@@ -22,7 +22,7 @@ export function buildChatSettingsMessage() {
 }
 
 export function buildTimelineSettingMessage() {
-  const config = vscode.workspace.getConfiguration("kilo-code.new")
+  const config = vscode.workspace.getConfiguration("qronos-code.new")
   return {
     type: "timelineSettingLoaded" as const,
     visible: config.get<boolean>("showTaskTimeline", true),
@@ -32,14 +32,14 @@ export function buildTimelineSettingMessage() {
 export function watchChatConfig(post: Post): vscode.Disposable {
   return vscode.workspace.onDidChangeConfiguration((event) => {
     if (
-      event.affectsConfiguration("kilo-code.new.chat") ||
-      event.affectsConfiguration("kilo-code.new.experimental.agentManagerSplash") ||
-      event.affectsConfiguration("kilo-code.new.experimental.browserAutomation") ||
-      event.affectsConfiguration("kilo-code.new.agentManager.browser.openLinksIn")
+      event.affectsConfiguration("qronos-code.new.chat") ||
+      event.affectsConfiguration("qronos-code.new.experimental.agentManagerSplash") ||
+      event.affectsConfiguration("qronos-code.new.experimental.browserAutomation") ||
+      event.affectsConfiguration("qronos-code.new.agentManager.browser.openLinksIn")
     ) {
       post(buildChatSettingsMessage())
     }
-    if (event.affectsConfiguration("kilo-code.new.showTaskTimeline")) {
+    if (event.affectsConfiguration("qronos-code.new.showTaskTimeline")) {
       post(buildTimelineSettingMessage())
     }
   })

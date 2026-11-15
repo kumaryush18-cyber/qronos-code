@@ -14,16 +14,16 @@ Open Kilo Code Settings with the gear icon ({% codicon name="gear" /%}) and sele
 
 | Setting | Key | Default | Effect |
 |---|---|---|---|
-| Enable Sound Notifications | `kilo-code.new.attention.enabled` | `false` | Play a sound when a session completes, errors, or needs input. |
-| Sound | `kilo-code.new.attention.sound` | `default` | Select the sound. `default` uses a different sound per event; other choices use one sound for every event. |
-| Enable OS Notifications | `kilo-code.new.attention.OSNotifications` | `false` | Show a native notification when the VS Code window is not focused. |
-| Enable VS Code Notifications | `kilo-code.new.attention.notifications` | `false` | Show a VS Code notification when the affected session is not visible. |
+| Enable Sound Notifications | `qronos-code.new.attention.enabled` | `false` | Play a sound when a session completes, errors, or needs input. |
+| Sound | `qronos-code.new.attention.sound` | `default` | Select the sound. `default` uses a different sound per event; other choices use one sound for every event. |
+| Enable OS Notifications | `qronos-code.new.attention.OSNotifications` | `false` | Show a native notification when the VS Code window is not focused. |
+| Enable VS Code Notifications | `qronos-code.new.attention.notifications` | `false` | Show a VS Code notification when the affected session is not visible. |
 
 The sound picker and its **Test** button appear when sound notifications are enabled. **Test** plays the selected sound.
 
 The **Enable OS Notifications** row appears on macOS, Linux, and Windows. Its **Test** button sends a real native notification and reports success or failure.
 
-These settings are stored in your VS Code settings under `kilo-code.new.attention.*`. They are not part of `kilo.jsonc`.
+These settings are stored in your VS Code settings under `qronos-code.new.attention.*`. They are not part of `kilo.jsonc`.
 
 ### When Kilo notifies you
 

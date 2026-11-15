@@ -1735,7 +1735,7 @@
 
 - [#12292](https://github.com/Kilo-Org/kilocode/pull/12292) [`6dcaeb3`](https://github.com/Kilo-Org/kilocode/commit/6dcaeb3e97f256e9e98d5093610a0a02aedf84de) - Add JetBrains Context settings for compaction and file watcher ignore patterns.
 
-- [#12403](https://github.com/Kilo-Org/kilocode/pull/12403) [`5819c68`](https://github.com/Kilo-Org/kilocode/commit/5819c689961ccf61f510896c5477a96e9d2a3459) - Cycle reasoning effort variants with Shift+Tab in prompt inputs. Works in the sidebar chat, Agent Manager, and the New Worktree dialog. The variant selector tooltip shows the shortcut on hover, and the behavior can be turned off with the `kilo-code.new.chat.shiftTabCyclesVariant` setting (also available under Settings > Display) to restore Shift+Tab focus navigation.
+- [#12403](https://github.com/Kilo-Org/kilocode/pull/12403) [`5819c68`](https://github.com/Kilo-Org/kilocode/commit/5819c689961ccf61f510896c5477a96e9d2a3459) - Cycle reasoning effort variants with Shift+Tab in prompt inputs. Works in the sidebar chat, Agent Manager, and the New Worktree dialog. The variant selector tooltip shows the shortcut on hover, and the behavior can be turned off with the `qronos-code.new.chat.shiftTabCyclesVariant` setting (also available under Settings > Display) to restore Shift+Tab focus navigation.
 
 ### Patch Changes
 
@@ -3020,7 +3020,7 @@
 
 - [#9905](https://github.com/Kilo-Org/kilocode/pull/9905) [`0c5d757`](https://github.com/Kilo-Org/kilocode/commit/0c5d75772d9e56f89c15cd08a5fa9a16097469b5) - Show snapshot initialization progress in the extension's existing loading indicator.
 
-- [#9881](https://github.com/Kilo-Org/kilocode/pull/9881) [`4d1023c`](https://github.com/Kilo-Org/kilocode/commit/4d1023c21a11d3c703a8dc7e7992267469cf26cf) - Trust the OS certificate store and honor corporate CA bundles for the bundled Kilo backend. The extension now defaults `NODE_USE_SYSTEM_CA=1` on the spawned CLI process so users behind MITM proxies (Zscaler, Netskope, Palo Alto, etc.) no longer hit TLS errors on sign-in. A new `kilo-code.new.extraCaCerts` setting accepts a PEM file path for additional CAs, and `http.proxyStrictSSL=false` is honored as an opt-out from verification.
+- [#9881](https://github.com/Kilo-Org/kilocode/pull/9881) [`4d1023c`](https://github.com/Kilo-Org/kilocode/commit/4d1023c21a11d3c703a8dc7e7992267469cf26cf) - Trust the OS certificate store and honor corporate CA bundles for the bundled Kilo backend. The extension now defaults `NODE_USE_SYSTEM_CA=1` on the spawned CLI process so users behind MITM proxies (Zscaler, Netskope, Palo Alto, etc.) no longer hit TLS errors on sign-in. A new `qronos-code.new.extraCaCerts` setting accepts a PEM file path for additional CAs, and `http.proxyStrictSSL=false` is honored as an opt-out from verification.
 
 - [#9824](https://github.com/Kilo-Org/kilocode/pull/9824) [`b7657d1`](https://github.com/Kilo-Org/kilocode/commit/b7657d1aef37cefefe1557b981822535e41ea82c) - Add a Display setting for adjusting the Kilo webview UI font size.
 

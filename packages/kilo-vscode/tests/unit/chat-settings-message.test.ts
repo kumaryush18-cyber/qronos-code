@@ -20,7 +20,7 @@ const original = {
   trusted: Object.getOwnPropertyDescriptor(vscode.workspace, "isTrusted"),
 }
 
-function stubConfig(state: Map<string, unknown>, scope = "kilo-code.new.chat") {
+function stubConfig(state: Map<string, unknown>, scope = "qronos-code.new.chat") {
   ;(vscode.workspace as unknown as Stub).getConfiguration = (section?: string) => {
     if (section !== scope) {
       return { get: <T>(_key: string, fallback?: T) => fallback }
@@ -61,8 +61,8 @@ describe("buildChatSettingsMessage", () => {
     Object.defineProperty(vscode.workspace, "isTrusted", { configurable: true, value: true })
     const workspace = vscode.workspace as unknown as Stub
     const prefs = new Map<string, unknown>([
-      ["kilo-code.new.experimental.browserAutomation", true],
-      ["kilo-code.new.agentManager.browser.openLinksIn", "integrated"],
+      ["qronos-code.new.experimental.browserAutomation", true],
+      ["qronos-code.new.agentManager.browser.openLinksIn", "integrated"],
     ])
     workspace.getConfiguration = (section) => ({
       get: <T>(key: string, fallback?: T) => (prefs.get(`${section}.${key}`) as T | undefined) ?? fallback,
@@ -76,7 +76,7 @@ describe("buildChatSettingsMessage", () => {
     const child: unknown[] = []
     const main = watchChatConfig((message) => parent.push(message))
     const viewer = watchChatConfig((message) => child.push(message))
-    const key = "kilo-code.new.agentManager.browser.openLinksIn"
+    const key = "qronos-code.new.agentManager.browser.openLinksIn"
     prefs.set(key, "external")
     for (const listener of listeners) listener({ affectsConfiguration: (name) => name === key })
     expect(parent).toEqual([
@@ -102,7 +102,7 @@ describe("timeline settings", () => {
   it.each([undefined, false, true])("returns the saved visibility %s", (visible) => {
     const state = new Map<string, unknown>()
     if (visible !== undefined) state.set("showTaskTimeline", visible)
-    stubConfig(state, "kilo-code.new")
+    stubConfig(state, "qronos-code.new")
 
     expect(buildTimelineSettingMessage()).toEqual({
       type: "timelineSettingLoaded",
@@ -112,7 +112,7 @@ describe("timeline settings", () => {
 
   it("synchronizes open viewers and stops sending after disposal", () => {
     const state = new Map<string, unknown>()
-    stubConfig(state, "kilo-code.new")
+    stubConfig(state, "qronos-code.new")
     const listeners = new Set<(event: vscode.ConfigurationChangeEvent) => void>()
     const workspace = vscode.workspace as unknown as Stub
     workspace.onDidChangeConfiguration = (listener) => {
@@ -127,23 +127,23 @@ describe("timeline settings", () => {
     const main = watchChatConfig((msg) => parent.push(msg))
     const viewer = watchChatConfig((msg) => child.push(msg))
 
-    emit("kilo-code.new.showTokenThroughput")
+    emit("qronos-code.new.showTokenThroughput")
     expect(parent).toEqual([])
     expect(child).toEqual([])
 
     state.set("showTaskTimeline", false)
-    emit("kilo-code.new.showTaskTimeline")
+    emit("qronos-code.new.showTaskTimeline")
     expect(parent).toEqual([{ type: "timelineSettingLoaded", visible: false }])
     expect(child).toEqual(parent)
 
     state.set("showTaskTimeline", true)
-    emit("kilo-code.new.showTaskTimeline")
+    emit("qronos-code.new.showTaskTimeline")
     expect(parent.at(-1)).toEqual({ type: "timelineSettingLoaded", visible: true })
     expect(child).toEqual(parent)
 
     viewer.dispose()
     state.set("showTaskTimeline", false)
-    emit("kilo-code.new.showTaskTimeline")
+    emit("qronos-code.new.showTaskTimeline")
     expect(parent).toHaveLength(3)
     expect(child).toHaveLength(2)
     main.dispose()

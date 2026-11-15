@@ -78,7 +78,7 @@ Settings apply across extension surfaces, including the sidebar and Agent Manage
 
 ## Interface Language
 
-The extension UI follows VS Code's display language by default. Override it with the `kilo-code.new.language` setting (for example `en`, `de`, `ja`, or `fa`). Right-to-left languages such as Arabic and Persian switch the layout direction automatically.
+The extension UI follows VS Code's display language by default. Override it with the `qronos-code.new.language` setting (for example `en`, `de`, `ja`, or `fa`). Right-to-left languages such as Arabic and Persian switch the layout direction automatically.
 
 ## Proxy and Certificate Troubleshooting
 
@@ -90,7 +90,7 @@ Use these settings when your organization requires a proxy or inspects HTTPS tra
 - Use `http.noProxy` for hosts that should bypass the proxy.
 - Leave `http.proxySupport` enabled unless you intentionally want VS Code and Kilo Code to ignore proxy settings.
 - Install your organization's root certificate authority in the operating system trust store when HTTPS inspection is in use.
-- If the operating system trust store is not enough, set `kilo-code.new.extraCaCerts` to the absolute path of a PEM file that contains the additional certificate authority certificates.
+- If the operating system trust store is not enough, set `qronos-code.new.extraCaCerts` to the absolute path of a PEM file that contains the additional certificate authority certificates.
 - Keep `http.proxyStrictSSL` enabled whenever possible. Disable it only as a temporary troubleshooting step or when your administrator explicitly requires it, because it disables TLS certificate verification for this path.
 
 Example user or workspace settings:
@@ -99,6 +99,6 @@ Example user or workspace settings:
 {
   "http.proxy": "http://proxy.example.com:8080",
   "http.noProxy": ["localhost", "127.0.0.1", ".example.internal"],
-  "kilo-code.new.extraCaCerts": "/absolute/path/to/corporate-ca.pem"
+  "qronos-code.new.extraCaCerts": "/absolute/path/to/corporate-ca.pem"
 }
 ```

@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
 import { integratedBrowserLinkDestination } from "./services/browser-automation/chrome-setting"
 
-const BROWSER_AUTOMATION = "kilo-code.new.experimental"
+const BROWSER_AUTOMATION = "qronos-code.new.experimental"
 
 /** True when the URL is an http(s) web link, which is all the browser handles. */
 export function isWebLink(url: string): boolean {

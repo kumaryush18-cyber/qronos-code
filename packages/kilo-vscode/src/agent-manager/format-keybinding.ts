@@ -41,16 +41,16 @@ export function formatKeybinding(raw: string, mac: boolean): string {
 }
 
 /** Agent Manager command prefix for keybinding extraction. */
-const AM_PREFIX = "kilo-code.new.agentManager."
+const AM_PREFIX = "qronos-code.new.agentManager."
 
 /** Global commands whose keybindings are forwarded to the webview. */
 const GLOBAL_KEYBINDINGS: Record<string, string> = {
-  "kilo-code.new.agentManagerOpen": "agentManagerOpen",
-  "kilo-code.new.cycleAgentMode": "cycleAgentMode",
-  "kilo-code.new.cyclePreviousAgentMode": "cyclePreviousAgentMode",
-  "kilo-code.new.focusChatInput": "focusChatInput",
-  "kilo-code.new.addToContext": "addToContext",
-  "kilo-code.new.settingsSearch": "settingsSearch",
+  "qronos-code.new.agentManagerOpen": "agentManagerOpen",
+  "qronos-code.new.cycleAgentMode": "cycleAgentMode",
+  "qronos-code.new.cyclePreviousAgentMode": "cyclePreviousAgentMode",
+  "qronos-code.new.focusChatInput": "focusChatInput",
+  "qronos-code.new.addToContext": "addToContext",
+  "qronos-code.new.settingsSearch": "settingsSearch",
 }
 
 /** [binding name, command suffix, key after the cmd/ctrl modifier] */
@@ -66,7 +66,7 @@ const FALLBACKS: Array<[string, string, string]> = [
 ]
 
 function addBinding(bindings: Record<string, string>, name: string, value: string, when?: string): void {
-  if (name === "newTerminalTab" && when?.includes("!kilo-code.new.agentManagerSideTerminalFocused")) {
+  if (name === "newTerminalTab" && when?.includes("!qronos-code.new.agentManagerSideTerminalFocused")) {
     bindings.newTerminalCenter = value
     return
   }

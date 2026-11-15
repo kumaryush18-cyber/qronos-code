@@ -224,8 +224,8 @@ Generated screenshot baselines live under `packages/kilo-docs/public/img/screens
 
 ## Naming Conventions
 
-- All VSCode commands must use `kilo-code.new.` prefix (not `kilo-code.`)
-- All view IDs must use `kilo-code.new.` prefix, **except** the sidebar view which uses `kilo-code.SidebarProvider` to preserve user sidebar position when upgrading from the legacy extension
+- All VSCode commands must use `qronos-code.new.` prefix (not `qronos-code.`)
+- All view IDs must use `qronos-code.new.` prefix, **except** the sidebar view which uses `qronos-code.SidebarProvider` to preserve user sidebar position when upgrading from the legacy extension
 
 ## Kilocode Change Markers
 

@@ -288,7 +288,7 @@ The Reviewers section shows each requested or completed reviewer with an avatar 
 
 **Push Pull Request Fixes** controls whether fix prompts ask the agent to commit and push so the pull request updates. The default is on.
 
-- Set it in **Settings > Agent Behaviour > Push Pull Request Fixes** (`kilo-code.new.agentManager.pushFixes`).
+- Set it in **Settings > Agent Behaviour > Push Pull Request Fixes** (`qronos-code.new.agentManager.pushFixes`).
 - Toggle the same setting from the PR panel header with the **Push Pull Request Fixes** button.
 - When it is on, fix prompts for PR review comments and CI failures include: "When the changes pass local checks, commit them and push to this branch so the pull request updates. Do not force-push."
 - Update from base follows the same setting: when the worktree has a pull request, the agent is asked to push after a clean merge and successful checks.
@@ -566,7 +566,7 @@ The toolbar's terminal button is a split button: click it to open a terminal, or
 - **Agent Manager panel** (default) - opens an embedded terminal in the side panel that also hosts the diff view
 - **VS Code terminal** - opens or focuses the VS Code integrated terminal at the bottom of the window
 
-The dropdown choice is remembered per panel and becomes the default for new panels. You can also set the default directly with the `kilo-code.new.agentManager.terminalButtonDestination` setting (`vscode` or `agentManager`). The `Cmd+/` (macOS) / `Ctrl+/` (Windows/Linux) shortcut follows the same destination.
+The dropdown choice is remembered per panel and becomes the default for new panels. You can also set the default directly with the `qronos-code.new.agentManager.terminalButtonDestination` setting (`vscode` or `agentManager`). The `Cmd+/` (macOS) / `Ctrl+/` (Windows/Linux) shortcut follows the same destination.
 
 With the **Agent Manager panel** destination, the terminal works like the diff panel: press `Cmd+/` to reveal and focus it, press it while the panel is visible but another control has focus to move focus into the terminal, and press it again from the terminal to hide it. Hiding never stops the terminal — scrollback and running processes continue in the background, and focus returns to the chat input. A terminal stops only when you click its close button or type `exit` in the shell.
 
