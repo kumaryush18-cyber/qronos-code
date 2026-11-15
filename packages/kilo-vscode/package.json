@@ -547,11 +547,6 @@
           "when": "view == qronos-code.SidebarProvider && !qronos-code.new.isCursor"
         },
         {
-          "command": "qronos-code.new.sidebarTitle.marketplaceButtonClicked",
-          "group": "navigation@3",
-          "when": "view == qronos-code.SidebarProvider && !qronos-code.new.isCursor"
-        },
-        {
           "command": "qronos-code.new.sidebarTitle.profileButtonClicked",
           "group": "navigation@4",
           "when": "view == qronos-code.SidebarProvider && !qronos-code.new.isCursor"
