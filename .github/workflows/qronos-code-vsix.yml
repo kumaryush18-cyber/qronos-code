@@ -1,6 +1,6 @@
 # Qronos Code — build the VS Code extension with a real, self-contained CLI binary.
 #
-# Why this exists: the extension starts `bin/kilo` (its agent backend) as a child
+# Why this exists: the extension starts `bin/qronos` (its agent backend) as a child
 # process. On a developer machine that file can be a small wrapper script that
 # runs the source from a local checkout, which only works on that machine. This
 # workflow builds the real compiled binary per platform and packages it into a
@@ -50,10 +50,10 @@ jobs:
         working-directory: packages/kilo-vscode
         run: |
           ls -la bin/
-          size=$(wc -c < bin/kilo || wc -c < bin/kilo.exe)
+          size=$(wc -c < bin/qronos || wc -c < bin/qronos.exe)
           echo "binary size: $size bytes"
           if [ "$size" -lt 10000000 ]; then
-            echo "::error::bin/kilo is only $size bytes - that is a dev wrapper, not a compiled binary"
+            echo "::error::bin/qronos is only $size bytes - that is a dev wrapper, not a compiled binary"
             exit 1
           fi
 

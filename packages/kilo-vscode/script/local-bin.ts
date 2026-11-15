@@ -38,8 +38,11 @@ const sandboxDir = join(packagesDir, "kilo-sandbox")
 const rootFile = join(repoDir, "package.json")
 
 const targetBinDir = join(kiloVscodeDir, "bin")
-const binName = process.platform === "win32" ? "kilo.exe" : "kilo"
-const targetBinPath = join(targetBinDir, binName)
+// qronos_change - the artifact we ship in the extension is called `qronos`.
+// The upstream build still emits a binary named `kilo`; we only rename it here.
+const sourceBinName = process.platform === "win32" ? "kilo.exe" : "kilo"
+const targetBinName = process.platform === "win32" ? "qronos.exe" : "qronos"
+const targetBinPath = join(targetBinDir, targetBinName)
 const versionFile = join(kiloVscodeDir, "node_modules", ".kilo-cli-version")
 
 function log(msg: string) {
@@ -198,7 +201,7 @@ async function findKiloBinaryInOpencodeDist(): Promise<string | null> {
 
   // Prefer the binary matching the current platform (e.g. cli-darwin-arm64)
   const tag = platformTag()
-  const preferred = join(distDir, `@kilocode`, tag, "bin", binName)
+  const preferred = join(distDir, `@kilocode`, tag, "bin", sourceBinName)
   try {
     statSync(preferred)
     if (!hasTreeSitterResources(preferred) || !hasKiloSandboxWorker(preferred)) return null
@@ -209,7 +212,7 @@ async function findKiloBinaryInOpencodeDist(): Promise<string | null> {
 
   if (compiledOnly) return null
 
-  // Fallback: find any dist/**/bin/kilo or kilo.exe
+  // Fallback: find any dist/**/bin/kilo or kilo.exe (upstream binary name)
   const queue = [distDir]
   while (queue.length) {
     const dir = queue.pop()

@@ -249,7 +249,8 @@ export class ServerManager {
 
   private getCliPath(): string {
     // Always use the bundled binary from the extension directory
-    const binName = process.platform === "win32" ? "kilo.exe" : "kilo"
+    // qronos_change - the bundled backend binary is called qronos (was kilo).
+    const binName = process.platform === "win32" ? "qronos.exe" : "qronos"
     const cliPath = path.join(this.context.extensionPath, "bin", binName)
     console.log("[Kilo New] ServerManager: 📦 Using CLI path:", cliPath)
     return cliPath
