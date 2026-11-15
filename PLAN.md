@@ -162,3 +162,18 @@ Status: **next**. Detailed steps:
   adds the 5 Kilo-compatible routes; `QronosAuthService` normalises both backend
   response shapes (device_code/session_id, access_token/token, status:"pending").
   Full gate not yet passed: it needs D3 (the `/v1` base-URL fix) to be reachable.
+
+- 2026-11-15: **Kilo removal + Phase 4 done** (commit `d5b499d`, `97dd0f8`).
+  Provider id is `qronos` everywhere (core, catalog, auth store, config keys, model cache,
+  routing, presence, sessions, indexes, tools, MCP client). `KILO_PROVIDER_ID` is now an
+  alias of `QRONOS_PROVIDER_ID`, so one gateway group appears in the picker. Every
+  hardcoded model list is gone: models come only from `GET /v1/models`, and the default
+  selection is resolved from the user config plus the live catalog.
+  Verified: core 23/23, opencode gateway-area 82/82, extension unit suite green apart from
+  environment failures (esbuild `The service is no longer running` on the low-RAM box).
+- 2026-11-15: **Phase 5 done** (commit `666d7f8`). 230 `kilo-code.*` command / menu / view /
+  walkthrough / setting ids and labels renamed to `qronos-code.*` across manifest, source,
+  webview, agent manager and tests; settings namespace `getConfiguration("qronos-code.new…")`;
+  extension id references point at `qronos-ai.qronos-code`. Zero `kilo-code.*` left.
+- 2026-11-15: first packaged build of the rebrand: `qronos-code-1.0.0.vsix` (83.4 MB,
+  1,887 files). Bundle works again now that the box has memory.
