@@ -770,8 +770,6 @@ export const dict = {
   "settings.indexing.providerField.description": "Configuração de conexão específica do provedor.",
   "settings.aboutKiloCode.title": "Sobre o Kilo Code",
 
-  "session.messages.welcome":
-    "Kilo Code é um assistente de programação com IA. Peça para criar funcionalidades, corrigir bugs ou explicar sua base de código.",
   "session.workspaceScope.description":
     "O chat do Kilo usa apenas “{{folder}}”, a primeira pasta deste espaço de trabalho.",
   "session.workspaceScope.alternatives":

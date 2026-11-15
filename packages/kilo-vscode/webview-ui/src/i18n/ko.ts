@@ -762,8 +762,6 @@ export const dict = {
   "settings.indexing.vectorStore.description": "인덱싱된 임베딩을 저장할 위치를 선택하세요.",
   "settings.indexing.vectorStore.title": "벡터 저장소",
 
-  "session.messages.welcome":
-    "Kilo Code는 AI 코딩 어시스턴트입니다. 기능 구축, 버그 수정 또는 코드베이스 설명을 요청하세요.",
   "session.workspaceScope.description": "Kilo 채팅은 이 작업 영역의 첫 번째 폴더인 “{{folder}}”만 사용합니다.",
   "session.workspaceScope.alternatives":
     "다른 폴더에서 작업하려면 해당 폴더를 별도 창에서 열거나 Agent Manager에 프로젝트로 추가하세요.",

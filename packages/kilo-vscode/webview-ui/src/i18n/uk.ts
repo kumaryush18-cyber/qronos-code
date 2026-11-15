@@ -755,8 +755,6 @@ export const dict = {
   "settings.language.title": "Мова",
   "settings.aboutKiloCode.title": "Про Kilo Code",
 
-  "session.messages.welcome":
-    "Kilo Code — це асистент з кодування на базі ШІ. Попросіть його розробити функцію, виправити помилку або пояснити вашу кодову базу.",
   "session.workspaceScope.description":
     "Чат Kilo використовує лише «{{folder}}» — першу папку в цьому робочому просторі.",
   "session.workspaceScope.alternatives":

@@ -751,8 +751,6 @@ export const dict = {
   "settings.language.title": "اللغة",
   "settings.aboutKiloCode.title": "حول Kilo Code",
 
-  "session.messages.welcome":
-    "Kilo Code هو مساعد ترميز بالذكاء الاصطناعي. اطلب منه بناء ميزات أو إصلاح أخطاء أو شرح قاعدة الشيفرة.",
   "session.workspaceScope.description":
     "تستخدم دردشة Kilo المجلد «{{folder}}» فقط، وهو المجلد الأول في مساحة العمل هذه.",
   "session.workspaceScope.alternatives": "للعمل على مجلد آخر، افتحه في نافذة مستقلة أو أضفه كمشروع في Agent Manager.",

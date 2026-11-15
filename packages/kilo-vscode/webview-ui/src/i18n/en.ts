@@ -710,8 +710,6 @@ export const dict = {
   "settings.language.title": "Language",
   "settings.aboutKiloCode.title": "About Kilo Code",
 
-  "session.messages.welcome":
-    "Kilo Code is an AI coding assistant. Ask it to build features, fix bugs, or explain your codebase.",
   "session.workspaceScope.description": "Kilo chat uses only “{{folder}}”, the first folder in this workspace.",
   "session.workspaceScope.alternatives":
     "To work with another folder, open it in its own window or add it as a project in Agent Manager.",

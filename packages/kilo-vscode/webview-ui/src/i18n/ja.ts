@@ -762,8 +762,6 @@ export const dict = {
   "settings.language.title": "言語",
   "settings.aboutKiloCode.title": "Kilo Codeについて",
 
-  "session.messages.welcome":
-    "Kilo CodeはAIコーディングアシスタントです。機能の構築、バグの修正、コードベースの説明を依頼できます。",
   "session.workspaceScope.description":
     "Kilo チャットは、このワークスペースの最初のフォルダー「{{folder}}」のみを使用します。",
   "session.workspaceScope.alternatives":

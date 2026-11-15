@@ -60,7 +60,7 @@ export const WelcomeEmptyState: Component<WelcomeEmptyStateProps> = (props) => {
   return (
     <div class="message-list-empty">
       <KiloLogo />
-      <div style={{ "margin-top": "6px", "font-size": "12px", "font-weight": "700", color: "#FF6B00", "letter-spacing": "0.5px" }}>
+      <div style={{ "margin-top": "6px", "font-size": "var(--font-size-x-small, 12px)", "font-weight": "700", color: "#FF6B00", "letter-spacing": "0.5px" }}>
         ⚡ QRONOS CODE — 10M DAILY TOKENS
       </div>
       <p class="kilo-about-text">Autonomous AI coding agent in your editor, powered by Qronos AI.</p>

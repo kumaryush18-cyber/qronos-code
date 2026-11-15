@@ -774,8 +774,6 @@ export const dict = {
   "settings.language.title": "Idioma",
   "settings.aboutKiloCode.title": "Acerca de Kilo Code",
 
-  "session.messages.welcome":
-    "Kilo Code es un asistente de programación con IA. Pídele que cree funcionalidades, corrija errores o explique tu código.",
   "session.workspaceScope.description":
     "El chat de Kilo solo usa «{{folder}}», la primera carpeta de este espacio de trabajo.",
   "session.workspaceScope.alternatives":

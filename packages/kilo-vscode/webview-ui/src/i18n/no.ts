@@ -729,8 +729,6 @@ export const dict = {
   "settings.language.title": "Språk",
   "settings.aboutKiloCode.title": "Om Kilo Code",
 
-  "session.messages.welcome":
-    "Kilo Code er en AI-kodingsassistent. Be den om å bygge funksjoner, fikse feil eller forklare kodebasen din.",
   "session.workspaceScope.description":
     "Kilo-chatten bruker bare «{{folder}}», den første mappen i dette arbeidsområdet.",
   "session.workspaceScope.alternatives":

@@ -768,8 +768,6 @@ export const dict = {
   "settings.language.title": "Jezik",
   "settings.aboutKiloCode.title": "O Kilo Code-u",
 
-  "session.messages.welcome":
-    "Kilo Code je AI asistent za programiranje. Zatražite da gradi funkcionalnosti, ispravlja greške ili objasni vašu bazu koda.",
   "session.workspaceScope.description": "Kilo razgovor koristi samo „{{folder}}“, prvi folder u ovom radnom prostoru.",
   "session.workspaceScope.alternatives":
     "Za rad s drugim folderom, otvorite ga u zasebnom prozoru ili ga dodajte kao projekt u Agent Manager.",

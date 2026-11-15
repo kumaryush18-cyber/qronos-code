@@ -755,8 +755,6 @@ export const dict = {
   "settings.language.title": "Dil",
   "settings.aboutKiloCode.title": "Kilo Code Hakkında",
 
-  "session.messages.welcome":
-    "Kilo Code bir yapay zeka kodlama asistanıdır. Özellik geliştirmesini, hata düzeltmesini veya kod tabanınızı açıklamasını isteyin.",
   "session.workspaceScope.description":
     "Kilo sohbeti yalnızca bu çalışma alanındaki ilk klasör olan “{{folder}}” klasörünü kullanır.",
   "session.workspaceScope.alternatives":

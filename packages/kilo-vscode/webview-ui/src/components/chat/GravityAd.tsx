@@ -72,12 +72,12 @@ export const GravityAd: Component<GravityAdProps> = (props) => {
             <Show when={ad()?.favicon}>
               <img src={ad()!.favicon} alt="" style={{ width: "14px", height: "14px", "border-radius": "2px" }} />
             </Show>
-            <span style={{ "font-size": "11px", "font-weight": "600", color: "#FF6B00" }}>
+            <span style={{ "font-size": "var(--font-size-x-small, 11px)", "font-weight": "600", color: "#FF6B00" }}>
               {ad()?.brandName || "Featured Partner"}
             </span>
             <span
               style={{
-                "font-size": "9px",
+                "font-size": "var(--font-size-x-small, 9px)",
                 padding: "1px 5px",
                 background: "rgba(255, 107, 0, 0.15)",
                 color: "#FF8C2A",
@@ -96,7 +96,7 @@ export const GravityAd: Component<GravityAdProps> = (props) => {
               border: "none",
               color: "var(--vscode-descriptionForeground, #888)",
               cursor: "pointer",
-              "font-size": "13px",
+              "font-size": "var(--font-size-x-small, 13px)",
               padding: "0 2px",
             }}
             onClick={(e) => {
@@ -110,19 +110,19 @@ export const GravityAd: Component<GravityAdProps> = (props) => {
         </div>
 
         <Show when={ad()?.title}>
-          <div style={{ "font-size": "12px", "font-weight": "500", "margin-bottom": "2px", color: "var(--vscode-foreground)" }}>
+          <div style={{ "font-size": "var(--font-size-x-small, 12px)", "font-weight": "500", "margin-bottom": "2px", color: "var(--vscode-foreground)" }}>
             {ad()!.title}
           </div>
         </Show>
 
-        <div style={{ "font-size": "11px", color: "var(--vscode-descriptionForeground, #aaa)", "line-height": "1.4" }}>
+        <div style={{ "font-size": "var(--font-size-x-small, 11px)", color: "var(--vscode-descriptionForeground, #aaa)", "line-height": "1.4" }}>
           {ad()!.adText}
         </div>
 
         <div style={{ "margin-top": "6px", display: "flex", "justify-content": "flex-end" }}>
           <span
             style={{
-              "font-size": "10px",
+              "font-size": "var(--font-size-x-small, 10px)",
               color: "#FF6B00",
               "font-weight": "600",
               display: "inline-flex",
