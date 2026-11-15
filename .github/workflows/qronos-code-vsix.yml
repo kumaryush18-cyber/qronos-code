@@ -1,0 +1,83 @@
+# Qronos Code — build the VS Code extension with a real, self-contained CLI binary.
+#
+# Why this exists: the extension starts `bin/kilo` (its agent backend) as a child
+# process. On a developer machine that file can be a small wrapper script that
+# runs the source from a local checkout, which only works on that machine. This
+# workflow builds the real compiled binary per platform and packages it into a
+# platform-specific .vsix you can install anywhere.
+name: qronos-code-vsix
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux-x64
+          - os: windows-latest
+            target: win32-x64
+          - os: macos-latest
+            target: darwin-arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build the CLI binary for this platform
+        working-directory: packages/kilo-vscode
+        run: bun run prepare:cli-binary
+
+      - name: Verify the binary is real (not a wrapper script)
+        shell: bash
+        working-directory: packages/kilo-vscode
+        run: |
+          ls -la bin/
+          size=$(wc -c < bin/kilo || wc -c < bin/kilo.exe)
+          echo "binary size: $size bytes"
+          if [ "$size" -lt 10000000 ]; then
+            echo "::error::bin/kilo is only $size bytes - that is a dev wrapper, not a compiled binary"
+            exit 1
+          fi
+
+      - name: Prepare SDK
+        working-directory: packages/kilo-vscode
+        run: bun run prepare:sdk
+
+      - name: Bundle the extension and webview
+        working-directory: packages/kilo-vscode
+        run: bun esbuild.js
+
+      - name: Package the extension
+        working-directory: packages/kilo-vscode
+        run: >
+          bunx @vscode/vsce package
+          --no-dependencies
+          --allow-missing-repository
+          --target ${{ matrix.target }}
+          -o qronos-code-${{ matrix.target }}.vsix
+
+      - name: Upload the .vsix
+        uses: actions/upload-artifact@v4
+        with:
+          name: qronos-code-${{ matrix.target }}
+          path: packages/kilo-vscode/qronos-code-${{ matrix.target }}.vsix
+          if-no-files-found: error
+          retention-days: 14
