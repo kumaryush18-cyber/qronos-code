@@ -14,7 +14,9 @@ export interface ServerInstance {
   process: ChildProcess
 }
 
-const STARTUP_TIMEOUT_SECONDS = 30
+// qronos_change - a cold start compiles the CLI from source in dev and can take
+// well over 30s on a loaded machine, which surfaced as "Server startup timeout".
+const STARTUP_TIMEOUT_SECONDS = Number(process.env.QRONOS_STARTUP_TIMEOUT ?? 90)
 const STARTUP_OUTPUT_LIMIT = 1024
 
 type WorkspaceFolderLike = { uri: { fsPath: string } }
