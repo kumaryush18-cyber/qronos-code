@@ -49,6 +49,10 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
         const providers = overlay(yield* core.get())
         const fallback = providers.qronos
         delete providers.qronos
+        // qronos_change - models.dev publishes the upstream "kilo" gateway with 465
+        // vendor-prefixed ids (anthropic/claude-haiku-5.5). api.qronos.me only accepts
+        // bare ids (claude-haiku-5.5), so that entry must never reach the picker.
+        delete providers.kilo
 
         const cfg = yield* config.get()
         const disabled = new Set(cfg.disabled_providers ?? [])
