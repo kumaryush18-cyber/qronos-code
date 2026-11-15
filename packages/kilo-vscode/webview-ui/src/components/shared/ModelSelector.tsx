@@ -233,7 +233,7 @@ export const ModelSelectorBase: Component<ModelSelectorBaseProps> = (props) => {
     window.addEventListener("mouseup", onUp)
   }
 
-  // Only show models from Kilo Gateway or connected providers.
+  // Only show models from Qronos Gateway or connected providers.
   // kilo-auto/small is excluded unless includeAutoSmall is explicitly true.
   const available = (m: EnrichedModel, c: string[]) =>
     (props.includeAutoSmall || !isSmall(m)) && (m.providerID === KILO_GATEWAY_ID || c.includes(m.providerID))
@@ -395,7 +395,7 @@ export const ModelSelectorBase: Component<ModelSelectorBaseProps> = (props) => {
         return {
           key: id,
           label:
-            id === "kilo" || id === "qronos" || (list[0]?.providerName && list[0]?.providerName.includes("Kilo"))
+            id === "kilo" || id === "qronos" || (list[0]?.providerName && list[0]?.providerName.includes("Qronos"))
               ? "⚡ Qronos AI Universal Gateway"
               : (list[0]?.providerName ?? id),
           rows: list.map((m) => ({
@@ -1147,7 +1147,7 @@ export const ModelSelectorBase: Component<ModelSelectorBaseProps> = (props) => {
                                   <span class="model-selector-item-provider-tag">
                                     {model.providerID === "kilo" ||
                                     model.providerID === "qronos" ||
-                                    model.providerName === "Kilo Gateway"
+                                    model.providerName === "Qronos Gateway"
                                       ? "Qronos Gateway"
                                       : model.providerName}
                                   </span>

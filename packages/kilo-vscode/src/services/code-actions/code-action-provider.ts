@@ -14,26 +14,26 @@ export class KiloCodeActionProvider implements vscode.CodeActionProvider {
 
     const actions: vscode.CodeAction[] = []
 
-    const add = new vscode.CodeAction("Add to Kilo Code", vscode.CodeActionKind.RefactorRewrite)
-    add.command = { command: "qronos-code.new.addToContext", title: "Add to Kilo Code" }
+    const add = new vscode.CodeAction("Add to Qronos Code", vscode.CodeActionKind.RefactorRewrite)
+    add.command = { command: "qronos-code.new.addToContext", title: "Add to Qronos Code" }
     actions.push(add)
 
     const hasDiagnostics = context.diagnostics.length > 0
 
     if (hasDiagnostics) {
-      const fix = new vscode.CodeAction("Fix with Kilo Code", vscode.CodeActionKind.QuickFix)
-      fix.command = { command: "qronos-code.new.fixCode", title: "Fix with Kilo Code" }
+      const fix = new vscode.CodeAction("Fix with Qronos Code", vscode.CodeActionKind.QuickFix)
+      fix.command = { command: "qronos-code.new.fixCode", title: "Fix with Qronos Code" }
       fix.isPreferred = true
       actions.push(fix)
     }
 
     if (!hasDiagnostics) {
-      const explain = new vscode.CodeAction("Explain with Kilo Code", vscode.CodeActionKind.RefactorRewrite)
-      explain.command = { command: "qronos-code.new.explainCode", title: "Explain with Kilo Code" }
+      const explain = new vscode.CodeAction("Explain with Qronos Code", vscode.CodeActionKind.RefactorRewrite)
+      explain.command = { command: "qronos-code.new.explainCode", title: "Explain with Qronos Code" }
       actions.push(explain)
 
-      const improve = new vscode.CodeAction("Improve with Kilo Code", vscode.CodeActionKind.RefactorRewrite)
-      improve.command = { command: "qronos-code.new.improveCode", title: "Improve with Kilo Code" }
+      const improve = new vscode.CodeAction("Improve with Qronos Code", vscode.CodeActionKind.RefactorRewrite)
+      improve.command = { command: "qronos-code.new.improveCode", title: "Improve with Qronos Code" }
       actions.push(improve)
     }
 

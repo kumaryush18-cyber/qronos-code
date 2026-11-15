@@ -25,7 +25,7 @@ export interface ProviderUsageCardsProps {
 type Language = ReturnType<typeof useLanguage>
 
 const source = (item: ProviderUsageSnapshot, language: Language) => {
-  if (item.sourceKind === "kilo_managed") return "Kilo Gateway"
+  if (item.sourceKind === "kilo_managed") return "Qronos Gateway"
   return language.t("profile.usage.source.direct")
 }
 
@@ -203,11 +203,11 @@ const KiloPassCard: Component<{
       <CardHeader>
         <div>
           <CardTitle icon={false} role="heading" aria-level={4}>
-            Kilo
+            Qronos
           </CardTitle>
-          <CardDescription>Kilo Pass</CardDescription>
+          <CardDescription>Qronos Plan</CardDescription>
         </div>
-        <Tag>Kilo Gateway</Tag>
+        <Tag>Qronos Gateway</Tag>
       </CardHeader>
       <Show
         when={props.pass}

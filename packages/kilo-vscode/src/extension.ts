@@ -65,7 +65,7 @@ const panelTitleHandler = (panel: vscode.WebviewPanel) => (title: string) => {
 // without requiring the user to open a Kilo sidebar or panel first. The CLI backend is NOT spawned here;
 // it starts lazily when a webview connects or when ensureBackendForAutocomplete() triggers it.
 export async function activate(context: vscode.ExtensionContext) {
-  console.log("Kilo Code extension is now active")
+  console.log("Qronos Code extension is now active")
   shuttingDown = false
 
   // Drives the "!qronos-code.new.isCursor" guards on the native view/title and
@@ -332,7 +332,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }
     if (state.enabled === prior.enabled) return
     void vscode.window.showInformationMessage(
-      state.enabled ? "Keep Awake enabled. Kilo will prevent system sleep while agents work." : "Keep Awake disabled.",
+      state.enabled ? "Keep Awake enabled. Qronos will prevent system sleep while agents work." : "Keep Awake disabled.",
     )
   })
   context.subscriptions.push({ dispose: unsubscribeCaffeination })
@@ -343,14 +343,14 @@ export async function activate(context: vscode.ExtensionContext) {
     }
     if (context.globalState.get<boolean>("caffeination.confirmed") === true) return true
     const detail = [
-      "Keep Awake prevents system sleep while Kilo sessions are in progress, including some waits for approval. It does not keep the display on or disable screen locking. It turns off when this VS Code window reloads.",
+      "Keep Awake prevents system sleep while Qronos sessions are in progress, including some waits for approval. It does not keep the display on or disable screen locking. It turns off when this VS Code window reloads.",
       "Agents may continue to access files, network services, and available credentials while the computer is locked. Enable only if your organization's device policy permits it.",
       ...(process.platform === "linux"
         ? ["On Linux, this can also block manual suspend. Turn Keep Awake off before suspending."]
         : []),
     ].join("\n\n")
     const answer = await vscode.window.showWarningMessage(
-      "Keep this computer awake while Kilo agents work?",
+      "Keep this computer awake while Qronos agents work?",
       { modal: true, detail },
       "Enable Keep Awake",
     )
