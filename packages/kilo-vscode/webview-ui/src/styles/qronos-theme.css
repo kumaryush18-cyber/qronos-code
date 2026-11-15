@@ -1,0 +1,157 @@
+/* ============================================
+   Qronos visual identity
+   Palette, and the rotating star light ring used
+   around the prompt input.
+   Colours mirror the Qronos landing page:
+   deep green-black, lime accent, soft cyan.
+   ============================================ */
+
+body.vscode-dark,
+body.vscode-high-contrast {
+  --q-bg: #101511;
+  --q-bg-soft: #18201b;
+  --q-bg-raised: #1c2620;
+  --q-line: rgba(235, 245, 230, 0.1);
+  --q-line-strong: rgba(235, 245, 230, 0.18);
+  --q-lime: #c9ff73;
+  --q-lime-soft: #dcffa6;
+  --q-cyan: #72e6db;
+  --q-text: #eff5eb;
+  --q-text-dim: #aab4ab;
+}
+
+/* Light and high-contrast-light keep the same accent, darker ink. */
+body.vscode-light,
+body.vscode-high-contrast-light {
+  --q-bg: #f7f9f4;
+  --q-bg-soft: #eef3e8;
+  --q-bg-raised: #ffffff;
+  --q-line: rgba(20, 32, 20, 0.12);
+  --q-line-strong: rgba(20, 32, 20, 0.22);
+  --q-lime: #6f9c1d;
+  --q-lime-soft: #86b32b;
+  --q-cyan: #1f8f86;
+  --q-text: #16200f;
+  --q-text-dim: #4c5a48;
+}
+
+/* ---------- prompt input shell ---------- */
+
+.prompt-input-container {
+  isolation: isolate;
+}
+
+/*
+ * The star light: a conic gradient that rotates behind the input and shows
+ * through a 1px ring plus a soft outer glow. Masked so the middle stays empty
+ * and the text never sits on top of moving colour.
+ */
+.prompt-input-container::before,
+.prompt-input-container::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    rgba(201, 255, 115, 0) 0deg,
+    var(--q-lime) 40deg,
+    var(--q-cyan) 90deg,
+    rgba(201, 255, 115, 0) 150deg,
+    rgba(201, 255, 115, 0) 360deg
+  );
+  animation: qronos-star-orbit 7s linear infinite;
+}
+
+/* Ring only: punch out the interior. */
+.prompt-input-container::before {
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.55;
+}
+
+/* Soft glow that breathes in and out of phase with the ring. */
+.prompt-input-container::after {
+  filter: blur(7px);
+  opacity: 0.16;
+  animation:
+    qronos-star-orbit 7s linear infinite,
+    qronos-star-breathe 5.5s ease-in-out infinite;
+}
+
+/* Brightness increases while the caret is in the box. */
+.prompt-input-container:focus-within::before {
+  opacity: 0.95;
+}
+
+.prompt-input-container:focus-within::after {
+  opacity: 0.3;
+}
+
+/* Respect the operating system setting for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .prompt-input-container::before,
+  .prompt-input-container::after {
+    animation: none;
+    background: linear-gradient(120deg, var(--q-lime), var(--q-cyan));
+    opacity: 0.35;
+  }
+}
+
+@keyframes qronos-star-orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes qronos-star-breathe {
+  0%,
+  100% {
+    filter: blur(7px) brightness(1);
+  }
+  50% {
+    filter: blur(12px) brightness(1.35);
+  }
+}
+
+/* ---------- surfaces ---------- */
+
+/* Deep green-black wash behind the whole chat, like the landing page. */
+body.vscode-dark .container,
+body.vscode-high-contrast .container {
+  background:
+    radial-gradient(1100px 420px at 12% -12%, rgba(201, 255, 115, 0.07), transparent 62%),
+    radial-gradient(900px 380px at 92% 4%, rgba(114, 230, 219, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--q-bg), var(--q-bg-soft));
+}
+
+/* Welcome screen: keep the mark crisp on the dark wash. */
+.welcome-header .kilo-logo-static img {
+  filter: drop-shadow(0 10px 26px rgba(201, 255, 115, 0.16));
+}
+
+/* Accent the empty-state headline without touching layout. */
+body.vscode-dark .welcome-header h1,
+body.vscode-dark .welcome-header h2 {
+  color: var(--q-text);
+  letter-spacing: -0.02em;
+}
+
+/* Prompt input surface: flat, quiet, slightly raised from the wash. */
+body.vscode-dark .prompt-input-container [data-component="prompt-input"] {
+  background: var(--q-bg-raised);
+  border-color: var(--q-line);
+}
+
+body.vscode-dark .prompt-input-container [data-component="prompt-input"]:focus-within {
+  border-color: var(--q-line-strong);
+}

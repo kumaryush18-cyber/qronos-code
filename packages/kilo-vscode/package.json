@@ -3,7 +3,7 @@
   "displayName": "Qronos Code — Autonomous AI Agent",
   "description": "Autonomous AI coding agent in VS Code powered by Qronos AI. 10M daily coding tokens, multi-turn plan mode, autonomous terminal tools, subagents, and direct gateway integration.",
   "version": "1.0.0",
-  "icon": "assets/icons/logo-outline-black.png",
+  "icon": "assets/icons/qronos-logo-square.png",
   "galleryBanner": {
     "color": "#0A0B0E",
     "theme": "dark"
@@ -194,8 +194,8 @@
         "title": "Open in Tab",
         "category": "Qronos Code",
         "icon": {
-          "light": "assets/icons/kilo-light.svg",
-          "dark": "assets/icons/kilo-dark.svg"
+          "light": "assets/icons/qronos-light.svg",
+          "dark": "assets/icons/qronos-dark.svg"
         }
       },
       {
@@ -404,8 +404,8 @@
         "title": "Generate Commit Message",
         "category": "Qronos Code",
         "icon": {
-          "light": "assets/icons/kilo-light.svg",
-          "dark": "assets/icons/kilo-dark.svg"
+          "light": "assets/icons/qronos-light.svg",
+          "dark": "assets/icons/qronos-dark.svg"
         }
       },
       {

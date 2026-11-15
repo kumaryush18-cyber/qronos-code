@@ -15,6 +15,8 @@
 @import "./session-actions.css";
 @import "./welcome.css";
 @import "./prompt-input.css";
+/* qronos_change - palette + star light ring */
+@import "./qronos-theme.css";
 @import "./shortcut-keys.css";
 @import "./goal.css";
 @import "./todo-dock.css";

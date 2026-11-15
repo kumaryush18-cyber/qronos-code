@@ -116,8 +116,8 @@ export class MarketplacePanelProvider implements vscode.Disposable {
     this.project = project
     this.ready = false
     panel.iconPath = {
-      light: vscode.Uri.joinPath(this.extensionUri, "assets", "icons", "kilo-light.svg"),
-      dark: vscode.Uri.joinPath(this.extensionUri, "assets", "icons", "kilo-dark.svg"),
+      light: vscode.Uri.joinPath(this.extensionUri, "assets", "icons", "qronos-light.svg"),
+      dark: vscode.Uri.joinPath(this.extensionUri, "assets", "icons", "qronos-dark.svg"),
     }
     panel.webview.options = {
       enableScripts: true,
