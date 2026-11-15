@@ -62,15 +62,19 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
 
     const profile = Effect.fn("KiloGatewayHttpApi.profile")(function* () {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
-      if (!info || info.type !== "oauth") return yield* Effect.fail(new HttpApiError.Unauthorized({}))
+      // qronos_change - a device-flow sign-in stores a plain API key (type "api"),
+      // not an oauth bunde. Accept any usable token here, otherwise a signed-in
+      // user was told "Not logged in" while the gateway worked fine.
+      const token = getToken(info)
+      if (!token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
 
-      const currentOrgId = info.accountId ?? null
+      const currentOrgId = info?.type === "oauth" ? (info.accountId ?? null) : null
       const [profile, balance, kiloPass] = yield* Effect.tryPromise({
         try: () =>
           Promise.all([
-            fetchProfile(info.access),
-            fetchBalance(info.access, currentOrgId ?? undefined, log),
-            fetchKiloPassState(info.access),
+            fetchProfile(token),
+            fetchBalance(token, currentOrgId ?? undefined, log),
+            fetchKiloPassState(token),
           ]),
         catch: () => new HttpApiError.BadRequest({}),
       })
@@ -240,7 +244,10 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
 
     const organization = Effect.fn("KiloGatewayHttpApi.organization")(function* (ctx) {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
-      if (!info || info.type !== "oauth") return yield* Effect.fail(new HttpApiError.Unauthorized({}))
+      // qronos_change - API-key sign-ins have no organization to switch, so keep
+      // the stored entry untouched instead of failing the whole call.
+      if (!info) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
+      if (info.type !== "oauth") return true // qronos_change - nothing to switch for an API key
 
       yield* auth
         .set("qronos", {

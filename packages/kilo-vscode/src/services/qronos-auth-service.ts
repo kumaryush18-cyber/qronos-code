@@ -166,7 +166,7 @@ export class QronosAuthService {
           const session: QronosUserSession = {
             token: accessToken,
             userId: data.user?.id,
-            email: data.user?.email,
+            email: data.user?.email ?? data.userEmail, // qronos_change - Qronos returns userEmail
             username: data.user?.username,
             dailyTokens: 10_000_000,
           }

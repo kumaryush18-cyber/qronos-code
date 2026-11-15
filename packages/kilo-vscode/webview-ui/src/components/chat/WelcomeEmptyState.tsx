@@ -1,6 +1,5 @@
 import { type Component, type JSX, createSignal, For, Show } from "solid-js"
 import { Icon } from "@kilocode/kilo-ui/icon"
-import { AnimatedKiloLogo, reduced } from "../brand/AnimatedKiloLogo"
 import { useDialog } from "@kilocode/kilo-ui/context/dialog"
 import { useSession } from "../../context/session"
 import { useLanguage } from "../../context/language"
@@ -26,26 +25,12 @@ interface WelcomeEmptyStateProps {
  */
 export const KiloLogo = () => {
   const icons = (window as { ICONS_BASE_URI?: string }).ICONS_BASE_URI || ""
-  const light =
-    document.body.classList.contains("vscode-light") || document.body.classList.contains("vscode-high-contrast-light")
-  const file = light ? "qronos-light.svg" : "qronos-dark.svg"
-  const [hover, setHover] = createSignal(false)
-  const [ready, setReady] = createSignal(false)
-  const [mounted, setMounted] = createSignal(false)
-
+  // qronos_change - use the real Qronos logo from qronos.me instead of a
+  // locally drawn mark, and drop the Kilo Lottie hover animation.
   return (
-    <div
-      class="kilo-logo"
-      classList={{ "kilo-logo-hover": hover(), "kilo-logo-ready": hover() && ready() }}
-      onMouseEnter={() => {
-        if (reduced()) return
-        setMounted(true)
-        setHover(true)
-      }}
-      onMouseLeave={() => setHover(false)}
-    >
+    <div class="kilo-logo">
       <div class="kilo-logo-layer kilo-logo-static">
-        <img src={`${icons}/${file}`} alt="Qronos Code" />
+        <img src={`${icons}/qronos-logo.png`} alt="Qronos Code" />
       </div>
     </div>
   )
