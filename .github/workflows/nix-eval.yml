@@ -1,0 +1,138 @@
+name: nix-eval
+
+on:
+  # kilocode_change start - validate Nix changes on the active Kilo release branch
+  push:
+    branches: [main, dev]
+    paths:
+      - flake.nix
+      - flake.lock
+      - nix/**
+      - package.json
+      - bun.lock
+      - packages/**/package.json
+      - patches/**
+      - script/kilocode/bun.json
+      - .github/workflows/nix-eval.yml
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - flake.nix
+      - flake.lock
+      - nix/**
+      - package.json
+      - bun.lock
+      - packages/**/package.json
+      - patches/**
+      - script/kilocode/bun.json
+      - .github/workflows/nix-eval.yml
+  # kilocode_change end
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # kilocode_change start - cover the public overlay on main without unrelated dev-shell checks
+  overlay-eval:
+    if: >-
+      github.repository == 'Kilo-Org/kilocode' &&
+      (github.base_ref == 'main' || github.ref == 'refs/heads/main')
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Nix
+        uses: nixbuild/nix-quick-install-action@2c9db80fb984ceb1bcaa77cdda3fdf8cfba92035 # v34
+
+      - name: Compare overlay and package derivations (all systems)
+        run: |
+          set -euo pipefail
+          nix eval --impure --json --expr '
+            let flake = builtins.getFlake (toString ./.);
+            in builtins.mapAttrs (system: outputs:
+              let
+                pkgs = import flake.inputs.nixpkgs {
+                  inherit system;
+                  overlays = [ flake.overlays.default ];
+                };
+                package = outputs.kilo;
+              in
+                assert pkgs.kilo.drvPath == package.drvPath;
+                assert pkgs.kilo.node_modules.drvPath == package.node_modules.drvPath;
+                assert pkgs.opencode.drvPath == pkgs.kilo.drvPath;
+                pkgs.kilo.drvPath
+            ) flake.packages
+          '
+  # kilocode_change end
+
+  nix-eval:
+    # kilocode_change start - preserve the existing dev/manual scope of full-shell checks
+    if: >-
+      github.repository == 'Kilo-Org/kilocode' &&
+      (github.event_name == 'workflow_dispatch' || github.base_ref == 'dev' || github.ref == 'refs/heads/dev')
+    # kilocode_change end
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup Nix
+        uses: nixbuild/nix-quick-install-action@2c9db80fb984ceb1bcaa77cdda3fdf8cfba92035 # v34
+
+      - name: Evaluate flake outputs (all systems)
+        run: |
+          set -euo pipefail
+          nix --version
+
+          echo "=== Flake metadata ==="
+          nix flake metadata
+
+          echo ""
+          echo "=== Flake structure ==="
+          nix flake show --all-systems
+
+          SYSTEMS="x86_64-linux aarch64-linux x86_64-darwin aarch64-darwin"
+          PACKAGES="kilo"
+
+          echo ""
+          echo "=== Evaluating packages for all systems ==="
+          for system in $SYSTEMS; do
+            echo ""
+            echo "--- $system ---"
+            for pkg in $PACKAGES; do
+              printf "  %s: " "$pkg"
+              if output=$(nix eval ".#packages.$system.$pkg.drvPath" --raw 2>&1); then
+                echo "✓"
+              else
+                echo "✗"
+                echo "::error::Evaluation failed for packages.$system.$pkg"
+                echo "$output"
+                exit 1
+              fi
+            done
+          done
+
+          echo ""
+          echo "=== Evaluating devShells for all systems ==="
+          for system in $SYSTEMS; do
+            printf "%s: " "$system"
+            if output=$(nix eval ".#devShells.$system.default.drvPath" --raw 2>&1); then
+              echo "✓"
+            else
+              echo "✗"
+              echo "::error::Evaluation failed for devShells.$system.default"
+              echo "$output"
+              exit 1
+            fi
+          done
+
+          echo ""
+          echo "=== All evaluations passed ==="

@@ -1,0 +1,138 @@
+---
+title: "Billing"
+description: "Manage billing and subscriptions for your team"
+---
+
+# Billing
+
+Kilo seats use a transparent, two-part billing system: a monthly subscription per seat, plus pay-as-you-go Kilo credits. Model inference is charged at provider rates with no markup. Kilo is not currently charging a payment-processing fee on credit purchases (including automatic top-ups) or on Kilo Pass purchases; purchases made while the 5% fee was in effect keep that charge.
+
+{% callout type="note" %}
+
+Kilo Code seats purchases of Teams or Enterprise are separate from Kilo credits.
+
+No Kilo credits are included with a Teams or Enterprise purchase.
+
+$1 of purchased credits funds $1 of usage. A payment-processing fee, when one is charged, is billed separately and does not increase the organization's credit balance.
+
+{% /callout %}
+
+## Organization Credits
+
+Organization Owners can purchase Kilo credits on the [Organization dashboard](https://app.kilo.ai).
+
+Organization credits are purchased on behalf of all users in the organization. Every member of the organization can use the credits in the organization's balance with the Kilo Code model provider.
+
+Using organization credits works exactly like spending [individual credits](/docs/getting-started/adding-credits), except that the credits come from the organization's credit balance, rather than the individuals.
+
+### Buying Organization Credits
+
+1. **Navigate to Organization tab** in dashboard
+2. **Click "Buy More Credits"**
+3. **Select credit amount** ($50, $100, $250, $500, $1000+)
+4. **Complete payment** using saved payment method
+5. **Credits available immediately** for team use
+
+### Using Organization Credits
+
+Organization members can use organization credits by choosing the correct organization profile in the dropdown in the Profiles tab of the Kilo Code extension.
+
+{% image src="/docs/img/teams/org_credits.png" alt="Dropdown showing different organizations available" width="600" caption="Dropdown showing different organizations available" /%}
+
+## Managing Seats Subscriptions
+
+In order to add Members to your Kilo Code Organization, you must have seat(s) available for them.
+
+You can purchase more seats at any time during your billing cycle and will pay a pro-rated amount for the number of days left in your billing cycle.
+
+You can remove empty seats at any time. Your next payment will reflect the smaller number of seats.
+
+Your next billing date will not change.
+
+To fill empty seats or remove members ahead of seat deletion, see the [team management](/docs/collaborate/teams/team-management) page.
+
+### Adding Seats
+
+1. **Go to Organization tab**
+2. **Click "Add Seats"**
+3. **Enter number of additional seats**
+4. **Review pro-rated cost** for current billing cycle
+5. **Confirm changes**
+
+### Removing Seats
+
+1. **Navigate to Organization tab**
+2. **Click "Remove Seats"**
+3. **Select seats to remove** (must remove team members first)
+4. **Confirm reduction**
+
+To fill empty seats or remove members ahead of seat deletion, see the [team management](/docs/collaborate/teams/team-management) page.
+
+## Kilo Pass for Organizations
+
+Organizations can subscribe to [Kilo Pass](https://kilo.ai/pricing/kilo-pass) at the organization level, pooling the subscription's credit capacity across the team instead of each member holding a personal Kilo Pass. Personal Kilo Pass subscriptions stay separate and are not affected.
+
+Kilo is not currently charging a payment-processing fee on Kilo Pass purchases, including recurring billing. A fee, when one is charged, is billed separately and does not increase the credits the pass provides.
+
+- **One pass per seat** — purchased capacity always matches your paid seat count and adjusts automatically as seats are added or removed.
+- **Pooled credits** — each service window's Kilo Pass credits are issued to the organization's pool rather than to individuals.
+- **Child organizations** — if your organization has direct child organizations, you can allocate part of the pooled capacity to each child. Anything not allocated stays with the parent organization.
+
+Organization owners and billing managers can purchase Kilo Pass, manage allocations, and cancel from your organization's **Subscriptions** page on the [Organization dashboard](https://app.kilo.ai). Cancellation takes effect at the end of the current paid period. Regular members do not see these controls.
+
+If a seat reduction leaves your allocations larger than the remaining capacity, the subscription becomes overallocated and the Subscriptions page walks you through reconciling it.
+
+## Automatic Top-Up
+
+Ensure your team has uninterrupted access to Kilo Code by enabling [Automatic Top-Up](https://kilo.ai/features/auto-top-ups). This feature keeps your organization's balance funded so you never have to worry about manual recharges. Auto top-up is also available for individual accounts — see [Adding Credits](/docs/getting-started/adding-credits) for details.
+
+### How It Works
+
+- **Initial Verification** — To verify your payment method, a one-time charge for your selected top-up amount will be processed immediately upon enabling this feature.
+- **Automatic Thresholds** — Once enabled, usage or a requested credit-funded service can trigger a recharge when your balance falls below your trigger balance. Choose **$50** (the default), **$100**, or **$500**. Viewing the balance or credit expiration alone never triggers a charge.
+
+{% callout type="warning" title="Payment Failure" %}
+If a payment fails, we will notify you via email and automatically pause auto-top-ups to prevent repeated billing attempts. You can resume this feature at any time from your settings.
+{% /callout %}
+
+- **Flexibility** — You can disable automatic top-ups at any time.
+- **Credit terms** — Paid purchases expire one calendar year after purchase, and each organization Pass paid allotment expires one calendar year after issuance, including allotments under annual plans. Existing balances and previously disclosed purchase terms are preserved; prepaid annual terms keep their terms until renewal. Promotional and bonus deadlines are unchanged. Credits are spent earliest-expiring first, with nonexpiring credits last. See [credit expiration and spending order](/docs/getting-started/adding-credits#credit-expiration-and-spending-order).
+
+### Configuring Automatic Top-Up
+
+1. Navigate to your **Organization Settings**
+2. Select **Billing & Credits**
+3. Locate the **Automatic Top-Up** section and toggle the feature **ON**
+4. Choose the balance that triggers a top up — **$50** (the default), **$100**, or **$500**
+5. Set your **Top-Up Amount** — the amount to add to your balance each time a recharge is triggered. Organization amounts are **$100**, **$500**, **$1,000**, or **$5,000**.
+
+{% callout type="note" %}
+The minimum top-up amount is **$100.00**. The top-up amount must be at least the trigger balance, so a **$500** trigger requires a top-up of **$500** or more. The dialog disables combinations that break this rule.
+{% /callout %}
+
+6. Click **Save Changes** to confirm
+
+Once saved, your initial top-up will be processed immediately to verify your payment method.
+
+## Spend alerts
+
+Owners can set spend alerts in the spend view, on the web or in the mobile app, to be notified when spending crosses a limit or when an hour runs far above the usual rate. Spending includes Cloud Agent compute charges as well as model inference. Alerts go by email or mobile push to the scope's recipients: your billing contacts for a personal account, or the alert's creator, the organization's owners, and members holding the `billing_manager` role for an organization. See [Spend alerts](/docs/getting-started/cost-controls-and-usage-safeguards#spend-alerts) for how to configure them.
+
+## Invoices
+
+Invoices for any payment on the Kilo Code platform, for seats or credits, will be available in the Invoices tab.
+
+### Service Suspension
+
+If payment fails repeatedly:
+
+- **3-day grace period** to resolve payment issues
+- **Service suspension** after grace period expires
+- **Data retention** for 30 days during suspension
+- **Immediate restoration** upon payment resolution
+
+## Next Steps
+
+- [Explore usage analytics](/docs/collaborate/teams/analytics)
+- [Learn about team roles and permissions](/docs/collaborate/teams/team-management)
+- [Learn about team management](/docs/collaborate/teams/team-management)

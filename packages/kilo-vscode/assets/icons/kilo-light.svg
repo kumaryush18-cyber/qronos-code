@@ -1,0 +1,19 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="qronosOrangeLight" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF7A0D"/>
+      <stop offset="100%" stop-color="#E05300"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crisp Light Ground -->
+  <rect width="512" height="512" rx="100" fill="#FFFFFF"/>
+  <rect x="4" y="4" width="504" height="504" rx="96" stroke="#000000" stroke-opacity="0.08" stroke-width="4"/>
+
+  <!-- Outer Q Ring in Vibrant Orange -->
+  <path d="M256 72C154.38 72 72 154.38 72 256C72 357.62 154.38 440 256 440C295.43 440 331.95 427.61 361.94 406.49L343.21 371.88C318.23 388.42 288.24 398 256 398C177.58 398 114 334.42 114 256C114 177.58 177.58 114 256 114C334.42 114 398 177.58 398 256C398 274.62 394.43 292.4 387.95 308.71L428.18 322.25C437.17 301.55 442 279.35 442 256C442 154.38 359.62 72 256 72Z" fill="url(#qronosOrangeLight)"/>
+
+  <!-- Signature Autonomous Chevron Tail (❯) in Deep Obsidian & Orange Accent -->
+  <path d="M280 256L380 356L448 424L412 460L344 392L244 292L280 256Z" fill="#121316"/>
+  <path d="M220 220L310 310L274 346L184 256L220 220Z" fill="url(#qronosOrangeLight)"/>
+</svg>
