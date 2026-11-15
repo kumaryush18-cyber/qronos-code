@@ -4,7 +4,8 @@ import { Types } from "effect"
 import { Provider } from "@opencode-ai/schema/provider"
 
 // kilocode_change - preserve Kilo's well-known routing ID without forking the shared schema
-export const ID = Object.assign(Provider.ID, { kilo: Provider.ID.make("kilo") })
+// qronos_change - the gateway provider id is `qronos`; the old `kilo` id is gone.
+export const ID = Object.assign(Provider.ID, { qronos: Provider.ID.make("qronos") })
 export type ID = typeof ID.Type
 
 export const AISDK = Provider.AISDK

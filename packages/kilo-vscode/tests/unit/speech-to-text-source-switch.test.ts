@@ -108,7 +108,7 @@ describe("speech-to-text source switching", () => {
 
   it("keeps Gateway auth gating and replaces an unknown stored ID with the default", () => {
     expect(canUseSpeechToText({}, {})).toBe(false)
-    expect(canUseSpeechToText({}, { kilo: "oauth" })).toBe(true)
+    expect(canUseSpeechToText({}, { qronos: "oauth" })).toBe(true)
     expect(selectedSpeechToTextModel({ experimental: { speech_to_text_model: "small" } })).toBe(
       DEFAULT_SPEECH_TO_TEXT_MODEL.id,
     )

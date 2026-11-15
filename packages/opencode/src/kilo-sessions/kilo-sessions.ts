@@ -224,7 +224,7 @@ export namespace KiloSessions {
 
   async function kilocodeToken() {
     return withInFlightCache(tokenKey, ttlMs, async () => {
-      const auth = await runtime.runPromise((svc) => svc.get("kilo"))
+      const auth = await runtime.runPromise((svc) => svc.get("qronos"))
       if (auth?.type === "api" && auth.key.length > 0) return auth.key
       if (auth?.type === "oauth" && auth.access.length > 0) return auth.access
       if (auth?.type === "wellknown" && auth.token.length > 0) return auth.token
@@ -2032,7 +2032,7 @@ export namespace KiloSessions {
     if (isUuid(env)) return env
 
     return withInFlightCache(orgKey, ttlMs, async () => {
-      const auth = await runtime.runPromise((svc) => svc.get("kilo"))
+      const auth = await runtime.runPromise((svc) => svc.get("qronos"))
       if (auth?.type === "oauth" && isUuid(auth.accountId)) return auth.accountId
       return undefined
     })

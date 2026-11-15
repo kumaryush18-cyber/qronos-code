@@ -62,7 +62,7 @@ export const providerHandlers = HttpApiBuilder.group(InstanceHttpApi, "provider"
       }
       const connected = yield* provider.list()
       // kilocode_change start
-      const info = yield* access.get("kilo").pipe(Effect.option)
+      const info = yield* access.get("qronos").pipe(Effect.option)
       const unavailable = Option.isNone(info) && ("kilo" in filtered || "kilo" in connected)
       if (Option.isNone(info) || organization(config.provider?.kilo?.options, info.value)) delete filtered.kilo
       const providers = filterPromptTrainingModels(
@@ -115,7 +115,7 @@ export const providerHandlers = HttpApiBuilder.group(InstanceHttpApi, "provider"
         })
       }
       const defaults = Provider.defaultModelIDs(pickBy(validProviders, (item) => Object.keys(item.models).length > 0))
-      if (connected[ProviderV2.ID.kilo] && defaults[ProviderV2.ID.kilo]) {
+      if (connected[ProviderV2.ID.qronos] && defaults[ProviderV2.ID.qronos]) {
         const model = yield* Effect.promise(() =>
           recommend(
             validProviders.kilo.models,
@@ -124,7 +124,7 @@ export const providerHandlers = HttpApiBuilder.group(InstanceHttpApi, "provider"
             Option.isSome(info),
           ),
         )
-        if (model) defaults[ProviderV2.ID.kilo] = ModelV2.ID.make(model)
+        if (model) defaults[ProviderV2.ID.qronos] = ModelV2.ID.make(model)
       }
       return {
         all: Object.values(validProviders).map((item) => ({
@@ -183,7 +183,7 @@ export const providerHandlers = HttpApiBuilder.group(InstanceHttpApi, "provider"
         }),
       )
       // kilocode_change start - drop old-user presence before instance disposal on Kilo OAuth callback
-      if (ctx.params.providerID === "kilo") yield* invalidatePresence()
+      if (ctx.params.providerID === "qronos") yield* invalidatePresence()
       // kilocode_change end
       yield* disposeAllInstancesAfterProviderAuthCallback() // kilocode_change
       return true

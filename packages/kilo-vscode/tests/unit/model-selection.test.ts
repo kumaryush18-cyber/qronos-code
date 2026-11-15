@@ -10,23 +10,23 @@ function makeProvider(id: string, models: string[]): Provider {
   return result
 }
 
-const KILO_AUTO: ModelSelection = { providerID: "kilo", modelID: "kilo-auto/free" }
+const KILO_AUTO: ModelSelection = { providerID: "qronos", modelID: "kilo-auto/free" }
 
 const providers: Record<string, Provider> = {
-  kilo: makeProvider("kilo", ["kilo-auto/free", "z-first", "z-recommended"]),
+  qronos: makeProvider("qronos", ["kilo-auto/free", "z-first", "z-recommended"]),
   anthropic: makeProvider("anthropic", ["claude-sonnet-4"]),
   openai: makeProvider("openai", ["gpt-4.1"]),
 }
 
 const claude: ModelSelection = { providerID: "anthropic", modelID: "claude-sonnet-4" }
 const gpt: ModelSelection = { providerID: "openai", modelID: "gpt-4.1" }
-const first: ModelSelection = { providerID: "kilo", modelID: "z-first" }
-const recommended: ModelSelection = { providerID: "kilo", modelID: "z-recommended" }
+const first: ModelSelection = { providerID: "qronos", modelID: "z-first" }
+const recommended: ModelSelection = { providerID: "qronos", modelID: "z-recommended" }
 
 function base() {
   return {
     providers,
-    connected: ["kilo", "anthropic", "openai"],
+    connected: ["qronos", "anthropic", "openai"],
     ready: true,
     organizationId: null,
     fallback: KILO_AUTO,
@@ -60,7 +60,7 @@ describe("resolveModelSelection", () => {
   })
 
   it("returns the org recommendation for org users", () => {
-    const result = resolveModelSelection({ ...base(), organizationId: "org-a", defaults: { kilo: "z-recommended" } })
+    const result = resolveModelSelection({ ...base(), organizationId: "org-a", defaults: { qronos: "z-recommended" } })
     expect(result).toEqual(recommended)
   })
 
@@ -68,7 +68,7 @@ describe("resolveModelSelection", () => {
     const result = resolveModelSelection({
       ...base(),
       organizationId: "org-a",
-      defaults: { kilo: "z-recommended" },
+      defaults: { qronos: "z-recommended" },
       recent: [claude],
     })
     expect(result).toEqual(recommended)
@@ -97,7 +97,7 @@ describe("resolveModelSelection", () => {
       ...base(),
       ready: false,
       organizationId: "org-a",
-      defaults: { kilo: "z-recommended" },
+      defaults: { qronos: "z-recommended" },
       session: recommended,
     })
     expect(result).toBeNull()

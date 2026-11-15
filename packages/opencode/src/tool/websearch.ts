@@ -149,7 +149,7 @@ export const WebSearchTool = Tool.define(
           //   provider="parallel"          -> mcp-parallel     (unchanged)
           const kiloToken = yield* Effect.gen(function* () {
             if (provider !== "exa" && provider !== "kilo-exa") return undefined as string | undefined
-            const info = yield* authSvc.get("kilo")
+            const info = yield* authSvc.get("qronos")
             if (!info) return undefined
             return info.type === "api" ? info.key : info.type === "oauth" ? info.access : undefined
           })

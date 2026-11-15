@@ -7,24 +7,24 @@ import { DEFAULT_SPEECH_TO_TEXT_MODEL } from "../../src/speech-to-text/models"
 
 describe("speech-to-text availability", () => {
   it("shows speech input for stored Kilo credentials", () => {
-    expect(canUseSpeechToText({}, { kilo: "oauth" })).toBe(true)
-    expect(canUseSpeechToText({}, { kilo: "api" })).toBe(true)
+    expect(canUseSpeechToText({}, { qronos: "oauth" })).toBe(true)
+    expect(canUseSpeechToText({}, { qronos: "api" })).toBe(true)
   })
 
   it("hides speech input without usable Kilo credentials", () => {
     expect(canUseSpeechToText({}, {})).toBe(false)
-    expect(canUseSpeechToText({}, { kilo: "wellknown" })).toBe(false)
+    expect(canUseSpeechToText({}, { qronos: "wellknown" })).toBe(false)
   })
 
   it("honors enabled and disabled provider configuration", () => {
-    expect(canUseSpeechToText({ disabled_providers: ["kilo"] }, { kilo: "oauth" })).toBe(false)
-    expect(canUseSpeechToText({ enabled_providers: ["openai"] }, { kilo: "oauth" })).toBe(false)
-    expect(canUseSpeechToText({ enabled_providers: ["kilo"] }, { kilo: "oauth" })).toBe(true)
+    expect(canUseSpeechToText({ disabled_providers: ["qronos"] }, { qronos: "oauth" })).toBe(false)
+    expect(canUseSpeechToText({ enabled_providers: ["openai"] }, { qronos: "oauth" })).toBe(false)
+    expect(canUseSpeechToText({ enabled_providers: ["qronos"] }, { qronos: "oauth" })).toBe(true)
   })
 
   it("hides speech input when the window cannot capture audio", () => {
-    expect(canUseSpeechToText({}, { kilo: "oauth" }, false)).toBe(false)
-    expect(canUseSpeechToText({}, { kilo: "oauth" }, true)).toBe(true)
+    expect(canUseSpeechToText({}, { qronos: "oauth" }, false)).toBe(false)
+    expect(canUseSpeechToText({}, { qronos: "oauth" }, true)).toBe(true)
   })
 
   it("normalizes configured and unknown transcription models", () => {

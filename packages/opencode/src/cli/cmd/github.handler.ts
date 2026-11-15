@@ -340,7 +340,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
             : providers[provider].env.map((e) => `\n          ${e}: \${{ secrets.${e} }}`).join("")
 
         const kiloGatewayEnv =
-          provider === "kilo"
+          provider === "qronos"
             ? `\n          KILO_API_KEY: \${{ secrets.KILO_API_KEY }}\n          KILO_ORG_ID: \${{ secrets.KILO_ORG_ID }}`
             : ""
 

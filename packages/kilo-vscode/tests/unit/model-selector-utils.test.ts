@@ -48,9 +48,9 @@ describe("providerSortKey", () => {
   })
 
   it("sorts providers correctly when used with sort", () => {
-    const ids = ["google", "anthropic", "kilo", "openai", "deepseek"]
+    const ids = ["google", "anthropic", "qronos", "openai", "deepseek"]
     const sorted = ids.slice().sort((a, b) => providerSortKey(a) - providerSortKey(b))
-    expect(sorted).toEqual(["kilo", "anthropic", "deepseek", "openai", "google"])
+    expect(sorted).toEqual(["qronos", "anthropic", "deepseek", "openai", "google"])
   })
 })
 
@@ -65,9 +65,9 @@ describe("stripSubProviderPrefix", () => {
     expect(stripSubProviderPrefix("claude-3-5-sonnet")).toBe("claude-3-5-sonnet")
   })
 
-  it("does not strip 'Kilo: ' prefix", () => {
-    expect(stripSubProviderPrefix("Kilo: Auto")).toBe("Kilo: Auto")
-    expect(stripSubProviderPrefix("kilo: Auto")).toBe("kilo: Auto")
+  it("does not strip a 'Qronos: ' prefix", () => {
+    expect(stripSubProviderPrefix("Qronos: Auto")).toBe("Qronos: Auto")
+    expect(stripSubProviderPrefix("qronos: Auto")).toBe("qronos: Auto")
   })
 })
 
@@ -195,9 +195,9 @@ describe("autoSummary", () => {
 const SEARCH_MODELS: EnrichedModel[] = [
   { id: "solar-pro", name: "Solar Pro", providerID: "nvidia", providerName: "NVIDIA" },
   { id: "gpt-5.6-sol", name: "GPT-5.6 Sol", providerID: "openai", providerName: "OpenAI" },
-  { id: "gpt-5.6-sol", name: "GPT-5.6 Sol", providerID: "kilo", providerName: "Kilo" },
+  { id: "gpt-5.6-sol", name: "GPT-5.6 Sol", providerID: "qronos", providerName: "Kilo" },
   { id: "gpt-5.6", name: "GPT-5.6", providerID: "anthropic", providerName: "Anthropic" },
-  { id: "xai/grok-4.20", name: "SpaceXAI: Grok 4.20", providerID: "kilo", providerName: "Kilo Gateway" },
+  { id: "xai/grok-4.20", name: "SpaceXAI: Grok 4.20", providerID: "qronos", providerName: "Qronos AI Universal Gateway" },
 ]
 
 describe("rankModelSearch", () => {
@@ -215,9 +215,9 @@ describe("rankModelSearch", () => {
 
   it("keeps provider variants together and uses usage to order equivalent variants", () => {
     const result = rankModelSearch(SEARCH_MODELS, "sol", {
-      usage: { "kilo/gpt-5.6-sol": { count: 4, lastUsed: 10 }, "openai/gpt-5.6-sol": { count: 1, lastUsed: 20 } },
+      usage: { "qronos/gpt-5.6-sol": { count: 4, lastUsed: 10 }, "openai/gpt-5.6-sol": { count: 1, lastUsed: 20 } },
     })
-    expect(result.slice(0, 2).map((model) => model.providerID)).toEqual(["kilo", "openai"])
+    expect(result.slice(0, 2).map((model) => model.providerID)).toEqual(["qronos", "openai"])
   })
 
   it("does not let usage make a weaker model beat an exact match", () => {
@@ -284,7 +284,7 @@ describe("buildTriggerLabel", () => {
   })
 
   it("returns modelID for kilo gateway raw selection", () => {
-    const raw = { providerID: "kilo", modelID: "kilo-auto/frontier" }
+    const raw = { providerID: "qronos", modelID: "kilo-auto/frontier" }
     expect(buildTriggerLabel(undefined, undefined, raw, false, "", true, labels)).toBe("kilo-auto/frontier")
   })
 

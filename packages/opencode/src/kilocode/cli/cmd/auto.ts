@@ -309,12 +309,12 @@ const credentials = Effect.fn("Cli.auto.credentials")(function* () {
   const provider = yield* Provider.Service
   const auth = yield* Auth.Service
   const catalog = yield* provider.list()
-  const kilo = catalog[ProviderV2.ID.kilo]
+  const kilo = catalog[ProviderV2.ID.qronos]
   if (!kilo) {
     yield* fail("Sign in to Kilo to use custom auto routers. Run `kilo auth login`.")
     return undefined
   }
-  const info = yield* auth.get(ProviderV2.ID.kilo).pipe(Effect.mapError(credentialsFailure))
+  const info = yield* auth.get(ProviderV2.ID.qronos).pipe(Effect.mapError(credentialsFailure))
   return { token: token(kilo.options, info) ?? "", organizationId: organization(kilo.options, info) }
 })
 

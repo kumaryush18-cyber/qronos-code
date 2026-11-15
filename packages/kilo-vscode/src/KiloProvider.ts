@@ -33,6 +33,7 @@ import {
 import {
   sessionToWebview,
   indexProvidersById,
+  resolveDefaultSelection,
   filterVisibleAgents,
   mapSSEEventToWebviewMessage,
   getErrorMessage,
@@ -2916,50 +2917,9 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
             continue
           }
           this.storedProviderKeys = storedKeys
-          const settings = vscode.workspace.getConfiguration("kilo-code.new.model")
+          // qronos_change - no hardcoded model catalogue here. Every model comes from
+          // GET /v1/models through the backend catalog, so the picker can never drift.
           const indexedProviders = indexProvidersById(response.all)
-          if (indexedProviders.kilo) {
-            indexedProviders.kilo.name = "Qronos AI Universal Gateway"
-            indexedProviders.kilo.models = {
-              "claude-sonnet-5.5": {
-                id: "claude-sonnet-5.5",
-                name: "Claude Sonnet 5.5 (Anthropic) [PAID]",
-                providerID: "kilo",
-                contextWindow: 200000,
-                maxTokens: 8192,
-              } as any,
-              "claude-opus-5.5": {
-                id: "claude-opus-5.5",
-                name: "Claude Opus 5.5 (Anthropic) [PAID]",
-                providerID: "kilo",
-                contextWindow: 200000,
-                maxTokens: 8192,
-              } as any,
-              "deepseek-v4-flash": {
-                id: "deepseek-v4-flash",
-                name: "DeepSeek V4 Flash (DeepSeek) [FREE]",
-                providerID: "kilo",
-                contextWindow: 128000,
-                maxTokens: 8192,
-              } as any,
-              "glm-5.3": {
-                id: "glm-5.3",
-                name: "GLM 5.3 (Zhipu) [FREE]",
-                providerID: "kilo",
-                contextWindow: 128000,
-                maxTokens: 8192,
-              } as any,
-              "gpt-4o": {
-                id: "gpt-4o",
-                name: "GPT-4o (OpenAI) [PAID]",
-                providerID: "kilo",
-                contextWindow: 128000,
-                maxTokens: 4096,
-              } as any,
-              ...indexedProviders.kilo.models,
-            }
-          }
-
           const message = {
             type: "providersLoaded",
             providers: indexedProviders,
@@ -2967,10 +2927,7 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
             defaults: response.default,
             organizationId,
             ready,
-            defaultSelection: {
-              providerID: "kilo",
-              modelID: "claude-sonnet-5.5",
-            },
+            defaultSelection: resolveDefaultSelection(indexedProviders, response.default, this.cachedConfigMessage),
             authMethods,
             authStates,
             kiloUnavailable: unavailable,

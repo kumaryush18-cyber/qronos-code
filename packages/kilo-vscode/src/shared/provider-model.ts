@@ -1,7 +1,9 @@
 import type { ProviderFailure } from "@kilocode/sdk/v2/client"
 
-export const KILO_PROVIDER_ID = "kilo"
+// qronos_change - one provider id only. The gateway is `qronos`; `kilo` is gone.
 export const QRONOS_PROVIDER_ID = "qronos"
+/** @deprecated use QRONOS_PROVIDER_ID - kept so older call sites keep compiling */
+export const KILO_PROVIDER_ID = QRONOS_PROVIDER_ID
 // qronos_change - must match the real id served by https://api.qronos.me/v1/models.
 // The gateway uses `<family>-<version>-<tier>` (claude-5.5-sonnet), not `claude-sonnet-5.5`.
 export const QRONOS_DEFAULT_MODEL = "claude-5.5-sonnet"
@@ -14,7 +16,6 @@ export const PROVIDER_ID_PATTERN = /^[a-z0-9][a-z0-9-_]*$/
 
 // Priority order: Qronos Gateway first, then standard direct providers
 export const PROVIDER_PRIORITY = [
-  KILO_PROVIDER_ID,
   QRONOS_PROVIDER_ID,
   "anthropic",
   "deepseek",
@@ -40,7 +41,7 @@ export function providerOrderIndex(providerID: string, order = PROVIDER_PRIORITY
   return index >= 0 ? index : order.length
 }
 
-export function createKiloFallbackProvider() {
+export function createQronosFallbackProvider() {
   return {
     id: KILO_PROVIDER_ID,
     name: "Qronos AI Universal Gateway",
@@ -51,45 +52,9 @@ export function createKiloFallbackProvider() {
       icon: KILO_PROVIDER_ID,
       priority: 0,
     },
-    // qronos_change - placeholder catalogue shown until GET /v1/models answers.
-    // Ids must stay identical to the gateway catalogue or the first request 404s.
-    models: {
-      "claude-5.5-sonnet": {
-        id: "claude-5.5-sonnet",
-        name: "Claude Sonnet 5.5 [PAID]",
-        providerID: KILO_PROVIDER_ID,
-        contextWindow: 200000,
-        maxTokens: 8192,
-      },
-      "claude-5.5-opus": {
-        id: "claude-5.5-opus",
-        name: "Claude Opus 5.5 [PAID]",
-        providerID: KILO_PROVIDER_ID,
-        contextWindow: 200000,
-        maxTokens: 8192,
-      },
-      "deepseek-v4-flash": {
-        id: "deepseek-v4-flash",
-        name: "DeepSeek V4 Flash [FREE]",
-        providerID: KILO_PROVIDER_ID,
-        contextWindow: 128000,
-        maxTokens: 8192,
-      },
-      "glm-5.3": {
-        id: "glm-5.3",
-        name: "GLM 5.3 [FREE]",
-        providerID: KILO_PROVIDER_ID,
-        contextWindow: 128000,
-        maxTokens: 8192,
-      },
-      "gpt-4o": {
-        id: "gpt-4o",
-        name: "GPT-4o [PAID]",
-        providerID: KILO_PROVIDER_ID,
-        contextWindow: 128000,
-        maxTokens: 4096,
-      },
-    },
+    // qronos_change - no hardcoded catalogue. The list always comes from
+    // GET https://api.qronos.me/v1/models, so it can never drift again.
+    models: {},
   }
 }
 

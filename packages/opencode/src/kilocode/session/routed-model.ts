@@ -75,7 +75,7 @@ export namespace KiloRoutedModel {
     meta: ProviderMetadata | undefined,
     input: { providerID: ProviderV2.ID; modelID: string; selected?: string },
   ) {
-    if (input.providerID !== ProviderV2.ID.kilo) return undefined
+    if (input.providerID !== ProviderV2.ID.qronos) return undefined
     if (!input.modelID.startsWith("kilo-auto/") && !input.modelID.startsWith("openrouter/") && !input.modelID.includes("fable")) return undefined
     const model = read(meta, input.providerID)
     if (!model) return undefined

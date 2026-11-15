@@ -106,12 +106,12 @@ export namespace KiloCli {
     const getAuth = async () => {
       if (runtime) return runtime.KiloCliBootstrapRuntime.getAuth()
       const { Auth } = await import("@/auth")
-      return app!.AppRuntime.runPromise(Auth.Service.use((s) => s.get("kilo")))
+      return app!.AppRuntime.runPromise(Auth.Service.use((s) => s.get("qronos")))
     }
     const setAuth = async (auth: Auth.Info) => {
       if (runtime) return runtime.KiloCliBootstrapRuntime.setAuth(auth)
       const { Auth } = await import("@/auth")
-      return app!.AppRuntime.runPromise(Auth.Service.use((s) => s.set("kilo", auth)))
+      return app!.AppRuntime.runPromise(Auth.Service.use((s) => s.set("qronos", auth)))
     }
 
     // Migrate legacy Kilo CLI auth (~/.kilocode/cli/config.json) into auth.json if present.

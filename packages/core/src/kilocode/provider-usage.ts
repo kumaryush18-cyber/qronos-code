@@ -304,7 +304,7 @@ const inputs = Effect.fn("ProviderUsage.inputs")(function* (
     }),
   )
   const kilo = yield* resolve(integrations, Integration.ID.make("kilo"))
-  const kiloProvider = byID.get(ProviderV2.ID.kilo)
+  const kiloProvider = byID.get(ProviderV2.ID.qronos)
   const configuredOrg = nonempty(process.env.KILO_ORG_ID) ?? nonempty(kiloProvider?.request.body.kilocodeOrganizationId)
   const organization =
     configuredOrg !== undefined ||

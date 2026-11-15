@@ -72,7 +72,7 @@ export namespace CloudSessionImportInProcess {
     const database = yield* Database.Service
     const workspaceID = yield* WorkspaceRef
 
-    const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new Unauthorized()))
+    const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new Unauthorized()))
     const token = getToken(info)
     if (!token) return yield* Effect.fail(new Unauthorized())
 

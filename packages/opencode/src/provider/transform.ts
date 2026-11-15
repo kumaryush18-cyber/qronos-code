@@ -386,7 +386,7 @@ function isFirstPartyBreakpointEndpoint(model: Provider.Model, options: Record<s
   if (model.providerID === "openai") return host === "openai.com" || host.endsWith(".openai.com")
   if (model.providerID === "azure" || model.providerID === "azure-cognitive-services")
     return [".azure.com", ".azure.us", ".azure.cn", ".azure-api.net"].some((s) => host.endsWith(s))
-  if (model.providerID === "kilo") return host === "api.kilo.ai" || host.endsWith(".kilo.ai")
+  if (model.providerID === "qronos") return host === "api.qronos.me" || host.endsWith(".qronos.me")
   return false
 }
 
@@ -394,7 +394,7 @@ function supportsPromptCacheBreakpoint(model: Provider.Model, options: Record<st
   if (isLikelyChatGPTSubscription(model)) return false
   // Only first-party OpenAI-family deployments support explicit breakpoints;
   // custom @ai-sdk/openai endpoints reject prompt_cache_breakpoint (#13285).
-  if (!["openai", "azure", "azure-cognitive-services", "kilo"].includes(model.providerID)) return false
+  if (!["openai", "azure", "azure-cognitive-services", "qronos"].includes(model.providerID)) return false
   if (!isFirstPartyBreakpointEndpoint(model, options)) return false
   const match = model.api.id.match(/gpt-(\d+)\.(\d+)/)
   if (match) {
@@ -642,7 +642,7 @@ export function topP(model: Provider.Model) {
   if (isLing(model.api.id)) return 0.95 // kilocode_change
   if (
     ["deepseek-v4-flash-0731", "deepseek-v4-flash:0731"].some((name) => id.includes(name)) ||
-    (model.providerID === "kilo" && id.includes("deepseek-v4-flash")) || // kilocode_change
+    (model.providerID === "qronos" && id.includes("deepseek-v4-flash")) || // kilocode_change
     (id.includes("deepseek-v4-flash") && (model.providerID === "deepseek" || model.providerID.startsWith("opencode")))
   ) {
     return 0.95

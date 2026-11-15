@@ -44,14 +44,14 @@ function withEnv<A, E, R>(vars: Record<string, string | undefined>, effect: () =
 
 describe("KiloPlugin", () => {
   it.effect("is registered so legacy referer headers can be applied", () =>
-    Effect.sync(() => expect(ProviderPlugins.map((item) => item.id)).toContain(PluginV2.ID.make("kilo"))),
+    Effect.sync(() => expect(ProviderPlugins.map((item) => item.id)).toContain(PluginV2.ID.make("qronos"))),
   )
 
   it.effect("applies legacy referer headers only to kilo", () =>
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
       yield* catalog.transform((catalog) => {
-        catalog.provider.update(ProviderV2.ID.make("kilo"), (provider) => {
+        catalog.provider.update(ProviderV2.ID.qronos, (provider) => {
           provider.api = {
             type: "aisdk",
             package: "@ai-sdk/openai-compatible",
@@ -62,10 +62,10 @@ describe("KiloPlugin", () => {
         catalog.provider.update(ProviderV2.ID.openrouter, () => {})
       })
       yield* addPlugin()
-      expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).toEqual({
+      expect((yield* catalog.provider.get(ProviderV2.ID.qronos))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://kilo.ai/",
-        "X-Title": "Kilo Code", // kilocode_change
+        "HTTP-Referer": "https://qronos.me/",
+        "X-Title": "Qronos Code", // kilocode_change
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.openrouter))?.request.headers).toEqual({})
     }),
@@ -75,7 +75,7 @@ describe("KiloPlugin", () => {
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
       yield* catalog.transform((catalog) => {
-        catalog.provider.update(ProviderV2.ID.make("kilo"), (provider) => {
+        catalog.provider.update(ProviderV2.ID.qronos, (provider) => {
           provider.api = {
             type: "aisdk",
             package: "@ai-sdk/openai-compatible",
@@ -85,15 +85,15 @@ describe("KiloPlugin", () => {
       })
       yield* addPlugin()
 
-      expect((yield* catalog.provider.get(ProviderV2.ID.kilo))?.request.headers).toEqual({
-        "HTTP-Referer": "https://kilo.ai/",
-        "X-Title": "Kilo Code", // kilocode_change
+      expect((yield* catalog.provider.get(ProviderV2.ID.qronos))?.request.headers).toEqual({
+        "HTTP-Referer": "https://qronos.me/",
+        "X-Title": "Qronos Code", // kilocode_change
       })
-      expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).not.toHaveProperty(
+      expect((yield* catalog.provider.get(ProviderV2.ID.qronos))?.request.headers).not.toHaveProperty(
         "http-referer",
       )
-      expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).not.toHaveProperty("x-title")
-      expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).not.toHaveProperty("X-Source")
+      expect((yield* catalog.provider.get(ProviderV2.ID.qronos))?.request.headers).not.toHaveProperty("x-title")
+      expect((yield* catalog.provider.get(ProviderV2.ID.qronos))?.request.headers).not.toHaveProperty("X-Source")
     }),
   )
 
@@ -101,7 +101,7 @@ describe("KiloPlugin", () => {
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
       yield* catalog.transform((catalog) => {
-        catalog.provider.update(ProviderV2.ID.make("kilo"), (provider) => {
+        catalog.provider.update(ProviderV2.ID.qronos, (provider) => {
           provider.api = {
             type: "aisdk",
             package: "@ai-sdk/openai-compatible",
@@ -114,9 +114,9 @@ describe("KiloPlugin", () => {
       })
       yield* addPlugin()
 
-      expect((yield* catalog.provider.get(ProviderV2.ID.kilo))?.request.headers).toEqual({
-        "HTTP-Referer": "https://kilo.ai/",
-        "X-Title": "Kilo Code", // kilocode_change
+      expect((yield* catalog.provider.get(ProviderV2.ID.qronos))?.request.headers).toEqual({
+        "HTTP-Referer": "https://qronos.me/",
+        "X-Title": "Qronos Code", // kilocode_change
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.make("custom-kilo")))?.request.headers).toEqual({})
     }),
@@ -129,7 +129,7 @@ describe("KiloPlugin", () => {
         const aisdk = yield* AISDK.Service
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
-          catalog.provider.update(ProviderV2.ID.kilo, (provider) => {
+          catalog.provider.update(ProviderV2.ID.qronos, (provider) => {
             provider.api = {
               type: "aisdk",
               package: "@ai-sdk/openai-compatible",
@@ -139,18 +139,18 @@ describe("KiloPlugin", () => {
           })
         })
         yield* addPlugin()
-        const updated = yield* catalog.provider.get(ProviderV2.ID.kilo)
+        const updated = yield* catalog.provider.get(ProviderV2.ID.qronos)
 
         expect(updated?.api).toEqual({
           type: "aisdk",
           package: "@kilocode/kilo-gateway",
-          url: "https://ai-gateway.kilo.ai/api/v1",
+          url: "https://api.qronos.me/v1",
         })
         expect(updated?.request.body.kilocodeToken).toBe("stored-token")
 
         const result = yield* aisdk.runSDK({
           model: ModelV2.Info.make({
-            ...ModelV2.Info.empty(ProviderV2.ID.kilo, ModelV2.ID.make("kilo-auto/free")),
+            ...ModelV2.Info.empty(ProviderV2.ID.qronos, ModelV2.ID.make("kilo-auto/free")),
             api: {
               id: ModelV2.ID.make("kilo-auto/free"),
               type: "aisdk",
@@ -172,7 +172,7 @@ describe("KiloPlugin", () => {
       Effect.gen(function* () {
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
-          catalog.provider.update(ProviderV2.ID.kilo, (provider) => {
+          catalog.provider.update(ProviderV2.ID.qronos, (provider) => {
             provider.request = {
               headers: {},
               body: { apiKey: "authenticated-token", kilocodeOrganizationId: "authenticated-org" },
@@ -180,7 +180,7 @@ describe("KiloPlugin", () => {
           })
         })
         yield* addPlugin()
-        const result = yield* catalog.provider.get(ProviderV2.ID.kilo)
+        const result = yield* catalog.provider.get(ProviderV2.ID.qronos)
 
         expect(result?.request.body.apiKey).toBe("authenticated-token")
         expect(result?.request.body.kilocodeToken).toBe("authenticated-token")
@@ -193,11 +193,11 @@ describe("KiloPlugin", () => {
     withEnv({ KILO_API_KEY: undefined, KILO_ORG_ID: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Catalog.Service
-        yield* catalog.transform((catalog) => catalog.provider.update(ProviderV2.ID.kilo, () => {}))
+        yield* catalog.transform((catalog) => catalog.provider.update(ProviderV2.ID.qronos, () => {}))
         yield* addPlugin()
-        const result = yield* catalog.provider.get(ProviderV2.ID.kilo)
+        const result = yield* catalog.provider.get(ProviderV2.ID.qronos)
 
-        expect((yield* catalog.provider.available()).map((provider) => provider.id)).toContain(ProviderV2.ID.kilo)
+        expect((yield* catalog.provider.available()).map((provider) => provider.id)).toContain(ProviderV2.ID.qronos)
         expect(result?.request.body.apiKey).toBe("anonymous")
         expect(result?.request.body.kilocodeToken).toBe("anonymous")
       }),

@@ -232,7 +232,7 @@ const layer: Layer.Layer<Service, never, Auth.Service | Plugin.Service | ModelCa
       }
 
       // kilocode_change start - Update telemetry identity on Kilo auth
-      if (input.providerID === "kilo") {
+      if (input.providerID === "qronos") {
         const info = yield* auth.get(input.providerID)
         if (info) {
           const token = info.type === "oauth" ? info.access : info.type === "api" ? info.key : null

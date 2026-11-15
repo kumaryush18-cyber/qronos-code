@@ -64,7 +64,7 @@ export const KILO_MODEL_SCHEMA_EXTENSIONS = {
 
 export function patchModelsDevModel(providerID: string, source: any) {
   return {
-    variants: providerID === "kilo" ? (source.variants ?? {}) : {},
+    variants: providerID === "qronos" ? (source.variants ?? {}) : {},
     recommendedIndex: source.recommendedIndex,
     prompt: source.prompt,
     isFree: source.isFree,
@@ -176,7 +176,7 @@ export function patchKiloProviderAuth(
   info: Auth.Info | undefined,
 ) {
   if (!provider) return
-  const options = config.provider?.kilo?.options
+  const options = config.provider?.qronos?.options
   const key = token(options, info)
   const org = organization(options, info)
   if (key !== undefined) provider.options.kilocodeToken = key
@@ -184,7 +184,7 @@ export function patchKiloProviderAuth(
 }
 
 export function publicKiloProvider(provider: Provider.Info): Provider.Info {
-  if (provider.id !== "kilo") return provider
+  if (provider.id !== "qronos") return provider
   return { ...provider, key: undefined, options: omit(provider.options, ["apiKey", "kilocodeToken"]) }
 }
 
@@ -206,7 +206,7 @@ export function kiloCustomLoaders(dep: CustomDep): Record<string, CustomLoader> 
       const hasKey = yield* Effect.gen(function* () {
         if (input.env.some((item: string) => env[item])) return true
         if (yield* dep.auth(input.id)) return true
-        if (config.provider?.["kilo"]?.options?.apiKey) return true
+        if (config.provider?.["qronos"]?.options?.apiKey) return true
         return false
       })
 
@@ -265,7 +265,7 @@ export function patchCustomLoaderResult(
     case "cerebras":
       result.options.headers = {
         ...result.options.headers,
-        "X-Cerebras-3rd-Party-Integration": "kilo",
+        "X-Cerebras-3rd-Party-Integration": "qronos",
       }
       break
     case "azure": {
@@ -295,7 +295,7 @@ export function patchCustomLoaderResult(
 // ---------------------------------------------------------------------------
 
 export function kiloSmallModelPriority(providerID: string): string[] | undefined {
-  if (providerID.startsWith("kilo")) return ["kilo-auto/small"]
+  if (providerID.startsWith("qronos")) return ["qronos-auto/small"]
   return undefined
 }
 
@@ -313,7 +313,7 @@ export function hasKiloCredentials(
 ) {
   if (env.KILO_API_KEY) return true
   if (auth) return true
-  if (cfg.provider?.["kilo"]?.options?.apiKey) return true
+  if (cfg.provider?.["qronos"]?.options?.apiKey) return true
   return false
 }
 

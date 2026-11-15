@@ -583,7 +583,7 @@ describe("fetchProviderData", () => {
                   ? []
                   : [
                       {
-                        id: "kilo",
+                        id: "qronos",
                         name: "Kilo Gateway",
                         models: item.empty
                           ? {}
@@ -592,8 +592,8 @@ describe("fetchProviderData", () => {
                     ]),
                 { ...external, key: "sk-test" },
               ],
-              connected: item.missing ? ["anthropic"] : ["kilo", "anthropic"],
-              default: { ...(item.recommended === undefined ? {} : { kilo: item.recommended }), anthropic: "claude" },
+              connected: item.missing ? ["anthropic"] : ["qronos", "anthropic"],
+              default: { ...(item.recommended === undefined ? {} : { qronos: item.recommended }), anthropic: "claude" },
             },
           }),
           auth: async () => ({ data: {} }),
@@ -604,17 +604,17 @@ describe("fetchProviderData", () => {
         config: {
           providers: async () => {
             calls++
-            return { data: { default: { kilo: "org/first", anthropic: "unrelated" } } }
+            return { data: { default: { qronos: "org/first", anthropic: "unrelated" } } }
           },
         },
       } as unknown as Parameters<typeof fetchProviderData>[0]
 
       const result = await fetchProviderData(client, "/workspace")
-      expect(result.response.default.kilo).toBe(item.expected)
+      expect(result.response.default.qronos).toBe(item.expected)
       expect(result.response.default.anthropic).toBe("claude")
       expect(result.response.all.find((provider) => provider.id === "anthropic")).toEqual(external)
-      expect(result.response.connected).toEqual(item.missing ? ["anthropic"] : ["kilo", "anthropic"])
-      expect(result.authStates).toEqual({ kilo: "oauth", anthropic: "api" })
+      expect(result.response.connected).toEqual(item.missing ? ["anthropic"] : ["qronos", "anthropic"])
+      expect(result.authStates).toEqual({ qronos: "oauth", anthropic: "api" })
       expect(result.organizationId).toBe("org")
       expect(result.ready).toBe(true)
       expect(calls).toBe(0)
@@ -627,11 +627,11 @@ describe("fetchProviderData", () => {
         list: async () => ({
           data: {
             all: [
-              { id: "kilo", models: { "kilo-auto/free": {} } },
+              { id: "qronos", models: { "kilo-auto/free": {} } },
               { id: "external", models: { model: {} } },
             ],
-            connected: ["kilo", "external"],
-            default: { kilo: "kilo-auto/free", external: "model" },
+            connected: ["qronos", "external"],
+            default: { qronos: "kilo-auto/free", external: "model" },
           },
         }),
         auth: async () => ({ data: {} }),
@@ -656,14 +656,14 @@ describe("fetchProviderData", () => {
     let calls = 0
     const client = {
       provider: {
-        list: async () => ({ data: { all: [], connected: [], default: { kilo: "kilo-auto/free" } } }),
+        list: async () => ({ data: { all: [], connected: [], default: { qronos: "kilo-auto/free" } } }),
         auth: async () => ({ data: {} }),
       },
       kilo: { authStatus: async () => ({ data: { authenticated: true, type: "oauth" } }) },
       config: {
         providers: async () => {
           calls++
-          return { data: { default: { kilo: "unexpected" } } }
+          return { data: { default: { qronos: "unexpected" } } }
         },
       },
     } as unknown as Parameters<typeof fetchProviderData>[0]
@@ -672,7 +672,7 @@ describe("fetchProviderData", () => {
     expect(result.ready).toBe(true)
     expect(result.organizationId).toBeNull()
     expect(calls).toBe(0)
-    expect(result.response.default).toEqual({ kilo: "kilo-auto/free" })
+    expect(result.response.default).toEqual({ qronos: "kilo-auto/free" })
   })
 
   it("derives api auth state and strips keys from provider payloads", async () => {
@@ -713,9 +713,9 @@ describe("fetchProviderData", () => {
       provider: {
         list: async () => ({
           data: {
-            all: [{ id: "kilo", name: "Kilo Gateway", source: "custom", env: [], models: {} }],
-            connected: ["kilo"],
-            default: { kilo: "kilo-auto/frontier" },
+            all: [{ id: "qronos", name: "Kilo Gateway", source: "custom", env: [], models: {} }],
+            connected: ["qronos"],
+            default: { qronos: "kilo-auto/frontier" },
           },
         }),
         auth: async () => ({ data: {} }),
@@ -727,7 +727,7 @@ describe("fetchProviderData", () => {
 
     const result = await fetchProviderData(client, "/tmp")
 
-    expect(result.authStates).toEqual({ kilo: "oauth" })
+    expect(result.authStates).toEqual({ qronos: "oauth" })
   })
 
   it("does not infer Kilo speech access without stored Gateway auth", async () => {
@@ -735,9 +735,9 @@ describe("fetchProviderData", () => {
       provider: {
         list: async () => ({
           data: {
-            all: [{ id: "kilo", name: "Kilo Gateway", source: "config", key: "configured", env: [], models: {} }],
-            connected: ["kilo"],
-            default: { kilo: "kilo-auto/frontier" },
+            all: [{ id: "qronos", name: "Kilo Gateway", source: "config", key: "configured", env: [], models: {} }],
+            connected: ["qronos"],
+            default: { qronos: "kilo-auto/frontier" },
           },
         }),
         auth: async () => ({ data: {} }),

@@ -61,7 +61,7 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     const storage = yield* Storage.Service
 
     const profile = Effect.fn("KiloGatewayHttpApi.profile")(function* () {
-      const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
+      const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
       if (!info || info.type !== "oauth") return yield* Effect.fail(new HttpApiError.Unauthorized({}))
 
       const currentOrgId = info.accountId ?? null
@@ -78,9 +78,9 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     })
 
     const authStatus = Effect.fn("KiloGatewayHttpApi.authStatus")(function* () {
-      const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
+      const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
       const cfg = yield* config.get()
-      const organizationId = catalogOrganization(cfg.provider?.kilo?.options, info)
+      const organizationId = catalogOrganization(cfg.provider?.qronos?.options, info)
       const type = getToken(info) && (info?.type === "api" || info?.type === "oauth") ? info.type : undefined
       return {
         authenticated: !!type,
@@ -90,7 +90,7 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     })
 
     const proxyAuth = Effect.fn("KiloGatewayHttpApi.proxyAuth")(function* () {
-      const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
+      const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
       return {
         auth: info,
         token: getToken(info),
@@ -99,7 +99,7 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     })
 
     const modes = Effect.fn("KiloGatewayHttpApi.modes")(function* () {
-      const info = yield* auth.get("kilo").pipe(Effect.catch(() => Effect.succeed(undefined)))
+      const info = yield* auth.get("qronos").pipe(Effect.catch(() => Effect.succeed(undefined)))
       if (!info || info.type !== "oauth" || !info.access || !info.accountId) return { modes: [] }
 
       const org = info.accountId
@@ -111,15 +111,15 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
 
     const fim = Effect.fn("KiloGatewayHttpApi.fim")(function* (ctx: { payload: typeof FimBody.Type }) {
       const target = resolveFimTarget(ctx.payload.provider, ctx.payload.model)
-      const info = target.provider === "kilo" ? yield* proxyAuth() : undefined
+      const info = target.provider === "qronos" ? yield* proxyAuth() : undefined
       const token = yield* Effect.gen(function* () {
-        if (target.provider === "kilo") return info?.token
+        if (target.provider === "qronos") return info?.token
         const item = yield* auth.get(target.provider).pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
         if (item?.type === "api") return item.key
         return DIRECT_FIM_ENV[target.provider].map((key) => process.env[key]).find(Boolean)
       })
 
-      if (target.provider === "kilo" && !info?.auth) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
+      if (target.provider === "qronos" && !info?.auth) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
       if (!token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
 
       const request = yield* HttpServerRequest.HttpServerRequest
@@ -136,10 +136,10 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                ...(target.provider === "kilo"
+                ...(target.provider === "qronos"
                   ? buildKiloHeaders(undefined, { kilocodeOrganizationId: info?.organizationId })
                   : {}),
-                ...(target.provider === "kilo" ? { [HEADER_FEATURE]: "autocomplete" } : {}),
+                ...(target.provider === "qronos" ? { [HEADER_FEATURE]: "autocomplete" } : {}),
               },
               signal,
               body: JSON.stringify({
@@ -225,7 +225,7 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
       const claude = yield* Effect.promise(() => ClaudeMigration.notification())
       const append = <T>(list: T[]) => [...list, ...(notice ? [notice] : []), ...(claude ? [claude] : [])]
 
-      const info = yield* auth.get("kilo").pipe(Effect.catch(() => Effect.succeed(undefined)))
+      const info = yield* auth.get("qronos").pipe(Effect.catch(() => Effect.succeed(undefined)))
       const token = getToken(info)
       if (!token) return append([])
 
@@ -239,11 +239,11 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     })
 
     const organization = Effect.fn("KiloGatewayHttpApi.organization")(function* (ctx) {
-      const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
+      const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
       if (!info || info.type !== "oauth") return yield* Effect.fail(new HttpApiError.Unauthorized({}))
 
       yield* auth
-        .set("kilo", {
+        .set("qronos", {
           type: "oauth",
           refresh: info.refresh,
           access: info.access,
@@ -259,7 +259,7 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     })
 
     const cloudSessions = Effect.fn("KiloGatewayHttpApi.cloudSessions")(function* (ctx) {
-      const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
+      const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
       const token = getToken(info)
       if (!token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
 
@@ -284,7 +284,7 @@ export const kiloGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "kilo",
     })
 
     const cloudSession = Effect.fn("KiloGatewayHttpApi.cloudSession")(function* (ctx) {
-      const info = yield* auth.get("kilo").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
+      const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
       const token = getToken(info)
       if (!token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
 

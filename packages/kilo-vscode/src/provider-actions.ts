@@ -411,7 +411,7 @@ export async function disconnectProvider(
     // reconnect automatically with an old key after logout.
     await removeAuth(ctx, id, custom)
 
-    if (id === "kilo") {
+    if (id === "qronos") {
       ctx.postMessage({ type: "profileData", data: null })
     }
 

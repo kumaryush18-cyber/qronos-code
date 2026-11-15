@@ -40,7 +40,7 @@ const SCRIPT = `
     process.exit(2)
   }
 
-  const [config, setConfig] = createSignal({ disabled_providers: ["kilo"] })
+  const [config, setConfig] = createSignal({ disabled_providers: ["qronos"] })
   const [auth, setAuth] = createSignal({})
   const [capture, setCapture] = createSignal(false)
   const features = () => ({
@@ -67,7 +67,7 @@ const SCRIPT = `
   )
 
   if (sent.length !== 0) fail("prewarmed without Kilo access")
-  setAuth({ kilo: "api" })
+  setAuth({ qronos: "api" })
   if (sent.length !== 0) fail("prewarmed while Kilo was disabled")
   setConfig({})
   if (sent.length !== 0) fail("prewarmed without capture support")
@@ -75,7 +75,7 @@ const SCRIPT = `
   if (sent.length !== 1 || sent[0]?.type !== "speechToTextPrewarm") {
     fail("did not prewarm after capture became available")
   }
-  setAuth({ kilo: "oauth" })
+  setAuth({ qronos: "oauth" })
   if (sent.length !== 1) fail("prewarmed more than once")
   dispose()
   console.log("${PASS}")

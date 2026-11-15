@@ -124,11 +124,11 @@ export const layer: Layer.Layer<
     })
 
     const authOptions = Effect.fn("ModelCache.authOptions")(function* (providerID: string) {
-      if (providerID !== "kilo" && providerID !== "apertis") return {}
+      if (providerID !== "qronos" && providerID !== "apertis") return {}
       const config = yield* cfg.get()
       const options: Options = {}
 
-      if (providerID === "kilo") {
+      if (providerID === "qronos") {
         const item = config.provider?.[providerID]
         const info = yield* auth.get(providerID)
         options.kilocodeOrganizationId = organization(item?.options, info)
@@ -160,14 +160,14 @@ export const layer: Layer.Layer<
     })
 
     const fetchModels = (providerID: string, options: Options): Effect.Effect<Result, unknown> => {
-      if (providerID === "kilo") return kilo.fetch(options)
+      if (providerID === "qronos") return kilo.fetch(options)
       if (providerID === "apertis") return fetchApertisModels(options).pipe(Effect.map((models) => ({ models })))
       log.debug("provider not implemented", { providerID })
       return Effect.succeed({ models: {} })
     }
 
     const load = Effect.fn("ModelCache.load")(function* (providerID: string, options: Options) {
-      if (providerID === "kilo" && !compatible(options)) return { models: {}, error: { kind: "schema" as const } }
+      if (providerID === "qronos" && !compatible(options)) return { models: {}, error: { kind: "schema" as const } }
       return yield* fetchModels(providerID, options)
     })
 
@@ -184,7 +184,7 @@ export const layer: Layer.Layer<
     })
 
     const key = (providerID: string, options?: Options) => {
-      if (providerID === "kilo") {
+      if (providerID === "qronos") {
         return JSON.stringify([providerID, options?.baseURL, options?.kilocodeOrganizationId, options?.kilocodeToken])
       }
       if (providerID === "apertis") return JSON.stringify([providerID, options?.baseURL, options?.apiKey])
@@ -221,7 +221,7 @@ export const layer: Layer.Layer<
       Effect.gen(function* () {
         if ((versions.get(providerID) ?? 0) !== version) return result.models
         const empty = Object.keys(result.models).length === 0
-        const recovered = providerID === "kilo" && entry.view.empty && !empty && !result.error
+        const recovered = providerID === "qronos" && entry.view.empty && !empty && !result.error
         if (result.error) {
           failures.set(providerID, result.error)
           log.warn("model fetch error", { providerID, error: result.error })
@@ -323,7 +323,7 @@ export const layer: Layer.Layer<
 
     const recover = Effect.fn("ModelCache.recover")(function* (entry: Cell, result: Result) {
       if (
-        entry.providerID !== "kilo" ||
+        entry.providerID !== "qronos" ||
         selected.get(entry.providerID) !== entry ||
         active.get(entry.providerID) !== entry ||
         entry.recovery ||

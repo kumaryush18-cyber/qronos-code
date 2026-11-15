@@ -18,7 +18,7 @@ import { clientEntry, linkChoice } from "@/kilocode/auto-routing/entries"
 import { openaiMessages, openaiTools } from "@/kilocode/auto-routing/messages"
 import { KiloRoutedModel } from "@/kilocode/session/routed-model"
 
-const KILO = ProviderV2.ID.make("kilo")
+const KILO = ProviderV2.ID.qronos
 
 function model(
   providerID: string,
@@ -60,9 +60,9 @@ const CATALOG: Record<ProviderV2.ID, Provider.Info> = {
   [ProviderV2.ID.make("ollama")]: provider("ollama", {
     qwen3: model("ollama", "qwen3", { variants: { low: {}, high: {} } }),
   }),
-  [KILO]: provider("kilo", {
-    "anthropic/claude-sonnet-4": model("kilo", "anthropic/claude-sonnet-4"),
-    "kilo-auto/custom/myrouter": model("kilo", "kilo-auto/custom/myrouter"),
+  [KILO]: provider("qronos", {
+    "anthropic/claude-sonnet-4": model("qronos", "anthropic/claude-sonnet-4"),
+    "kilo-auto/custom/myrouter": model("qronos", "kilo-auto/custom/myrouter"),
   }),
 }
 
@@ -148,13 +148,13 @@ function resolveInput(fetch: FetchLike, token: string) {
 }
 
 describe("KiloCustomRouter detection", () => {
-  test("accepts custom router ids on the kilo provider only", () => {
-    expect(KiloCustomRouter.isCustomRouter({ providerID: "kilo", modelID: "kilo-auto/custom/myrouter" })).toBe(true)
-    expect(KiloCustomRouter.isCustomRouter({ providerID: "kilo", modelID: "kilo-auto/custom/org/myrouter" })).toBe(true)
-    expect(KiloCustomRouter.isCustomRouter({ providerID: "kilo", modelID: "kilo-auto/efficient" })).toBe(false)
-    expect(KiloCustomRouter.isCustomRouter({ providerID: "kilo", modelID: "kilo-auto/custom/org" })).toBe(false)
+  test("accepts custom router ids on the qronos provider only", () => {
+    expect(KiloCustomRouter.isCustomRouter({ providerID: "qronos", modelID: "kilo-auto/custom/myrouter" })).toBe(true)
+    expect(KiloCustomRouter.isCustomRouter({ providerID: "qronos", modelID: "kilo-auto/custom/org/myrouter" })).toBe(true)
+    expect(KiloCustomRouter.isCustomRouter({ providerID: "qronos", modelID: "kilo-auto/efficient" })).toBe(false)
+    expect(KiloCustomRouter.isCustomRouter({ providerID: "qronos", modelID: "kilo-auto/custom/org" })).toBe(false)
     expect(KiloCustomRouter.isCustomRouter({ providerID: "openai", modelID: "kilo-auto/custom/myrouter" })).toBe(false)
-    expect(KiloCustomRouter.isCustomRouter({ providerID: "kilo", modelID: undefined })).toBe(false)
+    expect(KiloCustomRouter.isCustomRouter({ providerID: "qronos", modelID: undefined })).toBe(false)
   })
 })
 
@@ -336,7 +336,7 @@ describe("KiloCustomRouter routing decision", () => {
 
 describe("KiloCustomRouter routed model", () => {
   test("resolves a client pick from the local catalog", () => {
-    const base = CATALOG[ProviderV2.ID.kilo]!.models["kilo-auto/custom/myrouter"]!
+    const base = CATALOG[ProviderV2.ID.qronos]!.models["kilo-auto/custom/myrouter"]!
     const routed = KiloCustomRouter.routedModel({
       pick: { kind: "client", provider: "ollama", model: "qwen3", variant: null },
       base,
@@ -362,7 +362,7 @@ describe("KiloCustomRouter routed model", () => {
     })
     expect(String(unknown?.id)).toBe("vendor/private-model")
     expect(unknown?.api.id).toBe("vendor/private-model")
-    expect(String(unknown?.providerID)).toBe("kilo")
+    expect(String(unknown?.providerID)).toBe("qronos")
   })
 
   test("carries the signed decision to the gateway and leaves the catalog model untouched", () => {

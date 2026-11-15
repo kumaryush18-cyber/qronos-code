@@ -37,7 +37,7 @@ export async function handleLogin(ctx: AuthContext, attempt: number, getAttempt:
 
     // Step 1: Initiate OAuth authorization
     const { data: auth } = await ctx.client.provider.oauth.authorize(
-      { providerID: "kilo", method: 0, directory: dir },
+      { providerID: "qronos", method: 0, directory: dir },
       { throwOnError: true },
     )
     console.log("[Kilo New] KiloProvider: 🔐 Got auth URL:", auth.url)
@@ -55,7 +55,7 @@ export async function handleLogin(ctx: AuthContext, attempt: number, getAttempt:
     })
 
     // Step 2: Wait for callback (blocks until polling completes)
-    await ctx.client.provider.oauth.callback({ providerID: "kilo", method: 0, directory: dir }, { throwOnError: true })
+    await ctx.client.provider.oauth.callback({ providerID: "qronos", method: 0, directory: dir }, { throwOnError: true })
 
     // Check if this attempt was cancelled
     if (attempt !== getAttempt()) return
@@ -85,7 +85,7 @@ export async function handleLogout(ctx: AuthContext): Promise<void> {
 
   try {
     console.log("[Kilo New] KiloProvider: 🚪 Logging out...")
-    await ctx.client.auth.remove({ providerID: "kilo" }, { throwOnError: true })
+    await ctx.client.auth.remove({ providerID: "qronos" }, { throwOnError: true })
     console.log("[Kilo New] KiloProvider: 🚪 Logged out successfully")
     ctx.postMessage({ type: "profileData", data: null })
 

@@ -106,7 +106,7 @@ export class NotFoundError extends Schema.TaggedErrorClass<NotFoundError>()("MCP
 type MCPClient = Client
 
 function createClient(directory: string) {
-  const client = new Client({ name: "kilo", version: InstallationVersion }, CLIENT_OPTIONS) // kilocode_change
+  const client = new Client({ name: "qronos-code", version: InstallationVersion }, CLIENT_OPTIONS) // qronos_change
   client.setRequestHandler(ListRootsRequestSchema, () =>
     Promise.resolve({ roots: [{ uri: pathToFileURL(directory).href }] }),
   )

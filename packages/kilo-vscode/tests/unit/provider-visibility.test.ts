@@ -24,7 +24,7 @@ describe("canChangeProviderKey", () => {
   it("excludes custom providers and special credential flows", () => {
     expect(canChangeProviderKey(item, { npm: "@ai-sdk/openai-compatible" }, undefined)).toBe(false)
     for (const id of [
-      "kilo",
+      "qronos",
       "anaconda-desktop",
       "atomic-chat",
       "lmstudio",
@@ -62,15 +62,15 @@ describe("canChangeProviderKey", () => {
 
 describe("visibleConnectedIds", () => {
   it("hides Kilo from the connected list when auth is missing", () => {
-    const ids = visibleConnectedIds(["kilo", "openrouter"], { openrouter: "api" })
+    const ids = visibleConnectedIds(["qronos", "openrouter"], { openrouter: "api" })
 
     expect(ids).toEqual(["openrouter"])
   })
 
   it("keeps Kilo in the connected list when auth exists", () => {
-    const ids = visibleConnectedIds(["kilo", "openrouter"], { kilo: "oauth", openrouter: "api" })
+    const ids = visibleConnectedIds(["qronos", "openrouter"], { qronos: "oauth", openrouter: "api" })
 
-    expect(ids).toEqual(["kilo", "openrouter"])
+    expect(ids).toEqual(["qronos", "openrouter"])
   })
 
   it("leaves non-Kilo providers untouched", () => {
@@ -84,7 +84,7 @@ describe("disabledProviderOptions", () => {
   it("includes Kilo and excludes already disabled providers", () => {
     const options = disabledProviderOptions(
       {
-        kilo: { id: "kilo", name: "Kilo Gateway", env: [], models: {} },
+        qronos: { id: "qronos", name: "Qronos AI Universal Gateway", env: [], models: {} },
         openai: { id: "openai", name: "OpenAI", env: [], models: {} },
         anthropic: { id: "anthropic", name: "Anthropic", env: [], models: {} },
       },
@@ -93,7 +93,7 @@ describe("disabledProviderOptions", () => {
 
     expect(options).toEqual([
       { value: "anthropic", label: "Anthropic" },
-      { value: "kilo", label: "Kilo Gateway" },
+      { value: "qronos", label: "Qronos AI Universal Gateway" },
     ])
   })
 
@@ -119,15 +119,15 @@ describe("providersWithKiloFallback", () => {
       anthropic: { id: "anthropic", name: "Anthropic", env: [], models: {} },
     })
 
-    expect(providers.kilo?.name).toBe("Kilo Gateway")
+    expect(providers.qronos?.name).toBe("Qronos AI Universal Gateway")
     expect(providers.anthropic?.name).toBe("Anthropic")
   })
 
   it("keeps the backend Kilo provider when present", () => {
     const providers = providersWithKiloFallback({
-      kilo: { id: "kilo", name: "Custom Kilo Name", env: [], models: {} },
+      qronos: { id: "qronos", name: "Custom Qronos Name", env: [], models: {} },
     })
 
-    expect(providers.kilo?.name).toBe("Custom Kilo Name")
+    expect(providers.qronos?.name).toBe("Custom Qronos Name")
   })
 })

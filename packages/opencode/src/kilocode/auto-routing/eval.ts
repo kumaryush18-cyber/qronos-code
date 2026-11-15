@@ -343,18 +343,18 @@ async function resolveCase(input: {
 
   return {
     case: benchCase,
-    provider: "kilo",
+    provider: "qronos",
     model: input.item.entry.model,
     config: {
-      provider: { kilo: { options: {} } },
-      enabled_providers: ["kilo"],
+      provider: { qronos: { options: {} } },
+      enabled_providers: ["qronos"],
     },
-    auth: { kilo: kiloAuth(input.input) },
+    auth: { qronos: kiloAuth(input.input) },
   }
 }
 
 function kiloAuth(input: EvalInput): Record<string, unknown> {
-  const entry = input.auth[ProviderV2.ID.kilo]
+  const entry = input.auth[ProviderV2.ID.qronos]
   if (entry && entry.type !== "wellknown") {
     return { ...entry, ...(input.organizationId ? { organizationId: input.organizationId } : {}) }
   }

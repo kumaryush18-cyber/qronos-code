@@ -89,7 +89,7 @@ export function webSearchEnabled(
   flags = { exa: Flag.KILO_ENABLE_EXA, parallel: Flag.KILO_ENABLE_PARALLEL },
 ) {
   return (
-    providerID === ProviderV2.ID.kilo || // kilocode_change
+    providerID === ProviderV2.ID.qronos || // kilocode_change
     providerID === ProviderV2.ID.make("opencode-go") ||
     flags.exa ||
     flags.parallel

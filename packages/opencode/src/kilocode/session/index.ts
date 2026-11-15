@@ -214,7 +214,7 @@ export namespace KiloSession {
     provider?: Provider.Info
     providerID: string
   }): number | undefined {
-    if ((input.provider?.id ?? input.providerID) === "kilo") {
+    if ((input.provider?.id ?? input.providerID) === "qronos") {
       const raw = input.usage?.providerMetadata?.["aiSdk"] as
         | { cost?: unknown; is_byok?: unknown; cost_details?: { upstream_inference_cost?: unknown } | null }
         | undefined

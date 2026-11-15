@@ -90,7 +90,7 @@ const layer = Layer.effect(
       yield* fsys.writeJson(file, data, 0o600).pipe(Effect.mapError(fail("Failed to write auth data")))
 
       // kilocode_change start - Track logout and reset telemetry identity for Kilo
-      if (key === "kilo") {
+      if (key === "qronos") {
         yield* Effect.promise(() => Telemetry.updateIdentity(null))
       }
       Telemetry.trackAuthLogout(key)

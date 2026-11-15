@@ -3,7 +3,7 @@ import type { Provider } from "../../types/messages"
 import {
   KILO_PROVIDER_ID,
   PROVIDER_PRIORITY as FALLBACK_PROVIDER_IDS,
-  createKiloFallbackProvider,
+  createQronosFallbackProvider,
   providerOrderIndex,
 } from "../../../../src/shared/provider-model"
 
@@ -46,7 +46,7 @@ export function providerIcon(provider: Provider | string): IconName {
 }
 
 export function kiloFallbackProvider(): Provider {
-  return createKiloFallbackProvider()
+  return createQronosFallbackProvider()
 }
 
 export function providerNoteKey(provider: Provider | string) {

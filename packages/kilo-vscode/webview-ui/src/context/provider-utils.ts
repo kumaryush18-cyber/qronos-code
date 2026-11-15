@@ -41,6 +41,6 @@ export function isModelValid(
   if (!selection) return false
   const provider = providers[selection.providerID]
   if (!provider) return false
-  if (selection.providerID !== "kilo" && !connected.includes(selection.providerID)) return false
+  if (selection.providerID !== "qronos" && !connected.includes(selection.providerID)) return false
   return !!provider.models[selection.modelID]
 }

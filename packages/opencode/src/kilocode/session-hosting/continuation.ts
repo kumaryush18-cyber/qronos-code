@@ -485,7 +485,7 @@ export namespace Continuation {
       const defaults = new Map<string, string>()
       for (const entry of before) {
         const model = entry.agent.model
-        if (model?.providerID === "kilo") continue
+        if (model?.providerID === "qronos") continue
         const org = orgs.get(entry.id)
         const key = org ?? ""
         if (defaults.has(key)) continue
@@ -495,7 +495,7 @@ export namespace Continuation {
 
       const sessions = before.map((entry) => {
         const model = entry.agent.model
-        if (model?.providerID === "kilo") {
+        if (model?.providerID === "qronos") {
           const agent: ContinuationAgent = {
             mode: entry.agent.mode,
             model: model.modelID,

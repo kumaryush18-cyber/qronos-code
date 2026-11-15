@@ -24,7 +24,7 @@ export namespace CloudAuth {
 
   const credentials = Effect.fn("CloudAuth.credentials")(function* (env: Environment) {
     const service = yield* Auth.Service
-    const info = yield* service.get("kilo").pipe(
+    const info = yield* service.get("qronos").pipe(
       Effect.mapError(
         () =>
           new ResolutionError({

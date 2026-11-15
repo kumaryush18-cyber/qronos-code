@@ -581,7 +581,7 @@ describe("session processor empty tool-calls", () => {
           const processors = yield* SessionProcessor.Service
           const session = yield* Session.Service
           const selection = {
-            providerID: ProviderV2.ID.kilo,
+            providerID: ProviderV2.ID.qronos,
             modelID: ModelV2.ID.make("kilo-auto/efficient"),
           }
 

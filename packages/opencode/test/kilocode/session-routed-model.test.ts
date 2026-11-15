@@ -175,17 +175,17 @@ describe("session routed model", () => {
 
     expect(
       KiloRoutedModel.readAuto(meta, {
-        providerID: ProviderV2.ID.kilo,
+        providerID: ProviderV2.ID.qronos,
         modelID: "kilo-auto/efficient",
       }),
     ).toEqual({
-      providerID: ProviderV2.ID.kilo,
+      providerID: ProviderV2.ID.qronos,
       modelID: ModelV2.ID.make("openai/gpt-5.5-20260423"),
     })
 
     expect(
       KiloRoutedModel.readAuto(meta, {
-        providerID: ProviderV2.ID.kilo,
+        providerID: ProviderV2.ID.qronos,
         modelID: "openai/gpt-5.5",
       }),
     ).toBeUndefined()

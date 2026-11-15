@@ -64,7 +64,7 @@ export type AuthInput = {
 export type ResolvedProvider = {
   url: string
   token: string
-  provider: "kilo" | "openrouter"
+  provider: "qronos" | "openrouter"
   organizationId?: string
 }
 
@@ -77,7 +77,7 @@ export function resolveProvider(
     return {
       url: KILO_OPENROUTER_URL,
       token,
-      provider: "kilo",
+      provider: "qronos",
       ...(auth?.type === "oauth" && auth.accountId ? { organizationId: auth.accountId } : {}),
     }
   }
@@ -161,7 +161,7 @@ export const GenerateImageTool = Tool.define(
       execute: (params: Schema.Schema.Type<typeof Parameters>, ctx: Tool.Context) =>
         Effect.gen(function* () {
           const instance = yield* InstanceState.context
-          const auth = yield* authSvc.get("kilo")
+          const auth = yield* authSvc.get("qronos")
           const authInput: AuthInput | undefined = auth
             ? {
                 type: auth.type === "api" ? "api" : "oauth",

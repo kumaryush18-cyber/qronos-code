@@ -501,7 +501,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
           headers: {
             "HTTP-Referer": "https://kilo.ai/", // kilocode_change
             "X-Title": "Kilo Code", // kilocode_change
-            "X-Source": "kilo", // kilocode_change
+            "X-Source": "qronos", // qronos_change
           },
         },
       }),
@@ -1754,8 +1754,8 @@ const layer = Layer.effect(
           if (provider.options) partial.options = provider.options
           mergeProvider(providerID, partial)
         }
-        patchKiloProviderPrivacy(providers[ProviderV2.ID.make("kilo")], cfg) // kilocode_change
-        patchKiloProviderAuth(providers[ProviderV2.ID.make("kilo")], cfg, auths["kilo"]) // kilocode_change
+        patchKiloProviderPrivacy(providers[ProviderV2.ID.qronos], cfg) // kilocode_change
+        patchKiloProviderAuth(providers[ProviderV2.ID.qronos], cfg, auths["qronos"]) // kilocode_change
 
         const gitlab = ProviderV2.ID.make("gitlab")
         if (discoveryLoaders[gitlab] && providers[gitlab] && isProviderAllowed(gitlab)) {
@@ -2005,7 +2005,7 @@ const layer = Layer.effect(
         const empty = !!catalogProvider && Object.keys(catalogProvider.models).length === 0 // kilocode_change
         // kilocode_change start
         const catalogError =
-          empty && providerID === "kilo" ? failure(yield* modelsDevSvc.getFailure(providerID)) : undefined
+          empty && providerID === "qronos" ? failure(yield* modelsDevSvc.getFailure(providerID)) : undefined
         return yield* new ModelNotFoundError({ providerID, modelID, suggestions, modelsEmpty: empty, catalogError })
         // kilocode_change end
       }
@@ -2145,11 +2145,11 @@ const layer = Layer.effect(
       // kilo credentials. The kilo provider is always autoloaded (anonymous key), so checking it
       // unconditionally would route auxiliary tasks (session titles, commit messages, branch names)
       // to the cloud for users without kilo access and break offline/local-only setups.
-      const kiloFallback = s.providers[ProviderV2.ID.make("kilo")]
+      const kiloFallback = s.providers[ProviderV2.ID.qronos]
       if (kiloFallback?.models["kilo-auto/small"]) {
         const hasCreds = hasKiloCredentials(
           cfg,
-          yield* auth.get(ProviderV2.ID.make("kilo")).pipe(Effect.orDie),
+          yield* auth.get(ProviderV2.ID.qronos).pipe(Effect.orDie),
           yield* env.all(),
         )
         if (hasCreds) return kiloFallback.models["kilo-auto/small"]

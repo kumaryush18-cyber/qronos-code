@@ -62,7 +62,7 @@ function routers(input: ResolveInput): Promise<CustomRouterListResponse> {
 export namespace KiloCustomRouter {
   export function isCustomRouter(input: { providerID: string; modelID: string | undefined }): boolean {
     return (
-      input.providerID === ProviderV2.ID.kilo &&
+      input.providerID === ProviderV2.ID.qronos &&
       input.modelID !== undefined &&
       parseCustomRouterModelId(input.modelID) !== null
     )
@@ -173,7 +173,7 @@ export namespace KiloCustomRouter {
     if (input.pick.kind === "client") {
       return input.providers[ProviderV2.ID.make(input.pick.provider)]?.models[input.pick.model]
     }
-    const known = input.providers[ProviderV2.ID.kilo]?.models[input.pick.model]
+    const known = input.providers[ProviderV2.ID.qronos]?.models[input.pick.model]
     // The gateway catalog can omit a model the decision still names, for
     // example a direct-BYOK entry the owner key serves. Keep the router's
     // request shape and let the gateway resolve the concrete id.

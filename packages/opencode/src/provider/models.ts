@@ -47,13 +47,13 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
 
       const get = Effect.fn("ModelsDev.get")(function* () {
         const providers = overlay(yield* core.get())
-        const fallback = providers.kilo
-        delete providers.kilo
+        const fallback = providers.qronos
+        delete providers.qronos
 
         const cfg = yield* config.get()
         const disabled = new Set(cfg.disabled_providers ?? [])
         const enabled = cfg.enabled_providers ? new Set(cfg.enabled_providers) : undefined
-        const allowed = (!enabled || enabled.has("kilo")) && !disabled.has("kilo")
+        const allowed = (!enabled || enabled.has("qronos")) && !disabled.has("qronos")
         const apt = cfg.provider?.apertis?.options
         const aptURL = apt?.baseURL ?? "https://api.apertis.ai/v1"
         const aptOpts = apt?.baseURL ? { baseURL: apt.baseURL } : {}
@@ -78,8 +78,8 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
           return providers
         }
 
-        const opts = cfg.provider?.kilo?.options
-        const info = yield* auth.get("kilo").pipe(Effect.catch(() => Effect.succeed(undefined)))
+        const opts = cfg.provider?.qronos?.options
+        const info = yield* auth.get("qronos").pipe(Effect.catch(() => Effect.succeed(undefined)))
         const org = organization(opts, info)
         const url = baseURL(opts?.baseURL, org)
         const fetch = {
@@ -87,18 +87,18 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
           ...(org ? { kilocodeOrganizationId: org } : {}),
         }
         const valid = compatible({ ...fetch, kilocodeToken: token(opts, info) })
-        const fetched = valid ? yield* cache.fetch("kilo", fetch).pipe(Effect.catch(() => Effect.succeed({}))) : {}
+        const fetched = valid ? yield* cache.fetch("qronos", fetch).pipe(Effect.catch(() => Effect.succeed({}))) : {}
         const models = !valid || org || Object.keys(fetched).length > 0 ? fetched : (fallback?.models ?? {})
-        providers.kilo = {
-          id: "kilo",
-          name: "Kilo Gateway",
-          env: ["KILO_API_KEY"],
+        providers.qronos = {
+          id: "qronos",
+          name: "Qronos AI Universal Gateway",
+          env: ["QRONOS_API_KEY", "KILO_API_KEY"],
           api: KILO_OPENROUTER_BASE.endsWith("/") ? KILO_OPENROUTER_BASE : `${KILO_OPENROUTER_BASE}/`,
           npm: "@kilocode/kilo-gateway",
           models,
         }
         if (valid && !org && Object.keys(fetched).length === 0)
-          yield* cache.refresh("kilo", fetch).pipe(Effect.ignore, Effect.forkDetach)
+          yield* cache.refresh("qronos", fetch).pipe(Effect.ignore, Effect.forkDetach)
         yield* addApertis()
         return providers
       })

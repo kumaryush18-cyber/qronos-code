@@ -11,6 +11,7 @@ import {
   type SessionPageState,
 } from "./kilo-provider/session-page"
 import * as path from "path"
+import { parseModelString } from "./shared/provider-model"
 
 export { SessionStreamScheduler } from "./kilo-provider/session-stream-scheduler"
 
@@ -254,6 +255,28 @@ export function indexProvidersById(all: ProviderInfo[]): Record<string, Provider
     normalized[provider.id] = provider
   }
   return normalized
+}
+
+// qronos_change - the default model is never hardcoded. It is taken from the user's own
+// config first, then from the catalog the backend returned, so it always exists.
+export function resolveDefaultSelection(
+  providers: Record<string, ProviderInfo>,
+  defaults: Record<string, string> | undefined,
+  configMessage?: unknown,
+): { providerID: string; modelID: string } | undefined {
+  const preferred = parseModelString((configMessage as { config?: { model?: string } } | undefined)?.config?.model)
+  if (preferred && providers[preferred.providerID]?.models?.[preferred.modelID]) return preferred
+
+  const order = ["qronos", ...Object.keys(providers)]
+  for (const providerID of order) {
+    const provider = providers[providerID]
+    if (!provider) continue
+    const modelID = defaults?.[providerID]
+    if (modelID && provider.models?.[modelID]) return { providerID, modelID }
+    const first = Object.keys(provider.models ?? {})[0]
+    if (first) return { providerID, modelID: first }
+  }
+  return undefined
 }
 
 export function filterVisibleAgents(agents: Agent[]): { visible: Agent[]; defaultAgent: string } {

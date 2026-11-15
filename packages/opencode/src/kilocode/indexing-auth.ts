@@ -113,5 +113,5 @@ export function indexingWithKiloDefault(
   auth: KiloIndexingAuth,
 ): IndexingConfig | undefined {
   if (!shouldDefaultIndexingToKilo(indexing, auth)) return indexing
-  return { ...indexing, provider: "kilo" }
+  return { ...indexing, provider: "qronos" }
 }

@@ -269,7 +269,7 @@ for (const scenario of scenarios) {
       yield* environment({
         KILO_API_KEY: scenario.env,
         KILO_ORG_ID: scenario.organization,
-        KILO_AUTH_CONTENT: JSON.stringify(scenario.info ? { kilo: scenario.info } : {}),
+        KILO_AUTH_CONTENT: JSON.stringify(scenario.info ? { qronos: scenario.info } : {}),
       })
       const calls: Headers[] = []
       const fetch = async (_input: RequestInfo | URL, init?: RequestInit) => {
@@ -278,7 +278,7 @@ for (const scenario of scenarios) {
       }
       const config: Config.Info = {
         provider: {
-          kilo: {
+          qronos: {
             npm: "@kilocode/kilo-gateway",
             env: ["KILO_API_KEY"],
             options: { ...scenario.options, headers: { "x-custom": "preserved" }, fetch },
@@ -288,7 +288,7 @@ for (const scenario of scenarios) {
       }
       yield* Effect.gen(function* () {
         const provider = yield* Provider.Service
-        const item = yield* provider.getProvider(ProviderV2.ID.kilo)
+        const item = yield* provider.getProvider(ProviderV2.ID.qronos)
         expect(item.options.kilocodeToken).toBe(scenario.token)
         expect(item.options.kilocodeOrganizationId).toBe(scenario.org)
         expect(item.options.fetch).toBe(fetch)
@@ -299,7 +299,7 @@ for (const scenario of scenarios) {
         expect(output.options.kilocodeToken).toBeUndefined()
         expect(output.options.headers).toEqual({ "x-custom": "preserved" })
         expect(item.options.kilocodeToken).toBe(scenario.token)
-        const model = yield* provider.getModel(ProviderV2.ID.kilo, ModelV2.ID.make("test-model"))
+        const model = yield* provider.getModel(ProviderV2.ID.qronos, ModelV2.ID.make("test-model"))
         const language = yield* provider.getLanguage(model)
         const error = yield* Effect.tryPromise(() =>
           language.doGenerate({ prompt: [{ role: "user", content: [{ type: "text", text: "test" }] }] }),

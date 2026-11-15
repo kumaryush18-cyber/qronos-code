@@ -47,17 +47,17 @@ export const configHandlers = HttpApiBuilder.group(InstanceHttpApi, "config", (h
       // kilocode_change end
 
       // kilocode_change start - Fetch default model from Kilo API when the kilo provider is available.
-      if (defaults[ProviderV2.ID.kilo]) {
-        const info = yield* auth.get("kilo").pipe(Effect.option)
+      if (defaults[ProviderV2.ID.qronos]) {
+        const info = yield* auth.get("qronos").pipe(Effect.option)
         const model = yield* Effect.promise(() =>
           recommend(
-            providers[ProviderV2.ID.kilo].models,
+            providers[ProviderV2.ID.qronos].models,
             config.provider?.kilo?.options,
             Option.getOrUndefined(info),
             Option.isSome(info),
           ),
         )
-        if (model && providers[ProviderV2.ID.kilo]?.models[model]) defaults[ProviderV2.ID.kilo] = ModelV2.ID.make(model)
+        if (model && providers[ProviderV2.ID.qronos]?.models[model]) defaults[ProviderV2.ID.qronos] = ModelV2.ID.make(model)
       }
       // kilocode_change end
 

@@ -84,12 +84,12 @@ function pending(): z.infer<typeof IndexingStatus> {
 }
 
 async function kiloAuth(cfg: Config.Info): Promise<KiloIndexingAuth> {
-  const info = await auth.runPromise((svc) => svc.get("kilo"))
+  const info = await auth.runPromise((svc) => svc.get("qronos"))
   return resolveKiloIndexingAuth({ config: cfg, auth: info })
 }
 
 function enrichKilo(input: ReturnType<typeof toIndexingConfigInput>, auth: KiloIndexingAuth) {
-  if (input.embedderProvider !== "kilo") return input
+  if (input.embedderProvider !== "qronos") return input
 
   return {
     ...input,
@@ -100,7 +100,7 @@ function enrichKilo(input: ReturnType<typeof toIndexingConfigInput>, auth: KiloI
 }
 
 async function model(input: ReturnType<typeof toIndexingConfigInput>, auth: KiloIndexingAuth) {
-  if (input.embedderProvider !== "kilo" || !input.enabled) return input
+  if (input.embedderProvider !== "qronos" || !input.enabled) return input
 
   const catalog = await fetchKiloEmbeddingModelCatalog({ baseURL: auth.baseUrl, token: auth.apiKey })
 

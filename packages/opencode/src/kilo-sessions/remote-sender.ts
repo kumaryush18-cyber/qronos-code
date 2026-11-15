@@ -175,7 +175,7 @@ function normalizeModel(model: string | RemoteModelCatalog.ModelRef | undefined)
     }
   }
   return {
-    providerID: ProviderV2.ID.make("kilo"),
+    providerID: ProviderV2.ID.qronos,
     modelID: ModelV2.ID.make(model.startsWith("kilocode/") ? model.slice("kilocode/".length) : model),
   }
 }

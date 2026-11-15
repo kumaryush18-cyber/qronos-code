@@ -19,24 +19,24 @@ function makeProvider(id: string, models: string[]): Provider {
   return result
 }
 
-const KILO_AUTO: ModelSelection = { providerID: "kilo", modelID: "kilo-auto/free" }
+const KILO_AUTO: ModelSelection = { providerID: "qronos", modelID: "kilo-auto/free" }
 
 const providers: Record<string, Provider> = {
-  kilo: makeProvider("kilo", ["kilo-auto/free", "z-first", "z-personal", "z-recommended"]),
+  qronos: makeProvider("qronos", ["kilo-auto/free", "z-first", "z-personal", "z-recommended"]),
   anthropic: makeProvider("anthropic", ["claude-sonnet-4"]),
   openai: makeProvider("openai", ["gpt-4.1"]),
 }
 
 const claude: ModelSelection = { providerID: "anthropic", modelID: "claude-sonnet-4" }
 const gpt: ModelSelection = { providerID: "openai", modelID: "gpt-4.1" }
-const first: ModelSelection = { providerID: "kilo", modelID: "z-first" }
-const personal: ModelSelection = { providerID: "kilo", modelID: "z-personal" }
-const recommended: ModelSelection = { providerID: "kilo", modelID: "z-recommended" }
+const first: ModelSelection = { providerID: "qronos", modelID: "z-first" }
+const personal: ModelSelection = { providerID: "qronos", modelID: "z-personal" }
+const recommended: ModelSelection = { providerID: "qronos", modelID: "z-recommended" }
 
 function env(overrides?: Partial<ResolveEnv>): ResolveEnv {
   return {
     providers,
-    connected: ["kilo", "anthropic", "openai"],
+    connected: ["qronos", "anthropic", "openai"],
     ready: true,
     organizationId: null,
     fallback: KILO_AUTO,
@@ -143,7 +143,7 @@ describe("per-scope per-agent model selection", () => {
 
   it("org users skip recents and use the recommendation", () => {
     const store: ModelStore = { ...emptyStore(), recentModels: [claude] }
-    const e = env({ organizationId: "org-a", defaults: { kilo: "z-recommended" } })
+    const e = env({ organizationId: "org-a", defaults: { qronos: "z-recommended" } })
 
     expect(getSelected(store, e, "new-session", "code")).toEqual(recommended)
   })
@@ -158,7 +158,7 @@ describe("per-scope per-agent model selection", () => {
   it("org users keep in-scope picks", () => {
     let store = emptyStore()
     store = { ...store, ...applyModel(store, "code", claude, COMPOSER) }
-    const e = env({ organizationId: "org-a", defaults: { kilo: "z-recommended" } })
+    const e = env({ organizationId: "org-a", defaults: { qronos: "z-recommended" } })
 
     expect(getSelected(store, e, COMPOSER, "code")).toEqual(claude)
   })

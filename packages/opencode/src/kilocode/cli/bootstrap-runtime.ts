@@ -17,11 +17,11 @@ export namespace KiloCliBootstrapRuntime {
   }
 
   export function getAuth() {
-    return auth.runPromise((service) => service.get("kilo"))
+    return auth.runPromise((service) => service.get("qronos"))
   }
 
   export function setAuth(info: Auth.Info) {
-    return auth.runPromise((service) => service.set("kilo", info))
+    return auth.runPromise((service) => service.set("qronos", info))
   }
 
   export async function dispose() {

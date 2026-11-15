@@ -10,14 +10,14 @@ const catalog = (org: string) => ({
   data: {
     all: [
       {
-        id: "kilo",
+        id: "qronos",
         name: "Kilo Gateway",
         models: { [`${org}/first`]: { id: `${org}/first` }, [`${org}/model`]: { id: `${org}/model` } },
       },
       external,
     ],
-    connected: ["kilo", "external"],
-    default: { kilo: `${org}/model`, external: "model" },
+    connected: ["qronos", "external"],
+    default: { qronos: `${org}/model`, external: "model" },
   },
 })
 
@@ -113,8 +113,8 @@ describe("KiloProvider catalog refresh", () => {
       type: "providersLoaded",
       organizationId: "b",
       ready: true,
-      defaults: { kilo: "b/model" },
-      providers: { kilo: { models: { "b/model": { id: "b/model" } } } },
+      defaults: { qronos: "b/model" },
+      providers: { qronos: { models: { "b/model": { id: "b/model" } } } },
     })
   })
 
@@ -142,8 +142,8 @@ describe("KiloProvider catalog refresh", () => {
       type: "providersLoaded",
       organizationId: "b",
       ready: true,
-      defaults: { kilo: "b/model" },
-      providers: { kilo: { models: { "b/model": { id: "b/model" } } }, external },
+      defaults: { qronos: "b/model" },
+      providers: { qronos: { models: { "b/model": { id: "b/model" } } }, external },
     })
   })
 
@@ -218,8 +218,8 @@ describe("KiloProvider catalog refresh", () => {
         expect(view.internal.cachedProvidersMessage).toMatchObject({
           organizationId: "b",
           ready: true,
-          defaults: { kilo: "b/model" },
-          providers: { kilo: { models: { "b/model": { id: "b/model" } } }, external },
+          defaults: { qronos: "b/model" },
+          providers: { qronos: { models: { "b/model": { id: "b/model" } } }, external },
         })
         expect(view.messages.some((message) => message.type === "configLoaded")).toBe(false)
       }
@@ -269,7 +269,7 @@ describe("KiloProvider catalog refresh", () => {
     const { internal, messages } = setup(
       async () =>
         failed
-          ? { data: { all: [external], connected: ["external"], default: { external: "model" }, failed: ["kilo"] } }
+          ? { data: { all: [external], connected: ["external"], default: { external: "model" }, failed: ["qronos"] } }
           : catalog("org"),
       () => "org",
     )
@@ -293,7 +293,7 @@ describe("KiloProvider catalog refresh", () => {
     expect(messages.at(-1)).toMatchObject({
       type: "providersLoaded",
       kiloUnavailable: false,
-      providers: { kilo: { models: { "org/model": { id: "org/model" } } } },
+      providers: { qronos: { models: { "org/model": { id: "org/model" } } } },
     })
     expect(scheduled).toHaveLength(1)
   })
@@ -306,7 +306,7 @@ describe("KiloProvider catalog refresh", () => {
         if (step === "reject") throw new Error("offline")
         if (step === "failed")
           return {
-            data: { all: [external], connected: ["external"], default: { external: "model" }, failed: ["kilo"] },
+            data: { all: [external], connected: ["external"], default: { external: "model" }, failed: ["qronos"] },
           }
         return catalog("org")
       },
@@ -337,7 +337,7 @@ describe("KiloProvider catalog refresh", () => {
   it("does not flag a failed Kilo catalog outside an organization", async () => {
     const { internal, messages } = setup(
       async () => ({
-        data: { all: [external], connected: ["external"], default: { external: "model" }, failed: ["kilo"] },
+        data: { all: [external], connected: ["external"], default: { external: "model" }, failed: ["qronos"] },
       }),
       () => "",
     )
@@ -359,7 +359,7 @@ describe("KiloProvider catalog refresh", () => {
     expect(messages.at(-1)).toMatchObject({
       type: "providersLoaded",
       organizationId: "b",
-      defaults: { kilo: "b/model" },
+      defaults: { qronos: "b/model" },
     })
   })
 })

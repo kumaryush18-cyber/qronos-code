@@ -167,7 +167,7 @@ export namespace KiloViewers {
         }, delay)
       }
 
-      const readAuth = auth.get("kilo").pipe(Effect.orElseSucceed((): Auth.Info | undefined => undefined))
+      const readAuth = auth.get("qronos").pipe(Effect.orElseSucceed((): Auth.Info | undefined => undefined))
 
       const update = Effect.fn("KiloViewers.update")(function* (snapshot: ViewerSnapshot) {
         const info = yield* readAuth

@@ -81,7 +81,7 @@ describe("findModel", () => {
 
 describe("isModelValid", () => {
   const providers = {
-    kilo: makeProvider("kilo", "Kilo Gateway", ["kilo-auto/free"]),
+    qronos: makeProvider("qronos", "Kilo Gateway", ["kilo-auto/free"]),
     openai: makeProvider("openai", "OpenAI", ["gpt-4o"]),
   }
 
@@ -94,7 +94,7 @@ describe("isModelValid", () => {
   })
 
   it("accepts kilo models when present in the catalog", () => {
-    expect(isModelValid(providers, [], { providerID: "kilo", modelID: "kilo-auto/free" })).toBe(true)
+    expect(isModelValid(providers, [], { providerID: "qronos", modelID: "kilo-auto/free" })).toBe(true)
   })
 
   it("rejects unknown models", () => {
