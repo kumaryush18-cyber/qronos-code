@@ -8587,7 +8587,6 @@ export class SessionImport extends HeyApiClient {
       },
     })
   }
-}
 
   /**
    * Resume an interrupted session
