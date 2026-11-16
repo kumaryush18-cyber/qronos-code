@@ -126,14 +126,16 @@ export const providerHandlers = HttpApiBuilder.group(InstanceHttpApi, "provider"
         )
         if (model) defaults[ProviderV2.ID.qronos] = ModelV2.ID.make(model)
       }
-      const qronosOnlyProviders = validProviders.kilo ? { kilo: validProviders.kilo } : validProviders
+      // qronos_change - do not trim the provider list here. The picker already
+      // narrows to Qronos, and filtering "connected" down to an id we do not use
+      // left the model selector disabled ("no providers", red cursor).
       return {
-        all: Object.values(qronosOnlyProviders).map((item) => ({
+        all: Object.values(validProviders).map((item) => ({
           ...Provider.toPublicInfo(item),
           metadata: providerMetadata(item.id),
         })), // kilocode_change
         default: defaults,
-        connected: Object.keys(connected).filter((id) => id === "kilo"),
+        connected: Object.keys(connected),
         failed: [...failedSet],
         failures,
       }
