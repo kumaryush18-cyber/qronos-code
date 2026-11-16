@@ -1,3 +1,4 @@
+import { debugLog } from "./qronos-provider/debug-log"
 import * as path from "path"
 import { existsSync, readFileSync } from "fs"
 import * as vscode from "vscode"
@@ -899,7 +900,10 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
     // Use fire-and-forget (no throwOnError) to match old getProfile() which returned null on error.
     if (this.connectionState === "connected" && this.client) {
       console.log("[Qronos New] QronosProvider: 👤 syncWebviewState fetching profile...")
-      const profileResult = await retry(() => this.client!.qronosGateway.profile()).catch(() => ({ data: null }))
+      const profileResult = await retry(() => this.client!.qronosGateway.profile()).catch((err) => {
+        debugLog("profile", err)
+        return { data: null }
+      })
       // qronos_change - the profile comes from the gateway or it is null.
       // Filling in a demo account hid real failures behind fake numbers.
       const profileData = profileResult.data ?? null

@@ -2,6 +2,7 @@
  * Provider action handlers extracted from QronosProvider to stay under max-lines.
  * These are pure async functions that operate on the SDK client — no vscode dependency.
  */
+import { debugLog } from "./qronos-provider/debug-log"
 import type { Config, QronosClient } from "@qronos-ai/sdk/v2"
 import { validateProviderID as validateProviderIDShared } from "./shared/custom-provider"
 import {
@@ -62,10 +63,18 @@ export async function fetchProviderData(client: QronosClient, dir: string) {
   const qronosRequest = client.qronosGateway
     .authStatus({ directory: dir }, { throwOnError: true })
     .then((r) => r.data)
-    .catch(() => undefined)
+    .catch((err) => {
+      debugLog("authStatus", err)
+      return undefined
+    })
 
   const [{ data: response }, authMethods, qronosAuth] = await Promise.all([
-    client.provider.list({ directory: dir }, { throwOnError: true }),
+    client.provider
+      .list({ directory: dir }, { throwOnError: true })
+      .catch((err) => {
+        debugLog("provider.list", err)
+        throw err
+      }),
     authRequest,
     qronosRequest,
   ])
