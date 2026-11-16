@@ -36,7 +36,7 @@ jobs:
             --exclude-dir=.github --exclude-dir=.qronos --exclude-dir=upstream \
             --exclude=NOTICE --exclude=ATTRIBUTION.md --exclude=LICENSE \
             --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md --exclude=BASELINE.md \
-            --exclude=PLAN.md . | head -20)
+            --exclude=PLAN.md . | grep -v "qronos-legacy" | head -20)
           [ -n "$hits" ] && { echo "Old name still present:"; echo "$hits"; exit 1; }
           echo "clean"
 

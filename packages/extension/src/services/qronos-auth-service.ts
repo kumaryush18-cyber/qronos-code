@@ -37,7 +37,11 @@ export function readTokenFromDisk(): string | undefined {
     try {
       if (!fs.existsSync(p)) continue
       const parsed = JSON.parse(fs.readFileSync(p, "utf8")) as Record<string, any>
-      const key = parsed?.qronos?.key ?? parsed?.kilo?.key ?? parsed?.qronos?.access_token ?? parsed?.kilo?.access_token
+      const key =
+        parsed?.qronos?.key ??
+        parsed?.qronos?.access_token ??
+        parsed?.kilo?.key ?? // qronos-legacy - key written before the rename
+        parsed?.kilo?.access_token // qronos-legacy
       if (typeof key === "string" && key.trim()) return key.trim()
     } catch {
       // unreadable file: try the next location
@@ -117,11 +121,11 @@ export class QronosAuthService {
       (await this.context.secrets.get("qronos.apiKey")) ||
       // qronos_change - builds before the rename stored the key under this name.
       // Without it a signed-in user is shown the sign-in screen again.
-      (await this.context.secrets.get("kilo.apiKey"))
+      (await this.context.secrets.get("kilo.apiKey")) // qronos-legacy - secret written before the rename
     if (stored) {
       if (!(await this.context.secrets.get("qronos.apiKey"))) {
         await this.context.secrets.store("qronos.apiKey", stored)
-        void this.context.secrets.delete("kilo.apiKey")
+        void this.context.secrets.delete("kilo.apiKey") // qronos-legacy - migrated above
       }
       return stored
     }

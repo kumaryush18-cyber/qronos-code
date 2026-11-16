@@ -52,8 +52,8 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
         // qronos_change - the catalogue that models.dev still publishes under the old
         // product name lists 456 vendor-prefixed models the gateway does not serve.
         // It must never reach the picker.
-        delete providers.kilo
-        delete providers.kilocode
+        delete providers.kilo // qronos-legacy - old catalogue id
+        delete providers.kilocode // qronos-legacy - old catalogue id
         // qronos_change - models.dev publishes the upstream "qronos" gateway with 465
         // vendor-prefixed ids (anthropic/claude-haiku-5.5). api.qronos.me only accepts
         // bare ids (claude-haiku-5.5), so that entry must never reach the picker.
