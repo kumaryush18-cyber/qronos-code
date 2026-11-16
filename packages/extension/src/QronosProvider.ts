@@ -1302,12 +1302,59 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
         void vscode.commands.executeCommand("qronos-code.signOut")
         return
       }
-      if (message.type === "qronosAdDebug") {
-        // qronos_change - temporary: the chat ad slot is invisible when the ad
-        // gateway has no fill, so record the outcome in the debug log.
-        debugLog("ad", (message as { text?: string }).text ?? "no text")
+      if (message.type === "qronosAdRequest") {
+        // qronos_change - the webview cannot call the ad gateway itself: a
+        // cross-origin POST is blocked before it leaves the panel. Ask from the
+        // extension host instead and hand the result back.
+        void this.requestChatAd((message as { prompt?: string }).prompt)
         return
       }
+  private async requestChatAd(prompt?: string): Promise<void> {
+    // qronos_change - same route and placement as the Qronos signup card, which
+    // is the one Gravity actually fills for this publisher.
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 6000)
+    try {
+      const response = await fetch("https://api.qronos.me/api/ads/gravity", {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "user",
+              content: prompt?.slice(0, 200) || "Developer APIs, cloud databases, and AI coding tools",
+            },
+          ],
+          placement: "below_response",
+          placement_id: "main",
+        }),
+        signal: controller.signal,
+      })
+      const raw = (await response.json().catch(() => null)) as { ads?: unknown[] } | null
+      const first = Array.isArray(raw?.ads) ? (raw.ads[0] as Record<string, unknown> | undefined) : undefined
+      const ad =
+        first && typeof first.adText === "string" && first.adText
+          ? {
+              adText: first.adText,
+              brandName: typeof first.brandName === "string" ? first.brandName : undefined,
+              title: typeof first.title === "string" ? first.title : undefined,
+              cta: typeof first.cta === "string" ? first.cta : undefined,
+              clickUrl: typeof first.clickUrl === "string" ? first.clickUrl : undefined,
+              impUrl: typeof first.impUrl === "string" ? first.impUrl : undefined,
+              favicon: typeof first.favicon === "string" ? first.favicon : undefined,
+              brandImage: typeof first.brandImage === "string" ? first.brandImage : undefined,
+            }
+          : null
+      debugLog("ad", `http ${response.status} ads=${Array.isArray(raw?.ads) ? raw.ads.length : 0} ad=${ad ? ad.brandName ?? "yes" : "none"}`)
+      this.postMessage({ type: "qronosAdResult", ad })
+    } catch (error) {
+      debugLog("ad", error as Error)
+      this.postMessage({ type: "qronosAdResult", ad: null, error: String(error) })
+    } finally {
+      clearTimeout(timer)
+    }
+  }
+
       if (message.type === "qronosGetSession") {
         const authService = QronosAuthService.getInstance()
         let session = authService.getSession()

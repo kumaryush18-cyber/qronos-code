@@ -1814,6 +1814,20 @@ export type ExtensionMessage =
   | { type: "qronosSession"; session: QronosSessionPayload | null }
   | { type: "qronosAuthSuccess"; session: QronosSessionPayload }
   | { type: "qronosSignedOut" }
+  | {
+      type: "qronosAdResult"
+      ad: {
+        brandName?: string
+        title?: string
+        adText: string
+        cta?: string
+        clickUrl?: string
+        impUrl?: string
+        favicon?: string
+        brandImage?: string
+      } | null
+      error?: string
+    }
   // qronos_change end
   | DocumentResultMessage
   | DocumentOpenMessage

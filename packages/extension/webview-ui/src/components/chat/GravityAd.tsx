@@ -1,15 +1,5 @@
-import { Component, Show, createSignal, onMount } from "solid-js"
-import { getVSCodeAPI } from "../../context/vscode"
-
-// qronos_change - temporary: the slot is invisible when the gateway has no ad,
-// so report the outcome to the extension log where it can be read afterwards.
-function adDebug(text: string) {
-  try {
-    getVSCodeAPI().postMessage({ type: "qronosAdDebug", text } as any)
-  } catch {
-    // outside VS Code
-  }
-}
+import { Component, Show, createSignal, onMount, onCleanup } from "solid-js"
+import { useVSCode } from "../../context/vscode"
 
 export interface GravityAdData {
   brandName?: string
@@ -28,62 +18,22 @@ interface GravityAdProps {
 }
 
 export const GravityAd: Component<GravityAdProps> = (props) => {
+  const vscode = useVSCode()
   const [ad, setAd] = createSignal<GravityAdData | null>(null)
   const [closed, setClosed] = createSignal(false)
 
-  onMount(async () => {
-    try {
-      // qronos_change - use the same call as the Qronos signup card. That route
-      // asks Gravity for the below_response placement and is the one that really
-      // fills; the old GET /ads/next asked for inline_response, which Gravity
-      // almost never fills for this publisher.
-      const prompt = props.prompt?.slice(0, 200) || "Developer APIs, cloud databases, and AI coding tools"
-      const res = await fetch("https://api.qronos.me/api/ads/gravity", {
-        method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: [{ role: "user", content: prompt }],
-          placement: "below_response",
-          placement_id: "main",
-        }),
-      })
-
-      if (!res.ok) {
-        adDebug(`http ${res.status}`)
-        return
-      }
-      const raw = await res.json()
-      adDebug(`ads=${Array.isArray(raw?.ads) ? raw.ads.length : 0} keys=${Object.keys(raw ?? {}).join(",")}`)
-      // qronos_change - the Qronos ad gateway answers with a nested creative
-      // object ({ creative: { headline, body, cta }, click_url, imp_url }).
-      // Accept that shape as well as the flat one, otherwise every real ad was
-      // dropped before it could be shown.
-      const data: GravityAdData | null = raw?.ads?.[0]
-        ? (raw.ads[0] as GravityAdData)
-        : raw?.creative
-        ? {
-            brandName: raw.creative.headline,
-            title: raw.creative.headline,
-            adText: raw.creative.body ?? "",
-            cta: raw.creative.cta,
-            url: raw.click_url,
-            clickUrl: raw.click_url,
-            impUrl: raw.imp_url,
-            isTest: raw.isTest,
-          }
-        : (raw as GravityAdData)
-      if (data && data.adText && !data.isTest) {
-        setAd(data)
-        // Fire background impression tracker if present
-        for (const tracker of [data.impUrl, raw?.imp_url]) {
-          if (!tracker) continue
-          fetch(tracker, { mode: "no-cors" }).catch(() => {})
-        }
-      }
-    } catch {
-      // Gracefully collapse on any network/ad fetch error
-      setAd(null)
-    }
+  onMount(() => {
+    // qronos_change - the extension host performs the request, because a
+    // cross-origin POST from the panel is blocked by CORS before it is sent.
+    vscode.postMessage({ type: "qronosAdRequest", prompt: props.prompt })
+    const stop = vscode.onMessage((msg) => {
+      if (msg.type !== "qronosAdResult") return
+      const result = msg.ad
+      if (!result || !result.adText) return
+      setAd({ ...result, url: result.clickUrl } as GravityAdData)
+      if (result.impUrl) fetch(result.impUrl, { mode: "no-cors" }).catch(() => {})
+    })
+    onCleanup(stop)
   })
 
   const handleClick = (e: MouseEvent) => {

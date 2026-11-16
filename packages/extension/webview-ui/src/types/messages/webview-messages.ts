@@ -1757,6 +1757,9 @@ export type WebviewMessage =
   // The extension host handles these in QronosProvider.ts and forwards them to the
   // qronos-code.signIn / .setApiKey / .signOut commands.
   | { type: "qronosGetSession" }
+  // qronos_change - the webview cannot call the ad gateway itself (cross-origin),
+  // so it asks the extension host to do it.
+  | { type: "qronosAdRequest"; prompt?: string }
   | { type: "qronosSignIn" }
   | { type: "qronosSetApiKey" }
   | { type: "qronosSignOut" }
