@@ -14,8 +14,8 @@
 import path from "node:path"
 
 const ROOT = path.resolve(import.meta.dir, "..")
-const DIR = path.join(ROOT, "packages", "opencode", "src")
-const TEST_DIR = path.join(ROOT, "packages", "opencode", "test")
+const DIR = path.join(ROOT, "packages", "cli", "src")
+const TEST_DIR = path.join(ROOT, "packages", "cli", "test")
 const PATTERN = /makeRuntime\s*\(\s*Service\s*,/g
 const TEST_PATTERN = /\bAppRuntime\b/g
 

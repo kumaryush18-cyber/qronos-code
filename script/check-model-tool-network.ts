@@ -12,7 +12,7 @@ import path from "node:path"
 import { host, opaque } from "../packages/cli/src/qronos/sandbox/network-tools"
 
 const root = path.resolve(import.meta.dir, "..")
-const source = path.join(root, "packages", "opencode", "src")
+const source = path.join(root, "packages", "cli", "src")
 const dirs = ["tool", "qronos/tool", "mcp"]
 const checks = [
   { name: "direct fetch", pattern: /\b(?:globalThis\.)?fetch\s*\(/g },

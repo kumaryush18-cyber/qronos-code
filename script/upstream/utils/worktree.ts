@@ -98,7 +98,7 @@ async function snapshot(input: RefInput) {
 export async function prepare(input: RefInput): Promise<RefInfo> {
   const repo = await root()
   const dir = join(repo, ".worktrees", "opencode-merge")
-  const opencode = join(dir, "opencode")
+  const opencode = join(dir, "cli")
   const main = join(dir, "kilo-main")
   const auto = join(dir, "auto-merge")
   const branch = `opencode-merge/auto-${slug(input.tag)}`

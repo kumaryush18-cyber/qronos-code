@@ -422,7 +422,7 @@ function preflight(options: Options): Problem[] {
     }
   }
 
-  const opencode = join(root, "..", "opencode")
+  const opencode = join(root, "..", "cli")
   if (!existsSync(join(opencode, "script", "build.ts")) || !existsSync(join(opencode, "package.json"))) {
     problems.push({
       message: "local CLI sources are missing under packages/cli",
