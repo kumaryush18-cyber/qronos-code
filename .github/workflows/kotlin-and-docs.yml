@@ -40,7 +40,10 @@ jobs:
         working-directory: packages/jetbrains
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew --no-daemon -Dorg.gradle.vfs.watch=false -Pqronos.cli.pinned=false -q :compileKotlin :compileTestKotlin
+        run: |
+          df -h / | tail -1
+          ./gradlew --no-daemon --no-configuration-cache -Dorg.gradle.vfs.watch=false \
+            -Pqronos.cli.pinned=false -q :compileKotlin :compileTestKotlin
 
   docs:
     runs-on: ubuntu-latest
