@@ -1302,6 +1302,12 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
         void vscode.commands.executeCommand("qronos-code.signOut")
         return
       }
+      if (message.type === "qronosAdDebug") {
+        // qronos_change - temporary: the chat ad slot is invisible when the ad
+        // gateway answers 204, so record what came back.
+        debugLog("ad", (message as { text?: string }).text ?? "no text")
+        return
+      }
       if (message.type === "qronosGetSession") {
         const authService = QronosAuthService.getInstance()
         let session = authService.getSession()

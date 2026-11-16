@@ -1,4 +1,5 @@
 import { Component, Show, createSignal, onMount } from "solid-js"
+import { vscode } from "../../context/vscode"
 
 export interface GravityAdData {
   brandName?: string
@@ -29,7 +30,12 @@ export const GravityAd: Component<GravityAdProps> = (props) => {
         },
       })
 
-      if (!res.ok) return
+      if (!res.ok) {
+        // qronos_change - the debug file is the only way to see this from a
+        // packaged build, so record why the slot stays empty.
+        vscode.postMessage({ type: "qronosAdDebug", text: `status ${res.status}` })
+        return
+      }
       const raw = await res.json()
       // qronos_change - the Qronos ad gateway answers with a nested creative
       // object ({ creative: { headline, body, cta }, click_url, imp_url }).
@@ -47,6 +53,10 @@ export const GravityAd: Component<GravityAdProps> = (props) => {
             isTest: raw.isTest,
           }
         : (raw as GravityAdData)
+      vscode.postMessage({
+        type: "qronosAdDebug",
+        text: `payload keys=${Object.keys(raw ?? {}).join(",")} | adText=${JSON.stringify(data?.adText ?? null).slice(0, 60)} | isTest=${data?.isTest}`,
+      })
       if (data && data.adText && !data.isTest) {
         setAd(data)
         // Fire background impression tracker if present
