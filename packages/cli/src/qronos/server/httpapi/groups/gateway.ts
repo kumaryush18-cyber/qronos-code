@@ -218,9 +218,9 @@ export const QronosGatewayPaths = {
   cloudSessionImport: `${root}/cloud/session/import`,
 } as const
 
-export const QronosGatewayApi = HttpApi.make("qronos")
+export const QronosGatewayApi = HttpApi.make("qronos-gateway")
   .add(
-    HttpApiGroup.make("qronos")
+    HttpApiGroup.make("qronos-gateway")
       .add(
         HttpApiEndpoint.get("profile", QronosGatewayPaths.profile, {
           query: WorkspaceRoutingQuery,
