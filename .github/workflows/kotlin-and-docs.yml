@@ -25,7 +25,9 @@ jobs:
         run: bun install --no-save
       - name: compile the JetBrains plugin
         working-directory: packages/jetbrains
-        run: ./gradlew --no-daemon -q :compileKotlin :compileTestKotlin
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew --no-daemon -Pqronos.cli.pinned=false -q :compileKotlin :compileTestKotlin
 
   docs:
     runs-on: ubuntu-latest

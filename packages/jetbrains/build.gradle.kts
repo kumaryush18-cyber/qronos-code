@@ -209,7 +209,7 @@ changelog {
     header = provider { "[${version.get()}] - ${LocalDate.now()}" }
     unreleasedTerm = "[Unreleased]"
     keepUnreleasedSection = true
-    repositoryUrl = "https://github.com/Qronos-Org/qronos"
+    repositoryUrl = "https://github.com/kumaryush18-cyber/qronos-rename"
     groups = listOf("Added", "Changed", "Fixed", "Removed", "Security")
     combinePreReleases = false
 }

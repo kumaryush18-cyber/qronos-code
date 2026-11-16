@@ -33,8 +33,8 @@ class QronosCliDownloader(
     private val http: OkHttpClient = QronosBackendHttpClients.cliDownload(),
     private val log: QronosLog = QronosLog.create(QronosCliDownloader::class.java),
     private val root: File = File(PathManager.getSystemPath(), "qronos/cli"),
-    private val baseUrl: String = "https://github.com/Qronos-Org/qronos/releases/download",
-    private val api: String = "https://api.github.com/repos/Qronos-Org/qronos/releases/tags",
+    private val baseUrl: String = "https://github.com/kumaryush18-cyber/qronos-rename/releases/download",
+    private val api: String = "https://api.github.com/repos/kumaryush18-cyber/qronos-rename/releases/tags",
     private val digests: Map<String, String> = QronosCliChecksums.load(),
     private val lockTimeoutMs: Long = LOCK_TIMEOUT_MS,
 ) {
