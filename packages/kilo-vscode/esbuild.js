@@ -9,6 +9,11 @@ const ts = require("@babel/preset-typescript")
 const playwright = require("./script/playwright-runtime")
 
 const production = process.argv.includes("--production")
+// qronos_change - `ENTRY=<name> bun esbuild.js` builds one bundle at a time
+// without sourcemaps. This box has ~1.5 GB of headroom next to a live
+// Extension Host, and the all-in-one build gets OOM-killed ("The service was
+// stopped"), while a single entry needs roughly a third of the memory.
+const onlyEntry = process.env.ENTRY
 const watch = process.argv.includes("--watch")
 
 /**
@@ -427,7 +432,7 @@ function getExtensionConfig() {
     minifyIdentifiers: false,
     minifySyntax: production,
     minifyWhitespace: production,
-    sourcemap: !production,
+    sourcemap: !production && !onlyEntry,
     sourcesContent: false,
     platform: "node",
     outfile: "dist/extension.js",
@@ -452,7 +457,7 @@ function getWebviewsConfig() {
     bundle: true,
     format: "iife",
     minify: production,
-    sourcemap: !production,
+    sourcemap: !production && !onlyEntry,
     sourcesContent: false,
     platform: "browser",
     logLevel: "info",
@@ -479,7 +484,7 @@ function getShikiWorkerConfig() {
     bundle: true,
     format: "iife",
     minify: production,
-    sourcemap: !production,
+    sourcemap: !production && !onlyEntry,
     sourcesContent: false,
     platform: "browser",
     outfile: "dist/shiki-worker.js",
@@ -494,7 +499,7 @@ function getMarkdownShikiWorkerConfig() {
     bundle: true,
     format: "esm",
     minify: production,
-    sourcemap: !production,
+    sourcemap: !production && !onlyEntry,
     sourcesContent: false,
     platform: "browser",
     outfile: "dist/markdown-shiki-worker.js",
@@ -586,6 +591,31 @@ async function main() {
       markdownShikiWorkerCtx.watch(),
     ])
   } else {
+    // qronos_change start
+    if (onlyEntry) {
+      if (onlyEntry === "extension") {
+        console.log("[1/5] Building extension host...")
+        await esbuild.build(extensionConfig)
+      } else if (onlyEntry === "settings") {
+        console.log("[3/5] Building settings...")
+        await esbuild.build(settingsConfig)
+      } else if (onlyEntry === "shiki-worker") {
+        console.log("[4/5] Building shiki worker...")
+        await esbuild.build(shikiWorkerConfig)
+      } else if (onlyEntry === "markdown-shiki-worker") {
+        console.log("[5/5] Building markdown worker...")
+        await esbuild.build(markdownShikiWorkerConfig)
+      } else {
+        const entry = webviewsConfig.entryPoints[onlyEntry]
+        if (!entry) throw new Error(`Unknown ENTRY: ${onlyEntry}`)
+        console.log(`[2/5] Building webview entry: ${onlyEntry}...`)
+        await esbuild.build({ ...webviewsConfig, entryPoints: { [onlyEntry]: entry } })
+      }
+      console.log(`OK: ${onlyEntry}`)
+      return
+    }
+    // qronos_change end
+
     console.log("[1/5] Building extension host...")
     await esbuild.build(extensionConfig)
 

@@ -129,12 +129,6 @@
         "icon": "$(organization)"
       },
       {
-        "command": "qronos-code.new.marketplaceButtonClicked",
-        "title": "Marketplace",
-        "category": "Qronos Code",
-        "icon": "$(extensions)"
-      },
-      {
         "command": "qronos-code.new.historyButtonClicked",
         "title": "History",
         "category": "Qronos Code",
@@ -167,11 +161,6 @@
         "command": "qronos-code.new.sidebarTitle.agentManagerOpen",
         "title": "Agent Manager",
         "icon": "$(organization)"
-      },
-      {
-        "command": "qronos-code.new.sidebarTitle.marketplaceButtonClicked",
-        "title": "Marketplace",
-        "icon": "$(extensions)"
       },
       {
         "command": "qronos-code.new.sidebarTitle.historyButtonClicked",
@@ -514,10 +503,6 @@
         },
         {
           "command": "qronos-code.new.agentManager.advancedWorktree",
-          "when": "false"
-        },
-        {
-          "command": "qronos-code.new.sidebarTitle.marketplaceButtonClicked",
           "when": "false"
         },
         {

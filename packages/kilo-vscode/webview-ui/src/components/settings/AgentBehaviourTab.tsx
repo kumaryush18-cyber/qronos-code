@@ -79,7 +79,6 @@ const AgentBehaviourTab: Component<Props> = (props) => {
   const [newSkillUrl, setNewSkillUrl] = createSignal("")
   const [newInstruction, setNewInstruction] = createSignal("")
   const [claudeCompat, setClaudeCompat] = createSignal(false)
-  const browse = () => vscode.postMessage({ type: "openMarketplacePanel" })
 
   const unsubscribeInvalidation = vscode.onMessage((message: ExtensionMessage) => {
     if (message.type !== "agentBehaviourInvalidated") return
@@ -442,9 +441,6 @@ const AgentBehaviourTab: Component<Props> = (props) => {
             <Button variant="ghost" size="small" onClick={triggerImport}>
               {language.t("settings.agentBehaviour.importMode")}
             </Button>
-            <Button variant="ghost" size="small" onClick={browse}>
-              {language.t("settings.agentBehaviour.mcpBrowseMarketplace")}
-            </Button>
             <Button variant="secondary" size="small" onClick={() => setAgentView("create")}>
               {language.t("settings.agentBehaviour.createMode")}
             </Button>
@@ -732,9 +728,6 @@ const AgentBehaviourTab: Component<Props> = (props) => {
             "margin-bottom": "8px",
           }}
         >
-          <Button variant="secondary" size="small" onClick={browse}>
-            {language.t("settings.agentBehaviour.mcpBrowseMarketplace")}
-          </Button>
         </div>
         <Show
           when={mcpEntries().length > 0}
@@ -1024,9 +1017,6 @@ const AgentBehaviourTab: Component<Props> = (props) => {
           "margin-bottom": "8px",
         }}
       >
-        <Button variant="secondary" size="small" onClick={browse}>
-          {language.t("settings.agentBehaviour.mcpBrowseMarketplace")}
-        </Button>
       </div>
       {/* Discovered skills */}
       <h4 style={{ "margin-top": "0", "margin-bottom": "8px" }}>

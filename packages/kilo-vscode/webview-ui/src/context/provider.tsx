@@ -48,11 +48,20 @@ export const ProviderProvider: ParentComponent = (props) => {
   const [kiloUnavailable, setKiloUnavailable] = createSignal(false)
   const [failures, setFailures] = createSignal<ProviderFailure[]>([])
 
-  // Priority to Qronos Gateway models; fall back to all models if still loading
+  // qronos_change - the picker lists Qronos Gateway models plus anything the
+  // user connected themselves (a custom OpenAI-compatible provider, or a key
+  // added in Providers). GitHub Copilot used to be injected by VS Code itself
+  // and flooded the list, so it is the one id we hide. When Qronos has not
+  // loaded yet we still show everything, otherwise the picker looks empty.
+  const HIDDEN_PROVIDERS = new Set(["github-copilot"])
   const models = createMemo<EnrichedModel[]>(() => {
-    const all = flattenModels(providers())
-    const qronosModels = all.filter((model) => model.providerID === "qronos" || model.providerID === "kilo")
-    return qronosModels.length > 0 ? qronosModels : all
+    const all = flattenModels(providers()).filter((model) => !HIDDEN_PROVIDERS.has(model.providerID))
+    const connectedIDs = new Set(connected())
+    const isQronos = (id: string) => id === "qronos" || id === "kilo"
+    const usable = all.filter((model) => isQronos(model.providerID) || connectedIDs.has(model.providerID))
+    const qronosOnly = all.filter((model) => isQronos(model.providerID))
+    if (qronosOnly.length === 0) return all
+    return usable.length > 0 ? usable : qronosOnly
   })
 
   function findModel(selection: ModelSelection | null): EnrichedModel | undefined {

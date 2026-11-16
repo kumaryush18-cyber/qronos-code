@@ -1,4 +1,3 @@
-import { hasIndexingPlugin } from "@kilocode/kilo-indexing/detect"
 import type { KiloClient } from "@kilocode/sdk/v2"
 import * as vscode from "vscode"
 
@@ -21,7 +20,10 @@ export function configFeatures(
   remote = !!vscode.env.remoteName,
 ): Features {
   return {
-    indexing: hasIndexingPlugin(config?.plugin ?? []),
+    // qronos_change - the indexer needs an embeddings endpoint. api.qronos.me
+    // answers /v1/embedding-models with the dashboard HTML, so the feature can
+    // never finish; hide the tab instead of letting it fail silently.
+    indexing: false,
     sandboxControls: process.platform !== "win32",
     backgroundSubagents,
     speechToText: !remote,
