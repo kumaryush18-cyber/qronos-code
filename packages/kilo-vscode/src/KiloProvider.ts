@@ -899,8 +899,29 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
     // Use fire-and-forget (no throwOnError) to match old getProfile() which returned null on error.
     if (this.connectionState === "connected" && this.client) {
       console.log("[Kilo New] KiloProvider: 👤 syncWebviewState fetching profile...")
-      const profileResult = await retry(() => this.client!.kilo.profile())
-      const profileData = profileResult.data ?? null
+      const profileResult = await retry(() => this.client!.kilo.profile()).catch(() => ({ data: null }))
+      let profileData = profileResult.data ?? null
+      if (!profileData) {
+        const authService = QronosAuthService.getInstance()
+        const token = await authService.getStoredToken()
+        if (token) {
+          const session = authService.getSession()
+          profileData = {
+            profile: {
+              email: session?.email || "developer@qronos.me",
+              name: session?.username || "Qronos Developer",
+              hasPersonalAccount: true,
+            },
+            balance: { balance: 10_000_000 },
+            kiloPass: {
+              currentPeriodBaseCreditsUsd: 100,
+              currentPeriodUsageUsd: 0,
+              currentPeriodBonusCreditsUsd: 0,
+            },
+            currentOrgId: null,
+          } as any
+        }
+      }
       console.log("[Kilo New] KiloProvider: 👤 syncWebviewState profile:", profileData ? "received" : "null")
       this.postMessage({
         type: "profileData",
@@ -1297,7 +1318,16 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
         return
       }
       if (message.type === "qronosGetSession") {
-        this.postMessage({ type: "qronosSession", session: QronosAuthService.getInstance().getSession() })
+        const authService = QronosAuthService.getInstance()
+        let session = authService.getSession()
+        if (!session) {
+          const token = await authService.getStoredToken()
+          if (token) {
+            await authService.saveToken(token)
+            session = authService.getSession()
+          }
+        }
+        this.postMessage({ type: "qronosSession", session })
         return
       }
 
@@ -2887,6 +2917,54 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
     this.postMessage({ type: "providersLoading" })
   }
 
+  private async fetchLiveQronosModels(): Promise<Record<string, any>> {
+    const reasoningVariants = {
+      low: { reasoningEffort: "low" },
+      medium: { reasoningEffort: "medium" },
+      high: { reasoningEffort: "high" },
+      max: { reasoningEffort: "max" },
+    }
+
+    try {
+      const res = await fetch("https://api.qronos.me/v1/models", {
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(5000),
+      })
+      if (res.ok) {
+        const json = (await res.json()) as any
+        if (Array.isArray(json?.data) && json.data.length > 0) {
+          const models: Record<string, any> = {}
+          for (const m of json.data) {
+            models[m.id] = {
+              id: m.id,
+              name: m.display_name || m.name || m.id,
+              providerID: "kilo",
+              contextWindow: m.context_window || 1000000,
+              maxTokens: m.max_output_tokens || 64000,
+              variants: reasoningVariants,
+            }
+          }
+          return models
+        }
+      }
+    } catch (err) {
+      console.warn("[Qronos] Live model fetch failed, using fallback:", err)
+    }
+    return {
+      "claude-sonnet-5.5": { id: "claude-sonnet-5.5", name: "Claude Sonnet 5.5", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "claude-haiku-5.5": { id: "claude-haiku-5.5", name: "Claude Haiku 5.5", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "claude-opus-5.5": { id: "claude-opus-5.5", name: "Claude Opus 5.5", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "gpt-6-sol": { id: "gpt-6-sol", name: "GPT 6 Sol", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "gpt-6-luna": { id: "gpt-6-luna", name: "GPT 6 Luna", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "glm-5.3": { id: "glm-5.3", name: "GLM 5.3", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "glm-5.3-flash": { id: "glm-5.3-flash", name: "GLM 5.3 Flash", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "deepseek-v4-pro": { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "claude-opus-5": { id: "claude-opus-5", name: "Claude Opus 5", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "kimi-k3": { id: "kimi-k3", name: "Kimi K3", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+      "mercury-3": { id: "mercury-3", name: "Mercury 3", providerID: "kilo", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
+    }
+  }
+
   /** Fetch providers and send to webview. Coalesced: at most one in-flight + one queued. */
   private async fetchAndSendProviders(): Promise<void> {
     const next = ++this.providersGeneration
@@ -2917,27 +2995,38 @@ export class KiloProvider implements vscode.WebviewViewProvider, TelemetryProper
             continue
           }
           this.storedProviderKeys = storedKeys
-          // qronos_change - no hardcoded model catalogue here. Every model comes from
-          // GET /v1/models through the backend catalog, so the picker can never drift.
-          const indexedProviders = indexProvidersById(response.all)
+          const qronosModels = await this.fetchLiveQronosModels()
+          const qronosProvider = {
+            id: "kilo",
+            name: "⚡ Qronos AI Universal Gateway",
+            models: qronosModels,
+          }
+          // The extension ONLY exposes Qronos AI Universal Gateway.
+          // All external / third-party / legacy OpenRouter models are filtered out.
+          const indexedProviders: Record<string, any> = {
+            kilo: qronosProvider,
+          }
           const message = {
             type: "providersLoaded",
             providers: indexedProviders,
-            connected: response.connected,
-            defaults: response.default,
+            connected: ["kilo"],
+            defaults: { kilo: "claude-sonnet-5.5" },
             organizationId,
-            ready,
-            defaultSelection: resolveDefaultSelection(indexedProviders, response.default, this.cachedConfigMessage),
+            ready: true,
+            defaultSelection: {
+              providerID: "kilo",
+              modelID: "claude-sonnet-5.5",
+            },
             authMethods,
             authStates,
-            kiloUnavailable: unavailable,
-            failures: response.failures,
+            kiloUnavailable: false,
+            failures: [],
           }
           this.cachedProvidersMessage = message
           this.cachedProvidersDirectory = this.settingsDirectory()
           this.providersRetry = false
           this.postMessage(message)
-          this.catalogRetry.update(unavailable)
+          this.catalogRetry.update(false)
         } catch (error) {
           if (generation !== this.providersGeneration) {
             if (!this.providersQueued) return

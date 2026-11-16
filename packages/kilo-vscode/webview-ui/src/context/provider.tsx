@@ -48,12 +48,12 @@ export const ProviderProvider: ParentComponent = (props) => {
   const [kiloUnavailable, setKiloUnavailable] = createSignal(false)
   const [failures, setFailures] = createSignal<ProviderFailure[]>([])
 
-  // qronos_change - the picker only offers Qronos Gateway models. Other providers
-  // (e.g. GitHub Copilot, which VS Code ships with) used to leak into this list
-  // and were never reachable through our backend.
-  const models = createMemo<EnrichedModel[]>(() =>
-    flattenModels(providers()).filter((model) => model.providerID === "qronos" || model.providerID === "kilo"),
-  )
+  // Priority to Qronos Gateway models; fall back to all models if still loading
+  const models = createMemo<EnrichedModel[]>(() => {
+    const all = flattenModels(providers())
+    const qronosModels = all.filter((model) => model.providerID === "qronos" || model.providerID === "kilo")
+    return qronosModels.length > 0 ? qronosModels : all
+  })
 
   function findModel(selection: ModelSelection | null): EnrichedModel | undefined {
     return _findModel(models(), selection)

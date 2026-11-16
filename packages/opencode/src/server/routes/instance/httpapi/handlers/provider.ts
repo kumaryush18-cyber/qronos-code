@@ -126,13 +126,14 @@ export const providerHandlers = HttpApiBuilder.group(InstanceHttpApi, "provider"
         )
         if (model) defaults[ProviderV2.ID.qronos] = ModelV2.ID.make(model)
       }
+      const qronosOnlyProviders = validProviders.kilo ? { kilo: validProviders.kilo } : validProviders
       return {
-        all: Object.values(validProviders).map((item) => ({
+        all: Object.values(qronosOnlyProviders).map((item) => ({
           ...Provider.toPublicInfo(item),
           metadata: providerMetadata(item.id),
         })), // kilocode_change
         default: defaults,
-        connected: Object.keys(connected),
+        connected: Object.keys(connected).filter((id) => id === "kilo"),
         failed: [...failedSet],
         failures,
       }

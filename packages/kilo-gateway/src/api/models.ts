@@ -19,19 +19,26 @@ const openRouterArchitectureSchema = z.object({
 })
 
 const openRouterPricingSchema = z.object({
-  prompt: z.string().nullish(),
-  completion: z.string().nullish(),
-  input_cache_write: z.string().nullish(),
-  input_cache_read: z.string().nullish(),
+  prompt: z.union([z.string(), z.number()]).nullish(),
+  completion: z.union([z.string(), z.number()]).nullish(),
+  input_cache_write: z.union([z.string(), z.number()]).nullish(),
+  input_cache_read: z.union([z.string(), z.number()]).nullish(),
+  input_usd_per_million: z.number().nullish(),
+  output_usd_per_million: z.number().nullish(),
 })
 
 const openRouterModelSchema = z.object({
   id: z.string(),
-  name: z.string(),
+  name: z.string().optional(),
+  display_name: z.string().optional(),
   description: z.string().optional(),
-  context_length: z.number(),
+  context_length: z.number().optional(),
+  context_window: z.number().optional(),
   max_completion_tokens: z.number().nullish(),
-  pricing: openRouterPricingSchema.optional(),
+  max_output_tokens: z.number().nullish(),
+  capabilities: z.array(z.string()).optional(),
+  available: z.boolean().optional(),
+  pricing: openRouterPricingSchema.passthrough().optional(),
   architecture: openRouterArchitectureSchema.optional(),
   top_provider: z.object({ max_completion_tokens: z.number().nullish() }).optional(),
   supported_parameters: z.array(z.string()).optional(),
@@ -61,7 +68,7 @@ const openRouterModelSchema = z.object({
       ai_sdk_provider: z.enum(AI_SDK_PROVIDERS).optional().catch(undefined),
     })
     .optional(),
-})
+}).passthrough()
 
 const openRouterModelsResponseSchema = z.object({
   data: z.array(openRouterModelSchema),
@@ -285,26 +292,33 @@ function transformToModelDevFormat(model: OpenRouterModel): any {
   const inputModalities = model.architecture?.input_modalities || []
   const outputModalities = model.architecture?.output_modalities || []
   const supportedParameters = model.supported_parameters || []
+  const capabilities = Array.isArray(model.capabilities) ? model.capabilities : []
 
   // Parse pricing
-  const inputPrice = parseApiPrice(model.pricing?.prompt)
-  const outputPrice = parseApiPrice(model.pricing?.completion)
-  const cacheWritePrice = parseApiPrice(model.pricing?.input_cache_write)
-  const cacheReadPrice = parseApiPrice(model.pricing?.input_cache_read)
+  const inputPrice = model.pricing?.input_usd_per_million != null
+    ? model.pricing.input_usd_per_million / 1_000_000
+    : parseApiPrice(typeof model.pricing?.prompt === "string" ? model.pricing.prompt : model.pricing?.prompt?.toString())
+  const outputPrice = model.pricing?.output_usd_per_million != null
+    ? model.pricing.output_usd_per_million / 1_000_000
+    : parseApiPrice(typeof model.pricing?.completion === "string" ? model.pricing.completion : model.pricing?.completion?.toString())
+  const cacheWritePrice = parseApiPrice(typeof model.pricing?.input_cache_write === "string" ? model.pricing.input_cache_write : undefined)
+  const cacheReadPrice = parseApiPrice(typeof model.pricing?.input_cache_read === "string" ? model.pricing.input_cache_read : undefined)
 
   // Determine capabilities
-  const supportsImages = inputModalities.includes("image")
+  const supportsImages = inputModalities.includes("image") || capabilities.includes("vision") || capabilities.includes("multimodal")
   const tools = supportsTools(model)
-  const supportsReasoning = supportedParameters.includes("reasoning")
-  const supportsTemperature = supportedParameters.includes("temperature")
+  const supportsReasoning = supportedParameters.includes("reasoning") || capabilities.includes("reasoning") || capabilities.includes("thinking")
+  const supportsTemperature = supportedParameters.includes("temperature") || true
+
+  const contextLength = model.context_window || model.context_length || 1_000_000
 
   // Calculate max output tokens
   const maxOutputTokens =
-    model.top_provider?.max_completion_tokens || model.max_completion_tokens || Math.ceil(model.context_length * 0.2)
+    model.max_output_tokens || model.top_provider?.max_completion_tokens || model.max_completion_tokens || Math.min(64000, Math.ceil(contextLength * 0.2))
 
   return {
     id: model.id,
-    name: model.name,
+    name: model.display_name || model.name || model.id,
     family: model.opencode?.family ?? extractFamily(model.id),
     release_date: new Date().toISOString().split("T")[0], // Default to today
     attachment: supportsImages,
@@ -319,30 +333,25 @@ function transformToModelDevFormat(model: OpenRouterModel): any {
     prompt: model.opencode?.prompt,
     ai_sdk_provider: model.opencode?.ai_sdk_provider,
     tool_call: tools,
-    isFree: model.isFree,
+    isFree: model.isFree ?? model.pricing?.input_usd_per_million === 0,
     mayTrainOnYourPrompts: model.mayTrainOnYourPrompts,
     hasUserByokAvailable: model.hasUserByokAvailable,
     ...(model.autoRouting && { autoRouting: model.autoRouting }),
     ...(model.terminalBench && { terminalBench: model.terminalBench }),
-    ...(inputPrice !== undefined &&
-      outputPrice !== undefined && {
-        cost: {
-          input: inputPrice,
-          output: outputPrice,
-          ...(cacheReadPrice !== undefined && { cache_read: cacheReadPrice }),
-          ...(cacheWritePrice !== undefined && { cache_write: cacheWritePrice }),
-        },
-      }),
+    cost: {
+      input: inputPrice ?? 0.000001,
+      output: outputPrice ?? 0.000002,
+      ...(cacheReadPrice !== undefined && { cache_read: cacheReadPrice }),
+      ...(cacheWritePrice !== undefined && { cache_write: cacheWritePrice }),
+    },
     limit: {
-      context: model.context_length,
+      context: contextLength,
       output: maxOutputTokens,
     },
-    ...((inputModalities.length > 0 || outputModalities.length > 0) && {
-      modalities: {
-        input: mapModalities(inputModalities),
-        output: mapModalities(outputModalities),
-      },
-    }),
+    modalities: {
+      input: supportsImages ? ["text", "image"] : ["text"],
+      output: ["text"],
+    },
     options: {
       ...(model.description && { description: model.description }),
     },

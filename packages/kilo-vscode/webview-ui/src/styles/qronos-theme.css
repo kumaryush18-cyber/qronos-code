@@ -38,57 +38,125 @@ body.vscode-high-contrast-light {
 }
 
 /*
- * A single thin light that slowly circles the input. Lime only, low opacity,
- * and nothing but a hairline at rest - the box itself stays flat black.
+ * Rotating Star Light Effect (from Qronos AI Get Started button design)
+ * Orbiting white/silver starlight beam on prompt input and auth buttons.
  */
-.prompt-input-container::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: 12px;
-  pointer-events: none;
-  z-index: -1;
-  padding: 1px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(201, 255, 115, 0) 0deg,
-    rgba(201, 255, 115, 0.75) 45deg,
-    rgba(201, 255, 115, 0) 120deg,
-    rgba(201, 255, 115, 0) 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0.22;
-  animation: qronos-star-orbit 9s linear infinite;
+@keyframes qronos-star-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* A very soft glow under the box, only while typing. */
-.prompt-input-container:focus-within::before {
-  opacity: 0.5;
+/* Rotating Star Light Orbit Border for Prompt Input (matching Qronos AI Get Started design) */
+.prompt-input-container {
+  position: relative !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  padding: 1.5px !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+  transition: filter 0.25s ease !important;
+}
+
+.prompt-input-container::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -150% !important;
+  left: -150% !important;
+  width: 400% !important;
+  height: 400% !important;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 270deg,
+    rgba(255, 255, 255, 0.25) 315deg,
+    #ffffff 360deg
+  ) !important;
+  animation: qronos-star-spin 4s linear infinite !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.prompt-input-inner {
+  position: relative !important;
+  z-index: 2 !important;
+  border-radius: 12.5px !important;
+  background: #090a0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
 .prompt-input-container:focus-within {
-  filter: drop-shadow(0 0 10px rgba(201, 255, 115, 0.05));
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.16)) !important;
+}
+
+.prompt-input-container:focus-within::before {
+  animation: qronos-star-spin 2.5s linear infinite !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .prompt-input-container::before {
     animation: none;
-    background: linear-gradient(120deg, rgba(201, 255, 115, 0.5), rgba(201, 255, 115, 0));
-    opacity: 0.28;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0.4;
   }
 }
 
-@keyframes qronos-star-orbit {
-  to {
-    transform: rotate(1turn);
-  }
+.qronos-starlight-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 1px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.qronos-starlight-btn::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 260deg,
+    rgba(255, 255, 255, 0.25) 310deg,
+    #ffffff 360deg
+  );
+  animation: qronos-star-spin 3s linear infinite;
+  z-index: 1;
+}
+
+.qronos-starlight-btn-inner {
+  position: relative;
+  z-index: 2;
+  background: #0f1115;
+  color: #ffffff;
+  padding: 9px 14px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  transition: background 0.2s ease;
+}
+
+.qronos-starlight-btn:hover .qronos-starlight-btn-inner {
+  background: #191c22;
 }
 
 /* ---------- surfaces ---------- */
@@ -138,49 +206,48 @@ body.vscode-dark .welcome-header h2 {
   letter-spacing: -0.02em;
 }
 
-/* ---------- metallic logo frame ---------- */
+/* ---------- metallic silver square rounded logo frame ---------- */
 
-/* A brushed-silver rounded square behind the Qronos mark. */
+.qronos-logo-frame,
 .kilo-logo {
-  width: 72px;
-  height: 72px;
-  padding: 12px;
+  position: relative;
+  width: 76px;
+  height: 76px;
+  padding: 8px;
   border-radius: 20px;
-  overflow: visible;
-  opacity: 1;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0.45));
+  box-sizing: border-box;
+  background:
+    linear-gradient(#121417, #0e1012) padding-box,
+    linear-gradient(135deg, #ffffff 0%, #d8dde3 22%, #68707a 45%, #2a2f35 55%, #c5cbd3 78%, #ffffff 100%) border-box;
+  border: 2px solid transparent;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
-    0 10px 28px rgba(0, 0, 0, 0.5);
+    0 8px 26px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(220, 230, 240, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
-/* The silver edge itself: light top-left, dark middle, light bottom-right. */
-.kilo-logo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 1px;
-  pointer-events: none;
-  background: linear-gradient(
-    150deg,
-    #f2f4f6 0%,
-    #9aa0a6 22%,
-    #4a4e52 42%,
-    #2b2e31 55%,
-    #c3c9cf 76%,
-    #7d8288 100%
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0.9;
+.qronos-logo-frame:hover,
+.kilo-logo:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    0 0 22px rgba(235, 245, 255, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.qronos-logo-frame img,
+.kilo-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
 }
 
 .kilo-logo-hover {

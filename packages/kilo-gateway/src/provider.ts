@@ -78,11 +78,11 @@ export function createKilo(options: KiloProviderOptions = {}): KiloProvider {
   const openrouter = createOpenRouter(sdkOptions)
   const anthropic = createAnthropic(sdkOptions)
   const openai = createOpenAI(sdkOptions)
-  const openaiCompatible = createOpenAICompatible({ ...sdkOptions, name: "openaiCompatible" })
+  const openaiCompatible = createOpenAICompatible({ ...sdkOptions, name: "qronos" })
 
   return {
     languageModel(modelId) {
-      return openrouter(modelId)
+      return openaiCompatible(modelId)
     },
     embeddingModel(modelId: string) {
       return openrouter.textEmbeddingModel(modelId)

@@ -375,7 +375,8 @@
 }
 
 .prompt-input:focus {
-  border-color: var(--vscode-focusBorder);
+  outline: none;
+  border-color: transparent;
 }
 
 .prompt-input--disabled {

@@ -30,5 +30,20 @@ export function isValidKilocodeToken(token: string): boolean {
  * Get API key from options or environment
  */
 export function getApiKey(options: { kilocodeToken?: string; apiKey?: string }): string | undefined {
-  return options.kilocodeToken ?? options.apiKey
+  if (options.kilocodeToken) return options.kilocodeToken
+  if (options.apiKey && options.apiKey !== "anonymous") return options.apiKey
+  if (process.env.QRONOS_API_KEY) return process.env.QRONOS_API_KEY
+  if (process.env.KILO_API_KEY) return process.env.KILO_API_KEY
+  try {
+    const fs = require("fs")
+    const path = require("path")
+    const os = require("os")
+    const authPath = path.join(os.homedir(), ".local", "share", "qronos", "auth.json")
+    if (fs.existsSync(authPath)) {
+      const data = JSON.parse(fs.readFileSync(authPath, "utf8"))
+      const key = data.qronos?.key || data.kilo?.key
+      if (key) return key
+    }
+  } catch {}
+  return options.apiKey
 }

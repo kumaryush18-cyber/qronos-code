@@ -92,8 +92,7 @@
         {
           "id": "qronos-code-ActivityBar",
           "title": "Qronos Code",
-          "icon": "assets/icons/qronos-light.svg",
-          "darkIcon": "assets/icons/qronos-dark.svg"
+          "icon": "assets/icons/qronos-activitybar.svg"
         }
       ]
     },

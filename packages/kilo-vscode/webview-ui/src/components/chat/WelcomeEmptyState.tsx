@@ -25,13 +25,9 @@ interface WelcomeEmptyStateProps {
  */
 export const KiloLogo = () => {
   const icons = (window as { ICONS_BASE_URI?: string }).ICONS_BASE_URI || ""
-  // qronos_change - use the real Qronos logo from qronos.me instead of a
-  // locally drawn mark, and drop the Kilo Lottie hover animation.
   return (
-    <div class="kilo-logo">
-      <div class="kilo-logo-layer kilo-logo-static">
-        <img src={`${icons}/qronos-logo.png`} alt="Qronos Code" />
-      </div>
+    <div class="qronos-logo-frame">
+      <img src={`${icons}/qronos-logo.png`} alt="Qronos Code" />
     </div>
   )
 }
@@ -45,10 +41,21 @@ export const WelcomeEmptyState: Component<WelcomeEmptyStateProps> = (props) => {
   return (
     <div class="message-list-empty">
       <KiloLogo />
-      <div style={{ "margin-top": "6px", "font-size": "var(--font-size-x-small, 12px)", "font-weight": "700", color: "#FF6B00", "letter-spacing": "0.5px" }}>
-        ⚡ QRONOS CODE — 10M DAILY TOKENS
-      </div>
-      <p class="kilo-about-text">Autonomous AI coding agent in your editor, powered by Qronos AI.</p>
+      <h1
+        style={{
+          margin: "12px 0 6px 0",
+          "font-size": "26px",
+          "font-weight": "800",
+          color: "#FFFFFF",
+          "letter-spacing": "-0.03em",
+          "text-align": "center",
+        }}
+      >
+        Qronos Code
+      </h1>
+      <p class="kilo-about-text" style={{ color: "#8E9298", margin: "0 0 16px 0" }}>
+        Autonomous AI coding agent in your editor, powered by Qronos AI.
+      </p>
       <QronosAuthBanner />
       <WorkspaceScopeHint />
       <Show when={recent().length > 0 && props.onSelectSession}>

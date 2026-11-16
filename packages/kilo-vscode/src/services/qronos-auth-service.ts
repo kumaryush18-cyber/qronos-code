@@ -1,4 +1,55 @@
 import * as vscode from "vscode"
+import * as fs from "fs"
+import * as path from "path"
+import * as os from "os"
+
+function getAuthFilePaths(): string[] {
+  // qronos_change - write only our own store. Duplicating the token into the
+  // Kilo-era paths left two copies of a credential on disk for no reason.
+  return [path.join(os.homedir(), ".local", "share", "qronos", "auth.json")]
+}
+
+export function syncAuthTokenToDisk(token: string): void {
+  const clean = token.trim()
+  for (const p of getAuthFilePaths()) {
+    try {
+      const dir = path.dirname(p)
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+      let current: Record<string, any> = {}
+      if (fs.existsSync(p)) {
+        try {
+          current = JSON.parse(fs.readFileSync(p, "utf8"))
+        } catch {
+          current = {}
+        }
+      }
+      current.qronos = { type: "api", key: clean }
+      fs.writeFileSync(p, JSON.stringify(current, null, 2), { mode: 0o600 })
+    } catch (e) {
+      console.warn(`[Qronos] Could not sync auth to ${p}:`, e)
+    }
+  }
+}
+
+export function clearAuthTokenFromDisk(): void {
+  for (const p of getAuthFilePaths()) {
+    try {
+      if (fs.existsSync(p)) {
+        let current: Record<string, any> = {}
+        try {
+          current = JSON.parse(fs.readFileSync(p, "utf8"))
+        } catch {
+          current = {}
+        }
+        delete current.qronos
+        delete current.kilo
+        fs.writeFileSync(p, JSON.stringify(current, null, 2), { mode: 0o600 })
+      }
+    } catch (e) {
+      console.warn(`[Qronos] Could not clear auth in ${p}:`, e)
+    }
+  }
+}
 
 export interface DeviceAuthResponse {
   /** qronos_change - the backend may return `device_code` or `session_id`; both are accepted. */
@@ -42,6 +93,7 @@ export class QronosAuthService {
           token,
           dailyTokens: 10_000_000,
         }
+        syncAuthTokenToDisk(token)
       }
     })
   }
@@ -66,6 +118,7 @@ export class QronosAuthService {
       token: cleanToken,
       dailyTokens: 10_000_000,
     }
+    syncAuthTokenToDisk(cleanToken)
   }
 
   public async clearToken(): Promise<void> {
@@ -75,6 +128,7 @@ export class QronosAuthService {
     delete process.env.QRONOS_API_KEY
     delete process.env.KILO_API_KEY
     this.currentSession = null
+    clearAuthTokenFromDisk()
   }
 
   /**
@@ -132,14 +186,23 @@ export class QronosAuthService {
     deviceCode: string,
     intervalSeconds = 5,
     onSuccess?: (session: QronosUserSession) => void,
-    onError?: (err: Error) => void
+    onError?: (err: Error) => void,
+    expiresInSeconds = 900,
   ): Promise<void> {
     this.activePolling = true
     const intervalMs = Math.max(intervalSeconds, 3) * 1000
     const pollUrl = "https://qronos.me/auth/token"
+    const startTime = Date.now()
+    const maxDurationMs = expiresInSeconds * 1000
 
     const poll = async () => {
       if (!this.activePolling) return
+
+      if (Date.now() - startTime > maxDurationMs) {
+        this.activePolling = false
+        onError?.(new Error("Authorization code expired. Please sign in again."))
+        return
+      }
 
       try {
         const res = await fetch(pollUrl, {

@@ -31,66 +31,55 @@ export const QronosAuthBanner: Component = () => {
       class="qronos-auth-banner"
       style={{
         margin: "12px 0 16px 0",
-        padding: "12px 14px",
-        background: "rgba(255, 107, 0, 0.08)",
-        border: "1px solid rgba(255, 107, 0, 0.35)",
-        "border-radius": "8px",
+        padding: "16px",
+        background: "#0c0d10",
+        border: "1px solid rgba(255, 255, 255, 0.12)",
+        "border-radius": "12px",
         "text-align": "center",
         width: "100%",
         "max-width": "340px",
         "box-sizing": "border-box",
+        "box-shadow": "0 8px 24px rgba(0, 0, 0, 0.6)",
       }}
     >
       <Show
         when={token()}
         fallback={
           <div>
-            <div style={{ "font-size": "var(--font-size-x-small, 13px)", "font-weight": "700", color: "#FF6B00", "margin-bottom": "4px" }}>
-              ⚡ Connect Qronos AI Account
+            <div style={{ "font-size": "14px", "font-weight": "700", color: "#FFFFFF", "margin-bottom": "4px" }}>
+              Connect Qronos AI Account
             </div>
             <div
               style={{
-                "font-size": "var(--font-size-x-small, 11px)",
-                color: "var(--vscode-descriptionForeground, #aaa)",
-                "margin-bottom": "10px",
-                "line-height": "1.3",
+                "font-size": "11px",
+                color: "#8E9298",
+                "margin-bottom": "14px",
+                "line-height": "1.4",
               }}
             >
               10,000,000 free tokens refreshed daily at midnight UTC
             </div>
             <button
               type="button"
-              style={{
-                width: "100%",
-                padding: "8px 12px",
-                background: "#FF6B00",
-                color: "#FFFFFF",
-                border: "none",
-                "border-radius": "4px",
-                "font-weight": "600",
-                "font-size": "var(--font-size-x-small, 12px)",
-                cursor: "pointer",
-                display: "flex",
-                "align-items": "center",
-                "justify-content": "center",
-                gap: "6px",
-                "margin-bottom": "6px",
-              }}
+              class="qronos-starlight-btn"
               onClick={() => vscode.postMessage({ type: "qronosSignIn" })}
             >
-              ⚡ Sign In with GitHub Device Flow
+              <div class="qronos-starlight-btn-inner">
+                <span>⚡ Sign In with GitHub Device Flow</span>
+              </div>
             </button>
             <button
               type="button"
               style={{
                 background: "transparent",
-                border: "1px solid rgba(255, 107, 0, 0.4)",
-                color: "#FFA032",
-                padding: "5px 10px",
-                "border-radius": "4px",
-                "font-size": "var(--font-size-x-small, 11px)",
+                border: "1px solid rgba(255, 255, 255, 0.18)",
+                color: "#E2E8F0",
+                padding: "7px 10px",
+                "border-radius": "6px",
+                "font-size": "11px",
                 cursor: "pointer",
                 width: "100%",
+                transition: "background 0.2s ease, border-color 0.2s ease",
               }}
               onClick={() => vscode.postMessage({ type: "qronosSetApiKey" })}
             >
@@ -100,10 +89,10 @@ export const QronosAuthBanner: Component = () => {
         }
       >
         <div style={{ display: "flex", "flex-direction": "column", "align-items": "center", gap: "4px" }}>
-          <div style={{ "font-size": "var(--font-size-x-small, 12px)", "font-weight": "700", color: "#22C55E", display: "flex", "align-items": "center", gap: "4px" }}>
+          <div style={{ "font-size": "12px", "font-weight": "700", color: "#22C55E", display: "flex", "align-items": "center", gap: "4px" }}>
             ✓ 10M Daily Tokens Active
           </div>
-          <div style={{ "font-size": "var(--font-size-x-small, 11px)", color: "var(--vscode-descriptionForeground, #aaa)" }}>
+          <div style={{ "font-size": "11px", color: "#8E9298" }}>
             Connected to Qronos AI Universal Gateway
           </div>
           <button
@@ -111,9 +100,9 @@ export const QronosAuthBanner: Component = () => {
             style={{
               background: "transparent",
               border: "none",
-              color: "#FF6B00",
+              color: "#94A3B8",
               "text-decoration": "underline",
-              "font-size": "var(--font-size-x-small, 11px)",
+              "font-size": "11px",
               cursor: "pointer",
               "margin-top": "6px",
             }}

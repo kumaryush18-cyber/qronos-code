@@ -2045,8 +2045,9 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
         imageAttach.handleDrop(event)
       }}
     >
-      <Show when={goal.active()}>
-        <GoalHeader
+      <div class="prompt-input-inner">
+        <Show when={goal.active()}>
+          <GoalHeader
           onCancel={() => {
             goal.cancel()
             textareaRef?.focus()
@@ -2499,5 +2500,6 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
         </div>
       </div>
     </div>
-  )
+  </div>
+)
 }

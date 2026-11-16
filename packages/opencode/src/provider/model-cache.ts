@@ -124,13 +124,13 @@ export const layer: Layer.Layer<
     })
 
     const authOptions = Effect.fn("ModelCache.authOptions")(function* (providerID: string) {
-      if (providerID !== "qronos" && providerID !== "apertis") return {}
+      if (providerID !== "qronos" && providerID !== "kilo" && providerID !== "apertis") return {}
       const config = yield* cfg.get()
       const options: Options = {}
 
-      if (providerID === "qronos") {
-        const item = config.provider?.[providerID]
-        const info = yield* auth.get(providerID)
+      if (providerID === "qronos" || providerID === "kilo") {
+        const item = config.provider?.[providerID] || config.provider?.["qronos"] || config.provider?.["kilo"]
+        const info = yield* auth.get("qronos").pipe(Effect.catchAll(() => auth.get("kilo"))).pipe(Effect.orDie)
         options.kilocodeOrganizationId = organization(item?.options, info)
         options.kilocodeToken = token(item?.options, info)
         log.debug("auth options resolved", {
@@ -160,14 +160,14 @@ export const layer: Layer.Layer<
     })
 
     const fetchModels = (providerID: string, options: Options): Effect.Effect<Result, unknown> => {
-      if (providerID === "qronos") return kilo.fetch(options)
+      if (providerID === "qronos" || providerID === "kilo") return kilo.fetch(options)
       if (providerID === "apertis") return fetchApertisModels(options).pipe(Effect.map((models) => ({ models })))
       log.debug("provider not implemented", { providerID })
       return Effect.succeed({ models: {} })
     }
 
     const load = Effect.fn("ModelCache.load")(function* (providerID: string, options: Options) {
-      if (providerID === "qronos" && !compatible(options)) return { models: {}, error: { kind: "schema" as const } }
+      if ((providerID === "qronos" || providerID === "kilo") && !compatible(options)) return { models: {}, error: { kind: "schema" as const } }
       return yield* fetchModels(providerID, options)
     })
 

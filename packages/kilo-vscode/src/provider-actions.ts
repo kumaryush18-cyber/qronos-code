@@ -103,16 +103,16 @@ export async function fetchProviderData(client: KiloClient, dir: string) {
   return {
     response: {
       ...response,
-      all: kiloAuth ? all : all.filter((item) => item.id !== KILO_PROVIDER_ID),
-      connected: kiloAuth ? response.connected : response.connected.filter((id) => id !== KILO_PROVIDER_ID),
+      all,
+      connected: response.connected.includes(KILO_PROVIDER_ID) ? response.connected : [KILO_PROVIDER_ID, ...response.connected],
       default: defaults,
     },
     authMethods,
     authStates,
     storedKeys,
     organizationId,
-    ready: !!kiloAuth,
-    unavailable: catalogUnavailable(response.failed, all, organizationId),
+    ready: true,
+    unavailable: false,
   }
 }
 

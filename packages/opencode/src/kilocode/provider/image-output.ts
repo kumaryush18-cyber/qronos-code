@@ -11,8 +11,8 @@ import type { Provider } from "@/provider/provider"
 const NPM = new Set(["@openrouter/ai-sdk-provider", "@kilocode/kilo-gateway"])
 
 export function imageModalities(model: Provider.Model) {
-  if (!NPM.has(model.api.npm)) return
-  if (!model.capabilities.output.image) return
-  if (model.api.id.startsWith("openrouter/")) return
+  if (!model.api?.npm || !NPM.has(model.api.npm)) return
+  if (!model.capabilities?.output?.image) return
+  if (model.api.id?.startsWith("openrouter/")) return
   return ["image", "text"]
 }

@@ -1994,30 +1994,96 @@ const layer = Layer.effect(
 
     const getModel = Effect.fn("Provider.getModel")(function* (providerID: ProviderV2.ID, modelID: ModelV2.ID) {
       const s = yield* InstanceState.get(state)
-      const provider = s.providers[providerID]
+      let provider = s.providers[providerID]
       if (!provider) {
-        const catalogProvider = s.catalog[providerID]
-        const suggestions = catalogProvider
-          ? modelSuggestions(catalogProvider, modelID, runtimeFlags.enableExperimentalModels)
-          : fuzzysort
-              .go(providerID, Object.keys({ ...s.catalog, ...s.providers }), { limit: 3, threshold: -10000 })
-              .map((m) => m.target)
-        const empty = !!catalogProvider && Object.keys(catalogProvider.models).length === 0 // kilocode_change
-        // kilocode_change start
-        const catalogError =
-          empty && providerID === "qronos" ? failure(yield* modelsDevSvc.getFailure(providerID)) : undefined
-        return yield* new ModelNotFoundError({ providerID, modelID, suggestions, modelsEmpty: empty, catalogError })
-        // kilocode_change end
+        if (providerID === "kilo" || providerID === "qronos") {
+          provider = {
+            id: providerID,
+            name: "⚡ Qronos AI Universal Gateway",
+            env: [],
+            options: {},
+            source: "custom",
+            models: {},
+          } as any
+          s.providers[providerID] = provider
+        } else {
+          const catalogProvider = s.catalog[providerID]
+          const suggestions = catalogProvider
+            ? modelSuggestions(catalogProvider, modelID, runtimeFlags.enableExperimentalModels)
+            : fuzzysort
+                .go(providerID, Object.keys({ ...s.catalog, ...s.providers }), { limit: 3, threshold: -10000 })
+                .map((m) => m.target)
+          const empty = !!catalogProvider && Object.keys(catalogProvider.models).length === 0 // kilocode_change
+          // kilocode_change start
+          const catalogError =
+            empty && providerID === "qronos" ? failure(yield* modelsDevSvc.getFailure(providerID)) : undefined
+          return yield* new ModelNotFoundError({ providerID, modelID, suggestions, modelsEmpty: empty, catalogError })
+          // kilocode_change end
+        }
       }
 
-      const info = provider.models[modelID]
+      let info = provider.models[modelID]
       if (!info) {
-        const current = modelSuggestions(provider, modelID, runtimeFlags.enableExperimentalModels)
-        const suggestions = current.length
-          ? current
-          : modelSuggestions(s.catalog[providerID], modelID, runtimeFlags.enableExperimentalModels)
-        const empty = Object.keys(provider.models).length === 0 // kilocode_change
-        return yield* new ModelNotFoundError({ providerID, modelID, suggestions, modelsEmpty: empty }) // kilocode_change
+        if (providerID === "kilo" || providerID === "qronos") {
+          const modelDef: Model = {
+            id: modelID,
+            providerID: providerID,
+            name: String(modelID),
+            family: "qronos",
+            api: {
+              id: String(modelID),
+              npm: "@kilocode/kilo-gateway",
+              url: "https://api.qronos.me/v1",
+            },
+            limit: {
+              context: 1000000,
+              output: 64000,
+            },
+            status: "active",
+            capabilities: {
+              temperature: true,
+              reasoning: true,
+              attachment: true,
+              toolcall: true,
+              input: {
+                text: true,
+                audio: false,
+                image: true,
+                video: false,
+                pdf: true,
+              },
+              output: {
+                text: true,
+                audio: false,
+                image: false,
+                video: false,
+                pdf: false,
+              },
+            },
+            cost: {
+              input: 0.000001,
+              output: 0.000002,
+            },
+            variants: {
+              low: { reasoningEffort: "low" },
+              medium: { reasoningEffort: "medium" },
+              high: { reasoningEffort: "high" },
+              max: { reasoningEffort: "max" },
+            },
+            options: {},
+            headers: {},
+            release_date: new Date().toISOString().split("T")[0],
+          } as any
+          provider.models[modelID] = modelDef
+          info = modelDef
+        } else {
+          const current = modelSuggestions(provider, modelID, runtimeFlags.enableExperimentalModels)
+          const suggestions = current.length
+            ? current
+            : modelSuggestions(s.catalog[providerID], modelID, runtimeFlags.enableExperimentalModels)
+          const empty = Object.keys(provider.models).length === 0 // kilocode_change
+          return yield* new ModelNotFoundError({ providerID, modelID, suggestions, modelsEmpty: empty }) // kilocode_change
+        }
       }
       return info
     })

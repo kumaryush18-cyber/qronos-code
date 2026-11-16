@@ -236,7 +236,7 @@ export const ModelSelectorBase: Component<ModelSelectorBaseProps> = (props) => {
   // Only show models from Qronos Gateway or connected providers.
   // kilo-auto/small is excluded unless includeAutoSmall is explicitly true.
   const available = (m: EnrichedModel, c: string[]) =>
-    (props.includeAutoSmall || !isSmall(m)) && (m.providerID === KILO_GATEWAY_ID || c.includes(m.providerID))
+    (props.includeAutoSmall || !isSmall(m)) && (m.providerID === KILO_GATEWAY_ID || m.providerID === "qronos" || c.includes(m.providerID))
 
   const visibleModels = createMemo(() => {
     if (!open()) return []
@@ -251,7 +251,7 @@ export const ModelSelectorBase: Component<ModelSelectorBaseProps> = (props) => {
     const c = connected()
     return models().some((m) => available(m, c))
   })
-  const canOpen = () => hasProviders() || ((props.allowClear ?? false) && !!props.value)
+  const canOpen = () => hasProviders() || models().length > 0 || ((props.allowClear ?? false) && !!props.value)
 
   // Flat filtered list for keyboard navigation
   const filtered = createMemo(() => {
