@@ -18,17 +18,63 @@ body.vscode-high-contrast {
   --q-text-dim: #8d968c;
 }
 
+/* qronos_change - the panel is always dark, like the Qronos landing page, even
+   when the editor theme is light. The same values are set for every body class
+   so no component can pick up a white surface. */
 body.vscode-light,
-body.vscode-high-contrast-light {
-  --q-black: #f4f6f2;
-  --q-bg: #f6f8f4;
-  --q-bg-soft: #eef1ea;
-  --q-bg-raised: #ffffff;
-  --q-line: rgba(20, 32, 20, 0.1);
-  --q-line-strong: rgba(20, 32, 20, 0.2);
-  --q-lime: #5f8a17;
-  --q-text: #16200f;
-  --q-text-dim: #4c5a48;
+body.vscode-high-contrast-light,
+body.vscode-dark,
+body.vscode-high-contrast {
+  --q-black: #08090a;
+  --q-bg: #0b0c0d;
+  --q-bg-soft: #0e1011;
+  --q-bg-raised: #101214;
+  --q-line: rgba(255, 255, 255, 0.06);
+  --q-line-strong: rgba(255, 255, 255, 0.12);
+  --q-lime: #c9ff73;
+  --q-text: #e7ece6;
+  --q-text-dim: #8d968c;
+
+  /* qronos_change - parts of the UI read VS Code theme variables directly
+     (code blocks, cards, dropdowns, inputs). On a light editor theme those
+     resolve to white, which is what made the model picker and the profile
+     cards unreadable. Pin the surfaces to the dark palette here. */
+  --vscode-editor-background: #0b0c0d;
+  --vscode-editor-foreground: #e7ece6;
+  --vscode-sideBar-background: #0b0c0d;
+  --vscode-panel-background: #0b0c0d;
+  --vscode-editorWidget-background: #101214;
+  --vscode-editorWidget-border: rgba(255, 255, 255, 0.12);
+  --vscode-textCodeBlock-background: #14171a;
+  --vscode-input-background: #0e1011;
+  --vscode-input-border: rgba(255, 255, 255, 0.12);
+  --vscode-dropdown-background: #101214;
+  --vscode-dropdown-listBackground: #101214;
+  --vscode-menu-background: #101214;
+  --vscode-quickInput-background: #101214;
+  --vscode-list-hoverBackground: rgba(255, 255, 255, 0.06);
+  --vscode-toolbar-hoverBackground: rgba(255, 255, 255, 0.08);
+  --vscode-button-background: #1b1f22;
+  --vscode-button-foreground: #e7ece6;
+  --vscode-button-secondaryBackground: #14171a;
+  --vscode-button-secondaryForeground: #e7ece6;
+  --vscode-badge-background: #1b1f22;
+  --vscode-badge-foreground: #e7ece6;
+  --vscode-foreground: #e7ece6;
+  --vscode-descriptionForeground: #9aa39a;
+  --vscode-panel-border: rgba(255, 255, 255, 0.08);
+  --vscode-contrastBorder: transparent;
+  --vscode-focusBorder: #c9ff73;
+  --vscode-textLink-foreground: #c9ff73;
+  --vscode-editorWarning-foreground: #e3b341;
+  --vscode-errorForeground: #ff7b72;
+  --vscode-testing-iconPassed: #3fb950;
+  --vscode-terminal-ansiGreen: #3fb950;
+}
+
+body {
+  background: var(--q-bg);
+  color: var(--q-text);
 }
 
 /* ---------- prompt input ---------- */
