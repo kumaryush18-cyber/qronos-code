@@ -53,6 +53,13 @@ jobs:
           df -h / | tail -1
           ./gradlew --no-daemon --no-configuration-cache -Dorg.gradle.vfs.watch=false \
             -Pqronos.cli.pinned=false -q :compileKotlin :compileTestKotlin
+      - name: Keep the generated spec for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-spec
+          path: packages/jetbrains/backend/build/generated/openapi-spec/*.json
+          if-no-files-found: warn
 
   docs:
     runs-on: ubuntu-latest
