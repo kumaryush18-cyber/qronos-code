@@ -1,4 +1,4 @@
-// kilocode_change - new file
+// qronos_change - new file
 
 /**
  * Runs the LLM triage pass over docs-sync-out/digest.json in chunks.
@@ -6,14 +6,14 @@
  * A daily window holds ~30-50 PRs; a replay can hold several hundred. A
  * single triage call over that volume truncates its JSON output, so the
  * digest is split into chunks of CHUNK_SIZE and each chunk is triaged with
- * its own `kilo run` call. A chunk that fails, is only partially classified,
+ * its own `qronos run` call. A chunk that fails, is only partially classified,
  * or is deferred by the wall-clock budget is marked pending:true (still
  * docs_worthy:false so filter-worthy excludes it) so the watermark holds
  * back and the next run re-collects those PRs.
  *
  * Env: TRIAGE_MODEL (provider/model), DOCS_SYNC_VARIANT (reasoning effort, default max),
- * KILO_API_KEY + KILO_ORG_ID (gateway auth, set by
- * the workflow; the kilo provider reads them natively). Reads the prompt from triage-prompt.md next to this script.
+ * QRONOS_API_KEY + QRONOS_ORG_ID (gateway auth, set by
+ * the workflow; the qronos provider reads them natively). Reads the prompt from triage-prompt.md next to this script.
  * Budget: TRIAGE_BUDGET_MINUTES (default 35). Test hook: DOCS_SYNC_BACKOFF_MS.
  */
 
@@ -27,7 +27,7 @@ import {
   deadline,
   remainingMs,
   REASONING_VARIANT,
-  runKilo,
+  runQronos,
   sleepSync,
 } from "./lib.mjs"
 import { readLearningsBlock } from "./learn.mjs"
@@ -81,12 +81,12 @@ function triageChunk(chunk, index, budgetDeadline) {
       break
     }
 
-    // Headless `kilo run` auto-rejects every permission ask; without --auto the
+    // Headless `qronos run` auto-rejects every permission ask; without --auto the
     // agent cannot run shell commands. SECURITY: --auto grants unrestricted bash
     // to an agent steered by external PR content. Hardening deferred: a scoped
-    // permission.bash map via KILO_CONFIG_CONTENT should replace --auto once the
+    // permission.bash map via QRONOS_CONFIG_CONTENT should replace --auto once the
     // required shell patterns are stable (see PR #12605 review thread).
-    const result = runKilo({
+    const result = runQronos({
       args: [
         "run",
         "--auto",

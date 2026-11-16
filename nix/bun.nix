@@ -5,8 +5,8 @@
   autoPatchelfHook,
 }:
 let
-  # kilocode_change start - use the checksum-pinned npm runtime artifacts
-  pin = lib.pipe ../script/kilocode/bun.json [
+  # qronos_change start - use the checksum-pinned npm runtime artifacts
+  pin = lib.pipe ../script/qronos/bun.json [
     builtins.readFile
     builtins.fromJSON
   ];
@@ -17,7 +17,7 @@ let
     "aarch64-darwin" = pin.artifacts.darwin-arm64;
     "x86_64-darwin" = pin.artifacts.darwin-x64;
   };
-  # kilocode_change end
+  # qronos_change end
   source =
     sources.${stdenv.hostPlatform.system}
       or (throw "Unsupported system for bun: ${stdenv.hostPlatform.system}");
@@ -26,19 +26,19 @@ stdenv.mkDerivation {
   pname = "bun";
   inherit version;
   src = fetchurl {
-    # kilocode_change start
+    # qronos_change start
     url = "https://registry.npmjs.org/@oven/${source.name}/-/${source.name}-${version}.tgz";
     hash = source.integrity;
-    # kilocode_change end
+    # qronos_change end
   };
-  sourceRoot = "package"; # kilocode_change
-  nativeBuildInputs = lib.optional stdenv.isLinux autoPatchelfHook; # kilocode_change
+  sourceRoot = "package"; # qronos_change
+  nativeBuildInputs = lib.optional stdenv.isLinux autoPatchelfHook; # qronos_change
   buildInputs = lib.optionals stdenv.isLinux [ stdenv.cc.cc.lib ];
   dontConfigure = true;
   dontBuild = true;
   installPhase = ''
     runHook preInstall
-    install -Dm755 bin/bun $out/bin/bun # kilocode_change
+    install -Dm755 bin/bun $out/bin/bun # qronos_change
     ln -s $out/bin/bun $out/bin/bunx
     runHook postInstall
   '';

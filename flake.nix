@@ -1,8 +1,8 @@
 {
-  description = "Kilo development flake";
+  description = "Qronos development flake";
 
   inputs = {
-    # kilocode_change - pin 26.05 security staging for patched Node/Brotli and x86_64-darwin support
+    # qronos_change - pin 26.05 security staging for patched Node/Brotli and x86_64-darwin support
     nixpkgs.url = "github:NixOS/nixpkgs/4353e7cf16b1392d4def91dc089717e21ce8c71e";
   };
 
@@ -24,18 +24,18 @@
           let
             bun = pkgs.callPackage ./nix/bun.nix { };
 
-            kilo-dev = pkgs.writeShellScriptBin "kilo-dev" ''
+            qronos-dev = pkgs.writeShellScriptBin "qronos-dev" ''
               set -euo pipefail
 
-              : "''${KILO_ROOT:?KILO_ROOT is not set. Enter the flake dev shell from the repo root.}"
-              export KILO_DEV_CWD="$PWD"
-              exec ${bun}/bin/bun --cwd "$KILO_ROOT/packages/opencode" --conditions=browser ./src/index.ts "$@"
+              : "''${QRONOS_ROOT:?QRONOS_ROOT is not set. Enter the flake dev shell from the repo root.}"
+              export QRONOS_DEV_CWD="$PWD"
+              exec ${bun}/bin/bun --cwd "$QRONOS_ROOT/packages/cli" --conditions=browser ./src/index.ts "$@"
             '';
 
-            kilo-install-bin = pkgs.writeShellScriptBin "kilo-install" ''
+            qronos-install-bin = pkgs.writeShellScriptBin "qronos-install" ''
               set -euo pipefail
 
-              CACHE_DIR="$HOME/.cache/kilo-nix"
+              CACHE_DIR="$HOME/.cache/qronos-nix"
               VERSION="''${1:-latest}"
 
               # Platform detection
@@ -91,16 +91,16 @@
 
               # Build filename and URL
               target="$os-$arch$needs_baseline$is_musl"
-              filename="kilo-$target$ext"
+              filename="qronos-$target$ext"
 
               if [ "$VERSION" = "latest" ]; then
-                url="https://github.com/Kilo-Org/kilocode/releases/latest/download/$filename"
-                echo "Installing latest version of kilo..." >&2
+                url="https://github.com/Qronos-Org/qronos/releases/latest/download/$filename"
+                echo "Installing latest version of qronos..." >&2
               else
                 # Strip leading 'v' if present
                 VERSION="''${VERSION#v}"
-                url="https://github.com/Kilo-Org/kilocode/releases/download/v''${VERSION}/$filename"
-                echo "Installing kilo version $VERSION..." >&2
+                url="https://github.com/Qronos-Org/qronos/releases/download/v''${VERSION}/$filename"
+                echo "Installing qronos version $VERSION..." >&2
               fi
 
               # Create cache directory
@@ -112,8 +112,8 @@
 
               echo "Downloading from $url..." >&2
               if ! ${pkgs.curl}/bin/curl -fsSL -o "$tmp_dir/$filename" "$url"; then
-                echo "Error: Failed to download kilo from $url" >&2
-                echo "Please check your internet connection or visit https://github.com/Kilo-Org/kilocode/releases" >&2
+                echo "Error: Failed to download qronos from $url" >&2
+                echo "Please check your internet connection or visit https://github.com/Qronos-Org/qronos/releases" >&2
                 exit 1
               fi
 
@@ -126,33 +126,33 @@
               fi
 
               # Install the binary
-              KILO_BIN="$CACHE_DIR/kilo"
-              mv "$tmp_dir/kilo" "$KILO_BIN"
-              chmod +x "$KILO_BIN"
+              QRONOS_BIN="$CACHE_DIR/qronos"
+              mv "$tmp_dir/qronos" "$QRONOS_BIN"
+              chmod +x "$QRONOS_BIN"
 
               # Get the installed version
-              installed_version=$("$KILO_BIN" --version 2>/dev/null || echo "unknown")
-              echo "Successfully installed kilo $installed_version to $KILO_BIN" >&2
+              installed_version=$("$QRONOS_BIN" --version 2>/dev/null || echo "unknown")
+              echo "Successfully installed qronos $installed_version to $QRONOS_BIN" >&2
             '';
 
-            kilo-bin = pkgs.writeShellScriptBin "kilo" ''
+            qronos-bin = pkgs.writeShellScriptBin "qronos" ''
               set -euo pipefail
 
-              CACHE_DIR="$HOME/.cache/kilo-nix"
-              KILO_BIN="$CACHE_DIR/kilo"
+              CACHE_DIR="$HOME/.cache/qronos-nix"
+              QRONOS_BIN="$CACHE_DIR/qronos"
 
-              if [ ! -f "$KILO_BIN" ]; then
-                echo "Error: kilo is not installed in the cache." >&2
-                echo "Please run 'kilo-install' first to download and install kilo." >&2
+              if [ ! -f "$QRONOS_BIN" ]; then
+                echo "Error: qronos is not installed in the cache." >&2
+                echo "Please run 'qronos-install' first to download and install qronos." >&2
                 echo "" >&2
                 echo "Examples:" >&2
-                echo "  kilo-install          # Install latest version" >&2
-                echo "  kilo-install 1.0.180  # Install specific version" >&2
+                echo "  qronos-install          # Install latest version" >&2
+                echo "  qronos-install 1.0.180  # Install specific version" >&2
                 exit 1
               fi
 
               # Execute the cached binary with all arguments
-              exec "$KILO_BIN" "$@"
+              exec "$QRONOS_BIN" "$@"
             '';
           in
           pkgs.mkShell {
@@ -160,7 +160,7 @@
               with pkgs;
               [
                 bun
-                nodejs_24 # kilocode_change - use a supported runtime with the Brotli security fix
+                nodejs_24 # qronos_change - use a supported runtime with the Brotli security fix
                 python3
                 pkg-config
                 openssl
@@ -174,12 +174,12 @@
                 patchelf
                 ripgrep
                 jdk21
-                kilo-dev
-                kilo-install-bin
-                kilo-bin
+                qronos-dev
+                qronos-install-bin
+                qronos-bin
               ]
               ++ lib.optionals stdenv.isLinux [
-                jetbrains.jdk-21 # kilocode_change - JBR is Linux-only; keep Java 21 on all platforms above
+                jetbrains.jdk-21 # qronos_change - JBR is Linux-only; keep Java 21 on all platforms above
                 libX11
                 libXext
                 libXrender
@@ -189,7 +189,7 @@
                 freetype
               ];
             shellHook = ''
-              export KILO_ROOT="$PWD"
+              export QRONOS_ROOT="$PWD"
               export PLAYWRIGHT_BROWSERS_PATH="${pkgs.playwright-driver.browsers}"
               export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
             ''
@@ -213,19 +213,19 @@
         default =
           final: _prev:
           let
-            # kilocode_change start - match the Kilo package and its pinned dependency builder
+            # qronos_change start - match the Qronos package and its pinned dependency builder
             bun = final.callPackage ./nix/bun.nix { };
             node_modules = final.callPackage ./nix/node_modules.nix {
               inherit bun rev;
             };
-            kilo = final.callPackage ./nix/kilo.nix {
+            qronos = final.callPackage ./nix/qronos.nix {
               inherit bun node_modules;
             };
           in
           {
-            inherit kilo;
-            opencode = kilo; # Preserve the existing overlay attribute for consumers.
-            # kilocode_change end
+            inherit qronos;
+            opencode = qronos; # Preserve the existing overlay attribute for consumers.
+            # qronos_change end
           };
       };
 
@@ -236,13 +236,13 @@
           node_modules = pkgs.callPackage ./nix/node_modules.nix {
             inherit bun rev;
           };
-          kilo = pkgs.callPackage ./nix/kilo.nix {
+          qronos = pkgs.callPackage ./nix/qronos.nix {
             inherit bun node_modules;
           };
         in
         {
-          default = kilo;
-          inherit kilo;
+          default = qronos;
+          inherit qronos;
           # Updater derivation with fakeHash - build fails and reveals correct hash
           node_modules_updater = node_modules.override {
             hash = pkgs.lib.fakeHash;

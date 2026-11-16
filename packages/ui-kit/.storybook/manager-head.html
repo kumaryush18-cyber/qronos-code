@@ -1,0 +1,11 @@
+<style>
+  /* Hide Color Scheme toolbar when qronos-vscode theme is active */
+  html[data-qronos-theme="qronos-vscode"] [aria-label^="Color Scheme"] {
+    display: none !important;
+  }
+
+  /* Hide VS Code Theme toolbar by default and when qronos theme is active */
+  html:not([data-qronos-theme="qronos-vscode"]) [aria-label^="VSCode Theme"] {
+    display: none !important;
+  }
+</style>

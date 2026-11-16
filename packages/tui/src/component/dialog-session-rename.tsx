@@ -6,8 +6,8 @@ import { useSDK } from "../context/sdk"
 
 interface DialogSessionRenameProps {
   session: string
-  title?: string // kilocode_change
-  onConfirm?: () => void // kilocode_change
+  title?: string // qronos_change
+  onConfirm?: () => void // qronos_change
 }
 
 export function DialogSessionRename(props: DialogSessionRenameProps) {
@@ -19,14 +19,14 @@ export function DialogSessionRename(props: DialogSessionRenameProps) {
   return (
     <DialogPrompt
       title="Rename Session"
-      value={session()?.title ?? props.title} // kilocode_change
+      value={session()?.title ?? props.title} // qronos_change
       onConfirm={(value) => {
         void sdk.client.session
           .update({
             sessionID: props.session,
             title: value,
           })
-          .then(() => props.onConfirm?.()) // kilocode_change
+          .then(() => props.onConfirm?.()) // qronos_change
         dialog.clear()
       }}
       onCancel={() => dialog.clear()}

@@ -71,7 +71,7 @@ export const dict: Record<string, string> = {
   "ui.sessionTurn.error.addCredits": "Pridať kredity",
   "dialog.usageExceeded.freeTier.title": "Dosiahnutý bezplatný limit",
   "dialog.usageExceeded.freeTier.description":
-    "Predplaťte si Kilo Go za 10 $/mesiac a získajte spoľahlivý prístup k najlepším open-source modelom.", // kilocode_change
+    "Predplaťte si Qronos Go za 10 $/mesiac a získajte spoľahlivý prístup k najlepším open-source modelom.", // qronos_change
   "dialog.usageExceeded.freeTier.actionLabel": "Predplatiť",
   "dialog.usageExceeded.accountRateLimit.title": "Dosiahnutý limit Go",
   "dialog.usageExceeded.accountRateLimit.description":

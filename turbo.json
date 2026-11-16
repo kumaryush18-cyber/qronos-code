@@ -1,7 +1,7 @@
 {
   "$schema": "https://v2-8-13.turborepo.dev/schema.json",
-  "globalEnv": ["CI", "KILO_DISABLE_SHARE"],
-  "globalPassThroughEnv": ["CI", "KILO_DISABLE_SHARE"],
+  "globalEnv": ["CI", "QRONOS_DISABLE_SHARE"],
+  "globalPassThroughEnv": ["CI", "QRONOS_DISABLE_SHARE"],
   "tasks": {
     "typecheck": {
       "dependsOn": ["^typecheck"]
@@ -32,7 +32,7 @@
     },
     "@qronos-ai/cli#test:ci": {
       "dependsOn": ["^build"],
-      "env": ["KILO_TEST_PROFILE", "KILO_TEST_SHARD"],
+      "env": ["QRONOS_TEST_PROFILE", "QRONOS_TEST_SHARD"],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/.github/workflows/test.yml"],
       "outputs": [".artifacts/unit/junit.xml"],
       "passThroughEnv": ["*"]
@@ -43,22 +43,22 @@
       "outputs": [],
       "passThroughEnv": ["*"]
     },
-    "@qronos-ai/kilo-gateway#test:ci": {
+    "@qronos-ai/gateway#test:ci": {
       "outputs": [".artifacts/unit/junit.xml"]
     },
-    "@qronos-ai/kilo-docs#build": {
+    "@qronos-ai/docs#build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**"],
       "env": ["POSTHOG_API_KEY", "FREE_TIER_AMOUNT", "NEXT_PUBLIC_POSTHOG_KEY", "NEXT_PUBLIC_POSTHOG_HOST"]
     },
-    "@qronos-ai/kilo-jetbrains#build": {
+    "@qronos-ai/jetbrains#build": {
       "dependsOn": ["@qronos-ai/cli#build"],
       "outputs": ["build/distributions/**"]
     },
-    "@qronos-ai/kilo-jetbrains#typecheck": {
+    "@qronos-ai/jetbrains#typecheck": {
       "outputs": []
     },
-    "@qronos-ai/kilo-jetbrains#test:ci": {
+    "@qronos-ai/jetbrains#test:ci": {
       "outputs": [".artifacts/unit/junit.xml"]
     },
     "@qronos-ai/ui#test": {

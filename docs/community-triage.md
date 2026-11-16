@@ -1,6 +1,6 @@
 # Community triage
 
-How we handle pull requests and issues from people outside the Kilo team.
+How we handle pull requests and issues from people outside the Qronos team.
 
 The goal is simple. Maintainers see the community work that matters, and contributors know what happens next.
 
@@ -22,7 +22,7 @@ flowchart LR
     I --> D
 ```
 
-Two workflows do the work. Both use `script/kilocode/community-triage.ts`. A third runs the tests of that script.
+Two workflows do the work. Both use `script/qronos/community-triage.ts`. A third runs the tests of that script.
 
 | Workflow | Runs | Does |
 |---|---|---|
@@ -34,9 +34,9 @@ The sweep runs the evening before each maintainer slot. Andrea starts Friday and
 
 ## Closing
 
-Only one workflow closes PRs: `kilo-auto-close.yml`. The sweep and the label workflow close and remove nothing. They only add and remove labels, and the sweep posts the queue.
+Only one workflow closes PRs: `qronos-auto-close.yml`. The sweep and the label workflow close and remove nothing. They only add and remove labels, and the sweep posts the queue.
 
-`kilo-auto-close.yml` runs every day at 06:00 UTC and is controlled by the single variable `KILO_AUTO_CLOSE_ENABLED`:
+`qronos-auto-close.yml` runs every day at 06:00 UTC and is controlled by the single variable `QRONOS_AUTO_CLOSE_ENABLED`:
 
 | PR | Closed when |
 |---|---|
@@ -46,16 +46,16 @@ Only one workflow closes PRs: `kilo-auto-close.yml`. The sweep and the label wor
 
 Issues with no activity for 60 days are closed too. A close comment explains the reason.
 
-- `KILO_AUTO_CLOSE_ENABLED` must be exactly `true` to close. Any other value makes the workflow log what it would close, and do nothing else. A manual run uses its "dryRun" box instead.
+- `QRONOS_AUTO_CLOSE_ENABLED` must be exactly `true` to close. Any other value makes the workflow log what it would close, and do nothing else. A manual run uses its "dryRun" box instead.
 - The sweep sets `awaiting-contributor`. `keep-open` is set by hand. The workflow reads both labels at run time, so a label that is a few days old does not close a PR that was active since.
 
 ### Paused: opencode v2 migration
 
-The team is migrating to opencode v2, and community reviews are paused until further notice. A community PR must not be closed because nobody had time to answer it. So `KILO_AUTO_CLOSE_ENABLED` must be kept set to `false` while the pause lasts. If it is set to `true`, `kilo-auto-close.yml` closes PRs, and the `awaiting-contributor` rule closes them after 14 days with no warning. Any other value, including unset, closes nothing.
+The team is migrating to opencode v2, and community reviews are paused until further notice. A community PR must not be closed because nobody had time to answer it. So `QRONOS_AUTO_CLOSE_ENABLED` must be kept set to `false` while the pause lasts. If it is set to `true`, `qronos-auto-close.yml` closes PRs, and the `awaiting-contributor` rule closes them after 14 days with no warning. Any other value, including unset, closes nothing.
 
 - Labels, priorities and the queue keep working.
-- To resume, set the variable to `true` (`gh variable set KILO_AUTO_CLOSE_ENABLED --body true`) and remove this note.
-- To check what would be closed first, run "kilo-auto-close" by hand with "dryRun" ticked.
+- To resume, set the variable to `true` (`gh variable set QRONOS_AUTO_CLOSE_ENABLED --body true`) and remove this note.
+- To check what would be closed first, run "qronos-auto-close" by hand with "dryRun" ticked.
 
 ## Who is a maintainer
 
@@ -91,12 +91,12 @@ Set by the workflows:
 | Label | Meaning |
 |---|---|
 | `community` | Author is not a maintainer |
-| `area:vscode`, `area:cli`, `area:agent-manager`, `area:jetbrains`, `area:desktop`, `area:docs`, `area:gateway`, `area:sdk`, `area:ui`, `area:i18n` | Part of the repo. Comes from the title scope (`fix(vscode): ...`), a product name in the title ("Kilo Desktop", "Agent Manager" or "JetBrains"), the changed paths, or the issue "Component" dropdown |
+| `area:vscode`, `area:cli`, `area:agent-manager`, `area:jetbrains`, `area:desktop`, `area:docs`, `area:gateway`, `area:sdk`, `area:ui`, `area:i18n` | Part of the repo. Comes from the title scope (`fix(vscode): ...`), a product name in the title ("Qronos Desktop", "Agent Manager" or "JetBrains"), the changed paths, or the issue "Component" dropdown |
 | `first-time-contributor` | First contribution to this repo. See [First-time contributors](#first-time-contributors) |
 | `quick-win` | Small, low-risk PR. See [Quick wins](#quick-wins) |
 | `priority:p1`, `priority:p2`, `priority:p3` | Set from the title when a community PR opens. See [Priority](#priority) |
 | `needs-triage` | A maintainer should look: a new PR, or the contributor replied or pushed |
-| `awaiting-contributor` | A maintainer reacted last. After 14 days with no activity, `kilo-auto-close.yml` closes the PR, if closing is on |
+| `awaiting-contributor` | A maintainer reacted last. After 14 days with no activity, `qronos-auto-close.yml` closes the PR, if closing is on |
 
 Set by hand:
 
@@ -181,12 +181,12 @@ A warm first reply matters most for people who are new here.
 
 - The PR is not a draft, its author is a community member, and it is not waiting for the contributor.
 - The last commit has passing checks, and GitHub reports the PR as mergeable.
-- No changed file is risky: `.github/`, `.kilo/`, `script/`, `patches/`, `packages/kilo-gateway/`, `package.json` or `bun.lock`.
+- No changed file is risky: `.github/`, `.qronos/`, `script/`, `patches/`, `packages/gateway/`, `package.json` or `bun.lock`.
 - One of these shapes fits:
 
 | Shape | Rule |
 |---|---|
-| Docs only | Every file is a `.md` or `.mdx` file, or is under `docs/` or `packages/kilo-docs/`. Files under `.kilo/` and `.changeset/` do not count as docs. At most 150 changed lines |
+| Docs only | Every file is a `.md` or `.mdx` file, or is under `docs/` or `packages/docs/`. Files under `.qronos/` and `.changeset/` do not count as docs. At most 150 changed lines |
 | Tests only | Every file is a test file. At most 150 changed lines |
 | Small change | At most 50 changed lines in at most 3 files |
 
@@ -203,7 +203,7 @@ When a PR has been `awaiting-contributor` for 14 days with no activity:
 | PR | Result |
 |---|---|
 | Has `keep-open` | Stays open and shows in the digest under "Adopt". Add it to the standup doc and pick an owner |
-| Anything else | Closed by `kilo-auto-close.yml` with a comment, when closing is on. See [Closing](#closing) |
+| Anything else | Closed by `qronos-auto-close.yml` with a comment, when closing is on. See [Closing](#closing) |
 
 The sweep itself closes nothing and posts no warning comment. The digest shows the days waiting, so a maintainer can still reply before day 14.
 
@@ -262,7 +262,7 @@ New issues get the `community` label, `needs-triage`, `first-time-contributor` f
 
 | Name | Kind | Needed | Purpose |
 |---|---|---|---|
-| `KILO_AUTO_CLOSE_ENABLED` | Variable | No | `true` lets `kilo-auto-close.yml` close PRs and issues. Set to `false` while community reviews are paused |
+| `QRONOS_AUTO_CLOSE_ENABLED` | Variable | No | `true` lets `qronos-auto-close.yml` close PRs and issues. Set to `false` while community reviews are paused |
 | `COMMUNITY_TRIAGE_MEMBER_TOKEN` | Secret | Yes | Token with `read:org`. Finds private org members |
 | `COMMUNITY_TRIAGE_SLACK_TOKEN` | Secret | No | Slack bot token (`xoxb-`, scope `chat:write`). Posts a summary and threads the lists. The bot must be in the channel |
 | `COMMUNITY_TRIAGE_SLACK_CHANNEL` | Secret | No | Channel ID (`C...`) for the bot token |

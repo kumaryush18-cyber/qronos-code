@@ -1,4 +1,4 @@
-// kilocode_change - new file
+// qronos_change - new file
 
 /**
  * Deterministic half of the v2-port tracker: turns the agent's draft into a
@@ -25,7 +25,7 @@ import { api, appendOutput, appendSummary, repo } from "../docs-sync/lib.mjs"
 const OUT_DIR = "v2-port-out"
 const LABEL = "core-v1-changes-port"
 const LABEL_COLOR = "5319e7"
-const LABEL_DESCRIPTION = "Kilo core v1 change to re-implement or verify in opencode v2"
+const LABEL_DESCRIPTION = "Qronos core v1 change to re-implement or verify in opencode v2"
 const COMMENT_MARKER = "<!-- v2-port:comment -->"
 const MAX_TITLE = 80
 
@@ -112,7 +112,7 @@ export function withAuthor(body, author, assignable) {
 export function buildBody({ number, url, author, assignable, body }) {
   const banner = [
     markerFor(number),
-    `> Auto-created by the \`v2-port-tracker\` workflow from Kilo v1 PR #${number} (${url}) for the`,
+    `> Auto-created by the \`v2-port-tracker\` workflow from Qronos v1 PR #${number} (${url}) for the`,
     "> opencode v2 rewrite. The summary below is generated from that PR's changes, tests, and discussion —",
     "> review it before planning.",
     "",

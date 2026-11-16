@@ -1,5 +1,5 @@
 import { EventV2 } from "@qronos-ai/core/event"
-import { KiloEvent } from "@qronos-ai/protocol/groups/event" // kilocode_change - encode the full Kilo event bus
+import { QronosEvent } from "@qronos-ai/protocol/groups/event" // qronos_change - encode the full Qronos event bus
 import { Effect, Schema, Stream } from "effect"
 import { HttpServerResponse } from "effect/unstable/http"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
@@ -13,7 +13,7 @@ function eventData(data: unknown): Sse.Event {
     _tag: "Event",
     event: "message",
     id: undefined,
-    data: JSON.stringify(Schema.encodeUnknownSync(KiloEvent)(data)), // kilocode_change
+    data: JSON.stringify(Schema.encodeUnknownSync(QronosEvent)(data)), // qronos_change
   }
 }
 

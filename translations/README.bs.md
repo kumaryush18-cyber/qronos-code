@@ -3,36 +3,36 @@
 </p>
 
 <p align="center">
-  <a href="https://kilo.ai"><img width="250" alt="Kilo Code logo" src="https://github.com/user-attachments/assets/bdb0c174-b9fd-40ad-a47b-f3aab9b54e8d" /></a>
+  <a href="https://qronos.me"><img width="250" alt="Qronos Code logo" src="https://github.com/user-attachments/assets/bdb0c174-b9fd-40ad-a47b-f3aab9b54e8d" /></a>
 </p>
 
 <p align="center">Open source agent za kodiranje s AI-jem u VS Codeu, JetBrainsu ili CLI-ju.</p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code"><img src="https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace" height="20"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=qronos.Qronos-Code"><img src="https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace" height="20"></a>
   <a href="https://www.npmjs.com/package/@qronos-ai/cli"><img alt="npm" src="https://raster.shields.io/npm/v/@qronos-ai/cli?style=flat" height="20" /></a>
-  <a href="https://x.com/kilocode"><img src="https://raster.shields.io/badge/kilocode-000000?style=flat&logo=x&logoColor=white" alt="X (Twitter)" height="20"></a>
-  <a href="https://blog.kilo.ai"><img src="https://raster.shields.io/badge/Blog-555?style=flat&logo=substack&logoColor=white" alt="Blog" height="20"></a>
-  <a href="https://kilo.ai/discord"><img src="https://raster.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord" height="20"></a>
-  <a href="https://www.reddit.com/r/kilocode/"><img src="https://raster.shields.io/badge/Join%20r%2Fkilocode-D84315?style=flat&logo=reddit&logoColor=white" alt="Reddit" height="20"></a>
+  <a href="https://x.com/qronos"><img src="https://raster.shields.io/badge/qronos-000000?style=flat&logo=x&logoColor=white" alt="X (Twitter)" height="20"></a>
+  <a href="https://blog.qronos.me"><img src="https://raster.shields.io/badge/Blog-555?style=flat&logo=substack&logoColor=white" alt="Blog" height="20"></a>
+  <a href="https://qronos.me/discord"><img src="https://raster.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord" height="20"></a>
+  <a href="https://www.reddit.com/r/qronos/"><img src="https://raster.shields.io/badge/Join%20r%2Fqronos-D84315?style=flat&logo=reddit&logoColor=white" alt="Reddit" height="20"></a>
 </p>
 
-![Kilo-in-VS-Code-and-CLI](https://github.com/user-attachments/assets/0536ca59-ed81-4512-9e05-d186187a1b52)
+![Qronos-in-VS-Code-and-CLI](https://github.com/user-attachments/assets/0536ca59-ed81-4512-9e05-d186187a1b52)
 
 ---
 
-Kilo Code je AI agent za kodiranje koji vas prati svugdje gdje radite: [VS Code](https://kilo.ai/landing/vs-code), [JetBrains](https://kilo.ai/features/jetbrains-native) i [CLI](https://kilo.ai/cli). Open source je i ima otvorene cijene. Birate između više od 500 modela, mijenjate ih usred zadatka i plaćate cijenu pružaoca modela bez dodatne marže. API ključevi nisu potrebni za početak.
+Qronos Code je AI agent za kodiranje koji vas prati svugdje gdje radite: [VS Code](https://qronos.me/landing/vs-code), [JetBrains](https://qronos.me/features/jetbrains-native) i [CLI](https://qronos.me/cli). Open source je i ima otvorene cijene. Birate između više od 500 modela, mijenjate ih usred zadatka i plaćate cijenu pružaoca modela bez dodatne marže. API ključevi nisu potrebni za početak.
 
 ### Instalacija
 
-Odaberite gdje želite pokrenuti Kilo.
+Odaberite gdje želite pokrenuti Qronos.
 
 <details open>
 <summary><strong>VS Code</strong></summary>
 
 <br>
 
-Instalirajte [Kilo Code ekstenziju](vscode:extension/kilocode.kilo-code) direktno ili je preuzmite sa [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code). Kreirajte račun i imat ćete pristup za više od 500 modela, uključujući GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6 i Gemini 3.1 Pro Preview, sve po cijenama pružaoca.
+Instalirajte [Qronos Code ekstenziju](vscode:extension/qronos.qronos-code) direktno ili je preuzmite sa [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=qronos.Qronos-Code). Kreirajte račun i imat ćete pristup za više od 500 modela, uključujući GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6 i Gemini 3.1 Pro Preview, sve po cijenama pružaoca.
 
 </details>
 
@@ -46,7 +46,7 @@ Instalirajte [Kilo Code ekstenziju](vscode:extension/kilocode.kilo-code) direktn
 npm install -g @qronos-ai/cli
 
 # curl
-curl -fsSL https://kilo.ai/cli/install | bash
+curl -fsSL https://qronos.me/cli/install | bash
 
 # pnpm
 pnpm add -g @qronos-ai/cli
@@ -55,13 +55,13 @@ pnpm add -g @qronos-ai/cli
 bun add -g @qronos-ai/cli
 
 # Homebrew (macOS / Linux)
-brew install Kilo-Org/tap/kilo
+brew install Qronos-Org/tap/qronos
 
 # Arch Linux (AUR)
-paru -S kilo-bin
+paru -S qronos-bin
 ```
 
-Zatim pokrenite `kilo` u bilo kojem direktoriju projekta.
+Zatim pokrenite `qronos` u bilo kojem direktoriju projekta.
 
 </details>
 
@@ -70,7 +70,7 @@ Zatim pokrenite `kilo` u bilo kojem direktoriju projekta.
 
 <br>
 
-Instalirajte [Kilo Code plugin](https://plugins.jetbrains.com/plugin/28350-kilo-code) sa JetBrains Marketplacea ili potražite "Kilo Code" u `Settings → Plugins` unutar bilo kojeg JetBrains IDE-a.
+Instalirajte [Qronos Code plugin](https://plugins.jetbrains.com/plugin/28350-qronos-code) sa JetBrains Marketplacea ili potražite "Qronos Code" u `Settings → Plugins` unutar bilo kojeg JetBrains IDE-a.
 
 </details>
 
@@ -79,7 +79,7 @@ Instalirajte [Kilo Code plugin](https://plugins.jetbrains.com/plugin/28350-kilo-
 
 <br>
 
-Pokrenite Kilo s weba, bez lokalne mašine, na [app.kilo.ai/cloud](https://app.kilo.ai/cloud).
+Pokrenite Qronos s weba, bez lokalne mašine, na [app.qronos.ai/cloud](https://qronos.me/cloud).
 
 </details>
 
@@ -88,30 +88,30 @@ Pokrenite Kilo s weba, bez lokalne mašine, na [app.kilo.ai/cloud](https://app.k
 
 <br>
 
-Postavite automatske AI preglede koda na svojim pull requestovima na [app.kilo.ai/code-reviews](https://app.kilo.ai/code-reviews).
+Postavite automatske AI preglede koda na svojim pull requestovima na [app.qronos.ai/code-reviews](https://qronos.me/code-reviews).
 
 </details>
 
 <details>
 <summary>Instalirajte CLI iz GitHub Releases (binarne datoteke)</summary>
 
-Preuzmite najnoviju binarnu datoteku sa [Releases stranice](https://github.com/Kilo-Org/kilocode/releases).
+Preuzmite najnoviju binarnu datoteku sa [Releases stranice](https://github.com/Qronos-Org/qronos/releases).
 
 | Platforma | Asset |
 |---|---|
-| Windows (većina PC računara) | `kilo-windows-x64.zip` |
-| macOS (Apple Silicon) | `kilo-darwin-arm64.zip` |
-| macOS (Intel) | `kilo-darwin-x64.zip` |
-| Linux x64 | `kilo-linux-x64.tar.gz` |
-| Linux ARM | `kilo-linux-arm64.tar.gz` |
+| Windows (većina PC računara) | `qronos-windows-x64.zip` |
+| macOS (Apple Silicon) | `qronos-darwin-arm64.zip` |
+| macOS (Intel) | `qronos-darwin-x64.zip` |
+| Linux x64 | `qronos-linux-x64.tar.gz` |
+| Linux ARM | `qronos-linux-arm64.tar.gz` |
 
-Napomene: `x64-baseline` je kompatibilna verzija za starije CPU-e bez AVX-a. `musl` je statički linkovana verzija za Alpine ili minimalne Docker slike bez glibc-a. `kilo-vscode-*.vsix` je paket VS Code ekstenzije, ne CLI. `Source code` arhive služe za build iz izvornog koda.
+Napomene: `x64-baseline` je kompatibilna verzija za starije CPU-e bez AVX-a. `musl` je statički linkovana verzija za Alpine ili minimalne Docker slike bez glibc-a. `qronos-vscode-*.vsix` je paket VS Code ekstenzije, ne CLI. `Source code` arhive služe za build iz izvornog koda.
 
 </details>
 
 ### Agents
 
-Kilo dolazi sa specijaliziranim agents koje mijenjate zavisno od zadatka. Možete napraviti i vlastite prilagođene agents.
+Qronos dolazi sa specijaliziranim agents koje mijenjate zavisno od zadatka. Možete napraviti i vlastite prilagođene agents.
 
 - **Code** - Zadani. Implementira i uređuje kod iz prirodnog jezika.
 - **Plan** - Dizajnira arhitekturu i piše implementacijske planove prije pisanja koda.
@@ -119,7 +119,7 @@ Kilo dolazi sa specijaliziranim agents koje mijenjate zavisno od zadatka. Možet
 - **Debug** - Rješava i prati probleme.
 - **Review** - Pregleda vaše promjene i pronalazi probleme u performansama, sigurnosti, stilu i pokrivenosti testovima.
 
-Saznajte više o [agents i prilagođenim agents](https://kilo.ai/docs/code-with-ai/agents/using-agents).
+Saznajte više o [agents i prilagođenim agents](https://qronos.me/docs/code-with-ai/agents/using-agents).
 
 ### Šta radi
 
@@ -132,21 +132,21 @@ Saznajte više o [agents i prilagođenim agents](https://kilo.ai/docs/code-with-
 
 ### Autonomni način rada (CI/CD)
 
-Pokrenite `kilo run` s `--auto` za potpuno autonoman rad bez promptova, napravljen za CI/CD pipelineove:
+Pokrenite `qronos run` s `--auto` za potpuno autonoman rad bez promptova, napravljen za CI/CD pipelineove:
 
 ```bash
-kilo run --auto "run tests and fix any failures"
+qronos run --auto "run tests and fix any failures"
 ```
 
 `--auto` isključuje sve upite za dozvole i dopušta agentu da izvrši bilo koju radnju bez potvrde. Koristite samo u pouzdanim okruženjima.
 
 ### Dokumentacija
 
-Za konfiguraciju i sve ostalo posjetite [dokumentaciju](https://kilo.ai/docs).
+Za konfiguraciju i sve ostalo posjetite [dokumentaciju](https://qronos.me/docs).
 
 ### Doprinos
 
-Doprinosi su dobrodošli od developera, pisaca i svih ostalih. Počnite sa [Contributing Guide](/CONTRIBUTING.md) za podešavanje okruženja, standarde kodiranja i otvaranje pull requesta. Pogledajte [RELEASING.md](../RELEASING.md) za proces izdavanja VS Code ekstenzije i CLI-ja, te [packages/kilo-jetbrains/RELEASING.md](../packages/kilo-jetbrains/RELEASING.md) za JetBrains plugin.
+Doprinosi su dobrodošli od developera, pisaca i svih ostalih. Počnite sa [Contributing Guide](/CONTRIBUTING.md) za podešavanje okruženja, standarde kodiranja i otvaranje pull requesta. Pogledajte [RELEASING.md](../RELEASING.md) za proces izdavanja VS Code ekstenzije i CLI-ja, te [packages/jetbrains/RELEASING.md](../packages/jetbrains/RELEASING.md) za JetBrains plugin.
 
 Prije uključivanja pročitajte naš [Code of Conduct](/CODE_OF_CONDUCT.md).
 
@@ -157,12 +157,12 @@ MIT. Možete koristiti, mijenjati i distribuirati ovaj kod, uključujući komerc
 ### FAQ
 
 <details>
-<summary>Odakle dolazi Kilo CLI?</summary>
+<summary>Odakle dolazi Qronos CLI?</summary>
 
-Kilo CLI je fork [OpenCode](https://github.com/anomalyco/opencode), poboljšan za rad unutar Kilo agentic engineering platforme.
+Qronos CLI je fork [OpenCode](https://github.com/anomalyco/opencode), poboljšan za rad unutar Qronos agentic engineering platforme.
 
 </details>
 
 ---
 
-**Pridružite se zajednici** [Discord](https://kilo.ai/discord) | [X](https://x.com/kilocode) | [Reddit](https://www.reddit.com/r/kilocode/)
+**Pridružite se zajednici** [Discord](https://qronos.me/discord) | [X](https://x.com/qronos) | [Reddit](https://www.reddit.com/r/qronos/)

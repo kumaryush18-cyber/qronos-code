@@ -1,0 +1,143 @@
+package ai.qronos.rpc
+
+import ai.qronos.rpc.dto.DeviceAuthDto
+import ai.qronos.rpc.dto.ConfigPatchDto
+import ai.qronos.rpc.dto.HealthDto
+import ai.qronos.rpc.dto.QronosAppStateDto
+import ai.qronos.rpc.dto.LogConfigDto
+import ai.qronos.rpc.dto.LogFileDto
+import ai.qronos.rpc.dto.ModelFavoriteUpdateDto
+import ai.qronos.rpc.dto.ModelSelectionUpdateDto
+import ai.qronos.rpc.dto.ModelStateDto
+import ai.qronos.rpc.dto.ModelVariantUpdateDto
+import ai.qronos.rpc.dto.ProfileDto
+import ai.qronos.rpc.dto.RetentionStatusDto
+import ai.qronos.rpc.dto.SpeechModelDto
+import ai.qronos.rpc.dto.SpeechRequestDto
+import ai.qronos.rpc.dto.SpeechResultDto
+import ai.qronos.rpc.dto.TelemetryCaptureDto
+import com.intellij.platform.rpc.RemoteApiProviderService
+import fleet.rpc.RemoteApi
+import fleet.rpc.Rpc
+import fleet.rpc.remoteApiDescriptor
+import kotlinx.coroutines.flow.Flow
+
+/**
+ * App-level RPC API exposed from backend to frontend.
+ *
+ * All operations are project-neutral — the CLI backend runs once
+ * per application, not per project.
+ */
+@Rpc
+interface QronosAppRpcApi : RemoteApi<Unit> {
+    companion object {
+        suspend fun getInstance(): QronosAppRpcApi {
+            return RemoteApiProviderService.resolve(remoteApiDescriptor<QronosAppRpcApi>())
+        }
+    }
+
+    /** Ensure the CLI backend is running and connected. */
+    suspend fun connect()
+
+    /** Observe app lifecycle state changes. */
+    suspend fun state(): Flow<QronosAppStateDto>
+
+    /** One-shot health check against /global/health. */
+    suspend fun health(): HealthDto
+
+    /** Pinned Core version bundled in backend resources. */
+    suspend fun cliVersion(): String
+
+    /** Core platform downloaded by the backend process. */
+    suspend fun cliPlatform(): String
+
+    /** Whether the running Core is bundled in the plugin (true) or downloaded (false). */
+    suspend fun cliBundled(): Boolean
+
+    /** Retry app connection or loading after a failure. */
+    suspend fun retry()
+
+    /** Kill the Core process and restart it. */
+    suspend fun restart()
+
+    /** Kill the Core process, re-download the binary, and restart. */
+    suspend fun reinstall()
+
+    /** Load persisted CLI model state such as favorites. */
+    suspend fun modelState(): ModelStateDto
+
+    /** Toggle a persisted CLI model favorite. */
+    suspend fun updateModelFavorite(update: ModelFavoriteUpdateDto): ModelStateDto
+
+    /** Persist a per-agent model selection. */
+    suspend fun updateModelSelection(update: ModelSelectionUpdateDto): ModelStateDto
+
+    /**
+     * Forget the persisted per-agent model selection.
+     *
+     * The persisted pick outranks every config default, so a reset that only cleared the in-memory
+     * session pick resurrected the saved model on the next mode switch or new session.
+     */
+    suspend fun clearModelSelection(agent: String): ModelStateDto
+
+    /** Persist a per-model reasoning variant selection. */
+    suspend fun updateModelVariant(update: ModelVariantUpdateDto): ModelStateDto
+
+    /** Patch global CLI config values. */
+    suspend fun updateConfig(patch: ConfigPatchDto): QronosAppStateDto
+
+    /** Read the machine-wide session-retention policy, progress, and last run. */
+    suspend fun retentionStatus(): RetentionStatusDto
+
+    /** Trigger a machine-wide session-retention pass. */
+    suspend fun runRetention(force: Boolean): RetentionStatusDto
+
+    /** Apply frontend-managed diagnostic log settings in the backend process. */
+    suspend fun applyLogConfig(config: LogConfigDto)
+
+    /** Whether Qronos-managed worktrees under `.qronos/worktrees` are indexed by their containing project. */
+    suspend fun indexWorktrees(): Boolean
+
+    /**
+     * Persist whether Qronos-managed worktrees under `.qronos/worktrees` are indexed, and reindex every
+     * open project so the change takes effect immediately.
+     */
+    suspend fun setIndexWorktrees(value: Boolean)
+
+    /** Read the backend diagnostic log file for download in split mode. Null when absent. */
+    suspend fun backendLogFile(): LogFileDto?
+
+    /** Refresh the user profile and return the latest data, or null if not logged in. */
+    suspend fun refreshProfile(): ProfileDto?
+
+    /** Speech-to-text models available through the authenticated Qronos Gateway. */
+    suspend fun transcriptionModels(directory: String?): List<SpeechModelDto>
+
+    /** Transcribe an audio recording through the authenticated Qronos Gateway. */
+    suspend fun transcribe(directory: String?, request: SpeechRequestDto): SpeechResultDto
+
+    /**
+     * Start the device auth login flow for Qronos Gateway.
+     * Returns device auth details (verification URL and code) to show in the UI.
+     */
+    suspend fun startLogin(directory: String?): DeviceAuthDto
+
+    /**
+     * Complete the device auth login flow. Blocks until the user completes authentication.
+     * Returns the fresh profile on success, null if aborted.
+     */
+    suspend fun completeLogin(directory: String?): ProfileDto?
+
+    /** Log out from Qronos Gateway. */
+    suspend fun logout(): Boolean
+
+    /**
+     * Switch the active account context.
+     * Pass null for personal account, or an organization ID for org context.
+     * Returns the updated profile, or null if not logged in.
+     */
+    suspend fun setOrganization(organizationId: String?): ProfileDto?
+
+    /** Fire-and-forget behavior telemetry routed through the CLI server. */
+    suspend fun captureTelemetry(capture: TelemetryCaptureDto)
+}

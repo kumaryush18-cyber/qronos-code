@@ -1,5 +1,5 @@
 ---
-"@qronos-ai/kilo-jetbrains": minor
+"@qronos-ai/jetbrains": minor
 "@qronos-ai/cli": patch
 ---
 

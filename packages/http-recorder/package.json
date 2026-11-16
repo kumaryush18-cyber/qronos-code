@@ -7,11 +7,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kilo-Org/kilocode.git",
+    "url": "git+https://github.com/Qronos-Org/qronos.git",
     "directory": "packages/http-recorder"
   },
-  "homepage": "https://github.com/Kilo-Org/kilocode/tree/main/packages/http-recorder",
-  "bugs": "https://github.com/Kilo-Org/kilocode/issues",
+  "homepage": "https://github.com/Qronos-Org/qronos/tree/main/packages/http-recorder",
+  "bugs": "https://github.com/Qronos-Org/qronos/issues",
   "keywords": [
     "effect",
     "http",

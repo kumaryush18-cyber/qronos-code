@@ -1,6 +1,6 @@
 import type {
   Event,
-  createKiloClient,
+  createQronosClient,
   Project,
   Model,
   Provider,
@@ -54,7 +54,7 @@ export type WorkspaceAdapter = {
 }
 
 export type PluginInput = {
-  client: ReturnType<typeof createKiloClient>
+  client: ReturnType<typeof createQronosClient>
   project: Project
   directory: string
   worktree: string

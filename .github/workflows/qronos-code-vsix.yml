@@ -54,12 +54,12 @@ jobs:
           echo "$RUNNER_TEMP/zig-linux-x86_64-0.14.0" >> "$GITHUB_PATH"
 
       - name: Build the CLI binary for this platform
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: bun run prepare:cli-binary
 
       - name: Verify the binary is real (not a wrapper script)
         shell: bash
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: |
           ls -la bin/
           size=$(wc -c < bin/qronos || wc -c < bin/qronos.exe)
@@ -70,15 +70,15 @@ jobs:
           fi
 
       - name: Prepare SDK
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: bun run prepare:sdk
 
       - name: Bundle the extension and webview
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: bun esbuild.js
 
       - name: Package the extension
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: >
           bunx @vscode/vsce package
           --no-dependencies
@@ -90,6 +90,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: qronos-code-${{ matrix.target }}
-          path: packages/kilo-vscode/qronos-code-${{ matrix.target }}.vsix
+          path: packages/extension/qronos-code-${{ matrix.target }}.vsix
           if-no-files-found: error
           retention-days: 14

@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@qronos-ai/kilo",
+      "name": "@qronos-ai/qronos",
       "dependencies": {
         "@aws-sdk/client-s3": "3.1160.0",
         "@qronos-ai/plugin": "workspace:*",
@@ -106,8 +106,8 @@
         "@effect/platform-node": "catalog:",
         "@effect/sql-sqlite-bun": "catalog:",
         "@ff-labs/fff-bun": "0.9.4",
-        "@qronos-ai/kilo-gateway": "workspace:*",
-        "@qronos-ai/kilo-indexing": "workspace:*",
+        "@qronos-ai/gateway": "workspace:*",
+        "@qronos-ai/indexing": "workspace:*",
         "@qronos-ai/plugin": "workspace:*",
         "@qronos-ai/sandbox": "workspace:*",
         "@lydell/node-pty": "catalog:",
@@ -233,12 +233,12 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "packages/kilo-console": {
-      "name": "@qronos-ai/kilo-console",
+    "packages/console": {
+      "name": "@qronos-ai/console",
       "version": "7.8.28",
       "dependencies": {
-        "@qronos-ai/kilo-indexing": "workspace:*",
-        "@qronos-ai/kilo-web-ui": "workspace:*",
+        "@qronos-ai/indexing": "workspace:*",
+        "@qronos-ai/web-ui": "workspace:*",
         "@qronos-ai/sdk": "workspace:*",
         "@pierre/diffs": "catalog:",
         "@solidjs/router": "catalog:",
@@ -255,8 +255,8 @@
         "vite-plugin-solid": "catalog:",
       },
     },
-    "packages/kilo-docs": {
-      "name": "@qronos-ai/kilo-docs",
+    "packages/docs": {
+      "name": "@qronos-ai/docs",
       "version": "7.8.28",
       "dependencies": {
         "@docsearch/css": "^4",
@@ -285,8 +285,8 @@
         "vitest": "5.0.5",
       },
     },
-    "packages/kilo-e2e": {
-      "name": "@qronos-ai/kilo-e2e",
+    "packages/e2e": {
+      "name": "@qronos-ai/e2e",
       "version": "7.8.28",
       "dependencies": {
         "zod": "catalog:",
@@ -297,8 +297,8 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "packages/kilo-gateway": {
-      "name": "@qronos-ai/kilo-gateway",
+    "packages/gateway": {
+      "name": "@qronos-ai/gateway",
       "version": "7.8.28",
       "dependencies": {
         "@ai-sdk/anthropic": "3.0.82",
@@ -331,8 +331,8 @@
         "solid-js",
       ],
     },
-    "packages/kilo-i18n": {
-      "name": "@qronos-ai/kilo-i18n",
+    "packages/i18n": {
+      "name": "@qronos-ai/i18n",
       "version": "7.8.28",
       "devDependencies": {
         "@tsconfig/node22": "catalog:",
@@ -341,13 +341,13 @@
         "typescript": "catalog:",
       },
     },
-    "packages/kilo-indexing": {
-      "name": "@qronos-ai/kilo-indexing",
+    "packages/indexing": {
+      "name": "@qronos-ai/indexing",
       "version": "7.8.28",
       "dependencies": {
         "@aws-sdk/client-bedrock-runtime": "3.1005.0",
         "@aws-sdk/credential-provider-ini": "3.972.31",
-        "@qronos-ai/kilo-gateway": "workspace:*",
+        "@qronos-ai/gateway": "workspace:*",
         "@qronos-ai/plugin": "workspace:*",
         "@lancedb/lancedb": "0.26.2",
         "@parcel/watcher": "2.5.1",
@@ -373,12 +373,12 @@
         "typescript": "catalog:",
       },
     },
-    "packages/kilo-jetbrains": {
-      "name": "@qronos-ai/kilo-jetbrains",
+    "packages/jetbrains": {
+      "name": "@qronos-ai/jetbrains",
       "version": "7.8.28",
     },
-    "packages/kilo-memory": {
-      "name": "@qronos-ai/kilo-memory",
+    "packages/memory": {
+      "name": "@qronos-ai/memory",
       "version": "7.8.28",
       "dependencies": {
         "effect": "catalog:",
@@ -391,7 +391,7 @@
         "typescript": "catalog:",
       },
     },
-    "packages/kilo-sandbox": {
+    "packages/sandbox": {
       "name": "@qronos-ai/sandbox",
       "version": "7.8.28",
       "dependencies": {
@@ -406,11 +406,11 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "packages/kilo-telemetry": {
-      "name": "@qronos-ai/kilo-telemetry",
+    "packages/telemetry": {
+      "name": "@qronos-ai/telemetry",
       "version": "7.8.28",
       "dependencies": {
-        "@qronos-ai/kilo-gateway": "workspace:*",
+        "@qronos-ai/gateway": "workspace:*",
         "posthog-node": "4.4.0",
       },
       "devDependencies": {
@@ -420,8 +420,8 @@
         "typescript": "catalog:",
       },
     },
-    "packages/kilo-ui": {
-      "name": "@qronos-ai/kilo-ui",
+    "packages/ui-kit": {
+      "name": "@qronos-ai/ui-kit",
       "version": "7.8.28",
       "dependencies": {
         "@qronos-ai/sdk": "workspace:*",
@@ -458,16 +458,16 @@
         "solid-js": "catalog:",
       },
     },
-    "packages/kilo-vscode": {
+    "packages/extension": {
       "name": "qronos-code",
       "version": "1.0.0",
       "dependencies": {
         "@anthropic-ai/sdk": "^0.39.0",
-        "@qronos-ai/kilo-gateway": "workspace:*",
-        "@qronos-ai/kilo-i18n": "workspace:*",
-        "@qronos-ai/kilo-indexing": "workspace:*",
-        "@qronos-ai/kilo-memory": "workspace:*",
-        "@qronos-ai/kilo-ui": "workspace:*",
+        "@qronos-ai/gateway": "workspace:*",
+        "@qronos-ai/i18n": "workspace:*",
+        "@qronos-ai/indexing": "workspace:*",
+        "@qronos-ai/memory": "workspace:*",
+        "@qronos-ai/ui-kit": "workspace:*",
         "@qronos-ai/plugin": "workspace:*",
         "@qronos-ai/sandbox": "workspace:*",
         "@qronos-ai/sdk": "workspace:*",
@@ -537,11 +537,11 @@
         "vite-plugin-solid": "2.11.10",
       },
     },
-    "packages/kilo-web-ui": {
-      "name": "@qronos-ai/kilo-web-ui",
+    "packages/web-ui": {
+      "name": "@qronos-ai/web-ui",
       "version": "7.8.28",
       "dependencies": {
-        "@qronos-ai/kilo-ui": "workspace:*",
+        "@qronos-ai/ui-kit": "workspace:*",
         "@kobalte/core": "catalog:",
         "@qronos-ai/ui": "workspace:*",
         "@pierre/diffs": "catalog:",
@@ -573,12 +573,12 @@
         "@typescript/native-preview": "catalog:",
       },
     },
-    "packages/opencode": {
+    "packages/cli": {
       "name": "@qronos-ai/cli",
       "version": "7.8.28",
       "bin": {
-        "kilo": "./bin/kilo",
-        "kilocode": "./bin/kilo",
+        "qronos": "./bin/qronos",
+        "qronos": "./bin/qronos",
       },
       "dependencies": {
         "@actions/core": "3.0.1",
@@ -611,10 +611,10 @@
         "@ff-labs/fff-bun": "0.9.4",
         "@gitlab/gitlab-ai-provider": "3.6.0",
         "@gitlab/opencode-gitlab-auth": "1.3.3",
-        "@qronos-ai/kilo-gateway": "workspace:*",
-        "@qronos-ai/kilo-indexing": "workspace:*",
-        "@qronos-ai/kilo-memory": "workspace:*",
-        "@qronos-ai/kilo-telemetry": "workspace:*",
+        "@qronos-ai/gateway": "workspace:*",
+        "@qronos-ai/indexing": "workspace:*",
+        "@qronos-ai/memory": "workspace:*",
+        "@qronos-ai/telemetry": "workspace:*",
         "@qronos-ai/plugin": "workspace:*",
         "@qronos-ai/plugin-atomic-chat": "workspace:*",
         "@qronos-ai/sandbox": "workspace:*",
@@ -1824,35 +1824,35 @@
 
     "@jsdevtools/ono": ["@jsdevtools/ono@7.1.3", "", {}, "sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg=="],
 
-    "@qronos-ai/cli": ["@qronos-ai/cli@workspace:packages/opencode"],
+    "@qronos-ai/cli": ["@qronos-ai/cli@workspace:packages/cli"],
 
-    "@qronos-ai/kilo-console": ["@qronos-ai/kilo-console@workspace:packages/kilo-console"],
+    "@qronos-ai/console": ["@qronos-ai/console@workspace:packages/console"],
 
-    "@qronos-ai/kilo-docs": ["@qronos-ai/kilo-docs@workspace:packages/kilo-docs"],
+    "@qronos-ai/docs": ["@qronos-ai/docs@workspace:packages/docs"],
 
-    "@qronos-ai/kilo-e2e": ["@qronos-ai/kilo-e2e@workspace:packages/kilo-e2e"],
+    "@qronos-ai/e2e": ["@qronos-ai/e2e@workspace:packages/e2e"],
 
-    "@qronos-ai/kilo-gateway": ["@qronos-ai/kilo-gateway@workspace:packages/kilo-gateway"],
+    "@qronos-ai/gateway": ["@qronos-ai/gateway@workspace:packages/gateway"],
 
-    "@qronos-ai/kilo-i18n": ["@qronos-ai/kilo-i18n@workspace:packages/kilo-i18n"],
+    "@qronos-ai/i18n": ["@qronos-ai/i18n@workspace:packages/i18n"],
 
-    "@qronos-ai/kilo-indexing": ["@qronos-ai/kilo-indexing@workspace:packages/kilo-indexing"],
+    "@qronos-ai/indexing": ["@qronos-ai/indexing@workspace:packages/indexing"],
 
-    "@qronos-ai/kilo-jetbrains": ["@qronos-ai/kilo-jetbrains@workspace:packages/kilo-jetbrains"],
+    "@qronos-ai/jetbrains": ["@qronos-ai/jetbrains@workspace:packages/jetbrains"],
 
-    "@qronos-ai/kilo-memory": ["@qronos-ai/kilo-memory@workspace:packages/kilo-memory"],
+    "@qronos-ai/memory": ["@qronos-ai/memory@workspace:packages/memory"],
 
-    "@qronos-ai/kilo-telemetry": ["@qronos-ai/kilo-telemetry@workspace:packages/kilo-telemetry"],
+    "@qronos-ai/telemetry": ["@qronos-ai/telemetry@workspace:packages/telemetry"],
 
-    "@qronos-ai/kilo-ui": ["@qronos-ai/kilo-ui@workspace:packages/kilo-ui"],
+    "@qronos-ai/ui-kit": ["@qronos-ai/ui-kit@workspace:packages/ui-kit"],
 
-    "@qronos-ai/kilo-web-ui": ["@qronos-ai/kilo-web-ui@workspace:packages/kilo-web-ui"],
+    "@qronos-ai/web-ui": ["@qronos-ai/web-ui@workspace:packages/web-ui"],
 
     "@qronos-ai/plugin": ["@qronos-ai/plugin@workspace:packages/plugin"],
 
     "@qronos-ai/plugin-atomic-chat": ["@qronos-ai/plugin-atomic-chat@workspace:packages/plugin-atomic-chat"],
 
-    "@qronos-ai/sandbox": ["@qronos-ai/sandbox@workspace:packages/kilo-sandbox"],
+    "@qronos-ai/sandbox": ["@qronos-ai/sandbox@workspace:packages/sandbox"],
 
     "@qronos-ai/sdk": ["@qronos-ai/sdk@workspace:packages/sdk/js"],
 
@@ -4302,7 +4302,7 @@
 
     "qrcode": ["qrcode@1.5.4", "", { "dependencies": { "dijkstrajs": "^1.0.1", "pngjs": "^5.0.0", "yargs": "^15.3.1" }, "bin": { "qrcode": "bin/qrcode" } }, "sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg=="],
 
-    "qronos-code": ["qronos-code@workspace:packages/kilo-vscode"],
+    "qronos-code": ["qronos-code@workspace:packages/extension"],
 
     "qs": ["qs@6.16.2", "", { "dependencies": { "es-define-property": "^1.0.1", "side-channel": "^1.1.1" } }, "sha512-VYdnB5S7/0IeXzBacUtwNAaM6d7Y/PgYnNC7bJCI6meqA/OgnsQbZMtVW8Dt2D1PHgbHGtYmhSoEIgvt7xZ2ZA=="],
 
@@ -5204,7 +5204,7 @@
 
     "@jridgewell/trace-mapping/@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
-    "@qronos-ai/kilo-docs/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+    "@qronos-ai/docs/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
     "@qronos-ai/plugin/@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
 

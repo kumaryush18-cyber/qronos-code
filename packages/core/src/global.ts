@@ -4,27 +4,27 @@ import { xdgData, xdgCache, xdgConfig, xdgState } from "xdg-basedir"
 import os from "os"
 import { Context, Effect, Layer } from "effect"
 import { Flock } from "./util/flock"
-import { markNoIndex } from "./kilocode/spotlight" // kilocode_change
-import { ensureRealDir, migrateLegacyAppDirs, resolveState } from "./kilocode/global" // kilocode_change
+import { markNoIndex } from "./qronos/spotlight" // qronos_change
+import { ensureRealDir, migrateLegacyAppDirs, resolveState } from "./qronos/global" // qronos_change
 import { Flag } from "./flag/flag"
 import { makeGlobalNode } from "./effect/app-node"
 
-const app = "qronos" // qronos_change - was "kilo"
-const legacyApp = "kilo" // qronos_change
-// kilocode_change start
+const app = "qronos" // qronos_change - was "qronos"
+const legacyApp = "qronos" // qronos_change
+// qronos_change start
 // Defensively strip newline characters from the resolved XDG paths.
 // If `$HOME` (or any `$XDG_*_HOME` override) has a trailing newline in
 // the user's shell — e.g. because a shell snippet did `export HOME=$(cmd)`
 // against a command with an implicit newline — the unsanitised path
 // makes `fs.mkdir` try to create `/Users/<name>\n` and fail with EACCES,
-// which breaks every `kilo` invocation at startup (including the SDK
+// which breaks every `qronos` invocation at startup (including the SDK
 // regen that runs during `bun run extension`).
 const clean = (p: string | undefined) => p?.replace(/[\r\n]+/g, "")
 const data = path.join(clean(xdgData)!, app)
 const cache = path.join(clean(xdgCache)!, app)
 const config = path.join(clean(xdgConfig)!, app)
 const preferred = path.join(clean(xdgState)!, app)
-// qronos_change start - move ~/.{data,cache,config,state}/kilo to /qronos once
+// qronos_change start - move ~/.{data,cache,config,state}/qronos to /qronos once
 await migrateLegacyAppDirs([
   { next: data, legacy: path.join(clean(xdgData)!, legacyApp) },
   { next: cache, legacy: path.join(clean(xdgCache)!, legacyApp) },
@@ -33,12 +33,12 @@ await migrateLegacyAppDirs([
 ])
 // qronos_change end
 const state = await resolveState(preferred, process.env.XDG_STATE_HOME ? undefined : path.join(data, "state"))
-// kilocode_change end
+// qronos_change end
 const tmp = path.join(os.tmpdir(), app)
 
 const paths = {
   get home() {
-    return (process.env.KILO_TEST_HOME ?? os.homedir()).trim() // kilocode_change — defensive trim, see above
+    return (process.env.QRONOS_TEST_HOME ?? os.homedir()).trim() // qronos_change — defensive trim, see above
   },
   data,
   bin: path.join(cache, "bin"),
@@ -55,17 +55,17 @@ export const Path = paths
 Flock.setGlobal({ state })
 
 await Promise.all([
-  ensureRealDir(Path.data), // kilocode_change
-  ensureRealDir(Path.config), // kilocode_change
-  ensureRealDir(Path.tmp), // kilocode_change
-  ensureRealDir(Path.log), // kilocode_change
-  ensureRealDir(Path.bin), // kilocode_change
-  ensureRealDir(Path.repos), // kilocode_change
+  ensureRealDir(Path.data), // qronos_change
+  ensureRealDir(Path.config), // qronos_change
+  ensureRealDir(Path.tmp), // qronos_change
+  ensureRealDir(Path.log), // qronos_change
+  ensureRealDir(Path.bin), // qronos_change
+  ensureRealDir(Path.repos), // qronos_change
 ])
 
-// kilocode_change start - keep generated Kilo data out of macOS Spotlight
+// qronos_change start - keep generated Qronos data out of macOS Spotlight
 await Promise.all([Path.data, Path.cache, Path.state].map(markNoIndex))
-// kilocode_change end
+// qronos_change end
 
 export class Service extends Context.Service<Service, Interface>()("@opencode/Global") {}
 
@@ -86,7 +86,7 @@ export function make(input: Partial<Interface> = {}): Interface {
     home: Path.home,
     data: Path.data,
     cache: Path.cache,
-    config: Flag.KILO_CONFIG_DIR ?? Path.config,
+    config: Flag.QRONOS_CONFIG_DIR ?? Path.config,
     state: Path.state,
     tmp: Path.tmp,
     bin: Path.bin,

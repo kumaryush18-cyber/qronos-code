@@ -1,40 +1,40 @@
-import { useTerminalDimensions } from "@opentui/solid" // kilocode_change
-import { createEffect, createMemo, createSignal, Show } from "solid-js" // kilocode_change
+import { useTerminalDimensions } from "@opentui/solid" // qronos_change
+import { createEffect, createMemo, createSignal, Show } from "solid-js" // qronos_change
 import { useLocal } from "../context/local"
 import { useSync } from "../context/sync"
-import { map, pipe, sortBy, take } from "remeda" // kilocode_change
+import { map, pipe, sortBy, take } from "remeda" // qronos_change
 import { DialogSelect } from "../ui/dialog-select"
 import { useDialog } from "../ui/dialog"
 import { createDialogProviderOptions, DialogProvider } from "./dialog-provider"
 import { DialogVariant } from "./dialog-variant"
-import type { Model } from "@qronos-ai/sdk/v2" // kilocode_change
+import type { Model } from "@qronos-ai/sdk/v2" // qronos_change
 import { useConnected } from "./use-connected"
-import { ModelInfoPanel } from "@/kilocode/components/model-info-panel" // kilocode_change
-import { FreeModelDisclosure } from "@/kilocode/components/free-model-disclosure" // kilocode_change
-import { buildModelPickerOptions, rankProviderOptions } from "../kilocode/model-picker" // kilocode_change
+import { ModelInfoPanel } from "@/qronos/components/model-info-panel" // qronos_change
+import { FreeModelDisclosure } from "@/qronos/components/free-model-disclosure" // qronos_change
+import { buildModelPickerOptions, rankProviderOptions } from "../qronos/model-picker" // qronos_change
 
 export function DialogModel(props: { providerID?: string }) {
   const local = useLocal()
   const sync = useSync()
   const dialog = useDialog()
   const [query, setQuery] = createSignal("")
-  const dimensions = useTerminalDimensions() // kilocode_change
+  const dimensions = useTerminalDimensions() // qronos_change
 
   const connected = useConnected()
   const providers = createDialogProviderOptions()
-  // kilocode_change start
-  // Memoize anything that iterates all Kilo models to avoid calculating it for
-  // each Kilo model and tanking the UI at a couple hundred models
-  const kiloRank = createMemo(() => {
-    const provider = sync.data.provider.find((provider) => provider.id === "kilo")
+  // qronos_change start
+  // Memoize anything that iterates all Qronos models to avoid calculating it for
+  // each Qronos model and tanking the UI at a couple hundred models
+  const qronosRank = createMemo(() => {
+    const provider = sync.data.provider.find((provider) => provider.id === "qronos")
     const models = provider?.models ?? {}
     return new Map(Object.entries(models).map(([id, info]) => [id, info.recommendedIndex ?? Infinity] as const))
   })
-  // kilocode_change end
+  // qronos_change end
 
   const showExtra = createMemo(() => connected() && !props.providerID)
 
-  // kilocode_change start
+  // qronos_change start
   const wide = createMemo(() => dimensions().width >= 108)
   const [preview, setPreview] = createSignal<{
     model: Model
@@ -65,16 +65,16 @@ export function DialogModel(props: { providerID?: string }) {
 
   const footer = (providerID: string, model: Model) => {
     const labels = [
-      providerID === "kilo" && FreeModelDisclosure.hasByok(model) ? FreeModelDisclosure.byok : undefined,
-      providerID === "kilo" && FreeModelDisclosure.collectsData(model) ? FreeModelDisclosure.label : undefined,
+      providerID === "qronos" && FreeModelDisclosure.hasByok(model) ? FreeModelDisclosure.byok : undefined,
+      providerID === "qronos" && FreeModelDisclosure.collectsData(model) ? FreeModelDisclosure.label : undefined,
       model.cost?.input === 0 && providerID === "opencode" ? "Free" : undefined,
     ].filter((label) => label !== undefined)
     return labels.length > 0 ? labels.join(" · ") : undefined
   }
-  // kilocode_change end
+  // qronos_change end
 
-  // kilocode_change start - option building lives in kilocode/model-picker so the
-  // Kilo Gateway grouping/search rules can be unit tested
+  // qronos_change start - option building lives in qronos/model-picker so the
+  // Qronos Gateway grouping/search rules can be unit tested
   const options = createMemo(() => {
     const needle = query().trim()
     const modelOptions = buildModelPickerOptions({
@@ -87,7 +87,7 @@ export function DialogModel(props: { providerID?: string }) {
       query: needle,
       footer,
       onSelect,
-      sort: (items) => sortModelOptions(items, props.providerID !== undefined, kiloRank()),
+      sort: (items) => sortModelOptions(items, props.providerID !== undefined, qronosRank()),
     })
 
     const popularProviders = !connected()
@@ -103,7 +103,7 @@ export function DialogModel(props: { providerID?: string }) {
 
     return [...modelOptions, ...(needle ? rankProviderOptions(needle, popularProviders) : popularProviders)]
   })
-  // kilocode_change end
+  // qronos_change end
 
   const provider = createMemo(() =>
     props.providerID ? sync.data.provider.find((item) => item.id === props.providerID) : null,
@@ -130,7 +130,7 @@ export function DialogModel(props: { providerID?: string }) {
     dialog.clear()
   }
 
-  // kilocode_change start
+  // qronos_change start
   return (
     <box flexDirection="row">
       <box flexGrow={1} flexShrink={1}>
@@ -163,7 +163,7 @@ export function DialogModel(props: { providerID?: string }) {
             if (!next) return
             setPreview(next)
           }}
-          // kilocode_change: removed flat={true} to keep section headers visible while filtering
+          // qronos_change: removed flat={true} to keep section headers visible while filtering
           skipFilter={true}
           title={title()}
           current={local.model.current()}
@@ -174,7 +174,7 @@ export function DialogModel(props: { providerID?: string }) {
       </Show>
     </box>
   )
-  // kilocode_change end
+  // qronos_change end
 }
 
 export function sortModelOptions<
@@ -182,29 +182,29 @@ export function sortModelOptions<
     footer?: string
     releaseDate: string | number
     title: string
-    value?: { providerID: string; modelID: string } // kilocode_change
+    value?: { providerID: string; modelID: string } // qronos_change
   },
 >(
   options: T[],
   newestFirst: boolean,
-  rank: ReadonlyMap<string, number> = new Map(), // kilocode_change
+  rank: ReadonlyMap<string, number> = new Map(), // qronos_change
 ) {
-  // kilocode_change start - Sort within Recommended / Kilo Gateway
+  // qronos_change start - Sort within Recommended / Qronos Gateway
   const recommended = (option: T) =>
-    option.value?.providerID === "kilo" ? (rank.get(option.value.modelID) ?? Infinity) : 0
-  // kilocode_change end
+    option.value?.providerID === "qronos" ? (rank.get(option.value.modelID) ?? Infinity) : 0
+  // qronos_change end
   if (newestFirst)
     return sortBy(
       options,
-      recommended, // kilocode_change
+      recommended, // qronos_change
       [(option) => option.releaseDate, "desc"],
       (option) => option.title,
     )
   return sortBy(
     options,
-    recommended, // kilocode_change
+    recommended, // qronos_change
     (option) => option.footer === undefined,
-    [(option) => option.releaseDate, "desc"], // kilocode_change - free model footers include Kilo disclosure labels
+    [(option) => option.releaseDate, "desc"], // qronos_change - free model footers include Qronos disclosure labels
     (option) => option.title,
   )
 }

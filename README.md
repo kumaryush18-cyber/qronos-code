@@ -1,7 +1,7 @@
 # ⚡ Qronos Code
 
 <p align="center">
-  <img width="220" alt="Qronos Code Logo" src="packages/kilo-vscode/assets/icons/logo-outline-black.png" />
+  <img width="220" alt="Qronos Code Logo" src="packages/extension/assets/icons/logo-outline-black.png" />
 </p>
 
 <p align="center">
@@ -38,8 +38,8 @@
 
 ## 📁 Repository Structure
 
-- `packages/kilo-vscode/` — The primary VS Code extension source, assets, and webview UI.
-- `packages/kilo-gateway/` — Gateway client and API routing constants.
+- `packages/extension/` — The primary VS Code extension source, assets, and webview UI.
+- `packages/gateway/` — Gateway client and API routing constants.
 - `packages/core/` — Core agent tools and file systems.
 - `PLAN.md` — Complete master implementation roadmap.
 

@@ -1,4 +1,4 @@
-// kilocode_change - new file
+// qronos_change - new file
 // Custom changelog generator that wraps @changesets/changelog-github
 // but strips "Thanks @user!" for team members.
 const github = require("@changesets/changelog-github")
@@ -18,21 +18,21 @@ const team = new Set([
   "emilieschario",
   "eshurakov",
   "evanjacobson",
-  "Helix-Kilo",
+  "Helix-Qronos",
   "iscekic",
   "jeanduplessis",
   "jobrietbergen",
   "johnnyeric",
   "jrf0110",
-  "kilo-code-bot",
-  "kilo-code-bot[bot]",
-  "kilo-maintainer[bot]",
-  "kilocode-bot",
-  "kiloconnect-lite[bot]",
-  "kiloconnect[bot]",
+  "qronos-code-bot",
+  "qronos-code-bot[bot]",
+  "qronos-maintainer[bot]",
+  "qronos-bot",
+  "qronosconnect-lite[bot]",
+  "qronosconnect[bot]",
   "kirillk",
   "lambertjosh",
-  "marius-kilocode",
+  "marius-qronos",
   "olearycrew",
   "pandemicsyn",
   "pedroheyerdahl",

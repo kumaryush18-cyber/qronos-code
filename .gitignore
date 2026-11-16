@@ -37,11 +37,11 @@ a.out
 target
 .scripts
 .direnv/
-packages/kilo-jetbrains/build-tasks/.gradle/
+packages/jetbrains/build-tasks/.gradle/
 
 # Local dev files
 opencode-dev
-.kilo-dev/
+.qronos-dev/
 UPCOMING_CHANGELOG.md
 logs/
 *.bun-build
@@ -50,32 +50,32 @@ logs/
 telemetry-id
 tsconfig.tsbuildinfo
 
-# Kilo
-.kilo/.gitignore
-.kilo/package.json
-.kilo/package-lock.json
-.kilo/pnpm-lock.yaml
-.kilo/bun.lock
-.kilo/yarn.lock
-.kilo/node_modules
-.kilo/plans/*upstream-merge-report-*.md
-**/.kilo/jetbrains.json
-.kilocode/.gitignore
-.kilocode/package.json
-.kilocode/package-lock.json
-.kilocode/pnpm-lock.yaml
-.kilocode/bun.lock
-.kilocode/yarn.lock
-.kilocode/node_modules
+# Qronos
+.qronos/.gitignore
+.qronos/package.json
+.qronos/package-lock.json
+.qronos/pnpm-lock.yaml
+.qronos/bun.lock
+.qronos/yarn.lock
+.qronos/node_modules
+.qronos/plans/*upstream-merge-report-*.md
+**/.qronos/jetbrains.json
+.qronos/.gitignore
+.qronos/package.json
+.qronos/package-lock.json
+.qronos/pnpm-lock.yaml
+.qronos/bun.lock
+.qronos/yarn.lock
+.qronos/node_modules
 
 # Runtime-generated per-directory TUI config (e.g. written by `PATCH /tui/config`
 # during local testing); should never be committed.
-packages/*/.kilo/tui.json
-packages/*/.kilo/tui.jsonc
+packages/*/.qronos/tui.json
+packages/*/.qronos/tui.jsonc
 
 # Test Artifacts
 packages/app/.artifacts/
-packages/opencode/.artifacts/
+packages/cli/.artifacts/
 /out/
 **/allure-results/
 

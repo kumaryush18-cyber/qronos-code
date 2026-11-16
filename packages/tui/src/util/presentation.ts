@@ -1,5 +1,5 @@
-// kilocode_change - Kilo exit banner instead of the opencode wordmark
-import { session } from "@/kilocode/cli/logo"
+// qronos_change - Qronos exit banner instead of the opencode wordmark
+import { session } from "@/qronos/cli/logo"
 
 const reset = "\x1b[0m"
 const dim = "\x1b[90m"

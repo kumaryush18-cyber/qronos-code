@@ -1,4 +1,4 @@
-/** Provider id and `kilo.json` key (see https://atomic.chat and models.dev). */
+/** Provider id and `qronos.json` key (see https://atomic.chat and models.dev). */
 export const ATOMIC_CHAT_PROVIDER_KEY = "atomic-chat" as const
 
 export const DEFAULT_ATOMIC_CHAT_ORIGIN = "http://127.0.0.1:1337"

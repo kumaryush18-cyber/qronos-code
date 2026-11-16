@@ -1,5 +1,5 @@
-import { KiloLogo } from "./kilo-logo" // kilocode_change
+import { QronosLogo } from "./qronos-logo" // qronos_change
 
 export function Logo() {
-  return <KiloLogo /> // kilocode_change
+  return <QronosLogo /> // qronos_change
 }

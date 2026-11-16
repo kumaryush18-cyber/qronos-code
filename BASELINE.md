@@ -31,8 +31,8 @@ Workflow: `.github/workflows/rename-sweep.yml`, plus the inherited
 ## What phase 1 did NOT touch (still ahead)
 
 - 6 787 tracked files still have `kilo` in their path, in 39 top-level folders
-  (biggest: `packages/kilo-vscode` 2 067, `packages/kilo-jetbrains` 1 381,
-  `packages/opencode` 1 204, `packages/kilo-docs` 993).
+  (biggest: `packages/extension` 2 067, `packages/jetbrains` 1 381,
+  `packages/cli` 1 204, `packages/docs` 993).
 - 32 823 `kilo` occurrences inside `.ts`/`.tsx`.
 - 295 distinct `KILO_*` environment variables.
-- Package basenames still carry `kilo-` (`@qronos-ai/kilo-gateway`, …).
+- Package basenames still carry `kilo-` (`@qronos-ai/gateway`, …).

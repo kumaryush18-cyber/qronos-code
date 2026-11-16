@@ -17,6 +17,6 @@ test("does not recommend skip for unrelated packages", () => {
 })
 
 test("recommends keep ours for Kilo directories", () => {
-  expect(getRecommendation("packages/kilo-vscode/.prettierignore", [], []).recommendation).toBe("keep-ours")
-  expect(getRecommendation("packages/kilo-i18n/tsconfig.json", [], []).recommendation).toBe("keep-ours")
+  expect(getRecommendation("packages/extension/.prettierignore", [], []).recommendation).toBe("keep-ours")
+  expect(getRecommendation("packages/i18n/tsconfig.json", [], []).recommendation).toBe("keep-ours")
 })

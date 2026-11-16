@@ -1,0 +1,19 @@
+Qronos Code
+===========
+
+This product is a derivative work. Parts of it come from:
+
+  Kilo Code  — https://github.com/Kilo-Org/kilocode
+  Copyright (c) Kilo Code contributors
+  Licensed under the MIT License
+
+  opencode   — https://github.com/sst/opencode
+  Copyright (c) opencode contributors
+  Licensed under the MIT License
+
+Both are licensed under the MIT License, which requires that their copyright
+notice and permission notice are kept. They are kept in LICENSE and in the
+source headers of the files that came from those projects.
+
+Modifications and the Qronos branding are:
+  Copyright (c) Qronos AI

@@ -1,4 +1,4 @@
-// kilocode_change - new file
+// qronos_change - new file
 import { Effect } from "effect"
 import type { DatabaseMigration } from "../migration"
 

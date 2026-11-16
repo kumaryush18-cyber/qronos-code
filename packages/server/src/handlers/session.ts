@@ -11,7 +11,7 @@ import {
   SessionNotFoundError,
   UnknownError,
 } from "@qronos-ai/protocol/errors"
-import { Location } from "@qronos-ai/core/location" // kilocode_change
+import { Location } from "@qronos-ai/core/location" // qronos_change
 
 const DefaultSessionsLimit = 50
 const DefaultSessionHistoryLimit = 50
@@ -67,17 +67,17 @@ export const SessionHandler = HttpApiBuilder.group(Api, "server.session", (handl
       .handle(
         "session.create",
         Effect.fn(function* (ctx) {
-          const location = yield* Location.Service // kilocode_change
+          const location = yield* Location.Service // qronos_change
           return {
             data: yield* session.create({
               id: ctx.payload.id,
               agent: ctx.payload.agent,
               model: ctx.payload.model,
-              // kilocode_change start - honor createKiloClient's configured Location
+              // qronos_change start - honor createQronosClient's configured Location
               location:
                 ctx.payload.location ??
                 Location.Ref.make({ directory: location.directory, workspaceID: location.workspaceID }),
-              // kilocode_change end
+              // qronos_change end
             }),
           }
         }),

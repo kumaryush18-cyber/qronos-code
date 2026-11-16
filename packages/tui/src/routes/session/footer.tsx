@@ -3,11 +3,11 @@ import { useTheme } from "../../context/theme"
 import { useSync } from "../../context/sync"
 import { useDirectory } from "../../context/directory"
 import { useConnected } from "../../component/use-connected"
-import { useSDK } from "../../context/sdk" // kilocode_change
+import { useSDK } from "../../context/sdk" // qronos_change
 import { createStore } from "solid-js/store"
 import { useRoute } from "../../context/route"
-import { useEvent } from "../../context/event" // kilocode_change
-import { RemoteIndicator } from "@/kilocode/remote-tui" // kilocode_change
+import { useEvent } from "../../context/event" // qronos_change
+import { RemoteIndicator } from "@/qronos/remote-tui" // qronos_change
 
 export function Footer() {
   const { theme } = useTheme()
@@ -22,8 +22,8 @@ export function Footer() {
   })
   const directory = useDirectory()
   const connected = useConnected()
-  const sdk = useSDK() // kilocode_change
-  const event = useEvent() // kilocode_change
+  const sdk = useSDK() // qronos_change
+  const event = useEvent() // qronos_change
 
   const [store, setStore] = createStore({
     welcome: false,
@@ -58,14 +58,14 @@ export function Footer() {
     <box flexDirection="row" justifyContent="space-between" gap={1} flexShrink={0}>
       <text fg={theme.textMuted}>{directory()}</text>
       <box gap={2} flexDirection="row" flexShrink={0}>
-        {/* kilocode_change start */}
+        {/* qronos_change start */}
         <RemoteIndicator
           sdk={sdk}
           theme={theme}
-          kilo={sync.data.provider_next.connected.includes("kilo")}
+          qronos={sync.data.provider_next.connected.includes("qronos")}
           event={event}
         />
-        {/* kilocode_change end */}
+        {/* qronos_change end */}
         <Switch>
           <Match when={store.welcome}>
             <text fg={theme.text}>
@@ -82,7 +82,7 @@ export function Footer() {
             <text fg={theme.text}>
               <span style={{ fg: lsp().length > 0 ? theme.success : theme.textMuted }}>•</span> {lsp().length} LSP
             </text>
-            {/* kilocode_change start */}
+            {/* qronos_change start */}
             <Show when={mcp()}>
               <text fg={theme.text}>
                 <Switch>
@@ -96,7 +96,7 @@ export function Footer() {
                 {mcp()} MCP
               </text>
             </Show>
-            {/* kilocode_change end */}
+            {/* qronos_change end */}
             <text fg={theme.textMuted}>/status</text>
           </Match>
         </Switch>

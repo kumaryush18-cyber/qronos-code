@@ -1,4 +1,4 @@
-# kilocode_change - new file
+# qronos_change - new file
 version: 2
 updates:
   # Bun workspace root (packages/*). Version updates are OFF (limit 0): this
@@ -21,7 +21,7 @@ updates:
   # branch) comes from the package.json-only alerts and also edits upstream
   # manifests, so check the resolved version in bun.lock before merging it.
   # The group below is kept in case GitHub adds bun security updates.
-  # packages/kilo-docs has its own block below, since this scan can't see its
+  # packages/docs has its own block below, since this scan can't see its
   # separate pnpm-lock.yaml.
   - package-ecosystem: "bun"
     directory: "/"
@@ -42,9 +42,9 @@ updates:
         patterns:
           - "*"
 
-  # packages/kilo-docs deploys separately via pnpm; see note above.
+  # packages/docs deploys separately via pnpm; see note above.
   - package-ecosystem: "npm"
-    directory: "/packages/kilo-docs"
+    directory: "/packages/docs"
     schedule:
       interval: "weekly"
     cooldown:
@@ -53,7 +53,7 @@ updates:
     labels:
       - "dependencies"
     commit-message:
-      prefix: "chore(kilo-docs)"
+      prefix: "chore(qronos-docs)"
     # Majors are never proposed. They can change peer specs or type targets
     # (for example the @types/node major, which no longer matched the Node
     # versions we target). Bump them by hand, on purpose.
@@ -85,7 +85,7 @@ updates:
         update-types:
           - "minor"
           - "patch"
-      kilo-docs-minor-patch:
+      qronos-docs-minor-patch:
         patterns:
           - "*"
         update-types:
@@ -93,7 +93,7 @@ updates:
           - "patch"
 
   - package-ecosystem: "gradle"
-    directory: "/packages/kilo-jetbrains"
+    directory: "/packages/jetbrains"
     schedule:
       interval: "weekly"
     cooldown:
@@ -175,16 +175,16 @@ updates:
 
 # GitHub does not detect Gradle dependencies statically, so JetBrains alerts
 # come from the graph that dependency-submission.yml submits for
-# packages/kilo-jetbrains. That submitted graph is also what lets Dependabot
+# packages/jetbrains. That submitted graph is also what lets Dependabot
 # open security update PRs for direct Gradle dependencies; transitive ones
 # are alert-only and fixed by hand with the security floors in
-# packages/kilo-jetbrains/gradle/libs.versions.toml.
+# packages/jetbrains/gradle/libs.versions.toml.
 #
-# Deliberately not covered: docker (packages/opencode/Dockerfile) and
+# Deliberately not covered: docker (packages/cli/Dockerfile) and
 # github-actions (.github/workflows/**). Both paths are shared/upstream code
-# with no "kilo" in their path, so dependabot-auto-merge.yml would never
+# with no "qronos" in their path, so dependabot-auto-merge.yml would never
 # auto-merge them anyway, and .github/workflows/** changes routinely fail
-# the repo's kilocode_change annotation check unless they happen to land
+# the repo's qronos_change annotation check unless they happen to land
 # inside an existing marker block. GitHub Actions are watched via Dependabot's
 # native security alerts (the dependency graph reads workflow files) and
 # security-findings-notify.yml. The Dockerfile has no alert coverage: the

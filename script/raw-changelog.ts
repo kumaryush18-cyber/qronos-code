@@ -22,7 +22,7 @@ type Diff = {
   message: string
 }
 
-const repo = process.env.GH_REPO ?? "Kilo-Org/kilocode"
+const repo = process.env.GH_REPO ?? "Qronos-Org/qronos"
 const bot = ["actions-user", "github-actions[bot]", "opencode", "opencode-agent[bot]"]
 const team = [
   ...(await Bun.file(new URL("../.github/TEAM_MEMBERS", import.meta.url))
@@ -31,7 +31,7 @@ const team = [
     .then((x) => x.filter((x) => x && !x.startsWith("#")))),
   ...bot,
 ]
-const order = ["Core", "TUI", "SDK", "Extensions"] as const // kilocode_change
+const order = ["Core", "TUI", "SDK", "Extensions"] as const // qronos_change
 const sections = {
   core: "Core",
   tui: "TUI",
@@ -72,7 +72,7 @@ async function diff(base: string, head: string) {
 }
 
 function section(areas: Set<string>) {
-  const priority = ["core", "tui", "sdk", "plugin", "extensions/vscode", "github"] // kilocode_change
+  const priority = ["core", "tui", "sdk", "plugin", "extensions/vscode", "github"] // qronos_change
   for (const area of priority) {
     if (areas.has(area)) return sections[area as keyof typeof sections]
   }
@@ -118,7 +118,7 @@ async function commits(from: string, to: string) {
   }
 
   const log =
-    await $`git log ${base}..${head} --format=%H -- packages/opencode packages/sdk packages/plugin packages/extensions github`.text() // kilocode_change
+    await $`git log ${base}..${head} --format=%H -- packages/cli packages/sdk packages/plugin packages/extensions github`.text() // qronos_change
 
   const list: Commit[] = []
   for (const hash of log.split("\n").filter(Boolean)) {
@@ -130,8 +130,8 @@ async function commits(from: string, to: string) {
     const areas = new Set<string>()
 
     for (const file of diff.split("\n").filter(Boolean)) {
-      if (file.startsWith("packages/opencode/src/cli/cmd/")) areas.add("tui")
-      else if (file.startsWith("packages/opencode/")) areas.add("core")
+      if (file.startsWith("packages/cli/src/cli/cmd/")) areas.add("tui")
+      else if (file.startsWith("packages/cli/")) areas.add("core")
       else if (file.startsWith("packages/sdk/") || file.startsWith("packages/plugin/")) areas.add("sdk")
       else if (file.startsWith("github/")) areas.add("extensions/vscode")
     }

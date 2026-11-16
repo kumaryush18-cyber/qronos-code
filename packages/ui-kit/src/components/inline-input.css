@@ -1,0 +1,5 @@
+/* Qronos Inline Input overrides */
+
+[data-component="inline-input"] {
+  font-size: var(--qronos-font-size-13);
+}

@@ -158,105 +158,105 @@ import type {
   InstanceDisposeResponses,
   InstanceReloadErrors,
   InstanceReloadResponses,
-  KiloAudioTranscriptionsErrors,
-  KiloAudioTranscriptionsResponses,
-  KiloAuthStatusErrors,
-  KiloAuthStatusResponses,
-  KiloCloudSessionGetErrors,
-  KiloCloudSessionGetResponses,
-  KiloCloudSessionImportErrors,
-  KiloCloudSessionImportResponses,
-  KiloCloudSessionsErrors,
-  KiloCloudSessionsResponses,
-  KilocodeAgentManagerListErrors,
-  KilocodeAgentManagerListResponses,
-  KilocodeAgentManagerRejectErrors,
-  KilocodeAgentManagerRejectResponses,
-  KilocodeAgentManagerReplyErrors,
-  KilocodeAgentManagerReplyResponses,
-  KilocodeBackgroundJobCancelErrors,
-  KilocodeBackgroundJobCancelResponses,
-  KilocodeBackgroundJobPromoteErrors,
-  KilocodeBackgroundJobPromoteResponses,
-  KilocodeBackgroundJobsErrors,
-  KilocodeBackgroundJobsResponses,
-  KilocodeCommandFilesErrors,
-  KilocodeCommandFilesResponses,
-  KilocodeDrainSessionErrors,
-  KilocodeDrainSessionResponses,
-  KilocodeHeapSnapshotErrors,
-  KilocodeHeapSnapshotResponses,
-  KilocodeMarketplaceInstallErrors,
-  KilocodeMarketplaceInstallResponses,
-  KilocodeMarketplaceListErrors,
-  KilocodeMarketplaceListResponses,
-  KilocodeMarketplaceRemoveErrors,
-  KilocodeMarketplaceRemoveResponses,
-  KilocodeMigrateDiscoverErrors,
-  KilocodeMigrateDiscoverResponses,
-  KilocodeMigrateSessionsErrors,
-  KilocodeMigrateSessionsResponses,
-  KilocodeNotebookListErrors,
-  KilocodeNotebookListResponses,
-  KilocodeNotebookRejectErrors,
-  KilocodeNotebookRejectResponses,
-  KilocodeNotebookReplyErrors,
-  KilocodeNotebookReplyResponses,
-  KilocodeProviderUsageGetErrors,
-  KilocodeProviderUsageGetResponses,
-  KilocodeProviderUsageRefreshErrors,
-  KilocodeProviderUsageRefreshResponses,
-  KilocodeRemoveAgentErrors,
-  KilocodeRemoveAgentResponses,
-  KilocodeRemoveCommandErrors,
-  KilocodeRemoveCommandResponses,
-  KilocodeRemoveSkillErrors,
-  KilocodeRemoveSkillResponses,
-  KilocodeRemoveSnapshotErrors,
-  KilocodeRemoveSnapshotResponses,
-  KilocodeResetSessionBoardErrors,
-  KilocodeResetSessionBoardResponses,
-  KilocodeResumeSessionErrors,
-  KilocodeResumeSessionResponses,
-  KilocodeRetentionCancelErrors,
-  KilocodeRetentionCancelResponses,
-  KilocodeRetentionRunErrors,
-  KilocodeRetentionRunResponses,
-  KilocodeRetentionStatusErrors,
-  KilocodeRetentionStatusResponses,
-  KilocodeSessionBoardErrors,
-  KilocodeSessionBoardResponses,
-  KilocodeSessionImportMessageErrors,
-  KilocodeSessionImportMessageResponses,
-  KilocodeSessionImportPartErrors,
-  KilocodeSessionImportPartResponses,
-  KilocodeSessionImportProjectErrors,
-  KilocodeSessionImportProjectResponses,
-  KilocodeSessionImportSessionErrors,
-  KilocodeSessionImportSessionResponses,
-  KilocodeSessionModelUsageErrors,
-  KilocodeSessionModelUsageResponses,
-  KilocodeSnapshotPrepareErrors,
-  KilocodeSnapshotPrepareResponses,
-  KilocodeTeardownWorktreeErrors,
-  KilocodeTeardownWorktreeResponses,
-  KilocodeWakeupsErrors,
-  KilocodeWakeupsResponses,
-  KiloFimErrors,
-  KiloFimResponse,
-  KiloFimResponses,
-  KiloModelsImagesErrors,
-  KiloModelsImagesResponses,
-  KiloModelsTranscriptionsErrors,
-  KiloModelsTranscriptionsResponses,
-  KiloModesErrors,
-  KiloModesResponses,
-  KiloNotificationsErrors,
-  KiloNotificationsResponses,
-  KiloOrganizationSetErrors,
-  KiloOrganizationSetResponses,
-  KiloProfileErrors,
-  KiloProfileResponses,
+  QronosAudioTranscriptionsErrors,
+  QronosAudioTranscriptionsResponses,
+  QronosAuthStatusErrors,
+  QronosAuthStatusResponses,
+  QronosCloudSessionGetErrors,
+  QronosCloudSessionGetResponses,
+  QronosCloudSessionImportErrors,
+  QronosCloudSessionImportResponses,
+  QronosCloudSessionsErrors,
+  QronosCloudSessionsResponses,
+  QronosAgentManagerListErrors,
+  QronosAgentManagerListResponses,
+  QronosAgentManagerRejectErrors,
+  QronosAgentManagerRejectResponses,
+  QronosAgentManagerReplyErrors,
+  QronosAgentManagerReplyResponses,
+  QronosBackgroundJobCancelErrors,
+  QronosBackgroundJobCancelResponses,
+  QronosBackgroundJobPromoteErrors,
+  QronosBackgroundJobPromoteResponses,
+  QronosBackgroundJobsErrors,
+  QronosBackgroundJobsResponses,
+  QronosCommandFilesErrors,
+  QronosCommandFilesResponses,
+  QronosDrainSessionErrors,
+  QronosDrainSessionResponses,
+  QronosHeapSnapshotErrors,
+  QronosHeapSnapshotResponses,
+  QronosMarketplaceInstallErrors,
+  QronosMarketplaceInstallResponses,
+  QronosMarketplaceListErrors,
+  QronosMarketplaceListResponses,
+  QronosMarketplaceRemoveErrors,
+  QronosMarketplaceRemoveResponses,
+  QronosMigrateDiscoverErrors,
+  QronosMigrateDiscoverResponses,
+  QronosMigrateSessionsErrors,
+  QronosMigrateSessionsResponses,
+  QronosNotebookListErrors,
+  QronosNotebookListResponses,
+  QronosNotebookRejectErrors,
+  QronosNotebookRejectResponses,
+  QronosNotebookReplyErrors,
+  QronosNotebookReplyResponses,
+  QronosProviderUsageGetErrors,
+  QronosProviderUsageGetResponses,
+  QronosProviderUsageRefreshErrors,
+  QronosProviderUsageRefreshResponses,
+  QronosRemoveAgentErrors,
+  QronosRemoveAgentResponses,
+  QronosRemoveCommandErrors,
+  QronosRemoveCommandResponses,
+  QronosRemoveSkillErrors,
+  QronosRemoveSkillResponses,
+  QronosRemoveSnapshotErrors,
+  QronosRemoveSnapshotResponses,
+  QronosResetSessionBoardErrors,
+  QronosResetSessionBoardResponses,
+  QronosResumeSessionErrors,
+  QronosResumeSessionResponses,
+  QronosRetentionCancelErrors,
+  QronosRetentionCancelResponses,
+  QronosRetentionRunErrors,
+  QronosRetentionRunResponses,
+  QronosRetentionStatusErrors,
+  QronosRetentionStatusResponses,
+  QronosSessionBoardErrors,
+  QronosSessionBoardResponses,
+  QronosSessionImportMessageErrors,
+  QronosSessionImportMessageResponses,
+  QronosSessionImportPartErrors,
+  QronosSessionImportPartResponses,
+  QronosSessionImportProjectErrors,
+  QronosSessionImportProjectResponses,
+  QronosSessionImportSessionErrors,
+  QronosSessionImportSessionResponses,
+  QronosSessionModelUsageErrors,
+  QronosSessionModelUsageResponses,
+  QronosSnapshotPrepareErrors,
+  QronosSnapshotPrepareResponses,
+  QronosTeardownWorktreeErrors,
+  QronosTeardownWorktreeResponses,
+  QronosWakeupsErrors,
+  QronosWakeupsResponses,
+  QronosFimErrors,
+  QronosFimResponse,
+  QronosFimResponses,
+  QronosModelsImagesErrors,
+  QronosModelsImagesResponses,
+  QronosModelsTranscriptionsErrors,
+  QronosModelsTranscriptionsResponses,
+  QronosModesErrors,
+  QronosModesResponses,
+  QronosNotificationsErrors,
+  QronosNotificationsResponses,
+  QronosOrganizationSetErrors,
+  QronosOrganizationSetResponses,
+  QronosProfileErrors,
+  QronosProfileResponses,
   LocationRef,
   LspStatusErrors,
   LspStatusResponses,
@@ -732,7 +732,7 @@ class HeyApiRegistry<T> {
   get(key?: string): T {
     const instance = this.instances.get(key ?? this.defaultKey)
     if (!instance) {
-      throw new Error(`No SDK client found. Create one with "new KiloClient()" to fix this error.`)
+      throw new Error(`No SDK client found. Create one with "new QronosClient()" to fix this error.`)
     }
     return instance
   }
@@ -847,7 +847,7 @@ export class App extends HeyApiClient {
   /**
    * List agents
    *
-   * Get a list of all available AI agents in the Kilo system.
+   * Get a list of all available AI agents in the Qronos system.
    */
   public agents<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -877,7 +877,7 @@ export class App extends HeyApiClient {
   /**
    * List skills
    *
-   * Get a list of all available skills in the Kilo system.
+   * Get a list of all available skills in the Qronos system.
    */
   public skills<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -952,7 +952,7 @@ export class Capabilities extends HeyApiClient {
   /**
    * Get experimental capabilities
    *
-   * Get experimental features enabled on the Kilo server.
+   * Get experimental features enabled on the Qronos server.
    */
   public get<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -1056,7 +1056,7 @@ export class Console extends HeyApiClient {
   /**
    * Switch active Console org
    *
-   * Persist a new active Console account/org selection for the current local Kilo state.
+   * Persist a new active Console account/org selection for the current local Qronos state.
    */
   public switchOrg<ThrowOnError extends boolean = false>(
     parameters: {
@@ -1097,7 +1097,7 @@ export class Session extends HeyApiClient {
   /**
    * List sessions
    *
-   * Get a list of all Kilo sessions across projects, sorted by most recently updated. Archived sessions are excluded by default.
+   * Get a list of all Qronos sessions across projects, sorted by most recently updated. Archived sessions are excluded by default.
    */
   public list<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -1578,7 +1578,7 @@ export class Config extends HeyApiClient {
   /**
    * Get global configuration
    *
-   * Retrieve the current global Kilo configuration settings and preferences.
+   * Retrieve the current global Qronos configuration settings and preferences.
    */
   public get<ThrowOnError extends boolean = false>(options?: Options<never, ThrowOnError>) {
     return (options?.client ?? this.client).get<GlobalConfigGetResponses, GlobalConfigGetErrors, ThrowOnError>({
@@ -1590,7 +1590,7 @@ export class Config extends HeyApiClient {
   /**
    * Update global configuration
    *
-   * Update global Kilo configuration settings and preferences.
+   * Update global Qronos configuration settings and preferences.
    */
   public update<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -1616,7 +1616,7 @@ export class Global extends HeyApiClient {
   /**
    * Get health
    *
-   * Get health information about the Kilo server.
+   * Get health information about the Qronos server.
    */
   public health<ThrowOnError extends boolean = false>(options?: Options<never, ThrowOnError>) {
     return (options?.client ?? this.client).get<GlobalHealthResponses, GlobalHealthErrors, ThrowOnError>({
@@ -1628,7 +1628,7 @@ export class Global extends HeyApiClient {
   /**
    * Get global events
    *
-   * Subscribe to global events from the Kilo system using server-sent events.
+   * Subscribe to global events from the Qronos system using server-sent events.
    */
   public event<ThrowOnError extends boolean = false>(options?: Options<never, ThrowOnError, GlobalEventResponse>) {
     return (options?.client ?? this.client).sse.get<GlobalEventResponses, GlobalEventErrors, ThrowOnError>({
@@ -1640,7 +1640,7 @@ export class Global extends HeyApiClient {
   /**
    * Dispose instance
    *
-   * Clean up and dispose all Kilo instances, releasing all resources.
+   * Clean up and dispose all Qronos instances, releasing all resources.
    */
   public dispose<ThrowOnError extends boolean = false>(options?: Options<never, ThrowOnError>) {
     return (options?.client ?? this.client).post<GlobalDisposeResponses, GlobalDisposeErrors, ThrowOnError>({
@@ -1650,9 +1650,9 @@ export class Global extends HeyApiClient {
   }
 
   /**
-   * Upgrade kilo
+   * Upgrade qronos
    *
-   * Upgrade kilo to the specified version or latest if not specified.
+   * Upgrade qronos to the specified version or latest if not specified.
    */
   public upgrade<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -1715,7 +1715,7 @@ export class Config2 extends HeyApiClient {
   /**
    * Get configuration
    *
-   * Retrieve the current Kilo configuration settings and preferences.
+   * Retrieve the current Qronos configuration settings and preferences.
    */
   public get<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -1745,7 +1745,7 @@ export class Config2 extends HeyApiClient {
   /**
    * Update configuration
    *
-   * Update Kilo configuration settings and preferences.
+   * Update Qronos configuration settings and preferences.
    */
   public update<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -1986,7 +1986,7 @@ export class Config2 extends HeyApiClient {
   /**
    * Get project rules
    *
-   * List project instruction files used by Kilo and return their current contents.
+   * List project instruction files used by Qronos and return their current contents.
    */
   public rules<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -2087,7 +2087,7 @@ export class Config2 extends HeyApiClient {
   /**
    * Update model state
    *
-   * Patch TUI-compatible model selections shared with Kilo Console.
+   * Patch TUI-compatible model selections shared with Qronos Console.
    */
   public modelStateUpdate<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -2236,7 +2236,7 @@ export class Worktree extends HeyApiClient {
   /**
    * List worktrees
    *
-   * List all git worktrees for the current project and whether Kilo manages them.
+   * List all git worktrees for the current project and whether Qronos manages them.
    */
   public list<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -2640,7 +2640,7 @@ export class Instance extends HeyApiClient {
   /**
    * Dispose instance
    *
-   * Clean up and dispose the current Kilo instance, releasing all resources.
+   * Clean up and dispose the current Qronos instance, releasing all resources.
    */
   public dispose<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -2702,7 +2702,7 @@ export class Path extends HeyApiClient {
   /**
    * Get paths
    *
-   * Retrieve the current working directory and related path information for the Kilo instance.
+   * Retrieve the current working directory and related path information for the Qronos instance.
    */
   public get<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -2904,7 +2904,7 @@ export class Command extends HeyApiClient {
   /**
    * List commands
    *
-   * Get a list of all available commands in the Kilo system.
+   * Get a list of all available commands in the Qronos system.
    */
   public list<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -3396,7 +3396,7 @@ export class Project extends HeyApiClient {
   /**
    * List all projects
    *
-   * Get a list of projects that have been opened with Kilo.
+   * Get a list of projects that have been opened with Qronos.
    */
   public list<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -3426,7 +3426,7 @@ export class Project extends HeyApiClient {
   /**
    * Get current project
    *
-   * Retrieve the currently active project that Kilo is working with.
+   * Retrieve the currently active project that Qronos is working with.
    */
   public current<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -3593,7 +3593,7 @@ export class Pty extends HeyApiClient {
   /**
    * List PTY sessions
    *
-   * Get a list of all active pseudo-terminal (PTY) sessions managed by Kilo.
+   * Get a list of all active pseudo-terminal (PTY) sessions managed by Qronos.
    */
   public list<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -4327,7 +4327,7 @@ export class Session2 extends HeyApiClient {
   /**
    * List sessions
    *
-   * Get a list of all Kilo sessions, sorted by most recently updated.
+   * Get a list of all Qronos sessions, sorted by most recently updated.
    */
   public list<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -4369,7 +4369,7 @@ export class Session2 extends HeyApiClient {
   /**
    * Create session
    *
-   * Create a new Kilo session for interacting with AI assistants and managing conversations.
+   * Create a new Qronos session for interacting with AI assistants and managing conversations.
    */
   public create<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -4490,7 +4490,7 @@ export class Session2 extends HeyApiClient {
   /**
    * Get session
    *
-   * Retrieve detailed information about a specific Kilo session.
+   * Retrieve detailed information about a specific Qronos session.
    */
   public get<ThrowOnError extends boolean = false>(
     parameters: {
@@ -6376,7 +6376,7 @@ export class AgentUsage extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<AgentUsageSummaryResponses, AgentUsageSummaryErrors, ThrowOnError>({
-      url: "/kilocode/agent-usage/summary",
+      url: "/qronos/agent-usage/summary",
       ...options,
       ...params,
     })
@@ -6416,7 +6416,7 @@ export class AgentUsage extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<AgentUsageRunsResponses, AgentUsageRunsErrors, ThrowOnError>({
-      url: "/kilocode/agent-usage/runs",
+      url: "/qronos/agent-usage/runs",
       ...options,
       ...params,
     })
@@ -6874,9 +6874,9 @@ export class Indexing extends HeyApiClient {
   }
 
   /**
-   * List Kilo embedding models
+   * List Qronos embedding models
    *
-   * Retrieve the embedding models available through the active Kilo account.
+   * Retrieve the embedding models available through the active Qronos account.
    */
   public models<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -6945,7 +6945,7 @@ export class Audio extends HeyApiClient {
   /**
    * Speech to text transcription
    *
-   * Proxy an audio transcription request to the Kilo Gateway
+   * Proxy an audio transcription request to the Qronos Gateway
    */
   public transcriptions<ThrowOnError extends boolean = false>(
     parameters: {
@@ -6979,11 +6979,11 @@ export class Audio extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KiloAudioTranscriptionsResponses,
-      KiloAudioTranscriptionsErrors,
+      QronosAudioTranscriptionsResponses,
+      QronosAudioTranscriptionsErrors,
       ThrowOnError
     >({
-      url: "/kilo/audio/transcriptions",
+      url: "/qronos/audio/transcriptions",
       ...options,
       ...params,
       headers: {
@@ -6999,7 +6999,7 @@ export class Models extends HeyApiClient {
   /**
    * Image generation models
    *
-   * List image-capable models from the Kilo Gateway OpenRouter passthrough
+   * List image-capable models from the Qronos Gateway OpenRouter passthrough
    */
   public images<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -7019,8 +7019,8 @@ export class Models extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloModelsImagesResponses, KiloModelsImagesErrors, ThrowOnError>({
-      url: "/kilo/models/images",
+    return (options?.client ?? this.client).get<QronosModelsImagesResponses, QronosModelsImagesErrors, ThrowOnError>({
+      url: "/qronos/models/images",
       ...options,
       ...params,
     })
@@ -7029,7 +7029,7 @@ export class Models extends HeyApiClient {
   /**
    * Speech-to-text models
    *
-   * List transcription-capable models from the Kilo Gateway catalog
+   * List transcription-capable models from the Qronos Gateway catalog
    */
   public transcriptions<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -7050,11 +7050,11 @@ export class Models extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KiloModelsTranscriptionsResponses,
-      KiloModelsTranscriptionsErrors,
+      QronosModelsTranscriptionsResponses,
+      QronosModelsTranscriptionsErrors,
       ThrowOnError
     >({
-      url: "/kilo/models/transcriptions",
+      url: "/qronos/models/transcriptions",
       ...options,
       ...params,
     })
@@ -7063,9 +7063,9 @@ export class Models extends HeyApiClient {
 
 export class Organization extends HeyApiClient {
   /**
-   * Update Kilo Gateway organization
+   * Update Qronos Gateway organization
    *
-   * Switch to a different Kilo Gateway organization
+   * Switch to a different Qronos Gateway organization
    */
   public set<ThrowOnError extends boolean = false>(
     parameters: {
@@ -7087,9 +7087,9 @@ export class Organization extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).post<KiloOrganizationSetResponses, KiloOrganizationSetErrors, ThrowOnError>(
+    return (options?.client ?? this.client).post<QronosOrganizationSetResponses, QronosOrganizationSetErrors, ThrowOnError>(
       {
-        url: "/kilo/organization",
+        url: "/qronos/organization",
         ...options,
         ...params,
         headers: {
@@ -7106,7 +7106,7 @@ export class Session3 extends HeyApiClient {
   /**
    * Get cloud session
    *
-   * Fetch full session data from the Kilo cloud for preview
+   * Fetch full session data from the Qronos cloud for preview
    */
   public get<ThrowOnError extends boolean = false>(
     parameters: {
@@ -7128,8 +7128,8 @@ export class Session3 extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloCloudSessionGetResponses, KiloCloudSessionGetErrors, ThrowOnError>({
-      url: "/kilo/cloud/session/{id}",
+    return (options?.client ?? this.client).get<QronosCloudSessionGetResponses, QronosCloudSessionGetErrors, ThrowOnError>({
+      url: "/qronos/cloud/session/{id}",
       ...options,
       ...params,
     })
@@ -7161,11 +7161,11 @@ export class Session3 extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KiloCloudSessionImportResponses,
-      KiloCloudSessionImportErrors,
+      QronosCloudSessionImportResponses,
+      QronosCloudSessionImportErrors,
       ThrowOnError
     >({
-      url: "/kilo/cloud/session/import",
+      url: "/qronos/cloud/session/import",
       ...options,
       ...params,
       headers: {
@@ -7184,11 +7184,11 @@ export class Cloud extends HeyApiClient {
   }
 }
 
-export class Kilo extends HeyApiClient {
+export class Qronos extends HeyApiClient {
   /**
-   * Get Kilo Gateway profile
+   * Get Qronos Gateway profile
    *
-   * Fetch user profile and organizations from Kilo Gateway
+   * Fetch user profile and organizations from Qronos Gateway
    */
   public profile<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -7208,17 +7208,17 @@ export class Kilo extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloProfileResponses, KiloProfileErrors, ThrowOnError>({
-      url: "/kilo/profile",
+    return (options?.client ?? this.client).get<QronosProfileResponses, QronosProfileErrors, ThrowOnError>({
+      url: "/qronos/profile",
       ...options,
       ...params,
     })
   }
 
   /**
-   * Get Kilo authentication status
+   * Get Qronos authentication status
    *
-   * Check whether a locally stored Kilo credential can authenticate Gateway requests
+   * Check whether a locally stored Qronos credential can authenticate Gateway requests
    */
   public authStatus<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -7238,8 +7238,8 @@ export class Kilo extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloAuthStatusResponses, KiloAuthStatusErrors, ThrowOnError>({
-      url: "/kilo/auth-status",
+    return (options?.client ?? this.client).get<QronosAuthStatusResponses, QronosAuthStatusErrors, ThrowOnError>({
+      url: "/qronos/auth-status",
       ...options,
       ...params,
     })
@@ -7268,8 +7268,8 @@ export class Kilo extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloModesResponses, KiloModesErrors, ThrowOnError>({
-      url: "/kilo/modes",
+    return (options?.client ?? this.client).get<QronosModesResponses, QronosModesErrors, ThrowOnError>({
+      url: "/qronos/modes",
       ...options,
       ...params,
     })
@@ -7278,7 +7278,7 @@ export class Kilo extends HeyApiClient {
   /**
    * FIM completion
    *
-   * Proxy a Fill-in-the-Middle completion request to the Kilo Gateway
+   * Proxy a Fill-in-the-Middle completion request to the Qronos Gateway
    */
   public fim<ThrowOnError extends boolean = false>(
     parameters: {
@@ -7291,7 +7291,7 @@ export class Kilo extends HeyApiClient {
       maxTokens?: number
       temperature?: number
     },
-    options?: Options<never, ThrowOnError, KiloFimResponse>,
+    options?: Options<never, ThrowOnError, QronosFimResponse>,
   ) {
     const params = buildClientParams(
       [parameters],
@@ -7310,8 +7310,8 @@ export class Kilo extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).sse.post<KiloFimResponses, KiloFimErrors, ThrowOnError>({
-      url: "/kilo/fim",
+    return (options?.client ?? this.client).sse.post<QronosFimResponses, QronosFimErrors, ThrowOnError>({
+      url: "/qronos/fim",
       ...options,
       ...params,
       headers: {
@@ -7323,9 +7323,9 @@ export class Kilo extends HeyApiClient {
   }
 
   /**
-   * Get Kilo notifications
+   * Get Qronos notifications
    *
-   * Fetch notifications from Kilo Gateway for CLI display
+   * Fetch notifications from Qronos Gateway for CLI display
    */
   public notifications<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -7345,8 +7345,8 @@ export class Kilo extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloNotificationsResponses, KiloNotificationsErrors, ThrowOnError>({
-      url: "/kilo/notifications",
+    return (options?.client ?? this.client).get<QronosNotificationsResponses, QronosNotificationsErrors, ThrowOnError>({
+      url: "/qronos/notifications",
       ...options,
       ...params,
     })
@@ -7355,7 +7355,7 @@ export class Kilo extends HeyApiClient {
   /**
    * Get cloud sessions
    *
-   * Fetch cloud CLI sessions from Kilo API
+   * Fetch cloud CLI sessions from Qronos API
    */
   public cloudSessions<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -7381,8 +7381,8 @@ export class Kilo extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KiloCloudSessionsResponses, KiloCloudSessionsErrors, ThrowOnError>({
-      url: "/kilo/cloud-sessions",
+    return (options?.client ?? this.client).get<QronosCloudSessionsResponses, QronosCloudSessionsErrors, ThrowOnError>({
+      url: "/qronos/cloud-sessions",
       ...options,
       ...params,
     })
@@ -7434,11 +7434,11 @@ export class Heap extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeHeapSnapshotResponses,
-      KilocodeHeapSnapshotErrors,
+      QronosHeapSnapshotResponses,
+      QronosHeapSnapshotErrors,
       ThrowOnError
     >({
-      url: "/kilocode/heap/snapshot",
+      url: "/qronos/heap/snapshot",
       ...options,
       ...params,
     })
@@ -7470,11 +7470,11 @@ export class Marketplace extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeMarketplaceListResponses,
-      KilocodeMarketplaceListErrors,
+      QronosMarketplaceListResponses,
+      QronosMarketplaceListErrors,
       ThrowOnError
     >({
-      url: "/kilocode/marketplace",
+      url: "/qronos/marketplace",
       ...options,
       ...params,
     })
@@ -7483,7 +7483,7 @@ export class Marketplace extends HeyApiClient {
   /**
    * Install a marketplace item
    *
-   * Install a marketplace MCP server, agent, skill, or plugin into project or global Kilo config.
+   * Install a marketplace MCP server, agent, skill, or plugin into project or global Qronos config.
    */
   public install<ThrowOnError extends boolean = false>(
     parameters: {
@@ -7512,11 +7512,11 @@ export class Marketplace extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeMarketplaceInstallResponses,
-      KilocodeMarketplaceInstallErrors,
+      QronosMarketplaceInstallResponses,
+      QronosMarketplaceInstallErrors,
       ThrowOnError
     >({
-      url: "/kilocode/marketplace/install",
+      url: "/qronos/marketplace/install",
       ...options,
       ...params,
       headers: {
@@ -7530,7 +7530,7 @@ export class Marketplace extends HeyApiClient {
   /**
    * Remove a marketplace item
    *
-   * Remove a marketplace MCP server, agent, skill, or plugin from project or global Kilo config.
+   * Remove a marketplace MCP server, agent, skill, or plugin from project or global Qronos config.
    */
   public remove<ThrowOnError extends boolean = false>(
     parameters: {
@@ -7555,11 +7555,11 @@ export class Marketplace extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeMarketplaceRemoveResponses,
-      KilocodeMarketplaceRemoveErrors,
+      QronosMarketplaceRemoveResponses,
+      QronosMarketplaceRemoveErrors,
       ThrowOnError
     >({
-      url: "/kilocode/marketplace/remove",
+      url: "/qronos/marketplace/remove",
       ...options,
       ...params,
       headers: {
@@ -7596,11 +7596,11 @@ export class Snapshot extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeSnapshotPrepareResponses,
-      KilocodeSnapshotPrepareErrors,
+      QronosSnapshotPrepareResponses,
+      QronosSnapshotPrepareErrors,
       ThrowOnError
     >({
-      url: "/kilocode/snapshot/prepare",
+      url: "/qronos/snapshot/prepare",
       ...options,
       ...params,
     })
@@ -7632,11 +7632,11 @@ export class ProviderUsage extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeProviderUsageGetResponses,
-      KilocodeProviderUsageGetErrors,
+      QronosProviderUsageGetResponses,
+      QronosProviderUsageGetErrors,
       ThrowOnError
     >({
-      url: "/kilocode/provider-usage",
+      url: "/qronos/provider-usage",
       ...options,
       ...params,
     })
@@ -7666,11 +7666,11 @@ export class ProviderUsage extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeProviderUsageRefreshResponses,
-      KilocodeProviderUsageRefreshErrors,
+      QronosProviderUsageRefreshResponses,
+      QronosProviderUsageRefreshErrors,
       ThrowOnError
     >({
-      url: "/kilocode/provider-usage/refresh",
+      url: "/qronos/provider-usage/refresh",
       ...options,
       ...params,
     })
@@ -7702,11 +7702,11 @@ export class Notebook extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeNotebookListResponses,
-      KilocodeNotebookListErrors,
+      QronosNotebookListResponses,
+      QronosNotebookListErrors,
       ThrowOnError
     >({
-      url: "/kilocode/notebook",
+      url: "/qronos/notebook",
       ...options,
       ...params,
     })
@@ -7740,11 +7740,11 @@ export class Notebook extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeNotebookReplyResponses,
-      KilocodeNotebookReplyErrors,
+      QronosNotebookReplyResponses,
+      QronosNotebookReplyErrors,
       ThrowOnError
     >({
-      url: "/kilocode/notebook/{requestID}/reply",
+      url: "/qronos/notebook/{requestID}/reply",
       ...options,
       ...params,
       headers: {
@@ -7783,11 +7783,11 @@ export class Notebook extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeNotebookRejectResponses,
-      KilocodeNotebookRejectErrors,
+      QronosNotebookRejectResponses,
+      QronosNotebookRejectErrors,
       ThrowOnError
     >({
-      url: "/kilocode/notebook/{requestID}/reject",
+      url: "/qronos/notebook/{requestID}/reject",
       ...options,
       ...params,
       headers: {
@@ -7824,11 +7824,11 @@ export class AgentManager extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeAgentManagerListResponses,
-      KilocodeAgentManagerListErrors,
+      QronosAgentManagerListResponses,
+      QronosAgentManagerListErrors,
       ThrowOnError
     >({
-      url: "/kilocode/agent-manager",
+      url: "/qronos/agent-manager",
       ...options,
       ...params,
     })
@@ -7862,11 +7862,11 @@ export class AgentManager extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeAgentManagerReplyResponses,
-      KilocodeAgentManagerReplyErrors,
+      QronosAgentManagerReplyResponses,
+      QronosAgentManagerReplyErrors,
       ThrowOnError
     >({
-      url: "/kilocode/agent-manager/{requestID}/reply",
+      url: "/qronos/agent-manager/{requestID}/reply",
       ...options,
       ...params,
       headers: {
@@ -7905,11 +7905,11 @@ export class AgentManager extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeAgentManagerRejectResponses,
-      KilocodeAgentManagerRejectErrors,
+      QronosAgentManagerRejectResponses,
+      QronosAgentManagerRejectErrors,
       ThrowOnError
     >({
-      url: "/kilocode/agent-manager/{requestID}/reject",
+      url: "/qronos/agent-manager/{requestID}/reject",
       ...options,
       ...params,
       headers: {
@@ -7948,11 +7948,11 @@ export class BackgroundJob extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeBackgroundJobCancelResponses,
-      KilocodeBackgroundJobCancelErrors,
+      QronosBackgroundJobCancelResponses,
+      QronosBackgroundJobCancelErrors,
       ThrowOnError
     >({
-      url: "/kilocode/background-jobs/{jobID}/cancel",
+      url: "/qronos/background-jobs/{jobID}/cancel",
       ...options,
       ...params,
     })
@@ -7984,11 +7984,11 @@ export class BackgroundJob extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeBackgroundJobPromoteResponses,
-      KilocodeBackgroundJobPromoteErrors,
+      QronosBackgroundJobPromoteResponses,
+      QronosBackgroundJobPromoteErrors,
       ThrowOnError
     >({
-      url: "/kilocode/background-jobs/{jobID}/promote",
+      url: "/qronos/background-jobs/{jobID}/promote",
       ...options,
       ...params,
     })
@@ -8020,11 +8020,11 @@ export class Retention extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeRetentionStatusResponses,
-      KilocodeRetentionStatusErrors,
+      QronosRetentionStatusResponses,
+      QronosRetentionStatusErrors,
       ThrowOnError
     >({
-      url: "/kilocode/retention",
+      url: "/qronos/retention",
       ...options,
       ...params,
     })
@@ -8033,7 +8033,7 @@ export class Retention extends HeyApiClient {
   /**
    * Run session retention
    *
-   * Run one machine-wide session retention pass. Does nothing unless the retention policy is enabled in kilo.json; `force` bypasses the minimum spacing between scheduled passes, never the enable check.
+   * Run one machine-wide session retention pass. Does nothing unless the retention policy is enabled in qronos.json; `force` bypasses the minimum spacing between scheduled passes, never the enable check.
    */
   public run<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -8056,11 +8056,11 @@ export class Retention extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeRetentionRunResponses,
-      KilocodeRetentionRunErrors,
+      QronosRetentionRunResponses,
+      QronosRetentionRunErrors,
       ThrowOnError
     >({
-      url: "/kilocode/retention/run",
+      url: "/qronos/retention/run",
       ...options,
       ...params,
       headers: {
@@ -8095,11 +8095,11 @@ export class Retention extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeRetentionCancelResponses,
-      KilocodeRetentionCancelErrors,
+      QronosRetentionCancelResponses,
+      QronosRetentionCancelErrors,
       ThrowOnError
     >({
-      url: "/kilocode/retention/cancel",
+      url: "/qronos/retention/cancel",
       ...options,
       ...params,
     })
@@ -8108,9 +8108,9 @@ export class Retention extends HeyApiClient {
 
 export class Migrate extends HeyApiClient {
   /**
-   * Migrate external sessions into Kilo
+   * Migrate external sessions into Qronos
    *
-   * Discover Claude Code and OpenAI Codex JSONL transcripts for a directory and migrate them into new Kilo sessions, one session per transcript. Sources that were already migrated are skipped, so calling this repeatedly is a no-op once everything has landed.
+   * Discover Claude Code and OpenAI Codex JSONL transcripts for a directory and migrate them into new Qronos sessions, one session per transcript. Sources that were already migrated are skipped, so calling this repeatedly is a no-op once everything has landed.
    */
   public sessions<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -8143,11 +8143,11 @@ export class Migrate extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeMigrateSessionsResponses,
-      KilocodeMigrateSessionsErrors,
+      QronosMigrateSessionsResponses,
+      QronosMigrateSessionsErrors,
       ThrowOnError
     >({
-      url: "/kilocode/migrate/sessions",
+      url: "/qronos/migrate/sessions",
       ...options,
       ...params,
       headers: {
@@ -8186,11 +8186,11 @@ export class Migrate extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeMigrateDiscoverResponses,
-      KilocodeMigrateDiscoverErrors,
+      QronosMigrateDiscoverResponses,
+      QronosMigrateDiscoverErrors,
       ThrowOnError
     >({
-      url: "/kilocode/migrate/sessions/discover",
+      url: "/qronos/migrate/sessions/discover",
       ...options,
       ...params,
       headers: {
@@ -8251,11 +8251,11 @@ export class SessionImport extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeSessionImportProjectResponses,
-      KilocodeSessionImportProjectErrors,
+      QronosSessionImportProjectResponses,
+      QronosSessionImportProjectErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-import/project",
+      url: "/qronos/session-import/project",
       ...options,
       ...params,
       headers: {
@@ -8347,11 +8347,11 @@ export class SessionImport extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeSessionImportSessionResponses,
-      KilocodeSessionImportSessionErrors,
+      QronosSessionImportSessionResponses,
+      QronosSessionImportSessionErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-import/session",
+      url: "/qronos/session-import/session",
       ...options,
       ...params,
       headers: {
@@ -8439,11 +8439,11 @@ export class SessionImport extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeSessionImportMessageResponses,
-      KilocodeSessionImportMessageErrors,
+      QronosSessionImportMessageResponses,
+      QronosSessionImportMessageErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-import/message",
+      url: "/qronos/session-import/message",
       ...options,
       ...params,
       headers: {
@@ -8571,11 +8571,11 @@ export class SessionImport extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeSessionImportPartResponses,
-      KilocodeSessionImportPartErrors,
+      QronosSessionImportPartResponses,
+      QronosSessionImportPartErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-import/part",
+      url: "/qronos/session-import/part",
       ...options,
       ...params,
       headers: {
@@ -8587,7 +8587,7 @@ export class SessionImport extends HeyApiClient {
   }
 }
 
-export class Kilocode extends HeyApiClient {
+export class Qronos extends HeyApiClient {
   /**
    * Resume an interrupted session
    *
@@ -8618,11 +8618,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeResumeSessionResponses,
-      KilocodeResumeSessionErrors,
+      QronosResumeSessionResponses,
+      QronosResumeSessionErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session/{sessionID}/resume",
+      url: "/qronos/session/{sessionID}/resume",
       ...options,
       ...params,
       headers: {
@@ -8661,11 +8661,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeDrainSessionResponses,
-      KilocodeDrainSessionErrors,
+      QronosDrainSessionResponses,
+      QronosDrainSessionErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session/{sessionID}/drain",
+      url: "/qronos/session/{sessionID}/drain",
       ...options,
       ...params,
       headers: {
@@ -8706,11 +8706,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeSessionBoardResponses,
-      KilocodeSessionBoardErrors,
+      QronosSessionBoardResponses,
+      QronosSessionBoardErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session/{sessionID}/board",
+      url: "/qronos/session/{sessionID}/board",
       ...options,
       ...params,
     })
@@ -8744,11 +8744,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeResetSessionBoardResponses,
-      KilocodeResetSessionBoardErrors,
+      QronosResetSessionBoardResponses,
+      QronosResetSessionBoardErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session/{sessionID}/board/reset",
+      url: "/qronos/session/{sessionID}/board/reset",
       ...options,
       ...params,
       headers: {
@@ -8783,11 +8783,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeCommandFilesResponses,
-      KilocodeCommandFilesErrors,
+      QronosCommandFilesResponses,
+      QronosCommandFilesErrors,
       ThrowOnError
     >({
-      url: "/kilocode/command/files",
+      url: "/qronos/command/files",
       ...options,
       ...params,
     })
@@ -8819,11 +8819,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeRemoveCommandResponses,
-      KilocodeRemoveCommandErrors,
+      QronosRemoveCommandResponses,
+      QronosRemoveCommandErrors,
       ThrowOnError
     >({
-      url: "/kilocode/command/remove",
+      url: "/qronos/command/remove",
       ...options,
       ...params,
       headers: {
@@ -8859,9 +8859,9 @@ export class Kilocode extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).post<KilocodeRemoveSkillResponses, KilocodeRemoveSkillErrors, ThrowOnError>(
+    return (options?.client ?? this.client).post<QronosRemoveSkillResponses, QronosRemoveSkillErrors, ThrowOnError>(
       {
-        url: "/kilocode/skill/remove",
+        url: "/qronos/skill/remove",
         ...options,
         ...params,
         headers: {
@@ -8900,9 +8900,9 @@ export class Kilocode extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).post<KilocodeRemoveAgentResponses, KilocodeRemoveAgentErrors, ThrowOnError>(
+    return (options?.client ?? this.client).post<QronosRemoveAgentResponses, QronosRemoveAgentErrors, ThrowOnError>(
       {
-        url: "/kilocode/agent/remove",
+        url: "/qronos/agent/remove",
         ...options,
         ...params,
         headers: {
@@ -8940,11 +8940,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeRemoveSnapshotResponses,
-      KilocodeRemoveSnapshotErrors,
+      QronosRemoveSnapshotResponses,
+      QronosRemoveSnapshotErrors,
       ThrowOnError
     >({
-      url: "/kilocode/snapshot/remove",
+      url: "/qronos/snapshot/remove",
       ...options,
       ...params,
       headers: {
@@ -8981,11 +8981,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<
-      KilocodeTeardownWorktreeResponses,
-      KilocodeTeardownWorktreeErrors,
+      QronosTeardownWorktreeResponses,
+      QronosTeardownWorktreeErrors,
       ThrowOnError
     >({
-      url: "/kilocode/worktree/teardown",
+      url: "/qronos/worktree/teardown",
       ...options,
       ...params,
       headers: {
@@ -9022,8 +9022,8 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeSessionModelUsageResponses,
-      KilocodeSessionModelUsageErrors,
+      QronosSessionModelUsageResponses,
+      QronosSessionModelUsageErrors,
       ThrowOnError
     >({
       url: "/session/{sessionID}/model-usage",
@@ -9058,11 +9058,11 @@ export class Kilocode extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<
-      KilocodeBackgroundJobsResponses,
-      KilocodeBackgroundJobsErrors,
+      QronosBackgroundJobsResponses,
+      QronosBackgroundJobsErrors,
       ThrowOnError
     >({
-      url: "/kilocode/background-jobs",
+      url: "/qronos/background-jobs",
       ...options,
       ...params,
     })
@@ -9091,8 +9091,8 @@ export class Kilocode extends HeyApiClient {
         },
       ],
     )
-    return (options?.client ?? this.client).get<KilocodeWakeupsResponses, KilocodeWakeupsErrors, ThrowOnError>({
-      url: "/kilocode/wakeups",
+    return (options?.client ?? this.client).get<QronosWakeupsResponses, QronosWakeupsErrors, ThrowOnError>({
+      url: "/qronos/wakeups",
       ...options,
       ...params,
     })
@@ -9178,7 +9178,7 @@ export class AnacondaDesktop extends HeyApiClient {
       AnacondaDesktopStatusErrors,
       ThrowOnError
     >({
-      url: "/kilocode/anaconda-desktop/status",
+      url: "/qronos/anaconda-desktop/status",
       ...options,
       ...params,
     })
@@ -9209,7 +9209,7 @@ export class AnacondaDesktop extends HeyApiClient {
     )
     return (options?.client ?? this.client).post<AnacondaDesktopOpenResponses, AnacondaDesktopOpenErrors, ThrowOnError>(
       {
-        url: "/kilocode/anaconda-desktop/open",
+        url: "/qronos/anaconda-desktop/open",
         ...options,
         ...params,
       },
@@ -9219,7 +9219,7 @@ export class AnacondaDesktop extends HeyApiClient {
   /**
    * Synchronize Anaconda Desktop provider
    *
-   * Discover the active local inference server and replace Kilo provider authentication metadata.
+   * Discover the active local inference server and replace Qronos provider authentication metadata.
    */
   public sync<ThrowOnError extends boolean = false>(
     parameters?: {
@@ -9243,7 +9243,7 @@ export class AnacondaDesktop extends HeyApiClient {
     )
     return (options?.client ?? this.client).post<AnacondaDesktopSyncResponses, AnacondaDesktopSyncErrors, ThrowOnError>(
       {
-        url: "/kilocode/anaconda-desktop/sync",
+        url: "/qronos/anaconda-desktop/sync",
         ...options,
         ...params,
         headers: {
@@ -9551,7 +9551,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostProvidersResponses,
       SessionHostProvidersErrors,
       ThrowOnError
-    >({ url: "/kilocode/session-host/provider", ...options })
+    >({ url: "/qronos/session-host/provider", ...options })
   }
 
   /**
@@ -9567,7 +9567,7 @@ export class SessionHost extends HeyApiClient {
   ) {
     const params = buildClientParams([parameters], [{ args: [{ in: "query", key: "limit" }] }])
     return (options?.client ?? this.client).get<SessionHostListResponses, SessionHostListErrors, ThrowOnError>({
-      url: "/kilocode/session-host/session",
+      url: "/qronos/session-host/session",
       ...options,
       ...params,
     })
@@ -9586,7 +9586,7 @@ export class SessionHost extends HeyApiClient {
   ) {
     const params = buildClientParams([parameters], [{ args: [{ key: "sessionHostStartInput", map: "body" }] }])
     return (options?.client ?? this.client).post<SessionHostStartResponses, SessionHostStartErrors, ThrowOnError>({
-      url: "/kilocode/session-host/session",
+      url: "/qronos/session-host/session",
       ...options,
       ...params,
       headers: {
@@ -9621,7 +9621,7 @@ export class SessionHost extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).get<SessionHostGetResponses, SessionHostGetErrors, ThrowOnError>({
-      url: "/kilocode/session-host/session/{providerID}/{sessionID}",
+      url: "/qronos/session-host/session/{providerID}/{sessionID}",
       ...options,
       ...params,
     })
@@ -9659,7 +9659,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostTranscriptErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/session/{providerID}/{sessionID}/message",
+      url: "/qronos/session-host/session/{providerID}/{sessionID}/message",
       ...options,
       ...params,
     })
@@ -9691,7 +9691,7 @@ export class SessionHost extends HeyApiClient {
       ],
     )
     return (options?.client ?? this.client).post<SessionHostAttachResponses, SessionHostAttachErrors, ThrowOnError>({
-      url: "/kilocode/session-host/session/{providerID}/{sessionID}/attach",
+      url: "/qronos/session-host/session/{providerID}/{sessionID}/attach",
       ...options,
       ...params,
     })
@@ -9710,7 +9710,7 @@ export class SessionHost extends HeyApiClient {
   ) {
     const params = buildClientParams([parameters], [{ args: [{ in: "path", key: "attachmentID" }] }])
     return (options?.client ?? this.client).delete<SessionHostDetachResponses, SessionHostDetachErrors, ThrowOnError>({
-      url: "/kilocode/session-host/attachment/{attachmentID}",
+      url: "/qronos/session-host/attachment/{attachmentID}",
       ...options,
       ...params,
     })
@@ -9750,7 +9750,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostListWorkspacesErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace",
+      url: "/qronos/session-host/workspace",
       ...options,
       ...params,
     })
@@ -9776,7 +9776,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostCreateWorkspaceErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace",
+      url: "/qronos/session-host/workspace",
       ...options,
       ...params,
       headers: {
@@ -9807,7 +9807,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostContinueWorkspaceErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/continue",
+      url: "/qronos/session-host/workspace/continue",
       ...options,
       ...params,
       headers: {
@@ -9835,7 +9835,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostListWorkspaceProfilesErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/profiles",
+      url: "/qronos/session-host/workspace/profiles",
       ...options,
       ...params,
     })
@@ -9861,7 +9861,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostSetWorkspacePersonalDefaultProfileErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/profiles/personal-default",
+      url: "/qronos/session-host/workspace/profiles/personal-default",
       ...options,
       ...params,
       headers: {
@@ -9889,7 +9889,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostClearWorkspacePersonalDefaultProfileErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/profiles/personal-default/{profileID}",
+      url: "/qronos/session-host/workspace/profiles/personal-default/{profileID}",
       ...options,
       ...params,
     })
@@ -9925,7 +9925,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostDeleteWorkspaceErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}",
+      url: "/qronos/session-host/workspace/{providerID}/{workspaceID}",
       ...options,
       ...params,
     })
@@ -9965,7 +9965,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostGetWorkspaceErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}",
+      url: "/qronos/session-host/workspace/{providerID}/{workspaceID}",
       ...options,
       ...params,
     })
@@ -10001,7 +10001,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostGetWorkspaceStatusErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}/status",
+      url: "/qronos/session-host/workspace/{providerID}/{workspaceID}/status",
       ...options,
       ...params,
     })
@@ -10041,7 +10041,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostListWorkspaceSessionsErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}/session",
+      url: "/qronos/session-host/workspace/{providerID}/{workspaceID}/session",
       ...options,
       ...params,
     })
@@ -10077,7 +10077,7 @@ export class SessionHost extends HeyApiClient {
       SessionHostStartWorkspaceSessionErrors,
       ThrowOnError
     >({
-      url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}/session",
+      url: "/qronos/session-host/workspace/{providerID}/{workspaceID}/session",
       ...options,
       ...params,
       headers: {
@@ -10196,7 +10196,7 @@ export class Telemetry extends HeyApiClient {
   /**
    * Capture telemetry event
    *
-   * Forward a telemetry event to PostHog via kilo-telemetry.
+   * Forward a telemetry event to PostHog via qronos-telemetry.
    */
   public capture<ThrowOnError extends boolean = false>(
     parameters: {
@@ -10237,7 +10237,7 @@ export class Telemetry extends HeyApiClient {
   /**
    * Set PostHog telemetry enabled state
    *
-   * Update the PostHog client's opt-in/out state at runtime. The CLI reads KILO_TELEMETRY_LEVEL once at spawn — this route lets clients (e.g. the VS Code extension) propagate runtime telemetry consent changes.
+   * Update the PostHog client's opt-in/out state at runtime. The CLI reads QRONOS_TELEMETRY_LEVEL once at spawn — this route lets clients (e.g. the VS Code extension) propagate runtime telemetry consent changes.
    */
   public setEnabled<ThrowOnError extends boolean = false>(
     parameters: {
@@ -11114,7 +11114,7 @@ export class Session4 extends HeyApiClient {
   /**
    * List active sessions
    *
-   * Retrieve foreground Session drains currently owned by this Kilo process. Sessions absent from the result are inactive.
+   * Retrieve foreground Session drains currently owned by this Qronos process. Sessions absent from the result are inactive.
    */
   public active<ThrowOnError extends boolean = false>(options?: Options<never, ThrowOnError>) {
     return (options?.client ?? this.client).get<V2SessionActiveResponses, V2SessionActiveErrors, ThrowOnError>({
@@ -11383,7 +11383,7 @@ export class Session4 extends HeyApiClient {
   /**
    * Interrupt session execution
    *
-   * Interrupt active execution owned by this Kilo process. Idle interruption is a no-op.
+   * Interrupt active execution owned by this Qronos process. Idle interruption is a no-op.
    */
   public interrupt<ThrowOnError extends boolean = false>(
     parameters: {
@@ -12700,12 +12700,12 @@ export class V2 extends HeyApiClient {
   }
 }
 
-export class KiloClient extends HeyApiClient {
-  public static readonly __registry = new HeyApiRegistry<KiloClient>()
+export class QronosClient extends HeyApiClient {
+  public static readonly __registry = new HeyApiRegistry<QronosClient>()
 
   constructor(args?: { client?: Client; key?: string }) {
     super(args)
-    KiloClient.__registry.set(this, args?.key)
+    QronosClient.__registry.set(this, args?.key)
   }
 
   private _auth?: Auth
@@ -12878,14 +12878,14 @@ export class KiloClient extends HeyApiClient {
     return (this._indexing ??= new Indexing({ client: this.client }))
   }
 
-  private _kilo?: Kilo
-  get kilo(): Kilo {
-    return (this._kilo ??= new Kilo({ client: this.client }))
+  private _qronos?: Qronos
+  get qronos(): Qronos {
+    return (this._qronos ??= new Qronos({ client: this.client }))
   }
 
-  private _kilocode?: Kilocode
-  get kilocode(): Kilocode {
-    return (this._kilocode ??= new Kilocode({ client: this.client }))
+  private _qronos?: Qronos
+  get qronos(): Qronos {
+    return (this._qronos ??= new Qronos({ client: this.client }))
   }
 
   private _anacondaDesktop?: AnacondaDesktop

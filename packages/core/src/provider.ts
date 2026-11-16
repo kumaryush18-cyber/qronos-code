@@ -3,8 +3,8 @@ export * as ProviderV2 from "./provider"
 import { Types } from "effect"
 import { Provider } from "@qronos-ai/schema/provider"
 
-// kilocode_change - preserve Kilo's well-known routing ID without forking the shared schema
-// qronos_change - the gateway provider id is `qronos`; the old `kilo` id is gone.
+// qronos_change - preserve Qronos's well-known routing ID without forking the shared schema
+// qronos_change - the gateway provider id is `qronos`; the old `qronos` id is gone.
 export const ID = Object.assign(Provider.ID, { qronos: Provider.ID.make("qronos") })
 export type ID = typeof ID.Type
 

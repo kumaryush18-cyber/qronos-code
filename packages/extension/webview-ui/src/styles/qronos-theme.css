@@ -1,0 +1,255 @@
+/* ============================================
+   Qronos visual identity
+   Smooth near-black surfaces, one lime accent.
+   No cyan: the accent only appears on hover and
+   focus, so the panel reads as calm dark.
+   ============================================ */
+
+body.vscode-dark,
+body.vscode-high-contrast {
+  --q-black: #08090a;
+  --q-bg: #0b0c0d;
+  --q-bg-soft: #0e1011;
+  --q-bg-raised: #101214;
+  --q-line: rgba(255, 255, 255, 0.06);
+  --q-line-strong: rgba(255, 255, 255, 0.12);
+  --q-lime: #c9ff73;
+  --q-text: #e7ece6;
+  --q-text-dim: #8d968c;
+}
+
+body.vscode-light,
+body.vscode-high-contrast-light {
+  --q-black: #f4f6f2;
+  --q-bg: #f6f8f4;
+  --q-bg-soft: #eef1ea;
+  --q-bg-raised: #ffffff;
+  --q-line: rgba(20, 32, 20, 0.1);
+  --q-line-strong: rgba(20, 32, 20, 0.2);
+  --q-lime: #5f8a17;
+  --q-text: #16200f;
+  --q-text-dim: #4c5a48;
+}
+
+/* ---------- prompt input ---------- */
+
+.prompt-input-container {
+  isolation: isolate;
+}
+
+/*
+ * Rotating Star Light Effect (from Qronos AI Get Started button design)
+ * Orbiting white/silver starlight beam on prompt input and auth buttons.
+ */
+@keyframes qronos-star-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Rotating Star Light Orbit Border for Prompt Input (matching Qronos AI Get Started design) */
+.prompt-input-container {
+  position: relative !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  padding: 1.5px !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+  transition: filter 0.25s ease !important;
+}
+
+.prompt-input-container::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -150% !important;
+  left: -150% !important;
+  width: 400% !important;
+  height: 400% !important;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 270deg,
+    rgba(255, 255, 255, 0.25) 315deg,
+    #ffffff 360deg
+  ) !important;
+  animation: qronos-star-spin 4s linear infinite !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.prompt-input-inner {
+  position: relative !important;
+  z-index: 2 !important;
+  border-radius: 12.5px !important;
+  background: #090a0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.prompt-input-container:focus-within {
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.16)) !important;
+}
+
+.prompt-input-container:focus-within::before {
+  animation: qronos-star-spin 2.5s linear infinite !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt-input-container::before {
+    animation: none;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0.4;
+  }
+}
+
+.qronos-starlight-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 1px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.qronos-starlight-btn::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 260deg,
+    rgba(255, 255, 255, 0.25) 310deg,
+    #ffffff 360deg
+  );
+  animation: qronos-star-spin 3s linear infinite;
+  z-index: 1;
+}
+
+.qronos-starlight-btn-inner {
+  position: relative;
+  z-index: 2;
+  background: #0f1115;
+  color: #ffffff;
+  padding: 9px 14px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  transition: background 0.2s ease;
+}
+
+.qronos-starlight-btn:hover .qronos-starlight-btn-inner {
+  background: #191c22;
+}
+
+/* ---------- surfaces ---------- */
+
+/* Flat black with the faintest top-left lift. No colour wash. */
+body.vscode-dark .container,
+body.vscode-high-contrast .container {
+  background:
+    radial-gradient(900px 360px at 8% -10%, rgba(255, 255, 255, 0.025), transparent 60%),
+    linear-gradient(180deg, var(--q-bg), var(--q-black));
+}
+
+/* The input itself: flat black, hairline border, generous radius. */
+body.vscode-dark .prompt-input-container [data-component="prompt-input"] {
+  background: var(--q-bg-raised);
+  border: 1px solid var(--q-line);
+  border-radius: 12px;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+body.vscode-dark .prompt-input-container [data-component="prompt-input"]:focus-within {
+  background: #121416;
+  border-color: var(--q-line-strong);
+}
+
+/* Logo: the real Qronos mark, crisp on black, gentle hover. */
+.qronos-logo-static img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 220ms ease;
+}
+
+.qronos-logo:hover .qronos-logo-static img {
+  transform: scale(1.04);
+}
+
+body.vscode-dark .qronos-logo-static img {
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.55));
+}
+
+body.vscode-dark .welcome-header h1,
+body.vscode-dark .welcome-header h2 {
+  color: var(--q-text);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- metallic silver square rounded logo frame ---------- */
+
+.qronos-logo-frame,
+.qronos-logo {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  padding: 8px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(#121417, #0e1012) padding-box,
+    linear-gradient(135deg, #ffffff 0%, #d8dde3 22%, #68707a 45%, #2a2f35 55%, #c5cbd3 78%, #ffffff 100%) border-box;
+  border: 2px solid transparent;
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(220, 230, 240, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.qronos-logo-frame:hover,
+.qronos-logo:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    0 0 22px rgba(235, 245, 255, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.qronos-logo-frame img,
+.qronos-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+
+.qronos-logo-hover {
+  transform: none;
+}

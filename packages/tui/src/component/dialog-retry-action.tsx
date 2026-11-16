@@ -1,5 +1,5 @@
 import { RGBA, TextAttributes } from "@opentui/core"
-import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // qronos_change - backport upstream browser URL validation
 import { createSignal } from "solid-js"
 import { selectedForeground, useTheme } from "../context/theme"
 import { useDialog, type DialogContext } from "../ui/dialog"
@@ -7,7 +7,7 @@ import { Link } from "../ui/link"
 import { BgPulse } from "./bg-pulse"
 import { useBindings } from "../keymap"
 
-const KILO_PRICING_URL = "https://kilo.ai/pricing" // kilocode_change
+const QRONOS_PRICING_URL = "https://qronos.me/pricing" // qronos_change
 const PAD_X = 3
 const PAD_TOP_OUTER = 1
 const FOREGROUND_ALPHA = 186
@@ -21,7 +21,7 @@ export type DialogRetryActionProps = {
 }
 
 function runAction(props: DialogRetryActionProps, dialog: ReturnType<typeof useDialog>) {
-  if (props.link) openUrl(props.link).catch(() => {}) // kilocode_change
+  if (props.link) openUrl(props.link).catch(() => {}) // qronos_change
   props.onClose?.()
   dialog.clear()
 }
@@ -40,7 +40,7 @@ export function DialogRetryAction(props: DialogRetryActionProps) {
   const dialog = useDialog()
   const { theme } = useTheme()
   const fg = selectedForeground(theme)
-  const showGoTreatment = () => props.link === KILO_PRICING_URL // kilocode_change
+  const showGoTreatment = () => props.link === QRONOS_PRICING_URL // qronos_change
   const textBg = () => (showGoTreatment() ? panelOverlay(theme.backgroundPanel) : undefined)
   const [selected, setSelected] = createSignal<"dismiss" | "action">("action")
 

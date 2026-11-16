@@ -1,0 +1,389 @@
+# Qronos Migration
+
+This document explains how Qronos configurations are automatically migrated to Opencode.
+
+## Table of Contents
+
+- [Modes Migration](#modes-migration)
+- [Skills Discovery](#skills-discovery)
+- [Rules Migration](#rules-migration)
+- [Workflows Migration](#workflows-migration)
+- [MCP Migration](#mcp-migration)
+- [Qronos Notifications](#qronos-notifications)
+
+---
+
+# Modes Migration
+
+This section explains how Qronos custom modes are automatically migrated to Opencode agents.
+
+## Overview
+
+Qronos stores custom modes in YAML files. When Opencode starts, it reads these files and converts them to Opencode's agent format, injecting them via the `OPENCODE_CONFIG_CONTENT` mechanism.
+
+## Source Locations
+
+The migrator reads custom modes from these locations (in order, later entries override earlier ones):
+
+### Global Modes (VSCode Extension Storage)
+
+| Platform | Path |
+|---|---|
+| macOS | `~/Library/Application Support/Code/User/globalStorage/qronos.qronos-code/settings/custom_modes.yaml` |
+| Windows | `%APPDATA%/Code/User/globalStorage/qronos.qronos-code/settings/custom_modes.yaml` |
+| Linux | `~/.config/Code/User/globalStorage/qronos.qronos-code/settings/custom_modes.yaml` |
+
+### Project Modes
+
+| Location | Description |
+|---|---|
+| `.qronosmodes` | Project-specific modes in the workspace root |
+
+## Field Mapping
+
+### Migrated Fields
+
+| Qronos Field | Opencode Field | Notes |
+|---|---|---|
+| `slug` | Agent key | Used as the agent identifier |
+| `roleDefinition` | `prompt` | Combined with `customInstructions` |
+| `customInstructions` | `prompt` | Appended after `roleDefinition` with `\n\n` separator |
+| `groups` | `permission` | See permission mapping below |
+| `description` | `description` | Primary source for description |
+| `whenToUse` | `description` | Fallback if no `description` |
+| `name` | `description` | Final fallback |
+
+### Permission Mapping
+
+Qronos uses "groups" to define what tools a mode can access. These are converted to Opencode's permission system:
+
+| Qronos Group | Opencode Permission | Notes |
+|---|---|---|
+| `read` | `read: "allow"` | File reading |
+| `edit` | `edit: "allow"` | File editing |
+| `command` | `bash: "allow"` | Shell commands |
+| `browser` | `bash: "allow"` | Browser actions (via bash) |
+| `mcp` | `mcp: "allow"` | MCP server access |
+
+**Important:** Permissions that are NOT in the groups list are explicitly set to `"deny"`. This ensures that a mode with only `read` and `edit` groups cannot run shell commands or access MCP servers.
+
+### File Restrictions
+
+Qronos supports restricting edit access to specific file patterns:
+
+```yaml
+groups:
+  - read
+  - - edit
+    - fileRegex: "\\.md$"
+      description: "Markdown files only"
+```
+
+This converts to:
+
+```json
+{
+  "permission": {
+    "read": "allow",
+    "edit": {
+      "\\.md$": "allow",
+      "*": "deny"
+    },
+    "bash": "deny",
+    "mcp": "deny"
+  }
+}
+```
+
+Note: `bash` and `mcp` are explicitly denied because they weren't in the original groups list.
+
+## Default Modes
+
+The following Qronos default modes are **skipped** during migration because Opencode has native equivalents:
+
+| Qronos Mode | Reason |
+|---|---|
+| `code` | Maps to Opencode's `build` agent |
+| `architect` | Maps to Opencode's `plan` agent |
+| `ask` | Read-only exploration (use `explore` subagent) |
+| `debug` | Debugging workflow (use `build` with debug instructions) |
+| `orchestrator` | Redundant - all Opencode agents can spawn subagents |
+
+## Example Conversion
+
+### Qronos Mode (YAML)
+
+```yaml
+customModes:
+  - slug: translate
+    name: Translate
+    roleDefinition: You are a linguistic specialist focused on translation.
+    customInstructions: |
+      When translating:
+      - Maintain consistent terminology
+      - Preserve formatting
+    groups:
+      - read
+      - - edit
+        - fileRegex: "src/i18n/.*\\.json$"
+          description: "Translation files only"
+    description: Translate content between languages
+```
+
+### Opencode Agent (JSON)
+
+```json
+{
+  "agent": {
+    "translate": {
+      "mode": "primary",
+      "description": "Translate content between languages",
+      "prompt": "You are a linguistic specialist focused on translation.\n\nWhen translating:\n- Maintain consistent terminology\n- Preserve formatting",
+      "permission": {
+        "read": "allow",
+        "edit": {
+          "src/i18n/.*\\.json$": "allow",
+          "*": "deny"
+        }
+      }
+    }
+  }
+}
+```
+
+## Not Migrated (Future Phases)
+
+The following Qronos features are not yet migrated:
+
+| Feature | Status | Notes |
+|---|---|---|
+| Rules (`.qronos/rules/`) | Phase 2 | Will map to `instructions` array |
+| Workflows (`.qronos/workflows/`) | Phase 2 | Will map to custom commands |
+| MCP Servers (`mcp_settings.json`) | Phase 2 | Will map to `mcp` config |
+| Provider Settings | Phase 2 | Will map to `provider` config |
+| Mode-specific API configs | Phase 2 | Different models per mode |
+| Organization modes | Not planned | `source: organization` not preserved |
+
+## Troubleshooting
+
+### Mode not appearing
+
+1. Check the file exists at the expected location
+2. Verify YAML syntax is valid
+3. Ensure the mode has a unique `slug`
+4. Check it's not a default mode (which are skipped)
+
+### Permissions not working
+
+1. Verify the `groups` array is correctly formatted
+2. For file restrictions, ensure `fileRegex` is a valid regex
+3. Check the permission mapping table above
+
+## Related Files
+
+- [`modes-migrator.ts`](../modes-migrator.ts) - Core migration logic
+- [`config-injector.ts`](../config-injector.ts) - Config building and injection
+
+---
+
+# Skills Discovery
+
+Qronos skills are automatically discovered and made available in Opencode. This is **not a migration** - skills remain in their original locations and can be managed independently by the Qronos VSCode extension.
+
+## How It Works
+
+Qronos scans canonical `.qronos/skill/` and `.qronos/skills/` directories alongside legacy `.qronos/` equivalents. The `QronosPaths.skillDirectories()` function provides these paths.
+
+## Source Locations
+
+Skills are discovered from these locations (in order, later entries override earlier ones):
+
+### Project Skills (Walk-up Discovery)
+
+The scanner walks up from the current directory to the git worktree root, finding all `.qronos/skills/` directories:
+
+```
+your-project/
+├── .qronos/
+│   └── skills/
+│       └── project-skill/
+│           └── SKILL.md
+└── packages/
+    └── my-package/           # If you run from here
+        └── .qronos/
+            └── skills/
+                └── package-skill/
+                    └── SKILL.md
+```
+
+Running from `packages/my-package/` discovers both `package-skill` and `project-skill`.
+
+### Global Skills
+
+| Platform | Path |
+|---|---|
+| All | `~/.qronos/skills/` |
+
+### VSCode Extension Storage (Marketplace Skills)
+
+| Platform | Path |
+|---|---|
+| macOS | `~/Library/Application Support/Code/User/globalStorage/qronos.qronos-code/skills/` |
+| Windows | `%APPDATA%/Code/User/globalStorage/qronos.qronos-code/skills/` |
+| Linux | `~/.config/Code/User/globalStorage/qronos.qronos-code/skills/` |
+
+## Skill File Format
+
+Skills use the same `SKILL.md` format as Opencode:
+
+```markdown
+---
+name: my-skill
+description: When to use this skill
+---
+
+# Instructions
+
+Detailed instructions for the agent...
+```
+
+## Priority / Override Behavior
+
+When the same skill name exists in multiple locations, **last one wins**. Canonical `.qronos/` skills take precedence over legacy `.qronos/` skills at the same project level. Explicit external skill paths and compatibility directories are loaded according to the configured scan order.
+
+## Mode-Specific Skills
+
+Qronos supports mode-specific skills in `skills-{mode}/` directories (e.g., `skills-code/`, `skills-architect/`). These are **not currently migrated** to Opencode.
+
+If you need mode-specific behavior, use Opencode's agent permission system:
+
+```json
+{
+  "agent": {
+    "build": {
+      "permission": {
+        "skill": {
+          "translation": "deny"
+        }
+      }
+    }
+  }
+}
+```
+
+## Symlink Support
+
+Skills can be symlinked from a shared location:
+
+```
+.agents/skills/shared-skill/          # Actual skill
+.qronos/skills/shared-skill -> ...  # Legacy symlink
+.qronos/skill/shared-skill -> ...       # Canonical symlink
+```
+
+The scanner follows symlinks, so a skill installed once can be available to both Qronos VSCode and Opencode CLI.
+
+## Related Files
+
+- [`paths.ts`](../paths.ts) - `skillDirectories()` function
+- [`skill.ts`](../../skill/skill.ts) - Skill scanning logic
+
+---
+
+# Rules Migration
+
+Qronos rules are migrated to Opencode's `instructions` array. See [`rules-migrator.ts`](../rules-migrator.ts).
+
+## Source Locations
+
+| Location | Description |
+|---|---|
+| `.qronosrules` | Legacy project rules file |
+| `.qronos/rules/*.md` | Project rules directory |
+| `~/.qronos/rules/*.md` | Global rules directory |
+| `.qronosrules-{mode}` | Mode-specific legacy rules |
+| `.qronos/rules-{mode}/*.md` | Mode-specific rules directory |
+
+---
+
+# Workflows Migration
+
+Qronos workflows are migrated to Opencode commands. See [`workflows-migrator.ts`](../workflows-migrator.ts).
+
+## Source Locations
+
+| Location | Description |
+|---|---|
+| `.qronos/workflows/*.md` | Project workflows |
+| `~/.qronos/workflows/*.md` | Global workflows |
+| VSCode extension storage | Marketplace-installed workflows |
+
+---
+
+# MCP Migration
+
+Qronos MCP server configurations are migrated to Opencode's `mcp` config. See [`mcp-migrator.ts`](../mcp-migrator.ts).
+
+## Config file location
+
+The CLI reads global config from `~/.config/qronos/` (see [`global/index.ts`](../../global/index.ts): `Global.Path.config` = `xdgConfig` + `"qronos"`). It merges, in order, `config.json`, `opencode.json`, and `opencode.jsonc` in that directory. You can put MCP config in **`opencode.json`** or **`opencode.jsonc`**.
+
+- **macOS / Linux:** `~/.config/qronos/opencode.json` (or `opencode.jsonc`)
+- **Windows:** Config directory depends on `xdg-basedir` (often under `%LOCALAPPDATA%` or `%USERPROFILE%`); filename is still `opencode.json` or `opencode.jsonc`.
+
+Use a top-level `"mcp"` object. Each key is the server name. For a local server, value must have `type: "local"` and `command: ["executable", "arg1", ...]`. Optional: `environment` (env vars), `enabled` (boolean), `timeout` (ms). See `Config.McpLocal` in [`config.ts`](../../config/config.ts). Restart the CLI after editing.
+
+## Source Location (migration from Qronos)
+
+| Location | Description |
+|---|---|
+| VSCode extension storage `settings/cline_mcp_settings.json` | MCP server configurations |
+
+---
+
+# Qronos Notifications
+
+When connected to Qronos Gateway, the CLI fetches and displays notifications from the Qronos API. This allows Qronos to communicate important announcements, feature updates, and tips to users.
+
+## How It Works
+
+1. **On startup**, if the user is authenticated with Qronos Gateway, the CLI fetches notifications from `https://api.qronos.me/api/users/notifications`
+2. **Filtering**: Only notifications with `showIn` containing `"cli"` (or no `showIn` restriction) are displayed
+3. **Display**: The first notification is shown as a toast notification after a 2-second delay
+
+## Notification Data Structure
+
+```typescript
+interface QronosNotification {
+  id: string // Unique identifier
+  title: string // Notification title (e.g., "Agent skills now supported!")
+  message: string // Description text
+  action?: {
+    actionText: string // Link text (e.g., "Learn More")
+    actionURL: string // URL destination
+  }
+  showIn?: string[] // Target platforms: ["cli", "vscode"]
+}
+```
+
+## Example Notification
+
+```
+Title: Agent skills now supported!
+Message: Define reusable skills and workflows for your AI agent.
+Action: Learn More -> https://docs.qronos.me/skills
+```
+
+## Display Conditions
+
+| Condition | Notifications Shown |
+|---|---|
+| Connected to Qronos Gateway | Yes |
+| Not connected to Qronos | No |
+| No notifications from API | No |
+
+## Related Files
+
+- [`notifications.ts`](../../../../qronos-gateway/src/api/notifications.ts) - Fetch function and types
+- [`routes.ts`](../../../../qronos-gateway/src/server/routes.ts) - Server endpoint `/qronos/notifications`
+- [`app.tsx`](../../cli/cmd/tui/app.tsx) - TUI notification display logic

@@ -1,0 +1,13 @@
+# qronos_change - new file
+name: "Setup Qronos"
+description: "Install Qronos CLI globally"
+runs:
+  using: "composite"
+  steps:
+    - name: Install Qronos CLI
+      run: curl -fsSL https://qronos.me/cli/install | bash
+      shell: bash
+
+    - name: Add Qronos to PATH
+      run: echo "$HOME/.qronos/bin" >> $GITHUB_PATH
+      shell: bash

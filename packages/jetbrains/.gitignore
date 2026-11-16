@@ -1,0 +1,23 @@
+.gradle/
+build/
+.intellijPlatform/
+.ai/
+**/.qronos/*
+!**/.qronos/skills/
+!**/.qronos/skills/**
+.classpath
+.project
+.settings/
+.kotlin/
+bin/
+**/.classpath
+**/.project
+**/.settings/
+**/.kotlin/
+**/bin/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Downloaded CLI artifacts
+**/cli-cache/
+qronos-*.zip
+qronos-*.tar.gz

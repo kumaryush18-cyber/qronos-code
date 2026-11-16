@@ -1,17 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@qronos-ai/kilo",
+  "name": "@qronos-ai/qronos",
   "description": "AI-powered development tool",
   "private": true,
   "type": "module",
   "packageManager": "bun@1.4.4",
   "scripts": {
-    "dev": "KILO_CLIENT=cli bun run --cwd packages/opencode --conditions=node src/index.ts",
+    "dev": "QRONOS_CLIENT=cli bun run --cwd packages/cli --conditions=node src/index.ts",
     "dev:stats": "bun sst shell --stage=production -- bun run --cwd packages/stats/app dev",
     "dev:storybook": "bun --cwd packages/storybook storybook",
     "lint": "oxlint",
     "check:architecture": "bun run script/check-architecture.ts",
-    "check:duplication": "bun run script/check-kilocode-duplication.ts",
+    "check:duplication": "bun run script/check-qronos-duplication.ts",
     "typecheck": "bun turbo typecheck",
     "upgrade-opentui": "bun run script/upgrade-opentui.ts",
     "postinstall": "bun run --cwd packages/core fix-node-pty && bun run script/setup-git.ts",
@@ -19,12 +19,12 @@
     "random": "echo 'Random script'",
     "sso": "aws sso login --sso-session=opencode --no-browser",
     "test": "echo 'do not run tests from root' && exit 1",
-    "extension": "bun --cwd packages/kilo-vscode script/launch.ts",
-    "extension:isolated": "bun --cwd packages/kilo-vscode script/launch.ts --isolated",
-    "extension:isolated:clean": "bun --cwd packages/kilo-vscode script/launch.ts --isolated --clean",
-    "e2e:demo": "bun run --cwd packages/kilo-e2e demo",
-    "dev-setup": "bun run --cwd packages/opencode --conditions=browser src/index.ts dev-setup",
-    "dev:local": "bun run packages/opencode/script/dev-local.ts",
+    "extension": "bun --cwd packages/extension script/launch.ts",
+    "extension:isolated": "bun --cwd packages/extension script/launch.ts --isolated",
+    "extension:isolated:clean": "bun --cwd packages/extension script/launch.ts --isolated --clean",
+    "e2e:demo": "bun run --cwd packages/e2e demo",
+    "dev-setup": "bun run --cwd packages/cli --conditions=browser src/index.ts dev-setup",
+    "dev:local": "bun run packages/cli/script/dev-local.ts",
     "test:script:ci": "mkdir -p .artifacts/unit && bun test ./script --timeout 30000 --reporter=junit --reporter-outfile=.artifacts/unit/junit.xml"
   },
   "workspaces": {
@@ -130,7 +130,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kilo-Org/kilocode"
+    "url": "https://github.com/Qronos-Org/qronos"
   },
   "license": "MIT",
   "prettier": {

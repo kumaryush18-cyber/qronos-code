@@ -1,10 +1,10 @@
-# Releasing Kilo Code
+# Releasing Qronos Code
 
-Kilo Code uses a fully automated CI pipeline triggered via GitHub Actions `workflow_dispatch`. A single workflow handles version bumping, building all artifacts, publishing to every distribution channel, and updating package registries.
+Qronos Code uses a fully automated CI pipeline triggered via GitHub Actions `workflow_dispatch`. A single workflow handles version bumping, building all artifacts, publishing to every distribution channel, and updating package registries.
 
 ## How to Trigger a Release
 
-1. Go to the [`publish` workflow](https://github.com/Kilo-Org/kilocode/actions/workflows/publish.yml) in GitHub Actions.
+1. Go to the [`publish` workflow](https://github.com/Qronos-Org/qronos/actions/workflows/publish.yml) in GitHub Actions.
 2. Click **"Run workflow"**.
 3. Select the branch (typically `main`).
 4. Fill in the inputs:
@@ -30,22 +30,22 @@ The `publish.yml` workflow runs four jobs sequentially:
 
 ### 2. Build CLI (`build-cli`)
 
-- Runs `packages/opencode/script/build.ts` to compile the Kilo CLI binary.
+- Runs `packages/cli/script/build.ts` to compile the Qronos CLI binary.
 - Builds native binaries for **all supported platforms and architectures**:
   - Linux: x64, arm64 (glibc and musl), plus baseline (non-AVX2) variants
   - macOS: x64, arm64, plus baseline variants
   - Windows: x64 (plus baseline variant), arm64
 - Patches ELF interpreters on Linux binaries for broad compatibility.
 - Creates platform archives (`.tar.gz` for Linux, `.zip` for macOS/Windows) and uploads them to the draft GitHub Release.
-- Uploads the `dist/` directory as a workflow artifact (`kilo-cli`) for subsequent jobs.
+- Uploads the `dist/` directory as a workflow artifact (`qronos-cli`) for subsequent jobs.
 
 ### 3. Build VS Code Extension (`build-vscode`)
 
 - Downloads the CLI artifacts from the previous job.
-- Runs `packages/kilo-vscode/script/build.ts` to build VSIX packages for all target platforms:
+- Runs `packages/extension/script/build.ts` to build VSIX packages for all target platforms:
   - `linux-x64`, `linux-arm64`, `alpine-x64`, `alpine-arm64`, `darwin-x64`, `darwin-arm64`, `win32-x64`, `win32-arm64`
 - Each VSIX bundles the platform-specific CLI binary.
-- Uploads the VSIX files as a workflow artifact (`kilo-vscode`).
+- Uploads the VSIX files as a workflow artifact (`qronos-vscode`).
 
 ### 4. Publish (`publish`)
 
@@ -63,8 +63,8 @@ Downloads all build artifacts and publishes to every distribution channel:
 
 - Publishes platform-specific binary packages to **npm** (e.g. `@qronos-ai/cli-linux-x64`, `@qronos-ai/cli-darwin-arm64`, etc.).
 - Publishes the main `@qronos-ai/cli` package to **npm** with optional dependencies on the binary packages.
-- Builds and pushes a multi-arch **Docker image** (`ghcr.io/kilo-org/kilocode`) to GitHub Container Registry (linux/amd64 + linux/arm64).
-- Builds and pushes the image's **OpenShell variant** (`ghcr.io/kilo-org/kilocode:<version>-openshell` and `:latest-openshell`) from the Dockerfile's `openshell` stage, for the same platforms.
+- Builds and pushes a multi-arch **Docker image** (`ghcr.io/qronos-org/qronos`) to GitHub Container Registry (linux/amd64 + linux/arm64).
+- Builds and pushes the image's **OpenShell variant** (`ghcr.io/qronos-org/qronos:<version>-openshell` and `:latest-openshell`) from the Dockerfile's `openshell` stage, for the same platforms.
 
 #### SDK (`@qronos-ai/sdk`)
 
@@ -81,18 +81,18 @@ Downloads all build artifacts and publishes to every distribution channel:
 
 #### Package Registries (stable releases only)
 
-- **AUR (Arch Linux)**: Clones `kilo-bin` from the AUR, updates the `PKGBUILD` with new version and SHA256 checksums, and pushes.
-- **Homebrew**: Clones `Kilo-Org/homebrew-tap`, updates the `kilo.rb` formula with new version, download URLs, and SHA256 checksums, and pushes.
+- **AUR (Arch Linux)**: Clones `qronos-bin` from the AUR, updates the `PKGBUILD` with new version and SHA256 checksums, and pushes.
+- **Homebrew**: Clones `Qronos-Org/homebrew-tap`, updates the `qronos.rb` formula with new version, download URLs, and SHA256 checksums, and pushes.
 
 #### Conda (stable releases and pre-releases)
 
-- **Conda (Anaconda.org)**: Uses [`rattler-build`](https://rattler.build) to repackage the released CLI archives (no compilation) into a `kilo-cli` conda package for `linux-64`, `linux-aarch64`, `osx-64`, `osx-arm64`, and `win-64`, all built from the single Linux publish runner (see the `Build conda package` step in `publish.yml` and the recipe in `packages/opencode/script/kilocode/conda-recipe/`). The built `.conda` files are then uploaded to Anaconda.org via the [`anaconda/actions/upload-package`](https://github.com/anaconda/actions) action, publishing under the `anaconda-cloud` org (same as ana-cli). Runs for both stable releases (`main` label, installed with `conda install -c anaconda-cloud kilo-cli`) and pre-releases (`rc` label, installed with `-c anaconda-cloud/label/rc`; the version is sanitized for conda, e.g. `0.0.0-rc-202609221200` → `0.0.0.rc.202609221200`).
+- **Conda (Anaconda.org)**: Uses [`rattler-build`](https://rattler.build) to repackage the released CLI archives (no compilation) into a `qronos-cli` conda package for `linux-64`, `linux-aarch64`, `osx-64`, `osx-arm64`, and `win-64`, all built from the single Linux publish runner (see the `Build conda package` step in `publish.yml` and the recipe in `packages/cli/script/qronos/conda-recipe/`). The built `.conda` files are then uploaded to Anaconda.org via the [`anaconda/actions/upload-package`](https://github.com/anaconda/actions) action, publishing under the `anaconda-cloud` org (same as ana-cli). Runs for both stable releases (`main` label, installed with `conda install -c anaconda-cloud qronos-cli`) and pre-releases (`rc` label, installed with `-c anaconda-cloud/label/rc`; the version is sanitized for conda, e.g. `0.0.0-rc-202609221200` → `0.0.0.rc.202609221200`).
 
 ## Prerequisites and Permissions
 
 ### Repository Access
 
-- The workflow only runs in the `Kilo-Org/kilocode` repository (guarded by `if: github.repository == 'Kilo-Org/kilocode'`).
+- The workflow only runs in the `Qronos-Org/qronos` repository (guarded by `if: github.repository == 'Qronos-Org/qronos'`).
 - You must have **write access** to the repository to trigger a `workflow_dispatch` event.
 
 ### Workflow Permissions
@@ -109,10 +109,10 @@ The following secrets must be configured in the repository:
 
 | Secret | Purpose |
 |---|---|
-| `KILO_API_KEY` | Kilo API key used during version computation |
-| `KILO_ORG_ID` | Kilo organization ID |
-| `KILO_MAINTAINER_APP_ID` | GitHub App ID for the kilo-maintainer bot (used for git commits) |
-| `KILO_MAINTAINER_APP_SECRET` | GitHub App secret for the kilo-maintainer bot |
+| `QRONOS_API_KEY` | Qronos API key used during version computation |
+| `QRONOS_ORG_ID` | Qronos organization ID |
+| `QRONOS_MAINTAINER_APP_ID` | GitHub App ID for the qronos-maintainer bot (used for git commits) |
+| `QRONOS_MAINTAINER_APP_SECRET` | GitHub App secret for the qronos-maintainer bot |
 | `NPM_TOKEN` | npm authentication token for publishing packages |
 | `VSCE_TOKEN` | VS Code Marketplace personal access token |
 | `OVSX_TOKEN` | Open VSX Registry token (currently unused but configured) |

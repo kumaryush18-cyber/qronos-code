@@ -1,8 +1,8 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.4/schema.json",
-  "changelog": ["../script/changelog-github.cjs", { "repo": "Kilo-Org/kilocode" }],
+  "changelog": ["../script/changelog-github.cjs", { "repo": "Qronos-Org/qronos" }],
   "commit": false,
-  "fixed": [["kilo-code", "@qronos-ai/cli"]],
+  "fixed": [["qronos-code", "@qronos-ai/cli"]],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",

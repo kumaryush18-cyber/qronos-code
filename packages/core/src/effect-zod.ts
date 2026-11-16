@@ -1,6 +1,6 @@
 import { Effect, Option, Schema, SchemaAST } from "effect"
 import z from "zod"
-import { stripZodFormat } from "./kilocode/json-schema-format" // kilocode_change
+import { stripZodFormat } from "./qronos/json-schema-format" // qronos_change
 
 /**
  * Annotation key for providing a hand-crafted Zod schema that the walker
@@ -57,7 +57,7 @@ function isZodType(value: unknown): value is z.ZodTypeAny {
  * `session/prompt.ts` has always passed to `ai`'s `jsonSchema()` helper.
  */
 export function toJsonSchema<S extends Schema.Top>(schema: S) {
-  return z.toJSONSchema(zod(schema), { io: "input", override: stripZodFormat }) // kilocode_change
+  return z.toJSONSchema(zod(schema), { io: "input", override: stripZodFormat }) // qronos_change
 }
 
 function walk(ast: SchemaAST.AST): z.ZodTypeAny {

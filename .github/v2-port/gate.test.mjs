@@ -1,4 +1,4 @@
-// kilocode_change - new file
+// qronos_change - new file
 
 /**
  * Unit tests for the v2-port gate. Plain node:assert, no network, no LLM.
@@ -46,96 +46,96 @@ function diffFor(file, added = [], removed = []) {
 }
 
 test("parseDiff attributes added lines to the file in the +++ header", () => {
-  const files = parseDiff(diffFor("packages/opencode/src/a.ts", ["const x = 1"]))
+  const files = parseDiff(diffFor("packages/cli/src/a.ts", ["const x = 1"]))
   assert.equal(files.length, 1)
-  assert.equal(files[0].path, "packages/opencode/src/a.ts")
+  assert.equal(files[0].path, "packages/cli/src/a.ts")
   assert.deepEqual(files[0].added, ["const x = 1"])
 })
 
 test("parseDiff does not treat the +++ header or removed lines as added", () => {
-  const files = parseDiff(diffFor("packages/opencode/src/a.ts", [], ["old"]))
+  const files = parseDiff(diffFor("packages/cli/src/a.ts", [], ["old"]))
   assert.deepEqual(files[0].added, [], "only + lines count, not +++ or - lines")
 })
 
 test("parseDiff keeps the new path for a rename", () => {
   const text = [
-    "diff --git a/packages/opencode/src/old.ts b/packages/opencode/src/kilocode/new.ts",
+    "diff --git a/packages/cli/src/old.ts b/packages/cli/src/qronos/new.ts",
     "similarity index 90%",
-    "rename from packages/opencode/src/old.ts",
-    "rename to packages/opencode/src/kilocode/new.ts",
-    "--- a/packages/opencode/src/old.ts",
-    "+++ b/packages/opencode/src/kilocode/new.ts",
+    "rename from packages/cli/src/old.ts",
+    "rename to packages/cli/src/qronos/new.ts",
+    "--- a/packages/cli/src/old.ts",
+    "+++ b/packages/cli/src/qronos/new.ts",
     "@@ -1 +1 @@",
     "-a",
     "+b",
     "",
   ].join("\n")
-  assert.equal(parseDiff(text)[0].path, "packages/opencode/src/kilocode/new.ts")
+  assert.equal(parseDiff(text)[0].path, "packages/cli/src/qronos/new.ts")
 })
 
 test("parseDiff falls back to the git header path for a deletion", () => {
   const text = [
-    "diff --git a/packages/opencode/src/kilocode/gone.ts b/packages/opencode/src/kilocode/gone.ts",
+    "diff --git a/packages/cli/src/qronos/gone.ts b/packages/cli/src/qronos/gone.ts",
     "deleted file mode 100644",
-    "--- a/packages/opencode/src/kilocode/gone.ts",
+    "--- a/packages/cli/src/qronos/gone.ts",
     "+++ /dev/null",
     "@@ -1 +0,0 @@",
     "-gone",
     "",
   ].join("\n")
   const files = parseDiff(text)
-  assert.equal(files[0].path, "packages/opencode/src/kilocode/gone.ts", "/dev/null must not overwrite the path")
+  assert.equal(files[0].path, "packages/cli/src/qronos/gone.ts", "/dev/null must not overwrite the path")
 })
 
-test("qualifies on a kilocode-owned path", () => {
-  const v = qualifyDiff(diffFor("packages/opencode/src/kilocode/foo.ts", ["export const a = 1"]))
+test("qualifies on a qronos-owned path", () => {
+  const v = qualifyDiff(diffFor("packages/cli/src/qronos/foo.ts", ["export const a = 1"]))
   assert.equal(v.qualifies, true)
-  assert.match(v.reason, /Kilo-owned opencode path/)
+  assert.match(v.reason, /Qronos-owned opencode path/)
 })
 
-test("qualifies on a test/kilocode path", () => {
-  const v = qualifyDiff(diffFor("packages/opencode/test/kilocode/foo.test.ts", ["it('works', () => {})"]))
+test("qualifies on a test/qronos path", () => {
+  const v = qualifyDiff(diffFor("packages/cli/test/qronos/foo.test.ts", ["it('works', () => {})"]))
   assert.equal(v.qualifies, true)
 })
 
-test("qualifies on an added kilocode_change marker in a shared file", () => {
-  const v = qualifyDiff(diffFor("packages/opencode/src/tool/bash.ts", ["const allow = true // kilocode_change"]))
+test("qualifies on an added qronos_change marker in a shared file", () => {
+  const v = qualifyDiff(diffFor("packages/cli/src/tool/bash.ts", ["const allow = true // qronos_change"]))
   assert.equal(v.qualifies, true)
-  assert.match(v.reason, /kilocode_change marker/)
+  assert.match(v.reason, /qronos_change marker/)
 })
 
 test("qualifies on a marker inside a start/end block", () => {
   const v = qualifyDiff(
-    diffFor("packages/opencode/src/session/prompt.ts", [
-      "// kilocode_change start",
+    diffFor("packages/cli/src/session/prompt.ts", [
+      "// qronos_change start",
       "const extra = 1",
-      "// kilocode_change end",
+      "// qronos_change end",
     ]),
   )
   assert.equal(v.qualifies, true)
 })
 
 test("does not qualify a shared opencode file with no marker", () => {
-  const v = qualifyDiff(diffFor("packages/opencode/src/tool/bash.ts", ["const timeout = 5000"]))
+  const v = qualifyDiff(diffFor("packages/cli/src/tool/bash.ts", ["const timeout = 5000"]))
   assert.equal(v.qualifies, false)
-  assert.match(v.reason, /no Kilo-specific change/)
+  assert.match(v.reason, /no Qronos-specific change/)
 })
 
 test("does not qualify when the marker is only removed", () => {
-  const v = qualifyDiff(diffFor("packages/opencode/src/tool/bash.ts", [], ["const x = 1 // kilocode_change"]))
-  assert.equal(v.qualifies, false, "a removal is not new Kilo behavior to carry over")
+  const v = qualifyDiff(diffFor("packages/cli/src/tool/bash.ts", [], ["const x = 1 // qronos_change"]))
+  assert.equal(v.qualifies, false, "a removal is not new Qronos behavior to carry over")
 })
 
-test("does not qualify a change outside packages/opencode", () => {
-  const v = qualifyDiff(diffFor("packages/kilo-vscode/src/kilocode/thing.ts", ["export const a = 1"]))
+test("does not qualify a change outside packages/cli", () => {
+  const v = qualifyDiff(diffFor("packages/extension/src/qronos/thing.ts", ["export const a = 1"]))
   assert.equal(v.qualifies, false)
   assert.match(v.reason, /touches nothing under packages\/opencode\//)
 })
 
 test("does not qualify a mixed diff whose only opencode change is unmarked", () => {
   const text =
-    diffFor("packages/kilo-vscode/src/kilocode/thing.ts", ["export const a = 1"]) +
-    diffFor("packages/opencode/src/tool/bash.ts", ["const timeout = 5000"])
+    diffFor("packages/extension/src/qronos/thing.ts", ["export const a = 1"]) +
+    diffFor("packages/cli/src/tool/bash.ts", ["const timeout = 5000"])
   assert.equal(qualifyDiff(text).qualifies, false)
 })
 
@@ -259,7 +259,7 @@ function mergedPr(overrides = {}) {
     mergeCommit: { oid: "abc123" },
     author: { login: "octocat", is_bot: false },
     labels: [],
-    files: [{ path: "packages/opencode/src/kilocode/queue.ts", additions: 1, deletions: 0 }],
+    files: [{ path: "packages/cli/src/qronos/queue.ts", additions: 1, deletions: 0 }],
     commits: [{ oid: "abc123", messageHeadline: "fix queued messages" }],
     comments: [{ body: "Reproduces after abort.", author: { login: "reviewer" } }],
     reviews: [{ body: "Ordering matters here.", author: { login: "reviewer" }, state: "APPROVED" }],
@@ -286,7 +286,7 @@ async function withStub(pr, diff, fn) {
 }
 
 await (async () => {
-  const diff = diffFor("packages/opencode/src/kilocode/queue.ts", ["export const keep = true"])
+  const diff = diffFor("packages/cli/src/qronos/queue.ts", ["export const keep = true"])
   await withStub(mergedPr(), diff, async (ctx) => {
     const result = await runGate(ctx.dir, ctx)
     assert.equal(result.status, 0, result.output)
@@ -311,13 +311,13 @@ await (async () => {
 })()
 
 await (async () => {
-  const diff = diffFor("packages/opencode/src/tool/bash.ts", ["const timeout = 5000"])
+  const diff = diffFor("packages/cli/src/tool/bash.ts", ["const timeout = 5000"])
   await withStub(mergedPr(), diff, async (ctx) => {
     const result = await runGate(ctx.dir, ctx)
     assert.equal(result.status, 0, result.output)
     const out = outputs(ctx.dir)
     assert.equal(out.qualifies, "false")
-    assert.match(out.skip_reason, /no Kilo-specific change/)
+    assert.match(out.skip_reason, /no Qronos-specific change/)
   })
   passed++
   console.log("ok - e2e: an unmarked shared-file change reports qualifies=false with a reason")
@@ -339,7 +339,7 @@ await (async () => {
 })()
 
 await (async () => {
-  const diff = diffFor("packages/opencode/src/kilocode/huge.ts", ["const x = 1"])
+  const diff = diffFor("packages/cli/src/qronos/huge.ts", ["const x = 1"])
   await withStub(mergedPr(), diff, async (ctx) => {
     const result = await runGate(ctx.dir, ctx)
     assert.equal(result.status, 0, result.output)

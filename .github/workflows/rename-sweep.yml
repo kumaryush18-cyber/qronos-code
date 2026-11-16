@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: No @kilocode or @opencode-ai references left
+      - name: No @qronos or @opencode-ai references left
         run: |
           set +e
-          hits=$(grep -rn "@kilocode/\|@opencode-ai/" \
+          hits=$(grep -rn "@qronos/\|@opencode-ai/" \
             --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
             --exclude-dir=.qronos --exclude-dir=.github \
             --exclude=NOTICE --exclude=ATTRIBUTION.md \
@@ -55,8 +55,8 @@ jobs:
       - name: bun install
         run: bun install --no-save
       - name: typecheck extension host
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: bun run check-types
       - name: typecheck webview
-        working-directory: packages/kilo-vscode
+        working-directory: packages/extension
         run: bun run check-types:webview

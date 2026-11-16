@@ -1,17 +1,17 @@
 import path from "path"
-import { Database as SQLite } from "bun:sqlite" // kilocode_change
+import { Database as SQLite } from "bun:sqlite" // qronos_change
 import { describe, expect } from "bun:test"
-import { eq } from "drizzle-orm" // kilocode_change
+import { eq } from "drizzle-orm" // qronos_change
 import { Effect, Layer } from "effect"
 import { Credential } from "@qronos-ai/core/credential"
-import { CredentialTable } from "@qronos-ai/core/credential/sql" // kilocode_change
+import { CredentialTable } from "@qronos-ai/core/credential/sql" // qronos_change
 import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Integration } from "@qronos-ai/core/integration"
-// kilocode_change start
+// qronos_change start
 import { Database } from "@qronos-ai/core/database/database"
 import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Global } from "@qronos-ai/core/global"
-// kilocode_change end
+// qronos_change end
 import { tmpdir } from "./fixture/tmpdir"
 import { it } from "./lib/effect"
 
@@ -20,11 +20,11 @@ function localLayer(directory: string) {
     [Database.node, Database.layerFromPath(path.join(directory, "credential.db")).pipe(Layer.fresh)],
     [Global.node, Global.layerWith({ data: directory })],
   ]).pipe(
-    Layer.fresh, // kilocode_change - rebuild so process-local credentials are re-read
+    Layer.fresh, // qronos_change - rebuild so process-local credentials are re-read
   )
 }
 
-// kilocode_change start
+// qronos_change start
 function importer(dir: string, store: Database.Interface) {
   return Credential.legacyImportLayer.pipe(
     Layer.provide(Layer.succeed(Database.Service, store)),
@@ -32,7 +32,7 @@ function importer(dir: string, store: Database.Interface) {
     Layer.provide(Global.layerWith({ data: dir })),
   )
 }
-// kilocode_change end
+// qronos_change end
 
 describe("Credential", () => {
   it.live("stores, updates, lists, and removes credentials", () =>
@@ -66,13 +66,13 @@ describe("Credential", () => {
     ),
   )
 
-  // kilocode_change start - process-provided credentials remain isolated from durable storage
-  it.live("keeps valid KILO_AUTH_CONTENT credentials and isolated mutations process-local", () =>
+  // qronos_change start - process-provided credentials remain isolated from durable storage
+  it.live("keeps valid QRONOS_AUTH_CONTENT credentials and isolated mutations process-local", () =>
     Effect.acquireUseRelease(
       Effect.sync(() => {
-        const previous = process.env.KILO_AUTH_CONTENT
-        process.env.KILO_AUTH_CONTENT = JSON.stringify({
-          kilocode: {
+        const previous = process.env.QRONOS_AUTH_CONTENT
+        process.env.QRONOS_AUTH_CONTENT = JSON.stringify({
+          qronos: {
             type: "oauth",
             refresh: "refresh",
             access: "access",
@@ -95,11 +95,11 @@ describe("Credential", () => {
               const service = yield* Credential.Service
               const all = yield* service.all()
               expect(all).toHaveLength(2)
-              const kilocode = Integration.ID.make("kilocode")
-              const listed = yield* service.list(kilocode)
+              const qronos = Integration.ID.make("qronos")
+              const listed = yield* service.list(qronos)
               expect(listed).toHaveLength(1)
               expect(listed[0]).toMatchObject({
-                integrationID: kilocode,
+                integrationID: qronos,
                 label: "Environment",
                 value: {
                   type: "oauth",
@@ -111,17 +111,17 @@ describe("Credential", () => {
               })
 
               const created = yield* service.create({
-                integrationID: kilocode,
+                integrationID: qronos,
                 label: "Temporary",
                 value: Credential.Key.make({ type: "key", key: "temporary" }),
               })
-              expect(yield* service.list(kilocode)).toEqual([created])
+              expect(yield* service.list(qronos)).toEqual([created])
               yield* service.update(created.id, { label: "Updated" })
-              expect((yield* service.list(kilocode))[0]?.label).toBe("Updated")
+              expect((yield* service.list(qronos))[0]?.label).toBe("Updated")
               yield* service.remove(created.id)
-              expect(yield* service.list(kilocode)).toEqual([])
+              expect(yield* service.list(qronos)).toEqual([])
 
-              delete process.env.KILO_AUTH_CONTENT
+              delete process.env.QRONOS_AUTH_CONTENT
               const stored = yield* Effect.gen(function* () {
                 return yield* (yield* Credential.Service).all()
               }).pipe(Effect.provide(localLayer(tmp.path)), Effect.scoped)
@@ -131,8 +131,8 @@ describe("Credential", () => {
         ),
       (previous) =>
         Effect.sync(() => {
-          if (previous === undefined) delete process.env.KILO_AUTH_CONTENT
-          else process.env.KILO_AUTH_CONTENT = previous
+          if (previous === undefined) delete process.env.QRONOS_AUTH_CONTENT
+          else process.env.QRONOS_AUTH_CONTENT = previous
         }),
     ),
   )
@@ -217,7 +217,7 @@ describe("Credential", () => {
         const file = path.join(tmp.path, "credential.db")
         const auth = path.join(tmp.path, "auth.json")
         const write = (key: string) =>
-          Effect.promise(() => Bun.write(auth, JSON.stringify({ kilo: { type: "api", key } })))
+          Effect.promise(() => Bun.write(auth, JSON.stringify({ qronos: { type: "api", key } })))
         return Effect.gen(function* () {
           yield* write("first")
           const store = yield* Database.Service
@@ -227,13 +227,13 @@ describe("Credential", () => {
           const before = yield* store.db
             .select()
             .from(CredentialTable)
-            .where(eq(CredentialTable.integration_id, Integration.ID.make("kilo")))
+            .where(eq(CredentialTable.integration_id, Integration.ID.make("qronos")))
             .get()
           yield* Layer.build(Layer.fresh(layer))
           const unchanged = yield* store.db
             .select()
             .from(CredentialTable)
-            .where(eq(CredentialTable.integration_id, Integration.ID.make("kilo")))
+            .where(eq(CredentialTable.integration_id, Integration.ID.make("qronos")))
             .get()
           expect(unchanged?.time_updated).toBe(before?.time_updated)
 
@@ -257,7 +257,7 @@ describe("Credential", () => {
           const stale = yield* store.db
             .select()
             .from(CredentialTable)
-            .where(eq(CredentialTable.integration_id, Integration.ID.make("kilo")))
+            .where(eq(CredentialTable.integration_id, Integration.ID.make("qronos")))
             .get()
           expect(stale?.value).toMatchObject({ type: "key", key: "first" })
 
@@ -265,7 +265,7 @@ describe("Credential", () => {
           const reconciled = yield* store.db
             .select()
             .from(CredentialTable)
-            .where(eq(CredentialTable.integration_id, Integration.ID.make("kilo")))
+            .where(eq(CredentialTable.integration_id, Integration.ID.make("qronos")))
             .get()
           expect(reconciled?.value).toMatchObject({ type: "key", key: "second" })
         }).pipe(Effect.provide(Database.layerFromPath(file)), Effect.scoped)
@@ -335,5 +335,5 @@ describe("Credential", () => {
       ),
     ),
   )
-  // kilocode_change end
+  // qronos_change end
 })

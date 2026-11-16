@@ -1,16 +1,16 @@
 /// <reference path="../env.d.ts" />
 import { tool } from "@qronos-ai/plugin"
 
-// kilocode_change start
+// qronos_change start
 const TEAM = {
   tui: ["catrielmuller"],
   desktop_web: ["markijbema"],
-  core: ["markijbema", "marius-kilocode", "catrielmuller", "chrarnoldus", "imanolmzd-svg"],
+  core: ["markijbema", "marius-qronos", "catrielmuller", "chrarnoldus", "imanolmzd-svg"],
   jetbrains: ["kirillk"],
   inference: ["chrarnoldus", "markijbema"],
   windows: ["catrielmuller"],
 } as const
-// kilocode_change end
+// qronos_change end
 
 function pick<T>(items: readonly T[]) {
   return items[Math.floor(Math.random() * items.length)]!
@@ -49,10 +49,10 @@ Provide the team that should own the issue. This tool picks a random assignee fr
   },
   async execute(args) {
     const issue = getIssueNumber()
-    // kilocode_change start
-    const owner = "Kilo-Org"
-    const repo = "kilocode"
-    // kilocode_change end
+    // qronos_change start
+    const owner = "Qronos-Org"
+    const repo = "qronos"
+    // qronos_change end
     const assignee = pick(TEAM[args.team])
 
     await githubFetch(`/repos/${owner}/${repo}/issues/${issue}/assignees`, {

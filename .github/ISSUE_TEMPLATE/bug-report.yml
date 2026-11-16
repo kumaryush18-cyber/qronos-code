@@ -2,12 +2,12 @@ name: Bug report
 description: Report an issue that should be fixed
 labels: ["bug"]
 body:
-  # kilocode_change start
+  # qronos_change start
   - type: dropdown
     id: component
     attributes:
       label: Component
-      description: Which part of Kilo is this about? It helps us route your report.
+      description: Which part of Qronos is this about? It helps us route your report.
       options:
         - VS Code extension
         - CLI / TUI
@@ -15,12 +15,12 @@ body:
         - JetBrains plugin
         - Desktop or web app
         - Documentation
-        - Kilo Gateway or account
+        - Qronos Gateway or account
         - SDK
         - Other / not sure
     validations:
       required: true
-  # kilocode_change end
+  # qronos_change end
 
   - type: textarea
     id: description
@@ -40,10 +40,10 @@ body:
       required: false
 
   - type: input
-    id: kilo-version
+    id: qronos-version
     attributes:
-      label: Kilo version
-      description: What version of Kilo are you using?
+      label: Qronos version
+      description: What version of Qronos are you using?
     validations:
       required: false
 

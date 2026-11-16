@@ -16,27 +16,27 @@ const expectedBunVersionRange = `^${expectedBunVersion}`
 if (!semver.satisfies(process.versions.bun, expectedBunVersionRange)) {
   throw new Error(`This script requires bun@${expectedBunVersionRange}, but you are using bun@${process.versions.bun}`)
 }
-// kilocode_change start
+// qronos_change start
 const env = {
-  KILO_CHANNEL: process.env["KILO_CHANNEL"],
-  KILO_BUMP: process.env["KILO_BUMP"],
-  KILO_VERSION: process.env["KILO_VERSION"],
-  KILO_RELEASE: process.env["KILO_RELEASE"],
-  KILO_PRE_RELEASE: process.env["KILO_PRE_RELEASE"],
+  QRONOS_CHANNEL: process.env["QRONOS_CHANNEL"],
+  QRONOS_BUMP: process.env["QRONOS_BUMP"],
+  QRONOS_VERSION: process.env["QRONOS_VERSION"],
+  QRONOS_RELEASE: process.env["QRONOS_RELEASE"],
+  QRONOS_PRE_RELEASE: process.env["QRONOS_PRE_RELEASE"],
 }
-// kilocode_change end
+// qronos_change end
 const CHANNEL = await (async () => {
-  if (env.KILO_CHANNEL) return env.KILO_CHANNEL // kilocode_change
-  // kilocode_change start - publish to "rc" channel for pre-releases
-  if (env.KILO_PRE_RELEASE === "true") return "rc"
-  // kilocode_change end
-  if (env.KILO_BUMP) return "latest" // kilocode_change
-  if (env.KILO_VERSION && !env.KILO_VERSION.startsWith("0.0.0-")) return "latest" // kilocode_change
-  return await $`git branch --show-current`.text().then((x) => x.trim().replace(/[^0-9A-Za-z-]/g, "-")) // kilocode_change
+  if (env.QRONOS_CHANNEL) return env.QRONOS_CHANNEL // qronos_change
+  // qronos_change start - publish to "rc" channel for pre-releases
+  if (env.QRONOS_PRE_RELEASE === "true") return "rc"
+  // qronos_change end
+  if (env.QRONOS_BUMP) return "latest" // qronos_change
+  if (env.QRONOS_VERSION && !env.QRONOS_VERSION.startsWith("0.0.0-")) return "latest" // qronos_change
+  return await $`git branch --show-current`.text().then((x) => x.trim().replace(/[^0-9A-Za-z-]/g, "-")) // qronos_change
 })()
 const IS_PREVIEW = CHANNEL !== "latest"
 
-// kilocode_change start - shared helpers for version computation
+// qronos_change start - shared helpers for version computation
 function parseVersion(input: string) {
   const match = input.trim().match(/^v?(\d+)\.(\d+)\.(\d+)$/)
   if (!match) return
@@ -87,24 +87,24 @@ function bumpVersion(current: string, type: string) {
   if (type === "minor") return `${version.major}.${version.minor + 1}.0`
   return `${version.major}.${version.minor}.${version.patch + 1}`
 }
-// kilocode_change end
+// qronos_change end
 
 const VERSION = await (async () => {
-  if (env.KILO_VERSION) return env.KILO_VERSION
+  if (env.QRONOS_VERSION) return env.QRONOS_VERSION
   if (IS_PREVIEW) {
-    // kilocode_change start - rc releases use plain semver required by VS Code Marketplace
-    if (env.KILO_BUMP && env.KILO_PRE_RELEASE === "true") {
+    // qronos_change start - rc releases use plain semver required by VS Code Marketplace
+    if (env.QRONOS_BUMP && env.QRONOS_PRE_RELEASE === "true") {
       const current = await fetchHighest()
-      return bumpVersion(current, env.KILO_BUMP.toLowerCase())
+      return bumpVersion(current, env.QRONOS_BUMP.toLowerCase())
     }
-    // kilocode_change end
+    // qronos_change end
     return `0.0.0-${CHANNEL}-${new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "")}`
   }
-  const version = await fetchHighest() // kilocode_change
-  return bumpVersion(version, env.KILO_BUMP?.toLowerCase() ?? "patch") // kilocode_change
+  const version = await fetchHighest() // qronos_change
+  return bumpVersion(version, env.QRONOS_BUMP?.toLowerCase() ?? "patch") // qronos_change
 })()
 
-// kilocode_change start
+// qronos_change start
 const team = [
   "actions-user",
   "alexkgold",
@@ -120,21 +120,21 @@ const team = [
   "emilieschario",
   "eshurakov",
   "evanjacobson",
-  "Helix-Kilo",
+  "Helix-Qronos",
   "iscekic",
   "jeanduplessis",
   "jobrietbergen",
   "johnnyeric",
   "jrf0110",
-  "kilo-code-bot",
-  "kilo-code-bot[bot]",
-  "kilo-maintainer[bot]",
-  "kilocode-bot",
-  "kiloconnect-lite[bot]",
-  "kiloconnect[bot]",
+  "qronos-code-bot",
+  "qronos-code-bot[bot]",
+  "qronos-maintainer[bot]",
+  "qronos-bot",
+  "qronosconnect-lite[bot]",
+  "qronosconnect[bot]",
   "kirillk",
   "lambertjosh",
-  "marius-kilocode",
+  "marius-qronos",
   "olearycrew",
   "pandemicsyn",
   "pedroheyerdahl",
@@ -143,7 +143,7 @@ const team = [
   "St0rmz1",
   "suhailkc2025",
 ]
-// kilocode_change end
+// qronos_change end
 
 export const Script = {
   get channel() {
@@ -156,10 +156,10 @@ export const Script = {
     return IS_PREVIEW
   },
   get release(): boolean {
-    return !!env.KILO_RELEASE
+    return !!env.QRONOS_RELEASE
   },
   get team() {
     return team
   },
 }
-console.log(`kilo script`, JSON.stringify(Script, null, 2)) // kilocode_change
+console.log(`qronos script`, JSON.stringify(Script, null, 2)) // qronos_change

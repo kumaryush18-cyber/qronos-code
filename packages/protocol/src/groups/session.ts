@@ -21,7 +21,7 @@ import { Model } from "@qronos-ai/schema/model"
 import { Location } from "@qronos-ai/schema/location"
 import { Revert } from "@qronos-ai/schema/revert"
 import { SessionEvent } from "@qronos-ai/schema/session-event"
-import { SessionDurable } from "@qronos-ai/schema/durable-event-manifest" // kilocode_change - released history keys
+import { SessionDurable } from "@qronos-ai/schema/durable-event-manifest" // qronos_change - released history keys
 
 const SessionsQueryFields = {
   workspace: Workspace.ID.pipe(Schema.optional),
@@ -111,7 +111,7 @@ export const makeSessionGroup = <
   LocationService,
 >(
   sessionLocationMiddleware: Context.Key<I, S>,
-  locationMiddleware: Context.Key<LocationId, LocationService>, // kilocode_change - supply the configured location for session creation
+  locationMiddleware: Context.Key<LocationId, LocationService>, // qronos_change - supply the configured location for session creation
 ) =>
   HttpApiGroup.make("server.session")
     .add(
@@ -151,7 +151,7 @@ export const makeSessionGroup = <
             description: "Create a session at the requested location.",
           }),
         )
-        .middleware(locationMiddleware), // kilocode_change - use the SDK's configured directory when payload location is omitted
+        .middleware(locationMiddleware), // qronos_change - use the SDK's configured directory when payload location is omitted
     )
     .add(
       HttpApiEndpoint.get("session.active", "/api/session/active", {
@@ -161,7 +161,7 @@ export const makeSessionGroup = <
           identifier: "v2.session.active",
           summary: "List active sessions",
           description:
-            "Retrieve foreground Session drains currently owned by this Kilo process. Sessions absent from the result are inactive.",
+            "Retrieve foreground Session drains currently owned by this Qronos process. Sessions absent from the result are inactive.",
         }),
       ),
     )
@@ -319,7 +319,7 @@ export const makeSessionGroup = <
         params: { sessionID: Session.ID },
         query: SessionHistoryQuery,
         success: Schema.Struct({
-          data: Schema.Array(SessionDurable.schema), // kilocode_change
+          data: Schema.Array(SessionDurable.schema), // qronos_change
           hasMore: Schema.Boolean,
         }).annotate({ identifier: "SessionHistory" }),
         error: SessionNotFoundError,
@@ -340,7 +340,7 @@ export const makeSessionGroup = <
         query: {
           after: Schema.NumberFromString.pipe(Schema.decodeTo(NonNegativeInt), Schema.optional),
         },
-        success: HttpApiSchema.StreamSse({ data: SessionDurable.schema }), // kilocode_change
+        success: HttpApiSchema.StreamSse({ data: SessionDurable.schema }), // qronos_change
         error: SessionNotFoundError,
       })
         .middleware(sessionLocationMiddleware)
@@ -363,7 +363,7 @@ export const makeSessionGroup = <
           OpenApi.annotations({
             identifier: "v2.session.interrupt",
             summary: "Interrupt session execution",
-            description: "Interrupt active execution owned by this Kilo process. Idle interruption is a no-op.",
+            description: "Interrupt active execution owned by this Qronos process. Idle interruption is a no-op.",
           }),
         ),
     )

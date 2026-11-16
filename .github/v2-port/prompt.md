@@ -36,7 +36,7 @@ with the tracking analysis.
 
 Write exactly one of the following into `v2-port-out/`, using your write tool, and nothing else.
 
-**If the PR has Kilo-specific behavior worth carrying over to v2** — write both files:
+**If the PR has Qronos-specific behavior worth carrying over to v2** — write both files:
 
 - `v2-port-out/title.txt` — a single line: the `[v2-port] <summary>` title from the skill's title rules.
   Under 80 characters, imperative, no conventional-commit type, no platform prefix.
@@ -46,7 +46,7 @@ Write exactly one of the following into `v2-port-out/`, using your write tool, a
   Agent` section and its fenced block. If the PR does not record why the change was made, say so rather
   than inventing a rationale.
 
-**If it has no Kilo-specific behavior worth carrying over** — dependency bump, pure upstream merge,
+**If it has no Qronos-specific behavior worth carrying over** — dependency bump, pure upstream merge,
 formatting-only, or a change with no user-visible contract that a rewrite could miss — write only:
 
 - `v2-port-out/skip.txt` — a single line: `SKIP: <one-sentence reason>`

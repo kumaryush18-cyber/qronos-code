@@ -34,7 +34,7 @@ foundation. It must stay mergeable with upstream so future security fixes can be
 | # | Severity | Defect | Where |
 |---|---|---|---|
 | D1 | P0 | Webview typecheck fails: 4 message types not in the union | `webview-ui/src/types/messages.ts`, `QronosAuthBanner.tsx` |
-| D2 | P0 | Backend contract mismatch — extension calls Kilo-shaped REST that `qronos-ai` does not serve | `packages/kilo-gateway/src/**` |
+| D2 | P0 | Backend contract mismatch — extension calls Kilo-shaped REST that `qronos-ai` does not serve | `packages/gateway/src/**` |
 | D3 | P0 | REST base URL wrongly ends in `/v1` → every `/api/...` call becomes `/v1/api/...` = 404 | `kilo-gateway/src/api/constants.ts:11` |
 | D4 | P1 | `QRONOS_AI_GATEWAY_URL` has no legacy fallback → `KILO_AI_GATEWAY_URL` ignored, e2e hits production | `kilo-gateway/src/api/constants.ts:17` |
 | D5 | P1 | Hard-coded model IDs do not exist on the gateway (`claude-sonnet-5.5` vs `claude-5.5-sonnet`); defaults still `kilo-auto/free` | `provider-model.ts`, `constants.ts` |
@@ -44,7 +44,7 @@ foundation. It must stay mergeable with upstream so future security fixes can be
 | D9 | P2 | 91 user-visible "Kilo" strings in `en.ts`, 22 locale files | `webview-ui/src/i18n/**` |
 | D10 | P2 | User-reachable Kilo URLs (feedback, credits, config schema, install, MCP metadata) | 18 hits across 3 packages |
 | D11 | P2 | `.vsix` = 87 MB / 386 MB unpacked, ships `playwright-core` + `chromium-bidi` | `.vscodeignore` |
-| D12 | P3 | Telemetry still PostHog (`us.i.posthog.com`) | `packages/kilo-telemetry` |
+| D12 | P3 | Telemetry still PostHog (`us.i.posthog.com`) | `packages/telemetry` |
 
 ---
 
@@ -111,7 +111,7 @@ Status: **next**. Detailed steps:
 
 ### Phase 5 — Rename command IDs and settings namespace  *(D7, D8)*
 - Scripted rename: manifest ids → keybindings → submenus → `src/**` → `tests/unit/**`.
-- Do not touch `packages/opencode/src`, `packages/core/src`, `packages/kilo-ui/src`
+- Do not touch `packages/cli/src`, `packages/core/src`, `packages/ui-kit/src`
   (verified: zero command-id references).
 - **Gate:** zero `qronos-code.` command ids left in the extension package; `build:check` and
   `test:unit` pass; all 41 keybindings verified by hand.

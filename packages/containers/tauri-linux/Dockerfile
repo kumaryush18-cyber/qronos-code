@@ -1,6 +1,6 @@
-# kilocode_change start
-ARG REGISTRY=ghcr.io/kilo-org
-# kilocode_change end
+# qronos_change start
+ARG REGISTRY=ghcr.io/qronos-org
+# qronos_change end
 FROM ${REGISTRY}/build/rust:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive

@@ -62,8 +62,8 @@
     "drizzle-kit": "catalog:"
   },
   "dependencies": {
-    "@qronos-ai/kilo-gateway": "workspace:*",
-    "@qronos-ai/kilo-indexing": "workspace:*",
+    "@qronos-ai/gateway": "workspace:*",
+    "@qronos-ai/indexing": "workspace:*",
     "@qronos-ai/sandbox": "workspace:*",
     "@effect/opentelemetry": "catalog:",
     "@effect/platform-node": "catalog:",

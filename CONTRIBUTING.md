@@ -1,6 +1,6 @@
-# Contributing to Kilo CLI
+# Contributing to Qronos CLI
 
-See [the Documentation for details on contributing](https://kilo.ai/docs/contributing).
+See [the Documentation for details on contributing](https://qronos.me/docs/contributing).
 
 ## TL;DR
 
@@ -14,12 +14,12 @@ There are lots of ways to contribute to the project:
 
 Community pull requests are triaged twice a week. See [Community triage](docs/community-triage.md) for what to expect and how long we wait for replies.
 
-The Kilo Community is [on Discord](https://kilo.ai/discord).
+The Qronos Community is [on Discord](https://qronos.me/discord).
 
 ## Prerequisites
 
 - **Bun `1.4.4`** - The exact official npm package is required for all packages. Install it as shown below.
-- **Java 21** — required by the JetBrains plugin. The root `bun turbo typecheck` and `bun turbo test:ci` commands include `@qronos-ai/kilo-jetbrains` and will fail without Java 21.
+- **Java 21** — required by the JetBrains plugin. The root `bun turbo typecheck` and `bun turbo test:ci` commands include `@qronos-ai/jetbrains` and will fail without Java 21.
 
   The preferred way to install Java is via [SDKMAN](https://sdkman.io/install):
 
@@ -38,7 +38,7 @@ The Kilo Community is [on Discord](https://kilo.ai/discord).
   If you don't plan to work on the JetBrains plugin, you can still run non-JetBrains checks directly:
 
   ```bash
-  bun turbo typecheck --filter=!@qronos-ai/kilo-jetbrains
+  bun turbo typecheck --filter=!@qronos-ai/jetbrains
   ```
 
 Use Node.js 24.22.1 or newer with npm from a trusted source to install the pinned Bun release:
@@ -49,11 +49,11 @@ bun --version
 bun --print "Bun.revision"
 ```
 
-The expected `Bun.revision` is `38afee6c84fcf48c0edb2466aa4b27d287a59c30`. The CLI build rejects other revisions. The root `package.json` pins the npm package version, and `script/kilocode/bun.json` records the exact revision and target artifact checksums.
+The expected `Bun.revision` is `38afee6c84fcf48c0edb2466aa4b27d287a59c30`. The CLI build rejects other revisions. The root `package.json` pins the npm package version, and `script/qronos/bun.json` records the exact revision and target artifact checksums.
 
 The first CLI build needs access to the npm registry. The build caches verified Bun archives in a private, user-scoped temporary directory. Each build extracts a fresh executable before compilation.
 
-## Developing Kilo CLI
+## Developing Qronos CLI
 
 - **Requirements:** Bun `1.4.4` at the exact revision above, Java 21 (see [Prerequisites](#prerequisites) above)
 - Install dependencies and start the CLI from the repo root:
@@ -81,7 +81,7 @@ Do **not** run `bun test` from the repo root. The root test script intentionally
 
 ### CLI checks
 
-From `packages/opencode/`:
+From `packages/cli/`:
 
 ```bash
 bun run typecheck
@@ -89,11 +89,11 @@ bun test
 bun test ./path/to/file.test.ts
 ```
 
-For backend/API validation, see [`TESTING.md`](./TESTING.md). It covers starting the local backend with `bun dev serve` and making `curl` requests against it. After changing server endpoints in `packages/opencode/src/server/`, run `./script/generate.ts` from the repo root to regenerate `packages/sdk/js/`.
+For backend/API validation, see [`TESTING.md`](./TESTING.md). It covers starting the local backend with `bun dev serve` and making `curl` requests against it. After changing server endpoints in `packages/cli/src/server/`, run `./script/generate.ts` from the repo root to regenerate `packages/sdk/js/`.
 
 ### VS Code extension checks
 
-From `packages/kilo-vscode/`:
+From `packages/extension/`:
 
 ```bash
 bun run typecheck
@@ -111,9 +111,9 @@ Linux visual CI prefers Ubuntu's official HTTPS archive for Playwright system pa
 From the repo root:
 
 ```bash
-bun run --filter @qronos-ai/kilo-docs test
-bun run --filter @qronos-ai/kilo-docs build
-bun run --filter @qronos-ai/kilo-docs dev
+bun run --filter @qronos-ai/docs test
+bun run --filter @qronos-ai/docs build
+bun run --filter @qronos-ai/docs dev
 ```
 
 For manual docs validation, run the docs site locally, preview the affected page, and check changed links and rendered content.
@@ -122,8 +122,8 @@ For manual docs validation, run the docs site locally, preview the affected page
 
 - User-facing changes usually need a changeset (`bunx changeset add` or a file under `.changeset/`).
 - After changing server endpoints, regenerate the SDK with `./script/generate.ts`.
-- After adding or changing guarded URLs in `packages/kilo-vscode/`, `packages/kilo-vscode/webview-ui/`, or `packages/opencode/src/`, run `bun run script/extract-source-links.ts` from the repo root.
-- When editing shared `packages/opencode/` files, keep Kilo changes small and mark Kilo-only edits with `// kilocode_change` for a single line or `// kilocode_change start` / `// kilocode_change end` for a block. Do not add these markers inside `kilocode`-named paths.
+- After adding or changing guarded URLs in `packages/extension/`, `packages/extension/webview-ui/`, or `packages/cli/src/`, run `bun run script/extract-source-links.ts` from the repo root.
+- When editing shared `packages/cli/` files, keep Qronos changes small and mark Qronos-only edits with `// qronos_change` for a single line or `// qronos_change start` / `// qronos_change end` for a block. Do not add these markers inside `qronos`-named paths.
 
 ### Developing the VS Code Extension
 
@@ -131,13 +131,13 @@ Build and launch the extension in an isolated VS Code instance:
 
 ```bash
 bun run extension                  # Build + launch in dev mode
-bun run extension:isolated         # Build + launch with persistent isolated IDE + Kilo state
+bun run extension:isolated         # Build + launch with persistent isolated IDE + Qronos state
 bun run extension:isolated:clean   # Clear isolated state, then build + launch
 ```
 
 This auto-detects VS Code on macOS, Linux, and Windows. Override with `--app-path PATH` or `VSCODE_EXEC_PATH`. Use `--insiders` to prefer Insiders, pass a directory argument to open a specific folder, or use `--workspace PATH` for the same behavior.
 
-The isolated modes are for testing the extension without touching your primary VS Code profile or real Kilo config. `extension:isolated` reuses `.kilo-dev/` on each run, so installed extensions, VS Code settings, Kilo auth, sessions, config, state, and cache persist across launches. `extension:isolated:clean` deletes `.kilo-dev/` before launching, which simulates a fresh install while still keeping all state inside this repo checkout.
+The isolated modes are for testing the extension without touching your primary VS Code profile or real Qronos config. `extension:isolated` reuses `.qronos-dev/` on each run, so installed extensions, VS Code settings, Qronos auth, sessions, config, state, and cache persist across launches. `extension:isolated:clean` deletes `.qronos-dev/` before launching, which simulates a fresh install while still keeping all state inside this repo checkout.
 
 ```bash
 bun run extension:isolated -- ../sample-project
@@ -146,7 +146,7 @@ bun run extension:isolated:clean -- ../sample-project
 
 ### Developing the JetBrains Plugin
 
-Requires Java 21 (see [Prerequisites](#prerequisites)). From `packages/kilo-jetbrains/`:
+Requires Java 21 (see [Prerequisites](#prerequisites)). From `packages/jetbrains/`:
 
 ```bash
 ./gradlew typecheck    # Compile-check all Kotlin sources
@@ -159,32 +159,32 @@ Use `./gradlew runIde` only for a monolithic sandbox. JetBrains dev runs do not 
 Or via the root turbo filter to run only JetBrains checks from the repo root:
 
 ```bash
-bun turbo typecheck --filter=@qronos-ai/kilo-jetbrains
-bun turbo test:ci --filter=@qronos-ai/kilo-jetbrains
+bun turbo typecheck --filter=@qronos-ai/jetbrains
+bun turbo test:ci --filter=@qronos-ai/jetbrains
 ```
 
 ### Running against a different directory
 
-By default, `bun dev` runs Kilo CLI in the `packages/opencode` directory. To run it against a different directory or repository:
+By default, `bun dev` runs Qronos CLI in the `packages/cli` directory. To run it against a different directory or repository:
 
 ```bash
 bun dev <directory>
 ```
 
-To run Kilo CLI in the root of the repo itself:
+To run Qronos CLI in the root of the repo itself:
 
 ```bash
 bun dev .
 ```
 
-### Running Kilo CLI from any folder
+### Running Qronos CLI from any folder
 
-`bin/kilodev` is a self-locating launcher that runs this checkout from wherever you invoke it. Running it with no arguments launches the TUI pointed at the caller's directory; any arguments are forwarded to the CLI unchanged.
+`bin/qronosdev` is a self-locating launcher that runs this checkout from wherever you invoke it. Running it with no arguments launches the TUI pointed at the caller's directory; any arguments are forwarded to the CLI unchanged.
 
 One-shot install (recommended). From the repo root:
 
 ```bash
-./bin/kilodev dev-setup
+./bin/qronosdev dev-setup
 ```
 
 This detects your shell, shows exactly what it will add, asks for confirmation, writes an idempotent block to your rc file, and saves a timestamped backup of the original. Re-running is safe — it only rewrites when the snippet has changed.
@@ -199,16 +199,16 @@ Useful flags:
 
 Manual alternatives (equivalent, no CLI invocation needed):
 
-- Unix: add `alias kilodev='/path/to/kilocode/bin/kilodev'` to `~/.zshrc` / `~/.bashrc`, or `fish_add_path /path/to/kilocode/bin`.
-- Windows: add `C:\path\to\kilocode\bin` to PATH (System Environment Variables), or add `function kilodev { & "C:\path\to\kilocode\bin\kilodev.cmd" @args }` to `$PROFILE`.
+- Unix: add `alias qronosdev='/path/to/qronos/bin/qronosdev'` to `~/.zshrc` / `~/.bashrc`, or `fish_add_path /path/to/qronos/bin`.
+- Windows: add `C:\path\to\qronos\bin` to PATH (System Environment Variables), or add `function qronosdev { & "C:\path\to\qronos\bin\qronosdev.cmd" @args }` to `$PROFILE`.
 
 Then from anywhere:
 
 ```bash
 cd ~/some/project
-kilodev                      # opens TUI with project = ~/some/project
-kilodev dev-setup --print    # prints the alias line (scripting)
-kilodev run --dir "$PWD" "…" # subcommands pass through; use --dir for run/serve
+qronosdev                      # opens TUI with project = ~/some/project
+qronosdev dev-setup --print    # prints the alias line (scripting)
+qronosdev run --dir "$PWD" "…" # subcommands pass through; use --dir for run/serve
 ```
 
 ### Building a "local" binary
@@ -216,20 +216,20 @@ kilodev run --dir "$PWD" "…" # subcommands pass through; use --dir for run/ser
 To compile a standalone executable:
 
 ```bash
-./packages/opencode/script/build.ts --single
+./packages/cli/script/build.ts --single
 ```
 
 Then run it with:
 
 ```bash
-./packages/opencode/dist/@qronos-ai/cli-<platform>/bin/kilo
+./packages/cli/dist/@qronos-ai/cli-<platform>/bin/qronos
 ```
 
 Replace `<platform>` with your platform (e.g., `darwin-arm64`, `linux-x64`).
 
-### Understanding bun dev vs kilo
+### Understanding bun dev vs qronos
 
-During development, `bun dev` is the local equivalent of the built `kilo` command. Both run the same CLI interface:
+During development, `bun dev` is the local equivalent of the built `qronos` command. Both run the same CLI interface:
 
 ```bash
 # Development (from project root)
@@ -237,36 +237,36 @@ bun dev --help           # Show all available commands
 bun dev serve            # Start headless API server
 
 # Production
-kilo --help          # Show all available commands
-kilo serve           # Start headless API server
+qronos --help          # Show all available commands
+qronos serve           # Start headless API server
 ```
 
 ### Testing with a local backend
 
-To point the CLI at a local backend (e.g., a locally running Kilo API server on port 3000), set the `KILO_API_URL` environment variable:
+To point the CLI at a local backend (e.g., a locally running Qronos API server on port 3000), set the `QRONOS_API_URL` environment variable:
 
 ```bash
-KILO_API_URL=http://localhost:3000 bun dev
+QRONOS_API_URL=http://localhost:3000 bun dev
 ```
 
-This redirects Kilo API traffic (auth, profile, etc.) to your local server. The default is `https://api.kilo.ai`. When only `KILO_API_URL` is set, AI gateway traffic (chat, model listing, embeddings, autocomplete, transcription) also goes to this server under `/api/gateway/v1`, which the web app rewrites to the AI gateway.
+This redirects Qronos API traffic (auth, profile, etc.) to your local server. The default is `https://api.qronos.me`. When only `QRONOS_API_URL` is set, AI gateway traffic (chat, model listing, embeddings, autocomplete, transcription) also goes to this server under `/api/gateway/v1`, which the web app rewrites to the AI gateway.
 
-To point AI gateway traffic at a separate server, such as a locally running `ai-gateway` app, set `KILO_AI_GATEWAY_URL` to its `/api/v1` base. It takes precedence over `KILO_API_URL` for gateway traffic only:
+To point AI gateway traffic at a separate server, such as a locally running `ai-gateway` app, set `QRONOS_AI_GATEWAY_URL` to its `/api/v1` base. It takes precedence over `QRONOS_API_URL` for gateway traffic only:
 
 ```bash
-KILO_API_URL=http://localhost:3000 KILO_AI_GATEWAY_URL=http://localhost:3010/api/v1 bun dev
+QRONOS_API_URL=http://localhost:3000 QRONOS_AI_GATEWAY_URL=http://localhost:3010/api/v1 bun dev
 ```
 
 There are also optional overrides for other services:
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `KILO_API_URL` | `https://api.kilo.ai` | Kilo API (auth, profile, defaults); when set without `KILO_AI_GATEWAY_URL`, also gateway traffic via `${KILO_API_URL}/api/gateway/v1` |
-| `KILO_AI_GATEWAY_URL` | `https://ai-gateway.kilo.ai/api/v1` | AI gateway (chat, models, embeddings, autocomplete, transcription) |
-| `KILO_SESSION_INGEST_URL` | `https://ingest.kilosessions.ai` | Session export / cloud sync |
-| `KILO_MODELS_URL` | `https://models.dev` | Model metadata |
+| `QRONOS_API_URL` | `https://api.qronos.me` | Qronos API (auth, profile, defaults); when set without `QRONOS_AI_GATEWAY_URL`, also gateway traffic via `${QRONOS_API_URL}/api/gateway/v1` |
+| `QRONOS_AI_GATEWAY_URL` | `https://ai-gateway.qronos.ai/api/v1` | AI gateway (chat, models, embeddings, autocomplete, transcription) |
+| `QRONOS_SESSION_INGEST_URL` | `https://ingest.qronossessions.ai` | Session export / cloud sync |
+| `QRONOS_MODELS_URL` | `https://models.dev` | Model metadata |
 
-> **VS Code:** The repo includes a "VSCode - Run Extension (Local Backend)" launch config in `.vscode/launch.json` that sets `KILO_API_URL=http://localhost:3000` automatically.
+> **VS Code:** The repo includes a "VSCode - Run Extension (Local Backend)" launch config in `.vscode/launch.json` that sets `QRONOS_API_URL=http://localhost:3000` automatically.
 
 ## Issue Template Requirements
 
@@ -276,7 +276,7 @@ If you open an issue through `gh issue create`, the API, or another tool that by
 
 Current required fields by issue type:
 
-- **Bug report:** include a `Description`. When you can, also add Plugins, Kilo version, Steps to reproduce, Screenshot and/or share link, Operating System, and Terminal so the report matches the full bug template.
+- **Bug report:** include a `Description`. When you can, also add Plugins, Qronos version, Steps to reproduce, Screenshot and/or share link, Operating System, and Terminal so the report matches the full bug template.
 - **Feature request:** use a title prefixed with `[FEATURE]:`, complete the required checkbox confirming you have searched for duplicates, and fill in `Describe the enhancement you want to request`.
 - **Question:** include the `Question` field.
 
@@ -307,7 +307,7 @@ Repeated disregard of this contribution guide, or high-volume automated or agent
 
 ### Bug Bounties
 
-Kilo has bug bounties. To be eligible, make sure your GitHub account is connected in your Kilo account.
+Qronos has bug bounties. To be eligible, make sure your GitHub account is connected in your Qronos account.
 
 ### Testing Evidence
 
@@ -321,7 +321,7 @@ If you cannot complete a relevant command, include all of the following in the P
 - The blocker or failure that prevented completion
 - The substitute verification you performed instead
 
-See [Testing Evidence for Pull Requests](packages/kilo-docs/pages/contributing/development-environment.md#testing-evidence-for-pull-requests) for more examples. Agent limitations, local resource constraints, OOM constraints, or an agent prompt that says to skip tests do not waive this requirement. Draft PRs may be incomplete until they are marked ready for review. Maintainers may still defer or close review at their discretion.
+See [Testing Evidence for Pull Requests](packages/docs/pages/contributing/development-environment.md#testing-evidence-for-pull-requests) for more examples. Agent limitations, local resource constraints, OOM constraints, or an agent prompt that says to skip tests do not waive this requirement. Draft PRs may be incomplete until they are marked ready for review. Maintainers may still defer or close review at their discretion.
 
 Our issue-first policy asks contributors to reference an existing issue when opening a PR. This helps reviewers understand the problem statement, discussion, and intended scope before reviewing the code change.
 

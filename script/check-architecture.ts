@@ -1,20 +1,20 @@
 #!/usr/bin/env bun
-// kilocode_change - new file
+// qronos_change - new file
 
 /**
- * Enforces domain architecture boundaries and state ratchets for Kilo packages and Kilo-owned code.
+ * Enforces domain architecture boundaries and state ratchets for Qronos packages and Qronos-owned code.
  *
  * Upstream-owned shared opencode files are exempt to prevent upstream merge conflicts.
  *
  * Rules checked:
  * 1. core-directionality: packages/core, packages/llm, and packages/schema must
- *    never import from packages/opencode (@/*), @qronos-ai/cli, or packages/kilo-vscode.
- * 2. kilo-instance-state: No unclassified InstanceState.make singletons in Kilo-owned code
- *    (packages/opencode/src/kilocode, packages/opencode/src/kilo-sessions, packages/kilo-*).
- * 3. kilo-database-constructors: Direct SQLite instantiation (new Database / new DatabaseSync)
- *    in Kilo-owned code is restricted to allowed exceptions.
- * 4. kilo-tool-process-env: Direct process.env reads in Kilo tools must be classified.
- * 5. kilo-httpapi-handlers: Handlers must not call raw OS operations (node:fs, spawn).
+ *    never import from packages/cli (@/*), @qronos-ai/cli, or packages/extension.
+ * 2. qronos-instance-state: No unclassified InstanceState.make singletons in Qronos-owned code
+ *    (packages/cli/src/qronos, packages/cli/src/qronos-sessions, packages/qronos-*).
+ * 3. qronos-database-constructors: Direct SQLite instantiation (new Database / new DatabaseSync)
+ *    in Qronos-owned code is restricted to allowed exceptions.
+ * 4. qronos-tool-process-env: Direct process.env reads in Qronos tools must be classified.
+ * 5. qronos-httpapi-handlers: Handlers must not call raw OS operations (node:fs, spawn).
  */
 
 import path from "node:path"
@@ -26,14 +26,14 @@ const allowlist = await Bun.file(ALLOWLIST_PATH).json()
 type Violation = { file: string; rule: string; message: string }
 const violations: Violation[] = []
 
-function isKiloOwned(filePath: string): boolean {
+function isQronosOwned(filePath: string): boolean {
   const norm = filePath.replaceAll("\\", "/").toLowerCase()
   return (
-    norm.includes("/kilocode/") ||
-    norm.includes("packages/kilocode") ||
-    norm.includes("packages/kilo-") ||
-    norm.startsWith("packages/kilo-") ||
-    norm.includes("/kilo-sessions/")
+    norm.includes("/qronos/") ||
+    norm.includes("packages/qronos") ||
+    norm.includes("packages/qronos-") ||
+    norm.startsWith("packages/qronos-") ||
+    norm.includes("/qronos-sessions/")
   )
 }
 
@@ -44,9 +44,9 @@ function isKiloOwned(filePath: string): boolean {
 const DOMAIN_SCOPES = ["packages/core/src", "packages/llm/src", "packages/schema/src"]
 const FORBIDDEN_IMPORT_PATTERNS = [
   { pattern: /from\s+["']@\/.*["']/, reason: "internal opencode alias (@/*) in domain package" },
-  { pattern: /from\s+["'].*packages\/opencode.*["']/, reason: "direct packages/opencode import in domain package" },
-  { pattern: /from\s+["']@kilocode\/cli(?:[\/].*)?["']/, reason: "@qronos-ai/cli package import in domain package" },
-  { pattern: /from\s+["'].*packages\/kilo-vscode.*["']/, reason: "packages/kilo-vscode import in domain package" },
+  { pattern: /from\s+["'].*packages\/opencode.*["']/, reason: "direct packages/cli import in domain package" },
+  { pattern: /from\s+["']@qronos\/cli(?:[\/].*)?["']/, reason: "@qronos-ai/cli package import in domain package" },
+  { pattern: /from\s+["'].*packages\/qronos-vscode.*["']/, reason: "packages/extension import in domain package" },
 ]
 
 for (const scope of DOMAIN_SCOPES) {
@@ -68,38 +68,38 @@ for (const scope of DOMAIN_SCOPES) {
 }
 
 // ---------------------------------------------------------------------------
-// Rule 2: Kilo InstanceState.make Ratchet (Kilo-owned code)
+// Rule 2: Qronos InstanceState.make Ratchet (Qronos-owned code)
 // ---------------------------------------------------------------------------
 
 const srcGlob = new Bun.Glob("packages/*/src/**/*.ts")
-const kiloInstanceHits = new Map<string, number>()
+const qronosInstanceHits = new Map<string, number>()
 
 for (const file of srcGlob.scanSync({ cwd: ROOT, onlyFiles: true })) {
   const normPath = file.replaceAll("\\", "/")
-  if (!isKiloOwned(normPath)) continue
+  if (!isQronosOwned(normPath)) continue
   const text = await Bun.file(path.join(ROOT, file)).text()
   const matches = [...text.matchAll(/\bInstanceState\.make\b/g)]
   if (matches.length > 0) {
-    kiloInstanceHits.set(normPath, matches.length)
+    qronosInstanceHits.set(normPath, matches.length)
   }
 }
 
 const allowedInstanceState: Record<string, { count: number; owner: string; reason: string }> =
-  allowlist.rules["kilo-instance-state-singletons"]?.allowed ?? {}
+  allowlist.rules["qronos-instance-state-singletons"]?.allowed ?? {}
 
 // Check for unclassified additions or count mismatches
-for (const [file, count] of kiloInstanceHits) {
+for (const [file, count] of qronosInstanceHits) {
   const expected = allowedInstanceState[file]
   if (!expected) {
     violations.push({
       file,
-      rule: "kilo-instance-state",
-      message: `Unclassified InstanceState.make found in Kilo-owned code (${count} site(s)). Encapsulate state in a scoped Effect Service in packages/core or add to architecture-allowlist.json.`,
+      rule: "qronos-instance-state",
+      message: `Unclassified InstanceState.make found in Qronos-owned code (${count} site(s)). Encapsulate state in a scoped Effect Service in packages/core or add to architecture-allowlist.json.`,
     })
   } else if (expected.count !== count) {
     violations.push({
       file,
-      rule: "kilo-instance-state",
+      rule: "qronos-instance-state",
       message: `Ratchet drift: expected ${expected.count} site(s), found ${count}. Update architecture-allowlist.json!`,
     })
   }
@@ -107,77 +107,77 @@ for (const [file, count] of kiloInstanceHits) {
 
 // Check for stale entries in allowlist
 for (const file of Object.keys(allowedInstanceState)) {
-  if (!kiloInstanceHits.has(file)) {
+  if (!qronosInstanceHits.has(file)) {
     violations.push({
       file,
-      rule: "kilo-instance-state",
+      rule: "qronos-instance-state",
       message: `Stale allowlist entry: no InstanceState.make found in ${file}. Remove from architecture-allowlist.json to lock in progress!`,
     })
   }
 }
 
 // ---------------------------------------------------------------------------
-// Rule 3: Kilo Database Direct Instantiation Guard (Kilo-owned code)
+// Rule 3: Qronos Database Direct Instantiation Guard (Qronos-owned code)
 // ---------------------------------------------------------------------------
 
 const allowedDb: Record<string, { count: number; owner: string; reason: string }> =
-  allowlist.rules["kilo-database-constructors"]?.allowed ?? {}
+  allowlist.rules["qronos-database-constructors"]?.allowed ?? {}
 
-const kiloDbHits = new Map<string, number>()
+const qronosDbHits = new Map<string, number>()
 
 for (const file of srcGlob.scanSync({ cwd: ROOT, onlyFiles: true })) {
   const normPath = file.replaceAll("\\", "/")
-  if (!isKiloOwned(normPath)) continue
+  if (!isQronosOwned(normPath)) continue
   const text = await Bun.file(path.join(ROOT, file)).text()
   const matches = [...text.matchAll(/\bnew\s+(?:Database|DatabaseSync)\s*\(/g)]
   if (matches.length > 0) {
-    kiloDbHits.set(normPath, matches.length)
+    qronosDbHits.set(normPath, matches.length)
   }
 }
 
-for (const [file, count] of kiloDbHits) {
+for (const [file, count] of qronosDbHits) {
   const expected = allowedDb[file]
   if (!expected) {
     violations.push({
       file,
-      rule: "kilo-database-constructors",
-      message: `Unclassified SQLite constructor (new Database / new DatabaseSync) in Kilo code (${count} site(s)). Route persistence through Database.Service in @qronos-ai/core.`,
+      rule: "qronos-database-constructors",
+      message: `Unclassified SQLite constructor (new Database / new DatabaseSync) in Qronos code (${count} site(s)). Route persistence through Database.Service in @qronos-ai/core.`,
     })
   } else if (expected.count !== count) {
     violations.push({
       file,
-      rule: "kilo-database-constructors",
+      rule: "qronos-database-constructors",
       message: `Ratchet drift for database constructor in ${file}: expected ${expected.count}, found ${count}. Update architecture-allowlist.json!`,
     })
   }
 }
 
 for (const file of Object.keys(allowedDb)) {
-  if (!kiloDbHits.has(file)) {
+  if (!qronosDbHits.has(file)) {
     violations.push({
       file,
-      rule: "kilo-database-constructors",
+      rule: "qronos-database-constructors",
       message: `Stale database constructor allowlist entry: no direct instantiation found in ${file}. Remove from architecture-allowlist.json!`,
     })
   }
 }
 
 // ---------------------------------------------------------------------------
-// Rule 4: Kilo Tool process.env Reads Guard
+// Rule 4: Qronos Tool process.env Reads Guard
 // ---------------------------------------------------------------------------
 
 const allowedToolEnv: Record<string, { count: number; owner: string; reason: string }> =
-  allowlist.rules["kilo-tool-process-env"]?.allowed ?? {}
+  allowlist.rules["qronos-tool-process-env"]?.allowed ?? {}
 
-const toolGlob = new Bun.Glob("packages/opencode/src/tool/**/*.ts")
+const toolGlob = new Bun.Glob("packages/cli/src/tool/**/*.ts")
 const toolEnvHits = new Map<string, number>()
 
 for (const file of toolGlob.scanSync({ cwd: ROOT, onlyFiles: true })) {
   const normPath = file.replaceAll("\\", "/")
   const text = await Bun.file(path.join(ROOT, file)).text()
   const matches = [...text.matchAll(/\bprocess\.env\b/g)]
-  // Check any tool in the allowlist or any Kilo-owned/modified tool
-  if (matches.length > 0 && (allowedToolEnv[normPath] || isKiloOwned(normPath))) {
+  // Check any tool in the allowlist or any Qronos-owned/modified tool
+  if (matches.length > 0 && (allowedToolEnv[normPath] || isQronosOwned(normPath))) {
     toolEnvHits.set(normPath, matches.length)
   }
 }
@@ -187,13 +187,13 @@ for (const [file, count] of toolEnvHits) {
   if (!expected) {
     violations.push({
       file,
-      rule: "kilo-tool-process-env",
+      rule: "qronos-tool-process-env",
       message: `Direct process.env read found in tool (${count} site(s)). Pass configuration via Tool.Context or Env.Service.`,
     })
   } else if (expected.count !== count) {
     violations.push({
       file,
-      rule: "kilo-tool-process-env",
+      rule: "qronos-tool-process-env",
       message: `Ratchet drift for process.env in ${file}: expected ${expected.count}, found ${count}. Update architecture-allowlist.json!`,
     })
   }
@@ -203,25 +203,25 @@ for (const file of Object.keys(allowedToolEnv)) {
   if (!toolEnvHits.has(file)) {
     violations.push({
       file,
-      rule: "kilo-tool-process-env",
+      rule: "qronos-tool-process-env",
       message: `Stale tool-process-env entry: no process.env read found in ${file}. Remove from architecture-allowlist.json!`,
     })
   }
 }
 
 // ---------------------------------------------------------------------------
-// Rule 5: HttpApi Handler Boundaries (No raw OS operations in Kilo handlers)
+// Rule 5: HttpApi Handler Boundaries (No raw OS operations in Qronos handlers)
 // ---------------------------------------------------------------------------
 
-const handlerGlob = new Bun.Glob("packages/opencode/src/**/httpapi/handlers/**/*.ts")
+const handlerGlob = new Bun.Glob("packages/cli/src/**/httpapi/handlers/**/*.ts")
 for (const file of handlerGlob.scanSync({ cwd: ROOT, onlyFiles: true })) {
   const normPath = file.replaceAll("\\", "/")
-  if (!isKiloOwned(normPath)) continue
+  if (!isQronosOwned(normPath)) continue
   const text = await Bun.file(path.join(ROOT, file)).text()
   if (/\bchild_process\b|\bBun\.spawn(?:Sync)?\b|from\s+["'](?:node:)?fs(?:\/promises)?["']/.test(text)) {
     violations.push({
       file: normPath,
-      rule: "kilo-httpapi-handlers",
+      rule: "qronos-httpapi-handlers",
       message: `Direct OS/process operations forbidden in HttpApi route handlers. Delegate to domain Effect services.`,
     })
   }
@@ -245,4 +245,4 @@ if (violations.length > 0) {
 const totalTracked =
   Object.keys(allowedInstanceState).length + Object.keys(allowedDb).length + Object.keys(allowedToolEnv).length
 
-console.log(`check-architecture: ok (${totalTracked} classified Kilo ratchet sites, 0 boundary violations).`)
+console.log(`check-architecture: ok (${totalTracked} classified Qronos ratchet sites, 0 boundary violations).`)

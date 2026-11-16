@@ -1,16 +1,16 @@
 {
-  "$schema": "https://app.kilo.ai/config.json",
+  "$schema": "https://qronos.me/config.json",
   // "enterprise": {
   //   "url": "https://enterprise.dev.opencode.ai",
   // },
   "provider": {
-    "kilo": {
+    "qronos": {
       "options": {},
     },
   },
   "permission": {
     "edit": {
-      "packages/opencode/migration/*": "deny",
+      "packages/cli/migration/*": "deny",
     },
   },
   "references": {

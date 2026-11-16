@@ -51,8 +51,8 @@ still starts, extension loads in a window.
 
 ### Phase 2 — folder names (one folder per commit)
 
-`packages/kilo-vscode` → `packages/extension`, `packages/opencode` →
-`packages/cli`, `packages/kilo-gateway` → `packages/gateway`, etc.
+`packages/extension` → `packages/extension`, `packages/cli` →
+`packages/cli`, `packages/gateway` → `packages/gateway`, etc.
 Tooling paths (`turbo.json`, `.github/workflows/*`, `script/`) follow.
 
 **Gate:** same as Phase 1, plus the VSIX still packages (`vsce package`).

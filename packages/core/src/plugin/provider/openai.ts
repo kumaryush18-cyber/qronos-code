@@ -6,7 +6,7 @@ import type { Scope } from "effect"
 import { Credential } from "../../credential"
 import { InstallationVersion } from "../../installation/version"
 import { Integration } from "../../integration"
-import { KiloOauthCallbackPage } from "../../kilocode/oauth/page" // kilocode_change
+import { QronosOauthCallbackPage } from "../../qronos/oauth/page" // qronos_change
 import { ModelV2 } from "../../model"
 import { ProviderV2 } from "../../provider"
 import type { PluginInternal } from "../internal"
@@ -55,19 +55,19 @@ const browser = {
           response.writeHead(404).end("Not found")
           return
         }
-        // kilocode_change start - unrelated localhost requests must not terminate the active OAuth attempt
+        // qronos_change start - unrelated localhost requests must not terminate the active OAuth attempt
         if (url.searchParams.get("state") !== state) {
-          response.writeHead(400, { "Content-Type": "text/html" }).end(KiloOauthCallbackPage.error("Invalid OAuth state"))
+          response.writeHead(400, { "Content-Type": "text/html" }).end(QronosOauthCallbackPage.error("Invalid OAuth state"))
           return
         }
-        // kilocode_change end
+        // qronos_change end
         const error = url.searchParams.get("error_description") ?? url.searchParams.get("error")
         const value = url.searchParams.get("code")
         if (error) {
           Effect.runFork(Deferred.fail(code, new Error(error)))
           response
             .writeHead(400, { "Content-Type": "text/html" })
-            .end(KiloOauthCallbackPage.error(error, { provider: "ChatGPT" })) // kilocode_change
+            .end(QronosOauthCallbackPage.error(error, { provider: "ChatGPT" })) // qronos_change
           return
         }
         if (!value) {
@@ -75,13 +75,13 @@ const browser = {
           Effect.runFork(Deferred.fail(code, new Error(message)))
           response
             .writeHead(400, { "Content-Type": "text/html" })
-            .end(KiloOauthCallbackPage.error(message, { provider: "ChatGPT" })) // kilocode_change
+            .end(QronosOauthCallbackPage.error(message, { provider: "ChatGPT" })) // qronos_change
           return
         }
         Effect.runFork(Deferred.succeed(code, value))
         response
           .writeHead(200, { "Content-Type": "text/html" })
-          .end(KiloOauthCallbackPage.success({ provider: "ChatGPT" })) // kilocode_change
+          .end(QronosOauthCallbackPage.success({ provider: "ChatGPT" })) // qronos_change
       })
       yield* Effect.callback<void, Error>((resume) => {
         server.once("error", (error) => resume(Effect.fail(error)))
@@ -197,7 +197,7 @@ export const OpenAIPlugin = define({
 } satisfies PluginInternal.Plugin<PluginInternal.Requirements | Scope.Scope>)
 
 function headers(contentType: string) {
-  return { "Content-Type": contentType, "User-Agent": `kilo/${InstallationVersion}` } // kilocode_change
+  return { "Content-Type": contentType, "User-Agent": `qronos/${InstallationVersion}` } // qronos_change
 }
 
 function exchange(code: string, redirect: string, pkce: Pkce) {
@@ -276,7 +276,7 @@ function authorizeURL(redirect: string, pkce: Pkce, state: string) {
     id_token_add_organizations: "true",
     codex_cli_simplified_flow: "true",
     state,
-    originator: "kilo", // kilocode_change
+    originator: "qronos", // qronos_change
   })}`
 }
 

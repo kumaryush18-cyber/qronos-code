@@ -41,7 +41,7 @@ export type NavigateToSessionFn = (sessionID: string) => void
 
 export type SessionHrefFn = (sessionID: string) => string
 
-// kilocode_change start
+// qronos_change start
 // The optional trailing sessionID scopes the open to the session the file
 // reference was rendered for, so the extension resolves its workspace directory
 // from that explicit id instead of whatever session is current when the click
@@ -50,13 +50,13 @@ export type OpenFileFn = (filePath: string, line?: number, column?: number, sess
 
 export type OpenDiffFn = (diff: {
   file: string
-  before?: string // kilocode_change - optional, kilo uses `patch`
-  after?: string // kilocode_change - optional, kilo uses `patch`
-  patch?: string // kilocode_change
+  before?: string // qronos_change - optional, qronos uses `patch`
+  after?: string // qronos_change - optional, qronos uses `patch`
+  patch?: string // qronos_change
   additions: number
   deletions: number
-  status?: "added" | "deleted" | "modified" // kilocode_change
-  // kilocode_change start - multi-file patch preview payload
+  status?: "added" | "deleted" | "modified" // qronos_change
+  // qronos_change start - multi-file patch preview payload
   files?: Array<{
     file: string
     before?: string
@@ -64,20 +64,20 @@ export type OpenDiffFn = (diff: {
     patch?: string
     additions: number
     deletions: number
-    status?: "added" | "deleted" | "modified" // kilocode_change
+    status?: "added" | "deleted" | "modified" // qronos_change
   }>
-  // kilocode_change end
+  // qronos_change end
 }) => void
 
-export type OpenUrlFn = (url: string, sessionID?: string) => void // kilocode_change - optional sessionID scopes the open
+export type OpenUrlFn = (url: string, sessionID?: string) => void // qronos_change - optional sessionID scopes the open
 
-export type OpenContentFn = (content: string, language?: string) => void // kilocode_change
+export type OpenContentFn = (content: string, language?: string) => void // qronos_change
 
-// kilocode_change start: sessionID scopes validation to the session the
+// qronos_change start: sessionID scopes validation to the session the
 // candidates were rendered for, so the extension resolves its workspace
 // directory from that explicit id instead of whatever session is current.
 export type ValidateFilesFn = (sessionID: string, paths: string[]) => Promise<string[]>
-// kilocode_change end
+// qronos_change end
 
 export const { use: useData, provider: DataProvider } = createSimpleContext({
   name: "Data",
@@ -86,14 +86,14 @@ export const { use: useData, provider: DataProvider } = createSimpleContext({
     directory: string
     onNavigateToSession?: NavigateToSessionFn
     onSessionHref?: SessionHrefFn
-    onOpenFile?: OpenFileFn // kilocode_change
-    onOpenDiff?: OpenDiffFn // kilocode_change
-    onOpenUrl?: OpenUrlFn // kilocode_change
-    onOpenContent?: OpenContentFn // kilocode_change
-    onValidateFiles?: ValidateFilesFn // kilocode_change
-    // kilocode_change start - web links open in the Integrated Browser
-    browserLinks?: boolean // kilocode_change
-    // kilocode_change end
+    onOpenFile?: OpenFileFn // qronos_change
+    onOpenDiff?: OpenDiffFn // qronos_change
+    onOpenUrl?: OpenUrlFn // qronos_change
+    onOpenContent?: OpenContentFn // qronos_change
+    onValidateFiles?: ValidateFilesFn // qronos_change
+    // qronos_change start - web links open in the Integrated Browser
+    browserLinks?: boolean // qronos_change
+    // qronos_change end
   }) => {
     return {
       get store() {
@@ -104,17 +104,17 @@ export const { use: useData, provider: DataProvider } = createSimpleContext({
       },
       navigateToSession: props.onNavigateToSession,
       sessionHref: props.onSessionHref,
-      openFile: props.onOpenFile, // kilocode_change
-      openDiff: props.onOpenDiff, // kilocode_change
-      openUrl: props.onOpenUrl, // kilocode_change
-      openContent: props.onOpenContent, // kilocode_change
-      validateFiles: props.onValidateFiles, // kilocode_change
-      // kilocode_change start
+      openFile: props.onOpenFile, // qronos_change
+      openDiff: props.onOpenDiff, // qronos_change
+      openUrl: props.onOpenUrl, // qronos_change
+      openContent: props.onOpenContent, // qronos_change
+      validateFiles: props.onValidateFiles, // qronos_change
+      // qronos_change start
       get browserLinks() {
-        // kilocode_change
-        return props.browserLinks // kilocode_change
-      }, // kilocode_change
-      // kilocode_change end
+        // qronos_change
+        return props.browserLinks // qronos_change
+      }, // qronos_change
+      // qronos_change end
     }
   },
 })

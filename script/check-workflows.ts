@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// kilocode_change - new file
+// qronos_change - new file
 
 /**
  * Guards against accidentally inheriting workflows from upstream opencode.
@@ -12,7 +12,7 @@
  * deliberately.
  *
  * Only runnable workflows are checked (`.yml` / `.yaml`). Files under
- * `.github/workflows/disabled/` are Kilo-specific and can't run, so they're
+ * `.github/workflows/disabled/` are Qronos-specific and can't run, so they're
  * not tracked here.
  *
  * To accept a new workflow: add its filename to `active`.
@@ -30,7 +30,7 @@ const active = new Set([
   "auto-docs.yml",
   "beta.yml",
   "check-forbidden-strings.yml",
-  "check-kilo-generated-artifacts.yml",
+  "check-qronos-generated-artifacts.yml",
   "check-md-table-padding.yml",
   "check-opencode-annotations.yml",
   "check-org-member.yml",
@@ -46,10 +46,10 @@ const active = new Set([
   "docs-check-links.yml",
   "docs-sync.yml",
   "generate.yml",
-  "kilo-auto-close.yml",
+  "qronos-auto-close.yml",
   "nix-eval.yml",
   "nix-hashes.yml",
-  "outdated-kilo-deps.yml",
+  "outdated-qronos-deps.yml",
   "prepare-jetbrains-release.yml",
   "publish-jetbrains-bundled.yml",
   "publish-jetbrains.yml",

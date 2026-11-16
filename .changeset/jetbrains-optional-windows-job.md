@@ -1,5 +1,5 @@
 ---
-"@qronos-ai/kilo-jetbrains": patch
+"@qronos-ai/jetbrains": patch
 ---
 
 Keep the Windows CLI connection working when optional native process cleanup is unavailable.

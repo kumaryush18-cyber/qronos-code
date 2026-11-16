@@ -1,2 +1,2 @@
-// kilocode_change
+// qronos_change
 export * from "#pty"

@@ -8,11 +8,11 @@
 #   ./dev-update.sh webview    # rebuild one bundle (fast, needs ~700 MB)
 #
 # The installed CLI (bin/qronos) is a small wrapper that runs the live TypeScript
-# in packages/opencode, so backend changes need no rebuild at all - just reload.
+# in packages/cli, so backend changes need no rebuild at all - just reload.
 
 set -euo pipefail
 
-SRC="/workspaces/qronos-code/packages/kilo-vscode"
+SRC="/workspaces/qronos-code/packages/extension"
 DEST="${QRONOS_INSTALLED_EXT:-/home/codespace/.vscode-remote/extensions/qronos-ai.qronos-code-1.0.0}"
 
 if [ ! -d "$DEST" ]; then

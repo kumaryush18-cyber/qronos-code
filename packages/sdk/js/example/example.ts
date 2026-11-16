@@ -1,8 +1,8 @@
-import { createKiloClient, createKiloServer } from "@qronos-ai/sdk"
+import { createQronosClient, createQronosServer } from "@qronos-ai/sdk"
 import { pathToFileURL } from "bun"
 
-const server = await createKiloServer()
-const client = createKiloClient({ baseUrl: server.url })
+const server = await createQronosServer()
+const client = createQronosClient({ baseUrl: server.url })
 
 const input = await Array.fromAsync(new Bun.Glob("packages/core/*.ts").scan())
 

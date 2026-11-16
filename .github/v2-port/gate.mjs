@@ -1,13 +1,13 @@
-// kilocode_change - new file
+// qronos_change - new file
 
 /**
  * Gate for the v2-port tracker: decides whether a merged PR carries a
- * Kilo-specific change to packages/opencode/ that the opencode v2 rewrite could
+ * Qronos-specific change to packages/cli/ that the opencode v2 rewrite could
  * plausibly miss, and writes the agent's input files.
  *
- * A PR qualifies when its diff touches a path under packages/opencode/ that has
- * `kilocode` in a path segment or filename, or when it adds a `kilocode_change`
- * marker line in a packages/opencode/ file. That is the same signal the
+ * A PR qualifies when its diff touches a path under packages/cli/ that has
+ * `qronos` in a path segment or filename, or when it adds a `qronos_change`
+ * marker line in a packages/cli/ file. That is the same signal the
  * annotations check already enforces, so upstream merges, formatting, and
  * dependency bumps are excluded without an LLM call.
  *
@@ -28,8 +28,8 @@ import { appendOutput, appendSummary, repo } from "../docs-sync/lib.mjs"
 
 const OUT_DIR = "v2-port-out"
 const DIFF_CAP_BYTES = 200 * 1024
-const SCOPE = "packages/opencode/"
-const MARKER = "kilocode_change"
+const SCOPE = "packages/cli/"
+const MARKER = "qronos_change"
 // A PR already tracked by hand carries the label the tracker would add.
 const TRACKED_LABEL = "core-v1-changes-port"
 const SKIP_LABEL = "no-v2-port"
@@ -61,23 +61,23 @@ export function parseDiff(text) {
 }
 
 /**
- * Qualification rule. `includes("kilocode")` covers src/kilocode/**, test/kilocode/**,
- * and any Kilo-named file, matching the annotation checker's exempt-path rule.
+ * Qualification rule. `includes("qronos")` covers src/qronos/**, test/qronos/**,
+ * and any Qronos-named file, matching the annotation checker's exempt-path rule.
  */
 export function qualifyDiff(text) {
   const files = parseDiff(text).filter((f) => f.path.startsWith(SCOPE))
   if (files.length === 0) {
     return { qualifies: false, reason: `diff touches nothing under ${SCOPE}`, matches: [] }
   }
-  const paths = files.filter((f) => f.path.includes("kilocode")).map((f) => f.path)
+  const paths = files.filter((f) => f.path.includes("qronos")).map((f) => f.path)
   if (paths.length > 0) {
-    return { qualifies: true, reason: `Kilo-owned opencode path changed: ${paths[0]}`, matches: paths }
+    return { qualifies: true, reason: `Qronos-owned opencode path changed: ${paths[0]}`, matches: paths }
   }
   const markers = files.filter((f) => f.added.some((l) => l.includes(MARKER))).map((f) => f.path)
   if (markers.length > 0) {
     return { qualifies: true, reason: `added a ${MARKER} marker in ${markers[0]}`, matches: markers }
   }
-  return { qualifies: false, reason: `no Kilo-specific change under ${SCOPE}`, matches: [] }
+  return { qualifies: false, reason: `no Qronos-specific change under ${SCOPE}`, matches: [] }
 }
 
 /** Skip reason for PR metadata that should never reach the agent, or null. */

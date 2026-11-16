@@ -1,0 +1,608 @@
+<idea-plugin>
+    <dependencies>
+        <module name="intellij.platform.frontend"/>
+        <module name="intellij.platform.lang.impl"/>
+        <plugin id="org.jetbrains.plugins.terminal"/>
+        <module name="intellij.terminal.frontend"/>
+        <module name="qronos.jetbrains.shared"/>
+    </dependencies>
+
+    <resource-bundle>messages.QronosBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
+        <applicationService serviceImplementation="ai.qronos.client.onboarding.providers.v5migration.QronosMigrationService"/>
+        <applicationService serviceImplementation="ai.qronos.client.onboarding.QronosOnboardingService"/>
+        <applicationService serviceImplementation="ai.qronos.client.autocomplete.QronosAutocompleteSettingsService"/>
+        <customPasteProvider implementation="ai.qronos.client.session.ui.prompt.PromptAttachmentPasteProvider"/>
+        <customPasteProvider implementation="ai.qronos.client.session.ui.prompt.PromptTextPasteProvider"/>
+
+        <notificationGroup id="Qronos Code"
+                           displayType="BALLOON"
+                           bundle="messages.QronosBundle"
+                           key="notification.group.qronos"/>
+
+        <toolWindow id="Qronos Code"
+                    anchor="left"
+                    icon="/icons/qronos.svg"
+                    factoryClass="ai.qronos.client.QronosToolWindowFactory"/>
+
+        <fileEditorProvider id="QronosVfsEditor" implementation="ai.qronos.client.vfs.QronosFileEditorProvider"/>
+        <fileEditorProvider id="QronosVfsSourceEditor"
+                            order="after QronosVfsEditor"
+                            implementation="ai.qronos.client.vfs.QronosSourceEditorProvider"/>
+        <fileIconProvider implementation="ai.qronos.client.vfs.QronosFileIconProvider"/>
+        <fileType name="QRONOS_WORKTREE_SESSION"
+                  implementationClass="ai.qronos.client.agentManager.worktree.WorktreeSessionFileType"
+                  fieldName="INSTANCE"/>
+
+        <applicationConfigurable
+                parentId="tools"
+                id="ai.qronos.jetbrains.settings"
+                instance="ai.qronos.client.settings.QronosSettingsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.qronos.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.profile"
+                groupWeight="5"
+                instance="ai.qronos.client.settings.profile.UserProfileConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.profile.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.models"
+                groupWeight="4"
+                instance="ai.qronos.client.settings.models.ModelsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.models.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.providers"
+                groupWeight="3"
+                instance="ai.qronos.client.settings.providers.ProvidersConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.providers.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.marketplace"
+                groupWeight="2"
+                instance="ai.qronos.client.settings.marketplace.MarketplaceConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.marketplace.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.agentBehavior"
+                groupWeight="1"
+                instance="ai.qronos.client.settings.agents.AgentBehaviorConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.agentBehavior.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.context"
+                groupWeight="-2"
+                instance="ai.qronos.client.settings.context.ContextConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.context.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.autoApprove"
+                groupWeight="0"
+                instance="ai.qronos.client.settings.autoapprove.AutoApproveConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.autoApprove.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.transcript"
+                groupWeight="-1"
+                instance="ai.qronos.client.settings.transcript.TranscriptConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.transcript.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.checkpoints"
+                groupWeight="-3"
+                instance="ai.qronos.client.settings.checkpoints.CheckpointsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.checkpoints.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.integrations"
+                groupWeight="-4"
+                instance="ai.qronos.client.settings.integrations.IntegrationsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.integrations.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings"
+                id="ai.qronos.jetbrains.settings.advanced"
+                groupWeight="-5"
+                instance="ai.qronos.client.settings.AdvancedConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.advanced.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings.agentBehavior"
+                id="ai.qronos.jetbrains.settings.agentBehavior.agents"
+                instance="ai.qronos.client.settings.agents.AgentsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.agentBehavior.agents.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings.agentBehavior"
+                id="ai.qronos.jetbrains.settings.agentBehavior.mcp"
+                instance="ai.qronos.client.settings.agents.McpConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.agentBehavior.mcp.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings.agentBehavior"
+                id="ai.qronos.jetbrains.settings.agentBehavior.skills"
+                instance="ai.qronos.client.settings.agents.SkillsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.agentBehavior.skills.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings.agentBehavior"
+                id="ai.qronos.jetbrains.settings.agentBehavior.commands"
+                instance="ai.qronos.client.settings.agents.CommandsConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.agentBehavior.commands.displayName"/>
+
+        <applicationConfigurable
+                parentId="ai.qronos.jetbrains.settings.agentBehavior"
+                id="ai.qronos.jetbrains.settings.agentBehavior.rules"
+                instance="ai.qronos.client.settings.rules.RulesConfigurable"
+                bundle="messages.QronosBundle"
+                key="settings.agentBehavior.rules.displayName"/>
+
+        <registryKey key="qronos.cloudWorkspaces.enabled"
+                     description="Show repository-scoped Cloud workspaces and hosted sessions in Agent Manager."
+                     defaultValue="true"
+                     restartRequired="false"
+                     overrides="false"/>
+        <registryKey key="qronos.session.condense"
+                     description="Enable event condensing in the session update queue (merges redundant snapshots before model delivery)."
+                     defaultValue="true"
+                     restartRequired="false"
+                     overrides="false"/>
+        <registryKey key="qronos.session.flushMs"
+                     description="Session update queue flush cadence in milliseconds."
+                     defaultValue="150"
+                     restartRequired="false"
+                     overrides="false"/>
+        <registryKey key="qronos.session.inactive.disposeTimeoutMs"
+                     description="Milliseconds before hidden session UI is disposed after switching away."
+                     defaultValue="180000"
+                     restartRequired="false"
+                     overrides="false"/>
+        <registryKey key="qronos.session.validateRoots"
+                      description="Treat settled (non-streaming) transcript turns as Swing validate roots so their internal repaints do not relayout the whole transcript."
+                      defaultValue="true"
+                      restartRequired="false"
+                      overrides="false"/>
+        <registryKey key="qronos.diagram.inline.enabled"
+                     description="Render Mermaid diagram fences inline in markdown session views."
+                     defaultValue="true"
+                     restartRequired="false"
+                     overrides="false"/>
+        <registryKey key="qronos.list.fade"
+                     description="Fade list row titles and descriptions into the row background where they do not fit, instead of leaving a bare cut."
+                     defaultValue="true"
+                     restartRequired="false"
+                     overrides="false"/>
+    </extensions>
+
+    <applicationListeners>
+        <listener class="ai.qronos.client.plugin.QronosFrontendDynamicPluginListener"
+                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
+    </applicationListeners>
+
+    <actions>
+        <action id="Qronos.Restart"
+                class="ai.qronos.client.actions.RestartQronosAction"/>
+
+        <action id="Qronos.ReloadCoreSettings"
+                class="ai.qronos.client.actions.ReloadCoreSettingsAction"/>
+
+        <action id="Qronos.RefreshCloud"
+                class="ai.qronos.client.actions.RefreshCloudAction"/>
+
+        <action id="Qronos.Reinstall"
+                class="ai.qronos.client.actions.ReinstallQronosAction"/>
+
+        <action id="Qronos.CoreInfo"
+                class="ai.qronos.client.actions.CoreInfoAction"/>
+
+        <action id="Qronos.OpenSettings"
+                class="ai.qronos.client.actions.OpenSettingsAction"
+                icon="AllIcons.General.GearPlain"/>
+
+        <action id="Qronos.OpenUserProfileSettings"
+                class="ai.qronos.client.actions.OpenUserProfileSettingsAction"/>
+
+        <action id="Qronos.OpenMarketplaceSettings"
+                class="ai.qronos.client.actions.OpenMarketplaceSettingsAction"/>
+
+        <action id="Qronos.OpenLocalConfig"
+                class="ai.qronos.client.actions.OpenLocalConfigAction"/>
+
+        <action id="Qronos.OpenGlobalConfig"
+                class="ai.qronos.client.actions.OpenGlobalConfigAction"/>
+
+        <action id="Qronos.ForceMigration"
+                class="ai.qronos.client.actions.ForceMigrationAction"/>
+
+        <action id="Qronos.OpenSetupScript"
+                class="ai.qronos.client.actions.OpenSetupScriptAction"/>
+
+        <group id="Qronos.CliGroup" text="Core" popup="true">
+            <reference ref="Qronos.ReloadCoreSettings"/>
+            <reference ref="Qronos.RefreshCloud"/>
+            <separator/>
+            <reference ref="Qronos.Restart"/>
+            <reference ref="Qronos.Reinstall"/>
+            <separator/>
+            <reference ref="Qronos.CoreInfo"/>
+        </group>
+
+        <group id="Qronos.OpenConfigGroup" text="Config Files" popup="true">
+            <reference ref="Qronos.OpenLocalConfig"/>
+            <reference ref="Qronos.OpenGlobalConfig"/>
+            <separator/>
+            <reference ref="Qronos.ForceMigration"/>
+        </group>
+
+        <group id="Qronos.SettingsGroup">
+            <reference ref="Qronos.OpenSettings"/>
+            <separator/>
+            <reference ref="Qronos.OpenUserProfileSettings"/>
+            <reference ref="Qronos.OpenMarketplaceSettings"/>
+            <separator/>
+            <reference ref="Qronos.OpenConfigGroup"/>
+            <separator/>
+            <reference ref="Qronos.CliGroup"/>
+        </group>
+
+        <action id="Qronos.Settings"
+                class="ai.qronos.client.actions.QronosSettingsAction"
+                icon="AllIcons.General.GearPlain"/>
+
+        <action id="Qronos.NewSession"
+                class="ai.qronos.client.actions.NewSessionAction"/>
+
+        <group id="Qronos.AgentManager.Add"
+               class="ai.qronos.client.actions.AgentManagerAddAction"
+               popup="true"/>
+
+        <action id="Qronos.Chat.NewWorktree"
+                class="ai.qronos.client.actions.ChatNewWorktreeAction"
+                text="New Worktree"
+                description="Create a new git worktree with its own branch and session"/>
+
+        <action id="Qronos.Chat.MoveToWorktree"
+                class="ai.qronos.client.actions.ChatMoveToWorktreeAction"
+                text="Move to Worktree"
+                description="Move this session into a new git worktree"/>
+
+        <action id="Qronos.History"
+                class="ai.qronos.client.actions.HistoryAction"/>
+
+        <action id="Qronos.SendPrompt"
+                class="ai.qronos.client.actions.SendPromptAction"
+                text="Send Prompt"
+                description="Send the current Qronos prompt">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="ENTER"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="meta ENTER"/>
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="control ENTER"/>
+        </action>
+
+        <action id="Qronos.SpeechInput"
+                class="ai.qronos.client.actions.SpeechInputAction">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="control K"/>
+            <keyboard-shortcut keymap="Mac OS X"
+                               first-keystroke="control K"
+                               replace-all="true"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="control K"
+                               replace-all="true"/>
+        </action>
+
+        <action id="Qronos.SubmitDialog"
+                class="ai.qronos.client.actions.SubmitDialogAction"
+                text="Submit Dialog"
+                description="Run the default action in the current Qronos dialog">
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="meta ENTER"/>
+        </action>
+
+        <action id="Qronos.StopSession"
+                class="ai.qronos.client.actions.StopSessionAction"
+                text="Stop Session"
+                description="Stop the current Qronos session">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="alt S"/>
+        </action>
+
+        <!--
+          The macOS keymaps inherit from $default through MacOSDefaultKeymap, which swaps Ctrl and Cmd
+          on every inherited shortcut. Ctrl+digit would therefore arrive as Cmd+digit (Cmd+1 activates
+          the Project tool window), so each mac keymap re-declares the literal Ctrl shortcut with
+          replace-all to drop the converted one. Same pattern the platform uses for Emmet's edit points.
+        -->
+        <action id="Qronos.Session.CycleMode"
+                class="ai.qronos.client.actions.CycleModeAction"
+                text="Cycle Mode"
+                description="Switch to the next Qronos mode">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="control 1"/>
+            <keyboard-shortcut keymap="Mac OS X"
+                               first-keystroke="control 1"
+                               replace-all="true"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="control 1"
+                               replace-all="true"/>
+        </action>
+
+        <action id="Qronos.Session.CycleModel"
+                class="ai.qronos.client.actions.CycleModelAction"
+                text="Cycle Model"
+                description="Switch to the next favorite or recommended Qronos model">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="control 2"/>
+            <keyboard-shortcut keymap="Mac OS X"
+                               first-keystroke="control 2"
+                               replace-all="true"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="control 2"
+                               replace-all="true"/>
+        </action>
+
+        <action id="Qronos.Session.CycleReasoning"
+                class="ai.qronos.client.actions.CycleReasoningAction"
+                text="Cycle Reasoning Effort"
+                description="Switch to the next Qronos reasoning effort">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="control 3"/>
+            <keyboard-shortcut keymap="Mac OS X"
+                               first-keystroke="control 3"
+                               replace-all="true"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="control 3"
+                               replace-all="true"/>
+        </action>
+
+        <action id="Qronos.Session.ResetModel"
+                class="ai.qronos.client.actions.ResetModelAction"
+                text="Reset Model"
+                description="Clear the Qronos model override for the current mode">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="control 0"/>
+            <keyboard-shortcut keymap="Mac OS X"
+                               first-keystroke="control 0"
+                               replace-all="true"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+"
+                               first-keystroke="control 0"
+                               replace-all="true"/>
+        </action>
+
+        <action id="Qronos.Session.Open"
+                class="ai.qronos.client.actions.OpenSessionAction">
+            <keyboard-shortcut keymap="$default" first-keystroke="ENTER"/>
+        </action>
+
+        <action id="Qronos.Session.Rename"
+                class="ai.qronos.client.actions.RenameSessionAction"
+                use-shortcut-of="RenameElement"/>
+
+        <action id="Qronos.Session.Delete"
+                class="ai.qronos.client.actions.DeleteSessionAction"
+                use-shortcut-of="$Delete"/>
+
+        <action id="Qronos.Worktree.Rename"
+                class="ai.qronos.client.actions.RenameWorktreeAction"/>
+
+        <action id="Qronos.Worktree.Delete"
+                class="ai.qronos.client.actions.DeleteWorktreeAction"/>
+
+        <action id="Qronos.Worktree.OpenPr"
+                class="ai.qronos.client.actions.OpenWorktreePrAction"/>
+
+        <action id="Qronos.Worktree.CopyPrRef"
+                class="ai.qronos.client.actions.CopyWorktreePrRefAction"/>
+
+        <action id="Qronos.Worktree.OpenDiff"
+                class="ai.qronos.client.actions.OpenWorktreeDiffAction"/>
+
+        <action id="Qronos.Worktree.OpenLocalDiff"
+                class="ai.qronos.client.actions.OpenWorktreeLocalDiffAction"/>
+
+        <action id="Qronos.Worktree.UpdateFromBase"
+                class="ai.qronos.client.actions.UpdateWorktreeFromBaseAction"/>
+
+        <action id="Qronos.Worktree.CopyBranchName"
+                class="ai.qronos.client.actions.CopyBranchNameAction"/>
+
+        <action id="Qronos.Worktree.CopyBranchPath"
+                class="ai.qronos.client.actions.CopyBranchPathAction"/>
+
+        <action id="Qronos.Worktree.RunSetupScript"
+                class="ai.qronos.client.actions.RunWorktreeSetupScriptAction"/>
+
+        <action id="Qronos.HostedWorkspace.Refresh"
+                class="ai.qronos.client.actions.RefreshHostedWorkspaceAction"/>
+
+        <action id="Qronos.HostedWorkspace.OpenInBrowser"
+                class="ai.qronos.client.actions.HostedOpenInBrowserAction"/>
+
+        <action id="Qronos.HostedWorkspace.Delete"
+                class="ai.qronos.client.actions.HostedDeleteWorkspaceAction"/>
+
+        <action id="Qronos.HostedWorkspace.Dismiss"
+                class="ai.qronos.client.actions.HostedDismissWorkspaceAction"/>
+
+        <action id="Qronos.WorktreeSession.Rename"
+                class="ai.qronos.client.actions.RenameWorktreeSessionAction"/>
+
+        <action id="Qronos.WorktreeSession.Delete"
+                class="ai.qronos.client.actions.DeleteWorktreeSessionAction"/>
+
+        <action id="Qronos.WorktreeSession.MoveToWorktree"
+                class="ai.qronos.client.actions.MoveWorktreeSessionAction"/>
+
+        <action id="Qronos.WorktreeSession.Fork"
+                class="ai.qronos.client.actions.ForkWorktreeSessionAction"/>
+
+        <group id="Qronos.Worktree.RowMenu">
+            <reference ref="Qronos.HostedWorkspace.Refresh"/>
+            <reference ref="Qronos.HostedWorkspace.OpenInBrowser"/>
+            <separator/>
+            <reference ref="Qronos.HostedWorkspace.Dismiss"/>
+            <separator/>
+            <reference ref="Qronos.Worktree.Rename"/>
+            <separator/>
+            <reference ref="Qronos.Worktree.OpenPr"/>
+            <separator/>
+            <reference ref="Qronos.Worktree.OpenDiff"/>
+            <reference ref="Qronos.Worktree.OpenLocalDiff"/>
+            <reference ref="Qronos.Worktree.UpdateFromBase"/>
+            <separator/>
+            <reference ref="Qronos.Worktree.CopyBranchName"/>
+            <reference ref="Qronos.Worktree.CopyBranchPath"/>
+            <reference ref="Qronos.Worktree.CopyPrRef"/>
+            <separator/>
+            <reference ref="Qronos.OpenSetupScript"/>
+            <reference ref="Qronos.Worktree.RunSetupScript"/>
+            <separator/>
+            <reference ref="Qronos.HostedWorkspace.Delete"/>
+            <reference ref="Qronos.Worktree.Delete"/>
+        </group>
+
+        <group id="Qronos.WorktreeSession.RowMenu">
+            <reference ref="Qronos.WorktreeSession.Fork"/>
+            <reference ref="Qronos.WorktreeSession.MoveToWorktree"/>
+            <separator/>
+            <reference ref="Qronos.WorktreeSession.Rename"/>
+            <reference ref="Qronos.WorktreeSession.Delete"/>
+        </group>
+
+        <group id="Qronos.History.ContextMenu">
+            <reference ref="Qronos.Session.Open"/>
+            <separator/>
+            <reference ref="Qronos.Session.Rename"/>
+            <reference ref="Qronos.Session.Delete"/>
+        </group>
+
+        <!-- Text and descriptions come from QronosBundle via action.<id>.text / .description. -->
+        <action id="Qronos.Session.AutoApprove"
+                class="ai.qronos.client.actions.SessionAutoApproveAction"/>
+
+        <action id="Qronos.Session.Fork"
+                class="ai.qronos.client.actions.ForkSessionAction"/>
+
+        <action id="Qronos.Session.Board"
+                class="ai.qronos.client.actions.ShowSessionBoardAction"/>
+
+        <!--
+          Transcript Find inherits the user's current IDE shortcuts. The actions are promoted over the
+          editor Find actions only when the data context resolves the active chat, so ordinary file
+          editors keep their native behavior.
+        -->
+        <action id="Qronos.Transcript.Find"
+                class="ai.qronos.client.actions.TranscriptFindAction"
+                use-shortcut-of="Find"/>
+
+        <action id="Qronos.Transcript.FindNext"
+                class="ai.qronos.client.actions.TranscriptFindNextAction"
+                use-shortcut-of="FindNext"/>
+
+        <action id="Qronos.Transcript.FindPrevious"
+                class="ai.qronos.client.actions.TranscriptFindPreviousAction"
+                use-shortcut-of="FindPrevious"/>
+
+        <action id="Qronos.Session.CompareToBase"
+                class="ai.qronos.client.actions.CompareToBaseAction"/>
+
+        <action id="Qronos.Session.OpenPr"
+                class="ai.qronos.client.actions.OpenSessionPrAction"/>
+
+        <action id="Qronos.Session.CopyPrRef"
+                class="ai.qronos.client.actions.CopySessionPrRefAction"/>
+
+        <action id="Qronos.Session.CopyId"
+                class="ai.qronos.client.actions.CopySessionIdAction"/>
+
+        <action id="Qronos.Session.Share"
+                class="ai.qronos.client.actions.ShareSessionAction"/>
+
+        <action id="Qronos.Session.CopyShareLink"
+                class="ai.qronos.client.actions.CopyShareLinkAction"/>
+
+        <!--
+          Right-click menu inside a chat session. Every item resolves its context from
+          SessionActionsKeys.ACTIONS (or PromptDataKeys.SEND) which SessionUi publishes, so the menu
+          works from any point in the session. Items hide rather than disable when they do not apply,
+          which keeps the menu short in the common case. New Worktree / Move to Worktree live only on
+          the branch dock toolbar, not here.
+        -->
+        <group id="Qronos.Session.ContextMenu">
+            <reference ref="Qronos.Session.AutoApprove"/>
+            <separator/>
+            <reference ref="Qronos.Session.Fork"/>
+            <reference ref="Qronos.Session.Board"/>
+            <separator/>
+            <reference ref="Qronos.Session.CompareToBase"/>
+            <reference ref="Qronos.Session.OpenPr"/>
+            <reference ref="Qronos.Session.CopyPrRef"/>
+            <separator/>
+            <reference ref="Qronos.OpenSettings"/>
+            <reference ref="Qronos.ReloadCoreSettings"/>
+            <separator/>
+            <reference ref="$Copy"/>
+            <separator/>
+            <reference ref="Qronos.Session.CopyId"/>
+            <reference ref="Qronos.Session.CopyShareLink"/>
+            <reference ref="Qronos.Session.Share"/>
+            <separator/>
+            <reference ref="Qronos.StopSession"/>
+        </group>
+
+        <!--
+          Popup shown from the "more" icon in the prompt bar. Same SessionActionsKeys.ACTIONS context
+          as the context menu, with Copy and Stop reserved for the right-click menu. Core lifecycle
+          reuses the tool window gear's Qronos.CliGroup submenu, so the version/architecture footer and
+          Restart/Reinstall stay in one place.
+        -->
+        <group id="Qronos.Session.PromptMenu">
+            <reference ref="Qronos.Session.AutoApprove"/>
+            <separator/>
+            <reference ref="Qronos.Session.Fork"/>
+            <reference ref="Qronos.Session.Board"/>
+            <separator/>
+            <reference ref="Qronos.Session.CompareToBase"/>
+            <reference ref="Qronos.Session.OpenPr"/>
+            <reference ref="Qronos.Session.CopyPrRef"/>
+            <separator/>
+            <reference ref="Qronos.OpenSettings"/>
+            <reference ref="Qronos.CliGroup"/>
+            <separator/>
+            <reference ref="Qronos.Session.CopyId"/>
+            <reference ref="Qronos.Session.CopyShareLink"/>
+            <reference ref="Qronos.Session.Share"/>
+        </group>
+    </actions>
+</idea-plugin>

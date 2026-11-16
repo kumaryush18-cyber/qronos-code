@@ -20,7 +20,7 @@ export const load = (dir: string) =>
         execPath: process.execPath,
         platform: process.platform,
         definitions,
-        // kilocode_change start - npm's user-agent flattener writes to process.env.
+        // qronos_change start - npm's user-agent flattener writes to process.env.
         flatten: (data: Record<string, unknown>, flat: Record<string, unknown>) => {
           const agent = process.env.npm_config_user_agent
           try {
@@ -30,7 +30,7 @@ export const load = (dir: string) =>
             if (agent != null) process.env.npm_config_user_agent = agent
           }
         },
-        // kilocode_change end
+        // qronos_change end
         nerfDarts,
         shorthands,
         warn: false,

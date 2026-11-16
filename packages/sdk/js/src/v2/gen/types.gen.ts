@@ -115,12 +115,12 @@ export type Event =
   | EventSuggestionShown
   | EventSuggestionAccepted
   | EventSuggestionDismissed
-  | EventKilocodeAgentManagerStart
-  | EventKilocodeAgentManagerRequested
-  | EventKilocodeAgentManagerCancelled
-  | EventKilocodeNotebookRequested
-  | EventKilocodeNotebookCancelled
-  | EventKiloSessionsRemoteStatusChanged
+  | EventQronosAgentManagerStart
+  | EventQronosAgentManagerRequested
+  | EventQronosAgentManagerCancelled
+  | EventQronosNotebookRequested
+  | EventQronosNotebookCancelled
+  | EventQronosSessionsRemoteStatusChanged
   | EventLspClientDiagnostics
   | EventMemoryStatus1
   | EventMemoryUpdated1
@@ -1167,12 +1167,12 @@ export type GlobalEvent = {
     | EventSuggestionShown
     | EventSuggestionAccepted
     | EventSuggestionDismissed
-    | EventKilocodeAgentManagerStart
-    | EventKilocodeAgentManagerRequested
-    | EventKilocodeAgentManagerCancelled
-    | EventKilocodeNotebookRequested
-    | EventKilocodeNotebookCancelled
-    | EventKiloSessionsRemoteStatusChanged
+    | EventQronosAgentManagerStart
+    | EventQronosAgentManagerRequested
+    | EventQronosAgentManagerCancelled
+    | EventQronosNotebookRequested
+    | EventQronosNotebookCancelled
+    | EventQronosSessionsRemoteStatusChanged
     | EventLspClientDiagnostics
     | EventMemoryStatus
     | EventMemoryUpdated
@@ -2253,7 +2253,7 @@ export type GlobalEvent = {
 export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR"
 
 /**
- * Server configuration for the kilo serve command
+ * Server configuration for the qronos serve command
  */
 export type ServerConfig = {
   port?: number
@@ -2266,7 +2266,7 @@ export type ServerConfig = {
 export type IndexingConfig = {
   enabled?: boolean
   provider?:
-    | "kilo"
+    | "qronos"
     | "openai"
     | "ollama"
     | "openai-compatible"
@@ -2279,7 +2279,7 @@ export type IndexingConfig = {
   model?: string | null
   dimension?: number | null
   vectorStore?: "lancedb" | "qdrant"
-  kilo?: {
+  qronos?: {
     apiKey?: string
     baseUrl?: string
     organizationId?: string
@@ -2599,7 +2599,7 @@ export type Config = {
   indexing?: IndexingConfig
   console?: {
     /**
-     * Width of the Kilo Console project context sidebar in pixels
+     * Width of the Qronos Console project context sidebar in pixels
      */
     context_sidebar_width?: number
     diff_style?: "unified" | "split"
@@ -4170,7 +4170,7 @@ export type TuiKeybindListResponse = {
   keybinds: Array<TuiKeybindInfo>
 }
 
-export type KiloEmbeddingModelCatalog = {
+export type QronosEmbeddingModelCatalog = {
   defaultModel: string
   models: Array<{
     id: string
@@ -4467,7 +4467,7 @@ export type ProviderUsageError = {
 export type ProviderUsageSnapshot = {
   id: string
   providerID: string
-  sourceKind: "kilo_managed" | "direct"
+  sourceKind: "qronos_managed" | "direct"
   providerLabel: string
   planLabel: string
   sourceLabel: string
@@ -4756,7 +4756,7 @@ export type AnacondaDesktopOperationError = {
   message: string
 }
 
-export type KilocodeMigrateSessionsMigrated = {
+export type QronosMigrateSessionsMigrated = {
   /**
    * Source session UUID.
    */
@@ -4779,11 +4779,11 @@ export type KilocodeMigrateSessionsMigrated = {
   dropped: Array<string>
 }
 
-export type KilocodeMigrateSessionsResult = {
+export type QronosMigrateSessionsResult = {
   /**
    * Per-source outcomes, most recently modified source first.
    */
-  sessions: Array<KilocodeMigrateSessionsMigrated>
+  sessions: Array<QronosMigrateSessionsMigrated>
   /**
    * Number of sources migrated by this call.
    */
@@ -4802,12 +4802,12 @@ export type MigrateFailedError = {
   message: string
 }
 
-export type KilocodeMigrateSessionsModel = {
+export type QronosMigrateSessionsModel = {
   providerID: string
   modelID: string
 }
 
-export type KilocodeMigrateSessionsDiscovered = {
+export type QronosMigrateSessionsDiscovered = {
   /**
    * Session UUID parsed from the transcript filename.
    */
@@ -4833,15 +4833,15 @@ export type KilocodeMigrateSessionsDiscovered = {
    * Number of user + assistant steps in the transcript.
    */
   messages: number
-  model?: KilocodeMigrateSessionsModel
+  model?: QronosMigrateSessionsModel
   sessionID?: string
 }
 
-export type KilocodeMigrateSessionsDiscoverResult = {
+export type QronosMigrateSessionsDiscoverResult = {
   /**
    * Discovered migratable sessions, most recently modified first.
    */
-  sessions: Array<KilocodeMigrateSessionsDiscovered>
+  sessions: Array<QronosMigrateSessionsDiscovered>
   /**
    * Human-readable reasons for transcripts that were found but could not be previewed.
    */
@@ -5227,7 +5227,7 @@ export type SessionHostWorkspaceSessionStartResult = {
   replayed: boolean
 }
 
-export type KilocodeSessionImportResult = {
+export type QronosSessionImportResult = {
   ok: boolean
   id: string
   skipped?: boolean
@@ -5701,9 +5701,9 @@ export type EventSuggestionDismissed = {
   }
 }
 
-export type EventKilocodeAgentManagerStart = {
+export type EventQronosAgentManagerStart = {
   id: string
-  type: "kilocode.agent_manager.start"
+  type: "qronos.agent_manager.start"
   properties: {
     requestID: string
     sessionID: string
@@ -5726,15 +5726,15 @@ export type EventKilocodeAgentManagerStart = {
   }
 }
 
-export type EventKilocodeAgentManagerRequested = {
+export type EventQronosAgentManagerRequested = {
   id: string
-  type: "kilocode.agent_manager.requested"
+  type: "qronos.agent_manager.requested"
   properties: AgentManagerRequest
 }
 
-export type EventKilocodeAgentManagerCancelled = {
+export type EventQronosAgentManagerCancelled = {
   id: string
-  type: "kilocode.agent_manager.cancelled"
+  type: "qronos.agent_manager.cancelled"
   properties: {
     requestID: AgentManagerRequestId
     sessionID: string
@@ -5742,15 +5742,15 @@ export type EventKilocodeAgentManagerCancelled = {
   }
 }
 
-export type EventKilocodeNotebookRequested = {
+export type EventQronosNotebookRequested = {
   id: string
-  type: "kilocode.notebook.requested"
+  type: "qronos.notebook.requested"
   properties: NotebookRequest
 }
 
-export type EventKilocodeNotebookCancelled = {
+export type EventQronosNotebookCancelled = {
   id: string
-  type: "kilocode.notebook.cancelled"
+  type: "qronos.notebook.cancelled"
   properties: {
     requestID: NotebookRequestId
     sessionID: string
@@ -5758,9 +5758,9 @@ export type EventKilocodeNotebookCancelled = {
   }
 }
 
-export type EventKiloSessionsRemoteStatusChanged = {
+export type EventQronosSessionsRemoteStatusChanged = {
   id: string
-  type: "kilo-sessions.remote-status-changed"
+  type: "qronos-sessions.remote-status-changed"
   properties: {
     enabled: boolean
     connected: boolean
@@ -15960,7 +15960,7 @@ export type AgentUsageSummaryData = {
     from?: string
     to?: string
   }
-  url: "/kilocode/agent-usage/summary"
+  url: "/qronos/agent-usage/summary"
 }
 
 export type AgentUsageSummaryErrors = {
@@ -16010,7 +16010,7 @@ export type AgentUsageRunsData = {
     limit?: string
     cursor?: string
   }
-  url: "/kilocode/agent-usage/runs"
+  url: "/qronos/agent-usage/runs"
 }
 
 export type AgentUsageRunsErrors = {
@@ -16842,9 +16842,9 @@ export type IndexingModelsError = IndexingModelsErrors[keyof IndexingModelsError
 
 export type IndexingModelsResponses = {
   /**
-   * Kilo embedding model catalog
+   * Qronos embedding model catalog
    */
-  200: KiloEmbeddingModelCatalog
+  200: QronosEmbeddingModelCatalog
 }
 
 export type IndexingModelsResponse = IndexingModelsResponses[keyof IndexingModelsResponses]
@@ -16911,26 +16911,26 @@ export type InstanceReloadResponses = {
 
 export type InstanceReloadResponse = InstanceReloadResponses[keyof InstanceReloadResponses]
 
-export type KiloProfileData = {
+export type QronosProfileData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/profile"
+  url: "/qronos/profile"
 }
 
-export type KiloProfileErrors = {
+export type QronosProfileErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloProfileError = KiloProfileErrors[keyof KiloProfileErrors]
+export type QronosProfileError = QronosProfileErrors[keyof QronosProfileErrors]
 
-export type KiloProfileResponses = {
+export type QronosProfileResponses = {
   /**
    * Profile data
    */
@@ -16949,7 +16949,7 @@ export type KiloProfileResponses = {
     balance: {
       balance: number
     } | null
-    kiloPass: {
+    qronosPass: {
       currentPeriodBaseCreditsUsd: number
       currentPeriodUsageUsd: number
       currentPeriodBonusCreditsUsd: number
@@ -16959,30 +16959,30 @@ export type KiloProfileResponses = {
   }
 }
 
-export type KiloProfileResponse = KiloProfileResponses[keyof KiloProfileResponses]
+export type QronosProfileResponse = QronosProfileResponses[keyof QronosProfileResponses]
 
-export type KiloAuthStatusData = {
+export type QronosAuthStatusData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/auth-status"
+  url: "/qronos/auth-status"
 }
 
-export type KiloAuthStatusErrors = {
+export type QronosAuthStatusErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloAuthStatusError = KiloAuthStatusErrors[keyof KiloAuthStatusErrors]
+export type QronosAuthStatusError = QronosAuthStatusErrors[keyof QronosAuthStatusErrors]
 
-export type KiloAuthStatusResponses = {
+export type QronosAuthStatusResponses = {
   /**
-   * Kilo authentication status
+   * Qronos authentication status
    */
   200: {
     authenticated: boolean
@@ -16991,28 +16991,28 @@ export type KiloAuthStatusResponses = {
   }
 }
 
-export type KiloAuthStatusResponse = KiloAuthStatusResponses[keyof KiloAuthStatusResponses]
+export type QronosAuthStatusResponse = QronosAuthStatusResponses[keyof QronosAuthStatusResponses]
 
-export type KiloModesData = {
+export type QronosModesData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/modes"
+  url: "/qronos/modes"
 }
 
-export type KiloModesErrors = {
+export type QronosModesErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KiloModesError = KiloModesErrors[keyof KiloModesErrors]
+export type QronosModesError = QronosModesErrors[keyof QronosModesErrors]
 
-export type KiloModesResponses = {
+export type QronosModesResponses = {
   /**
    * Organization modes list
    */
@@ -17045,9 +17045,9 @@ export type KiloModesResponses = {
   }
 }
 
-export type KiloModesResponse = KiloModesResponses[keyof KiloModesResponses]
+export type QronosModesResponse = QronosModesResponses[keyof QronosModesResponses]
 
-export type KiloFimData = {
+export type QronosFimData = {
   body?: {
     prefix: string
     suffix: string
@@ -17061,19 +17061,19 @@ export type KiloFimData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/fim"
+  url: "/qronos/fim"
 }
 
-export type KiloFimErrors = {
+export type QronosFimErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloFimError = KiloFimErrors[keyof KiloFimErrors]
+export type QronosFimError = QronosFimErrors[keyof QronosFimErrors]
 
-export type KiloFimResponses = {
+export type QronosFimResponses = {
   /**
    * Streaming FIM completion response
    */
@@ -17092,9 +17092,9 @@ export type KiloFimResponses = {
   }
 }
 
-export type KiloFimResponse = KiloFimResponses[keyof KiloFimResponses]
+export type QronosFimResponse = QronosFimResponses[keyof QronosFimResponses]
 
-export type KiloAudioTranscriptionsData = {
+export type QronosAudioTranscriptionsData = {
   body?: {
     model: string
     input_audio: {
@@ -17110,19 +17110,19 @@ export type KiloAudioTranscriptionsData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/audio/transcriptions"
+  url: "/qronos/audio/transcriptions"
 }
 
-export type KiloAudioTranscriptionsErrors = {
+export type QronosAudioTranscriptionsErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloAudioTranscriptionsError = KiloAudioTranscriptionsErrors[keyof KiloAudioTranscriptionsErrors]
+export type QronosAudioTranscriptionsError = QronosAudioTranscriptionsErrors[keyof QronosAudioTranscriptionsErrors]
 
-export type KiloAudioTranscriptionsResponses = {
+export type QronosAudioTranscriptionsResponses = {
   /**
    * Transcription response
    */
@@ -17132,28 +17132,28 @@ export type KiloAudioTranscriptionsResponses = {
   }
 }
 
-export type KiloAudioTranscriptionsResponse = KiloAudioTranscriptionsResponses[keyof KiloAudioTranscriptionsResponses]
+export type QronosAudioTranscriptionsResponse = QronosAudioTranscriptionsResponses[keyof QronosAudioTranscriptionsResponses]
 
-export type KiloModelsImagesData = {
+export type QronosModelsImagesData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/models/images"
+  url: "/qronos/models/images"
 }
 
-export type KiloModelsImagesErrors = {
+export type QronosModelsImagesErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloModelsImagesError = KiloModelsImagesErrors[keyof KiloModelsImagesErrors]
+export type QronosModelsImagesError = QronosModelsImagesErrors[keyof QronosModelsImagesErrors]
 
-export type KiloModelsImagesResponses = {
+export type QronosModelsImagesResponses = {
   /**
    * Image-capable model list
    */
@@ -17164,28 +17164,28 @@ export type KiloModelsImagesResponses = {
   }>
 }
 
-export type KiloModelsImagesResponse = KiloModelsImagesResponses[keyof KiloModelsImagesResponses]
+export type QronosModelsImagesResponse = QronosModelsImagesResponses[keyof QronosModelsImagesResponses]
 
-export type KiloModelsTranscriptionsData = {
+export type QronosModelsTranscriptionsData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/models/transcriptions"
+  url: "/qronos/models/transcriptions"
 }
 
-export type KiloModelsTranscriptionsErrors = {
+export type QronosModelsTranscriptionsErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloModelsTranscriptionsError = KiloModelsTranscriptionsErrors[keyof KiloModelsTranscriptionsErrors]
+export type QronosModelsTranscriptionsError = QronosModelsTranscriptionsErrors[keyof QronosModelsTranscriptionsErrors]
 
-export type KiloModelsTranscriptionsResponses = {
+export type QronosModelsTranscriptionsResponses = {
   /**
    * Speech-to-text model list
    */
@@ -17195,29 +17195,29 @@ export type KiloModelsTranscriptionsResponses = {
   }>
 }
 
-export type KiloModelsTranscriptionsResponse =
-  KiloModelsTranscriptionsResponses[keyof KiloModelsTranscriptionsResponses]
+export type QronosModelsTranscriptionsResponse =
+  QronosModelsTranscriptionsResponses[keyof QronosModelsTranscriptionsResponses]
 
-export type KiloNotificationsData = {
+export type QronosNotificationsData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/notifications"
+  url: "/qronos/notifications"
 }
 
-export type KiloNotificationsErrors = {
+export type QronosNotificationsErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloNotificationsError = KiloNotificationsErrors[keyof KiloNotificationsErrors]
+export type QronosNotificationsError = QronosNotificationsErrors[keyof QronosNotificationsErrors]
 
-export type KiloNotificationsResponses = {
+export type QronosNotificationsResponses = {
   /**
    * Notifications list
    */
@@ -17234,9 +17234,9 @@ export type KiloNotificationsResponses = {
   }>
 }
 
-export type KiloNotificationsResponse = KiloNotificationsResponses[keyof KiloNotificationsResponses]
+export type QronosNotificationsResponse = QronosNotificationsResponses[keyof QronosNotificationsResponses]
 
-export type KiloOrganizationSetData = {
+export type QronosOrganizationSetData = {
   body?: {
     organizationId: string | null
   }
@@ -17245,28 +17245,28 @@ export type KiloOrganizationSetData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/organization"
+  url: "/qronos/organization"
 }
 
-export type KiloOrganizationSetErrors = {
+export type QronosOrganizationSetErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloOrganizationSetError = KiloOrganizationSetErrors[keyof KiloOrganizationSetErrors]
+export type QronosOrganizationSetError = QronosOrganizationSetErrors[keyof QronosOrganizationSetErrors]
 
-export type KiloOrganizationSetResponses = {
+export type QronosOrganizationSetResponses = {
   /**
    * Organization updated successfully
    */
   200: boolean
 }
 
-export type KiloOrganizationSetResponse = KiloOrganizationSetResponses[keyof KiloOrganizationSetResponses]
+export type QronosOrganizationSetResponse = QronosOrganizationSetResponses[keyof QronosOrganizationSetResponses]
 
-export type KiloCloudSessionsData = {
+export type QronosCloudSessionsData = {
   body?: never
   path?: never
   query?: {
@@ -17276,19 +17276,19 @@ export type KiloCloudSessionsData = {
     limit?: number
     gitUrl?: string
   }
-  url: "/kilo/cloud-sessions"
+  url: "/qronos/cloud-sessions"
 }
 
-export type KiloCloudSessionsErrors = {
+export type QronosCloudSessionsErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KiloCloudSessionsError = KiloCloudSessionsErrors[keyof KiloCloudSessionsErrors]
+export type QronosCloudSessionsError = QronosCloudSessionsErrors[keyof QronosCloudSessionsErrors]
 
-export type KiloCloudSessionsResponses = {
+export type QronosCloudSessionsResponses = {
   /**
    * Cloud sessions list
    */
@@ -17304,9 +17304,9 @@ export type KiloCloudSessionsResponses = {
   }
 }
 
-export type KiloCloudSessionsResponse = KiloCloudSessionsResponses[keyof KiloCloudSessionsResponses]
+export type QronosCloudSessionsResponse = QronosCloudSessionsResponses[keyof QronosCloudSessionsResponses]
 
-export type KiloCloudSessionGetData = {
+export type QronosCloudSessionGetData = {
   body?: never
   path: {
     id: string
@@ -17315,10 +17315,10 @@ export type KiloCloudSessionGetData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/cloud/session/{id}"
+  url: "/qronos/cloud/session/{id}"
 }
 
-export type KiloCloudSessionGetErrors = {
+export type QronosCloudSessionGetErrors = {
   /**
    * Bad request
    */
@@ -17329,9 +17329,9 @@ export type KiloCloudSessionGetErrors = {
   404: NotFoundError
 }
 
-export type KiloCloudSessionGetError = KiloCloudSessionGetErrors[keyof KiloCloudSessionGetErrors]
+export type QronosCloudSessionGetError = QronosCloudSessionGetErrors[keyof QronosCloudSessionGetErrors]
 
-export type KiloCloudSessionGetResponses = {
+export type QronosCloudSessionGetResponses = {
   /**
    * Cloud session data
    */
@@ -17364,9 +17364,9 @@ export type KiloCloudSessionGetResponses = {
   }
 }
 
-export type KiloCloudSessionGetResponse = KiloCloudSessionGetResponses[keyof KiloCloudSessionGetResponses]
+export type QronosCloudSessionGetResponse = QronosCloudSessionGetResponses[keyof QronosCloudSessionGetResponses]
 
-export type KiloCloudSessionImportData = {
+export type QronosCloudSessionImportData = {
   body?: {
     sessionId: string
   }
@@ -17375,10 +17375,10 @@ export type KiloCloudSessionImportData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilo/cloud/session/import"
+  url: "/qronos/cloud/session/import"
 }
 
-export type KiloCloudSessionImportErrors = {
+export type QronosCloudSessionImportErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
@@ -17393,9 +17393,9 @@ export type KiloCloudSessionImportErrors = {
   500: CloudSessionImportError
 }
 
-export type KiloCloudSessionImportError = KiloCloudSessionImportErrors[keyof KiloCloudSessionImportErrors]
+export type QronosCloudSessionImportError = QronosCloudSessionImportErrors[keyof QronosCloudSessionImportErrors]
 
-export type KiloCloudSessionImportResponses = {
+export type QronosCloudSessionImportResponses = {
   /**
    * Imported session info
    */
@@ -17409,9 +17409,9 @@ export type KiloCloudSessionImportResponses = {
   }
 }
 
-export type KiloCloudSessionImportResponse = KiloCloudSessionImportResponses[keyof KiloCloudSessionImportResponses]
+export type QronosCloudSessionImportResponse = QronosCloudSessionImportResponses[keyof QronosCloudSessionImportResponses]
 
-export type KilocodeResumeSessionData = {
+export type QronosResumeSessionData = {
   body?: {
     messageID: string
     snapshotInitialization?: "wait"
@@ -17423,10 +17423,10 @@ export type KilocodeResumeSessionData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session/{sessionID}/resume"
+  url: "/qronos/session/{sessionID}/resume"
 }
 
-export type KilocodeResumeSessionErrors = {
+export type QronosResumeSessionErrors = {
   /**
    * InvalidRequestError
    */
@@ -17437,18 +17437,18 @@ export type KilocodeResumeSessionErrors = {
   404: NotFoundError
 }
 
-export type KilocodeResumeSessionError = KilocodeResumeSessionErrors[keyof KilocodeResumeSessionErrors]
+export type QronosResumeSessionError = QronosResumeSessionErrors[keyof QronosResumeSessionErrors]
 
-export type KilocodeResumeSessionResponses = {
+export type QronosResumeSessionResponses = {
   /**
    * Session continuation accepted
    */
   200: boolean
 }
 
-export type KilocodeResumeSessionResponse = KilocodeResumeSessionResponses[keyof KilocodeResumeSessionResponses]
+export type QronosResumeSessionResponse = QronosResumeSessionResponses[keyof QronosResumeSessionResponses]
 
-export type KilocodeDrainSessionData = {
+export type QronosDrainSessionData = {
   body?: {
     token: string
   }
@@ -17459,10 +17459,10 @@ export type KilocodeDrainSessionData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session/{sessionID}/drain"
+  url: "/qronos/session/{sessionID}/drain"
 }
 
-export type KilocodeDrainSessionErrors = {
+export type QronosDrainSessionErrors = {
   /**
    * Bad request
    */
@@ -17473,18 +17473,18 @@ export type KilocodeDrainSessionErrors = {
   404: NotFoundError
 }
 
-export type KilocodeDrainSessionError = KilocodeDrainSessionErrors[keyof KilocodeDrainSessionErrors]
+export type QronosDrainSessionError = QronosDrainSessionErrors[keyof QronosDrainSessionErrors]
 
-export type KilocodeDrainSessionResponses = {
+export type QronosDrainSessionResponses = {
   /**
    * Session work drained
    */
   200: boolean
 }
 
-export type KilocodeDrainSessionResponse = KilocodeDrainSessionResponses[keyof KilocodeDrainSessionResponses]
+export type QronosDrainSessionResponse = QronosDrainSessionResponses[keyof QronosDrainSessionResponses]
 
-export type KilocodeSessionBoardData = {
+export type QronosSessionBoardData = {
   body?: never
   path: {
     sessionID: string
@@ -17495,10 +17495,10 @@ export type KilocodeSessionBoardData = {
     before?: string
     limit?: number
   }
-  url: "/kilocode/session/{sessionID}/board"
+  url: "/qronos/session/{sessionID}/board"
 }
 
-export type KilocodeSessionBoardErrors = {
+export type QronosSessionBoardErrors = {
   /**
    * InvalidRequestError
    */
@@ -17517,18 +17517,18 @@ export type KilocodeSessionBoardErrors = {
   500: UnknownError1
 }
 
-export type KilocodeSessionBoardError = KilocodeSessionBoardErrors[keyof KilocodeSessionBoardErrors]
+export type QronosSessionBoardError = QronosSessionBoardErrors[keyof QronosSessionBoardErrors]
 
-export type KilocodeSessionBoardResponses = {
+export type QronosSessionBoardResponses = {
   /**
    * Shared board snapshot
    */
   200: SessionBoard
 }
 
-export type KilocodeSessionBoardResponse = KilocodeSessionBoardResponses[keyof KilocodeSessionBoardResponses]
+export type QronosSessionBoardResponse = QronosSessionBoardResponses[keyof QronosSessionBoardResponses]
 
-export type KilocodeResetSessionBoardData = {
+export type QronosResetSessionBoardData = {
   body?: {
     revision: number
   }
@@ -17539,10 +17539,10 @@ export type KilocodeResetSessionBoardData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session/{sessionID}/board/reset"
+  url: "/qronos/session/{sessionID}/board/reset"
 }
 
-export type KilocodeResetSessionBoardErrors = {
+export type QronosResetSessionBoardErrors = {
   /**
    * InvalidRequestError
    */
@@ -17561,75 +17561,75 @@ export type KilocodeResetSessionBoardErrors = {
   500: UnknownError1
 }
 
-export type KilocodeResetSessionBoardError = KilocodeResetSessionBoardErrors[keyof KilocodeResetSessionBoardErrors]
+export type QronosResetSessionBoardError = QronosResetSessionBoardErrors[keyof QronosResetSessionBoardErrors]
 
-export type KilocodeResetSessionBoardResponses = {
+export type QronosResetSessionBoardResponses = {
   /**
    * Shared board after reset
    */
   200: SessionBoard
 }
 
-export type KilocodeResetSessionBoardResponse =
-  KilocodeResetSessionBoardResponses[keyof KilocodeResetSessionBoardResponses]
+export type QronosResetSessionBoardResponse =
+  QronosResetSessionBoardResponses[keyof QronosResetSessionBoardResponses]
 
-export type KilocodeHeapSnapshotData = {
+export type QronosHeapSnapshotData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/heap/snapshot"
+  url: "/qronos/heap/snapshot"
 }
 
-export type KilocodeHeapSnapshotErrors = {
+export type QronosHeapSnapshotErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeHeapSnapshotError = KilocodeHeapSnapshotErrors[keyof KilocodeHeapSnapshotErrors]
+export type QronosHeapSnapshotError = QronosHeapSnapshotErrors[keyof QronosHeapSnapshotErrors]
 
-export type KilocodeHeapSnapshotResponses = {
+export type QronosHeapSnapshotResponses = {
   /**
    * Heap snapshot file path
    */
   200: string
 }
 
-export type KilocodeHeapSnapshotResponse = KilocodeHeapSnapshotResponses[keyof KilocodeHeapSnapshotResponses]
+export type QronosHeapSnapshotResponse = QronosHeapSnapshotResponses[keyof QronosHeapSnapshotResponses]
 
-export type KilocodeCommandFilesData = {
+export type QronosCommandFilesData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/command/files"
+  url: "/qronos/command/files"
 }
 
-export type KilocodeCommandFilesErrors = {
+export type QronosCommandFilesErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeCommandFilesError = KilocodeCommandFilesErrors[keyof KilocodeCommandFilesErrors]
+export type QronosCommandFilesError = QronosCommandFilesErrors[keyof QronosCommandFilesErrors]
 
-export type KilocodeCommandFilesResponses = {
+export type QronosCommandFilesResponses = {
   /**
    * Command files
    */
   200: Array<CommandFile>
 }
 
-export type KilocodeCommandFilesResponse = KilocodeCommandFilesResponses[keyof KilocodeCommandFilesResponses]
+export type QronosCommandFilesResponse = QronosCommandFilesResponses[keyof QronosCommandFilesResponses]
 
-export type KilocodeRemoveCommandData = {
+export type QronosRemoveCommandData = {
   body?: {
     location: string
   }
@@ -17638,28 +17638,28 @@ export type KilocodeRemoveCommandData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/command/remove"
+  url: "/qronos/command/remove"
 }
 
-export type KilocodeRemoveCommandErrors = {
+export type QronosRemoveCommandErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeRemoveCommandError = KilocodeRemoveCommandErrors[keyof KilocodeRemoveCommandErrors]
+export type QronosRemoveCommandError = QronosRemoveCommandErrors[keyof QronosRemoveCommandErrors]
 
-export type KilocodeRemoveCommandResponses = {
+export type QronosRemoveCommandResponses = {
   /**
    * Command removed
    */
   200: boolean
 }
 
-export type KilocodeRemoveCommandResponse = KilocodeRemoveCommandResponses[keyof KilocodeRemoveCommandResponses]
+export type QronosRemoveCommandResponse = QronosRemoveCommandResponses[keyof QronosRemoveCommandResponses]
 
-export type KilocodeRemoveSkillData = {
+export type QronosRemoveSkillData = {
   body?: {
     location: string
   }
@@ -17668,28 +17668,28 @@ export type KilocodeRemoveSkillData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/skill/remove"
+  url: "/qronos/skill/remove"
 }
 
-export type KilocodeRemoveSkillErrors = {
+export type QronosRemoveSkillErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeRemoveSkillError = KilocodeRemoveSkillErrors[keyof KilocodeRemoveSkillErrors]
+export type QronosRemoveSkillError = QronosRemoveSkillErrors[keyof QronosRemoveSkillErrors]
 
-export type KilocodeRemoveSkillResponses = {
+export type QronosRemoveSkillResponses = {
   /**
    * Skill removed
    */
   200: boolean
 }
 
-export type KilocodeRemoveSkillResponse = KilocodeRemoveSkillResponses[keyof KilocodeRemoveSkillResponses]
+export type QronosRemoveSkillResponse = QronosRemoveSkillResponses[keyof QronosRemoveSkillResponses]
 
-export type KilocodeRemoveAgentData = {
+export type QronosRemoveAgentData = {
   body?: {
     name: string
     scope?: "global" | "project"
@@ -17699,56 +17699,56 @@ export type KilocodeRemoveAgentData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/agent/remove"
+  url: "/qronos/agent/remove"
 }
 
-export type KilocodeRemoveAgentErrors = {
+export type QronosRemoveAgentErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeRemoveAgentError = KilocodeRemoveAgentErrors[keyof KilocodeRemoveAgentErrors]
+export type QronosRemoveAgentError = QronosRemoveAgentErrors[keyof QronosRemoveAgentErrors]
 
-export type KilocodeRemoveAgentResponses = {
+export type QronosRemoveAgentResponses = {
   /**
    * Agent removed
    */
   200: boolean
 }
 
-export type KilocodeRemoveAgentResponse = KilocodeRemoveAgentResponses[keyof KilocodeRemoveAgentResponses]
+export type QronosRemoveAgentResponse = QronosRemoveAgentResponses[keyof QronosRemoveAgentResponses]
 
-export type KilocodeMarketplaceListData = {
+export type QronosMarketplaceListData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/marketplace"
+  url: "/qronos/marketplace"
 }
 
-export type KilocodeMarketplaceListErrors = {
+export type QronosMarketplaceListErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeMarketplaceListError = KilocodeMarketplaceListErrors[keyof KilocodeMarketplaceListErrors]
+export type QronosMarketplaceListError = QronosMarketplaceListErrors[keyof QronosMarketplaceListErrors]
 
-export type KilocodeMarketplaceListResponses = {
+export type QronosMarketplaceListResponses = {
   /**
    * Marketplace catalog and installed metadata
    */
   200: MarketplaceListResult
 }
 
-export type KilocodeMarketplaceListResponse = KilocodeMarketplaceListResponses[keyof KilocodeMarketplaceListResponses]
+export type QronosMarketplaceListResponse = QronosMarketplaceListResponses[keyof QronosMarketplaceListResponses]
 
-export type KilocodeMarketplaceInstallData = {
+export type QronosMarketplaceInstallData = {
   body?: {
     item: MarketplaceInstallItem
     target?: "project" | "global"
@@ -17761,29 +17761,29 @@ export type KilocodeMarketplaceInstallData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/marketplace/install"
+  url: "/qronos/marketplace/install"
 }
 
-export type KilocodeMarketplaceInstallErrors = {
+export type QronosMarketplaceInstallErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeMarketplaceInstallError = KilocodeMarketplaceInstallErrors[keyof KilocodeMarketplaceInstallErrors]
+export type QronosMarketplaceInstallError = QronosMarketplaceInstallErrors[keyof QronosMarketplaceInstallErrors]
 
-export type KilocodeMarketplaceInstallResponses = {
+export type QronosMarketplaceInstallResponses = {
   /**
    * Marketplace install result
    */
   200: MarketplaceInstallResult
 }
 
-export type KilocodeMarketplaceInstallResponse =
-  KilocodeMarketplaceInstallResponses[keyof KilocodeMarketplaceInstallResponses]
+export type QronosMarketplaceInstallResponse =
+  QronosMarketplaceInstallResponses[keyof QronosMarketplaceInstallResponses]
 
-export type KilocodeMarketplaceRemoveData = {
+export type QronosMarketplaceRemoveData = {
   body?: {
     item: MarketplaceItemRef
     scope: "project" | "global"
@@ -17793,29 +17793,29 @@ export type KilocodeMarketplaceRemoveData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/marketplace/remove"
+  url: "/qronos/marketplace/remove"
 }
 
-export type KilocodeMarketplaceRemoveErrors = {
+export type QronosMarketplaceRemoveErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeMarketplaceRemoveError = KilocodeMarketplaceRemoveErrors[keyof KilocodeMarketplaceRemoveErrors]
+export type QronosMarketplaceRemoveError = QronosMarketplaceRemoveErrors[keyof QronosMarketplaceRemoveErrors]
 
-export type KilocodeMarketplaceRemoveResponses = {
+export type QronosMarketplaceRemoveResponses = {
   /**
    * Marketplace removal result
    */
   200: MarketplaceRemoveResult
 }
 
-export type KilocodeMarketplaceRemoveResponse =
-  KilocodeMarketplaceRemoveResponses[keyof KilocodeMarketplaceRemoveResponses]
+export type QronosMarketplaceRemoveResponse =
+  QronosMarketplaceRemoveResponses[keyof QronosMarketplaceRemoveResponses]
 
-export type KilocodeRemoveSnapshotData = {
+export type QronosRemoveSnapshotData = {
   body?: {
     worktree: string
   }
@@ -17824,28 +17824,28 @@ export type KilocodeRemoveSnapshotData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/snapshot/remove"
+  url: "/qronos/snapshot/remove"
 }
 
-export type KilocodeRemoveSnapshotErrors = {
+export type QronosRemoveSnapshotErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeRemoveSnapshotError = KilocodeRemoveSnapshotErrors[keyof KilocodeRemoveSnapshotErrors]
+export type QronosRemoveSnapshotError = QronosRemoveSnapshotErrors[keyof QronosRemoveSnapshotErrors]
 
-export type KilocodeRemoveSnapshotResponses = {
+export type QronosRemoveSnapshotResponses = {
   /**
    * Snapshot repository removed
    */
   200: boolean
 }
 
-export type KilocodeRemoveSnapshotResponse = KilocodeRemoveSnapshotResponses[keyof KilocodeRemoveSnapshotResponses]
+export type QronosRemoveSnapshotResponse = QronosRemoveSnapshotResponses[keyof QronosRemoveSnapshotResponses]
 
-export type KilocodeTeardownWorktreeData = {
+export type QronosTeardownWorktreeData = {
   body?: {
     worktree: string
   }
@@ -17854,19 +17854,19 @@ export type KilocodeTeardownWorktreeData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/worktree/teardown"
+  url: "/qronos/worktree/teardown"
 }
 
-export type KilocodeTeardownWorktreeErrors = {
+export type QronosTeardownWorktreeErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeTeardownWorktreeError = KilocodeTeardownWorktreeErrors[keyof KilocodeTeardownWorktreeErrors]
+export type QronosTeardownWorktreeError = QronosTeardownWorktreeErrors[keyof QronosTeardownWorktreeErrors]
 
-export type KilocodeTeardownWorktreeResponses = {
+export type QronosTeardownWorktreeResponses = {
   /**
    * Worktree backend teardown result
    */
@@ -17875,29 +17875,29 @@ export type KilocodeTeardownWorktreeResponses = {
   }
 }
 
-export type KilocodeTeardownWorktreeResponse =
-  KilocodeTeardownWorktreeResponses[keyof KilocodeTeardownWorktreeResponses]
+export type QronosTeardownWorktreeResponse =
+  QronosTeardownWorktreeResponses[keyof QronosTeardownWorktreeResponses]
 
-export type KilocodeSnapshotPrepareData = {
+export type QronosSnapshotPrepareData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/snapshot/prepare"
+  url: "/qronos/snapshot/prepare"
 }
 
-export type KilocodeSnapshotPrepareErrors = {
+export type QronosSnapshotPrepareErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeSnapshotPrepareError = KilocodeSnapshotPrepareErrors[keyof KilocodeSnapshotPrepareErrors]
+export type QronosSnapshotPrepareError = QronosSnapshotPrepareErrors[keyof QronosSnapshotPrepareErrors]
 
-export type KilocodeSnapshotPrepareResponses = {
+export type QronosSnapshotPrepareResponses = {
   /**
    * Snapshot repository preparation result
    */
@@ -17907,19 +17907,19 @@ export type KilocodeSnapshotPrepareResponses = {
   }
 }
 
-export type KilocodeSnapshotPrepareResponse = KilocodeSnapshotPrepareResponses[keyof KilocodeSnapshotPrepareResponses]
+export type QronosSnapshotPrepareResponse = QronosSnapshotPrepareResponses[keyof QronosSnapshotPrepareResponses]
 
-export type KilocodeProviderUsageGetData = {
+export type QronosProviderUsageGetData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/provider-usage"
+  url: "/qronos/provider-usage"
 }
 
-export type KilocodeProviderUsageGetErrors = {
+export type QronosProviderUsageGetErrors = {
   /**
    * Bad request
    */
@@ -17930,29 +17930,29 @@ export type KilocodeProviderUsageGetErrors = {
   503: EffectHttpApiErrorServiceUnavailable
 }
 
-export type KilocodeProviderUsageGetError = KilocodeProviderUsageGetErrors[keyof KilocodeProviderUsageGetErrors]
+export type QronosProviderUsageGetError = QronosProviderUsageGetErrors[keyof QronosProviderUsageGetErrors]
 
-export type KilocodeProviderUsageGetResponses = {
+export type QronosProviderUsageGetResponses = {
   /**
    * Current provider usage
    */
   200: ProviderUsage
 }
 
-export type KilocodeProviderUsageGetResponse =
-  KilocodeProviderUsageGetResponses[keyof KilocodeProviderUsageGetResponses]
+export type QronosProviderUsageGetResponse =
+  QronosProviderUsageGetResponses[keyof QronosProviderUsageGetResponses]
 
-export type KilocodeProviderUsageRefreshData = {
+export type QronosProviderUsageRefreshData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/provider-usage/refresh"
+  url: "/qronos/provider-usage/refresh"
 }
 
-export type KilocodeProviderUsageRefreshErrors = {
+export type QronosProviderUsageRefreshErrors = {
   /**
    * Bad request
    */
@@ -17963,48 +17963,48 @@ export type KilocodeProviderUsageRefreshErrors = {
   503: EffectHttpApiErrorServiceUnavailable
 }
 
-export type KilocodeProviderUsageRefreshError =
-  KilocodeProviderUsageRefreshErrors[keyof KilocodeProviderUsageRefreshErrors]
+export type QronosProviderUsageRefreshError =
+  QronosProviderUsageRefreshErrors[keyof QronosProviderUsageRefreshErrors]
 
-export type KilocodeProviderUsageRefreshResponses = {
+export type QronosProviderUsageRefreshResponses = {
   /**
    * Refreshed provider usage
    */
   200: ProviderUsage
 }
 
-export type KilocodeProviderUsageRefreshResponse =
-  KilocodeProviderUsageRefreshResponses[keyof KilocodeProviderUsageRefreshResponses]
+export type QronosProviderUsageRefreshResponse =
+  QronosProviderUsageRefreshResponses[keyof QronosProviderUsageRefreshResponses]
 
-export type KilocodeNotebookListData = {
+export type QronosNotebookListData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/notebook"
+  url: "/qronos/notebook"
 }
 
-export type KilocodeNotebookListErrors = {
+export type QronosNotebookListErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeNotebookListError = KilocodeNotebookListErrors[keyof KilocodeNotebookListErrors]
+export type QronosNotebookListError = QronosNotebookListErrors[keyof QronosNotebookListErrors]
 
-export type KilocodeNotebookListResponses = {
+export type QronosNotebookListResponses = {
   /**
    * Pending notebook host requests
    */
   200: Array<NotebookRequest>
 }
 
-export type KilocodeNotebookListResponse = KilocodeNotebookListResponses[keyof KilocodeNotebookListResponses]
+export type QronosNotebookListResponse = QronosNotebookListResponses[keyof QronosNotebookListResponses]
 
-export type KilocodeNotebookReplyData = {
+export type QronosNotebookReplyData = {
   body?: {
     result: NotebookResult
   }
@@ -18015,10 +18015,10 @@ export type KilocodeNotebookReplyData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/notebook/{requestID}/reply"
+  url: "/qronos/notebook/{requestID}/reply"
 }
 
-export type KilocodeNotebookReplyErrors = {
+export type QronosNotebookReplyErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
@@ -18029,18 +18029,18 @@ export type KilocodeNotebookReplyErrors = {
   404: NotFoundError
 }
 
-export type KilocodeNotebookReplyError = KilocodeNotebookReplyErrors[keyof KilocodeNotebookReplyErrors]
+export type QronosNotebookReplyError = QronosNotebookReplyErrors[keyof QronosNotebookReplyErrors]
 
-export type KilocodeNotebookReplyResponses = {
+export type QronosNotebookReplyResponses = {
   /**
    * Notebook reply accepted
    */
   200: boolean
 }
 
-export type KilocodeNotebookReplyResponse = KilocodeNotebookReplyResponses[keyof KilocodeNotebookReplyResponses]
+export type QronosNotebookReplyResponse = QronosNotebookReplyResponses[keyof QronosNotebookReplyResponses]
 
-export type KilocodeNotebookRejectData = {
+export type QronosNotebookRejectData = {
   body?: {
     error: NotebookFailure
   }
@@ -18051,10 +18051,10 @@ export type KilocodeNotebookRejectData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/notebook/{requestID}/reject"
+  url: "/qronos/notebook/{requestID}/reject"
 }
 
-export type KilocodeNotebookRejectErrors = {
+export type QronosNotebookRejectErrors = {
   /**
    * Bad request
    */
@@ -18065,47 +18065,47 @@ export type KilocodeNotebookRejectErrors = {
   404: NotFoundError
 }
 
-export type KilocodeNotebookRejectError = KilocodeNotebookRejectErrors[keyof KilocodeNotebookRejectErrors]
+export type QronosNotebookRejectError = QronosNotebookRejectErrors[keyof QronosNotebookRejectErrors]
 
-export type KilocodeNotebookRejectResponses = {
+export type QronosNotebookRejectResponses = {
   /**
    * Notebook rejection accepted
    */
   200: boolean
 }
 
-export type KilocodeNotebookRejectResponse = KilocodeNotebookRejectResponses[keyof KilocodeNotebookRejectResponses]
+export type QronosNotebookRejectResponse = QronosNotebookRejectResponses[keyof QronosNotebookRejectResponses]
 
-export type KilocodeAgentManagerListData = {
+export type QronosAgentManagerListData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/agent-manager"
+  url: "/qronos/agent-manager"
 }
 
-export type KilocodeAgentManagerListErrors = {
+export type QronosAgentManagerListErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeAgentManagerListError = KilocodeAgentManagerListErrors[keyof KilocodeAgentManagerListErrors]
+export type QronosAgentManagerListError = QronosAgentManagerListErrors[keyof QronosAgentManagerListErrors]
 
-export type KilocodeAgentManagerListResponses = {
+export type QronosAgentManagerListResponses = {
   /**
    * Pending Agent Manager host requests
    */
   200: Array<AgentManagerRequest>
 }
 
-export type KilocodeAgentManagerListResponse =
-  KilocodeAgentManagerListResponses[keyof KilocodeAgentManagerListResponses]
+export type QronosAgentManagerListResponse =
+  QronosAgentManagerListResponses[keyof QronosAgentManagerListResponses]
 
-export type KilocodeAgentManagerReplyData = {
+export type QronosAgentManagerReplyData = {
   body?: {
     result: AgentManagerResult
   }
@@ -18116,10 +18116,10 @@ export type KilocodeAgentManagerReplyData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/agent-manager/{requestID}/reply"
+  url: "/qronos/agent-manager/{requestID}/reply"
 }
 
-export type KilocodeAgentManagerReplyErrors = {
+export type QronosAgentManagerReplyErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
@@ -18130,19 +18130,19 @@ export type KilocodeAgentManagerReplyErrors = {
   404: NotFoundError
 }
 
-export type KilocodeAgentManagerReplyError = KilocodeAgentManagerReplyErrors[keyof KilocodeAgentManagerReplyErrors]
+export type QronosAgentManagerReplyError = QronosAgentManagerReplyErrors[keyof QronosAgentManagerReplyErrors]
 
-export type KilocodeAgentManagerReplyResponses = {
+export type QronosAgentManagerReplyResponses = {
   /**
    * Agent Manager reply accepted
    */
   200: boolean
 }
 
-export type KilocodeAgentManagerReplyResponse =
-  KilocodeAgentManagerReplyResponses[keyof KilocodeAgentManagerReplyResponses]
+export type QronosAgentManagerReplyResponse =
+  QronosAgentManagerReplyResponses[keyof QronosAgentManagerReplyResponses]
 
-export type KilocodeAgentManagerRejectData = {
+export type QronosAgentManagerRejectData = {
   body?: {
     error: AgentManagerFailure
   }
@@ -18153,10 +18153,10 @@ export type KilocodeAgentManagerRejectData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/agent-manager/{requestID}/reject"
+  url: "/qronos/agent-manager/{requestID}/reject"
 }
 
-export type KilocodeAgentManagerRejectErrors = {
+export type QronosAgentManagerRejectErrors = {
   /**
    * Bad request
    */
@@ -18167,19 +18167,19 @@ export type KilocodeAgentManagerRejectErrors = {
   404: NotFoundError
 }
 
-export type KilocodeAgentManagerRejectError = KilocodeAgentManagerRejectErrors[keyof KilocodeAgentManagerRejectErrors]
+export type QronosAgentManagerRejectError = QronosAgentManagerRejectErrors[keyof QronosAgentManagerRejectErrors]
 
-export type KilocodeAgentManagerRejectResponses = {
+export type QronosAgentManagerRejectResponses = {
   /**
    * Agent Manager rejection accepted
    */
   200: boolean
 }
 
-export type KilocodeAgentManagerRejectResponse =
-  KilocodeAgentManagerRejectResponses[keyof KilocodeAgentManagerRejectResponses]
+export type QronosAgentManagerRejectResponse =
+  QronosAgentManagerRejectResponses[keyof QronosAgentManagerRejectResponses]
 
-export type KilocodeSessionModelUsageData = {
+export type QronosSessionModelUsageData = {
   body?: never
   path: {
     sessionID: string
@@ -18191,7 +18191,7 @@ export type KilocodeSessionModelUsageData = {
   url: "/session/{sessionID}/model-usage"
 }
 
-export type KilocodeSessionModelUsageErrors = {
+export type QronosSessionModelUsageErrors = {
   /**
    * Bad request
    */
@@ -18202,9 +18202,9 @@ export type KilocodeSessionModelUsageErrors = {
   404: NotFoundError
 }
 
-export type KilocodeSessionModelUsageError = KilocodeSessionModelUsageErrors[keyof KilocodeSessionModelUsageErrors]
+export type QronosSessionModelUsageError = QronosSessionModelUsageErrors[keyof QronosSessionModelUsageErrors]
 
-export type KilocodeSessionModelUsageResponses = {
+export type QronosSessionModelUsageResponses = {
   /**
    * Model usage for a session tree
    */
@@ -18242,10 +18242,10 @@ export type KilocodeSessionModelUsageResponses = {
   }
 }
 
-export type KilocodeSessionModelUsageResponse =
-  KilocodeSessionModelUsageResponses[keyof KilocodeSessionModelUsageResponses]
+export type QronosSessionModelUsageResponse =
+  QronosSessionModelUsageResponses[keyof QronosSessionModelUsageResponses]
 
-export type KilocodeBackgroundJobsData = {
+export type QronosBackgroundJobsData = {
   body?: never
   path?: never
   query: {
@@ -18253,19 +18253,19 @@ export type KilocodeBackgroundJobsData = {
     workspace?: string
     sessionID: string
   }
-  url: "/kilocode/background-jobs"
+  url: "/qronos/background-jobs"
 }
 
-export type KilocodeBackgroundJobsErrors = {
+export type QronosBackgroundJobsErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeBackgroundJobsError = KilocodeBackgroundJobsErrors[keyof KilocodeBackgroundJobsErrors]
+export type QronosBackgroundJobsError = QronosBackgroundJobsErrors[keyof QronosBackgroundJobsErrors]
 
-export type KilocodeBackgroundJobsResponses = {
+export type QronosBackgroundJobsResponses = {
   /**
    * Background jobs
    */
@@ -18283,9 +18283,9 @@ export type KilocodeBackgroundJobsResponses = {
   }>
 }
 
-export type KilocodeBackgroundJobsResponse = KilocodeBackgroundJobsResponses[keyof KilocodeBackgroundJobsResponses]
+export type QronosBackgroundJobsResponse = QronosBackgroundJobsResponses[keyof QronosBackgroundJobsResponses]
 
-export type KilocodeBackgroundJobCancelData = {
+export type QronosBackgroundJobCancelData = {
   body?: never
   path: {
     jobID: string
@@ -18294,10 +18294,10 @@ export type KilocodeBackgroundJobCancelData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/background-jobs/{jobID}/cancel"
+  url: "/qronos/background-jobs/{jobID}/cancel"
 }
 
-export type KilocodeBackgroundJobCancelErrors = {
+export type QronosBackgroundJobCancelErrors = {
   /**
    * Bad request
    */
@@ -18308,20 +18308,20 @@ export type KilocodeBackgroundJobCancelErrors = {
   404: NotFoundError
 }
 
-export type KilocodeBackgroundJobCancelError =
-  KilocodeBackgroundJobCancelErrors[keyof KilocodeBackgroundJobCancelErrors]
+export type QronosBackgroundJobCancelError =
+  QronosBackgroundJobCancelErrors[keyof QronosBackgroundJobCancelErrors]
 
-export type KilocodeBackgroundJobCancelResponses = {
+export type QronosBackgroundJobCancelResponses = {
   /**
    * Background job cancelled
    */
   200: boolean
 }
 
-export type KilocodeBackgroundJobCancelResponse =
-  KilocodeBackgroundJobCancelResponses[keyof KilocodeBackgroundJobCancelResponses]
+export type QronosBackgroundJobCancelResponse =
+  QronosBackgroundJobCancelResponses[keyof QronosBackgroundJobCancelResponses]
 
-export type KilocodeBackgroundJobPromoteData = {
+export type QronosBackgroundJobPromoteData = {
   body?: never
   path: {
     jobID: string
@@ -18330,10 +18330,10 @@ export type KilocodeBackgroundJobPromoteData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/background-jobs/{jobID}/promote"
+  url: "/qronos/background-jobs/{jobID}/promote"
 }
 
-export type KilocodeBackgroundJobPromoteErrors = {
+export type QronosBackgroundJobPromoteErrors = {
   /**
    * Bad request
    */
@@ -18344,39 +18344,39 @@ export type KilocodeBackgroundJobPromoteErrors = {
   404: NotFoundError
 }
 
-export type KilocodeBackgroundJobPromoteError =
-  KilocodeBackgroundJobPromoteErrors[keyof KilocodeBackgroundJobPromoteErrors]
+export type QronosBackgroundJobPromoteError =
+  QronosBackgroundJobPromoteErrors[keyof QronosBackgroundJobPromoteErrors]
 
-export type KilocodeBackgroundJobPromoteResponses = {
+export type QronosBackgroundJobPromoteResponses = {
   /**
    * Background job promoted
    */
   200: boolean
 }
 
-export type KilocodeBackgroundJobPromoteResponse =
-  KilocodeBackgroundJobPromoteResponses[keyof KilocodeBackgroundJobPromoteResponses]
+export type QronosBackgroundJobPromoteResponse =
+  QronosBackgroundJobPromoteResponses[keyof QronosBackgroundJobPromoteResponses]
 
-export type KilocodeWakeupsData = {
+export type QronosWakeupsData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/wakeups"
+  url: "/qronos/wakeups"
 }
 
-export type KilocodeWakeupsErrors = {
+export type QronosWakeupsErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeWakeupsError = KilocodeWakeupsErrors[keyof KilocodeWakeupsErrors]
+export type QronosWakeupsError = QronosWakeupsErrors[keyof QronosWakeupsErrors]
 
-export type KilocodeWakeupsResponses = {
+export type QronosWakeupsResponses = {
   /**
    * Pending wakeups for the routed directory
    */
@@ -18386,28 +18386,28 @@ export type KilocodeWakeupsResponses = {
   }>
 }
 
-export type KilocodeWakeupsResponse = KilocodeWakeupsResponses[keyof KilocodeWakeupsResponses]
+export type QronosWakeupsResponse = QronosWakeupsResponses[keyof QronosWakeupsResponses]
 
-export type KilocodeRetentionStatusData = {
+export type QronosRetentionStatusData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/retention"
+  url: "/qronos/retention"
 }
 
-export type KilocodeRetentionStatusErrors = {
+export type QronosRetentionStatusErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeRetentionStatusError = KilocodeRetentionStatusErrors[keyof KilocodeRetentionStatusErrors]
+export type QronosRetentionStatusError = QronosRetentionStatusErrors[keyof QronosRetentionStatusErrors]
 
-export type KilocodeRetentionStatusResponses = {
+export type QronosRetentionStatusResponses = {
   /**
    * Session retention policy and last run
    */
@@ -18437,9 +18437,9 @@ export type KilocodeRetentionStatusResponses = {
   }
 }
 
-export type KilocodeRetentionStatusResponse = KilocodeRetentionStatusResponses[keyof KilocodeRetentionStatusResponses]
+export type QronosRetentionStatusResponse = QronosRetentionStatusResponses[keyof QronosRetentionStatusResponses]
 
-export type KilocodeRetentionRunData = {
+export type QronosRetentionRunData = {
   body?: {
     force?: boolean
   }
@@ -18448,19 +18448,19 @@ export type KilocodeRetentionRunData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/retention/run"
+  url: "/qronos/retention/run"
 }
 
-export type KilocodeRetentionRunErrors = {
+export type QronosRetentionRunErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeRetentionRunError = KilocodeRetentionRunErrors[keyof KilocodeRetentionRunErrors]
+export type QronosRetentionRunError = QronosRetentionRunErrors[keyof QronosRetentionRunErrors]
 
-export type KilocodeRetentionRunResponses = {
+export type QronosRetentionRunResponses = {
   /**
    * Retention pass outcome
    */
@@ -18490,28 +18490,28 @@ export type KilocodeRetentionRunResponses = {
   }
 }
 
-export type KilocodeRetentionRunResponse = KilocodeRetentionRunResponses[keyof KilocodeRetentionRunResponses]
+export type QronosRetentionRunResponse = QronosRetentionRunResponses[keyof QronosRetentionRunResponses]
 
-export type KilocodeRetentionCancelData = {
+export type QronosRetentionCancelData = {
   body?: never
   path?: never
   query?: {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/retention/cancel"
+  url: "/qronos/retention/cancel"
 }
 
-export type KilocodeRetentionCancelErrors = {
+export type QronosRetentionCancelErrors = {
   /**
    * Bad request
    */
   400: BadRequestError
 }
 
-export type KilocodeRetentionCancelError = KilocodeRetentionCancelErrors[keyof KilocodeRetentionCancelErrors]
+export type QronosRetentionCancelError = QronosRetentionCancelErrors[keyof QronosRetentionCancelErrors]
 
-export type KilocodeRetentionCancelResponses = {
+export type QronosRetentionCancelResponses = {
   /**
    * Retention cancel request outcome; false when no pass was running
    */
@@ -18520,7 +18520,7 @@ export type KilocodeRetentionCancelResponses = {
   }
 }
 
-export type KilocodeRetentionCancelResponse = KilocodeRetentionCancelResponses[keyof KilocodeRetentionCancelResponses]
+export type QronosRetentionCancelResponse = QronosRetentionCancelResponses[keyof QronosRetentionCancelResponses]
 
 export type AnacondaDesktopStatusData = {
   body?: never
@@ -18529,7 +18529,7 @@ export type AnacondaDesktopStatusData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/anaconda-desktop/status"
+  url: "/qronos/anaconda-desktop/status"
 }
 
 export type AnacondaDesktopStatusErrors = {
@@ -18557,7 +18557,7 @@ export type AnacondaDesktopOpenData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/anaconda-desktop/open"
+  url: "/qronos/anaconda-desktop/open"
 }
 
 export type AnacondaDesktopOpenErrors = {
@@ -18595,7 +18595,7 @@ export type AnacondaDesktopSyncData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/anaconda-desktop/sync"
+  url: "/qronos/anaconda-desktop/sync"
 }
 
 export type AnacondaDesktopSyncErrors = {
@@ -18634,7 +18634,7 @@ export type AnacondaDesktopSyncResponses = {
 
 export type AnacondaDesktopSyncResponse = AnacondaDesktopSyncResponses[keyof AnacondaDesktopSyncResponses]
 
-export type KilocodeMigrateSessionsData = {
+export type QronosMigrateSessionsData = {
   body?: {
     cwd?: string
     formats?: Array<"claude" | "codex">
@@ -18648,10 +18648,10 @@ export type KilocodeMigrateSessionsData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/migrate/sessions"
+  url: "/qronos/migrate/sessions"
 }
 
-export type KilocodeMigrateSessionsErrors = {
+export type QronosMigrateSessionsErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
@@ -18662,18 +18662,18 @@ export type KilocodeMigrateSessionsErrors = {
   422: MigrateFailedError
 }
 
-export type KilocodeMigrateSessionsError = KilocodeMigrateSessionsErrors[keyof KilocodeMigrateSessionsErrors]
+export type QronosMigrateSessionsError = QronosMigrateSessionsErrors[keyof QronosMigrateSessionsErrors]
 
-export type KilocodeMigrateSessionsResponses = {
+export type QronosMigrateSessionsResponses = {
   /**
    * Session migration result
    */
-  200: KilocodeMigrateSessionsResult
+  200: QronosMigrateSessionsResult
 }
 
-export type KilocodeMigrateSessionsResponse = KilocodeMigrateSessionsResponses[keyof KilocodeMigrateSessionsResponses]
+export type QronosMigrateSessionsResponse = QronosMigrateSessionsResponses[keyof QronosMigrateSessionsResponses]
 
-export type KilocodeMigrateDiscoverData = {
+export type QronosMigrateDiscoverData = {
   body?: {
     cwd?: string
     formats?: Array<"claude" | "codex">
@@ -18683,10 +18683,10 @@ export type KilocodeMigrateDiscoverData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/migrate/sessions/discover"
+  url: "/qronos/migrate/sessions/discover"
 }
 
-export type KilocodeMigrateDiscoverErrors = {
+export type QronosMigrateDiscoverErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
@@ -18697,16 +18697,16 @@ export type KilocodeMigrateDiscoverErrors = {
   422: MigrateFailedError
 }
 
-export type KilocodeMigrateDiscoverError = KilocodeMigrateDiscoverErrors[keyof KilocodeMigrateDiscoverErrors]
+export type QronosMigrateDiscoverError = QronosMigrateDiscoverErrors[keyof QronosMigrateDiscoverErrors]
 
-export type KilocodeMigrateDiscoverResponses = {
+export type QronosMigrateDiscoverResponses = {
   /**
    * Discovered migratable sessions
    */
-  200: KilocodeMigrateSessionsDiscoverResult
+  200: QronosMigrateSessionsDiscoverResult
 }
 
-export type KilocodeMigrateDiscoverResponse = KilocodeMigrateDiscoverResponses[keyof KilocodeMigrateDiscoverResponses]
+export type QronosMigrateDiscoverResponse = QronosMigrateDiscoverResponses[keyof QronosMigrateDiscoverResponses]
 
 export type NetworkListData = {
   body?: never
@@ -19012,7 +19012,7 @@ export type SessionHostProvidersData = {
   body?: never
   path?: never
   query?: never
-  url: "/kilocode/session-host/provider"
+  url: "/qronos/session-host/provider"
 }
 
 export type SessionHostProvidersErrors = {
@@ -19059,7 +19059,7 @@ export type SessionHostListData = {
   query?: {
     limit?: string
   }
-  url: "/kilocode/session-host/session"
+  url: "/qronos/session-host/session"
 }
 
 export type SessionHostListErrors = {
@@ -19104,7 +19104,7 @@ export type SessionHostStartData = {
   body?: SessionHostStartInput
   path?: never
   query?: never
-  url: "/kilocode/session-host/session"
+  url: "/qronos/session-host/session"
 }
 
 export type SessionHostStartErrors = {
@@ -19152,7 +19152,7 @@ export type SessionHostGetData = {
     sessionID: string
   }
   query?: never
-  url: "/kilocode/session-host/session/{providerID}/{sessionID}"
+  url: "/qronos/session-host/session/{providerID}/{sessionID}"
 }
 
 export type SessionHostGetErrors = {
@@ -19203,7 +19203,7 @@ export type SessionHostTranscriptData = {
     limit?: string
     before?: string
   }
-  url: "/kilocode/session-host/session/{providerID}/{sessionID}/message"
+  url: "/qronos/session-host/session/{providerID}/{sessionID}/message"
 }
 
 export type SessionHostTranscriptErrors = {
@@ -19253,7 +19253,7 @@ export type SessionHostAttachData = {
   query?: {
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/session/{providerID}/{sessionID}/attach"
+  url: "/qronos/session-host/session/{providerID}/{sessionID}/attach"
 }
 
 export type SessionHostAttachErrors = {
@@ -19300,7 +19300,7 @@ export type SessionHostDetachData = {
     attachmentID: string
   }
   query?: never
-  url: "/kilocode/session-host/attachment/{attachmentID}"
+  url: "/qronos/session-host/attachment/{attachmentID}"
 }
 
 export type SessionHostDetachErrors = {
@@ -19355,7 +19355,7 @@ export type SessionHostListWorkspacesData = {
     repositoryUrl?: string
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/workspace"
+  url: "/qronos/session-host/workspace"
 }
 
 export type SessionHostListWorkspacesErrors = {
@@ -19401,7 +19401,7 @@ export type SessionHostCreateWorkspaceData = {
   body?: SessionHostCreateWorkspaceInput
   path?: never
   query?: never
-  url: "/kilocode/session-host/workspace"
+  url: "/qronos/session-host/workspace"
 }
 
 export type SessionHostCreateWorkspaceErrors = {
@@ -19447,7 +19447,7 @@ export type SessionHostContinueWorkspaceData = {
   body?: SessionHostContinueWorkspaceInput
   path?: never
   query?: never
-  url: "/kilocode/session-host/workspace/continue"
+  url: "/qronos/session-host/workspace/continue"
 }
 
 export type SessionHostContinueWorkspaceErrors = {
@@ -19496,7 +19496,7 @@ export type SessionHostListWorkspaceProfilesData = {
   query?: {
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/workspace/profiles"
+  url: "/qronos/session-host/workspace/profiles"
 }
 
 export type SessionHostListWorkspaceProfilesErrors = {
@@ -19543,7 +19543,7 @@ export type SessionHostSetWorkspacePersonalDefaultProfileData = {
   body?: SessionHostWorkspaceProfileDefaultInput
   path?: never
   query?: never
-  url: "/kilocode/session-host/workspace/profiles/personal-default"
+  url: "/qronos/session-host/workspace/profiles/personal-default"
 }
 
 export type SessionHostSetWorkspacePersonalDefaultProfileErrors = {
@@ -19592,7 +19592,7 @@ export type SessionHostClearWorkspacePersonalDefaultProfileData = {
     profileID: string
   }
   query?: never
-  url: "/kilocode/session-host/workspace/profiles/personal-default/{profileID}"
+  url: "/qronos/session-host/workspace/profiles/personal-default/{profileID}"
 }
 
 export type SessionHostClearWorkspacePersonalDefaultProfileErrors = {
@@ -19644,7 +19644,7 @@ export type SessionHostDeleteWorkspaceData = {
   query?: {
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}"
+  url: "/qronos/session-host/workspace/{providerID}/{workspaceID}"
 }
 
 export type SessionHostDeleteWorkspaceErrors = {
@@ -19697,7 +19697,7 @@ export type SessionHostGetWorkspaceData = {
     sessionCursor?: string
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}"
+  url: "/qronos/session-host/workspace/{providerID}/{workspaceID}"
 }
 
 export type SessionHostGetWorkspaceErrors = {
@@ -19747,7 +19747,7 @@ export type SessionHostGetWorkspaceStatusData = {
   query?: {
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}/status"
+  url: "/qronos/session-host/workspace/{providerID}/{workspaceID}/status"
 }
 
 export type SessionHostGetWorkspaceStatusErrors = {
@@ -19801,7 +19801,7 @@ export type SessionHostListWorkspaceSessionsData = {
     cursor?: string
     organizationID?: SessionHostOrganizationId
   }
-  url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}/session"
+  url: "/qronos/session-host/workspace/{providerID}/{workspaceID}/session"
 }
 
 export type SessionHostListWorkspaceSessionsErrors = {
@@ -19851,7 +19851,7 @@ export type SessionHostStartWorkspaceSessionData = {
     workspaceID: SessionHostWorkspaceId
   }
   query?: never
-  url: "/kilocode/session-host/workspace/{providerID}/{workspaceID}/session"
+  url: "/qronos/session-host/workspace/{providerID}/{workspaceID}/session"
 }
 
 export type SessionHostStartWorkspaceSessionErrors = {
@@ -19894,7 +19894,7 @@ export type SessionHostStartWorkspaceSessionResponses = {
 export type SessionHostStartWorkspaceSessionResponse =
   SessionHostStartWorkspaceSessionResponses[keyof SessionHostStartWorkspaceSessionResponses]
 
-export type KilocodeSessionImportProjectData = {
+export type QronosSessionImportProjectData = {
   body?: {
     id: string
     worktree: string
@@ -19915,30 +19915,30 @@ export type KilocodeSessionImportProjectData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session-import/project"
+  url: "/qronos/session-import/project"
 }
 
-export type KilocodeSessionImportProjectErrors = {
+export type QronosSessionImportProjectErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeSessionImportProjectError =
-  KilocodeSessionImportProjectErrors[keyof KilocodeSessionImportProjectErrors]
+export type QronosSessionImportProjectError =
+  QronosSessionImportProjectErrors[keyof QronosSessionImportProjectErrors]
 
-export type KilocodeSessionImportProjectResponses = {
+export type QronosSessionImportProjectResponses = {
   /**
    * Project import result
    */
-  200: KilocodeSessionImportResult
+  200: QronosSessionImportResult
 }
 
-export type KilocodeSessionImportProjectResponse =
-  KilocodeSessionImportProjectResponses[keyof KilocodeSessionImportProjectResponses]
+export type QronosSessionImportProjectResponse =
+  QronosSessionImportProjectResponses[keyof QronosSessionImportProjectResponses]
 
-export type KilocodeSessionImportSessionData = {
+export type QronosSessionImportSessionData = {
   body?: {
     id: string
     projectID: string
@@ -19978,30 +19978,30 @@ export type KilocodeSessionImportSessionData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session-import/session"
+  url: "/qronos/session-import/session"
 }
 
-export type KilocodeSessionImportSessionErrors = {
+export type QronosSessionImportSessionErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeSessionImportSessionError =
-  KilocodeSessionImportSessionErrors[keyof KilocodeSessionImportSessionErrors]
+export type QronosSessionImportSessionError =
+  QronosSessionImportSessionErrors[keyof QronosSessionImportSessionErrors]
 
-export type KilocodeSessionImportSessionResponses = {
+export type QronosSessionImportSessionResponses = {
   /**
    * Session import result
    */
-  200: KilocodeSessionImportResult
+  200: QronosSessionImportResult
 }
 
-export type KilocodeSessionImportSessionResponse =
-  KilocodeSessionImportSessionResponses[keyof KilocodeSessionImportSessionResponses]
+export type QronosSessionImportSessionResponse =
+  QronosSessionImportSessionResponses[keyof QronosSessionImportSessionResponses]
 
-export type KilocodeSessionImportMessageData = {
+export type QronosSessionImportMessageData = {
   body?: {
     id: string
     sessionID: string
@@ -20058,30 +20058,30 @@ export type KilocodeSessionImportMessageData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session-import/message"
+  url: "/qronos/session-import/message"
 }
 
-export type KilocodeSessionImportMessageErrors = {
+export type QronosSessionImportMessageErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeSessionImportMessageError =
-  KilocodeSessionImportMessageErrors[keyof KilocodeSessionImportMessageErrors]
+export type QronosSessionImportMessageError =
+  QronosSessionImportMessageErrors[keyof QronosSessionImportMessageErrors]
 
-export type KilocodeSessionImportMessageResponses = {
+export type QronosSessionImportMessageResponses = {
   /**
    * Message import result
    */
-  200: KilocodeSessionImportResult
+  200: QronosSessionImportResult
 }
 
-export type KilocodeSessionImportMessageResponse =
-  KilocodeSessionImportMessageResponses[keyof KilocodeSessionImportMessageResponses]
+export type QronosSessionImportMessageResponse =
+  QronosSessionImportMessageResponses[keyof QronosSessionImportMessageResponses]
 
-export type KilocodeSessionImportPartData = {
+export type QronosSessionImportPartData = {
   body?: {
     id: string
     messageID: string
@@ -20177,27 +20177,27 @@ export type KilocodeSessionImportPartData = {
     directory?: string
     workspace?: string
   }
-  url: "/kilocode/session-import/part"
+  url: "/qronos/session-import/part"
 }
 
-export type KilocodeSessionImportPartErrors = {
+export type QronosSessionImportPartErrors = {
   /**
    * BadRequest | InvalidRequestError
    */
   400: EffectHttpApiErrorBadRequest | InvalidRequestError
 }
 
-export type KilocodeSessionImportPartError = KilocodeSessionImportPartErrors[keyof KilocodeSessionImportPartErrors]
+export type QronosSessionImportPartError = QronosSessionImportPartErrors[keyof QronosSessionImportPartErrors]
 
-export type KilocodeSessionImportPartResponses = {
+export type QronosSessionImportPartResponses = {
   /**
    * Part import result
    */
-  200: KilocodeSessionImportResult
+  200: QronosSessionImportResult
 }
 
-export type KilocodeSessionImportPartResponse =
-  KilocodeSessionImportPartResponses[keyof KilocodeSessionImportPartResponses]
+export type QronosSessionImportPartResponse =
+  QronosSessionImportPartResponses[keyof QronosSessionImportPartResponses]
 
 export type SuggestionListData = {
   body?: never
