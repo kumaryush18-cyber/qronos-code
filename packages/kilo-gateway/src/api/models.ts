@@ -154,7 +154,8 @@ export async function fetchKiloImageModels(options?: {
 
   for (const model of raw.data) {
     if (model.architecture?.output_modalities?.includes("image")) {
-      models.push({ id: model.id, name: model.name, description: model.description })
+      // qronos_change - gateway model names are optional; fall back to the id
+      models.push({ id: model.id, name: model.name ?? model.id, description: model.description })
     }
   }
 

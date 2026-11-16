@@ -20,7 +20,9 @@ jobs:
           set +e
           hits=$(grep -rn "@kilocode/\|@opencode-ai/" \
             --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
-            --exclude-dir=.qronos --exclude=NOTICE --exclude=ATTRIBUTION.md . | head -40)
+            --exclude-dir=.qronos --exclude-dir=.github \
+            --exclude=NOTICE --exclude=ATTRIBUTION.md \
+            --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md . | head -40)
           if [ -n "$hits" ]; then
             echo "Old package scopes still referenced:"
             echo "$hits"
