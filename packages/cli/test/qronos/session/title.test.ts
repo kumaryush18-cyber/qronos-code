@@ -56,7 +56,6 @@ describe("QronosSessionTitle.shouldGenerate", () => {
   test("names a substantial first message and consumes one attempt", () => {
     const history = [user([text("x".repeat(200))])]
     expect(QronosSessionTitle.shouldGenerate({ sessionID, history })).toBe(true)
-    expect(QronosSessionTitle.shouldGenerate({ sessionID, history })).toBe(true)
   })
 
   test("names once a turn ran a tool", () => {

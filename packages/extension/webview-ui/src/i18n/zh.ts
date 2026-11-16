@@ -557,7 +557,6 @@ export const dict = {
   "settings.config.openFailed": "无法打开 {{scope}} Qronos 配置文件：{{message}}",
   "settings.config.source.xdg": "XDG 全局配置",
   "settings.config.source.homeQronos": "主目录 .qronos 配置",
-  "settings.config.source.homeQronos": "主目录 .qronos 配置",
   "settings.config.source.homeOpencode": "主目录 .opencode 配置",
   "settings.config.source.envFile": "QRONOS_CONFIG 环境变量文件",
   "settings.config.source.envDir": "QRONOS_CONFIG_DIR",

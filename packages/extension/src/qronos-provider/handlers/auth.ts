@@ -123,7 +123,6 @@ export async function handleLogout(ctx: AuthContext): Promise<void> {
     await QronosAuthService.getInstance().clearToken()
     if (ctx.client) {
       await ctx.client.auth.remove({ providerID: "qronos" }).catch(() => undefined)
-      await ctx.client.auth.remove({ providerID: "qronos" }).catch(() => undefined)
     }
     console.log("[Qronos] 🚪 Logged out successfully")
     ctx.postMessage({ type: "profileData", data: null })
@@ -156,7 +155,7 @@ export async function handleSetOrganization(ctx: AuthContext, organizationId: st
     console.error("[Qronos New] QronosProvider: Failed to switch organization:", error)
     // Re-fetch current profile to reset webview state — best-effort
     try {
-      const result = await ctx.client.qronos.profile()
+      const result = await ctx.client.qronosGateway.profile()
       ctx.postMessage({ type: "profileData", data: result.data ?? null })
     } catch (profileError) {
       console.error("[Qronos New] QronosProvider: Failed to refresh profile after org switch error:", profileError)
@@ -170,7 +169,7 @@ export async function handleSetOrganization(ctx: AuthContext, organizationId: st
 
   // Org switch succeeded — refresh profile and providers independently (best-effort)
   try {
-    const result = await ctx.client.qronos.profile()
+    const result = await ctx.client.qronosGateway.profile()
     ctx.postMessage({ type: "profileData", data: result.data ?? null })
   } catch (error) {
     console.error("[Qronos New] QronosProvider: Failed to refresh profile after org switch:", error)
@@ -219,7 +218,7 @@ export async function handleRefreshProfile(ctx: AuthContext): Promise<void> {
   }
 
   if (ctx.client) {
-    const result = await ctx.client.qronos.profile().catch(() => ({ data: null }))
+    const result = await ctx.client.qronosGateway.profile().catch(() => ({ data: null }))
     ctx.postMessage({ type: "profileData", data: result.data ?? null })
   } else {
     ctx.postMessage({ type: "profileData", data: null })

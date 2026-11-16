@@ -899,7 +899,7 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
     // Use fire-and-forget (no throwOnError) to match old getProfile() which returned null on error.
     if (this.connectionState === "connected" && this.client) {
       console.log("[Qronos New] QronosProvider: 👤 syncWebviewState fetching profile...")
-      const profileResult = await retry(() => this.client!.qronos.profile()).catch(() => ({ data: null }))
+      const profileResult = await retry(() => this.client!.qronosGateway.profile()).catch(() => ({ data: null }))
       let profileData = profileResult.data ?? null
       if (!profileData) {
         const authService = QronosAuthService.getInstance()
@@ -2176,7 +2176,7 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
             // Profile fetch is best-effort — returns 401 when user isn't logged into gateway.
             const sdkClient = this.client
             if (sdkClient) {
-              const profileResult = await sdkClient.qronos.profile()
+              const profileResult = await sdkClient.qronosGateway.profile()
               this.postMessage({ type: "profileData", data: profileResult.data ?? null })
             }
             await this.syncWebviewState("sse-connected")
@@ -5257,7 +5257,7 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
 
     // Org switch succeeded — refresh profile and providers independently (best-effort)
     try {
-      const profileResult = await this.client!.qronos.profile()
+      const profileResult = await this.client!.qronosGateway.profile()
       // Broadcast to all webviews (sidebar, profile tab, agent manager, etc.)
       this.connectionService.notifyProfileChanged(profileResult.data ?? null)
     } catch (error) {

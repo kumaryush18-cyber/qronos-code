@@ -499,7 +499,6 @@ export const dict = {
   "settings.config.openFailed": "باز کردن فایل پیکربندی {{scope}} Qronos با شکست مواجه شد: {{message}}",
   "settings.config.source.xdg": "پیکربندی سراسری XDG",
   "settings.config.source.homeQronos": "پیکربندی .qronos در پوشه خانگی",
-  "settings.config.source.homeQronos": "پیکربندی .qronos در پوشه خانگی",
   "settings.config.source.homeOpencode": "پیکربندی .opencode در پوشه خانگی",
   "settings.config.source.envFile": "فایل محیطی QRONOS_CONFIG",
   "settings.config.source.envDir": "QRONOS_CONFIG_DIR",

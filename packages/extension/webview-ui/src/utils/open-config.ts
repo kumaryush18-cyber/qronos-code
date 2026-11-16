@@ -18,7 +18,6 @@ export function configMessage(scope: "local" | "global", t: LanguageContextValue
       openFailed: t("settings.config.openFailed", { scope: label, message: "{{message}}" }),
       sourceXdg: t("settings.config.source.xdg"),
       sourceHomeQronos: t("settings.config.source.homeQronos"),
-      sourceHomeQronos: t("settings.config.source.homeQronos"),
       sourceHomeOpencode: t("settings.config.source.homeOpencode"),
       sourceEnvFile: t("settings.config.source.envFile"),
       sourceEnvDir: t("settings.config.source.envDir"),

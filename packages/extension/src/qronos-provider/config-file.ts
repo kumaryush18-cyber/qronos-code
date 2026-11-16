@@ -7,7 +7,6 @@ export type Scope = "global" | "local"
 export type Source =
   | "sourceXdg"
   | "sourceHomeQronos"
-  | "sourceHomeQronos"
   | "sourceHomeOpencode"
   | "sourceEnvFile"
   | "sourceEnvDir"
@@ -30,23 +29,19 @@ export interface Entry {
 
 const SCHEMA = "https://qronos.me/config.json" // qronos_change - was app.qronos.ai
 
-const MODERN = ["qronos.jsonc", "qronos.json", "qronos.jsonc", "qronos.json"] // qronos_change
+const MODERN = ["qronos.jsonc", "qronos.json"] // qronos_change
 const LEGACY = ["opencode.jsonc", "opencode.json"]
 const FILES = [...MODERN, ...LEGACY]
 const GLOBAL = [
-  "qronos.jsonc",
-  "qronos.json",
   "qronos.jsonc",
   "qronos.json",
   "opencode.jsonc",
   "opencode.json",
   "config.json",
 ] // qronos_change
-const HOME = [".qronos", ".qronos", ".qronos", ".opencode"] // qronos_change
+const HOME = [".qronos", ".opencode"] // qronos_change
 const SOURCES: Record<string, Source> = {
   ".qronos": "sourceHomeQronos", // qronos_change
-  ".qronos": "sourceHomeQronos",
-  ".qronos": "sourceHomeQronos",
   ".opencode": "sourceHomeOpencode",
 }
 
@@ -108,7 +103,6 @@ export function globalFiles() {
 export function localFiles(root: string) {
   const enabled = !process.env.QRONOS_DISABLE_PROJECT_CONFIG
   const dirs = [
-    path.join(root, ".qronos"),
     path.join(root, ".qronos"),
     root,
     path.join(root, ".qronos"),

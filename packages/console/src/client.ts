@@ -417,7 +417,7 @@ export async function loadEmbeddingModels(input: Query): Promise<QronosEmbedding
 
 export async function loadQronosProfile(input: ProjectQuery): Promise<QronosProfileData> {
   const sdk = client(input)
-  const result = await sdk.qronos.profile(directory(input))
+  const result = await sdk.qronosGateway.profile(directory(input))
   return demand("Qronos profile", result)
 }
 

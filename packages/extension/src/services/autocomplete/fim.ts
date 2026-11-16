@@ -31,7 +31,7 @@ export async function generateFim(
 
   console.info(`[FIM] request provider=${info.providerID} model=${info.requestModel} url=/qronos/fim`)
 
-  const { stream } = await client.qronos.fim(
+  const { stream } = await client.qronosGateway.fim(
     {
       prefix,
       suffix,

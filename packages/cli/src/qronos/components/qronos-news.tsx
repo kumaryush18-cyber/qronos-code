@@ -44,7 +44,7 @@ export function QronosNews() {
 
         if (!isQronosConnected()) return
 
-        const result = await sdk.client.qronos.notifications()
+        const result = await sdk.client.qronosGateway.notifications()
         const items = result.data?.filter(({ showIn }) => !showIn || showIn.includes("cli"))
         if (items && items.length > 0) {
           setNotifications(items)

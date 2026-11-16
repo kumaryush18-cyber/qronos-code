@@ -48,7 +48,7 @@ export async function fetchAndSendNotifications(ctx: NotificationsContext): Prom
   }
 
   try {
-    const { data: all } = await retry(() => ctx.client!.qronos.notifications(undefined, { throwOnError: true }))
+    const { data: all } = await retry(() => ctx.client!.qronosGateway.notifications(undefined, { throwOnError: true }))
     const notifications = all.filter((n) => !n.showIn || n.showIn.includes("extension"))
     const existing = ctx.context?.globalState.get<string[]>(KEY, []) ?? []
     const active = new Set(notifications.map((n) => n.id))

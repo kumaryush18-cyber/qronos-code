@@ -33,7 +33,6 @@ export function getApiKey(options: { qronosToken?: string; apiKey?: string }): s
   if (options.qronosToken) return options.qronosToken
   if (options.apiKey && options.apiKey !== "anonymous") return options.apiKey
   if (process.env.QRONOS_API_KEY) return process.env.QRONOS_API_KEY
-  if (process.env.QRONOS_API_KEY) return process.env.QRONOS_API_KEY
   try {
     const fs = require("fs")
     const path = require("path")

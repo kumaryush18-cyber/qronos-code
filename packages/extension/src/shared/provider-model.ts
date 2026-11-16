@@ -8,7 +8,6 @@ export const QRONOS_PROVIDER_ID = QRONOS_PROVIDER_ID
 // The gateway uses `<family>-<version>-<tier>` (claude-5.5-sonnet), not `claude-sonnet-5.5`.
 export const QRONOS_DEFAULT_MODEL = "claude-5.5-sonnet"
 export const QRONOS_AUTO = { providerID: QRONOS_PROVIDER_ID, modelID: QRONOS_DEFAULT_MODEL } as const
-export const QRONOS_AUTO = { providerID: QRONOS_PROVIDER_ID, modelID: QRONOS_DEFAULT_MODEL } as const
 export const CUSTOM_PROVIDER_PACKAGES = ["@ai-sdk/openai-compatible", "@ai-sdk/openai", "@ai-sdk/anthropic"] as const
 export type CustomProviderPackage = (typeof CUSTOM_PROVIDER_PACKAGES)[number]
 export const CUSTOM_PROVIDER_PACKAGE: CustomProviderPackage = "@ai-sdk/openai-compatible"

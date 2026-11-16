@@ -45,7 +45,6 @@ export namespace FileIgnore {
     "**/coverage/**",
     "**/.nyc_output/**",
     "**/.qronos/worktrees/**",
-    "**/.qronos/worktrees/**",
   ]
 
   export const PATTERNS = [...files, ...folders]

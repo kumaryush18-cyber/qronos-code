@@ -809,8 +809,6 @@ describe("Config", () => {
             expect(entries.filter((entry) => entry.type === "directory").map((entry) => entry.path)).toEqual([
               AbsolutePath.make(global),
               AbsolutePath.make(path.join(root, ".qronos")),
-              AbsolutePath.make(path.join(root, ".qronos")),
-              AbsolutePath.make(path.join(directory, ".qronos")),
               AbsolutePath.make(path.join(directory, ".qronos")),
             ])
             expect(documents.map((document) => document.info.$schema)).toEqual([
@@ -819,8 +817,6 @@ describe("Config", () => {
               "parent",
               "directory",
               "root-qronos",
-              "root-qronos",
-              "directory-qronos",
               "directory-qronos",
             ])
             expect(Config.latest(entries, "$schema")).toBe("directory-qronos")

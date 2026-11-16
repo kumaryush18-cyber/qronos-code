@@ -637,7 +637,6 @@ export namespace ClaudeMigration {
     const dirs = [
       path.join(base.config, "skills"),
       path.join(base.home, ".qronos", "skills"),
-      path.join(base.home, ".qronos", "skills"),
       path.join(base.home, ".agents", "skills"),
     ]
     for (const dir of dirs) {

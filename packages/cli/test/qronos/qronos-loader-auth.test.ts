@@ -216,7 +216,6 @@ for (const context of ["config", "oauth", "env", "url"] as const) {
         yield* ModelsDev.Service.use((models) =>
           Effect.gen(function* () {
             expect((yield* models.get()).qronos.models).toEqual({})
-            expect((yield* models.get()).qronos.models).toEqual({})
             expect(calls).toHaveLength(outcome === "throw" ? 2 : 1)
             expect(calls.at(0)?.qronosOrganizationId).toBe(`org-${context}`)
           }),
@@ -321,7 +320,6 @@ it.live("does not serve a warm or public catalog after an Org-scoped URL conflic
       Effect.gen(function* () {
         expect(Object.keys((yield* models.get()).qronos.models)).toEqual(["allowed"])
         options.baseURL = "https://gateway.test/api/organizations/org-other"
-        expect((yield* models.get()).qronos.models).toEqual({})
         expect((yield* models.get()).qronos.models).toEqual({})
         options.baseURL = "https://gateway.test/api/organizations/org-env"
         expect(Object.keys((yield* models.get()).qronos.models)).toEqual(["allowed"])

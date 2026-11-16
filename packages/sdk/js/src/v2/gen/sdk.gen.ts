@@ -7184,7 +7184,7 @@ export class Cloud extends HeyApiClient {
   }
 }
 
-export class Qronos extends HeyApiClient {
+export class QronosGateway extends HeyApiClient {
   /**
    * Get Qronos Gateway profile
    *
@@ -12878,9 +12878,9 @@ export class QronosClient extends HeyApiClient {
     return (this._indexing ??= new Indexing({ client: this.client }))
   }
 
-  private _qronos?: Qronos
-  get qronos(): Qronos {
-    return (this._qronos ??= new Qronos({ client: this.client }))
+  private _qronosGateway?: QronosGateway
+  get qronosGateway(): QronosGateway {
+    return (this._qronosGateway ??= new QronosGateway({ client: this.client }))
   }
 
   private _qronos?: Qronos

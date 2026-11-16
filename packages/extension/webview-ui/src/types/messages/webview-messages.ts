@@ -309,7 +309,6 @@ export interface OpenConfigFileRequest {
     openFailed: string
     sourceXdg: string
     sourceHomeQronos: string
-    sourceHomeQronos: string
     sourceHomeOpencode: string
     sourceEnvFile: string
     sourceEnvDir: string

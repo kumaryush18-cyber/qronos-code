@@ -118,7 +118,7 @@ export function registerQronosCommands(useSDK: () => UseSDK) {
             }
 
             // Fetch profile and balance using server endpoint
-            const response = await sdk.client.qronos.profile()
+            const response = await sdk.client.qronosGateway.profile()
 
             if (response.error || !response.data) {
               dialog.replace(() => (
@@ -216,7 +216,7 @@ export function registerQronosCommands(useSDK: () => UseSDK) {
         run: async () => {
           try {
             // Fetch profile to get organizations
-            const response = await sdk.client.qronos.profile()
+            const response = await sdk.client.qronosGateway.profile()
 
             if (response.error || !response.data) {
               dialog.replace(() => (

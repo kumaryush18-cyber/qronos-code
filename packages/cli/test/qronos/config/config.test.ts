@@ -1440,7 +1440,6 @@ describe("project config directory precedence", () => {
 
         const plugins = JSON.stringify(config.plugin)
         expect(plugins).toContain("qronos.ts")
-        expect(plugins).toContain("qronos.ts")
         expect(plugins).not.toContain("opencode.ts")
       },
     })

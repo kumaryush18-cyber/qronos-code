@@ -45,7 +45,7 @@ export async function handleRequestCloudSessions(
   }
 
   try {
-    const result = await ctx.client.qronos.cloudSessions({
+    const result = await ctx.client.qronosGateway.cloudSessions({
       cursor: message.cursor,
       limit: message.limit,
       gitUrl: message.gitUrl,

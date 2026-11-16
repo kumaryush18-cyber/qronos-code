@@ -580,7 +580,6 @@ export const dict = {
   "settings.config.openFailed": "Не удалось открыть файл конфигурации Qronos ({{scope}}): {{message}}",
   "settings.config.source.xdg": "Глобальная конфигурация XDG",
   "settings.config.source.homeQronos": "Конфигурация .qronos (Home)",
-  "settings.config.source.homeQronos": "Конфигурация .qronos (Home)",
   "settings.config.source.homeOpencode": "Конфигурация .opencode (Home)",
   "settings.config.source.envFile": "Файл среды QRONOS_CONFIG",
   "settings.config.source.envDir": "QRONOS_CONFIG_DIR",

@@ -93,9 +93,7 @@ describe("review command", () => {
     const text = cmd.template as string
     expect(text).toContain("git rev-parse --git-path qronos-agent-manager-metadata.json")
     expect(text).toContain("`.qronos/metadata.json` in the current worktree checkout")
-    expect(text).toContain("`.qronos/metadata.json` in the current worktree checkout")
     const admin = text.indexOf("git rev-parse --git-path qronos-agent-manager-metadata.json")
-    const qronos = text.indexOf("`.qronos/metadata.json` in the current worktree checkout")
     const qronos = text.indexOf("`.qronos/metadata.json` in the current worktree checkout")
     expect(admin).toBeLessThan(qronos)
     expect(qronos).toBeLessThan(qronos)

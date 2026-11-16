@@ -576,7 +576,6 @@ export const dict = {
   "settings.config.openFailed": "ไม่สามารถเปิดไฟล์การตั้งค่า Qronos ({{scope}}): {{message}}",
   "settings.config.source.xdg": "การตั้งค่า XDG ทั่วโลก",
   "settings.config.source.homeQronos": "การตั้งค่า .qronos ของ Home",
-  "settings.config.source.homeQronos": "การตั้งค่า .qronos ของ Home",
   "settings.config.source.homeOpencode": "การตั้งค่า .opencode ของ Home",
   "settings.config.source.envFile": "ไฟล์สภาพแวดล้อม QRONOS_CONFIG",
   "settings.config.source.envDir": "QRONOS_CONFIG_DIR",

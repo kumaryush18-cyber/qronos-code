@@ -14,7 +14,6 @@ export namespace WorkflowsMigrator {
   const QRONOS_WORKFLOWS_DIRS = [".qronos/workflows", ".qronos/workflows"]
   const globalWorkflowsDirs = () => [
     path.join(home(), ".qronos", "workflows"),
-    path.join(home(), ".qronos", "workflows"),
   ]
 
   export interface QronosWorkflow {

@@ -7,7 +7,6 @@
   "description": "Unified Qronos Gateway package for OpenCode - authentication, provider, and API integration",
   "keywords": [
     "qronos",
-    "qronos",
     "opencode",
     "auth",
     "plugin",

@@ -67,8 +67,6 @@ export function pluginFiles(scope: Scope, directory: string, worktree?: string) 
     dirs.push(
       current,
       path.join(current, ".qronos"),
-      path.join(current, ".qronos"),
-      path.join(current, ".qronos"),
     ) // qronos_change - .qronos first, Qronos names still read
     current = path.dirname(current)
   }

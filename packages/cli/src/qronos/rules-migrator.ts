@@ -12,8 +12,6 @@ export namespace RulesMigrator {
   const QRONOS_RULES_DIRS = [".qronos/rules", ".qronos/rules", ".qronos/rules"]
   const globalRulesDirs = () => [
     path.join(home(), ".qronos", "rules"),
-    path.join(home(), ".qronos", "rules"),
-    path.join(home(), ".qronos", "rules"),
   ]
 
   // Known modes for mode-specific rule discovery

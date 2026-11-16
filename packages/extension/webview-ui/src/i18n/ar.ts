@@ -530,7 +530,6 @@ export const dict = {
   "settings.config.openFailed": "فشل فتح ملف تكوين Qronos {{scope}}: {{message}}",
   "settings.config.source.xdg": "تكوين XDG العالمي",
   "settings.config.source.homeQronos": "تكوين .qronos في Home",
-  "settings.config.source.homeQronos": "تكوين .qronos في Home",
   "settings.config.source.homeOpencode": "تكوين .opencode في Home",
   "settings.config.source.envFile": "ملف بيئة QRONOS_CONFIG",
   "settings.config.source.envDir": "QRONOS_CONFIG_DIR",

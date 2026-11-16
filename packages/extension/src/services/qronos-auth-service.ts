@@ -42,7 +42,6 @@ export function clearAuthTokenFromDisk(): void {
           current = {}
         }
         delete current.qronos
-        delete current.qronos
         fs.writeFileSync(p, JSON.stringify(current, null, 2), { mode: 0o600 })
       }
     } catch (e) {
@@ -88,7 +87,6 @@ export class QronosAuthService {
     void this.getStoredToken().then((token) => {
       if (token) {
         process.env.QRONOS_API_KEY = token
-        process.env.QRONOS_API_KEY = token
         this.currentSession = {
           token,
           dailyTokens: 10_000_000,
@@ -113,7 +111,6 @@ export class QronosAuthService {
       await this.context.secrets.store("qronos.apiKey", cleanToken)
     }
     process.env.QRONOS_API_KEY = cleanToken
-    process.env.QRONOS_API_KEY = cleanToken
     this.currentSession = {
       token: cleanToken,
       dailyTokens: 10_000_000,
@@ -125,7 +122,6 @@ export class QronosAuthService {
     if (this.context) {
       await this.context.secrets.delete("qronos.apiKey")
     }
-    delete process.env.QRONOS_API_KEY
     delete process.env.QRONOS_API_KEY
     this.currentSession = null
     clearAuthTokenFromDisk()

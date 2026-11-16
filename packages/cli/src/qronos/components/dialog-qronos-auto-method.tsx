@@ -66,7 +66,7 @@ export function QronosAutoMethod(props: QronosAutoMethodProps) {
 
       // Step 2: Fetch profile using the new server endpoint
       // This endpoint uses the stored auth credentials to fetch profile
-      const profileResponse = await sdk.client.qronos.profile()
+      const profileResponse = await sdk.client.qronosGateway.profile()
 
       if (profileResponse.error || !profileResponse.data) {
         // Couldn't fetch profile - fallback to personal account

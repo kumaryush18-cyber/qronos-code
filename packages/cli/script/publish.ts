@@ -122,7 +122,6 @@ await Bun.file(`./dist/${pkg.name}/package.json`).write(
       bin: {
         // qronos_change start
         qronos: `./bin/qronos`,
-        qronos: `./bin/qronos`,
         // qronos_change end
       },
       scripts: {
