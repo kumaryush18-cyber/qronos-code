@@ -37,7 +37,7 @@ import { ConfigConsoleApi } from "@/qronos/server/httpapi/groups/config-console"
 import { EnhancePromptApi } from "@/qronos/server/httpapi/groups/enhance-prompt"
 import { IndexingApi } from "@/qronos/server/httpapi/groups/indexing"
 import { InstanceReloadApi } from "@/qronos/server/httpapi/groups/instance-reload"
-import { QronosApi } from "@/qronos/server/httpapi/groups/gateway"
+import { QronosGatewayApi } from "@/qronos/server/httpapi/groups/gateway"
 import { QronosApi } from "@/qronos/server/httpapi/groups/qronos"
 import { MigrateApi } from "@/qronos/server/httpapi/groups/migrate"
 import { NetworkApi } from "@/qronos/server/httpapi/groups/network"
@@ -111,7 +111,7 @@ export const InstanceHttpApi = HttpApi.make("opencode-instance")
   .addHttpApi(IndexingApi)
   .addHttpApi(InstanceReloadApi)
   .addHttpApi(QronosApi)
-  .addHttpApi(QronosApi)
+  .addHttpApi(QronosGatewayApi)
   .addHttpApi(MigrateApi)
   .addHttpApi(NetworkApi)
   .addHttpApi(RemoteApi)

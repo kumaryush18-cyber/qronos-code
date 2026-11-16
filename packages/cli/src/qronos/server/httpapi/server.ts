@@ -22,7 +22,7 @@ import { configConsoleHandlers } from "./handlers/config-console"
 import { enhancePromptHandlers } from "./handlers/enhance-prompt"
 import { indexingHandlers } from "./handlers/indexing"
 import { instanceReloadHandlers } from "./handlers/instance-reload"
-import { qronosHandlers } from "./handlers/gateway"
+import { qronosGatewayHandlers } from "./handlers/gateway"
 import { qronosHandlers } from "./handlers/qronos"
 import { memoryHandlers } from "./handlers/memory"
 import { migrateHandlers } from "./handlers/migrate"
@@ -47,7 +47,7 @@ export const provide = Layer.provide([
   indexingHandlers,
   instanceReloadHandlers,
   qronosHandlers,
-  qronosHandlers,
+  qronosGatewayHandlers,
   memoryHandlers,
   migrateHandlers,
   networkHandlers,

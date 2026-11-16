@@ -218,7 +218,7 @@ export const QronosPaths = {
   cloudSessionImport: `${root}/cloud/session/import`,
 } as const
 
-export const QronosApi = HttpApi.make("qronos-gateway")
+export const QronosGatewayApi = HttpApi.make("qronos-gateway")
   .add(
     HttpApiGroup.make("qronos-gateway")
       .add(
