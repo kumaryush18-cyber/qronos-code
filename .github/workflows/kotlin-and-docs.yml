@@ -1,0 +1,41 @@
+name: kotlin-and-docs-check
+
+# The Kotlin plugin namespace moved from ai.kilocode to ai.qronos and the docs
+# site was rewritten, so both need a compile gate of their own. Neither ships in
+# the VS Code extension, so they run separately from the vsix matrix.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  kotlin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: bun install
+        run: bun install --no-save
+      - name: compile the JetBrains plugin
+        working-directory: packages/jetbrains
+        run: ./gradlew --no-daemon -q :compileKotlin :compileTestKotlin
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: bun install
+        run: bun install --no-save
+      - name: build the docs site
+        working-directory: packages/docs
+        run: bun run build
