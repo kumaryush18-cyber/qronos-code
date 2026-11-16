@@ -10,7 +10,7 @@
  * headful Starter/Driver adapter. It is intentionally not wired into `check`/`test`.
  */
 
-import { SCHEMA_VERSION, run, RunError, type ScenarioManifest } from "../../qronos-e2e/src/index"
+import { SCHEMA_VERSION, run, RunError, type ScenarioManifest } from "../../e2e/src/index"
 import { join, resolve } from "node:path"
 
 const root = resolve(import.meta.dir, "..")
@@ -39,7 +39,7 @@ try {
     manifest,
     provider: {
       id: "qronos-e2e-fake",
-      command: [process.execPath, join(root, "../qronos-e2e/fixtures/provider.ts")],
+      command: [process.execPath, join(root, "../e2e/fixtures/provider.ts")],
     },
     driver: {
       id: "jetbrains-starter",

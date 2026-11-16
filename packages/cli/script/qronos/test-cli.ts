@@ -18,7 +18,7 @@ export namespace TestCli {
       hash.update("bun.lock").update(String(st.mtimeMs)).update(String(st.size))
     }
 
-    const ignored = new Set(["qronos-vscode", "qronos-jetbrains", "qronos-docs"])
+    const ignored = new Set(["extension", "jetbrains", "docs"])
     const entries = fsSync.readdirSync(pkgs, { withFileTypes: true })
 
     for (const ent of entries) {

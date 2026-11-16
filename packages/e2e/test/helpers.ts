@@ -46,7 +46,7 @@ export function descriptor(overrides: Partial<FixtureDescriptor> = {}): FixtureD
       gitUrl: "file:///tmp/project",
       branch: "main",
       model: "qronos/fake-deterministic",
-      seed: "qronos-e2e",
+      seed: "e2e",
     },
     resources: {},
     cleanup: { token: "cleanup-token", ids: [] },

@@ -191,7 +191,7 @@ describe("Expanded tool motion and typography (source)", () => {
   it("uses the assistant markdown line-height ratio for reasoning output", () => {
     const css = fs.readFileSync(QRONOS_MESSAGE_PART_CSS_FILE, "utf-8")
     const block = css.match(
-      /html\[data-theme="qronos-vscode"\] \[data-component="reasoning-part"\][\s\S]*?(?=@keyframes reasoning-pulse)/,
+      /html\[data-theme="extension"\] \[data-component="reasoning-part"\][\s\S]*?(?=@keyframes reasoning-pulse)/,
     )?.[0]
     expect(block).toMatch(/\[data-component="markdown"\]\s*\{[^}]*line-height:\s*160%;/)
   })

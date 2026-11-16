@@ -248,7 +248,7 @@ be broken. Check every auto-merged file for:
 - `bun run script/check-opencode-annotations.ts` if `packages/cli/` shared
   files changed. Note that this tool compares against the merge base via `HEAD`
   and will be silent until the merge commit lands
-- other CI guards that touched files imply (knip for `qronos-vscode/`,
+- other CI guards that touched files imply (knip for `extension/`,
   `check-qronos-change`, source-links, visual regression,
   `script/check-forbidden-strings.ts`)
 - if you encounter a hardcoded upstream URL, repo path, or attribution string

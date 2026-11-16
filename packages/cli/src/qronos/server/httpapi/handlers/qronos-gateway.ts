@@ -37,10 +37,10 @@ import { Instance } from "@/qronos/instance"
 import { InstanceStore } from "@/project/instance-store"
 import { ModelCache } from "@/provider/model-cache"
 import { InstanceHttpApi } from "@/server/routes/instance/httpapi/api"
-import { AudioTranscriptionsBody, CloudSessionImportError, FimBody } from "../groups/qronos-gateway"
+import { AudioTranscriptionsBody, CloudSessionImportError, FimBody } from "../groups/gateway"
 
 const FIM_TIMEOUT_MS = 30_000
-const log = Log.create({ service: "qronos-gateway" })
+const log = Log.create({ service: "gateway" })
 
 function jsonError(error: string, status: number) {
   return HttpServerResponse.jsonUnsafe({ error }, { status })

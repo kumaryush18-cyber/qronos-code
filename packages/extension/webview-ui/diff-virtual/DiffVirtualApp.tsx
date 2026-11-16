@@ -107,7 +107,7 @@ const DiffVirtualShell: Component = () => {
 
 export const DiffVirtualApp: Component = () => {
   return (
-    <ThemeProvider defaultTheme="qronos-vscode">
+    <ThemeProvider defaultTheme="extension">
       <VSCodeProvider>
         <ServerProvider>
           <DiffVirtualShell />

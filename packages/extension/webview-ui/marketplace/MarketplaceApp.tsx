@@ -11,7 +11,7 @@ import "../src/styles/chat.css"
 
 export const MarketplaceApp: Component = () => {
   return (
-    <ThemeProvider defaultTheme="qronos-vscode">
+    <ThemeProvider defaultTheme="extension">
       <DialogProvider>
         <VSCodeProvider>
           <ServerProvider>

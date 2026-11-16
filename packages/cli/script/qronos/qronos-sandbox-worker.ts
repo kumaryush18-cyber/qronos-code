@@ -7,7 +7,7 @@ export namespace QronosSandboxWorker {
 
   export async function bundle() {
     const result = await Bun.build({
-      entrypoints: ["../qronos-sandbox/src/qronos-sandbox-mutation-worker.ts"],
+      entrypoints: ["../sandbox/src/qronos-sandbox-mutation-worker.ts"],
       target: "bun",
       format: "esm",
       minify: true,

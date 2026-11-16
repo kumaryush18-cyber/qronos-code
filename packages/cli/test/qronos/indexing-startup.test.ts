@@ -618,7 +618,7 @@ describe("indexing startup degradation", () => {
           }),
         ),
       )) as unknown as typeof global.fetch
-    const logger = Log.create({ service: "qronos-indexing" })
+    const logger = Log.create({ service: "indexing" })
     const warn = spyOn(logger, "warn")
     const key = process.env.QRONOS_API_KEY
 
@@ -862,7 +862,7 @@ describe("indexing startup degradation", () => {
           }),
         ),
       )) as unknown as typeof global.fetch
-    const logger = Log.create({ service: "qronos-indexing" })
+    const logger = Log.create({ service: "indexing" })
     const warn = spyOn(logger, "warn")
     const key = process.env.QRONOS_API_KEY
 
@@ -908,7 +908,7 @@ describe("indexing startup degradation", () => {
           }),
         ),
       )) as unknown as typeof global.fetch
-    const logger = Log.create({ service: "qronos-indexing" })
+    const logger = Log.create({ service: "indexing" })
     const warn = spyOn(logger, "warn")
     const init = spyOn(CodeIndexManager.prototype, "initialize").mockResolvedValue({ requiresRestart: false })
     const key = process.env.QRONOS_API_KEY

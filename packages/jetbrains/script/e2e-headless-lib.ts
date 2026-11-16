@@ -4,7 +4,7 @@ import {
   SCENARIO_IDS,
   type Lane,
   type ScenarioID,
-} from "../../qronos-e2e/src/index"
+} from "../../e2e/src/index"
 
 export class UsageError extends Error {}
 

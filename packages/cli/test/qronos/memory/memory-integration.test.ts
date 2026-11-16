@@ -162,7 +162,7 @@ describe("QronosMemory integration", () => {
   test("memory event status uses latest memory activity timestamp", () => {
     const base = MemorySchema.create()
     const event = MemoryEvents.status({
-      root: "/tmp/qronos-memory",
+      root: "/tmp/memory",
       state: {
         ...base,
         stats: {

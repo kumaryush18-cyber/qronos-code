@@ -26,7 +26,7 @@ type Case = {
 }
 
 const cases = (await Bun.file(
-  new URL("../../../qronos-memory/test/command-cases.json", import.meta.url),
+  new URL("../../../memory/test/command-cases.json", import.meta.url),
 ).json()) as Case[]
 
 function expected(item: Case): ParsedMemoryCommand | undefined {

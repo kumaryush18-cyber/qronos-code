@@ -59,7 +59,7 @@ export namespace MemoryState {
       file,
       `${JSON.stringify(
         {
-          kind: "qronos-memory",
+          kind: "memory",
           version: 1,
           ...(id
             ? {
@@ -85,7 +85,7 @@ export namespace MemoryState {
       typeof data === "object" &&
       data !== null &&
       "kind" in data &&
-      data.kind === "qronos-memory" &&
+      data.kind === "memory" &&
       "version" in data &&
       data.version === 1
     )

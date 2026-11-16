@@ -25,7 +25,7 @@ describe("local Bubblewrap helper", () => {
     const root = await fs.mkdtemp(path.join(os.tmpdir(), "qronos-vscode-bwrap-"))
     try {
       const source = path.join(root, "source", "bwrap")
-      const extension = path.join(root, "workspace", "packages", "qronos-vscode")
+      const extension = path.join(root, "workspace", "packages", "extension")
       const cache = path.join(root, "cache")
       await fs.mkdir(path.dirname(source), { recursive: true })
       await fs.writeFile(source, "bubblewrap")

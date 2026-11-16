@@ -1934,8 +1934,8 @@ const projectA: AgentProjectSnapshot = {
 }
 const projectB: AgentProjectSnapshot = {
   id: "prj-bbbb2222bbbb",
-  root: "/repos/qronos-gateway",
-  label: "qronos-gateway",
+  root: "/repos/gateway",
+  label: "gateway",
   pinned: false,
   active: false,
   expanded: true,

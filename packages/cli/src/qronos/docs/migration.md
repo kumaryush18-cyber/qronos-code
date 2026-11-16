@@ -384,6 +384,6 @@ Action: Learn More -> https://docs.qronos.me/skills
 
 ## Related Files
 
-- [`notifications.ts`](../../../../qronos-gateway/src/api/notifications.ts) - Fetch function and types
-- [`routes.ts`](../../../../qronos-gateway/src/server/routes.ts) - Server endpoint `/qronos/notifications`
+- [`notifications.ts`](../../../../gateway/src/api/notifications.ts) - Fetch function and types
+- [`routes.ts`](../../../../gateway/src/server/routes.ts) - Server endpoint `/qronos/notifications`
 - [`app.tsx`](../../cli/cmd/tui/app.tsx) - TUI notification display logic

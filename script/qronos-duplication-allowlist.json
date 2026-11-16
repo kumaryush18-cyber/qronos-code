@@ -11,7 +11,7 @@
       "maxMatches": 1,
       "maxTokens": 187,
       "kind": "legacy",
-      "owner": "qronos-console",
+      "owner": "console",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -23,7 +23,7 @@
       "maxMatches": 1,
       "maxTokens": 102,
       "kind": "legacy",
-      "owner": "qronos-console",
+      "owner": "console",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -35,7 +35,7 @@
       "maxMatches": 1,
       "maxTokens": 101,
       "kind": "legacy",
-      "owner": "qronos-console",
+      "owner": "console",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -47,7 +47,7 @@
       "maxMatches": 1,
       "maxTokens": 155,
       "kind": "legacy",
-      "owner": "qronos-console",
+      "owner": "console",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -59,7 +59,7 @@
       "maxMatches": 1,
       "maxTokens": 112,
       "kind": "legacy",
-      "owner": "qronos-console",
+      "owner": "console",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -71,7 +71,7 @@
       "maxMatches": 1,
       "maxTokens": 168,
       "kind": "legacy",
-      "owner": "qronos-indexing",
+      "owner": "indexing",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -80,7 +80,7 @@
       "maxMatches": 1,
       "maxTokens": 144,
       "kind": "legacy",
-      "owner": "qronos-memory",
+      "owner": "memory",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -92,7 +92,7 @@
       "maxMatches": 1,
       "maxTokens": 134,
       "kind": "legacy",
-      "owner": "qronos-vscode",
+      "owner": "extension",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {
@@ -104,7 +104,7 @@
       "maxMatches": 1,
       "maxTokens": 143,
       "kind": "legacy",
-      "owner": "qronos-vscode",
+      "owner": "extension",
       "reason": "Existing duplication before the ratchet; remove through a focused, behavior-preserving extraction."
     },
     {

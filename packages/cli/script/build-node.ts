@@ -17,8 +17,8 @@ await Bun.build({
   // qronos_change start
   entrypoints: [
     "./src/node.ts",
-    "../qronos-sandbox/src/qronos-sandbox-mutation-worker.ts",
-    "../qronos-sandbox/src/qronos-sandbox-network-relay.ts",
+    "../sandbox/src/qronos-sandbox-mutation-worker.ts",
+    "../sandbox/src/qronos-sandbox-network-relay.ts",
   ],
   // qronos_change end
   outdir: "./dist/node",

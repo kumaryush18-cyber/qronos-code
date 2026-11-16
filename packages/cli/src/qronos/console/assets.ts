@@ -50,7 +50,7 @@ export namespace ConsoleAssets {
   }
 
   function source() {
-    return path.resolve(import.meta.dirname, "../../../../qronos-console")
+    return path.resolve(import.meta.dirname, "../../../../console")
   }
 
   async function build(app: string, out: string) {

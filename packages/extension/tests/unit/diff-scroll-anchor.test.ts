@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test"
 import { Window } from "happy-dom"
-import { capture } from "../../../qronos-ui/src/pierre/scroll"
+import { capture } from "../../../ui-kit/src/pierre/scroll"
 
 function setup() {
   const window = new Window()

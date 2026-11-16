@@ -145,7 +145,7 @@ async function pushLock(version: string, previous: string, branch: string) {
     // origin/main's version: an already-stale lockfile must heal, not silently
     // skip the update and fail the lockfile guard.
     patched = text.replace(
-      /("packages\/qronos-jetbrains": \{\n\s*"name": "@qronos\/qronos-jetbrains",\n\s*"version": ")[^"]+(")/,
+      /("packages\/jetbrains": \{\n\s*"name": "@qronos\/jetbrains",\n\s*"version": ")[^"]+(")/,
       `$1${version}$2`,
     )
     if (patched === text) {

@@ -4,7 +4,7 @@ import {
   resetToolOpenState,
   toolOpenKey,
   writeToolOpen,
-} from "../../../qronos-ui/src/components/tool-open-state"
+} from "../../../ui-kit/src/components/tool-open-state"
 import {
   taskAutoOpen,
   taskBackground,

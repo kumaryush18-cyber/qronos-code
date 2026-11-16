@@ -938,7 +938,7 @@ describe("MemoryService turn-lock ref-counting", () => {
 
 describe("MemoryTimers signal ref-counting", () => {
   test("shares one controller per root and drops it once the last capture releases", () => {
-    const root = "/qronos-memory/ref-count-root"
+    const root = "/memory/ref-count-root"
     const first = MemoryTimers.signal(root)
     const second = MemoryTimers.signal(root)
     expect(second).toBe(first) // concurrent captures share the controller

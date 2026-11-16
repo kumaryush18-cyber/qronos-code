@@ -22,7 +22,7 @@ import {
   RunError,
   type Lane,
   type ScenarioID,
-} from "../../qronos-e2e/src/index"
+} from "../../e2e/src/index"
 import { cellRunId, runCell } from "./e2e-cell"
 import {
   UsageError,

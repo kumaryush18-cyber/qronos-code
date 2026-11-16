@@ -17,7 +17,7 @@ function xml(command: { env?: Record<string, string> } | undefined) {
 describe("OS attention notifications", () => {
   const notice = {
     message: "Qronos task completed.",
-    workspace: "qronos-vscode",
+    workspace: "extension",
     session: "Add notifications",
   }
 
@@ -27,7 +27,7 @@ describe("OS attention notifications", () => {
     expect(command?.cmd).toBe("powershell.exe")
     expect(command?.args.slice(0, 3)).toEqual(["-NoProfile", "-NonInteractive", "-EncodedCommand"])
     expect(command?.env?.QRONOS_TOAST_APPID).toBe(APPID)
-    expect(xml(command)).toContain("Workspace: qronos-vscode")
+    expect(xml(command)).toContain("Workspace: extension")
     expect(xml(command)).toContain("Session: Add notifications")
   })
 
@@ -36,7 +36,7 @@ describe("OS attention notifications", () => {
     const text = script(command)
 
     // The script must be a fixed program: no notice content and no identity in it.
-    expect(text).not.toContain("qronos-vscode")
+    expect(text).not.toContain("extension")
     expect(text).not.toContain("Add notifications")
     expect(text).not.toContain(APPID)
     expect(text).toContain("$env:QRONOS_TOAST_XML")

@@ -9,7 +9,7 @@ description: "Track and manage tasks with AI-generated todo lists"
 
 **Why it matters**: Complex workflows have lots of moving parts. Without structure, it's easy to miss steps, duplicate work, or forget what comes next.
 
-{% image src="/docs/img/screenshot-tests/qronos-vscode/visual-regression/composite-webview/todo-write-docs-overview-chromium-linux.png" alt="Task Todo List overview showing interactive checklist in Qronos Code" width="420" /%}
+{% image src="/docs/img/screenshot-tests/extension/visual-regression/composite-webview/todo-write-docs-overview-chromium-linux.png" alt="Task Todo List overview showing interactive checklist in Qronos Code" width="420" /%}
 
 ## How to trigger todo lists
 
@@ -53,7 +53,7 @@ Qronos updates the list when:
 **1. Session Dock**
 A progress chip above the prompt shows how many items are done and the item Qronos works on now
 
-{% image src="/docs/img/screenshot-tests/qronos-vscode/visual-regression/chat/chat-view-session-dock-todo-states-chromium-linux.png" alt="Todo progress chip in the session dock, next to the working indicator and the session actions" width="420" /%}
+{% image src="/docs/img/screenshot-tests/extension/visual-regression/chat/chat-view-session-dock-todo-states-chromium-linux.png" alt="Todo progress chip in the session dock, next to the working indicator and the session actions" width="420" /%}
 
 While Qronos works, the chip sits next to the working indicator. When the session is idle, it sits next to the session actions. Click the chip to see the full list.
 

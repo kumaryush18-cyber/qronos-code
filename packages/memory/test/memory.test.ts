@@ -56,7 +56,7 @@ describe("memory facade", () => {
       })
 
       const shown = await Memory.show({ root: t.root })
-      const recall = await Memory.recall({ root: t.root, query: "日本語 設定 qronos-vscode" })
+      const recall = await Memory.recall({ root: t.root, query: "日本語 設定 extension" })
 
       expect(shown.sources.project).toContain("設定")
       expect(recall.result?.block).toContain("日本語")

@@ -17,7 +17,7 @@
 
 import { existsSync } from "node:fs"
 import { join, resolve } from "node:path"
-import { RunError, SCENARIO_IDS, type Lane, type ScenarioID } from "../../qronos-e2e/src/index"
+import { RunError, SCENARIO_IDS, type Lane, type ScenarioID } from "../../e2e/src/index"
 import { runCell } from "./e2e-cell"
 
 const root = resolve(import.meta.dir, "..")

@@ -135,7 +135,7 @@ describe("memory TUI command parser", () => {
     const shown: string[] = []
     const client = {
       memory: {
-        status: async () => ({ data: { root: "/tmp/qronos-memory", state: { enabled: true } } }),
+        status: async () => ({ data: { root: "/tmp/memory", state: { enabled: true } } }),
       },
     } as unknown as QronosClient
 
@@ -151,8 +151,8 @@ describe("memory TUI command parser", () => {
       usage() {},
     })
 
-    expect(opened).toEqual(["/tmp/qronos-memory"])
-    expect(shown).toEqual(["Memory folder: /tmp/qronos-memory"])
+    expect(opened).toEqual(["/tmp/memory"])
+    expect(shown).toEqual(["Memory folder: /tmp/memory"])
   })
 
   test("bare memory command opens help", async () => {

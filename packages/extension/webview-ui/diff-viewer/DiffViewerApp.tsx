@@ -480,7 +480,7 @@ const DiffViewerShell: Component = () => {
 
 export const DiffViewerApp: Component = () => {
   return (
-    <ThemeProvider defaultTheme="qronos-vscode">
+    <ThemeProvider defaultTheme="extension">
       <DialogProvider>
         <VSCodeProvider>
           <ServerProvider>

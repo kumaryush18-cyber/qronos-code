@@ -41,7 +41,7 @@ export async function provider(mode: ProviderMode, prepareMode?: PrepareMode) {
         gitUrl: `file://${request.projectDir}`,
         branch: "main",
         model: "qronos/fake-deterministic",
-        seed: "qronos-e2e",
+        seed: "e2e",
       },
       resources:
         request.lane === "cloud"

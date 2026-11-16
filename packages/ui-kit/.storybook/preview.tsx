@@ -10,7 +10,7 @@ const themeDecorator: DecoratorFunction<SolidRenderer> = (Story, context) => {
   const vscodeThemeId = (context.globals["vscodeTheme"] as string) ?? "dark-modern"
 
   const colorScheme = (() => {
-    if (themeId === "qronos-vscode") return applyVscodeTheme(vscodeThemeId)
+    if (themeId === "extension") return applyVscodeTheme(vscodeThemeId)
     clearVscodeTheme()
     return (context.globals["colorScheme"] as "light" | "dark") ?? "dark"
   })()
@@ -40,7 +40,7 @@ const preview: Preview = {
         icon: "paintbrush",
         items: [
           { value: "qronos", title: "Qronos" },
-          { value: "qronos-vscode", title: "Qronos VSCode" },
+          { value: "extension", title: "Qronos VSCode" },
         ],
         dynamicTitle: true,
       },

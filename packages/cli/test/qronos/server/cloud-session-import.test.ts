@@ -43,7 +43,7 @@ const [runtime, gateway, server, fixture] = await (async () => {
   try {
     return await Promise.all([
       import("../../../src/effect/app-runtime"),
-      import("../../../src/qronos/server/httpapi/groups/qronos-gateway"),
+      import("../../../src/qronos/server/httpapi/groups/gateway"),
       import("../../../src/server/routes/instance/httpapi/server"),
       import("../../fixture/fixture"),
     ])

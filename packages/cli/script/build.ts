@@ -67,9 +67,9 @@ async function isQronosConsoleUpToDate(app: string, out: string) {
     path.join(app, "package.json"),
     path.join(app, "vite.config.ts"),
     path.join(app, "index.html"),
-    path.resolve(dir, "../qronos-web-ui/src"),
-    path.resolve(dir, "../qronos-indexing/src"),
-    path.resolve(dir, "../qronos-ui/src"),
+    path.resolve(dir, "../web-ui/src"),
+    path.resolve(dir, "../indexing/src"),
+    path.resolve(dir, "../ui-kit/src"),
     path.resolve(dir, "../ui/src"),
     path.resolve(dir, "../sdk/js/src"),
     path.resolve(dir, "../../bun.lock"),
@@ -91,7 +91,7 @@ async function isQronosConsoleUpToDate(app: string, out: string) {
 }
 
 async function buildQronosConsole() {
-  const app = path.resolve(dir, "../qronos-console")
+  const app = path.resolve(dir, "../console")
   const out = path.join(app, "dist")
   if (await isQronosConsoleUpToDate(app, out)) {
     console.log(`reusing existing Qronos Console build at ${out}`)

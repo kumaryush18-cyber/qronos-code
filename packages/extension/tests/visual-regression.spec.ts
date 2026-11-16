@@ -111,19 +111,19 @@ const DOCS = new Map<string, string[]>([
   [
     "chat--chat-view-session-dock-todo-states",
     [
-      "packages/docs/pages/code-with-ai/features/task-todo-list.md:/docs/img/screenshot-tests/qronos-vscode/visual-regression/chat/chat-view-session-dock-todo-states-chromium-linux.png",
+      "packages/docs/pages/code-with-ai/features/task-todo-list.md:/docs/img/screenshot-tests/extension/visual-regression/chat/chat-view-session-dock-todo-states-chromium-linux.png",
     ],
   ],
   [
     "composite-webview--todo-write-docs-overview",
     [
-      "packages/docs/pages/code-with-ai/features/task-todo-list.md:/docs/img/screenshot-tests/qronos-vscode/visual-regression/composite-webview/todo-write-docs-overview-chromium-linux.png",
+      "packages/docs/pages/code-with-ai/features/task-todo-list.md:/docs/img/screenshot-tests/extension/visual-regression/composite-webview/todo-write-docs-overview-chromium-linux.png",
     ],
   ],
   [
     "settings--agent-behaviour-workflows",
     [
-      "packages/docs/pages/customize/workflows.md:/docs/img/screenshot-tests/qronos-vscode/visual-regression/settings/agent-behaviour-workflows-chromium-linux.png",
+      "packages/docs/pages/customize/workflows.md:/docs/img/screenshot-tests/extension/visual-regression/settings/agent-behaviour-workflows-chromium-linux.png",
     ],
   ],
 ])

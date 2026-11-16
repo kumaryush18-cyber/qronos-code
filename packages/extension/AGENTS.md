@@ -138,7 +138,7 @@ Two separate esbuild builds in [`esbuild.js`](esbuild.js):
 - Extension code in `src/`, webview code in `webview-ui/src/` with separate tsconfig
 - Tests compile to `out/` via `compile-tests`, not `dist/`
 - CSP requires nonce for scripts and `font-src` for bundled fonts — see [`QronosProvider.ts`](src/QronosProvider.ts)
-- HTML root has `data-theme="qronos-vscode"` to activate qronos-ui's VS Code theme bridge
+- HTML root has `data-theme="extension"` to activate qronos-ui's VS Code theme bridge
 - Extension and webview have no shared state — communicate via `vscode.Webview.postMessage()`
 - For editor panels, use [`AgentManagerProvider`](src/agent-manager/AgentManagerProvider.ts) pattern with `retainContextWhenHidden: true`
 - esbuild webview build includes [`cssPackageResolvePlugin`](esbuild.js) for CSS `@import` resolution and font loaders (`.woff`, `.woff2`, `.ttf`)
@@ -201,7 +201,7 @@ New webview features must use **`@qronos-ai/ui-kit`** components instead of raw 
 - **Check existing webview usages first**: `webview-ui/src/` and `packages/ui-kit/src/stories/` show how qronos-ui components are composed. Do not rely only on the component API in isolation.
 - **`data-component` and `data-slot` attributes carry CSS styling** — qronos-ui uses `[data-component]` and `[data-slot]` attribute selectors, not class names. Reuse existing component slots where available so shared styles apply consistently.
 - **Prefer qronos-ui styles**: Reuse existing qronos-ui CSS variables, tokens, and component styles. Add missing reusable styles there; keep extension-specific rules in their owning feature stylesheet rather than inlining or duplicating styles.
-- **Icons**: Qronos-only icons are in [qronos-ui's registry](../qronos-ui/src/components/icon.tsx), which falls back to [the upstream registry](../ui/src/components/icon.tsx). To list upstream icon names: `node -e "const c=require('fs').readFileSync('../../packages/ui/src/components/icon.tsx','utf8');[...c.matchAll(/^\\s{2}[\"']?([\\w-]+)[\"']?:\\s*\x60/gm)].map(m=>m[1]).sort().forEach(n=>console.log(n))"`. Icon names use both hyphenated (`arrow-left`) and bare-word (`brain`, `console`, `providers`) keys.
+- **Icons**: Qronos-only icons are in [qronos-ui's registry](../ui-kit/src/components/icon.tsx), which falls back to [the upstream registry](../ui/src/components/icon.tsx). To list upstream icon names: `node -e "const c=require('fs').readFileSync('../../packages/ui/src/components/icon.tsx','utf8');[...c.matchAll(/^\\s{2}[\"']?([\\w-]+)[\"']?:\\s*\x60/gm)].map(m=>m[1]).sort().forEach(n=>console.log(n))"`. Icon names use both hyphenated (`arrow-left`) and bare-word (`brain`, `console`, `providers`) keys.
 
 ### Diff Rendering Performance
 

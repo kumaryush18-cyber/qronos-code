@@ -18,12 +18,12 @@ describe("indexing plugin detection", () => {
   })
 
   test("normalizes supported plugin forms", () => {
-    expect(normalizePluginName("qronos-indexing")).toBe("qronos-indexing")
-    expect(normalizePluginName("qronos-indexing@1.2.3")).toBe("qronos-indexing")
+    expect(normalizePluginName("indexing")).toBe("indexing")
+    expect(normalizePluginName("qronos-indexing@1.2.3")).toBe("indexing")
     expect(normalizePluginName("@qronos-ai/indexing")).toBe("@qronos-ai/indexing")
     expect(normalizePluginName("@qronos-ai/indexing@1.2.3")).toBe("@qronos-ai/indexing")
     expect(normalizePluginName("../../packages/indexing")).toBe("@qronos-ai/indexing")
-    expect(normalizePluginName("file:///tmp/.opencode/plugin/qronos-indexing.js")).toBe("qronos-indexing")
+    expect(normalizePluginName("file:///tmp/.opencode/plugin/qronos-indexing.js")).toBe("indexing")
     expect(normalizePluginName("file:///tmp/node_modules/@qronos-ai/indexing/index.js")).toBe(
       "@qronos-ai/indexing",
     )
@@ -32,7 +32,7 @@ describe("indexing plugin detection", () => {
 
   test("detects supported indexing plugin specifiers", () => {
     const values = [
-      "qronos-indexing",
+      "indexing",
       "qronos-indexing@1.2.3",
       "@qronos-ai/indexing",
       "@qronos-ai/indexing@1.2.3",

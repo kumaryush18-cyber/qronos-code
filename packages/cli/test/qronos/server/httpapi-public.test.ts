@@ -6,7 +6,7 @@ import { BackgroundProcessPaths } from "../../../src/qronos/server/httpapi/group
 import { BranchNamePaths } from "../../../src/qronos/server/httpapi/groups/branch-name"
 import { ConfigConsolePaths } from "../../../src/qronos/server/httpapi/groups/config-console"
 import { IndexingPaths, QronosEmbeddingModel } from "../../../src/qronos/server/httpapi/groups/indexing"
-import { QronosGatewayPaths } from "../../../src/qronos/server/httpapi/groups/qronos-gateway"
+import { QronosGatewayPaths } from "../../../src/qronos/server/httpapi/groups/gateway"
 import { QronosPaths } from "../../../src/qronos/server/httpapi/groups/qronos"
 import { MemoryPaths } from "../../../src/qronos/server/httpapi/groups/memory"
 import { SessionHostPaths } from "../../../src/qronos/server/httpapi/groups/session-host"

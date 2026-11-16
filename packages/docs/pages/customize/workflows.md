@@ -8,7 +8,7 @@ platform: new
 
 Workflows (also called **slash commands** in the new extension) automate repetitive tasks by defining step-by-step instructions for Qronos Code to execute.
 
-{% image src="/docs/img/screenshot-tests/qronos-vscode/visual-regression/settings/agent-behaviour-workflows-chromium-linux.png" alt="Workflows tab in Qronos Code" width="420" caption="Workflows tab in Qronos Code" /%}
+{% image src="/docs/img/screenshot-tests/extension/visual-regression/settings/agent-behaviour-workflows-chromium-linux.png" alt="Workflows tab in Qronos Code" width="420" caption="Workflows tab in Qronos Code" /%}
 
 ## Creating Workflows
 

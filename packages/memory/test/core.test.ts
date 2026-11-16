@@ -129,7 +129,7 @@ describe("memory core package", () => {
         const status = await QronosMemory.status({ root: t.root })
         expect(status.state.enabled).toBe(true)
 
-        await writeFile(paths.manifest, '{"kind":"qronos-memory","version":1}\n')
+        await writeFile(paths.manifest, '{"kind":"memory","version":1}\n')
         await writeFile(paths.decisions, '{"kind":"log"}\n')
         await QronosMemory.status({ root: t.root })
         expect(await Bun.file(paths.decisions).exists()).toBe(true)

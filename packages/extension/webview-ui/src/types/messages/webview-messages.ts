@@ -315,7 +315,6 @@ export interface OpenConfigFileRequest {
     sourceEnvContent: string
     sourceProjectQronos: string
     sourceProjectRoot: string
-    sourceProjectQronos: string
     sourceProjectOpencode: string
   }
 }

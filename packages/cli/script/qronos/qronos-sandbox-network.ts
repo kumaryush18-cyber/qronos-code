@@ -2,7 +2,7 @@ import { createRequire } from "node:module"
 import fs from "node:fs/promises"
 import path from "node:path"
 
-const require = createRequire(path.resolve(import.meta.dirname, "../../../qronos-sandbox/package.json"))
+const require = createRequire(path.resolve(import.meta.dirname, "../../../sandbox/package.json"))
 
 export namespace QronosSandboxNetwork {
   export const relay = "qronos-sandbox-network-relay.js"
@@ -10,7 +10,7 @@ export namespace QronosSandboxNetwork {
 
   export async function bundle() {
     const result = await Bun.build({
-      entrypoints: ["../qronos-sandbox/src/qronos-sandbox-network-relay.ts"],
+      entrypoints: ["../sandbox/src/qronos-sandbox-network-relay.ts"],
       target: "bun",
       format: "esm",
       minify: true,

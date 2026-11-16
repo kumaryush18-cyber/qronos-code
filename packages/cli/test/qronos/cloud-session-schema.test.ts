@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { Schema } from "effect"
-import { CloudSessionData } from "../../src/qronos/server/httpapi/groups/qronos-gateway"
+import { CloudSessionData } from "../../src/qronos/server/httpapi/groups/gateway"
 
 describe("cloud session HTTP schema", () => {
   test("preserves transcript fields needed by the VS Code preview", () => {

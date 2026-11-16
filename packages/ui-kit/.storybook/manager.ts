@@ -1,10 +1,10 @@
 import { addons } from "storybook/manager-api"
 import { GLOBALS_UPDATED, SET_GLOBALS } from "storybook/internal/core-events"
 
-addons.register("qronos-ui/toolbar-visibility", (api) => {
+addons.register("ui-kit/toolbar-visibility", (api) => {
   const update = (globals: Record<string, unknown>) => {
-    const isVscode = globals["theme"] === "qronos-vscode"
-    document.documentElement.setAttribute("data-qronos-theme", isVscode ? "qronos-vscode" : "qronos")
+    const isVscode = globals["theme"] === "extension"
+    document.documentElement.setAttribute("data-qronos-theme", isVscode ? "extension" : "qronos")
   }
 
   const channel = api.getChannel()

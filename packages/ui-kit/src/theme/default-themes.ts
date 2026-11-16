@@ -27,7 +27,7 @@ export const qronosVscodeTheme = qronosVscodeJson as DesktopTheme
 
 export const QRONOS_THEMES: Record<string, DesktopTheme> = {
   qronos: qronosTheme,
-  "qronos-vscode": qronosVscodeTheme,
+  "extension": qronosVscodeTheme,
 }
 
 // Override DEFAULT_THEMES: Qronos themes first, then upstream

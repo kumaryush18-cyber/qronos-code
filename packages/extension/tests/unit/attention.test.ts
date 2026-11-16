@@ -186,7 +186,7 @@ describe("AttentionService", () => {
     const test = setup({
       notifications: true,
       capture: false,
-      details: async () => ({ workspace: "qronos-vscode", session: "Add notifications" }),
+      details: async () => ({ workspace: "extension", session: "Add notifications" }),
     })
     test.event(event({ type: "question.asked", properties: { id: "q1", sessionID: "s1" } }))
     await Bun.sleep(0)
@@ -219,7 +219,7 @@ describe("AttentionService", () => {
       osNotifications: true,
       focused: false,
       os: (notice) => alerts.push(notice),
-      details: async () => ({ workspace: "qronos-vscode", session: "Add notifications" }),
+      details: async () => ({ workspace: "extension", session: "Add notifications" }),
       capture: false,
     })
     test.event(event({ type: "question.asked", properties: { id: "q1", sessionID: "s1" } }), "C:\\repo")
@@ -228,7 +228,7 @@ describe("AttentionService", () => {
     // The OS toast is a transient, informational ping; the VS Code notification
     // persists as an actionable "Show" entry for when the user returns.
     expect(alerts).toEqual([
-      { message: "Qronos needs your input.", workspace: "qronos-vscode", session: "Add notifications" },
+      { message: "Qronos needs your input.", workspace: "extension", session: "Add notifications" },
     ])
     expect(test.messages).toEqual([
       { message: "Qronos needs your input. Workspace: qronos-vscode | Session: Add notifications", style: "info" },
@@ -254,7 +254,7 @@ describe("AttentionService", () => {
       visible: () => visible,
       details: async () => {
         visible = true
-        return { workspace: "qronos-vscode", session: "Add notifications" }
+        return { workspace: "extension", session: "Add notifications" }
       },
     })
     test.event(event({ type: "question.asked", properties: { id: "q1", sessionID: "s1" } }))
@@ -276,7 +276,7 @@ describe("AttentionService", () => {
       os: (notice) => alerts.push(notice),
       details: async () => {
         focused = true
-        return { workspace: "qronos-vscode", session: "Add notifications" }
+        return { workspace: "extension", session: "Add notifications" }
       },
     })
     test.event(event({ type: "question.asked", properties: { id: "q1", sessionID: "s1" } }))

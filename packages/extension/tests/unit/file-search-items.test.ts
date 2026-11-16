@@ -57,7 +57,7 @@ describe("mergeFileSearchItems", () => {
 
   it("normalizes Windows separators for matching and output", () => {
     const result = mergeFileSearchItems({
-      query: "qronos-vscode",
+      query: "extension",
       files: ["packages\\qronos-vscode\\src\\QronosProvider.ts"],
       folders: ["packages\\qronos-vscode\\"],
     })

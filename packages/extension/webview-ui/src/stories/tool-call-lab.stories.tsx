@@ -26,7 +26,7 @@ import { ServerContext } from "../context/server"
 import { SessionContext } from "../context/session"
 import type { TranscriptDiffRow } from "../context/transcript-rows"
 import type { PermissionRequest, QuestionRequest, SuggestionRequest } from "../types/messages"
-import { writeToolOpen } from "../../../../qronos-ui/src/components/tool-open-state"
+import { writeToolOpen } from "../../../../ui-kit/src/components/tool-open-state"
 
 registerExpandedTaskTool()
 registerVscodeToolOverrides()
@@ -162,7 +162,7 @@ const gapPatch = [
   "--- packages/ui-kit/src/components/message-part.css",
   "+++ packages/ui-kit/src/components/message-part.css",
   "@@ -560,5 +560,5 @@",
-  ' html[data-theme="qronos-vscode"] [data-component="reasoning-part"] {',
+  ' html[data-theme="extension"] [data-component="reasoning-part"] {',
   '   [data-component="collapsible"].tool-collapsible {',
   "-    gap: 4px;",
   "+    gap: 8px;",
@@ -788,7 +788,7 @@ const blocks: SDKPart[] = [
     "repo_overview",
     { path: "/project", depth: 2 },
     "Inspect repository",
-    "Repository structure:\npackages/\n  qronos-vscode/\n  qronos-ui/",
+    "Repository structure:\npackages/\n  extension/\n  ui-kit/",
     { ecosystems: ["TypeScript"], dependency_files: ["package.json"], depth: 2, truncated: false },
   ),
   done(

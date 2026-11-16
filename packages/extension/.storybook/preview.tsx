@@ -2,8 +2,8 @@
 import type { Preview, SolidRenderer } from "storybook-solidjs-vite"
 import type { DecoratorFunction } from "storybook/internal/types"
 // Reference qronos-ui stories helpers directly — not exported via package.json
-import { applyQronosTheme, applyVscodeTheme, clearVscodeTheme } from "../../qronos-ui/src/stories/theme-decorator"
-import "../../qronos-ui/.storybook/fonts.css"
+import { applyQronosTheme, applyVscodeTheme, clearVscodeTheme } from "../../ui-kit/src/stories/theme-decorator"
+import "../../ui-kit/.storybook/fonts.css"
 import "@qronos-ai/ui-kit/styles"
 import "../webview-ui/src/styles/chat.css"
 
@@ -11,11 +11,11 @@ import "../webview-ui/src/styles/chat.css"
 ;(window as { ICONS_BASE_URI?: string }).ICONS_BASE_URI = "/icons"
 
 const themeDecorator: DecoratorFunction<SolidRenderer> = (Story, context) => {
-  const themeId = (context.globals["theme"] as string) ?? "qronos-vscode"
+  const themeId = (context.globals["theme"] as string) ?? "extension"
   const vscodeThemeId = (context.globals["vscodeTheme"] as string) ?? "dark-modern"
 
   const colorScheme = (() => {
-    if (themeId === "qronos-vscode") return applyVscodeTheme(vscodeThemeId)
+    if (themeId === "extension") return applyVscodeTheme(vscodeThemeId)
     clearVscodeTheme()
     return (context.globals["colorScheme"] as "light" | "dark") ?? "dark"
   })()
@@ -44,7 +44,7 @@ const preview: Preview = {
         title: "Theme",
         icon: "paintbrush",
         items: [
-          { value: "qronos-vscode", title: "Qronos VSCode" },
+          { value: "extension", title: "Qronos VSCode" },
           { value: "qronos", title: "Qronos" },
         ],
         dynamicTitle: true,
@@ -79,7 +79,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    theme: "qronos-vscode",
+    theme: "extension",
     colorScheme: "dark",
     vscodeTheme: "dark-modern",
     a11y: { manual: true },

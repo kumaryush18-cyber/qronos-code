@@ -84,7 +84,7 @@ export function buildWebviewHtml(
   const folded = typeof opts.splashFolded === "boolean" ? opts.splashFolded : undefined
 
   return `<!DOCTYPE html>
-<html lang="en" data-theme="qronos-vscode" data-sidebar="${opts.sidebar ?? ""}">
+<html lang="en" data-theme="extension" data-sidebar="${opts.sidebar ?? ""}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

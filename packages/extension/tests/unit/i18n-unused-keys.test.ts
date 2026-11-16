@@ -42,7 +42,7 @@ import { Glob } from "bun"
 import path from "node:path"
 
 import { dict as appEn } from "../../webview-ui/src/i18n/en"
-import { dict as qronosEn } from "../../../qronos-i18n/src/en"
+import { dict as qronosEn } from "../../../i18n/src/en"
 import { dict as amEn } from "../../webview-ui/agent-manager/i18n/en"
 import { dict as cliEn } from "../../src/services/cli-backend/i18n/en"
 import { dict as hostEn } from "../../src/services/i18n/en"
@@ -65,7 +65,7 @@ const pools = [
   // qronos-i18n also overrides upstream ui.* keys consumed by components in
   // packages/ui/src (and the TUI), so those count as usage too.
   {
-    name: "qronos-i18n",
+    name: "i18n",
     dict: qronosEn,
     roots: [...WEBVIEW_ROOTS, path.join(REPO, "packages/ui"), path.join(REPO, "packages/tui")],
     runtime: ["plan.followup.", "snapshot.slowRepo.", "settings.providers.note."],

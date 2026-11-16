@@ -1,5 +1,5 @@
 import { join } from "node:path"
-import { manifest, run, type Lane, type ScenarioID } from "../../qronos-e2e/src/index"
+import { manifest, run, type Lane, type ScenarioID } from "../../e2e/src/index"
 
 export const CELL_TIMEOUT_MS = 30 * 60_000
 export const PROVIDER_TIMEOUT_MS = 20 * 60_000

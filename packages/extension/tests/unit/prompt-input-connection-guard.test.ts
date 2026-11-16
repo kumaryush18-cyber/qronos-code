@@ -4,7 +4,7 @@ import { join } from "node:path"
 
 const path = join(__dirname, "..", "..", "webview-ui", "src", "components", "chat", "PromptInput.tsx")
 const buttonPath = join(__dirname, "..", "..", "webview-ui", "src", "components", "shared", "SandboxButton.tsx")
-const iconPath = join(__dirname, "..", "..", "..", "qronos-ui", "src", "components", "icon.tsx")
+const iconPath = join(__dirname, "..", "..", "..", "ui-kit", "src", "components", "icon.tsx")
 const src = readFileSync(path, "utf8")
 const responses = readFileSync(
   join(__dirname, "..", "..", "webview-ui", "src", "components", "chat", "prompt-sandbox-messages.ts"),

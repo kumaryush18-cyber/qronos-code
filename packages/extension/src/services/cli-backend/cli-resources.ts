@@ -96,7 +96,7 @@ export async function copyQronosSandboxWorker(source: string, target: string): P
 
 function cacheRoot() {
   const root = process.env.XDG_CACHE_HOME ?? path.join(os.homedir(), ".cache")
-  return path.join(root, "qronos-vscode", "bwrap")
+  return path.join(root, "extension", "bwrap")
 }
 
 function bwrapLicenseDir(bin: string) {

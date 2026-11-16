@@ -9,8 +9,8 @@ import { HttpApi, HttpApiBuilder } from "effect/unstable/httpapi"
 import { Auth } from "../../../src/auth"
 import type { Config } from "../../../src/config/config"
 import { TestConfig } from "../../fixture/config"
-import { QronosGatewayApi, QronosGatewayPaths } from "../../../src/qronos/server/httpapi/groups/qronos-gateway"
-import { qronosGatewayHandlers } from "../../../src/qronos/server/httpapi/handlers/qronos-gateway"
+import { QronosGatewayApi, QronosGatewayPaths } from "../../../src/qronos/server/httpapi/groups/gateway"
+import { qronosGatewayHandlers } from "../../../src/qronos/server/httpapi/handlers/gateway"
 import { InstanceStore } from "../../../src/project/instance-store"
 import { ModelCache } from "../../../src/provider/model-cache"
 import { Session } from "../../../src/session/session"
@@ -133,7 +133,7 @@ describe("Qronos gateway HttpApi statuses", () => {
             state.info = new Auth.Oauth({ type: "oauth", access: "test-token", refresh: "", expires: 0 })
             return {
               console: spyOn(console, "warn").mockImplementation(() => {}),
-              log: spyOn(Log.create({ service: "qronos-gateway" }), "warn").mockImplementation(() => {}),
+              log: spyOn(Log.create({ service: "gateway" }), "warn").mockImplementation(() => {}),
             }
           }),
           (spies) =>

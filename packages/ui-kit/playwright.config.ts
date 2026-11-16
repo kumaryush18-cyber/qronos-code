@@ -3,7 +3,7 @@ import { defineConfig, devices } from "@playwright/test"
 export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.ts",
-  snapshotPathTemplate: "../qronos-docs/public/img/screenshot-tests/qronos-ui/{arg}{ext}",
+  snapshotPathTemplate: "../docs/public/img/screenshot-tests/ui-kit/{arg}{ext}",
   fullyParallel: true,
   forbidOnly: !!process.env["CI"],
   retries: process.env["CI"] ? 1 : 0,

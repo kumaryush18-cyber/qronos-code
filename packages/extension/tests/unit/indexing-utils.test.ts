@@ -133,11 +133,11 @@ describe("indexing feature detection", () => {
   })
 
   it("enables indexing settings when the indexing plugin is present", () => {
-    expect(configFeatures({ plugin: ["qronos-indexing"] }).indexing).toBe(true)
+    expect(configFeatures({ plugin: ["indexing"] }).indexing).toBe(true)
   })
 
   it("detects supported indexing plugin specifiers", () => {
-    expect(configFeatures({ plugin: ["qronos-indexing"] }).indexing).toBe(true)
+    expect(configFeatures({ plugin: ["indexing"] }).indexing).toBe(true)
     expect(configFeatures({ plugin: ["qronos-indexing@1.2.3"] }).indexing).toBe(true)
     expect(configFeatures({ plugin: ["@qronos-ai/indexing"] }).indexing).toBe(true)
     expect(configFeatures({ plugin: ["@qronos-ai/indexing@1.2.3"] }).indexing).toBe(true)

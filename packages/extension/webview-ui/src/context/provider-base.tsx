@@ -13,7 +13,7 @@ import { SpeechToTextPrewarm } from "../components/speech-to-text/SpeechToTextPr
 export const Base: ParentComponent<{ content?: ParentComponent }> = (props) => {
   const Content = props.content ?? ((props) => props.children)
   return (
-    <ThemeProvider defaultTheme="qronos-vscode">
+    <ThemeProvider defaultTheme="extension">
       <DialogProvider>
         <VSCodeProvider>
           <ServerProvider>

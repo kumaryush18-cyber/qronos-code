@@ -114,7 +114,7 @@ const scopes: Record<string, string> = {
   desktop: "area:desktop",
   app: "area:desktop",
   docs: "area:docs",
-  "qronos-docs": "area:docs",
+  "docs": "area:docs",
   gateway: "area:gateway",
   sdk: "area:sdk",
   ui: "area:ui",

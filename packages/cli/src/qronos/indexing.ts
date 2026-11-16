@@ -28,7 +28,7 @@ import { LanceDBRuntime } from "./lancedb"
 import { indexingWithQronosDefault, resolveQronosIndexingAuth, type QronosIndexingAuth } from "./indexing-auth"
 import { primaryWorktree } from "./primary-worktree"
 
-const log = Log.create({ service: "qronos-indexing" })
+const log = Log.create({ service: "indexing" })
 const auth = makeRuntime(Auth.Service, Auth.defaultLayer)
 const consent = new Map<string, boolean>()
 const missing = () => disabledIndexingStatus("Indexing plugin is not enabled for this workspace.")
