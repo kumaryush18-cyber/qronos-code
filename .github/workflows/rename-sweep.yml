@@ -1,8 +1,9 @@
 name: rename-sweep
 
-# Phase-1 gate: after moving every workspace package to the @qronos-ai scope,
-# nothing may still import the old scopes. This is a five-second check that
-# catches a missed codemod file before anyone installs a broken vsix.
+# Gate for the whole rebrand: no old scope, package name or word may survive
+# outside the files that are allowed to quote it (licence, attribution and the
+# upstream cherry-pick helper). Runs in seconds, so it fails before a broken
+# vsix can be built.
 
 on:
   workflow_dispatch:
@@ -15,31 +16,43 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: No @qronos or @opencode-ai references left
+      - name: No old package scopes left
         run: |
           set +e
-          hits=$(grep -rn "@qronos/\|@opencode-ai/" \
+          hits=$(grep -rn "@kilocode/\|@opencode-ai/" \
             --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
-            --exclude-dir=.qronos --exclude-dir=.github \
-            --exclude=NOTICE --exclude=ATTRIBUTION.md \
-            --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md . | head -40)
-          if [ -n "$hits" ]; then
-            echo "Old package scopes still referenced:"
-            echo "$hits"
-            exit 1
-          fi
+            --exclude-dir=.github --exclude-dir=.qronos \
+            --exclude=NOTICE --exclude=ATTRIBUTION.md --exclude=LICENSE \
+            --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md --exclude=BASELINE.md \
+            --exclude-dir=upstream . | head -20)
+          [ -n "$hits" ] && { echo "$hits"; exit 1; }
           echo "clean"
 
-      - name: package names are all @qronos-ai
+      - name: No kilo word left in code or docs
         run: |
           set +e
-          # jq reads the real package name; a plain grep also catches the
-          # "name" fields inside contributes (view titles like "Qronos AI").
+          hits=$(grep -rIni "kilocode\|\bkilo\b" \
+            --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
+            --exclude-dir=.github --exclude-dir=.qronos --exclude-dir=upstream \
+            --exclude=NOTICE --exclude=ATTRIBUTION.md --exclude=LICENSE \
+            --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md --exclude=BASELINE.md \
+            --exclude=PLAN.md . | head -20)
+          [ -n "$hits" ] && { echo "Old name still present:"; echo "$hits"; exit 1; }
+          echo "clean"
+
+      - name: Package names
+        run: |
+          set +e
           bad=$(for f in package.json packages/*/package.json packages/sdk/js/package.json; do
                   jq -r .name "$f"; done | grep -v '@qronos-ai/\|^qronos-code$' | head -10)
-          if [ -n "$bad" ]; then
-            echo "Unexpected package name:"; echo "$bad"; exit 1
-          fi
+          [ -n "$bad" ] && { echo "Unexpected package name:"; echo "$bad"; exit 1; }
+          echo "clean"
+
+      - name: No kilo in any tracked path
+        run: |
+          set +e
+          bad=$(git ls-files | grep -i "kilo" | head -10)
+          [ -n "$bad" ] && { echo "Old name in path:"; echo "$bad"; exit 1; }
           echo "clean"
 
   install:
