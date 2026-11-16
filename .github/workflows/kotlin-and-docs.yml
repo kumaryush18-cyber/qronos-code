@@ -23,6 +23,11 @@ jobs:
           bun-version: latest
       - name: bun install
         run: bun install --no-save
+      # stageRepoCli only runs after buildRepoCli; nothing triggers that task, so
+      # the binary has to exist before Gradle starts.
+      - name: build the CLI for this platform
+        working-directory: packages/cli
+        run: bun run script/build.ts --single --skip-install
       - name: compile the JetBrains plugin
         working-directory: packages/jetbrains
         env:
