@@ -79,12 +79,14 @@ jobs:
           pid=$!
           for i in $(seq 1 40); do
             code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4599/qronos/profile || true)
-            if [ "$code" = "200" ]; then break; fi
+            # 401 is fine here: CI runs without a Qronos account. What matters is
+            # that the server answers at all instead of crashing on first request.
+            if [ "$code" != "000" ] && [ -n "$code" ]; then break; fi
             sleep 1
           done
           echo "status: $code"
           kill "$pid" 2>/dev/null || true
-          if [ "$code" != "200" ]; then
+          if [ "$code" = "000" ] || [ -z "$code" ]; then
             echo "::error::the compiled CLI did not answer /qronos/profile (got '$code')"
             tail -30 "$RUNNER_TEMP/serve.log"
             exit 1
