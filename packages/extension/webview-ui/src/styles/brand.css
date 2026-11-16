@@ -1,6 +1,7 @@
 /* Same tokens as the docs site. Yellow is a brand fill, not a warning color. */
 
-html[data-theme="qronos-vscode"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] {
   --qronos-yellow: #ffdd00;
   --qronos-yellow-hover: #edcd00;
 }

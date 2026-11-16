@@ -181,7 +181,8 @@
   text-decoration: underline;
 }
 
-html[data-theme="qronos-vscode"] [data-component="bash-output"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="bash-output"] {
   border-radius: 0;
   border: 0;
   background: transparent;
@@ -448,7 +449,8 @@ body.vscode-high-contrast-light [data-component="user-message"] [data-slot="user
   }
 }
 
-html[data-theme="qronos-vscode"] [data-component="todos"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="todos"] {
   margin-inline: -6px;
   width: calc(100% + 12px);
   padding: 8px 12px 10px;
@@ -622,7 +624,8 @@ html[data-theme="qronos-vscode"] [data-component="todos"] {
   }
 }
 
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   [data-component="reasoning-part"][data-auto-collapse]:not([data-manual])
   [data-slot="reasoning-content"] {
   max-height: 120px;
@@ -636,24 +639,28 @@ html[data-theme="qronos-vscode"]
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12px);
 }
 
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   [data-component="reasoning-part"][data-auto-collapse][data-streaming]:not([data-manual])
   [data-slot="reasoning-content"] {
   mask-image: linear-gradient(to bottom, transparent 0%, black 12px, black 85%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12px, black 85%, transparent 100%);
 }
 
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   [data-component="reasoning-part"][data-auto-collapse]:not([data-manual])
   [data-slot="reasoning-content"]::-webkit-scrollbar {
   display: none;
 }
 
-html[data-theme="qronos-vscode"] [data-component="text-part"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="text-part"] {
   margin-top: 0;
 }
 
-html[data-theme="qronos-vscode"] [data-component="reasoning-part"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="reasoning-part"] {
   border-left: 0;
   border-radius: 0;
   overflow: visible;

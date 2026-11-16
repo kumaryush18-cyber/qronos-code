@@ -6,11 +6,13 @@
  * VS Code theme the user has active. The DesktopTheme JSON provides fallback
  * values; this CSS overrides them at runtime when --vscode-* vars are present.
  *
- * Scoped to html[data-theme="qronos-vscode"] so it only applies when the
+ * Scoped to html[data-theme="qronos-vscode"],
+html[data-theme="extension"] so it only applies when the
  * qronos-vscode theme is selected.
  */
 
-html[data-theme="qronos-vscode"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] {
   /* Let VS Code control the color scheme instead of the OS preference */
   color-scheme: normal;
 

@@ -23,7 +23,8 @@
 
 /* Generated separators become accessibility text nodes. Keep them out of
    concurrently updating Agent Manager tool rows while preserving sidebar UI. */
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   .am-layout
   [data-component="tool-part-wrapper"][data-part-type="tool"]
   [data-component="collapsible"]
@@ -35,13 +36,15 @@ html[data-theme="qronos-vscode"]
     [data-slot="webfetch-meta"],
     [data-component="shell-submessage"]
   )::before,
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   .am-layout
   [data-component="tool-part-wrapper"][data-part-type="tool"]
   [data-component="collapsible"]
   [data-slot="message-part-title-text"]
   + :is([data-slot="message-part-meta-line"], [data-slot="basic-tool-tool-subtitle"])::before,
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   .am-layout
   [data-component="tool-part-wrapper"][data-part-type="tool"]
   [data-slot="context-tool-group-summary"]::before {

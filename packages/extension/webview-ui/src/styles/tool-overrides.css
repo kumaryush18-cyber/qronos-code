@@ -147,7 +147,8 @@
   padding: 8px 12px;
 }
 
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   [data-component="tool-part-wrapper"][data-part-type="tool"]
   [data-component="background-process-details"]
   [data-component="tool-output"][data-variant="preview"] {
@@ -194,7 +195,8 @@ html[data-theme="qronos-vscode"]
    Generic / MCP Tool
    ============================================ */
 
-html[data-theme="qronos-vscode"]
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"]
   [data-component="tool-part-wrapper"][data-part-type="tool"]
   [data-slot="collapsible-content"]:has(> [data-slot="mcp-section-label"]) {
   overflow: hidden;

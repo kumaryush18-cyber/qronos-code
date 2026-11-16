@@ -145,7 +145,8 @@
 }
 
 /* Tool icon in trigger: visible in VS Code theme */
-html[data-theme="qronos-vscode"] [data-component="tool-trigger"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="tool-trigger"] {
   [data-slot="basic-tool-icon"] {
     display: inline-flex;
     align-items: center;
@@ -199,7 +200,8 @@ html[data-theme="qronos-vscode"] [data-component="tool-trigger"] {
 }
 
 /* Card styling for tool calls in the VS Code sidebar theme */
-html[data-theme="qronos-vscode"] [data-component="tool-part-wrapper"][data-part-type="tool"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="tool-part-wrapper"][data-part-type="tool"] {
   border-radius: 0;
   border: 0;
   overflow: visible;
@@ -558,7 +560,8 @@ html[data-theme="qronos-vscode"] [data-component="tool-part-wrapper"][data-part-
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html[data-theme="qronos-vscode"] [data-component="tool-part-wrapper"][data-part-type="tool"] {
+  html[data-theme="qronos-vscode"],
+html[data-theme="extension"] [data-component="tool-part-wrapper"][data-part-type="tool"] {
     [data-component="collapsible"].tool-collapsible > [data-slot="collapsible-content"][data-expanded],
     [data-component="collapsible"].tool-collapsible > [data-slot="collapsible-content"][data-closed] {
       animation-duration: 0.01ms;

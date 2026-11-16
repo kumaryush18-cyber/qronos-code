@@ -135,7 +135,8 @@
 }
 
 /* VS Code theme: use native VS Code scrollbar color tokens */
-html[data-theme="qronos-vscode"] :is(.qronos-scrollbar, [data-scrollable]) {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] :is(.qronos-scrollbar, [data-scrollable]) {
   scrollbar-color: var(--vscode-scrollbarSlider-background) transparent;
 
   &::-webkit-scrollbar-thumb {
@@ -153,7 +154,8 @@ html[data-theme="qronos-vscode"] :is(.qronos-scrollbar, [data-scrollable]) {
 
 /* ===== VS Code extension: inherit native styling ===== */
 
-html[data-theme="qronos-vscode"] {
+html[data-theme="qronos-vscode"],
+html[data-theme="extension"] {
   code {
     background-color: transparent;
     padding: 0;
