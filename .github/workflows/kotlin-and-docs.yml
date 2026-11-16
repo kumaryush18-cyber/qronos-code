@@ -35,7 +35,7 @@ jobs:
       # the binary has to exist before Gradle starts.
       - name: build the CLI for this platform
         working-directory: packages/cli
-        run: bun run script/build.ts
+        run: bun run script/build.ts --single --skip-install
       - name: compile the JetBrains plugin
         working-directory: packages/jetbrains
         env:
