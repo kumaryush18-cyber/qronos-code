@@ -94,7 +94,7 @@ export async function ensureBwrapForTarget(target: string, root?: string): Promi
   }
   if (validLocalBwrap(dest)) return dest
 
-  const { buildBubblewrap } = await import("../../opencode/script/qronos/bubblewrap")
+  const { buildBubblewrap } = await import("../../cli/script/qronos/bubblewrap")
   const built = await buildBubblewrap(arch(target))
   stage(built.executable, dest, built.digest)
   return dest

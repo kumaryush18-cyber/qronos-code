@@ -550,7 +550,6 @@ export const dict = {
   "settings.config.source.envContent": "Configuração de ambiente embutida",
   "settings.config.source.projectQronos": "Configuração .qronos do projeto",
   "settings.config.source.projectRoot": "Configuração raiz do projeto",
-  "settings.config.source.projectQronos": "Configuração .qronos legada",
   "settings.config.source.projectOpencode": "Configuração .opencode legada",
   "settings.models.title": "Modelos",
 

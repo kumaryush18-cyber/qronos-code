@@ -591,7 +591,6 @@ export const dict = {
   "settings.config.source.envContent": "Ugrađena konfiguracija okruženja",
   "settings.config.source.projectQronos": "Projektna .qronos konfiguracija",
   "settings.config.source.projectRoot": "Konfiguracija korijena projekta",
-  "settings.config.source.projectQronos": "Zastarjela .qronos konfiguracija",
   "settings.config.source.projectOpencode": "Zastarjela .opencode konfiguracija",
   "settings.models.title": "Modeli",
 

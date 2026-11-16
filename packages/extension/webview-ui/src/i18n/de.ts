@@ -600,7 +600,6 @@ export const dict = {
   "settings.config.source.envContent": "Inline-Umgebungskonfiguration",
   "settings.config.source.projectQronos": "Projekt .qronos-Konfiguration",
   "settings.config.source.projectRoot": "Projektstamm-Konfiguration",
-  "settings.config.source.projectQronos": "Veraltete .qronos-Konfiguration",
   "settings.config.source.projectOpencode": "Veraltete .opencode-Konfiguration",
   "settings.models.title": "Modelle",
 

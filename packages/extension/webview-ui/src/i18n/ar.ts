@@ -536,7 +536,6 @@ export const dict = {
   "settings.config.source.envContent": "تكوين البيئة المضمن",
   "settings.config.source.projectQronos": "تكوين .qronos للمشروع",
   "settings.config.source.projectRoot": "تكوين جذر المشروع",
-  "settings.config.source.projectQronos": "تكوين .qronos القديم",
   "settings.config.source.projectOpencode": "تكوين .opencode القديم",
   "settings.models.title": "النماذج",
 

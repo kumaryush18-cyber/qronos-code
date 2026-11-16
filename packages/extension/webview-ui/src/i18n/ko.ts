@@ -545,7 +545,6 @@ export const dict = {
   "settings.config.source.envContent": "인라인 환경 구성",
   "settings.config.source.projectQronos": "프로젝트 .qronos 구성",
   "settings.config.source.projectRoot": "프로젝트 루트 구성",
-  "settings.config.source.projectQronos": "레거시 .qronos 구성",
   "settings.config.source.projectOpencode": "레거시 .opencode 구성",
   "settings.models.title": "모델",
 

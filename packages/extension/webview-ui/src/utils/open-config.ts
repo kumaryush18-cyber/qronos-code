@@ -24,7 +24,6 @@ export function configMessage(scope: "local" | "global", t: LanguageContextValue
       sourceEnvContent: t("settings.config.source.envContent"),
       sourceProjectQronos: t("settings.config.source.projectQronos"),
       sourceProjectRoot: t("settings.config.source.projectRoot"),
-      sourceProjectQronos: t("settings.config.source.projectQronos"),
       sourceProjectOpencode: t("settings.config.source.projectOpencode"),
     },
   }

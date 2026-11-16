@@ -523,7 +523,6 @@ export const dict = {
   "settings.config.source.envContent": "內聯環境設定",
   "settings.config.source.projectQronos": "專案 .qronos 設定",
   "settings.config.source.projectRoot": "專案根目錄設定",
-  "settings.config.source.projectQronos": "舊版 .qronos 設定",
   "settings.config.source.projectOpencode": "舊版 .opencode 設定",
   "settings.models.title": "模型",
 

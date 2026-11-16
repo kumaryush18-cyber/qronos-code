@@ -505,7 +505,6 @@ export const dict = {
   "settings.config.source.envContent": "پیکربندی محیطی درون‌خطی",
   "settings.config.source.projectQronos": "پیکربندی .qronos پروژه",
   "settings.config.source.projectRoot": "پیکربندی ریشه پروژه",
-  "settings.config.source.projectQronos": "پیکربندی قدیمی .qronos",
   "settings.config.source.projectOpencode": "پیکربندی قدیمی .opencode",
   "settings.models.title": "مدل‌ها",
 

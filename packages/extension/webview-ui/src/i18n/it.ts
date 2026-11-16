@@ -426,7 +426,6 @@ export const dict = {
   "settings.config.source.envContent": "Config ambiente inline",
   "settings.config.source.projectQronos": "Config progetto .qronos",
   "settings.config.source.projectRoot": "Config root progetto",
-  "settings.config.source.projectQronos": "Config legacy progetto .qronos",
   "settings.config.source.projectOpencode": "Config legacy progetto .opencode",
   "settings.models.title": "Modelli",
   "settings.permissions.toast.updateFailed.title": "Aggiornamento autorizzazioni non riuscito",

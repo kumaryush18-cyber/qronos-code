@@ -582,7 +582,6 @@ export const dict = {
   "settings.config.source.envContent": "การตั้งค่าสภาพแวดล้อมแบบอินไลน์",
   "settings.config.source.projectQronos": "การตั้งค่า .qronos ของโปรเจกต์",
   "settings.config.source.projectRoot": "การตั้งค่ารูทของโปรเจกต์",
-  "settings.config.source.projectQronos": "การตั้งค่า .qronos แบบเก่า",
   "settings.config.source.projectOpencode": "การตั้งค่า .opencode แบบเก่า",
   "settings.models.title": "โมเดล",
 

@@ -585,7 +585,6 @@ export const dict = {
   "settings.config.source.envContent": "インライン環境構成",
   "settings.config.source.projectQronos": "プロジェクトの.qronos構成",
   "settings.config.source.projectRoot": "プロジェクトルート構成",
-  "settings.config.source.projectQronos": "旧.qronos構成",
   "settings.config.source.projectOpencode": "旧.opencode構成",
   "settings.models.title": "モデル",
 

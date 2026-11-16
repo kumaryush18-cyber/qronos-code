@@ -537,7 +537,6 @@ export const dict = {
   "settings.config.source.envContent": "Satır içi ortam yapılandırması",
   "settings.config.source.projectQronos": "Proje .qronos yapılandırması",
   "settings.config.source.projectRoot": "Proje kök yapılandırması",
-  "settings.config.source.projectQronos": "Eski .qronos yapılandırması",
   "settings.config.source.projectOpencode": "Eski .opencode yapılandırması",
   "settings.models.title": "Modeller",
 

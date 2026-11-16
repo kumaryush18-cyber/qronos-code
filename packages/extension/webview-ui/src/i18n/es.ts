@@ -593,7 +593,6 @@ export const dict = {
   "settings.config.source.envContent": "Configuración de entorno en línea",
   "settings.config.source.projectQronos": "Configuración .qronos del proyecto",
   "settings.config.source.projectRoot": "Configuración raíz del proyecto",
-  "settings.config.source.projectQronos": "Configuración heredada .qronos",
   "settings.config.source.projectOpencode": "Configuración heredada .opencode",
   "settings.models.title": "Modelos",
 

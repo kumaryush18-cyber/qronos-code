@@ -540,7 +540,6 @@ export const dict = {
   "settings.config.source.envContent": "Вбудована конфігурація середовища",
   "settings.config.source.projectQronos": "Конфігурація .qronos проєкту",
   "settings.config.source.projectRoot": "Коренева конфігурація проєкту",
-  "settings.config.source.projectQronos": "Застаріла конфігурація .qronos",
   "settings.config.source.projectOpencode": "Застаріла конфігурація .opencode",
   "settings.models.title": "Моделі",
 
