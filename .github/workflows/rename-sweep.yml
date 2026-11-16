@@ -1,0 +1,58 @@
+name: rename-sweep
+
+# Phase-1 gate: after moving every workspace package to the @qronos-ai scope,
+# nothing may still import the old scopes. This is a five-second check that
+# catches a missed codemod file before anyone installs a broken vsix.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No @kilocode or @opencode-ai references left
+        run: |
+          set +e
+          hits=$(grep -rn "@kilocode/\|@opencode-ai/" \
+            --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
+            --exclude-dir=.qronos --exclude=NOTICE --exclude=ATTRIBUTION.md . | head -40)
+          if [ -n "$hits" ]; then
+            echo "Old package scopes still referenced:"
+            echo "$hits"
+            exit 1
+          fi
+          echo "clean"
+
+      - name: package names are all @qronos-ai
+        run: |
+          set +e
+          bad=$(grep -h '"name"' packages/*/package.json packages/sdk/js/package.json package.json \
+            | grep -v "@qronos-ai/\|qronos-code" | head -10)
+          if [ -n "$bad" ]; then
+            echo "Unexpected package name:"; echo "$bad"; exit 1
+          fi
+          echo "clean"
+
+  install:
+    # A clean install is the real proof the rename is consistent: bun resolves
+    # every workspace link from the package names, so a name/import mismatch
+    # fails here instead of at runtime.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: bun install
+        run: bun install --no-save
+      - name: typecheck extension host
+        working-directory: packages/kilo-vscode
+        run: bun run check-types
+      - name: typecheck webview
+        working-directory: packages/kilo-vscode
+        run: bun run check-types:webview
