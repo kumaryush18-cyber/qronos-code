@@ -50,7 +50,7 @@ function logError(route: string, err: unknown) {
   log.error("unhandled error", { route, err })
 }
 
-export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qronos", (handlers) =>
+export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qronos-gateway", (handlers) =>
   Effect.gen(function* () {
     const auth = yield* Auth.Service
     const config = yield* Config.Service
