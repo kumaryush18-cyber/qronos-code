@@ -1,5 +1,5 @@
 import path from "node:path"
-import { zeroID } from "@opencode-ai/core/kilocode/zero-id"
+import { zeroID } from "@qronos-ai/core/kilocode/zero-id"
 import type { SSEPayload } from "./sdk-sse-adapter"
 
 type Buffered = { event: SSEPayload; directory?: string }

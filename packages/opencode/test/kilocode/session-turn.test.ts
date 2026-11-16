@@ -3,7 +3,7 @@ import os from "os"
 import fs from "fs/promises"
 import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { KiloSessionTurn } from "../../src/kilocode/session/turn"
 import { SessionID } from "../../src/session/schema"
 

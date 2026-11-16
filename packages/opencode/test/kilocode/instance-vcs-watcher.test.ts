@@ -1,6 +1,6 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { ConfigProvider, Context, Deferred, Effect, Fiber, Layer, LayerMap } from "effect"
 import * as TestConsole from "effect/testing/TestConsole"
 import { GlobalBus, type GlobalEvent } from "../../src/bus/global"
@@ -13,8 +13,8 @@ import { KilocodeWatcher } from "../../src/kilocode/watcher"
 import type { InstanceContext } from "../../src/project/instance-context"
 import { tmpdirScoped } from "../fixture/fixture"
 import { awaitWithTimeout, testEffect } from "../lib/effect"
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap, type LocationServices } from "@opencode-ai/core/location-services"
+import { Location } from "@qronos-ai/core/location"
+import { LocationServiceMap, type LocationServices } from "@qronos-ai/core/location-services"
 
 const layer = Layer.mergeAll(
   AppNodeBuilder.build(InstanceStore.node, [[InstanceStore.bootstrapNode, InstanceBootstrap.node]]),

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { createEffect, createRoot, createSignal } from "solid-js"
-import type { Config, IndexingConfig } from "@kilocode/sdk/v2"
+import type { Config, IndexingConfig } from "@qronos-ai/sdk/v2"
 import {
   createIndexingDialogState,
   currentKiloModel,

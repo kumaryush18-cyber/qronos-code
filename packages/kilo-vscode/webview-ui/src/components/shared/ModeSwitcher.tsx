@@ -9,8 +9,8 @@
 
 import { type Accessor, Component, createEffect, createSignal, onCleanup, For, Show } from "solid-js"
 import { PopupSelector } from "./PopupSelector"
-import { Button } from "@kilocode/kilo-ui/button"
-import { TooltipKeybind } from "@kilocode/kilo-ui/tooltip"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { TooltipKeybind } from "@qronos-ai/kilo-ui/tooltip"
 import { useSession } from "../../context/session"
 import { useLanguage } from "../../context/language"
 import type { AgentInfo } from "../../types/messages"

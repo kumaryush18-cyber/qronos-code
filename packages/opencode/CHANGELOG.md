@@ -1,4 +1,4 @@
-# @kilocode/cli
+# @qronos-ai/cli
 
 ## 7.8.28
 
@@ -63,10 +63,10 @@
 - [#15516](https://github.com/Kilo-Org/kilocode/pull/15516) [`58a856e`](https://github.com/Kilo-Org/kilocode/commit/58a856ecd40f7ddfb5e4bc6e0cca1c7c4b79cd91) - Fire each scheduled wakeup and cron task once when several Kilo processes open the same workspace, and keep a cancelled task from firing or coming back in another process.
 
 - Updated dependencies [[`0c1d8dd`](https://github.com/Kilo-Org/kilocode/commit/0c1d8dd89ee725e952ad402535c57447e098bb29)]:
-  - @kilocode/kilo-indexing@7.8.23
-  - @opencode-ai/server@7.8.23
-  - @opencode-ai/tui@7.8.23
-  - @opencode-ai/ui@7.8.23
+  - @qronos-ai/kilo-indexing@7.8.23
+  - @qronos-ai/server@7.8.23
+  - @qronos-ai/tui@7.8.23
+  - @qronos-ai/ui@7.8.23
 
 ## 7.8.21
 
@@ -91,12 +91,12 @@
 - [#15479](https://github.com/Kilo-Org/kilocode/pull/15479) [`ccf958a`](https://github.com/Kilo-Org/kilocode/commit/ccf958a1d2a4fa8b5136f228939daa975d0c8feb) - Fix auto-compaction starting well before the configured context threshold, and stop compaction from looping on models without a known context size or after you stop a compaction.
 
 - Updated dependencies [[`6c0d427`](https://github.com/Kilo-Org/kilocode/commit/6c0d4273f1b1b7fa85d562c699e7210f90b365b9)]:
-  - @kilocode/kilo-gateway@7.9.0
-  - @kilocode/kilo-indexing@7.8.19
-  - @kilocode/kilo-telemetry@7.8.19
-  - @opencode-ai/server@7.8.19
-  - @opencode-ai/tui@7.8.19
-  - @opencode-ai/ui@7.8.19
+  - @qronos-ai/kilo-gateway@7.9.0
+  - @qronos-ai/kilo-indexing@7.8.19
+  - @qronos-ai/kilo-telemetry@7.8.19
+  - @qronos-ai/server@7.8.19
+  - @qronos-ai/tui@7.8.19
+  - @qronos-ai/ui@7.8.19
 
 ## 7.8.18
 
@@ -234,10 +234,10 @@
 - [#13955](https://github.com/Kilo-Org/kilocode/pull/13955) [`bb652c5`](https://github.com/Kilo-Org/kilocode/commit/bb652c56b7d4a1ea4aac72a1cb0283bfe9242422) Thanks [@rakshith1928](https://github.com/rakshith1928)! - Fix permission and question prompts disappearing when switching sessions in the TUI. Approval prompts for running subagents and sessions now persist across session switches and are restored when switching back, so sessions are never left blocked on an unanswered prompt.
 
 - Updated dependencies [[`0a5c6df`](https://github.com/Kilo-Org/kilocode/commit/0a5c6df3486d897d142752173545a1d153b8cdaa)]:
-  - @kilocode/kilo-indexing@7.8.9
-  - @opencode-ai/server@7.8.9
-  - @opencode-ai/tui@7.8.9
-  - @opencode-ai/ui@7.8.9
+  - @qronos-ai/kilo-indexing@7.8.9
+  - @qronos-ai/server@7.8.9
+  - @qronos-ai/tui@7.8.9
+  - @qronos-ai/ui@7.8.9
 
 ## 7.8.8
 
@@ -286,12 +286,12 @@
 - [#14860](https://github.com/Kilo-Org/kilocode/pull/14860) [`2d209e6`](https://github.com/Kilo-Org/kilocode/commit/2d209e6d3ea3b7f20d1f36013eca8f21a663dbec) - Fix the TUI starting up to a permanently blank screen. A request sent to the TUI's worker before it finished starting was dropped, and the TUI then waited for a reply that never came, with no error and no timeout. Worker requests are now queued until the worker is ready, worker-side failures are reported instead of silently swallowed, and a worker that never answers fails with a clear message.
 
 - Updated dependencies [[`07b18a1`](https://github.com/Kilo-Org/kilocode/commit/07b18a1a250ac7b1b257e4571e7b6050e3abd092)]:
-  - @kilocode/kilo-gateway@7.8.4
-  - @kilocode/kilo-indexing@7.8.4
-  - @kilocode/kilo-telemetry@7.8.4
-  - @opencode-ai/server@7.8.4
-  - @opencode-ai/tui@7.8.4
-  - @opencode-ai/ui@7.8.4
+  - @qronos-ai/kilo-gateway@7.8.4
+  - @qronos-ai/kilo-indexing@7.8.4
+  - @qronos-ai/kilo-telemetry@7.8.4
+  - @qronos-ai/server@7.8.4
+  - @qronos-ai/tui@7.8.4
+  - @qronos-ai/ui@7.8.4
 
 ## 7.8.2
 
@@ -318,11 +318,11 @@
 - [#14679](https://github.com/Kilo-Org/kilocode/pull/14679) [`9076f03`](https://github.com/Kilo-Org/kilocode/commit/9076f03018fe3f3b4fd4707fb6a4da3ec6530301) - Restrict session PR linking, automatic recording, and background polling to CLI backends. VS Code, Agent Manager, JetBrains, and other clients keep their existing PR integrations without running the separate session-link mechanism, including when controlled from mobile.
 
 - Updated dependencies [[`463cbed`](https://github.com/Kilo-Org/kilocode/commit/463cbedaa6f17ebf6f4fbcc276a338259f348b63), [`d6426d0`](https://github.com/Kilo-Org/kilocode/commit/d6426d047505e2a90bd910d13aab51f6eb4a2b6f)]:
-  - @kilocode/kilo-indexing@7.8.2
-  - @kilocode/kilo-telemetry@7.8.2
-  - @opencode-ai/server@7.8.2
-  - @opencode-ai/tui@7.8.2
-  - @opencode-ai/ui@7.8.2
+  - @qronos-ai/kilo-indexing@7.8.2
+  - @qronos-ai/kilo-telemetry@7.8.2
+  - @qronos-ai/server@7.8.2
+  - @qronos-ai/tui@7.8.2
+  - @qronos-ai/ui@7.8.2
 
 ## 7.8.1
 
@@ -369,15 +369,15 @@
 - [#14480](https://github.com/Kilo-Org/kilocode/pull/14480) [`5e05988`](https://github.com/Kilo-Org/kilocode/commit/5e05988b17ced03fb040476c8748c86eae992e31) - Deliver plan completion questions to directory-scoped clients such as JetBrains without requiring a reconnect.
 
 - Updated dependencies [[`c06228d`](https://github.com/Kilo-Org/kilocode/commit/c06228d6a0090307331a572d726348b7ad3df722)]:
-  - @kilocode/sdk@7.8.0
-  - @kilocode/plugin@7.7.10
-  - @opencode-ai/tui@7.7.10
-  - @opencode-ai/ui@7.7.10
-  - @kilocode/kilo-gateway@7.7.10
-  - @kilocode/kilo-indexing@7.7.10
-  - @kilocode/plugin-atomic-chat@7.7.10
-  - @opencode-ai/server@7.7.10
-  - @kilocode/kilo-telemetry@7.7.10
+  - @qronos-ai/sdk@7.8.0
+  - @qronos-ai/plugin@7.7.10
+  - @qronos-ai/tui@7.7.10
+  - @qronos-ai/ui@7.7.10
+  - @qronos-ai/kilo-gateway@7.7.10
+  - @qronos-ai/kilo-indexing@7.7.10
+  - @qronos-ai/plugin-atomic-chat@7.7.10
+  - @qronos-ai/server@7.7.10
+  - @qronos-ai/kilo-telemetry@7.7.10
 
 ## 7.7.9
 
@@ -412,15 +412,15 @@
 - [#14484](https://github.com/Kilo-Org/kilocode/pull/14484) [`065bc5c`](https://github.com/Kilo-Org/kilocode/commit/065bc5c2e7a0779853f6231a215f2a1990c5fdd3) - Keep session costs complete after reopening paginated conversations, including nested subagents without counting their parents or siblings.
 
 - Updated dependencies [[`065bc5c`](https://github.com/Kilo-Org/kilocode/commit/065bc5c2e7a0779853f6231a215f2a1990c5fdd3)]:
-  - @kilocode/sdk@7.7.8
-  - @kilocode/plugin@7.7.8
-  - @opencode-ai/tui@7.7.8
-  - @opencode-ai/ui@7.7.8
-  - @kilocode/kilo-gateway@7.7.8
-  - @kilocode/kilo-indexing@7.7.8
-  - @kilocode/plugin-atomic-chat@7.7.8
-  - @opencode-ai/server@7.7.8
-  - @kilocode/kilo-telemetry@7.7.8
+  - @qronos-ai/sdk@7.7.8
+  - @qronos-ai/plugin@7.7.8
+  - @qronos-ai/tui@7.7.8
+  - @qronos-ai/ui@7.7.8
+  - @qronos-ai/kilo-gateway@7.7.8
+  - @qronos-ai/kilo-indexing@7.7.8
+  - @qronos-ai/plugin-atomic-chat@7.7.8
+  - @qronos-ai/server@7.7.8
+  - @qronos-ai/kilo-telemetry@7.7.8
 
 ## 7.7.7
 
@@ -457,15 +457,15 @@
 - [#14284](https://github.com/Kilo-Org/kilocode/pull/14284) [`bab87b4`](https://github.com/Kilo-Org/kilocode/commit/bab87b4abe6c05aa44e0cc6332422fc7bff56017) - Stop denying read-only bash commands in Ask, Plan, and Explore modes when a shell operator is only literal text, such as `grep "=>"`, `rg "foo|bar"`, or `cat <<'EOF'` bodies, or when output is discarded with `2>/dev/null` or `2>&1`. Real file redirects, pipes, chaining, and command substitution are still denied.
 
 - Updated dependencies [[`d8eaefd`](https://github.com/Kilo-Org/kilocode/commit/d8eaefdf1d84fa6779c8cb1634ef516948d76f06)]:
-  - @kilocode/sdk@7.7.5
-  - @kilocode/plugin@7.7.5
-  - @opencode-ai/tui@7.7.5
-  - @opencode-ai/ui@7.7.5
-  - @kilocode/kilo-gateway@7.7.5
-  - @kilocode/kilo-indexing@7.7.5
-  - @kilocode/plugin-atomic-chat@7.7.5
-  - @opencode-ai/server@7.7.5
-  - @kilocode/kilo-telemetry@7.7.5
+  - @qronos-ai/sdk@7.7.5
+  - @qronos-ai/plugin@7.7.5
+  - @qronos-ai/tui@7.7.5
+  - @qronos-ai/ui@7.7.5
+  - @qronos-ai/kilo-gateway@7.7.5
+  - @qronos-ai/kilo-indexing@7.7.5
+  - @qronos-ai/plugin-atomic-chat@7.7.5
+  - @qronos-ai/server@7.7.5
+  - @qronos-ai/kilo-telemetry@7.7.5
 
 ## 7.7.4
 
@@ -512,15 +512,15 @@
 - [#14201](https://github.com/Kilo-Org/kilocode/pull/14201) [`5bf040e`](https://github.com/Kilo-Org/kilocode/commit/5bf040ea69cda7d53641acca8977037fef779792) - Load skills from `skills.paths` entries written with a leading slash, such as `/.github/skills`, by falling back to the project root when no such directory exists at the filesystem root. Show skills in the VS Code slash menu under their own Skills group and list a skill that shares a name with a command as `/name:skill`.
 
 - Updated dependencies [[`3eaf47b`](https://github.com/Kilo-Org/kilocode/commit/3eaf47ba52179d385a1945c0be323c5d8fa2b4ee)]:
-  - @kilocode/kilo-gateway@8.0.0
-  - @kilocode/sdk@8.0.0
-  - @kilocode/kilo-indexing@7.7.3
-  - @kilocode/kilo-telemetry@7.7.3
-  - @kilocode/plugin@7.7.3
-  - @opencode-ai/tui@7.7.3
-  - @opencode-ai/ui@7.7.3
-  - @opencode-ai/server@7.7.3
-  - @kilocode/plugin-atomic-chat@7.7.3
+  - @qronos-ai/kilo-gateway@8.0.0
+  - @qronos-ai/sdk@8.0.0
+  - @qronos-ai/kilo-indexing@7.7.3
+  - @qronos-ai/kilo-telemetry@7.7.3
+  - @qronos-ai/plugin@7.7.3
+  - @qronos-ai/tui@7.7.3
+  - @qronos-ai/ui@7.7.3
+  - @qronos-ai/server@7.7.3
+  - @qronos-ai/plugin-atomic-chat@7.7.3
 
 ## 7.7.2
 
@@ -631,15 +631,15 @@
 - [#13945](https://github.com/Kilo-Org/kilocode/pull/13945) [`9db9718`](https://github.com/Kilo-Org/kilocode/commit/9db971865f3f95d8150b6fde1b307026402f4edb) - Prevent interrupted snapshot progress from poisoning future prompts, and skip snapshot lock waits when snapshots are disabled.
 
 - Updated dependencies [[`b5cf426`](https://github.com/Kilo-Org/kilocode/commit/b5cf426158d86573eb0eeb08d754231d813f2d64), [`4d2d800`](https://github.com/Kilo-Org/kilocode/commit/4d2d8001e550c39cfb871f83943b1d5411fd5234)]:
-  - @kilocode/sdk@8.0.0
-  - @kilocode/plugin@7.5.17
-  - @opencode-ai/tui@7.5.17
-  - @opencode-ai/ui@7.5.17
-  - @kilocode/kilo-gateway@7.5.17
-  - @kilocode/kilo-indexing@7.5.17
-  - @kilocode/plugin-atomic-chat@7.5.17
-  - @opencode-ai/server@7.5.17
-  - @kilocode/kilo-telemetry@7.5.17
+  - @qronos-ai/sdk@8.0.0
+  - @qronos-ai/plugin@7.5.17
+  - @qronos-ai/tui@7.5.17
+  - @qronos-ai/ui@7.5.17
+  - @qronos-ai/kilo-gateway@7.5.17
+  - @qronos-ai/kilo-indexing@7.5.17
+  - @qronos-ai/plugin-atomic-chat@7.5.17
+  - @qronos-ai/server@7.5.17
+  - @qronos-ai/kilo-telemetry@7.5.17
 
 ## 7.5.16
 
@@ -726,15 +726,15 @@
 - [#13736](https://github.com/Kilo-Org/kilocode/pull/13736) [`2f500b0`](https://github.com/Kilo-Org/kilocode/commit/2f500b05a15ac6d0ad896908095f8657a9f9b580) - Clarify when agents should share discoveries and read updates while the experimental shared agent board is enabled.
 
 - Updated dependencies [[`bbc26e4`](https://github.com/Kilo-Org/kilocode/commit/bbc26e425a6c75ec012ae6fc739e21320ec3a8a7), [`8c077fb`](https://github.com/Kilo-Org/kilocode/commit/8c077fbee7fa253c53201dbbf2161b1423cce724), [`ce274e6`](https://github.com/Kilo-Org/kilocode/commit/ce274e6762255e2318a477dd225f629ed6708e17), [`b8e1dae`](https://github.com/Kilo-Org/kilocode/commit/b8e1daecebd779b11cf63114b47d62b625876978), [`c0eba39`](https://github.com/Kilo-Org/kilocode/commit/c0eba39ef5cfdd96ce2e220850c091dc9473f848)]:
-  - @kilocode/kilo-indexing@7.5.10
-  - @kilocode/kilo-gateway@7.5.10
-  - @kilocode/sdk@7.6.0
-  - @kilocode/kilo-telemetry@7.5.10
-  - @kilocode/plugin@7.5.10
-  - @opencode-ai/tui@7.5.10
-  - @opencode-ai/ui@7.5.10
-  - @opencode-ai/server@7.5.10
-  - @kilocode/plugin-atomic-chat@7.5.10
+  - @qronos-ai/kilo-indexing@7.5.10
+  - @qronos-ai/kilo-gateway@7.5.10
+  - @qronos-ai/sdk@7.6.0
+  - @qronos-ai/kilo-telemetry@7.5.10
+  - @qronos-ai/plugin@7.5.10
+  - @qronos-ai/tui@7.5.10
+  - @qronos-ai/ui@7.5.10
+  - @qronos-ai/server@7.5.10
+  - @qronos-ai/plugin-atomic-chat@7.5.10
 
 ## 7.5.9
 
@@ -781,15 +781,15 @@
 - [#12642](https://github.com/Kilo-Org/kilocode/pull/12642) [`95c731e`](https://github.com/Kilo-Org/kilocode/commit/95c731e9d97bfb7046f04159188cc2b5e6e04f0a) Thanks [@noobezlol](https://github.com/noobezlol)! - Respect deleted bash permission overrides after upgrading.
 
 - Updated dependencies [[`7c845aa`](https://github.com/Kilo-Org/kilocode/commit/7c845aa0ec8a0ff46f25cff26545260c0126c3f7), [`dd390c1`](https://github.com/Kilo-Org/kilocode/commit/dd390c1930d0cc548fe997ed20c0f2be7967fd30), [`6624c1a`](https://github.com/Kilo-Org/kilocode/commit/6624c1a2b07c0a7871532b0b5175d01a03c6e61e)]:
-  - @kilocode/sdk@7.6.0
-  - @kilocode/plugin@7.5.7
-  - @opencode-ai/tui@7.5.7
-  - @opencode-ai/ui@7.5.7
-  - @kilocode/kilo-gateway@7.5.7
-  - @kilocode/kilo-indexing@7.5.7
-  - @kilocode/plugin-atomic-chat@7.5.7
-  - @opencode-ai/server@7.5.7
-  - @kilocode/kilo-telemetry@7.5.7
+  - @qronos-ai/sdk@7.6.0
+  - @qronos-ai/plugin@7.5.7
+  - @qronos-ai/tui@7.5.7
+  - @qronos-ai/ui@7.5.7
+  - @qronos-ai/kilo-gateway@7.5.7
+  - @qronos-ai/kilo-indexing@7.5.7
+  - @qronos-ai/plugin-atomic-chat@7.5.7
+  - @qronos-ai/server@7.5.7
+  - @qronos-ai/kilo-telemetry@7.5.7
 
 ## 7.5.6
 
@@ -824,15 +824,15 @@
 - [#13493](https://github.com/Kilo-Org/kilocode/pull/13493) [`bf7848c`](https://github.com/Kilo-Org/kilocode/commit/bf7848cb48cb30a5005189e10a0a4d4aeffd5aa5) Thanks [@maphew](https://github.com/maphew)! - Fix the task tool intermittently returning an empty result. Subagents that ran with memory context had a synthetic marker part appended after their answer, which was picked up as the final text part and surfaced as an empty `<task_result>` to the parent agent. The task tool now ignores synthetic, ignored, and empty text parts, and background jobs no longer let an empty run overwrite an earlier successful result, so resumed tasks keep their real output.
 
 - Updated dependencies [[`13a9673`](https://github.com/Kilo-Org/kilocode/commit/13a9673d08cfc69eebb89898861a1ee80278f226), [`f5a7a1d`](https://github.com/Kilo-Org/kilocode/commit/f5a7a1d61bf7eaaa7bc307a976f6f56150fa6264), [`f9ddb78`](https://github.com/Kilo-Org/kilocode/commit/f9ddb78b17714075ab4f5d1ccb26f2cdbcd644bf), [`34b10a6`](https://github.com/Kilo-Org/kilocode/commit/34b10a672b3048ed53477a1019f08832b522db2d), [`8cb1931`](https://github.com/Kilo-Org/kilocode/commit/8cb1931275b1df6d145b8a283cef550ae2851e29)]:
-  - @opencode-ai/ui@7.5.6
-  - @kilocode/sdk@7.5.6
-  - @kilocode/kilo-indexing@7.5.6
-  - @opencode-ai/tui@7.5.6
-  - @kilocode/plugin@7.5.6
-  - @opencode-ai/server@7.5.6
-  - @kilocode/kilo-gateway@7.5.6
-  - @kilocode/plugin-atomic-chat@7.5.6
-  - @kilocode/kilo-telemetry@7.5.6
+  - @qronos-ai/ui@7.5.6
+  - @qronos-ai/sdk@7.5.6
+  - @qronos-ai/kilo-indexing@7.5.6
+  - @qronos-ai/tui@7.5.6
+  - @qronos-ai/plugin@7.5.6
+  - @qronos-ai/server@7.5.6
+  - @qronos-ai/kilo-gateway@7.5.6
+  - @qronos-ai/plugin-atomic-chat@7.5.6
+  - @qronos-ai/kilo-telemetry@7.5.6
 
 ## 7.5.5
 
@@ -849,8 +849,8 @@
 - [#13472](https://github.com/Kilo-Org/kilocode/pull/13472) [`7b9a84f`](https://github.com/Kilo-Org/kilocode/commit/7b9a84f63a4dd5cb2130810f2d1597a660e52146) - Prevent the CLI from opening to a blank terminal on startup.
 
 - Updated dependencies [[`e4003da`](https://github.com/Kilo-Org/kilocode/commit/e4003da9e1842e0bc8f49777619faa3284b24f95)]:
-  - @opencode-ai/ui@7.5.1
-  - @opencode-ai/tui@7.5.1
+  - @qronos-ai/ui@7.5.1
+  - @qronos-ai/tui@7.5.1
 
 ## 7.5.0
 
@@ -939,12 +939,12 @@
 - [#13247](https://github.com/Kilo-Org/kilocode/pull/13247) [`0d5d334`](https://github.com/Kilo-Org/kilocode/commit/0d5d334480bc2093a12b27a34b03cac88cf33422) - Fix TUI sessions where new turns stopped appearing until the session was reopened
 
 - Updated dependencies [[`f39e163`](https://github.com/Kilo-Org/kilocode/commit/f39e1631855859222966350bd5fae373b9877297)]:
-  - @kilocode/kilo-gateway@8.0.0
-  - @opencode-ai/server@7.4.23
-  - @opencode-ai/tui@7.4.23
-  - @opencode-ai/ui@7.4.23
-  - @kilocode/kilo-indexing@7.4.23
-  - @kilocode/kilo-telemetry@7.4.23
+  - @qronos-ai/kilo-gateway@8.0.0
+  - @qronos-ai/server@7.4.23
+  - @qronos-ai/tui@7.4.23
+  - @qronos-ai/ui@7.4.23
+  - @qronos-ai/kilo-indexing@7.4.23
+  - @qronos-ai/kilo-telemetry@7.4.23
 
 ## 7.4.22
 
@@ -1076,13 +1076,13 @@
 - [#13047](https://github.com/Kilo-Org/kilocode/pull/13047) [`e48c534`](https://github.com/Kilo-Org/kilocode/commit/e48c534978e5864662f9f155815c029cfe549f30) - Separate autocomplete item names from their descriptions in the TUI.
 
 - Updated dependencies [[`fdc4665`](https://github.com/Kilo-Org/kilocode/commit/fdc46654c5860c01276d7034ba715f779b163bca), [`48c4a4a`](https://github.com/Kilo-Org/kilocode/commit/48c4a4af227572011bf44c172ab0ae86e0c2a429)]:
-  - @kilocode/kilo-memory@7.4.21
-  - @kilocode/kilo-gateway@7.4.21
-  - @kilocode/kilo-indexing@7.4.21
-  - @kilocode/kilo-telemetry@7.4.21
-  - @opencode-ai/server@7.4.21
-  - @opencode-ai/tui@7.4.21
-  - @opencode-ai/ui@7.4.21
+  - @qronos-ai/kilo-memory@7.4.21
+  - @qronos-ai/kilo-gateway@7.4.21
+  - @qronos-ai/kilo-indexing@7.4.21
+  - @qronos-ai/kilo-telemetry@7.4.21
+  - @qronos-ai/server@7.4.21
+  - @qronos-ai/tui@7.4.21
+  - @qronos-ai/ui@7.4.21
 
 ## 7.4.20
 
@@ -1097,7 +1097,7 @@
 - [#12846](https://github.com/Kilo-Org/kilocode/pull/12846) [`8c84f8a`](https://github.com/Kilo-Org/kilocode/commit/8c84f8ae5ef17a6e69a66cdd06680c6bf4e91db7) - Support project agent and command directory symlinks explicitly allowed by global Markdown source permissions.
 
 - Updated dependencies [[`39f65ef`](https://github.com/Kilo-Org/kilocode/commit/39f65efa8bc85490462b8a71ff0b7dddb1035d6a)]:
-  - @kilocode/kilo-telemetry@7.4.20
+  - @qronos-ai/kilo-telemetry@7.4.20
 
 ## 7.4.19
 
@@ -1164,8 +1164,8 @@
 - [#12723](https://github.com/Kilo-Org/kilocode/pull/12723) [`a1ad65e`](https://github.com/Kilo-Org/kilocode/commit/a1ad65e5229156bfa7d404fcbaa98ad70462197f) - Retry transient locked-file errors (EPERM/EACCES/EBUSY) on Windows when atomically saving config and other files. Background plugin installs and Windows Defender/indexer can briefly hold the temp file during the rename step, which previously surfaced as a 500 error. A short backoff now retries the rename so config writes succeed without surfacing the contention.
 
 - Updated dependencies [[`ed9e132`](https://github.com/Kilo-Org/kilocode/commit/ed9e132bd89557af41df19ea6b82936d098f0140), [`0d923d0`](https://github.com/Kilo-Org/kilocode/commit/0d923d0ef56d42cd7eb6d1e2d5fc58c7b508a80b), [`304c75e`](https://github.com/Kilo-Org/kilocode/commit/304c75e600cfbb0ec52b9c11e60b5782e4af5a37)]:
-  - @kilocode/kilo-telemetry@7.4.18
-  - @kilocode/kilo-memory@7.4.18
+  - @qronos-ai/kilo-telemetry@7.4.18
+  - @qronos-ai/kilo-memory@7.4.18
 
 ## 7.4.17
 
@@ -1265,15 +1265,15 @@
 - [#12488](https://github.com/Kilo-Org/kilocode/pull/12488) [`c25f041`](https://github.com/Kilo-Org/kilocode/commit/c25f041eb3922defc4dadb9ad7b2f8c8edb74fbd) - Show the request ID when a model response ends without a finish reason.
 
 - Updated dependencies [[`2fcb137`](https://github.com/Kilo-Org/kilocode/commit/2fcb137ebcbf9101ca655804d0a61af2f222bbc5), [`f715e2f`](https://github.com/Kilo-Org/kilocode/commit/f715e2f5fa4db5abe5c734e1c360e8da3367f3e5), [`dcc0d64`](https://github.com/Kilo-Org/kilocode/commit/dcc0d64a3249bdd3aa27d564759253126ff9a5fe)]:
-  - @kilocode/sdk@7.5.0
-  - @kilocode/kilo-gateway@7.4.16
-  - @kilocode/plugin@7.4.16
-  - @opencode-ai/tui@7.4.16
-  - @opencode-ai/ui@7.4.16
-  - @kilocode/kilo-indexing@7.4.16
-  - @kilocode/kilo-telemetry@7.4.16
-  - @kilocode/plugin-atomic-chat@7.4.16
-  - @opencode-ai/server@7.4.16
+  - @qronos-ai/sdk@7.5.0
+  - @qronos-ai/kilo-gateway@7.4.16
+  - @qronos-ai/plugin@7.4.16
+  - @qronos-ai/tui@7.4.16
+  - @qronos-ai/ui@7.4.16
+  - @qronos-ai/kilo-indexing@7.4.16
+  - @qronos-ai/kilo-telemetry@7.4.16
+  - @qronos-ai/plugin-atomic-chat@7.4.16
+  - @qronos-ai/server@7.4.16
 
 ## 7.4.15
 
@@ -1288,7 +1288,7 @@
 - [#12414](https://github.com/Kilo-Org/kilocode/pull/12414) [`badf70d`](https://github.com/Kilo-Org/kilocode/commit/badf70dcedc9559769969c34aff9a63fcc9bdb5f) - Keep Linux sandbox setup working when a writable directory contains an unreadable subdirectory (for example a folder with mode 600); unreadable subdirectories are now protected with a read-only mount instead of failing every sandboxed tool call with an access error.
 
 - Updated dependencies [[`28d015f`](https://github.com/Kilo-Org/kilocode/commit/28d015f8fefd166348e4d4eb0b4c2ae0aa011a03)]:
-  - @kilocode/kilo-memory@7.4.14
+  - @qronos-ai/kilo-memory@7.4.14
 
 ## 7.4.13
 
@@ -1317,12 +1317,12 @@
 - [#12335](https://github.com/Kilo-Org/kilocode/pull/12335) [`99227f6`](https://github.com/Kilo-Org/kilocode/commit/99227f67478b44b06a18935792bd655c774f174a) Thanks [@shssoichiro](https://github.com/shssoichiro)! - Start the TUI from standalone CLI installations without requiring project-local OpenTUI dependencies.
 
 - Updated dependencies [[`084bcea`](https://github.com/Kilo-Org/kilocode/commit/084bceadaedf193568ccf71256bd299c0d11e90c), [`c081f58`](https://github.com/Kilo-Org/kilocode/commit/c081f582abecaba98a303069140d014a9ee90ca9), [`ff703fb`](https://github.com/Kilo-Org/kilocode/commit/ff703fba621e35a4a5d8e4801620502228cca5bf)]:
-  - @kilocode/kilo-gateway@7.4.12
-  - @kilocode/kilo-indexing@7.5.0
-  - @kilocode/kilo-telemetry@7.4.12
-  - @opencode-ai/server@7.4.12
-  - @opencode-ai/tui@7.4.9
-  - @opencode-ai/ui@7.4.12
+  - @qronos-ai/kilo-gateway@7.4.12
+  - @qronos-ai/kilo-indexing@7.5.0
+  - @qronos-ai/kilo-telemetry@7.4.12
+  - @qronos-ai/server@7.4.12
+  - @qronos-ai/tui@7.4.9
+  - @qronos-ai/ui@7.4.12
 
 ## 7.4.11
 
@@ -1345,15 +1345,15 @@
 - [#12267](https://github.com/Kilo-Org/kilocode/pull/12267) [`e3124d3`](https://github.com/Kilo-Org/kilocode/commit/e3124d31472b8fa652418fae9e583ef2b29c16e9) - Retry incomplete model responses that end without final output or tool activity while preserving partial answers and completed tools.
 
 - Updated dependencies [[`319f159`](https://github.com/Kilo-Org/kilocode/commit/319f159ac333d18855a72ddb1fa61ed471ebf2d9), [`30e7ec4`](https://github.com/Kilo-Org/kilocode/commit/30e7ec4ab45fac724b41ec0b4342e272e7f584d2), [`bd69158`](https://github.com/Kilo-Org/kilocode/commit/bd69158131aafdcc2f44aede22b573c2b0432f21)]:
-  - @kilocode/kilo-gateway@7.4.10
-  - @kilocode/kilo-memory@7.5.0
-  - @kilocode/sdk@7.5.0
-  - @kilocode/kilo-indexing@7.4.10
-  - @kilocode/kilo-telemetry@7.4.10
-  - @kilocode/plugin@7.4.10
-  - @opencode-ai/ui@7.4.10
-  - @opencode-ai/server@7.4.10
-  - @kilocode/plugin-atomic-chat@7.4.10
+  - @qronos-ai/kilo-gateway@7.4.10
+  - @qronos-ai/kilo-memory@7.5.0
+  - @qronos-ai/sdk@7.5.0
+  - @qronos-ai/kilo-indexing@7.4.10
+  - @qronos-ai/kilo-telemetry@7.4.10
+  - @qronos-ai/plugin@7.4.10
+  - @qronos-ai/ui@7.4.10
+  - @qronos-ai/server@7.4.10
+  - @qronos-ai/plugin-atomic-chat@7.4.10
 
 ## 7.4.9
 
@@ -1396,14 +1396,14 @@
 - [#11424](https://github.com/Kilo-Org/kilocode/pull/11424) [`3a4438e`](https://github.com/Kilo-Org/kilocode/commit/3a4438e748f80a23bd33eb4aa824d3dffb3d588a) - Stop active Agent Manager sessions and their subagents when a session tab or the Agent Manager tab closes.
 
 - Updated dependencies [[`6a3e5f3`](https://github.com/Kilo-Org/kilocode/commit/6a3e5f39011e4b1a63ab5d0ae0dbf8195ea29d4c), [`227c65d`](https://github.com/Kilo-Org/kilocode/commit/227c65d1004fc1f48e71335cc574a2e6986c4893), [`3ba4c33`](https://github.com/Kilo-Org/kilocode/commit/3ba4c33544451076bd5ecb3b698e74ede0434c82)]:
-  - @kilocode/sdk@7.4.8
-  - @kilocode/kilo-indexing@7.4.8
-  - @kilocode/plugin@7.4.8
-  - @opencode-ai/ui@7.4.8
-  - @kilocode/kilo-gateway@7.4.8
-  - @kilocode/plugin-atomic-chat@7.4.8
-  - @opencode-ai/server@7.4.2
-  - @kilocode/kilo-telemetry@7.4.8
+  - @qronos-ai/sdk@7.4.8
+  - @qronos-ai/kilo-indexing@7.4.8
+  - @qronos-ai/plugin@7.4.8
+  - @qronos-ai/ui@7.4.8
+  - @qronos-ai/kilo-gateway@7.4.8
+  - @qronos-ai/plugin-atomic-chat@7.4.8
+  - @qronos-ai/server@7.4.2
+  - @qronos-ai/kilo-telemetry@7.4.8
 
 ## 7.4.7
 
@@ -1456,13 +1456,13 @@
 - [#12092](https://github.com/Kilo-Org/kilocode/pull/12092) [`94b553b`](https://github.com/Kilo-Org/kilocode/commit/94b553b91b130d996ce833e168e579df51a14957) - Show detailed GPT-5.6 reasoning summaries and avoid expandable blank panels when a provider returns only a summary title.
 
 - Updated dependencies [[`039b73d`](https://github.com/Kilo-Org/kilocode/commit/039b73dfaefe93452501a48914eaeeb2f83c572b), [`1e0b25a`](https://github.com/Kilo-Org/kilocode/commit/1e0b25a134a11c03494d5871be3e43a6881f1d87)]:
-  - @kilocode/kilo-indexing@7.4.6
-  - @kilocode/sdk@7.5.0
-  - @kilocode/plugin@7.4.6
-  - @opencode-ai/ui@7.4.6
-  - @kilocode/kilo-gateway@7.4.6
-  - @kilocode/plugin-atomic-chat@7.4.6
-  - @kilocode/kilo-telemetry@7.4.6
+  - @qronos-ai/kilo-indexing@7.4.6
+  - @qronos-ai/sdk@7.5.0
+  - @qronos-ai/plugin@7.4.6
+  - @qronos-ai/ui@7.4.6
+  - @qronos-ai/kilo-gateway@7.4.6
+  - @qronos-ai/plugin-atomic-chat@7.4.6
+  - @qronos-ai/kilo-telemetry@7.4.6
 
 ## 7.4.4
 
@@ -1473,13 +1473,13 @@
 ### Patch Changes
 
 - Updated dependencies [[`394af39`](https://github.com/Kilo-Org/kilocode/commit/394af39c64b2920fa8c84f14670f213820cef2ec)]:
-  - @kilocode/sdk@7.5.0
-  - @kilocode/plugin@7.4.4
-  - @opencode-ai/ui@7.4.4
-  - @kilocode/kilo-gateway@7.4.4
-  - @kilocode/kilo-indexing@7.4.4
-  - @kilocode/plugin-atomic-chat@7.4.4
-  - @kilocode/kilo-telemetry@7.4.4
+  - @qronos-ai/sdk@7.5.0
+  - @qronos-ai/plugin@7.4.4
+  - @qronos-ai/ui@7.4.4
+  - @qronos-ai/kilo-gateway@7.4.4
+  - @qronos-ai/kilo-indexing@7.4.4
+  - @qronos-ai/plugin-atomic-chat@7.4.4
+  - @qronos-ai/kilo-telemetry@7.4.4
 
 ## 7.4.2
 
@@ -1518,14 +1518,14 @@
 - [#12034](https://github.com/Kilo-Org/kilocode/pull/12034) [`64c9b7e`](https://github.com/Kilo-Org/kilocode/commit/64c9b7e42ff329d31998ea0f7cb01df6a981dcf3) - Show a dismissible notification when a leftover opencode config directory is found. Kilo no longer falls back to opencode configuration, so the notice points you to move `.opencode` config into a `.kilo` directory (or the global kilo config dir). Dismiss it once and it won't return unless the directory is still present.
 
 - Updated dependencies [[`b976b5a`](https://github.com/Kilo-Org/kilocode/commit/b976b5a0137b6fa6c7959d5c8a548478efee1d1e), [`22b9f7f`](https://github.com/Kilo-Org/kilocode/commit/22b9f7fd932043722096919aabb08109901f01de), [`61b9e09`](https://github.com/Kilo-Org/kilocode/commit/61b9e0935cb3314acdabb4d3237b95395bfffb06), [`adcbe0f`](https://github.com/Kilo-Org/kilocode/commit/adcbe0f37321704abdc0994d4e1f78919c9bfa5a)]:
-  - @kilocode/sdk@7.5.0
-  - @kilocode/kilo-memory@7.5.0
-  - @kilocode/kilo-indexing@7.4.2
-  - @kilocode/kilo-gateway@7.4.2
-  - @kilocode/plugin@7.4.2
-  - @opencode-ai/ui@7.4.2
-  - @kilocode/kilo-telemetry@7.4.2
-  - @kilocode/plugin-atomic-chat@7.4.2
+  - @qronos-ai/sdk@7.5.0
+  - @qronos-ai/kilo-memory@7.5.0
+  - @qronos-ai/kilo-indexing@7.4.2
+  - @qronos-ai/kilo-gateway@7.4.2
+  - @qronos-ai/plugin@7.4.2
+  - @qronos-ai/ui@7.4.2
+  - @qronos-ai/kilo-telemetry@7.4.2
+  - @qronos-ai/plugin-atomic-chat@7.4.2
 
 ## 7.4.1
 
@@ -1628,13 +1628,13 @@
 - [#11746](https://github.com/Kilo-Org/kilocode/pull/11746) [`5080c78`](https://github.com/Kilo-Org/kilocode/commit/5080c78e628b2598f01f9c5d9685d767340dec29) - Include session-tree IDs in model usage API responses and show full task token usage with a provider-grouped model breakdown in the VS Code session header.
 
 - Updated dependencies [[`7b2063f`](https://github.com/Kilo-Org/kilocode/commit/7b2063f35440fd65e9ec2d38fd656da960ff48b6), [`123a939`](https://github.com/Kilo-Org/kilocode/commit/123a9395d2ec645c3dc247170188f42bbf7c9333), [`dcd2ae3`](https://github.com/Kilo-Org/kilocode/commit/dcd2ae3adb46f5a813451d9165ee075c91124003), [`1d798a1`](https://github.com/Kilo-Org/kilocode/commit/1d798a106f315dc3c1c4c78382eff7a6bd23343b), [`be1f77d`](https://github.com/Kilo-Org/kilocode/commit/be1f77d4320603efbbfab0587a1dc0d9ec911001), [`be3ae82`](https://github.com/Kilo-Org/kilocode/commit/be3ae82962bff96b7caff4cc66424bcef3f41e84), [`9b0c45c`](https://github.com/Kilo-Org/kilocode/commit/9b0c45ca382186a246e0f23ffe0c1c4efeaace24), [`2638e06`](https://github.com/Kilo-Org/kilocode/commit/2638e06ffbeff598672b671837380ef282f9f34c), [`5080c78`](https://github.com/Kilo-Org/kilocode/commit/5080c78e628b2598f01f9c5d9685d767340dec29)]:
-  - @kilocode/sdk@7.4.0
-  - @kilocode/kilo-gateway@7.3.55
-  - @kilocode/plugin@7.3.55
-  - @opencode-ai/ui@7.3.55
-  - @kilocode/kilo-indexing@7.3.55
-  - @kilocode/kilo-telemetry@7.3.55
-  - @kilocode/plugin-atomic-chat@7.3.55
+  - @qronos-ai/sdk@7.4.0
+  - @qronos-ai/kilo-gateway@7.3.55
+  - @qronos-ai/plugin@7.3.55
+  - @qronos-ai/ui@7.3.55
+  - @qronos-ai/kilo-indexing@7.3.55
+  - @qronos-ai/kilo-telemetry@7.3.55
+  - @qronos-ai/plugin-atomic-chat@7.3.55
 
 ## 7.3.54
 
@@ -1653,10 +1653,10 @@
 - [#11533](https://github.com/Kilo-Org/kilocode/pull/11533) [`15f42d4`](https://github.com/Kilo-Org/kilocode/commit/15f42d4bec51bbb127636738275f36fdc07e7b33) - Restore bounded text-file reads and keep zero-limit pagination and Unicode truncation from producing unusable tool output.
 
 - Updated dependencies [[`6c55c28`](https://github.com/Kilo-Org/kilocode/commit/6c55c28ec345a6d90d2d7a4e345abf962f208e29)]:
-  - @kilocode/kilo-gateway@7.3.53
-  - @kilocode/kilo-indexing@7.3.53
-  - @kilocode/kilo-telemetry@7.3.53
-  - @opencode-ai/ui@7.3.53
+  - @qronos-ai/kilo-gateway@7.3.53
+  - @qronos-ai/kilo-indexing@7.3.53
+  - @qronos-ai/kilo-telemetry@7.3.53
+  - @qronos-ai/ui@7.3.53
 
 ## 7.3.52
 
@@ -1738,13 +1738,13 @@
 - [#11453](https://github.com/Kilo-Org/kilocode/pull/11453) [`f7e68d1`](https://github.com/Kilo-Org/kilocode/commit/f7e68d19d9d8b23b087d3c7c92d487abced8d7ec) - Limit completion sounds to parent agent sessions.
 
 - Updated dependencies [[`ccec216`](https://github.com/Kilo-Org/kilocode/commit/ccec2162383a6f378ed5e62d630720607d185209), [`2c9e72c`](https://github.com/Kilo-Org/kilocode/commit/2c9e72c14a87387199fd42546746bbea30aa1570), [`f7e68d1`](https://github.com/Kilo-Org/kilocode/commit/f7e68d19d9d8b23b087d3c7c92d487abced8d7ec)]:
-  - @kilocode/kilo-gateway@7.4.0
-  - @kilocode/sdk@7.3.50
-  - @kilocode/kilo-indexing@7.3.50
-  - @kilocode/kilo-telemetry@7.3.50
-  - @kilocode/plugin@7.3.50
-  - @opencode-ai/ui@7.3.50
-  - @kilocode/plugin-atomic-chat@7.3.50
+  - @qronos-ai/kilo-gateway@7.4.0
+  - @qronos-ai/sdk@7.3.50
+  - @qronos-ai/kilo-indexing@7.3.50
+  - @qronos-ai/kilo-telemetry@7.3.50
+  - @qronos-ai/plugin@7.3.50
+  - @qronos-ai/ui@7.3.50
+  - @qronos-ai/plugin-atomic-chat@7.3.50
 
 ## 7.3.49
 
@@ -1901,13 +1901,13 @@
 - [#10758](https://github.com/Kilo-Org/kilocode/pull/10758) [`e511b23`](https://github.com/Kilo-Org/kilocode/commit/e511b230ab87c3b1a594a7e1ac12e44a096a813f) Thanks [@cooper-oai](https://github.com/cooper-oai)! - Prevent concurrent Kilo processes from reusing a ChatGPT Codex refresh token.
 
 - Updated dependencies [[`9211000`](https://github.com/Kilo-Org/kilocode/commit/9211000aadd909f0d46746604c3e963966a59660), [`2fa0890`](https://github.com/Kilo-Org/kilocode/commit/2fa0890928f7dd060125ad4f4083b8bd2bf3e69b), [`973d02c`](https://github.com/Kilo-Org/kilocode/commit/973d02cfd15b3bf3eefefe92e7fb61059eba26f7), [`66af690`](https://github.com/Kilo-Org/kilocode/commit/66af6907005b99bb39a0869b35dfe1ec180cc0b5)]:
-  - @kilocode/kilo-indexing@7.4.0
-  - @kilocode/sdk@7.4.0
-  - @kilocode/plugin@7.3.47
-  - @opencode-ai/ui@7.3.47
-  - @kilocode/kilo-gateway@7.3.47
-  - @kilocode/plugin-atomic-chat@7.3.47
-  - @kilocode/kilo-telemetry@7.3.47
+  - @qronos-ai/kilo-indexing@7.4.0
+  - @qronos-ai/sdk@7.4.0
+  - @qronos-ai/plugin@7.3.47
+  - @qronos-ai/ui@7.3.47
+  - @qronos-ai/kilo-gateway@7.3.47
+  - @qronos-ai/plugin-atomic-chat@7.3.47
+  - @qronos-ai/kilo-telemetry@7.3.47
 
 ## 7.3.46
 
@@ -1978,10 +1978,10 @@
 - [#11031](https://github.com/Kilo-Org/kilocode/pull/11031) [`28a26b1`](https://github.com/Kilo-Org/kilocode/commit/28a26b11c133686a4656af8be21af619c919301a) - Restore streamed responses in the CLI TUI and move code indexing status into the session sidebar.
 
 - Updated dependencies [[`a16e82a`](https://github.com/Kilo-Org/kilocode/commit/a16e82a77abf883c2c07c11464d50e08a518acd7), [`9c279a1`](https://github.com/Kilo-Org/kilocode/commit/9c279a16b4a14fc117f34d7aa19e771149031931), [`57bef8a`](https://github.com/Kilo-Org/kilocode/commit/57bef8ae68793c9b627ba0400b596bf932311e17), [`b75af0d`](https://github.com/Kilo-Org/kilocode/commit/b75af0de8865234a745f71eac03bf2bdea2271b4)]:
-  - @kilocode/kilo-indexing@7.4.0
-  - @kilocode/kilo-gateway@7.3.43
-  - @kilocode/kilo-telemetry@7.3.43
-  - @opencode-ai/ui@7.3.43
+  - @qronos-ai/kilo-indexing@7.4.0
+  - @qronos-ai/kilo-gateway@7.3.43
+  - @qronos-ai/kilo-telemetry@7.3.43
+  - @qronos-ai/ui@7.3.43
 
 ## 7.3.42
 
@@ -2024,9 +2024,9 @@
 - [#11010](https://github.com/Kilo-Org/kilocode/pull/11010) [`a130641`](https://github.com/Kilo-Org/kilocode/commit/a13064167df50862e9a4a8622e092ac518110281) - Compact sessions at the configured context percentage before sending an oversized provider request.
 
 - Updated dependencies [[`b0a4f03`](https://github.com/Kilo-Org/kilocode/commit/b0a4f0391106a837b78200e6de52621a6872b890)]:
-  - @kilocode/kilo-gateway@7.4.0
-  - @kilocode/kilo-indexing@7.3.41
-  - @kilocode/kilo-telemetry@7.3.41
+  - @qronos-ai/kilo-gateway@7.4.0
+  - @qronos-ai/kilo-indexing@7.3.41
+  - @qronos-ai/kilo-telemetry@7.3.41
 
 ## 7.3.40
 
@@ -2093,11 +2093,11 @@
 - [#10829](https://github.com/Kilo-Org/kilocode/pull/10829) [`e64c1fb`](https://github.com/Kilo-Org/kilocode/commit/e64c1fb65ec6895f7e97786f52806195f25606c0) - Restore full-session forks in Agent Manager after the HTTP API migration.
 
 - Updated dependencies [[`fc4cf10`](https://github.com/Kilo-Org/kilocode/commit/fc4cf10b0a65ec2b2949dd695ebec6ebb619cd15), [`a6b005d`](https://github.com/Kilo-Org/kilocode/commit/a6b005dfede302731dcbb00ac74e744333db9104)]:
-  - @kilocode/sdk@7.3.23
-  - @kilocode/kilo-gateway@7.3.23
-  - @kilocode/plugin@7.3.23
-  - @kilocode/kilo-indexing@7.3.23
-  - @kilocode/kilo-telemetry@7.3.23
+  - @qronos-ai/sdk@7.3.23
+  - @qronos-ai/kilo-gateway@7.3.23
+  - @qronos-ai/plugin@7.3.23
+  - @qronos-ai/kilo-indexing@7.3.23
+  - @qronos-ai/kilo-telemetry@7.3.23
 
 ## 7.3.21
 
@@ -2170,11 +2170,11 @@
 - [#10618](https://github.com/Kilo-Org/kilocode/pull/10618) [`dcfadac`](https://github.com/Kilo-Org/kilocode/commit/dcfadac83ed45a109a402a2f71f4d214347804f1) - Prevent saved global indexing provider changes from temporarily reverting in active workspaces.
 
 - Updated dependencies [[`117691e`](https://github.com/Kilo-Org/kilocode/commit/117691e4d6fe48f91223bb7d7e24103c67cde73f), [`db38888`](https://github.com/Kilo-Org/kilocode/commit/db388889e867021c6bae42cbd03df6b67941b208)]:
-  - @kilocode/kilo-indexing@7.3.13
-  - @kilocode/sdk@7.3.13
-  - @kilocode/kilo-gateway@7.4.0
-  - @kilocode/plugin@7.3.13
-  - @kilocode/kilo-telemetry@7.3.13
+  - @qronos-ai/kilo-indexing@7.3.13
+  - @qronos-ai/sdk@7.3.13
+  - @qronos-ai/kilo-gateway@7.4.0
+  - @qronos-ai/plugin@7.3.13
+  - @qronos-ai/kilo-telemetry@7.3.13
 
 ## 7.3.11
 
@@ -2223,7 +2223,7 @@
 ### Patch Changes
 
 - Updated dependencies [[`205e22e`](https://github.com/Kilo-Org/kilocode/commit/205e22ee4672305d3cb2e0c34b607a4950f8f4e8)]:
-  - @kilocode/kilo-indexing@7.3.5
+  - @qronos-ai/kilo-indexing@7.3.5
 
 ## 7.3.3
 
@@ -2266,11 +2266,11 @@
 - [#10197](https://github.com/Kilo-Org/kilocode/pull/10197) [`1ea86fb`](https://github.com/Kilo-Org/kilocode/commit/1ea86fb6e15cbe486cb0af6f26995d0b1b2745a2) - Prevent Kilo Gateway Responses requests from replaying transient provider item IDs when request storage is disabled.
 
 - Updated dependencies [[`4860e65`](https://github.com/Kilo-Org/kilocode/commit/4860e654ca1cc46c4e99acc3f40d4f1302e34944), [`1af7973`](https://github.com/Kilo-Org/kilocode/commit/1af79731a8ed925f1f69aa536ba90a53b89e8dfb), [`1ea86fb`](https://github.com/Kilo-Org/kilocode/commit/1ea86fb6e15cbe486cb0af6f26995d0b1b2745a2), [`f5dc95b`](https://github.com/Kilo-Org/kilocode/commit/f5dc95b99394c17ad7140bb034bc15a0f9de60b6)]:
-  - @kilocode/sdk@7.3.0
-  - @kilocode/kilo-gateway@7.3.0
-  - @kilocode/plugin@7.2.53
-  - @kilocode/kilo-indexing@7.2.53
-  - @kilocode/kilo-telemetry@7.2.53
+  - @qronos-ai/sdk@7.3.0
+  - @qronos-ai/kilo-gateway@7.3.0
+  - @qronos-ai/plugin@7.2.53
+  - @qronos-ai/kilo-indexing@7.2.53
+  - @qronos-ai/kilo-telemetry@7.2.53
 
 ## 7.2.51
 
@@ -2305,7 +2305,7 @@
 - [#10060](https://github.com/Kilo-Org/kilocode/pull/10060) [`0cc0415`](https://github.com/Kilo-Org/kilocode/commit/0cc04158d0cd256ddce306bd330af3c3a328f8be) - Harden markdown rendering against malicious HTML by picking up the latest DOMPurify security fixes.
 
 - Updated dependencies [[`924f034`](https://github.com/Kilo-Org/kilocode/commit/924f034e12f3455f8cb69bb112541f887f4adfe5)]:
-  - @kilocode/kilo-indexing@7.2.48
+  - @qronos-ai/kilo-indexing@7.2.48
 
 ## 7.2.47
 
@@ -2346,11 +2346,11 @@
 - [#9921](https://github.com/Kilo-Org/kilocode/pull/9921) [`e5e9d0b`](https://github.com/Kilo-Org/kilocode/commit/e5e9d0ba37bd1065aea5a9a83834c6749121e5bd) - Remove custom providers from settings when disconnecting them so they do not reappear after being disabled and re-enabled.
 
 - Updated dependencies [[`9886674`](https://github.com/Kilo-Org/kilocode/commit/98866740afd7f6c2fd06fecda1ffc69c1703974e), [`e5e9d0b`](https://github.com/Kilo-Org/kilocode/commit/e5e9d0ba37bd1065aea5a9a83834c6749121e5bd)]:
-  - @kilocode/kilo-gateway@7.3.0
-  - @kilocode/sdk@7.3.0
-  - @kilocode/kilo-indexing@7.2.43
-  - @kilocode/kilo-telemetry@7.2.43
-  - @kilocode/plugin@7.2.43
+  - @qronos-ai/kilo-gateway@7.3.0
+  - @qronos-ai/sdk@7.3.0
+  - @qronos-ai/kilo-indexing@7.2.43
+  - @qronos-ai/kilo-telemetry@7.2.43
+  - @qronos-ai/plugin@7.2.43
 
 ## 7.2.42
 
@@ -2445,9 +2445,9 @@
 - [#9603](https://github.com/Kilo-Org/kilocode/pull/9603) [`4145e48`](https://github.com/Kilo-Org/kilocode/commit/4145e48e82d862178102386cd8a1c874b9415696) - Improve Windows worktree cleanup reliability when file handles are released slowly.
 
 - Updated dependencies [[`28a0eae`](https://github.com/Kilo-Org/kilocode/commit/28a0eae4b0b940482222f6671a6885b575b2ad9c), [`6130a3e`](https://github.com/Kilo-Org/kilocode/commit/6130a3ea66c6a323710fdc2d325fac87011f6b85)]:
-  - @kilocode/kilo-indexing@7.1.4
-  - @kilocode/kilo-gateway@7.2.27
-  - @kilocode/kilo-telemetry@7.2.27
+  - @qronos-ai/kilo-indexing@7.1.4
+  - @qronos-ai/kilo-gateway@7.2.27
+  - @qronos-ai/kilo-telemetry@7.2.27
 
 ## 7.2.26
 
@@ -2466,8 +2466,8 @@
 - [#9526](https://github.com/Kilo-Org/kilocode/pull/9526) [`c8113f2`](https://github.com/Kilo-Org/kilocode/commit/c8113f27b190f5c08ce642da57d68646132e1828) - Fix multi-turn DeepSeek reasoning round-tripping on OpenRouter by bumping `@openrouter/ai-sdk-provider` to 2.8.1 in both the CLI and Kilo Gateway packages and letting the SDK handle reasoning details, plus pulling in upstream DeepSeek variant, reasoning-effort, and assistant-reasoning fixes. New DeepSeek conversations are fixed; existing sessions that already stored empty reasoning metadata may still need to be restarted.
 
 - Updated dependencies [[`c8113f2`](https://github.com/Kilo-Org/kilocode/commit/c8113f27b190f5c08ce642da57d68646132e1828)]:
-  - @kilocode/kilo-gateway@7.2.25
-  - @kilocode/kilo-telemetry@7.2.25
+  - @qronos-ai/kilo-gateway@7.2.25
+  - @qronos-ai/kilo-telemetry@7.2.25
 
 ## 7.2.23
 
@@ -2512,8 +2512,8 @@
 ### Patch Changes
 
 - Updated dependencies [[`3b73cf4`](https://github.com/Kilo-Org/kilocode/commit/3b73cf474ee7bd81ac1cb4a0153906059f3a2d3a)]:
-  - @kilocode/kilo-gateway@7.2.19
-  - @kilocode/kilo-telemetry@7.2.19
+  - @qronos-ai/kilo-gateway@7.2.19
+  - @qronos-ai/kilo-telemetry@7.2.19
 
 ## 7.2.18
 
@@ -2538,8 +2538,8 @@
 - [#9170](https://github.com/Kilo-Org/kilocode/pull/9170) [`297b988`](https://github.com/Kilo-Org/kilocode/commit/297b988a211933e106bf2864518e3542587d3f0b) - Update `@ai-sdk/amazon-bedrock` to 4.0.96 and `@ai-sdk/google-vertex` to 4.0.112, both of which include Opus 4.7 support with `xhigh` adaptive thinking effort
 
 - Updated dependencies [[`8b90eec`](https://github.com/Kilo-Org/kilocode/commit/8b90eec6d0852305ae4379088b1003c1d4e74e6a), [`448dba8`](https://github.com/Kilo-Org/kilocode/commit/448dba8ca595ff95220ab660cbc93ca40b90a19b)]:
-  - @kilocode/kilo-gateway@7.3.0
-  - @kilocode/kilo-telemetry@7.2.15
+  - @qronos-ai/kilo-gateway@7.3.0
+  - @qronos-ai/kilo-telemetry@7.2.15
 
 ## 7.2.14
 
@@ -2560,8 +2560,8 @@
 - [#9069](https://github.com/Kilo-Org/kilocode/pull/9069) [`e60c326`](https://github.com/Kilo-Org/kilocode/commit/e60c3263191c5746bea6bd93cd291c28f5d1ab0f) Thanks [@kilo-code-bot](https://github.com/apps/kilo-code-bot)! - Support adaptive reasoning for Claude Opus 4.7 and expose the `xhigh` effort level for adaptive Anthropic models
 
 - Updated dependencies [[`e65c2d9`](https://github.com/Kilo-Org/kilocode/commit/e65c2d99c0d234d3dc1dff2e75e58e22bea8ce7f)]:
-  - @kilocode/kilo-gateway@7.2.12
-  - @kilocode/kilo-telemetry@7.2.12
+  - @qronos-ai/kilo-gateway@7.2.12
+  - @qronos-ai/kilo-telemetry@7.2.12
 
 ## 7.2.11
 
@@ -2588,5 +2588,5 @@
 - [#9047](https://github.com/Kilo-Org/kilocode/pull/9047) [`bea8878`](https://github.com/Kilo-Org/kilocode/commit/bea88788f4530f57d210b98cd7205168cd8f9ae9) - Continue queued follow-up prompts after the active session turn finishes.
 
 - Updated dependencies [[`4d2f553`](https://github.com/Kilo-Org/kilocode/commit/4d2f55343b7403625c60de09460d01ab8ae268f7)]:
-  - @kilocode/kilo-gateway@7.2.11
-  - @kilocode/kilo-telemetry@7.2.11
+  - @qronos-ai/kilo-gateway@7.2.11
+  - @qronos-ai/kilo-telemetry@7.2.11

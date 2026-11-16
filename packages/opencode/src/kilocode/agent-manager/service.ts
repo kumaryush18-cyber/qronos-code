@@ -3,8 +3,8 @@ import { InstanceRef } from "@/effect/instance-ref"
 import { registerDisposer } from "@/effect/instance-registry"
 import { Identifier } from "@/id/id"
 import type { InstanceContext } from "@/project/instance-context"
-import * as Log from "@opencode-ai/core/util/log"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import * as Log from "@qronos-ai/core/util/log"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Context, Deferred, Duration, Effect, Layer, LayerMap, Schema } from "effect"
 import { ErrorCode, Event, type Failure, type Request, RequestID, type Result } from "./protocol"
 
@@ -41,7 +41,7 @@ interface State {
   close: () => Effect.Effect<void>
 }
 
-class StateService extends Context.Service<StateService, State>()("@kilocode/AgentManager.State") {}
+class StateService extends Context.Service<StateService, State>()("@qronos-ai/AgentManager.State") {}
 
 function matches(request: Request, result: Result) {
   if (request.operation === "overview") return result.operation === "overview"
@@ -59,7 +59,7 @@ export interface Interface {
   readonly reject: (input: { requestID: RequestID; error: Failure }) => Effect.Effect<void, NotFoundError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@kilocode/AgentManager") {}
+export class Service extends Context.Service<Service, Interface>()("@qronos-ai/AgentManager") {}
 
 export function layer(timeout: Duration.Input = "60 seconds") {
   return Layer.effect(

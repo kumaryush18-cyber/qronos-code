@@ -188,7 +188,7 @@ trigger one in a git repo and confirm the notice is hidden and file rows appear.
 
 ## Changeset
 
-Add `.changeset/<slug>.md` (`"@kilocode/kilo-jetbrains": patch`) describing the user-facing
+Add `.changeset/<slug>.md` (`"@qronos-ai/kilo-jetbrains": patch`) describing the user-facing
 change, e.g. "Clarify in JetBrains rollback that only the conversation was reverted when
 snapshots are disabled." Test-only and refactor tasks do not need their own changeset.
 

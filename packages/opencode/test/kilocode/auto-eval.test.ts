@@ -3,8 +3,8 @@ import fs from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"
 import { Process } from "@/util/process"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import type { Provider } from "@/provider/provider"
 import {
   EVAL_ENTRYPOINT,
@@ -18,7 +18,7 @@ import {
   redactedConfig,
 } from "@/kilocode/auto-routing/eval-docker"
 import { parseKiloRunEvents } from "@/kilocode/auto-routing/eval-events"
-import { fetchClientEvalCase } from "@kilocode/kilo-gateway"
+import { fetchClientEvalCase } from "@qronos-ai/kilo-gateway"
 
 const MODEL: Provider.Model = {
   id: ModelV2.ID.make("qwen3"),
@@ -76,7 +76,7 @@ describe("eval image", () => {
     const dockerfile = evalDockerfile("1.2.3")
     expect(dockerfile).toContain("FROM node:22-slim")
     expect(dockerfile).toContain("ca-certificates git python3 g++ make")
-    expect(dockerfile).toContain("npm install -g @kilocode/cli@1.2.3")
+    expect(dockerfile).toContain("npm install -g @qronos-ai/cli@1.2.3")
     expect(dockerfile).toContain("COPY eval-run.mjs ./")
   })
 

@@ -1,11 +1,11 @@
 // kilocode_change - new file
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { expect } from "bun:test"
 import { Effect } from "effect"
 import { testEffect } from "../lib/effect"
 import { Agent } from "../../src/agent/agent"
 import { Permission } from "../../src/permission"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 
 const it = testEffect(AppNodeBuilder.build(Agent.node))
 

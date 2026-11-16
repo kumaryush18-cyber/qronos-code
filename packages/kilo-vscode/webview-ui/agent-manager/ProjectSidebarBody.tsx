@@ -1,5 +1,5 @@
 import { For, Show, createMemo, createSignal, onCleanup, type Component, type JSX } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import {
   DragDropProvider,
   DragDropSensors,
@@ -21,7 +21,7 @@ import type { LanguageContextValue } from "../src/context/language"
 import { LocalActivity } from "../src/components/shared/ActivityIcon"
 import { label, type Activity } from "../src/utils/session-activity"
 import { useVSCode } from "../src/context/vscode"
-import { useDialog } from "@kilocode/kilo-ui/context/dialog"
+import { useDialog } from "@qronos-ai/kilo-ui/context/dialog"
 import SectionHeader from "./SectionHeader"
 import { OrphanNotice } from "./orphans/OrphanNotice"
 import { OrphanDialog } from "./orphans/OrphanDialog"

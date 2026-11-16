@@ -898,7 +898,7 @@ describe("manifest", () => {
         product: "cli",
         generated: "",
         expected: 1,
-        entries: [{ artifact: "@kilocode/cli@7.7.9", sha256: "", error: "failed" }],
+        entries: [{ artifact: "@qronos-ai/cli@7.7.9", sha256: "", error: "failed" }],
       },
       dir: "/nonexistent",
     })

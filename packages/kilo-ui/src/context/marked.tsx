@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/context/marked"
+export * from "@qronos-ai/ui/context/marked"

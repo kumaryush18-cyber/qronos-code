@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { Config } from "@kilocode/sdk/v2/client"
+import type { Config } from "@qronos-ai/sdk/v2/client"
 import type { AuthContext } from "../../src/kilo-provider/handlers/auth"
 import { createCatalogRetry } from "../../src/kilo-provider/catalog-retry"
 

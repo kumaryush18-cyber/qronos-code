@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/context/data"
+export * from "@qronos-ai/ui/context/data"

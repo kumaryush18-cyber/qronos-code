@@ -1,14 +1,14 @@
 // kilocode_change - new file
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import * as Log from "@opencode-ai/core/util/log"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import * as Log from "@qronos-ai/core/util/log"
 import { afterEach, beforeEach, describe, expect, mock, spyOn, test } from "bun:test"
 import { $ } from "bun"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import * as fs from "fs/promises"
 import { dirname, join } from "node:path"
 import { tmpdir } from "../fixture/fixture"
 import { Effect, Layer } from "effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { Auth } from "../../src/auth"
 import { Bus } from "../../src/bus"
 import { GlobalBus } from "../../src/bus/global"
@@ -20,7 +20,7 @@ import * as PrLink from "../../src/kilo-sessions/pr-link"
 import { RemoteWS } from "../../src/kilo-sessions/remote-ws"
 import { RemoteSender } from "../../src/kilo-sessions/remote-sender"
 import { RemoteSessionLog } from "../../src/kilo-sessions/remote-session-log"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { ProjectV2 } from "@qronos-ai/core/project"
 import { Session } from "../../src/session/session"
 import { SessionID } from "../../src/session/schema"
 import { SessionStatus } from "../../src/session/status"
@@ -1068,7 +1068,7 @@ describe("KiloSessions heartbeat attention status (DEF-3)", () => {
 
         const { AppRuntime } = await import("@/effect/app-runtime")
         const { Permission } = await import("@/permission")
-        const { PermissionV1 } = await import("@opencode-ai/core/v1/permission")
+        const { PermissionV1 } = await import("@qronos-ai/core/v1/permission")
         const requestID = PermissionV1.ID.make("permission_hb_perm")
 
         AppRuntime.runFork(
@@ -1132,7 +1132,7 @@ describe("KiloSessions heartbeat attention status (DEF-3)", () => {
         const { AppRuntime } = await import("@/effect/app-runtime")
         const { Permission } = await import("@/permission")
         const { Question } = await import("@/question")
-        const { PermissionV1 } = await import("@opencode-ai/core/v1/permission")
+        const { PermissionV1 } = await import("@qronos-ai/core/v1/permission")
         const requestID = PermissionV1.ID.make("permission_hb_both")
 
         AppRuntime.runFork(Question.Service.use((svc) => svc.ask({ sessionID: id, questions: questionPrompt })))

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/progress-circle"
+export * from "@qronos-ai/ui/progress-circle"

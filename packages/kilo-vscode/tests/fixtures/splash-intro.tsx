@@ -4,7 +4,7 @@ import { harness } from "./comment-harness"
 const { root, messages, mount, wait } = await harness<{ type: string }>()
 const { createIntro } = await import("../../webview-ui/agent-manager/intro/AgentManagerIntro")
 const { ConfigProvider } = await import("../../webview-ui/src/context/config")
-const { DialogProvider } = await import("@kilocode/kilo-ui/context/dialog")
+const { DialogProvider } = await import("@qronos-ai/kilo-ui/context/dialog")
 const { SessionContext } = await import("../../webview-ui/src/context/session")
 const { post } = await import("../../webview-ui/src/utils/webview-message")
 let intro!: ReturnType<typeof createIntro>

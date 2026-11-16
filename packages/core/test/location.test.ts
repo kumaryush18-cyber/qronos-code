@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { Location } from "@opencode-ai/core/location"
-import { Project } from "@opencode-ai/core/project"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { Location } from "@qronos-ai/core/location"
+import { Project } from "@qronos-ai/core/project"
+import { AbsolutePath } from "@qronos-ai/core/schema"
+import { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { testEffect } from "./lib/effect"
 
 const workspaceID = WorkspaceV2.ID.make("wrk_test")

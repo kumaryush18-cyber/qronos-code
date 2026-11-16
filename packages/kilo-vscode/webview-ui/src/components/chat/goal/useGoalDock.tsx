@@ -1,10 +1,10 @@
 /** @jsxImportSource solid-js */
 
 import { Show, createEffect, createSignal, onCleanup, type Accessor } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { DropdownMenu } from "@kilocode/kilo-ui/dropdown-menu"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { DropdownMenu } from "@qronos-ai/kilo-ui/dropdown-menu"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { useSession } from "../../../context/session"
 import { useLanguage } from "../../../context/language"
 import { useServer } from "../../../context/server"

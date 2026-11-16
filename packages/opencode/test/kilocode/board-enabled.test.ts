@@ -1,6 +1,6 @@
 import { describe, expect } from "bun:test"
 import { ConfigProvider, Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { RuntimeFlags } from "../../src/effect/runtime-flags"
 import { BoardEnabled } from "../../src/kilocode/board/enabled"
 import { it } from "../lib/effect"

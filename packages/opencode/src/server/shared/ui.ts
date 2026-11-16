@@ -1,4 +1,4 @@
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Effect } from "effect"
 import { HttpClient, HttpServerRequest, HttpServerResponse } from "effect/unstable/http"
 import { createHash } from "node:crypto"

@@ -6,8 +6,8 @@ import { createBearerHttpClient, type BearerRequest } from "@/kilocode/cloud/htt
 import { createMessageId } from "@/kilocode/cloud/message-id"
 import { resolveCloudAgentOrigin, resolveWebAppOrigin } from "@/kilocode/cloud/origin"
 import { readBoundedJson } from "@/kilocode/cloud/response-json"
-import { buildKiloHeaders } from "@kilocode/kilo-gateway"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { buildKiloHeaders } from "@qronos-ai/kilo-gateway"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Effect, Redacted, Schema } from "effect"
 import z from "zod"
 import {

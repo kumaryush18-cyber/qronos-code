@@ -1,5 +1,5 @@
 {
-  "name": "@kilocode/kilo-console",
+  "name": "@qronos-ai/kilo-console",
   "version": "7.8.28",
   "private": true,
   "type": "module",
@@ -12,9 +12,9 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@kilocode/kilo-indexing": "workspace:*",
-    "@kilocode/kilo-web-ui": "workspace:*",
-    "@kilocode/sdk": "workspace:*",
+    "@qronos-ai/kilo-indexing": "workspace:*",
+    "@qronos-ai/kilo-web-ui": "workspace:*",
+    "@qronos-ai/sdk": "workspace:*",
     "@pierre/diffs": "catalog:",
     "@solidjs/router": "catalog:",
     "ghostty-web": "0.4.0",

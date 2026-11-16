@@ -1,8 +1,8 @@
 import { Component, Show } from "solid-js"
-import { Switch } from "@kilocode/kilo-ui/switch"
-import { TextField } from "@kilocode/kilo-ui/text-field"
-import { Card } from "@kilocode/kilo-ui/card"
-import { Button } from "@kilocode/kilo-ui/button"
+import { Switch } from "@qronos-ai/kilo-ui/switch"
+import { TextField } from "@qronos-ai/kilo-ui/text-field"
+import { Card } from "@qronos-ai/kilo-ui/card"
+import { Button } from "@qronos-ai/kilo-ui/button"
 
 import { useConfig } from "../../context/config"
 import { useLanguage } from "../../context/language"

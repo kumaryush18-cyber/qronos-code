@@ -12,7 +12,7 @@ import { restoreWorktrees } from "../state-recovery"
 import { reconcileWorktrees, summarize, type WorktreeHealthReport } from "../worktree-reconcile"
 import { trackOrphanSizes } from "../orphans/sizing"
 import type { ProjectContext, ProjectInitResult } from "./context"
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import type { ProjectRef, SessionRef, WorktreeRef } from "./route"
 import { sessionToWebview } from "../../kilo-provider-utils"
 

@@ -5,7 +5,7 @@
  */
 
 import { Component, Show, createEffect, createSignal, onCleanup, type Accessor, type JSX } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
+import { Button } from "@qronos-ai/kilo-ui/button"
 import { useLanguage } from "../../context/language"
 import SessionList from "./SessionList"
 import type { SessionInfo } from "../../types/messages"

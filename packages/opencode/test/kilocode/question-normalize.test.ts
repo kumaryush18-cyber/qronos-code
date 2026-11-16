@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { Effect, Fiber, Queue, Schema } from "effect"
 import { EventV2Bridge } from "../../src/event-v2-bridge"
 import { KiloQuestion } from "../../src/kilocode/question"

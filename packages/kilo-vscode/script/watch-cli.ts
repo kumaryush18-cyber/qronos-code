@@ -27,7 +27,7 @@ function log(msg: string) {
 }
 
 function sourceBinaryPath(): string {
-  return join(opencodeDir, "dist", `@kilocode/cli-${process.platform}-${process.arch}`, "bin", "kilo")
+  return join(opencodeDir, "dist", `@qronos-ai/cli-${process.platform}-${process.arch}`, "bin", "kilo")
 }
 
 async function rebuild() {

@@ -256,7 +256,7 @@ class ChatLogSummaryTest {
             sessionID = "ses_1",
             error = MessageErrorDto(
                 type = "UnknownError",
-                message = "Cannot find module '@kilocode/plugin' from '/workspace/.opencode/tool/github-triage.ts'",
+                message = "Cannot find module '@qronos-ai/plugin' from '/workspace/.opencode/tool/github-triage.ts'",
                 dataKeys = listOf("message", "ref"),
                 ref = "err_123",
             ),
@@ -267,7 +267,7 @@ class ChatLogSummaryTest {
         assertTrue(out.contains("sid=ses_1"), out)
         assertTrue(out.contains("evt=session.error"), out)
         assertTrue(out.contains("err=UnknownError"), out)
-        assertTrue(out.contains("Cannot find module '@kilocode/plugin'"), out)
+        assertTrue(out.contains("Cannot find module '@qronos-ai/plugin'"), out)
         assertTrue(out.contains("dataKeys=message,ref"), out)
         assertTrue(out.contains("ref=err_123"), out)
     }

@@ -1,5 +1,5 @@
 import { describe, expect, it, spyOn } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import * as vscode from "vscode"
 import { KiloProviderMemory } from "../../src/kilo-provider/memory"
 

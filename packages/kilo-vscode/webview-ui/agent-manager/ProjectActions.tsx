@@ -1,10 +1,10 @@
 /** @jsxImportSource solid-js */
 
 import type { Component } from "solid-js"
-import { DropdownMenu } from "@kilocode/kilo-ui/dropdown-menu"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { TooltipKeybind } from "@kilocode/kilo-ui/tooltip"
+import { DropdownMenu } from "@qronos-ai/kilo-ui/dropdown-menu"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { TooltipKeybind } from "@qronos-ai/kilo-ui/tooltip"
 import type { LanguageContextValue } from "../src/context/language"
 import { parseBindingTokens } from "../src/utils/keybind-tokens"
 

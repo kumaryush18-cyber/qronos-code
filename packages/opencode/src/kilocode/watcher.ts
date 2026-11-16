@@ -1,11 +1,11 @@
 import { InstanceState } from "@/effect/instance-state"
 import { registerDisposer } from "@/effect/instance-registry"
 import type { InstanceContext } from "@/project/instance-context"
-import * as Log from "@opencode-ai/core/util/log"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap, locationServiceMapLayer } from "@opencode-ai/core/location-services"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import * as Log from "@qronos-ai/core/util/log"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { Location } from "@qronos-ai/core/location"
+import { LocationServiceMap, locationServiceMapLayer } from "@qronos-ai/core/location-services"
+import { AbsolutePath } from "@qronos-ai/core/schema"
 import { Cause, Context, Effect, Exit, Layer, Scope } from "effect"
 
 const log = Log.create({ service: "kilocode-watcher" })
@@ -15,7 +15,7 @@ export namespace KilocodeWatcher {
     readonly init: () => Effect.Effect<void>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/Watcher") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/Watcher") {}
 
   // Embedded editor clients (VS Code, JetBrains) have their own file watching
   // and git integration and do not consume the CLI's vcs.branch.updated event,

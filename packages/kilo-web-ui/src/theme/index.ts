@@ -1,1 +1,1 @@
-export * from "@kilocode/kilo-ui/theme"
+export * from "@qronos-ai/kilo-ui/theme"

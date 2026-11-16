@@ -1,5 +1,5 @@
-import { Button } from "@kilocode/kilo-web-ui/button"
-import { Input } from "@kilocode/kilo-web-ui/input"
+import { Button } from "@qronos-ai/kilo-web-ui/button"
+import { Input } from "@qronos-ai/kilo-web-ui/input"
 import { createUniqueId, Show } from "solid-js"
 
 type Props = {

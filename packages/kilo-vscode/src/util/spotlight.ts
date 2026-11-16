@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import { exists, message } from "@opencode-ai/core/kilocode/spotlight"
+import { exists, message } from "@qronos-ai/core/kilocode/spotlight"
 
 const marker = ".metadata_never_index"
 

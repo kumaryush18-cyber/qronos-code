@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/dropdown-menu"
+export * from "@qronos-ai/ui/dropdown-menu"

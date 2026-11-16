@@ -1,4 +1,4 @@
-import { iconNames, type IconName } from "@opencode-ai/ui/icons/provider"
+import { iconNames, type IconName } from "@qronos-ai/ui/icons/provider"
 
 export type ProviderMetadata = {
   noteKey?: string

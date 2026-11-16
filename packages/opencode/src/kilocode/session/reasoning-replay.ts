@@ -1,5 +1,5 @@
-import type { ProviderMetadata } from "@opencode-ai/llm"
-import type { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { ProviderMetadata } from "@qronos-ai/llm"
+import type { SessionV1 } from "@qronos-ai/core/v1/session"
 import { PartID } from "@/session/schema"
 import { isRecord } from "@/util/record"
 

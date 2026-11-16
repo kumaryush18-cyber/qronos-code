@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/icons/file-type"
+export * from "@qronos-ai/ui/icons/file-type"

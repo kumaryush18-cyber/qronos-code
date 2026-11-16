@@ -1,4 +1,4 @@
-import type { UiI18nParams } from "@kilocode/kilo-ui/context"
+import type { UiI18nParams } from "@qronos-ai/kilo-ui/context"
 import { CURSORS, type BrowserCursor, type BrowserFrame } from "../../src/shared/browser-stream"
 import type { ExtensionMessage, WebviewMessage } from "../src/types/messages"
 import type {

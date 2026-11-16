@@ -18,9 +18,9 @@ import { SessionContext } from "../context/session"
 import { PromptInput } from "../components/chat/PromptInput"
 import { SandboxTooltipContent } from "../components/shared/SandboxButton"
 import { contextDrafts } from "../utils/draft-store"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 
 const agents = [
   { name: "code", description: "Write, edit and review code", mode: "primary" as const },

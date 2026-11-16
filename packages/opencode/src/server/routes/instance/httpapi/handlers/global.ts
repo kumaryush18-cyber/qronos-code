@@ -1,12 +1,12 @@
 import { Config } from "@/config/config"
 import { GlobalBus, type GlobalEvent as GlobalBusEvent } from "@/bus/global"
 import { EffectBridge } from "@/effect/bridge"
-import { EventV2 } from "@opencode-ai/core/event"
+import { EventV2 } from "@qronos-ai/core/event"
 import { Installation } from "@/installation"
 import { disconnect } from "@/kilocode/server/sse" // kilocode_change
 import { copied } from "@/kilocode/event-wire" // kilocode_change
 import { disposeAllInstancesAndEmitGlobalDisposed } from "@/server/global-lifecycle"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { Effect, Queue } from "effect"
 import * as Stream from "effect/Stream"
 import { HttpServerRequest, HttpServerResponse } from "effect/unstable/http" // kilocode_change - raw request needed for Kilo SSE

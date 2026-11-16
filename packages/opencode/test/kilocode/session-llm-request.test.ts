@@ -1,9 +1,9 @@
 import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
 import type { ModelMessage } from "ai"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import type { Agent } from "@/agent/agent"
 import type { Auth } from "@/auth"
 import { InstanceState } from "@/effect/instance-state"
@@ -170,7 +170,7 @@ describe("LLM request output tokens", () => {
     Effect.gen(function* () {
       const mdl = claude({
         id: "anthropic/claude-opus-5.5",
-        npm: "@kilocode/kilo-gateway",
+        npm: "@qronos-ai/kilo-gateway",
         output: 128_000,
         variants: adaptive,
       })
@@ -181,7 +181,7 @@ describe("LLM request output tokens", () => {
 
   it.instance("requests the full output limit for Claude-family aliases", () =>
     Effect.gen(function* () {
-      for (const npm of ["@kilocode/kilo-gateway", "@ai-sdk/anthropic"]) {
+      for (const npm of ["@qronos-ai/kilo-gateway", "@ai-sdk/anthropic"]) {
         for (const family of ["claude", "Claude-Sonnet"]) {
           const mdl = { ...claude({ id: "kilo-auto/frontier", npm, output: 128_000 }), family }
           expect(yield* run({ model: mdl })).toBe(128_000)
@@ -205,7 +205,7 @@ describe("LLM request output tokens", () => {
   it.instance("keeps the default for mixed auto routes with a Claude candidate", () =>
     Effect.gen(function* () {
       const mdl = {
-        ...claude({ id: "kilo-auto/efficient", npm: "@kilocode/kilo-gateway", output: 65_536 }),
+        ...claude({ id: "kilo-auto/efficient", npm: "@qronos-ai/kilo-gateway", output: 65_536 }),
         family: "kilo-auto",
         autoRouting: { models: ["anthropic/claude-sonnet-5", "google/gemini-2.5-flash"] },
       }
@@ -247,8 +247,8 @@ describe("LLM request output tokens", () => {
         npm: "@openrouter/ai-sdk-provider",
         output: 128_000,
       })
-      const other = claude({ id: "openai/gpt-5.6", npm: "@kilocode/kilo-gateway", output: 128_000 })
-      const kilo = claude({ id: "anthropic/claude-opus-5.5", npm: "@kilocode/kilo-gateway", output: 128_000 })
+      const other = claude({ id: "openai/gpt-5.6", npm: "@qronos-ai/kilo-gateway", output: 128_000 })
+      const kilo = claude({ id: "anthropic/claude-opus-5.5", npm: "@qronos-ai/kilo-gateway", output: 128_000 })
       expect(yield* run({ model: openrouter })).toBe(32_000)
       expect(yield* run({ model: other })).toBe(32_000)
       expect(yield* run({ model: kilo, flags: { outputTokenMax: 48_000 } })).toBe(48_000)
@@ -296,7 +296,7 @@ describe("LLM request headers", () => {
   for (const entry of [
     { name: "kilo", npm: model.api.npm },
     { name: "test", npm: model.api.npm },
-    { name: "kilo", npm: "@kilocode/kilo-gateway" },
+    { name: "kilo", npm: "@qronos-ai/kilo-gateway" },
   ]) {
     it.instance(`uses generic headers for ${entry.name} with ${entry.npm}`, () =>
       Effect.gen(function* () {
@@ -323,7 +323,7 @@ describe("LLM request headers", () => {
           "x-parent-session-id": "ses_parent",
         })
         expect(Object.keys(result.headers).filter((key) => /^x-(kilo|opencode)-/i.test(key))).toEqual([])
-        if (entry.npm === "@kilocode/kilo-gateway") {
+        if (entry.npm === "@qronos-ai/kilo-gateway") {
           expect(result.headers).toMatchObject({
             "x-kilocode-mode": "code",
             "X-KILOCODE-TASKID": "ses_test",

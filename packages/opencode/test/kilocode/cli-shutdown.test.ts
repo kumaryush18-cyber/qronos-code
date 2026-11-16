@@ -7,16 +7,16 @@ let err: unknown
 let drainCalls = 0
 let exit: string | number | null | undefined
 
-mock.module("@opencode-ai/core/global", () => ({
+mock.module("@qronos-ai/core/global", () => ({
   Global: { Path: { data: "/tmp/kilo-test" } },
 }))
 
-mock.module("@opencode-ai/core/installation/version", () => ({
+mock.module("@qronos-ai/core/installation/version", () => ({
   InstallationBuildKind: "release",
   InstallationVersion: "test",
 }))
 
-mock.module("@kilocode/kilo-telemetry", () => ({
+mock.module("@qronos-ai/kilo-telemetry", () => ({
   Telemetry: {
     async init() {
       calls.push("telemetry:init")
@@ -34,7 +34,7 @@ mock.module("@kilocode/kilo-telemetry", () => ({
   },
 }))
 
-mock.module("@kilocode/kilo-gateway", () => ({
+mock.module("@qronos-ai/kilo-gateway", () => ({
   ENV_FEATURE: "KILO_FEATURE",
   ENV_VERSION: "KILO_VERSION",
   async migrateLegacyKiloAuth() {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
-import type { KiloPassState } from "@kilocode/kilo-gateway"
-import type { Message } from "@kilocode/sdk/v2"
+import type { KiloPassState } from "@qronos-ai/kilo-gateway"
+import type { Message } from "@qronos-ai/sdk/v2"
 
 import { billable, creditLabel, format, passLine, resetLabel, scope } from "../../src/kilocode/plugins/sidebar-footer"
 

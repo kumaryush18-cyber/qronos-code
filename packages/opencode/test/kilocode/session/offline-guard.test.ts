@@ -4,7 +4,7 @@ import { KiloSessionProcessor } from "@/kilocode/session/processor"
 import { SessionNetwork } from "@/session/network"
 import { SessionRetry } from "@/session/retry"
 import { MessageV2 } from "@/session/message-v2"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 
 // Wide margins: Windows timer granularity (~15ms) makes tight sleeps drift.
 const fast = { stallMs: 200, tickMs: 20 }

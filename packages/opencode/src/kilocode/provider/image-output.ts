@@ -8,7 +8,7 @@ import type { Provider } from "@/provider/provider"
  * Routers such as `openrouter/auto` advertise image output because they can pick an image
  * model; requesting images from them would steer ordinary chat turns to image models.
  */
-const NPM = new Set(["@openrouter/ai-sdk-provider", "@kilocode/kilo-gateway"])
+const NPM = new Set(["@openrouter/ai-sdk-provider", "@qronos-ai/kilo-gateway"])
 
 export function imageModalities(model: Provider.Model) {
   if (!model.api?.npm || !NPM.has(model.api.npm)) return

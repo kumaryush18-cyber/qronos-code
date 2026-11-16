@@ -1,6 +1,6 @@
 import path from "path"
 import { realpathSync, statSync } from "fs"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { KilocodeConfigOverlay } from "@/kilocode/config/overlay"
 import type { Scope } from "./schema"
 

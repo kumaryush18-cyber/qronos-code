@@ -1,18 +1,18 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { describe, expect, test } from "bun:test"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { provideInstance, TestInstance, tmpdirScoped } from "../fixture/fixture"
 import { ProviderAuth } from "@/provider/auth"
 
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { TestConfig } from "../fixture/config"
 import { testEffect } from "../lib/effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { Config } from "@/config/config"
 
 const it = testEffect(AppNodeBuilder.build(LayerNode.group([CrossSpawnSpawner.node, FSUtil.node])))

@@ -9,17 +9,17 @@
 // recovered nothing falls back to the raw command text (also covering ERROR
 // chunks without a command_name descendant, such as backtick escapes).
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
 import { Cause, Effect, Exit, Layer } from "effect"
 import path from "path"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import type { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { Permission } from "../../../src/permission"
 import { ShellPermission } from "../../../src/tool/shell"
 import { ShellTool } from "../../../src/tool/shell"
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@qronos-ai/core/shell"
 import { Config } from "../../../src/config/config"
 import { Agent } from "../../../src/agent/agent"
 import { Plugin } from "../../../src/plugin"

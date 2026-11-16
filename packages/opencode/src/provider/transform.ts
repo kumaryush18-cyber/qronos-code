@@ -2,7 +2,7 @@ import type { ModelMessage, ToolResultPart } from "ai"
 import { mergeDeep, unique } from "remeda"
 import type { JSONSchema7 } from "@ai-sdk/provider"
 import type * as Provider from "./provider"
-import type * as ModelsDev from "@opencode-ai/core/models-dev"
+import type * as ModelsDev from "@qronos-ai/core/models-dev"
 import { iife } from "@/util/iife"
 import { kiloProviderOptions } from "@/kilocode/provider-options"
 import { isLing } from "@/kilocode/model-match" // kilocode_change
@@ -88,7 +88,7 @@ function sdkKey(npm: string): string | undefined {
       return "gateway"
     case "@openrouter/ai-sdk-provider":
       return "openrouter"
-    case "@kilocode/kilo-gateway": // kilocode_change
+    case "@qronos-ai/kilo-gateway": // kilocode_change
       return "openrouter"
     case "merge-gateway-ai-sdk-provider":
       return "mergeGateway"
@@ -562,7 +562,7 @@ export function message(msgs: ModelMessage[], model: Provider.Model, options: Re
       model.api.npm === "@ai-sdk/alibaba" ||
       ((model.api.npm === "@ai-sdk/openai" ||
         model.api.npm === "@ai-sdk/azure" ||
-        model.api.npm === "@kilocode/kilo-gateway") &&
+        model.api.npm === "@qronos-ai/kilo-gateway") &&
         supportsPromptCacheBreakpoint(model, options))) &&
     model.api.npm !== "@ai-sdk/gateway" &&
     !usesAnthropicAutomaticCaching
@@ -853,7 +853,7 @@ function googleThinkingVariants(model: Provider.Model): Record<string, Record<st
 export function variants(model: Provider.Model): Record<string, Record<string, any>> {
   // kilocode_change start
   if (
-    ["@kilocode/kilo-gateway", "@ai-sdk/openai-compatible"].includes(model.api.npm) &&
+    ["@qronos-ai/kilo-gateway", "@ai-sdk/openai-compatible"].includes(model.api.npm) &&
     model.variants &&
     Object.keys(model.variants).length > 0
   ) {
@@ -1421,7 +1421,7 @@ function reasoningEffort(model: Provider.Model, effort: string) {
     case "ai-gateway-provider":
     case "merge-gateway-ai-sdk-provider":
       return { reasoningEffort: effort }
-    case "@kilocode/kilo-gateway": // kilocode_change - OpenRouter-shaped reasoning effort
+    case "@qronos-ai/kilo-gateway": // kilocode_change - OpenRouter-shaped reasoning effort
       return { reasoning: { effort } } // kilocode_change
     case "@ai-sdk/cohere":
     case "@ai-sdk/perplexity":
@@ -1534,7 +1534,7 @@ export function options(input: {
   if (
     input.model.api.npm === "@openrouter/ai-sdk-provider" ||
     input.model.api.npm === "@llmgateway/ai-sdk-provider" ||
-    input.model.api.npm === "@kilocode/kilo-gateway" // kilocode_change
+    input.model.api.npm === "@qronos-ai/kilo-gateway" // kilocode_change
   ) {
     result["usage"] = {
       include: true,
@@ -1652,7 +1652,7 @@ export function options(input: {
         input.model.api.npm === "@ai-sdk/azure" ||
         input.model.api.npm === "@ai-sdk/github-copilot" ||
         input.model.api.npm === "@openrouter/ai-sdk-provider" || // kilocode_change
-        input.model.api.npm === "@kilocode/kilo-gateway" || // kilocode_change
+        input.model.api.npm === "@qronos-ai/kilo-gateway" || // kilocode_change
         input.model.api.npm === "@ai-sdk/amazon-bedrock/mantle"
       ) {
         result["reasoningSummary"] = reasoningSummary(input.model) // kilocode_change
@@ -1669,7 +1669,7 @@ export function options(input: {
         input.model.api.npm === "@ai-sdk/amazon-bedrock/mantle" ||
         input.model.api.npm === "@ai-sdk/github-copilot" ||
         input.model.api.npm === "@openrouter/ai-sdk-provider" ||
-        input.model.api.npm === "@kilocode/kilo-gateway") &&
+        input.model.api.npm === "@qronos-ai/kilo-gateway") &&
       input.model.api.id.includes("gpt-5.") &&
       !input.model.api.id.includes("codex") &&
       !input.model.api.id.includes("-chat") &&
@@ -1705,7 +1705,7 @@ export function smallOptions(model: Provider.Model) {
       return { reasoning: { enabled: false } }
     }
   }
-  if (model.api.npm === "@kilocode/kilo-gateway") {
+  if (model.api.npm === "@qronos-ai/kilo-gateway") {
     // kilocode_change
     if (!model.capabilities.reasoning) return {} // kilocode_change - omit unsupported reasoning options
     return { reasoning: { enabled: true } } // kilocode_change - use the model's supported default effort
@@ -1767,7 +1767,7 @@ export function providerOptions(model: Provider.Model, options: { [x: string]: a
   }
 
   // kilocode_change start
-  if (model.api.npm === "@kilocode/kilo-gateway") {
+  if (model.api.npm === "@qronos-ai/kilo-gateway") {
     return kiloProviderOptions(options)
   }
   // kilocode_change end

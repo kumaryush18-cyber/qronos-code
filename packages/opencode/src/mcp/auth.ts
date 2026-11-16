@@ -1,10 +1,10 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import path from "path"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
-import { Global } from "@opencode-ai/core/global"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
+import { Global } from "@qronos-ai/core/global"
 import { Effect, Layer, Context, Option, Schema } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock"
 import * as Invalidation from "../kilocode/mcp/invalidation" // kilocode_change
 
 export const Tokens = Schema.Struct({

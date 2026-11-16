@@ -3,10 +3,10 @@ import { InstanceRef } from "@/effect/instance-ref"
 import { isInterrupted } from "@/kilocode/effect/cause"
 import * as KiloReference from "@/kilocode/reference"
 import { InstanceStore } from "@/project/instance-store"
-import { LocationServiceMap } from "@opencode-ai/core/location-services"
-import { Location } from "@opencode-ai/core/location"
-import { PluginV2 } from "@opencode-ai/core/plugin" // kilocode_change
-import { ReferenceReconciler } from "@opencode-ai/server/kilocode/reference-reconciler"
+import { LocationServiceMap } from "@qronos-ai/core/location-services"
+import { Location } from "@qronos-ai/core/location"
+import { PluginV2 } from "@qronos-ai/core/plugin" // kilocode_change
+import { ReferenceReconciler } from "@qronos-ai/server/kilocode/reference-reconciler"
 import { Effect, Layer } from "effect"
 
 const reconcile = Effect.gen(function* () {

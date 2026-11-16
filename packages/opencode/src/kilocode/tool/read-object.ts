@@ -2,7 +2,7 @@ import { constants, type BigIntStats } from "node:fs"
 import { open, realpath, stat, type FileHandle } from "node:fs/promises"
 import { Readable } from "node:stream"
 import { Effect } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 
 export namespace KiloReadObject {
   export class ChangedError extends Error {}

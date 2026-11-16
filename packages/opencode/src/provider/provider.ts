@@ -1,34 +1,34 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import os from "os"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
 import fuzzysort from "fuzzysort"
 import { Config } from "@/config/config"
 import { mapValues, mergeDeep, omit, pickBy, sortBy } from "remeda"
 import { NoSuchModelError, type Provider as SDK } from "ai"
-import { Npm } from "@opencode-ai/core/npm"
-import { Hash } from "@opencode-ai/core/util/hash"
+import { Npm } from "@qronos-ai/core/npm"
+import { Hash } from "@qronos-ai/core/util/hash"
 import { Plugin } from "../plugin"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { type LanguageModelV3 } from "@ai-sdk/provider"
 import * as ModelsDev from "./models" // kilocode_change - assemble dynamic Kilo models around upstream core catalog
 import { failure } from "@/kilocode/provider/catalog-recovery" // kilocode_change
 import { Auth } from "../auth"
 import { Env } from "../env"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { iife } from "@/util/iife"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect, Layer, Context, Schema, Types } from "effect"
 import { EffectBridge } from "@/effect/bridge"
 import { InstanceState } from "@/effect/instance-state"
 import { EffectPromise } from "@/effect/promise"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { isRecord } from "@/util/record"
-import { optional, optionalOmitUndefined } from "@opencode-ai/core/schema" // kilocode_change
+import { optional, optionalOmitUndefined } from "@qronos-ai/core/schema" // kilocode_change
 import { ProviderTransform } from "./transform"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { ModelStatus } from "./model-status"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 // kilocode_change start
@@ -157,7 +157,7 @@ const BUNDLED_PROVIDERS: Record<string, () => Promise<(opts: any) => BundledSDK>
   "@ai-sdk/alibaba": () => import("@ai-sdk/alibaba").then((m) => m.createAlibaba),
   "gitlab-ai-provider": () => import("gitlab-ai-provider").then((m) => m.createGitLab),
   "@ai-sdk/github-copilot": () =>
-    import("@opencode-ai/core/github-copilot/copilot-provider").then((m) => m.createOpenaiCompatible),
+    import("@qronos-ai/core/github-copilot/copilot-provider").then((m) => m.createOpenaiCompatible),
   "venice-ai-sdk-provider": () => import("venice-ai-sdk-provider").then((m) => m.createVenice),
   ...KILO_BUNDLED_PROVIDERS, // kilocode_change
 }

@@ -1,11 +1,11 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { afterEach, describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { Agent } from "../../src/agent/agent"
 import { ToolRegistry } from "../../src/tool/registry"
 import * as ToolJsonSchema from "../../src/tool/json-schema"
 import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
 import { testEffect } from "../lib/effect"
 
 const node = AppNodeBuilder.build(CrossSpawnSpawner.node)

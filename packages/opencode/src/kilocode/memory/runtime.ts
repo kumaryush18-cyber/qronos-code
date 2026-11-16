@@ -1,8 +1,8 @@
-import { Global } from "@opencode-ai/core/global"
-import * as Log from "@opencode-ai/core/util/log"
-import { MemoryInstance } from "@kilocode/kilo-memory/effect/instance"
-import { MemoryLog } from "@kilocode/kilo-memory/effect/log"
-import { MemoryPaths } from "@kilocode/kilo-memory/effect/paths"
+import { Global } from "@qronos-ai/core/global"
+import * as Log from "@qronos-ai/core/util/log"
+import { MemoryInstance } from "@qronos-ai/kilo-memory/effect/instance"
+import { MemoryLog } from "@qronos-ai/kilo-memory/effect/log"
+import { MemoryPaths } from "@qronos-ai/kilo-memory/effect/paths"
 import { bind } from "@/kilocode/instance"
 import { MemoryEvents } from "./events"
 

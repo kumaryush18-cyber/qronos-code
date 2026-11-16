@@ -17,7 +17,7 @@ function withCredentials(base: string, state: Daemon.State) {
 }
 
 async function launch(url: string) {
-  const { openUrl } = await import("@opencode-ai/core/open")
+  const { openUrl } = await import("@qronos-ai/core/open")
   const child = await openUrl(url)
   await new Promise<void>((resolve, reject) => {
     const timer = setTimeout(resolve, 500)

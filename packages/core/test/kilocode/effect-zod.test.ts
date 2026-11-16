@@ -2,8 +2,8 @@ import { describe, expect, test } from "bun:test"
 import { Effect, Schema, SchemaGetter } from "effect"
 import z from "zod"
 
-import { zod, ZodOverride } from "@opencode-ai/core/effect-zod"
-import { stripZodFormat } from "@opencode-ai/core/kilocode/json-schema-format"
+import { zod, ZodOverride } from "@qronos-ai/core/effect-zod"
+import { stripZodFormat } from "@qronos-ai/core/kilocode/json-schema-format"
 
 function json(schema: z.ZodTypeAny) {
   const { $schema: _, ...rest } = z.toJSONSchema(schema, { override: stripZodFormat })

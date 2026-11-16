@@ -1,4 +1,4 @@
-import type { Part } from "@kilocode/sdk/v2"
+import type { Part } from "@qronos-ai/sdk/v2"
 import { Locale } from "@tui/util/locale"
 
 export function relativeTime(timestamp: number): string {

@@ -1,4 +1,4 @@
-import type { ProviderFailure } from "@kilocode/sdk/v2/client"
+import type { ProviderFailure } from "@qronos-ai/sdk/v2/client"
 
 // qronos_change - one provider id only. The gateway is `qronos`; `kilo` is gone.
 export const QRONOS_PROVIDER_ID = "qronos"

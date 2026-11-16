@@ -1,4 +1,4 @@
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Effect } from "effect"
 import { Agent } from "@/agent/agent"
 import { KiloModeReminders } from "@/kilocode/session/mode-reminders" // kilocode_change

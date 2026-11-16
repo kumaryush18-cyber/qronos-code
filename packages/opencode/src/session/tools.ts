@@ -4,7 +4,7 @@ import { GoalPolicy } from "@/kilocode/session/goal/policy" // kilocode_change
 import type { Goal } from "@/kilocode/session/goal/runner" // kilocode_change
 import { MemoryMarker } from "@/kilocode/memory/marker" // kilocode_change
 import { BoardNotice } from "@/kilocode/board/notice" // kilocode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Provider } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { MCP } from "@/mcp"
@@ -25,8 +25,8 @@ import { SessionProcessor } from "./processor"
 import { PartID } from "./schema"
 import { EffectBridge } from "@/effect/bridge"
 import * as SandboxPolicy from "@/kilocode/sandbox/policy" // kilocode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 // kilocode_change start
 import { Config } from "@/config/config"
 import { PermissionProvenance } from "@/kilocode/permission/provenance"

@@ -2,12 +2,12 @@ import { randomUUID } from "node:crypto"
 import { UI } from "@/cli/ui"
 import type { NetworkOptions } from "@/cli/network"
 import { ServerAuth } from "@/server/auth"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { errorMessage } from "@opencode-ai/tui/util/error"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { errorMessage } from "@qronos-ai/tui/util/error"
 import { validate as validateSession } from "@/kilocode/cli/cmd/tui"
 import { DaemonClient } from "@/kilocode/daemon/client"
 
-type TuiInput = import("@opencode-ai/tui").TuiInput
+type TuiInput = import("@qronos-ai/tui").TuiInput
 export type StartInput = Omit<TuiInput, "pluginHost">
 
 type Args = NetworkOptions & {
@@ -31,7 +31,7 @@ async function session(input: Input, daemon: DaemonClient.Connection) {
   if (!input.args.cloudFork || !input.args.session) return { ok: true as const, id: input.args.session }
 
   const [{ createKiloClient }, { importCloudSession, reportCloudImportError }] = await Promise.all([
-    import("@kilocode/sdk/v2"),
+    import("@qronos-ai/sdk/v2"),
     import("@/kilocode/cloud-session"),
   ])
   UI.println("Importing session from cloud...")

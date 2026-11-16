@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { BackgroundProcessWindows } from "@/kilocode/background-process/windows"
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@qronos-ai/core/shell"
 import { isRecord } from "@/util/record"
 import { spawn } from "child_process"
 import { once } from "node:events"

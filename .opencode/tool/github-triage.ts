@@ -1,5 +1,5 @@
 /// <reference path="../env.d.ts" />
-import { tool } from "@kilocode/plugin"
+import { tool } from "@qronos-ai/plugin"
 
 // kilocode_change start
 const TEAM = {

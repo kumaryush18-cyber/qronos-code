@@ -7,7 +7,7 @@
 
 import type { JSX } from "solid-js"
 import type { RGBA } from "@opentui/core"
-import type { ProviderAuthAuthorization, ProviderFailure } from "@kilocode/sdk/v2"
+import type { ProviderAuthAuthorization, ProviderFailure } from "@qronos-ai/sdk/v2"
 import { KiloAutoMethod } from "@/kilocode/components/dialog-kilo-auto-method"
 export { selectProvider } from "@/kilocode/anaconda-desktop/tui/setup"
 

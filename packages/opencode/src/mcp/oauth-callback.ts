@@ -1,7 +1,7 @@
 import { createConnection } from "net"
 import { createServer } from "http"
 import { escapeHtml } from "@/util/html"
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
 import { OAUTH_CALLBACK_PORT, OAUTH_CALLBACK_PATH, parseRedirectUri } from "./oauth-provider"
 import * as KiloOAuthCallback from "../kilocode/mcp-oauth-callback" // kilocode_change
 

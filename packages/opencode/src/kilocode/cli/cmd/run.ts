@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2"
+import type { KiloClient } from "@qronos-ai/sdk/v2"
 import { KiloRunDrain } from "../run-drain"
 import { UI } from "@/cli/ui"
 import { FormatError, FormatUnknownError } from "@/cli/error"

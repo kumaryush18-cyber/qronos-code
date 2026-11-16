@@ -18,7 +18,7 @@ export interface ProxyRuntime {
   readonly socket?: string | undefined
 }
 
-export const CurrentProxy = Context.Reference<ProxyRuntime | undefined>("@kilocode/sandbox/CurrentProxy", {
+export const CurrentProxy = Context.Reference<ProxyRuntime | undefined>("@qronos-ai/sandbox/CurrentProxy", {
   defaultValue: () => undefined,
 })
 
@@ -31,7 +31,7 @@ export type ProxyFactory = (
   input: ReadonlyArray<string>,
 ) => Promise<ProxyRuntime & { readonly close: () => Promise<void> }>
 
-export const CurrentProxyFactory = Context.Reference<ProxyFactory>("@kilocode/sandbox/CurrentProxyFactory", {
+export const CurrentProxyFactory = Context.Reference<ProxyFactory>("@qronos-ai/sandbox/CurrentProxyFactory", {
   defaultValue: () => startProxy,
 })
 

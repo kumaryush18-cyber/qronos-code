@@ -1,6 +1,6 @@
 import { fn } from "@/kilocode/fn"
 import { MessageID, SessionID } from "@/session/schema"
-import { zod as toZod } from "@opencode-ai/core/effect-zod"
+import { zod as toZod } from "@qronos-ai/core/effect-zod"
 import z from "zod"
 
 export const kiloSessionFork = fn(

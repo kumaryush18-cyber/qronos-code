@@ -3,7 +3,7 @@ export * as Ripgrep from "./ripgrep"
 import { Context, Duration, Effect, Fiber, Layer, Schema, Stream } from "effect"
 import { ChildProcess } from "effect/unstable/process"
 import { makeGlobalNode } from "./effect/app-node"
-import { Entry, Match } from "@opencode-ai/schema/filesystem"
+import { Entry, Match } from "@qronos-ai/schema/filesystem"
 import * as KiloGlob from "./kilocode/ripgrep-glob" // kilocode_change
 import * as KiloGrep from "./kilocode/ripgrep-grep" // kilocode_change
 import * as SpawnExit from "./kilocode/spawn-exit" // kilocode_change

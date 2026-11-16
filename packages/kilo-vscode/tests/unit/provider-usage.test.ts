@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test"
-import type { ProviderUsage, ProviderUsageWindow } from "@kilocode/sdk/v2/client"
-import { formatWindow, windowLabel, windowProgress } from "@kilocode/kilo-gateway/provider-usage"
+import type { ProviderUsage, ProviderUsageWindow } from "@qronos-ai/sdk/v2/client"
+import { formatWindow, windowLabel, windowProgress } from "@qronos-ai/kilo-gateway/provider-usage"
 
 const { KiloProvider } = await import("../../src/KiloProvider")
 

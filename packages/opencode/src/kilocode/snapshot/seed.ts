@@ -1,8 +1,8 @@
 import { Effect } from "effect"
 import path from "path"
 import { stat } from "node:fs/promises"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import * as Log from "@opencode-ai/core/util/log"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import * as Log from "@qronos-ai/core/util/log"
 import { KiloSnapshotMaterialize } from "./materialize"
 
 export namespace KiloSnapshotSeed {

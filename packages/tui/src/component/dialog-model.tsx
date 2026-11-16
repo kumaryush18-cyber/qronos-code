@@ -7,7 +7,7 @@ import { DialogSelect } from "../ui/dialog-select"
 import { useDialog } from "../ui/dialog"
 import { createDialogProviderOptions, DialogProvider } from "./dialog-provider"
 import { DialogVariant } from "./dialog-variant"
-import type { Model } from "@kilocode/sdk/v2" // kilocode_change
+import type { Model } from "@qronos-ai/sdk/v2" // kilocode_change
 import { useConnected } from "./use-connected"
 import { ModelInfoPanel } from "@/kilocode/components/model-info-panel" // kilocode_change
 import { FreeModelDisclosure } from "@/kilocode/components/free-model-disclosure" // kilocode_change

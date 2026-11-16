@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { TerminalManager } from "../../src/agent-manager/terminal-manager"
 
 const params = { terminalId: "terminal-1", worktreeId: null, cwd: "/workspace", title: "Terminal 1" }

@@ -1,8 +1,8 @@
 import { Component, JSX } from "solid-js"
-import { Dialog } from "@kilocode/kilo-ui/dialog"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { useDialog } from "@kilocode/kilo-ui/context/dialog"
+import { Dialog } from "@qronos-ai/kilo-ui/dialog"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { useDialog } from "@qronos-ai/kilo-ui/context/dialog"
 import { useVSCode } from "../../context/vscode"
 import { useLanguage } from "../../context/language"
 

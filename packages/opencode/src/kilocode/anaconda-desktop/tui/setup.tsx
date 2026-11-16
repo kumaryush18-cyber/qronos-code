@@ -1,6 +1,6 @@
 import { TextAttributes } from "@opentui/core"
 import { createMemo, createSignal, For, onCleanup, onMount, Show, type JSX } from "solid-js"
-import { openUrl } from "@opencode-ai/core/open"
+import { openUrl } from "@qronos-ai/core/open"
 import { useTheme } from "@tui/context/theme"
 import { useSDK } from "@tui/context/sdk"
 import { useBindings } from "@tui/keymap"

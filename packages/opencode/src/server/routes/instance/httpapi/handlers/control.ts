@@ -9,7 +9,7 @@ import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { RootHttpApi } from "../api"
 import { LogInput } from "../groups/control"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { remove as removeAuth } from "@/kilocode/auth/remove" // kilocode_change
 
 export const controlHandlers = HttpApiBuilder.group(RootHttpApi, "control", (handlers) =>

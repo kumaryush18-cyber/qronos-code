@@ -1,18 +1,18 @@
 /**
  * Language context
  * Provides i18n translations for kilo-ui components.
- * Merges UI translations from @opencode-ai/ui and Qronos overrides from @kilocode/kilo-i18n.
+ * Merges UI translations from @qronos-ai/ui and Qronos overrides from @qronos-ai/kilo-i18n.
  *
  * Locale priority: user override → VS Code display language → browser language → "en"
  */
 
 import { createSignal, createMemo, createEffect, onCleanup, ParentComponent, Accessor } from "solid-js"
-import { I18nProvider, pluralCategory, pluralKey } from "@kilocode/kilo-ui/context"
-import type { UiI18nKey, UiI18nParams, UiI18nPluralKey } from "@kilocode/kilo-ui/context"
-import { dict as uiEn } from "@kilocode/kilo-ui/i18n/en"
+import { I18nProvider, pluralCategory, pluralKey } from "@qronos-ai/kilo-ui/context"
+import type { UiI18nKey, UiI18nParams, UiI18nPluralKey } from "@qronos-ai/kilo-ui/context"
+import { dict as uiEn } from "@qronos-ai/kilo-ui/i18n/en"
 import { dict as appEn } from "../i18n/en"
 import { dict as amEn } from "../../agent-manager/i18n/en"
-import { dict as kiloEn } from "@kilocode/kilo-i18n/en"
+import { dict as kiloEn } from "@qronos-ai/kilo-i18n/en"
 import { useVSCode } from "./vscode"
 import { normalizeLocale as _normalizeLocale, resolveTemplate as _resolveTemplate } from "./language-utils"
 

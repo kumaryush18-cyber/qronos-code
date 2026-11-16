@@ -5,7 +5,7 @@ import { Account } from "@/account/account"
 import { AccountID, OrgID, PollExpired, type PollResult, type AccountError } from "@/account/schema"
 import { effectCmd } from "../effect-cmd"
 import * as Prompt from "../effect/prompt"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 
 const openBrowser = (url: string) => Effect.promise(() => openUrl(url).catch(() => undefined)) // kilocode_change
 

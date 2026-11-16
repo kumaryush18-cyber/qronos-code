@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 
 import { onMount } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { List } from "@kilocode/kilo-ui/list"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { List } from "@qronos-ai/kilo-ui/list"
 import { filterSessions } from "../../hooks/file-mention-utils"
 import type { SessionSearchItem } from "../../types/messages"
 import { formatRelativeDate } from "../../utils/date"

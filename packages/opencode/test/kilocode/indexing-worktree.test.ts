@@ -7,7 +7,7 @@ import { IndexingWorker } from "../../src/kilocode/indexing-worker-client"
 import { disposeAllInstances, provideTestInstance, tmpdir } from "../fixture/fixture"
 
 const cfg: Partial<Config.Info> = {
-  plugin: ["@kilocode/kilo-indexing"],
+  plugin: ["@qronos-ai/kilo-indexing"],
   indexing: {
     enabled: true,
     provider: "ollama",

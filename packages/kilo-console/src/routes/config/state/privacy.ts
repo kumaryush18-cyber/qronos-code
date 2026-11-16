@@ -1,4 +1,4 @@
-import type { Model, Provider } from "@kilocode/sdk/v2/client"
+import type { Model, Provider } from "@qronos-ai/sdk/v2/client"
 
 export function hasGateway(providers: Pick<Provider, "id">[]) {
   return providers.some((provider) => provider.id === "kilo")

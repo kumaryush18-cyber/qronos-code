@@ -25,7 +25,7 @@ const archMap = {
 
 const platform = platformMap[os.platform()] ?? os.platform()
 const arch = archMap[os.arch()] ?? os.arch()
-const base = `@kilocode/cli-${platform}-${arch}`
+const base = `@qronos-ai/cli-${platform}-${arch}`
 const sourceBinary = platform === "windows" ? "kilo.exe" : "kilo"
 const targetBinary = path.join(__dirname, "bin", ".kilo")
 

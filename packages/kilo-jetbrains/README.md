@@ -57,7 +57,7 @@ This builds the plugin without bundling CLI binaries. The backend downloads the 
 Or via Turbo from the repo root:
 
 ```
-bun turbo build --filter=@kilocode/kilo-jetbrains
+bun turbo build --filter=@qronos-ai/kilo-jetbrains
 ```
 
 ---

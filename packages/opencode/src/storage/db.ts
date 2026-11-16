@@ -4,18 +4,18 @@ import { type SQLiteTransaction } from "drizzle-orm/sqlite-core"
 export * from "drizzle-orm"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { LocalContext } from "@/util/local-context"
-import { Global } from "@opencode-ai/core/global"
-import { DbPreflight } from "@opencode-ai/core/kilocode/db-preflight" // kilocode_change
-import * as Log from "@opencode-ai/core/util/log"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { Global } from "@qronos-ai/core/global"
+import { DbPreflight } from "@qronos-ai/core/kilocode/db-preflight" // kilocode_change
+import * as Log from "@qronos-ai/core/util/log"
+import { NamedError } from "@qronos-ai/core/util/error"
 import path from "path"
 import { readFileSync, readdirSync, existsSync } from "fs"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { InstallationChannel } from "@qronos-ai/core/installation/version"
 import { EffectBridge } from "@/effect/bridge"
 import { init } from "#db"
 import { Effect, Schema } from "effect"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 
 declare const KILO_MIGRATIONS: { sql: string; timestamp: number; name: string }[] | undefined
 

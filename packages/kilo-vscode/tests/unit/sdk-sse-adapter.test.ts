@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { KiloConnectionService } from "../../src/services/cli-backend/connection-service"
 import { SdkSSEAdapter, type SSEPayload } from "../../src/services/cli-backend/sdk-sse-adapter"
 

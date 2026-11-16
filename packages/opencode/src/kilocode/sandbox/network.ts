@@ -1,6 +1,6 @@
 import { Effect, Layer } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/unstable/http"
-import { assertNetwork, assertSandbox, networkHttpLayer, unrestricted } from "@kilocode/sandbox"
+import { assertNetwork, assertSandbox, networkHttpLayer, unrestricted } from "@qronos-ai/sandbox"
 import { host, opaque } from "./network-tools"
 
 const Builtin = Symbol("kilo.sandbox.builtinTool")

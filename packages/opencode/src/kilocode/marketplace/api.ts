@@ -1,5 +1,5 @@
 import { parse as parseYaml } from "yaml"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import type {
   AgentMarketplaceItem,
   McpMarketplaceItem,

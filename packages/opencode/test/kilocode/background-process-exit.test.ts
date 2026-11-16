@@ -9,8 +9,8 @@ import { BackgroundProcessWindows } from "@/kilocode/background-process/windows"
 import { Process } from "@/util/process"
 import { SessionID } from "@/session/schema"
 import { Filesystem } from "@/util/filesystem"
-import { Global } from "@opencode-ai/core/global"
-import { Hash } from "@opencode-ai/core/util/hash"
+import { Global } from "@qronos-ai/core/global"
+import { Hash } from "@qronos-ai/core/util/hash"
 import { provideTestInstance, tmpdir } from "../fixture/fixture"
 
 const original = { ...fs }

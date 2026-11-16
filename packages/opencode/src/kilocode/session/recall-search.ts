@@ -1,16 +1,16 @@
 import path from "path"
 import { eq, inArray, sql } from "drizzle-orm"
 import { Cause, Effect } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
-import { RecallPartIndex } from "@opencode-ai/core/kilocode/session/recall-part-index"
-import { RecallMessageIndex } from "@opencode-ai/core/kilocode/session/recall-message-index"
+import { Database } from "@qronos-ai/core/database/database"
+import { RecallPartIndex } from "@qronos-ai/core/kilocode/session/recall-part-index"
+import { RecallMessageIndex } from "@qronos-ai/core/kilocode/session/recall-message-index"
 import type { MessageV2 } from "@/session/message-v2"
-import { SessionTable } from "@opencode-ai/core/session/sql"
+import { SessionTable } from "@qronos-ai/core/session/sql"
 import type { MessageID, PartID, SessionID } from "@/session/schema"
 import { Filesystem } from "@/util/filesystem"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import { ProjectTable } from "@qronos-ai/core/project/sql"
+import { ProjectV2 } from "@qronos-ai/core/project"
+import { AbsolutePath } from "@qronos-ai/core/schema"
 
 export namespace RecallSearch {
   const BATCH = 8_192

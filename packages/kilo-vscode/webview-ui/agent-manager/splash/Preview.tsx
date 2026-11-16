@@ -1,5 +1,5 @@
 import { For, type Accessor, type JSX } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { ActivityIcon } from "../../src/components/shared/ActivityIcon"
 import { label } from "../../src/utils/session-activity"
 import { useLanguage } from "../../src/context/language"

@@ -1,6 +1,6 @@
 import { unlink } from "node:fs/promises"
 import path from "node:path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { Skill } from "@/skill"
 
 const LEGACY_BUILTIN_LOCATION = "<built-in>"

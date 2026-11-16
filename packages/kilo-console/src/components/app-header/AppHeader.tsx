@@ -1,4 +1,4 @@
-import { IconButton } from "@kilocode/kilo-web-ui/icon-button"
+import { IconButton } from "@qronos-ai/kilo-web-ui/icon-button"
 import { A } from "@solidjs/router"
 import { OmniSearch } from "./OmniSearch"
 

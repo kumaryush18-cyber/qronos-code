@@ -1,5 +1,5 @@
 import { Effect, Exit } from "effect"
-import type { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { SessionV1 } from "@qronos-ai/core/v1/session"
 import type { PromptInput } from "@/session/prompt"
 import type { MessageID, SessionID } from "@/session/schema"
 import { KiloSessionPromptQueue } from "../prompt-queue"

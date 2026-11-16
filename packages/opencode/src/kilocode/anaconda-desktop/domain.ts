@@ -1,4 +1,4 @@
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import path from "path"
 import { Effect, Option, Schema } from "effect"
 

@@ -1,14 +1,14 @@
 import { describe, expect, test } from "bun:test"
 import { Provider } from "../../../src/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { filterPromptTrainingModels, nonEmptyProviders } from "../../../src/kilocode/provider/model-filter"
 
 function model(id: string, training?: boolean): Provider.Model {
   return {
     id: ModelV2.ID.make(id),
     providerID: ProviderV2.ID.qronos,
-    api: { id: "qronos", url: "https://api.kilo.ai", npm: "@kilocode/kilo-gateway" },
+    api: { id: "qronos", url: "https://api.kilo.ai", npm: "@qronos-ai/kilo-gateway" },
     name: id,
     capabilities: {
       temperature: true,

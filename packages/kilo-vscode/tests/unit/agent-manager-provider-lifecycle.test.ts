@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test"
 import * as fs from "node:fs"
 import * as os from "node:os"
 import * as path from "node:path"
-import type { KiloClient, SessionStatus } from "@kilocode/sdk/v2/client"
+import type { KiloClient, SessionStatus } from "@qronos-ai/sdk/v2/client"
 import { ProjectContext } from "../../src/agent-manager/project/context"
 import {
   createLifecycleWorktree,

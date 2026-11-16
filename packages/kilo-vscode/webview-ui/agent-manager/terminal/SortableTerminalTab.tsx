@@ -7,8 +7,8 @@
  */
 
 import { Show, type Component } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { TooltipKeybind } from "@kilocode/kilo-ui/tooltip"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { TooltipKeybind } from "@qronos-ai/kilo-ui/tooltip"
 import { useLanguage } from "../../src/context/language"
 import { SortableClosableTab, type ClosableTabProps } from "../ClosableTab"
 import { terminalChrome, terminalClosable, terminalStoppable } from "./chrome"

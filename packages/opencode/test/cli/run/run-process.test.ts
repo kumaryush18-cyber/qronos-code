@@ -5,7 +5,7 @@
 // `KILO_CONFIG_CONTENT` providing the test provider config inline.
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { createKiloClient } from "@kilocode/sdk/v2" // kilocode_change
+import { createKiloClient } from "@qronos-ai/sdk/v2" // kilocode_change
 import { reply } from "../../lib/llm-server"
 import { cliIt } from "../../lib/cli-process"
 

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/radio-group"
+export * from "@qronos-ai/ui/radio-group"

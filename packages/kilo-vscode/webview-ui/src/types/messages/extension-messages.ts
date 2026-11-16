@@ -1,4 +1,4 @@
-import type { ProviderAuthAuthorization, ProviderAuthMethod, ProviderFailure } from "@kilocode/sdk/v2/client"
+import type { ProviderAuthAuthorization, ProviderAuthMethod, ProviderFailure } from "@qronos-ai/sdk/v2/client"
 import type { DiffSourceCapabilities, DiffSourceDescriptor } from "../../../../src/diff/sources/types"
 import type { PRComment, PRReactionContent } from "../../../agent-manager/pr/pr-types"
 import type { PartBatch, PartRemove, PartUpdate } from "../../../../src/shared/stream-messages"

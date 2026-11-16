@@ -1,8 +1,8 @@
 import { Component, createSignal } from "solid-js"
-import { Dialog } from "@kilocode/kilo-ui/dialog"
-import { Button } from "@kilocode/kilo-ui/button"
-import { TextField } from "@kilocode/kilo-ui/text-field"
-import { useDialog } from "@kilocode/kilo-ui/context/dialog"
+import { Dialog } from "@qronos-ai/kilo-ui/dialog"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { TextField } from "@qronos-ai/kilo-ui/text-field"
+import { useDialog } from "@qronos-ai/kilo-ui/context/dialog"
 import { useLanguage } from "../../context/language"
 
 const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i

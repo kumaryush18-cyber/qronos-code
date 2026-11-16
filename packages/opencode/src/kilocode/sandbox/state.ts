@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm"
 import { Effect } from "effect"
 import type { SessionID } from "@/session/schema"
-import { SessionTable } from "@opencode-ai/core/session/sql"
-import { Database } from "@opencode-ai/core/database/database"
+import { SessionTable } from "@qronos-ai/core/session/sql"
+import { Database } from "@qronos-ai/core/database/database"
 
 export const key = "kilocode.sandbox"
 

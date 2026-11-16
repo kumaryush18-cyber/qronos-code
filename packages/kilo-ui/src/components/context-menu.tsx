@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/context-menu"
+export * from "@qronos-ai/ui/context-menu"

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import type { ProjectContext } from "../../src/agent-manager/project/context"
 import type { LifecycleHost } from "../../src/agent-manager/provider-lifecycle"
 import { discardWorktree } from "../../src/agent-manager/discard-worktree"

@@ -1,6 +1,6 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect } from "bun:test"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { Deferred, Effect, Exit, Fiber, Layer, Scope } from "effect"
 import { GlobalBus } from "../../../src/bus/global"
 import { registerDisposer } from "../../../src/effect/instance-registry"

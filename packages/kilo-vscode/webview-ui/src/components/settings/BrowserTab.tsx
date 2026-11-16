@@ -1,6 +1,6 @@
 import { Component, Show, createSignal, onCleanup, onMount } from "solid-js"
-import { Switch } from "@kilocode/kilo-ui/switch"
-import { Card } from "@kilocode/kilo-ui/card"
+import { Switch } from "@qronos-ai/kilo-ui/switch"
+import { Card } from "@qronos-ai/kilo-ui/card"
 import { useVSCode } from "../../context/vscode"
 import { useLanguage } from "../../context/language"
 import { useConfig } from "../../context/config"

@@ -1,4 +1,4 @@
-// Kilo-specific replacement for the shared `@opencode-ai/ui/pierre/worker`
+// Kilo-specific replacement for the shared `@qronos-ai/ui/pierre/worker`
 // module (wired up by the pierre-worker-alias plugin in esbuild.js).
 //
 // The upstream module loads Pierre's Shiki worker through a Vite-only
@@ -12,9 +12,9 @@
 // the page. Pierre can offload highlighted updates to the pool after its initial
 // plain render. The diff wrapper still needs to keep that initial render cheap,
 // which is why review surfaces pass hunk-bounded patches instead of full files.
-import { LINE_DIFF_TYPE } from "@kilocode/kilo-ui/pierre"
+import { LINE_DIFF_TYPE } from "@qronos-ai/kilo-ui/pierre"
 import { WorkerPoolManager } from "@pierre/diffs/worker"
-import { ensureKiloDiffTheme, KILO_DIFF_THEME } from "@opencode-ai/ui/pierre/kilo-diff-theme"
+import { ensureKiloDiffTheme, KILO_DIFF_THEME } from "@qronos-ai/ui/pierre/kilo-diff-theme"
 
 // Register the "Kilo" theme before any pool initializes. resolveThemes([theme])
 // runs on the main thread during initialize() and throws "resolveTheme: No valid

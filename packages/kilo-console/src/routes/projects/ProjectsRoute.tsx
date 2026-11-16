@@ -1,6 +1,6 @@
 import { createEffect, createMemo, createResource, createSignal, For, Show } from "solid-js"
 import { A } from "@solidjs/router"
-import { Card } from "@kilocode/kilo-web-ui/card"
+import { Card } from "@qronos-ai/kilo-web-ui/card"
 import { SearchField } from "../../components/SearchField"
 import { LoadingScreen } from "../../components/LoadingScreen"
 import "../../styles/projects.css"

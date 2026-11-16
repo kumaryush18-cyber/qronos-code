@@ -106,13 +106,13 @@ export function evalCliVersion(input: { flag?: string; installed: string }): Eva
     if (published(flag)) return { ok: true, version: flag }
     return {
       ok: false,
-      message: `--cli-version must be a published @kilocode/cli version such as 7.8.12, got "${flag}".`,
+      message: `--cli-version must be a published @qronos-ai/cli version such as 7.8.12, got "${flag}".`,
     }
   }
   if (published(input.installed)) return { ok: true, version: input.installed }
   return {
     ok: false,
-    message: `This CLI reports version "${input.installed}", which is not published on npm, so the eval image cannot install it. Pass --cli-version <version> with a published @kilocode/cli version.`,
+    message: `This CLI reports version "${input.installed}", which is not published on npm, so the eval image cannot install it. Pass --cli-version <version> with a published @qronos-ai/cli version.`,
   }
 }
 
@@ -125,7 +125,7 @@ export function evalDockerfile(version: string): string {
 FROM node:22-slim
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates git python3 g++ make \\
   && rm -rf /var/lib/apt/lists/* \\
-  && npm install -g @kilocode/cli@${version}
+  && npm install -g @qronos-ai/cli@${version}
 WORKDIR /app
 COPY ${EVAL_ENTRYPOINT_FILE} ./
 ENTRYPOINT ["node", "/app/${EVAL_ENTRYPOINT_FILE}"]

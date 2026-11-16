@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 
 type Client = Pick<KiloClient, "mcp">
 type Log = (...args: unknown[]) => void

@@ -1,4 +1,4 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test, spyOn } from "bun:test"
 import path from "path"
 import { Effect, Layer, ManagedRuntime } from "effect"

@@ -1,4 +1,4 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Context, Effect, Layer } from "effect"
 
 import { InstanceState } from "@/effect/instance-state"
@@ -20,9 +20,9 @@ import type { Agent } from "@/agent/agent"
 import { Permission } from "@/permission"
 import { Skill } from "@/skill"
 // kilocode_change
-import { LocationServiceMap, locationServiceMapLayer } from "@opencode-ai/core/location-services"
+import { LocationServiceMap, locationServiceMapLayer } from "@qronos-ai/core/location-services"
 import { MCP } from "@/mcp"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 
 // kilocode_change start
 import SOUL from "../kilocode/soul.txt"

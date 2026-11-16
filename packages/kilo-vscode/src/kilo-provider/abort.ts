@@ -1,4 +1,4 @@
-import type { KiloClient, SessionStatus } from "@kilocode/sdk/v2/client"
+import type { KiloClient, SessionStatus } from "@qronos-ai/sdk/v2/client"
 import { sameDirectory } from "../kilo-provider-utils"
 
 export class SessionAbort {

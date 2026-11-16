@@ -1,6 +1,6 @@
 import { cmd } from "./cmd"
 import { UI } from "@/cli/ui"
-import { errorMessage } from "@opencode-ai/tui/util/error"
+import { errorMessage } from "@qronos-ai/tui/util/error"
 import { validateSession } from "../tui/validate-session"
 import { ServerAuth } from "@/server/auth"
 // kilocode_change start - Kilo implementations (sdk client, cloud-session) are
@@ -134,7 +134,7 @@ export const AttachCommand = cmd({
     // kilocode_change start - import cloud session before TUI renders
     if (args.cloudFork && args.session) {
       UI.println("Importing session from cloud...")
-      const { createKiloClient } = await import("@kilocode/sdk/v2")
+      const { createKiloClient } = await import("@qronos-ai/sdk/v2")
       const sdk = createKiloClient({
         baseUrl: args.url,
         directory,

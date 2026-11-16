@@ -97,7 +97,7 @@ export namespace KiloProjectID {
     readonly get: () => Effect.Effect<string | undefined>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/KiloProjectID") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/KiloProjectID") {}
 
   export const layer = Layer.effect(
     Service,

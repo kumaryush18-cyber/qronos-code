@@ -1,4 +1,4 @@
-import { isPublicAddress } from "@kilocode/sandbox/destination"
+import { isPublicAddress } from "@qronos-ai/sandbox/destination"
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto"
 import { lookup } from "node:dns/promises"
 import { once } from "node:events"

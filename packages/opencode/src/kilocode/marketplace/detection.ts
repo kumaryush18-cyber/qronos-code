@@ -1,7 +1,7 @@
 import path from "path"
 import { readdir, stat } from "fs/promises"
 import { parse as parseJsonc } from "jsonc-parser"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import type { Skill } from "@/skill"
 import type { MarketplaceInstalledMetadata, Scope } from "./schema"
 import * as Paths from "./paths"

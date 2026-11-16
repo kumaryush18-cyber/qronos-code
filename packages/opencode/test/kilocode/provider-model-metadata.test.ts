@@ -18,7 +18,7 @@ describe("Kilo provider model metadata", () => {
     const model = Schema.decodeUnknownSync(Provider.Model)({
       id: "kilo-auto/efficient",
       providerID: "kilo",
-      api: { id: "kilo", url: "https://kilocode.ai", npm: "@kilocode/kilo-gateway" },
+      api: { id: "kilo", url: "https://kilocode.ai", npm: "@qronos-ai/kilo-gateway" },
       name: "Kilo Auto Efficient",
       family: "kilo-auto",
       capabilities: {

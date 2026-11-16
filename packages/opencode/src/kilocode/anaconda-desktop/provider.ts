@@ -1,6 +1,6 @@
-import type { Hooks, Plugin } from "@kilocode/plugin"
-import type { Model } from "@kilocode/sdk/v2"
-import type { Provider } from "@opencode-ai/core/models-dev"
+import type { Hooks, Plugin } from "@qronos-ai/plugin"
+import type { Model } from "@qronos-ai/sdk/v2"
+import type { Provider } from "@qronos-ai/core/models-dev"
 import { decodeMetadata, PROVIDER_ID, type Metadata, type Modality, type ModelDescriptor } from "./domain"
 
 export const PLACEHOLDER_MODEL_ID = "setup-required"

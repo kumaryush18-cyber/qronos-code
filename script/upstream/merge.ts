@@ -494,7 +494,7 @@ async function main() {
     logger.success("Removed unsupported Kilo web command registration")
   }
 
-  // 6a. Transform package names (opencode-ai -> @kilocode/cli)
+  // 6a. Transform package names (opencode-ai -> @qronos-ai/cli)
   logger.info("Transforming package names...")
   const nameResults = await transformPackageNames({ dryRun: false, verbose: options.verbose })
   logger.success(`Transformed ${nameResults.length} files`)

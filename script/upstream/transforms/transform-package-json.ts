@@ -246,20 +246,20 @@ export interface ReconcileOptions extends PackageJsonOptions {
 
 // Package name mappings
 const PACKAGE_NAME_MAP: Record<string, string> = {
-  "opencode-ai": "@kilocode/cli",
-  "@opencode-ai/cli": "@kilocode/cli",
-  "@opencode-ai/sdk": "@kilocode/sdk",
-  "@opencode-ai/plugin": "@kilocode/plugin",
+  "opencode-ai": "@qronos-ai/cli",
+  "@qronos-ai/cli": "@qronos-ai/cli",
+  "@qronos-ai/sdk": "@qronos-ai/sdk",
+  "@qronos-ai/plugin": "@qronos-ai/plugin",
 }
 
 // Kilo-specific dependencies to inject into specific packages
-// NOTE: When adding new Kilo-specific workspace dependencies (packages starting with @kilocode/kilo-*),
+// NOTE: When adding new Kilo-specific workspace dependencies (packages starting with @qronos-ai/kilo-*),
 // add them here to prevent them from being removed during upstream merges
 const KILO_DEPENDENCIES: Record<string, Record<string, string>> = {
   // packages/opencode/package.json needs these
   "packages/opencode/package.json": {
-    "@kilocode/kilo-gateway": "workspace:*",
-    "@kilocode/kilo-telemetry": "workspace:*",
+    "@qronos-ai/kilo-gateway": "workspace:*",
+    "@qronos-ai/kilo-telemetry": "workspace:*",
   },
 }
 
@@ -273,10 +273,10 @@ const KILO_BIN: Record<string, Record<string, string>> = {
 
 // Packages that should have their name transformed
 const TRANSFORM_PACKAGE_NAMES: Record<string, string> = {
-  "package.json": "@kilocode/kilo",
-  "packages/opencode/package.json": "@kilocode/cli",
-  "packages/plugin/package.json": "@kilocode/plugin",
-  "packages/sdk/js/package.json": "@kilocode/sdk",
+  "package.json": "@qronos-ai/kilo",
+  "packages/opencode/package.json": "@qronos-ai/cli",
+  "packages/plugin/package.json": "@qronos-ai/plugin",
+  "packages/sdk/js/package.json": "@qronos-ai/sdk",
 }
 
 // Kilo-specific scripts to preserve from the base branch per package.json.

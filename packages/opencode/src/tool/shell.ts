@@ -8,12 +8,12 @@ import { InstanceState } from "@/effect/instance-state"
 import { lazy } from "@/util/lazy"
 import { Language, type Node } from "web-tree-sitter"
 
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { fileURLToPath } from "url"
 import { Config } from "@/config/config"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { model as modelEnv } from "@/kilocode/process/env" // kilocode_change
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@qronos-ai/core/shell"
 import { ShellID } from "./shell/id"
 
 import * as Truncate from "./truncate"

@@ -1,5 +1,5 @@
 import { describe, expect, it, mock } from "bun:test"
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import { handleForkSession, type ForkContext } from "../../src/kilo-provider/fork-session"
 
 const session = { id: "fork", title: "fork", createdAt: "", updatedAt: "" } as Session

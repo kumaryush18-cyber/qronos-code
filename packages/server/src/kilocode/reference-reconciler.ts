@@ -1,12 +1,12 @@
-import { Location } from "@opencode-ai/core/location"
-import { PluginV2 } from "@opencode-ai/core/plugin"
-import { Reference } from "@opencode-ai/core/reference"
+import { Location } from "@qronos-ai/core/location"
+import { PluginV2 } from "@qronos-ai/core/plugin"
+import { Reference } from "@qronos-ai/core/reference"
 import { Context, Effect, Layer } from "effect"
 
 export class ReferenceReconciler extends Context.Service<
   ReferenceReconciler,
   Effect.Effect<void, never, Location.Service | PluginV2.Service | Reference.Service>
->()("@kilocode/ReferenceReconciler") {}
+>()("@qronos-ai/ReferenceReconciler") {}
 
 export const noop = Layer.succeed(ReferenceReconciler, Effect.void)
 

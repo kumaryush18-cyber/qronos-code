@@ -6,7 +6,7 @@ import { AppRuntime } from "../../src/effect/app-runtime"
 import { provideTestInstance } from "../fixture/fixture"
 import { Filesystem } from "../../src/util/filesystem"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@qronos-ai/core/flag/flag"
 
 const load = () => AppRuntime.runPromise(Config.Service.use((svc) => svc.get()))
 const warnings = () => AppRuntime.runPromise(Config.Service.use((svc) => svc.warnings()))

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { ClaudeMigration } from "@/kilocode/config/claude-migration"
 import { tmpdir } from "../../fixture/fixture"
 

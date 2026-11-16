@@ -7,16 +7,16 @@ import { Instance, type InstanceContext } from "@/kilocode/instance"
 import { KiloShutdown } from "@/kilocode/cli/shutdown"
 import { model as modelEnv } from "@/kilocode/process/env"
 import { SessionID } from "@/session/schema"
-import { Shell } from "@opencode-ai/core/shell"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { Shell } from "@qronos-ai/core/shell"
+import { ProjectV2 } from "@qronos-ai/core/project"
 import { Process } from "@/util/process"
-import { NonNegativeInt, PositiveInt, optionalOmitUndefined, withStatics } from "@opencode-ai/core/schema"
-import { zod, ZodOverride } from "@opencode-ai/core/effect-zod"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { Global } from "@opencode-ai/core/global"
-import { Hash } from "@opencode-ai/core/util/hash"
-import { Flock } from "@opencode-ai/core/util/flock"
-import * as Log from "@opencode-ai/core/util/log"
+import { NonNegativeInt, PositiveInt, optionalOmitUndefined, withStatics } from "@qronos-ai/core/schema"
+import { zod, ZodOverride } from "@qronos-ai/core/effect-zod"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { Global } from "@qronos-ai/core/global"
+import { Hash } from "@qronos-ai/core/util/hash"
+import { Flock } from "@qronos-ai/core/util/flock"
+import * as Log from "@qronos-ai/core/util/log"
 import { Filesystem } from "@/util/filesystem"
 import { isRecord } from "@/util/record"
 import { BackgroundProcessRunner } from "./runner"
@@ -199,7 +199,7 @@ export namespace BackgroundProcess {
   type Probe = "owned" | "gone" | "foreign" | "unknown" | "terminating"
 
   class StateService extends Context.Service<StateService, { readonly get: () => Effect.Effect<State> }>()(
-    "@kilocode/BackgroundProcess.State",
+    "@qronos-ai/BackgroundProcess.State",
   ) {}
 
   function scoped(ctx: InstanceContext) {

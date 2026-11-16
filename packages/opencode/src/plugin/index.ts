@@ -1,17 +1,17 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import type {
   Hooks,
   PluginInput,
   Plugin as PluginInstance,
   PluginModule,
   WorkspaceAdapter as PluginWorkspaceAdapter,
-} from "@kilocode/plugin"
+} from "@qronos-ai/plugin"
 import { Config } from "@/config/config"
-import { createKiloClient } from "@kilocode/sdk"
+import { createKiloClient } from "@qronos-ai/sdk"
 import { ServerAuth } from "@/server/auth"
 import { CodexAuthPlugin } from "./openai/codex"
 import { Session } from "@/session/session"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@qronos-ai/core/util/error"
 import { CopilotAuthPlugin } from "./github-copilot/copilot"
 import { ModalPlugin } from "./modal/modal"
 import { gitlabAuthPlugin as GitlabAuthPlugin } from "opencode-gitlab-auth"
@@ -28,14 +28,14 @@ import { InstanceState } from "@/effect/instance-state"
 import { errorMessage } from "@/util/error"
 import { PluginLoader } from "./loader"
 import { parsePluginSpecifier, readPluginId, readV1Plugin, resolvePluginId } from "./shared"
-import { KiloAuthPlugin } from "@kilocode/kilo-gateway" // kilocode_change
-import { AtomicChatPlugin } from "@kilocode/plugin-atomic-chat" // kilocode_change
+import { KiloAuthPlugin } from "@qronos-ai/kilo-gateway" // kilocode_change
+import { AtomicChatPlugin } from "@qronos-ai/plugin-atomic-chat" // kilocode_change
 import { AnacondaDesktopPlugin } from "@/kilocode/anaconda-desktop/provider" // kilocode_change
 import { registerAdapter } from "@/control-plane/adapters"
 import type { WorkspaceAdapter } from "@/control-plane/types"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
+import { InstallationChannel } from "@qronos-ai/core/installation/version"
 
 type State = {
   hooks: Hooks[]
@@ -80,7 +80,7 @@ function internalPlugins(flags: RuntimeFlags.Info): PluginInstance[] {
     CopilotAuthPlugin,
     ModalPlugin,
     // kilocode_change start
-    // kilocode_change - external auth plugins ship against @opencode-ai/plugin; bridge to our @kilocode/plugin types
+    // kilocode_change - external auth plugins ship against @qronos-ai/plugin; bridge to our @qronos-ai/plugin types
     GitlabAuthPlugin as unknown as PluginInstance,
     PoeAuthPlugin as unknown as PluginInstance,
     // kilocode_change end
@@ -113,7 +113,7 @@ function getLegacyPlugins(mod: Record<string, unknown>) {
     if (seen.has(entry)) continue
     seen.add(entry)
     const plugin = getServerPlugin(entry)
-    // kilocode_change: skip named exports (e.g. constants from @kilocode/plugin-atomic-chat)
+    // kilocode_change: skip named exports (e.g. constants from @qronos-ai/plugin-atomic-chat)
     if (!plugin) continue // kilocode_change
     result.push(plugin)
   }

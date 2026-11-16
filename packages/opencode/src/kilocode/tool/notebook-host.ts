@@ -1,6 +1,6 @@
 import { Notebook, HostError } from "@/kilocode/notebook/service"
 import { Path } from "@/kilocode/notebook/protocol"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@qronos-ai/core/schema"
 import * as Tool from "@/tool/tool"
 import { Effect, Schema } from "effect"
 import { runner } from "./host"

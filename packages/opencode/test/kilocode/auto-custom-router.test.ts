@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import { jsonSchema, type ModelMessage, type Tool } from "ai"
-import { LLMEvent } from "@opencode-ai/llm"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { LLMEvent } from "@qronos-ai/llm"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { Provider } from "@/provider/provider"
 import {
   AUTO_DECISION_HEADER,
@@ -12,7 +12,7 @@ import {
   type CustomRouterListEntry,
   type CustomRouterListResponse,
   type FetchLike,
-} from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
 import { KiloCustomRouter } from "@/kilocode/auto-routing/router"
 import { clientEntry, linkChoice } from "@/kilocode/auto-routing/entries"
 import { openaiMessages, openaiTools } from "@/kilocode/auto-routing/messages"

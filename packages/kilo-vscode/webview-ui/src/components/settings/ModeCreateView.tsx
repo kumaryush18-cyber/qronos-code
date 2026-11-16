@@ -1,8 +1,8 @@
 import { Component, Show, createSignal } from "solid-js"
-import { TextField } from "@kilocode/kilo-ui/text-field"
-import { Card } from "@kilocode/kilo-ui/card"
-import { Button } from "@kilocode/kilo-ui/button"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
+import { TextField } from "@qronos-ai/kilo-ui/text-field"
+import { Card } from "@qronos-ai/kilo-ui/card"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
 
 import { useConfig } from "../../context/config"
 import { useLanguage } from "../../context/language"

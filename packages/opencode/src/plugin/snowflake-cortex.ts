@@ -1,9 +1,9 @@
-import type { Hooks, PluginInput } from "@kilocode/plugin"
+import type { Hooks, PluginInput } from "@qronos-ai/plugin"
 import { OAUTH_DUMMY_KEY } from "../auth"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
-import { KiloOauthCallbackPage as OauthCallbackPage } from "@opencode-ai/core/kilocode/oauth/page" // kilocode_change - Kilo-branded callback page
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
+import { KiloOauthCallbackPage as OauthCallbackPage } from "@qronos-ai/core/kilocode/oauth/page" // kilocode_change - Kilo-branded callback page
 import { createServer } from "http"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 
 const OAUTH_CLIENT_ID = "LOCAL_APPLICATION"
 const OAUTH_CALLBACK_HOST = "127.0.0.1"

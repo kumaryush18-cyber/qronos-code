@@ -1,6 +1,6 @@
 import { createEffect, type JSX } from "solid-js"
 import { DEFAULT_THEMES } from "../theme/default-themes"
-import { resolveThemeVariant, themeToCss } from "@opencode-ai/ui/theme/resolve"
+import { resolveThemeVariant, themeToCss } from "@qronos-ai/ui/theme/resolve"
 import { VSCODE_THEMES } from "./vscode-themes"
 
 const STYLE_ID = "storybook-kilo-theme"

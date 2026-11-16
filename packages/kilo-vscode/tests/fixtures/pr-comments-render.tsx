@@ -72,13 +72,13 @@ Object.assign(globalThis, {
 
 const { render } = await import("solid-js/web")
 const { post } = await import("../../webview-ui/src/utils/webview-message")
-const { MarkedProvider } = await import("@kilocode/kilo-ui/context/marked")
+const { MarkedProvider } = await import("@qronos-ai/kilo-ui/context/marked")
 const { VSCodeProvider } = await import("../../webview-ui/src/context/vscode")
 const { useVSCode } = await import("../../webview-ui/src/context/vscode")
 const { LanguageProvider } = await import("../../webview-ui/src/context/language")
 const { ConfigProvider } = await import("../../webview-ui/src/context/config")
 const { PRComments } = await import("../../webview-ui/agent-manager/pr/PRComments")
-const { Diff } = await import("@kilocode/kilo-ui/diff")
+const { Diff } = await import("@qronos-ai/kilo-ui/diff")
 const { Show, createRoot, createSignal } = await import("solid-js")
 const { WorktreeItem } = await import("../../webview-ui/agent-manager/WorktreeItem")
 const { createPRNavigation, PRPanelHost } = await import("../../webview-ui/agent-manager/pr/PRPanelHost")
@@ -112,7 +112,7 @@ document.head.append(colors)
 document.body.append(root)
 
 const HUNK =
-  '@@ -1 +1,14 @@\n+import { File as BaseFile, type FileProps } from "@opencode-ai/ui/file"\n+import type { JSX } from "solid-js"\n+import { createDefaultOptions } from "../pierre"\n+\n export * from "@opencode-ai/ui/file"\n+\n+export function File<T>(props: FileProps<T>) {\n+  const View = BaseFile as unknown as (props: FileProps<T>) => JSX.Element\n+  if (props.mode === "text") return <View {...props} />\n+\n+  // Keep inline file diffs on the same Pierre defaults as the dedicated viewer.\n+  const options = { ...createDefaultOptions<T>(props.diffStyle), ...props } as FileProps<T>\n'
+  '@@ -1 +1,14 @@\n+import { File as BaseFile, type FileProps } from "@qronos-ai/ui/file"\n+import type { JSX } from "solid-js"\n+import { createDefaultOptions } from "../pierre"\n+\n export * from "@qronos-ai/ui/file"\n+\n+export function File<T>(props: FileProps<T>) {\n+  const View = BaseFile as unknown as (props: FileProps<T>) => JSX.Element\n+  if (props.mode === "text") return <View {...props} />\n+\n+  // Keep inline file diffs on the same Pierre defaults as the dedicated viewer.\n+  const options = { ...createDefaultOptions<T>(props.diffStyle), ...props } as FileProps<T>\n'
 
 const sent: unknown[] = []
 const [comments, setComments] = createSignal({

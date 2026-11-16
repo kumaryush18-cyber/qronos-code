@@ -2,8 +2,8 @@ import { createHash, randomUUID } from "node:crypto"
 import fs from "node:fs/promises"
 import { realpathSync } from "node:fs"
 import path from "node:path"
-import { Global } from "@opencode-ai/core/global"
-import type { Profile } from "@kilocode/sandbox"
+import { Global } from "@qronos-ai/core/global"
+import type { Profile } from "@qronos-ai/sandbox"
 import type { SessionID } from "@/session/schema"
 
 export namespace SandboxStore {

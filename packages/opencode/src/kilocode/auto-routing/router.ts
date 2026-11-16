@@ -9,10 +9,10 @@ import {
   type CustomRouterListResponse,
   type CustomRouterSummary,
   type FetchLike,
-} from "@kilocode/kilo-gateway"
-import { Log } from "@opencode-ai/core/util/log"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+} from "@qronos-ai/kilo-gateway"
+import { Log } from "@qronos-ai/core/util/log"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import type { Provider } from "@/provider/provider"
 
 const log = Log.create({ service: "kilo.auto-router" })

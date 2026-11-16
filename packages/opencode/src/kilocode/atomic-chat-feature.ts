@@ -1,4 +1,4 @@
-import { ATOMIC_CHAT_PLUGIN } from "@kilocode/plugin-atomic-chat"
+import { ATOMIC_CHAT_PLUGIN } from "@qronos-ai/plugin-atomic-chat"
 import { parsePluginSpecifier } from "@/plugin/shared"
 
 type PluginSpec = string | [string, Record<string, unknown>]

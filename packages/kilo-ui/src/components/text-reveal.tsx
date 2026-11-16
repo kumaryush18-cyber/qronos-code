@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/text-reveal"
+export * from "@qronos-ai/ui/text-reveal"

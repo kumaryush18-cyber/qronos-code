@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
-import { isMemoryOperation, type MemoryOperation } from "@kilocode/kilo-memory/commands"
-import { MemorySchema } from "@kilocode/kilo-memory/schema"
-import type { KiloClient, Session } from "@kilocode/sdk/v2/client"
+import { isMemoryOperation, type MemoryOperation } from "@qronos-ai/kilo-memory/commands"
+import { MemorySchema } from "@qronos-ai/kilo-memory/schema"
+import type { KiloClient, Session } from "@qronos-ai/sdk/v2/client"
 import { retry } from "../services/cli-backend/retry"
 import { getErrorMessage } from "../kilo-provider-utils"
 

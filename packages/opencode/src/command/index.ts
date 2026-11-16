@@ -1,4 +1,4 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import path from "path"
 import { InstanceState } from "@/effect/instance-state"
 import { EffectBridge } from "@/effect/bridge"
@@ -11,7 +11,7 @@ import { reviewCommand } from "@/kilocode/review/command" // kilocode_change
 import { apply as applyOverride, type Override } from "@/kilocode/command/override" // kilocode_change
 import * as Reserved from "@/kilocode/command/reserved" // kilocode_change
 import PROMPT_INITIALIZE from "./template/initialize.txt"
-import { LegacyEvent } from "@opencode-ai/schema/legacy-event"
+import { LegacyEvent } from "@qronos-ai/schema/legacy-event"
 import { SessionResume } from "@/kilocode/session-resume" // kilocode_change
 
 type State = {

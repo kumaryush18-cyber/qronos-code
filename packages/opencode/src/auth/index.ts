@@ -1,10 +1,10 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import path from "path"
 import { Effect, Layer, Record, Result, Schema, Context } from "effect"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
-import { Global } from "@opencode-ai/core/global"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Telemetry } from "@kilocode/kilo-telemetry" // kilocode_change
+import { NonNegativeInt } from "@qronos-ai/core/schema"
+import { Global } from "@qronos-ai/core/global"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { Telemetry } from "@qronos-ai/kilo-telemetry" // kilocode_change
 
 export const OAUTH_DUMMY_KEY = "kilo-oauth-dummy-key" // kilocode_change
 

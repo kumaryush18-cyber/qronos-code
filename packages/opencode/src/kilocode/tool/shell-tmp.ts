@@ -7,7 +7,7 @@
 // within the permitted set.
 import fs from "node:fs"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 
 // The allowlist root is the literal `/tmp`, not `os.tmpdir()`: `os.tmpdir()`
 // follows `TMPDIR`, so deriving from it could point the model back at a denied

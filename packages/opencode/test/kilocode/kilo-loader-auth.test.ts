@@ -2,9 +2,9 @@
 // Tests that unauthenticated Kilo models are assembled with paid models and autoloaded anonymously.
 
 import { expect } from "bun:test"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { ModelsDev } from "../../src/provider/models"
-import * as CoreModels from "@opencode-ai/core/models-dev"
+import * as CoreModels from "@qronos-ai/core/models-dev"
 import { Effect, Layer } from "effect"
 import { FetchHttpClient } from "effect/unstable/http"
 import { kiloCustomLoaders, patchKiloProviderPrivacy } from "../../src/kilocode/provider/provider"

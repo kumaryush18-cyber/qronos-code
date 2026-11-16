@@ -21,7 +21,7 @@ foundation. It must stay mergeable with upstream so future security fixes can be
 1. Correctness first, renaming last. Never mass-rename before the build is green.
 2. Every phase has a **gate**. Do not start the next phase until the gate passes.
 3. No `git push` of new work unless the user asks for it explicitly.
-4. Keep internal package names (`kilo-vscode`, `@kilocode/sdk`) — renaming folders is
+4. Keep internal package names (`kilo-vscode`, `@qronos-ai/sdk`) — renaming folders is
    churn with zero user benefit and a large breakage surface.
 5. Mark our own divergence from upstream with `qronos_change` comments, mirroring the
    existing `kilocode_change` convention.

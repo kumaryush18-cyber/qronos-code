@@ -1,16 +1,16 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import type { AuthOAuthResult, Hooks } from "@kilocode/plugin"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import type { AuthOAuthResult, Hooks } from "@qronos-ai/plugin"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { Auth } from "@/auth"
 import { InstanceState } from "@/effect/instance-state"
-import { optional } from "@opencode-ai/core/schema"
+import { optional } from "@qronos-ai/core/schema"
 import { Plugin } from "../plugin"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { Array as Arr, Effect, Layer, Record, Result, Context, Schema } from "effect"
 import { errorMessage } from "@/util/error" // kilocode_change
 
 // kilocode_change start
-import { Telemetry } from "@kilocode/kilo-telemetry"
+import { Telemetry } from "@qronos-ai/kilo-telemetry"
 import { ModelCache } from "./model-cache"
 // kilocode_change end
 

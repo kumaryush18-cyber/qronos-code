@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, mock } from "bun:test"
 import { parseToolRequest, startFromTool, type ToolDeps, type ToolRequest } from "../../src/agent-manager/tool-start"
 import type { CreateWorktreeResult } from "../../src/agent-manager/WorktreeManager"
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import { handleToolEvent } from "../../src/agent-manager/tool-project"
 import { normalize } from "../../src/services/cli-backend/sdk-sse-adapter"
 

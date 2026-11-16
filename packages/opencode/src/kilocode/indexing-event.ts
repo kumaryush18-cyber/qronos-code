@@ -1,7 +1,7 @@
 import { Schema } from "effect"
-import { INDEXING_STATUS_STATES } from "@kilocode/kilo-indexing/status"
+import { INDEXING_STATUS_STATES } from "@qronos-ai/kilo-indexing/status"
 import { BusEvent } from "@/bus/bus-event"
-import { NonNegativeInt } from "@opencode-ai/core/schema"
+import { NonNegativeInt } from "@qronos-ai/core/schema"
 import { INDEXING_WARNING_CODES } from "./indexing-warning"
 
 export const IndexingStatusState = Schema.Literals(INDEXING_STATUS_STATES).annotate({

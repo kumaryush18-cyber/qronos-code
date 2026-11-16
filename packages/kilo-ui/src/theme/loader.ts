@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/theme/loader"
+export * from "@qronos-ai/ui/theme/loader"

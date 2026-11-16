@@ -53,7 +53,7 @@ Improve JetBrains markdown output so assistant/user transcript markdown visually
    - Extend `MdViewTest` and/or `MdViewHybridTest` to assert `overrideSheet()` contains the new VS Code-equivalent rules for headings, strong/emphasis, links, inline code foreground, list/table/blockquote spacing, HR, and code block/table border separation.
    - Add component tests for code block pane styling: background, viewport background, border color, padding, scrollbar policy, and retained editor instance after `applyStyle()`.
    - Keep existing stress/leak tests green. Add a small stress assertion only if the implementation changes style application semantics.
-   - Add a changeset: `@kilocode/kilo-jetbrains` patch with user-facing wording such as `Improve markdown readability in JetBrains chat transcripts.`
+   - Add a changeset: `@qronos-ai/kilo-jetbrains` patch with user-facing wording such as `Improve markdown readability in JetBrains chat transcripts.`
 
 ## Verification
 

@@ -2,20 +2,20 @@
 // the same parent assistant message. Without the internal lock, parallel
 // subagent completions race on read-modify-write and lose deltas (#6321).
 
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { afterEach, describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Bus } from "../../src/bus"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
 import { KiloCostPropagation } from "../../src/kilocode/session/cost-propagation"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { SessionProjector } from "@qronos-ai/core/session/projector"
 import { Session } from "../../src/session/session"
 import { MessageV2 } from "../../src/session/message-v2"
 import { MessageID } from "../../src/session/schema"
-import { Database } from "@opencode-ai/core/database/database"
-import * as Log from "@opencode-ai/core/util/log"
+import { Database } from "@qronos-ai/core/database/database"
+import * as Log from "@qronos-ai/core/util/log"
 import { disposeAllInstances, provideTmpdirInstance } from "../fixture/fixture"
 import { testEffect } from "../lib/effect"
 

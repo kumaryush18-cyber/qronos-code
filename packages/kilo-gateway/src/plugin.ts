@@ -1,4 +1,4 @@
-import type { Plugin } from "@kilocode/plugin"
+import type { Plugin } from "@qronos-ai/plugin"
 import { authenticateWithDeviceAuthTUI } from "./auth/device-auth-tui.js"
 
 /**

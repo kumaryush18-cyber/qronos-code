@@ -6,7 +6,7 @@
  */
 
 import * as vscode from "vscode"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { getErrorMessage } from "../../kilo-provider-utils"
 import { QronosAuthService } from "../../services/qronos-auth-service"
 

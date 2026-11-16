@@ -30,12 +30,12 @@ import {
   onMount,
   untrack,
 } from "solid-js"
-import { AgentAvatar } from "@kilocode/kilo-ui/agent-avatar"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Popover } from "@kilocode/kilo-ui/popover"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { AgentAvatar } from "@qronos-ai/kilo-ui/agent-avatar"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Popover } from "@qronos-ai/kilo-ui/popover"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { useLanguage } from "../../context/language"
 import { useSession } from "../../context/session"
 import { useRunBoundary } from "./run-boundary"

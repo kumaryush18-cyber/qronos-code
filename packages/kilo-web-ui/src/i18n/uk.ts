@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/i18n/uk"
+export * from "@qronos-ai/ui/i18n/uk"

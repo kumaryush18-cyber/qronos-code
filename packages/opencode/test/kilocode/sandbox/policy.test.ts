@@ -1,14 +1,14 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { describe, expect, test } from "bun:test"
-import { Global } from "@opencode-ai/core/global"
-import { assertWrite, run as runSandbox } from "@kilocode/sandbox"
+import { Global } from "@qronos-ai/core/global"
+import { assertWrite, run as runSandbox } from "@qronos-ai/sandbox"
 import { Effect, Exit } from "effect"
 import { profile } from "@/kilocode/sandbox/policy"
 import { SandboxPreference } from "@/kilocode/sandbox/preference"
 import { SandboxStore } from "@/kilocode/sandbox/store"
 import type { InstanceContext } from "@/project/instance-context"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { ProjectV2 } from "@qronos-ai/core/project"
 import { tmpdir } from "../../fixture/fixture"
 
 const kilo = [

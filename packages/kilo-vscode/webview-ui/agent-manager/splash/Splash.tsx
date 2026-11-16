@@ -1,6 +1,6 @@
 import { For, Show, createSignal, createUniqueId, type Accessor, type JSX } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { WelcomeEmptyState, KiloLogo } from "../../src/components/chat/WelcomeEmptyState"
 import { useLanguage } from "../../src/context/language"
 import type { SessionInfo } from "../../src/types/messages"

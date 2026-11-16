@@ -1,4 +1,4 @@
-import type { ProviderMetadata } from "@opencode-ai/llm"
+import type { ProviderMetadata } from "@qronos-ai/llm"
 import { isRecord } from "@/util/record"
 
 export namespace KiloResponseMetadata {

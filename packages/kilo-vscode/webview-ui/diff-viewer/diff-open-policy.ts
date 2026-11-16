@@ -1,4 +1,4 @@
-import { EXTREME_DIFF_CHANGED_LINES, MAX_EAGER_DIFF_BYTES } from "@kilocode/kilo-ui/pierre"
+import { EXTREME_DIFF_CHANGED_LINES, MAX_EAGER_DIFF_BYTES } from "@qronos-ai/kilo-ui/pierre"
 import type { WorktreeFileDiff } from "../src/types/messages"
 
 // Shared with the inline file diff viewer so both agree on what is too large

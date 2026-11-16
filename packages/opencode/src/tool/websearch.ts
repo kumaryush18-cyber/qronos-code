@@ -4,8 +4,8 @@ import * as Tool from "./tool"
 import * as McpWebSearch from "./mcp-websearch"
 import * as KiloExa from "@/kilocode/tool/websearch-kilo-exa" // kilocode_change - Kilo-REST Exa transport
 import DESCRIPTION from "./websearch.txt"
-import { checksum } from "@opencode-ai/core/util/encode"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { checksum } from "@qronos-ai/core/util/encode"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { Auth } from "@/auth" // kilocode_change - source Kilo bearer for Kilo-REST transport
 import { Env } from "@/env" // kilocode_change - config via Env.Service instead of process.env reads

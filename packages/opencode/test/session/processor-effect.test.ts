@@ -1,6 +1,6 @@
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { Database } from "@opencode-ai/core/database/database"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
+import { Database } from "@qronos-ai/core/database/database"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { expect } from "bun:test"
 import { tool } from "ai"
@@ -19,15 +19,15 @@ import { SessionStatus } from "../../src/session/status"
 import { SessionSummary } from "../../src/session/summary"
 import { SessionNetwork } from "../../src/session/network" // kilocode_change
 import { Bus } from "../../src/bus" // kilocode_change
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { provideTmpdirInstance, provideTmpdirServer } from "../fixture/fixture"
 import { testEffect } from "../lib/effect"
 import { raw, reply, TestLLMServer } from "../lib/llm-server"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { LLMEvent } from "@opencode-ai/llm"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { SessionProjector } from "@qronos-ai/core/session/projector"
+import { LLMEvent } from "@qronos-ai/llm"
 
 const summary = Layer.succeed(
   SessionSummary.Service,

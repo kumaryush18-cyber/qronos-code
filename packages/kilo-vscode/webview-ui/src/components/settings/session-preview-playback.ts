@@ -1,4 +1,4 @@
-import type { AssistantMessage, Part } from "@kilocode/sdk/v2"
+import type { AssistantMessage, Part } from "@qronos-ai/sdk/v2"
 
 export const previewDuration = 3500
 

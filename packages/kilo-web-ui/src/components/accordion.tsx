@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/accordion"
+export * from "@qronos-ai/ui/accordion"

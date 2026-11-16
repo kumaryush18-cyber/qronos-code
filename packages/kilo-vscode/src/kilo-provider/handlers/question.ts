@@ -6,7 +6,7 @@
  * No vscode dependency.
  */
 
-import type { KiloClient, QuestionRequest } from "@kilocode/sdk/v2/client"
+import type { KiloClient, QuestionRequest } from "@qronos-ai/sdk/v2/client"
 import { isNotFoundError } from "./not-found"
 
 export interface QuestionContext {

@@ -2,13 +2,13 @@ import { describe, expect } from "bun:test"
 import { Effect, Layer, Stream } from "effect"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
-import { AppProcess } from "@opencode-ai/core/process"
+import { InstallationChannel } from "@qronos-ai/core/installation/version"
+import { AppProcess } from "@qronos-ai/core/process"
 import { Installation } from "../../../src/installation"
 import { testEffect } from "../../lib/effect"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { LayerNodePlatform } from "@opencode-ai/core/effect/app-node-platform"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { LayerNodePlatform } from "@qronos-ai/core/effect/app-node-platform"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 
 const encoder = new TextEncoder()
 
@@ -98,7 +98,7 @@ describe("Kilo installation upgrade", () => {
 
   testEffect(
     layer((cmd, args) => {
-      if (cmd === "npm" && args.includes("list")) return "@kilocode/cli@7.3.45"
+      if (cmd === "npm" && args.includes("list")) return "@qronos-ai/cli@7.3.45"
       return ""
     }),
   ).effect("detects npm installs from the Kilo package", () =>
@@ -153,28 +153,28 @@ describe("Kilo installation upgrade", () => {
   testEffect(upgrade).effect("installs the Kilo npm package", () =>
     Effect.gen(function* () {
       yield* Installation.Service.use((svc) => svc.upgrade("npm", "9.9.9"))
-      expect(calls).toContain("npm install -g @kilocode/cli@9.9.9")
+      expect(calls).toContain("npm install -g @qronos-ai/cli@9.9.9")
     }),
   )
 
   testEffect(upgrade).effect("installs the Kilo yarn package", () =>
     Effect.gen(function* () {
       yield* Installation.Service.use((svc) => svc.upgrade("yarn", "9.9.9"))
-      expect(calls).toContain("yarn global add @kilocode/cli@9.9.9")
+      expect(calls).toContain("yarn global add @qronos-ai/cli@9.9.9")
     }),
   )
 
   testEffect(upgrade).effect("installs the Kilo pnpm package", () =>
     Effect.gen(function* () {
       yield* Installation.Service.use((svc) => svc.upgrade("pnpm", "9.9.9"))
-      expect(calls).toContain("pnpm install -g @kilocode/cli@9.9.9")
+      expect(calls).toContain("pnpm install -g @qronos-ai/cli@9.9.9")
     }),
   )
 
   testEffect(upgrade).effect("installs the Kilo bun package", () =>
     Effect.gen(function* () {
       yield* Installation.Service.use((svc) => svc.upgrade("bun", "9.9.9"))
-      expect(calls).toContain("bun install -g @kilocode/cli@9.9.9")
+      expect(calls).toContain("bun install -g @qronos-ai/cli@9.9.9")
     }),
   )
 

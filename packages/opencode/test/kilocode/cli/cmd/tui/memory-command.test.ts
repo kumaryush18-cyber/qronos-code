@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2"
+import type { KiloClient } from "@qronos-ai/sdk/v2"
 import { memoryRow } from "@/kilocode/cli/cmd/tui/component/memory-status"
 import { runMemoryCommand } from "@/kilocode/cli/cmd/tui/memory-command"
 import { MemoryTuiEvents } from "@/kilocode/cli/cmd/tui/memory-events"

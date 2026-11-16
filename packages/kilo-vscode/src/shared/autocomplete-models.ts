@@ -5,4 +5,4 @@ export {
   getAutocompleteModelById,
   validAutocompleteModel,
   validAutocompleteProvider,
-} from "@kilocode/kilo-gateway/autocomplete"
+} from "@qronos-ai/kilo-gateway/autocomplete"

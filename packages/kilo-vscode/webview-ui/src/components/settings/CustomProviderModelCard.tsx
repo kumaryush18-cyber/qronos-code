@@ -1,5 +1,5 @@
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { TextField } from "@kilocode/kilo-ui/text-field"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { TextField } from "@qronos-ai/kilo-ui/text-field"
 import { Show } from "solid-js"
 import { useLanguage } from "../../context/language"
 

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
-import { KiloClient, type Provider } from "@kilocode/sdk/v2"
-import type { Resolved } from "@opencode-ai/tui/config"
+import { KiloClient, type Provider } from "@qronos-ai/sdk/v2"
+import type { Resolved } from "@qronos-ai/tui/config"
 import { TuiConfig } from "@/config/tui"
 import { resolveDiffStyle, resolveModelInfo, resolveRunTuiConfig } from "@/cli/cmd/run/runtime.boot"
 import { createTuiResolvedConfig } from "../../fixture/tui-runtime"

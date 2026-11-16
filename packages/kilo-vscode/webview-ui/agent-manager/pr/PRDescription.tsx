@@ -1,5 +1,5 @@
 /** @jsxImportSource solid-js */
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { useLanguage } from "../../src/context/language"
 import { PRCommentMarkdown } from "./PRCommentMarkdown"
 import { PRCommentTime } from "./PRCommentTime"

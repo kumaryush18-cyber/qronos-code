@@ -137,7 +137,7 @@ common outcome‑card UI so it is reused in the session context and outside it.*
     standalone outcome card body is shown with the devcontainer title/description.
 
 ### 8. Changeset
-- Update the existing `.changeset/jetbrains-devcontainer-notice.md` (`"@kilocode/kilo-jetbrains": patch`)
+- Update the existing `.changeset/jetbrains-devcontainer-notice.md` (`"@qronos-ai/kilo-jetbrains": patch`)
   to describe the final behavior: "When a JetBrains project is opened through a Dev Container / remote
   virtual filesystem Kilo can't access, show a clear in‑chat notice (with guidance to run Kilo inside
   the container) instead of a generic loading/error state."

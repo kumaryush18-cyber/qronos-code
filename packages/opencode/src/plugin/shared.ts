@@ -4,7 +4,7 @@ import npa from "npm-package-arg"
 import semver from "semver"
 import { Filesystem } from "@/util/filesystem"
 import { isRecord } from "@/util/record"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@qronos-ai/core/npm"
 import { isGitPluginSpec, resolveGitPluginTarget } from "@/kilocode/plugin/git-source" // kilocode_change
 
 // Old npm package names for plugins that are now built-in

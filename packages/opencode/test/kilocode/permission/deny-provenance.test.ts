@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { Cause, Effect, Exit, Layer } from "effect"
 import { Bus } from "../../../src/bus"
 import { Permission } from "../../../src/permission"
 import { PermissionProvenance } from "../../../src/kilocode/permission/provenance"
 import { SessionID } from "../../../src/session/schema"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
 import { provideTmpdirInstance } from "../../fixture/fixture"
 import { testEffect } from "../../lib/effect"
 

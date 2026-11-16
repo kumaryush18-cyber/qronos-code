@@ -8,7 +8,7 @@
 import * as vscode from "vscode"
 import * as fs from "node:fs/promises"
 import * as path from "node:path"
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import type { Host, PanelContext, OutputHandle, SessionProvider, Disposable } from "./host"
 import type { PRMergeMethod } from "./types"
 import { ProjectRouteService } from "./project/route"

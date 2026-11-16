@@ -57,10 +57,10 @@ export interface MergeConfig {
 
 export const defaultConfig: MergeConfig = {
   packageMappings: [
-    { from: "opencode-ai", to: "@kilocode/cli" },
-    { from: "@opencode-ai/cli", to: "@kilocode/cli" },
-    { from: "@opencode-ai/sdk", to: "@kilocode/sdk" },
-    { from: "@opencode-ai/plugin", to: "@kilocode/plugin" },
+    { from: "opencode-ai", to: "@qronos-ai/cli" },
+    { from: "@qronos-ai/cli", to: "@qronos-ai/cli" },
+    { from: "@qronos-ai/sdk", to: "@qronos-ai/sdk" },
+    { from: "@qronos-ai/plugin", to: "@qronos-ai/plugin" },
   ],
 
   keepOurs: [

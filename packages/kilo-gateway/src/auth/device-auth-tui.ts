@@ -4,7 +4,7 @@ import { poll } from "./polling.js"
 import { initiateDeviceAuth, pollDeviceAuth } from "./device.js"
 import { getKiloProfile, getKiloDefaultModel, defaultOrganizationId } from "../api/profile.js"
 import { POLL_INTERVAL_MS } from "../api/constants.js"
-import type { AuthOuathResult } from "@kilocode/plugin"
+import type { AuthOuathResult } from "@qronos-ai/plugin"
 
 /**
  * TUI-compatible device authorization flow

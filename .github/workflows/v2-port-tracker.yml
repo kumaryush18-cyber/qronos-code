@@ -100,7 +100,7 @@ jobs:
       - name: Install Kilo CLI
         if: steps.gate.outputs.qualifies == 'true'
         run: |
-          npm install -g @kilocode/cli
+          npm install -g @qronos-ai/cli
           kilo --version
 
       # No GH_TOKEN here on purpose: the agent analyzes untrusted PR text, so it

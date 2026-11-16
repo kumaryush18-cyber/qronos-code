@@ -1,4 +1,4 @@
-import type { QuestionRequest } from "@kilocode/sdk/v2"
+import type { QuestionRequest } from "@qronos-ai/sdk/v2"
 import {
   questionSetTab,
   questionSingle,

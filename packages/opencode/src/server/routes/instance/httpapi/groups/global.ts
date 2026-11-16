@@ -1,9 +1,9 @@
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { EventV2 } from "@opencode-ai/core/event"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
+import { EventV2 } from "@qronos-ai/core/event"
 import { EventManifest } from "@/event-manifest"
 import { InstanceDisposed } from "@/server/event"
 import { BusEvent } from "@/bus/bus-event" // kilocode_change - include legacy Kilo events until they migrate to EventV2
-import "@opencode-ai/core/account"
+import "@qronos-ai/core/account"
 import "@/server/event"
 import "@/kilocode/indexing-event" // kilocode_change - register indexing.status before HttpApi event schemas
 import { Schema } from "effect"

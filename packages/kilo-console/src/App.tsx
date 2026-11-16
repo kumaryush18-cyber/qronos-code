@@ -1,7 +1,7 @@
 import { createMemo, Suspense } from "solid-js"
 import type { JSX } from "solid-js"
 import { useLocation } from "@solidjs/router"
-import { ThemeProvider } from "@kilocode/kilo-web-ui/theme"
+import { ThemeProvider } from "@qronos-ai/kilo-web-ui/theme"
 import { LoadingScreen } from "./components/LoadingScreen"
 import { ConsoleLayout } from "./layouts/ConsoleLayout"
 import { path as route } from "./shared/navigation"

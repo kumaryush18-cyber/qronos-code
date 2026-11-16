@@ -5,7 +5,7 @@ import { describe, test, expect, beforeEach, mock, afterEach } from "bun:test"
 import { createHash } from "node:crypto"
 
 let profileCalls = 0
-mock.module("@kilocode/kilo-gateway", () => ({
+mock.module("@qronos-ai/kilo-gateway", () => ({
   fetchProfile: async (token: string) => {
     profileCalls++
     if (token === "bad-token") return null

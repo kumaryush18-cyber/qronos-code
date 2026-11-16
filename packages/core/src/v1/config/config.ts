@@ -21,7 +21,7 @@ import { ZodOverride } from "../../effect-zod"
 import {
   IndexingConfig as KiloIndexingConfig,
   IndexingSchema as KiloIndexingSchema,
-} from "@kilocode/kilo-indexing/config"
+} from "@qronos-ai/kilo-indexing/config"
 import z from "zod"
 // kilocode_change end
 

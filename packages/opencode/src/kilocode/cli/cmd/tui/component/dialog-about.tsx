@@ -1,8 +1,8 @@
 // kilocode_change - new file
 import { TextAttributes } from "@opentui/core"
 import { createMemo, For } from "solid-js"
-import { InstallationVersion, InstallationChannel } from "@opencode-ai/core/installation/version"
-import { Global } from "@opencode-ai/core/global"
+import { InstallationVersion, InstallationChannel } from "@qronos-ai/core/installation/version"
+import { Global } from "@qronos-ai/core/global"
 import { useDialog, type DialogContext } from "@tui/ui/dialog"
 import { useTheme } from "@tui/context/theme"
 import { useSync } from "@tui/context/sync"

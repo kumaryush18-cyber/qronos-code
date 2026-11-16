@@ -26,8 +26,8 @@ import { useConfig } from "./config"
 import { useLanguage } from "./language"
 import { createCostAlertHandler } from "./cost-alert"
 import { createMcpAuth } from "./mcp-auth"
-import { showToast } from "@kilocode/kilo-ui/toast"
-import { touch } from "@kilocode/kilo-ui/tool-motion"
+import { showToast } from "@qronos-ai/kilo-ui/toast"
+import { touch } from "@qronos-ai/kilo-ui/tool-motion"
 import type {
   SessionInfo,
   SessionModelUsage,

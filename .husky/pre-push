@@ -46,10 +46,10 @@ done
 # from the working directory instead.
 unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE
 
-bun typecheck --filter='!@kilocode/kilo-jetbrains'
+bun typecheck --filter='!@qronos-ai/kilo-jetbrains'
 
 if [ "$jetbrains" -eq 1 ]; then
-  bun typecheck --filter='@kilocode/kilo-jetbrains'
+  bun typecheck --filter='@qronos-ai/kilo-jetbrains'
 else
   echo "Skipping JetBrains typecheck (no relevant changes)"
 fi

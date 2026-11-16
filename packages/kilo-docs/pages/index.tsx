@@ -13,7 +13,7 @@ const terminalContent = {
       {"\n"}
       <span className="terminal-comment"># Or install via CLI</span>
       {"\n"}
-      <span className="terminal-prompt">$</span> npm install -g @kilocode/cli
+      <span className="terminal-prompt">$</span> npm install -g @qronos-ai/cli
     </>
   ),
   gateway: (

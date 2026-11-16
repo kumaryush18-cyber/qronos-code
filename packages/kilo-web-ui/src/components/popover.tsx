@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/popover"
+export * from "@qronos-ai/ui/popover"

@@ -1,8 +1,8 @@
 import { createMemo, createSignal, Show } from "solid-js"
 import { createResizeObserver } from "@solid-primitives/resize-observer"
-import { checksum } from "@opencode-ai/core/util/encode"
-import { BasicTool as Base, GenericTool } from "@opencode-ai/ui/basic-tool"
-import type { BasicToolProps as BaseProps, TriggerTitle } from "@opencode-ai/ui/basic-tool"
+import { checksum } from "@qronos-ai/core/util/encode"
+import { BasicTool as Base, GenericTool } from "@qronos-ai/ui/basic-tool"
+import type { BasicToolProps as BaseProps, TriggerTitle } from "@qronos-ai/ui/basic-tool"
 import { toolOpenKey, readToolOpen, writeToolOpen } from "./tool-open-state"
 import { useToolApproval, ToolApprovalLine } from "./tool-approval"
 

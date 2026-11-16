@@ -1,6 +1,6 @@
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import type { Auth } from "@/auth"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import type { RuntimeFlags } from "@/effect/runtime-flags"
 import { InstanceState } from "@/effect/instance-state"
 import { Permission } from "@/permission"
@@ -23,8 +23,8 @@ import {
   HEADER_PROJECTID,
   HEADER_MACHINEID,
   HEADER_TASKID,
-} from "@kilocode/kilo-gateway"
-import { Identity } from "@kilocode/kilo-telemetry"
+} from "@qronos-ai/kilo-gateway"
+import { Identity } from "@qronos-ai/kilo-telemetry"
 import { KiloSession } from "@/kilocode/session"
 import { stripInternalOptions } from "@/kilocode/agent/options"
 import { KilocodeSystemPrompt } from "@/kilocode/system-prompt"
@@ -180,7 +180,7 @@ export const prepare = Effect.fn("LLMRequestPrep.prepare")(function* (input: Pre
   )
 
   // kilocode_change start - resolve project ID and machine ID for kilo provider
-  const isKilo = input.model.api.npm === "@kilocode/kilo-gateway"
+  const isKilo = input.model.api.npm === "@qronos-ai/kilo-gateway"
   const kiloProjectId = yield* isKilo
     ? Effect.promise(() => getKiloProjectId().catch(() => undefined))
     : Effect.succeed(undefined)

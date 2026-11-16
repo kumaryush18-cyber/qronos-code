@@ -1,5 +1,5 @@
 import { $ } from "bun"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { Instance } from "@/kilocode/instance"
 
 const log = Log.create({ service: "review" })

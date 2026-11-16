@@ -169,7 +169,7 @@ async function clis(input: {
       name: `kilo-cli-${platform}`,
       version: input.version,
       ref,
-      purl: Deps.purl(`@kilocode/cli-${platform}`, input.version),
+      purl: Deps.purl(`@qronos-ai/cli-${platform}`, input.version),
       platform,
       delivery,
       supplier: "Kilo Code",

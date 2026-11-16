@@ -1,18 +1,18 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import path from "path"
 import { pathToFileURL } from "url"
 import os from "os"
 import { mergeDeep } from "remeda"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import fsNode from "fs/promises"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { notices } from "@opencode-ai/core/kilocode/fff" // kilocode_change
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { notices } from "@qronos-ai/core/kilocode/fff" // kilocode_change
 import { Auth } from "../auth"
 import { Env } from "../env"
 import { applyEdits, findNodeAtLocation, modify, parseTree } from "jsonc-parser" // kilocode_change - parseTree/findNodeAtLocation used in patchJsonc
-import { InstallationLocal, InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationLocal, InstallationVersion } from "@qronos-ai/core/installation/version"
 import { existsSync } from "fs"
 // kilocode_change start
 import { GlobalBus } from "@/bus/global"
@@ -20,17 +20,17 @@ import { Event } from "../server/event"
 // kilocode_change end
 import { Account } from "@/account/account"
 import { isRecord } from "@/util/record"
-import type { ConsoleState } from "@opencode-ai/core/v1/config/console-state"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import type { ConsoleState } from "@qronos-ai/core/v1/config/console-state"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { InstanceState } from "@/effect/instance-state"
 import { Context, Duration, Effect, Fiber, Layer, Option, Schema } from "effect"
 import { HttpClient, HttpClientRequest } from "effect/unstable/http"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock"
 import { containsPath, type InstanceContext } from "../project/instance-context"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { RemoteAuthError } from "@opencode-ai/core/v1/config/error"
-import { ConfigPermissionV1 } from "@opencode-ai/core/v1/config/permission"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
+import { RemoteAuthError } from "@qronos-ai/core/v1/config/error"
+import { ConfigPermissionV1 } from "@qronos-ai/core/v1/config/permission"
+import { ConfigPluginV1 } from "@qronos-ai/core/v1/config/plugin"
 import { ConfigAgent } from "./agent"
 import { ConfigCommand } from "./command"
 import { ConfigManaged } from "./managed"
@@ -39,10 +39,10 @@ import { ConfigPaths } from "./paths"
 import { ConfigPlugin } from "./plugin"
 import { ConfigVariable } from "./variable"
 import { ConfigV2Compat } from "./v2-compat"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@qronos-ai/core/npm"
 import z from "zod" // kilocode_change - Kilo config compatibility schemas
 // kilocode_change start
-import { ZodOverride } from "@opencode-ai/core/effect-zod"
+import { ZodOverride } from "@qronos-ai/core/effect-zod"
 import { KilocodeConfig } from "../kilocode/config/config"
 import { Excess } from "../kilocode/config/excess"
 import { sanitizeProjectMcpHeaders } from "../kilocode/config/mcp-headers"
@@ -59,12 +59,12 @@ import type { KilocodeMarkdown } from "@/kilocode/config/markdown"
 import {
   IndexingConfig as KiloIndexingConfig,
   IndexingSchema as KiloIndexingSchema,
-} from "@kilocode/kilo-indexing/config"
+} from "@qronos-ai/kilo-indexing/config"
 import { unique } from "remeda"
 import { installLocalPluginDependency, needsLocalPluginDependency } from "@/kilocode/config/plugin-deps"
 // kilocode_change end
 import { withTransientReadRetry } from "@/util/effect-http-client"
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
 
 const log = Log.create({ service: "config" }) // kilocode_change
 

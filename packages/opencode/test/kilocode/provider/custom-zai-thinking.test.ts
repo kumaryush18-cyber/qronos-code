@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { ProviderTransform } from "../../../src/provider/transform"
 import type { Provider } from "../../../src/provider/provider"
 

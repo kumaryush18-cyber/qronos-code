@@ -1,1 +1,1 @@
-export * from "@kilocode/kilo-ui/context/code"
+export * from "@qronos-ai/kilo-ui/context/code"

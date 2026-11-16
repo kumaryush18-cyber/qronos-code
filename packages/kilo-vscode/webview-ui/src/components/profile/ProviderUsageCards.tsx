@@ -1,15 +1,15 @@
 import { Component, For, Show } from "solid-js"
 import type { KiloPassState, ProviderUsageData } from "../../types/messages"
-import type { ProviderUsageSnapshot } from "@kilocode/sdk/v2/client"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Card, CardActions, CardDescription, CardHeader, CardTitle } from "@kilocode/kilo-ui/card"
-import { KiloPassMeter } from "@kilocode/kilo-ui/kilo-pass-meter"
-import { Progress } from "@kilocode/kilo-ui/progress"
-import { Spinner } from "@kilocode/kilo-ui/spinner"
-import { Tag } from "@kilocode/kilo-ui/tag"
+import type { ProviderUsageSnapshot } from "@qronos-ai/sdk/v2/client"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Card, CardActions, CardDescription, CardHeader, CardTitle } from "@qronos-ai/kilo-ui/card"
+import { KiloPassMeter } from "@qronos-ai/kilo-ui/kilo-pass-meter"
+import { Progress } from "@qronos-ai/kilo-ui/progress"
+import { Spinner } from "@qronos-ai/kilo-ui/spinner"
+import { Tag } from "@qronos-ai/kilo-ui/tag"
 import { useLanguage } from "../../context/language"
 import { localeToBcp47 } from "../../context/language-utils"
-import { formatWindow, windowLabel, windowProgress } from "@kilocode/kilo-gateway/provider-usage"
+import { formatWindow, windowLabel, windowProgress } from "@qronos-ai/kilo-gateway/provider-usage"
 
 export interface ProviderUsageCardsProps {
   data: ProviderUsageData | undefined

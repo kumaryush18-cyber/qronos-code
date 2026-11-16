@@ -1,35 +1,35 @@
 import { expect, test } from "bun:test"
 import { Schema } from "effect"
-import { AgentV2 } from "@opencode-ai/core/agent"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { SessionV2 } from "@opencode-ai/core/session"
-import { Agent } from "@opencode-ai/schema/agent"
-import { Location } from "@opencode-ai/schema/location"
-import { Model } from "@opencode-ai/schema/model"
-import { AgentAttachment, FileAttachment, Prompt, Source } from "@opencode-ai/schema/prompt"
-import { Provider } from "@opencode-ai/schema/provider"
-import { Project } from "@opencode-ai/schema/project"
-import { ProjectDirectories } from "@opencode-ai/schema/project-directories"
-import { PermissionV1 } from "@opencode-ai/schema/permission-v1"
-import { Session } from "@opencode-ai/schema/session"
-import { SessionInput } from "@opencode-ai/schema/session-input"
-import { SessionMessage } from "@opencode-ai/schema/session-message"
-import { Workspace } from "@opencode-ai/schema/workspace"
-import { Command } from "@opencode-ai/schema/command"
-import { Connection } from "@opencode-ai/schema/connection"
-import { Credential } from "@opencode-ai/schema/credential"
-import { FileSystem } from "@opencode-ai/schema/filesystem"
-import { Integration } from "@opencode-ai/schema/integration"
-import { LLM } from "@opencode-ai/schema/llm"
-import { Permission } from "@opencode-ai/schema/permission"
-import { Plugin } from "@opencode-ai/schema/plugin"
-import { Pty } from "@opencode-ai/schema/pty"
-import { Reference } from "@opencode-ai/schema/reference"
-import { SessionTodo } from "@opencode-ai/schema/session-todo"
-import { Skill } from "@opencode-ai/schema/skill"
-import { AbsolutePath, DateTimeUtcFromMillis, optional, statics } from "@opencode-ai/schema/schema"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { PluginV2 } from "@opencode-ai/core/plugin"
+import { AgentV2 } from "@qronos-ai/core/agent"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { SessionV2 } from "@qronos-ai/core/session"
+import { Agent } from "@qronos-ai/schema/agent"
+import { Location } from "@qronos-ai/schema/location"
+import { Model } from "@qronos-ai/schema/model"
+import { AgentAttachment, FileAttachment, Prompt, Source } from "@qronos-ai/schema/prompt"
+import { Provider } from "@qronos-ai/schema/provider"
+import { Project } from "@qronos-ai/schema/project"
+import { ProjectDirectories } from "@qronos-ai/schema/project-directories"
+import { PermissionV1 } from "@qronos-ai/schema/permission-v1"
+import { Session } from "@qronos-ai/schema/session"
+import { SessionInput } from "@qronos-ai/schema/session-input"
+import { SessionMessage } from "@qronos-ai/schema/session-message"
+import { Workspace } from "@qronos-ai/schema/workspace"
+import { Command } from "@qronos-ai/schema/command"
+import { Connection } from "@qronos-ai/schema/connection"
+import { Credential } from "@qronos-ai/schema/credential"
+import { FileSystem } from "@qronos-ai/schema/filesystem"
+import { Integration } from "@qronos-ai/schema/integration"
+import { LLM } from "@qronos-ai/schema/llm"
+import { Permission } from "@qronos-ai/schema/permission"
+import { Plugin } from "@qronos-ai/schema/plugin"
+import { Pty } from "@qronos-ai/schema/pty"
+import { Reference } from "@qronos-ai/schema/reference"
+import { SessionTodo } from "@qronos-ai/schema/session-todo"
+import { Skill } from "@qronos-ai/schema/skill"
+import { AbsolutePath, DateTimeUtcFromMillis, optional, statics } from "@qronos-ai/schema/schema"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { PluginV2 } from "@qronos-ai/core/plugin"
 
 test("Core reuses the canonical shared schemas", async () => {
   const [
@@ -55,27 +55,27 @@ test("Core reuses the canonical shared schemas", async () => {
     coreSchema,
     coreWorkspace,
   ] = await Promise.all([
-    import("@opencode-ai/core/command"),
-    import("@opencode-ai/core/integration/connection"),
-    import("@opencode-ai/core/credential"),
-    import("@opencode-ai/core/filesystem"),
-    import("@opencode-ai/core/integration"),
-    import("@opencode-ai/core/location"),
-    import("@opencode-ai/llm"),
-    import("@opencode-ai/core/permission"),
-    import("@opencode-ai/core/v1/permission"),
-    import("@opencode-ai/core/project/copy"),
-    import("@opencode-ai/core/pty"),
-    import("@opencode-ai/core/project/schema"),
-    import("@opencode-ai/core/reference"),
-    import("@opencode-ai/core/session/input"),
-    import("@opencode-ai/core/session/message"),
-    import("@opencode-ai/core/session/todo"),
-    import("@opencode-ai/core/session/prompt"),
-    import("@opencode-ai/core/skill"),
-    import("@opencode-ai/core/v2-schema"),
-    import("@opencode-ai/core/schema"),
-    import("@opencode-ai/core/workspace"),
+    import("@qronos-ai/core/command"),
+    import("@qronos-ai/core/integration/connection"),
+    import("@qronos-ai/core/credential"),
+    import("@qronos-ai/core/filesystem"),
+    import("@qronos-ai/core/integration"),
+    import("@qronos-ai/core/location"),
+    import("@qronos-ai/llm"),
+    import("@qronos-ai/core/permission"),
+    import("@qronos-ai/core/v1/permission"),
+    import("@qronos-ai/core/project/copy"),
+    import("@qronos-ai/core/pty"),
+    import("@qronos-ai/core/project/schema"),
+    import("@qronos-ai/core/reference"),
+    import("@qronos-ai/core/session/input"),
+    import("@qronos-ai/core/session/message"),
+    import("@qronos-ai/core/session/todo"),
+    import("@qronos-ai/core/session/prompt"),
+    import("@qronos-ai/core/skill"),
+    import("@qronos-ai/core/v2-schema"),
+    import("@qronos-ai/core/schema"),
+    import("@qronos-ai/core/workspace"),
   ])
 
   const schemas = [

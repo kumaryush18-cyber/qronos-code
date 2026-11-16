@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/collapsible"
+export * from "@qronos-ai/ui/collapsible"

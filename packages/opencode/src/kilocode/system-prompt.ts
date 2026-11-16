@@ -1,14 +1,14 @@
 // kilocode_change - new file
 
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { Effect } from "effect"
 import { staticEnvLines, type EditorContext } from "@/kilocode/editor-context"
-import { KiloMemory } from "@kilocode/kilo-memory/effect"
-import type { MemoryPaths } from "@kilocode/kilo-memory/effect/paths"
+import { KiloMemory } from "@qronos-ai/kilo-memory/effect"
+import type { MemoryPaths } from "@qronos-ai/kilo-memory/effect/paths"
 import { MemoryMarker } from "@/kilocode/memory/marker"
 import type { Provider } from "@/provider/provider"
 import type { InstanceContext } from "@/project/instance-context"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 
 const log = Log.create({ service: "kilocode.system-prompt" })
 

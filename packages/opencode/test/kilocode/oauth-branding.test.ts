@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import path from "path"
-import { KiloOauthCallbackPage } from "@opencode-ai/core/kilocode/oauth/page"
+import { KiloOauthCallbackPage } from "@qronos-ai/core/kilocode/oauth/page"
 
 const root = path.join(__dirname, "..", "..")
 

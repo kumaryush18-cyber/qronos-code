@@ -1,6 +1,6 @@
 import { createUniqueId, Show } from "solid-js"
-import { Button } from "@kilocode/kilo-web-ui/button"
-import { Icon } from "@kilocode/kilo-web-ui/icon"
+import { Button } from "@qronos-ai/kilo-web-ui/button"
+import { Icon } from "@qronos-ai/kilo-web-ui/icon"
 
 type Props = {
   open: boolean

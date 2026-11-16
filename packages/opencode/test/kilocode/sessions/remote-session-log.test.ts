@@ -7,10 +7,10 @@
 // for the process-exit path), so a wiring regression fails here.
 
 import { beforeEach, describe, expect, test } from "bun:test"
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import * as Log from "@opencode-ai/core/util/log"
+import { ProjectV2 } from "@qronos-ai/core/project"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import * as Log from "@qronos-ai/core/util/log"
 import { RemoteSender } from "../../../src/kilo-sessions/remote-sender"
 import { RemoteSessionLog } from "../../../src/kilo-sessions/remote-session-log"
 import type { RemoteWS } from "../../../src/kilo-sessions/remote-ws"

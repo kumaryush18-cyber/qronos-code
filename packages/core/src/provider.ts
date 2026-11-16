@@ -1,7 +1,7 @@
 export * as ProviderV2 from "./provider"
 
 import { Types } from "effect"
-import { Provider } from "@opencode-ai/schema/provider"
+import { Provider } from "@qronos-ai/schema/provider"
 
 // kilocode_change - preserve Kilo's well-known routing ID without forking the shared schema
 // qronos_change - the gateway provider id is `qronos`; the old `kilo` id is gone.

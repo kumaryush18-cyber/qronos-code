@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Dialog } from "@opencode-ai/ui/dialog"
-import { Button } from "@opencode-ai/ui/button"
+import { Dialog } from "@qronos-ai/ui/dialog"
+import { Button } from "@qronos-ai/ui/button"
 import { Dialog as KobalteDialog } from "@kobalte/core/dialog"
 
 const meta: Meta = {

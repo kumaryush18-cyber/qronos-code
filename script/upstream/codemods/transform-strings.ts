@@ -3,8 +3,8 @@
  * jscodeshift codemod: Transform string literals
  *
  * Transforms string literals containing opencode references to kilo:
- * - "opencode-ai" -> "@kilocode/cli"
- * - "npx opencode" -> "npx @kilocode/cli"
+ * - "opencode-ai" -> "@qronos-ai/cli"
+ * - "npx opencode" -> "npx @qronos-ai/cli"
  * - etc.
  *
  * Usage:
@@ -22,17 +22,17 @@ interface StringReplacement {
 }
 
 const STRING_REPLACEMENTS: StringReplacement[] = [
-  // Package names in strings (no trailing \b to allow subpath matching like @opencode-ai/sdk/v2)
-  { pattern: /\bopencode-ai\b/g, replacement: "@kilocode/cli" },
-  { pattern: /@opencode-ai\/cli(?=\/|"|'|`|$)/g, replacement: "@kilocode/cli" },
-  { pattern: /@opencode-ai\/sdk(?=\/|"|'|`|$)/g, replacement: "@kilocode/sdk" },
-  { pattern: /@opencode-ai\/plugin(?=\/|"|'|`|$)/g, replacement: "@kilocode/plugin" },
+  // Package names in strings (no trailing \b to allow subpath matching like @qronos-ai/sdk/v2)
+  { pattern: /\bopencode-ai\b/g, replacement: "@qronos-ai/cli" },
+  { pattern: /@opencode-ai\/cli(?=\/|"|'|`|$)/g, replacement: "@qronos-ai/cli" },
+  { pattern: /@opencode-ai\/sdk(?=\/|"|'|`|$)/g, replacement: "@qronos-ai/sdk" },
+  { pattern: /@opencode-ai\/plugin(?=\/|"|'|`|$)/g, replacement: "@qronos-ai/plugin" },
 
   // CLI commands
-  { pattern: /\bnpx opencode\b/g, replacement: "npx @kilocode/cli" },
-  { pattern: /\bbun add opencode\b/g, replacement: "bun add @kilocode/cli" },
-  { pattern: /\bnpm install opencode\b/g, replacement: "npm install @kilocode/cli" },
-  { pattern: /\bnpm i opencode\b/g, replacement: "npm i @kilocode/cli" },
+  { pattern: /\bnpx opencode\b/g, replacement: "npx @qronos-ai/cli" },
+  { pattern: /\bbun add opencode\b/g, replacement: "bun add @qronos-ai/cli" },
+  { pattern: /\bnpm install opencode\b/g, replacement: "npm install @qronos-ai/cli" },
+  { pattern: /\bnpm i opencode\b/g, replacement: "npm i @qronos-ai/cli" },
 
   // Database filename
   { pattern: /\bopencode\.db\b/g, replacement: "kilo.db" },

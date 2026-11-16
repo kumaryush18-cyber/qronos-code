@@ -1,4 +1,4 @@
-import type { KiloClient, Session } from "@kilocode/sdk/v2/client"
+import type { KiloClient, Session } from "@qronos-ai/sdk/v2/client"
 import type { ProjectRouteService } from "../agent-manager/project/route"
 import { getErrorMessage, sameDirectory } from "../kilo-provider-utils"
 import type {

@@ -4,8 +4,8 @@ import { BoxRenderable, RGBA, type RootRenderable } from "@opentui/core"
 import { extend, testRender, useRenderer } from "@opentui/solid" // kilocode_change - register test components in this renderer instance
 import { createSignal } from "solid-js"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
-import type { QuestionRequest } from "@kilocode/sdk/v2"
-import { OpencodeKeymapProvider, registerOpencodeKeymap } from "@opencode-ai/tui/keymap"
+import type { QuestionRequest } from "@qronos-ai/sdk/v2"
+import { OpencodeKeymapProvider, registerOpencodeKeymap } from "@qronos-ai/tui/keymap"
 import {
   RUN_COMMAND_PANEL_ROWS,
   RUN_SUBAGENT_PANEL_ROWS,

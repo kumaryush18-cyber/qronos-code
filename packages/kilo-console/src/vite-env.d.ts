@@ -1,3 +1,3 @@
 /// <reference types="vite/client" />
 
-declare module "@kilocode/kilo-web-ui/styles"
+declare module "@qronos-ai/kilo-web-ui/styles"

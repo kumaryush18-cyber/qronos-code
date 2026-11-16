@@ -1,6 +1,6 @@
 import { afterEach, expect, test } from "bun:test"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import * as Log from "@opencode-ai/core/util/log"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import * as Log from "@qronos-ai/core/util/log"
 import { Effect } from "effect"
 import { AppRuntime } from "../../../src/effect/app-runtime"
 import { InstanceRef } from "../../../src/effect/instance-ref"

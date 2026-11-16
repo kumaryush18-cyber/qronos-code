@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { Config } from "@kilocode/sdk/v2/client"
+import type { Config } from "@qronos-ai/sdk/v2/client"
 import { indexingConsentStore, type IndexingProject } from "../../src/indexing-consent"
 import { fetchSnapshot } from "../../src/kilo-provider/config-snapshot"
 

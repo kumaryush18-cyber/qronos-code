@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { Window } from "happy-dom"
-import type { AssistantMessage, ToolPart } from "@kilocode/sdk/v2"
+import type { AssistantMessage, ToolPart } from "@qronos-ai/sdk/v2"
 
 const win = new Window({ url: "http://localhost" })
 Object.assign(globalThis, {
@@ -29,12 +29,12 @@ Object.assign(globalThis, {
 // Load browser modules only after the DOM globals exist.
 const { createStore } = await import("solid-js/store")
 const { render } = await import("solid-js/web")
-const { Part } = await import("@kilocode/kilo-ui/message-part")
-const { DataProvider } = await import("@opencode-ai/ui/context/data")
-const { DialogProvider } = await import("@opencode-ai/ui/context/dialog")
-const { FileComponentProvider } = await import("@kilocode/kilo-ui/context/file")
-const { File } = await import("@kilocode/kilo-ui/file")
-const { MarkedProvider, createMarkedParser } = await import("@kilocode/kilo-ui/context/marked")
+const { Part } = await import("@qronos-ai/kilo-ui/message-part")
+const { DataProvider } = await import("@qronos-ai/ui/context/data")
+const { DialogProvider } = await import("@qronos-ai/ui/context/dialog")
+const { FileComponentProvider } = await import("@qronos-ai/kilo-ui/context/file")
+const { File } = await import("@qronos-ai/kilo-ui/file")
+const { MarkedProvider, createMarkedParser } = await import("@qronos-ai/kilo-ui/context/marked")
 const parser = createMarkedParser({})
 
 const message: AssistantMessage = {

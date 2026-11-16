@@ -2,9 +2,9 @@ import { render, TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@op
 import { registerOpencodeSpinner } from "./component/register-spinner"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { Deferred, Effect } from "effect"
-import { Global } from "@opencode-ai/core/global"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { Global } from "@qronos-ai/core/global"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { ClipboardProvider, useClipboard } from "./context/clipboard"
 import { ExitProvider, useExit } from "./context/exit"
 import type { Exit } from "./context/exit" // kilocode_change
@@ -66,7 +66,7 @@ import { ToastProvider, useToast } from "./ui/toast"
 import { KVProvider, useKV } from "./context/kv"
 import * as Model from "./util/model"
 import { ArgsProvider, useArgs, type Args } from "./context/args"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 import { PromptRefProvider, usePromptRef } from "./context/prompt"
 import type { TuiConfig } from "./config"
 import { createTuiApiAdapters } from "./plugin/adapters"

@@ -1,4 +1,4 @@
-import { showToast } from "@kilocode/kilo-ui/toast"
+import { showToast } from "@qronos-ai/kilo-ui/toast"
 import { useVSCode } from "../src/context/vscode"
 import { useLanguage } from "../src/context/language"
 import type { useSession } from "../src/context/session"

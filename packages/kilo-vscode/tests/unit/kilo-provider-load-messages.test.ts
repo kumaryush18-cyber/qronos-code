@@ -1,5 +1,5 @@
 import { describe, it, expect, spyOn } from "bun:test"
-import type { SessionStatus } from "@kilocode/sdk/v2/client"
+import type { SessionStatus } from "@qronos-ai/sdk/v2/client"
 import * as vscode from "vscode"
 import type { PartUpdate } from "../../src/shared/stream-messages"
 import type { AbortRequest, ClearSessionRequest } from "../../webview-ui/src/types/messages/webview-messages"

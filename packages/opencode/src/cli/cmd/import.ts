@@ -1,15 +1,15 @@
-import type { Session as SDKSession, Message, Part } from "@kilocode/sdk/v2"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { Session as SDKSession, Message, Part } from "@qronos-ai/sdk/v2"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Session } from "@/session/session"
 import { CliError, effectCmd } from "../effect-cmd"
-import { Database } from "@opencode-ai/core/database/database"
-import { SessionTable, MessageTable, PartTable } from "@opencode-ai/core/session/sql"
+import { Database } from "@qronos-ai/core/database/database"
+import { SessionTable, MessageTable, PartTable } from "@qronos-ai/core/session/sql"
 import { InstanceRef } from "@/effect/instance-ref"
 import { EOL } from "os"
 import path from "path"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
 import type { InstanceContext } from "@/project/instance-context"
 
 const log = Log.create({ service: "import" }) // kilocode_change

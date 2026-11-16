@@ -7,7 +7,7 @@
  * type-checked rather than relying on Record<string, unknown> casts.
  */
 
-import type { SnapshotFileDiff } from "@kilocode/sdk/v2/client"
+import type { SnapshotFileDiff } from "@qronos-ai/sdk/v2/client"
 import type { DiffImage } from "../diff/types"
 import type { BrowserElement } from "../services/browser-automation"
 import type { Worktree, ManagedSession, Section } from "./WorktreeStateManager"

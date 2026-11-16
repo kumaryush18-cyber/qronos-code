@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/checkbox"
+export * from "@qronos-ai/ui/checkbox"

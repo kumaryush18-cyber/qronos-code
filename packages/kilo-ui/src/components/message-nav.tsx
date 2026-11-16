@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/message-nav"
+export * from "@qronos-ai/ui/message-nav"

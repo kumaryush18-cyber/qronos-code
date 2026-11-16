@@ -8,7 +8,7 @@
  *
  * Rules checked:
  * 1. core-directionality: packages/core, packages/llm, and packages/schema must
- *    never import from packages/opencode (@/*), @kilocode/cli, or packages/kilo-vscode.
+ *    never import from packages/opencode (@/*), @qronos-ai/cli, or packages/kilo-vscode.
  * 2. kilo-instance-state: No unclassified InstanceState.make singletons in Kilo-owned code
  *    (packages/opencode/src/kilocode, packages/opencode/src/kilo-sessions, packages/kilo-*).
  * 3. kilo-database-constructors: Direct SQLite instantiation (new Database / new DatabaseSync)
@@ -45,7 +45,7 @@ const DOMAIN_SCOPES = ["packages/core/src", "packages/llm/src", "packages/schema
 const FORBIDDEN_IMPORT_PATTERNS = [
   { pattern: /from\s+["']@\/.*["']/, reason: "internal opencode alias (@/*) in domain package" },
   { pattern: /from\s+["'].*packages\/opencode.*["']/, reason: "direct packages/opencode import in domain package" },
-  { pattern: /from\s+["']@kilocode\/cli(?:[\/].*)?["']/, reason: "@kilocode/cli package import in domain package" },
+  { pattern: /from\s+["']@kilocode\/cli(?:[\/].*)?["']/, reason: "@qronos-ai/cli package import in domain package" },
   { pattern: /from\s+["'].*packages\/kilo-vscode.*["']/, reason: "packages/kilo-vscode import in domain package" },
 ]
 
@@ -141,7 +141,7 @@ for (const [file, count] of kiloDbHits) {
     violations.push({
       file,
       rule: "kilo-database-constructors",
-      message: `Unclassified SQLite constructor (new Database / new DatabaseSync) in Kilo code (${count} site(s)). Route persistence through Database.Service in @opencode-ai/core.`,
+      message: `Unclassified SQLite constructor (new Database / new DatabaseSync) in Kilo code (${count} site(s)). Route persistence through Database.Service in @qronos-ai/core.`,
     })
   } else if (expected.count !== count) {
     violations.push({

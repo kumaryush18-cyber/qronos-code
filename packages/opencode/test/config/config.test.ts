@@ -1,24 +1,24 @@
 import { test, expect, describe, afterEach, beforeEach, spyOn } from "bun:test"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { ConfigAgentV1 } from "@opencode-ai/core/v1/config/agent" // kilocode_change
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
+import { ConfigAgentV1 } from "@qronos-ai/core/v1/config/agent" // kilocode_change
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform"
 import { Cause, Effect, Exit, Layer, Logger, Option } from "effect"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@qronos-ai/core/util/error"
 import { FetchHttpClient, HttpClient, HttpClientResponse } from "effect/unstable/http"
 import { Config } from "@/config/config"
 import { ConfigManaged } from "@/config/managed"
 import { ConfigParse } from "../../src/config/parse"
 import { ConfigV2Compat } from "../../src/config/v2-compat"
 import { snapshot } from "./snapshot"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@qronos-ai/core/npm"
 
 import { InstanceRef } from "../../src/effect/instance-ref"
 import type { InstanceContext } from "../../src/project/instance-context"
 import { Auth } from "../../src/auth"
 import { Account } from "../../src/account/account"
 import { AccessToken, AccountID, OrgID } from "../../src/account/schema"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Env } from "../../src/env"
 import { Git } from "../../src/git" // kilocode_change
 import {
@@ -31,21 +31,21 @@ import {
   testInstanceStoreLayer,
 } from "../fixture/fixture"
 import { InstanceRuntime } from "@/project/instance-runtime"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { testEffect } from "../lib/effect"
 import path from "path"
 import fs from "fs/promises"
 import os from "os"
 import { pathToFileURL } from "url"
-import { Global } from "@opencode-ai/core/global"
-import { ProjectV2 } from "@opencode-ai/core/project"
+import { Global } from "@qronos-ai/core/global"
+import { ProjectV2 } from "@qronos-ai/core/project"
 import { Filesystem } from "@/util/filesystem"
 import { ConfigPlugin } from "@/config/plugin"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { ConfigPluginV1 } from "@qronos-ai/core/v1/config/plugin"
 import { AccountTest } from "../fake/account"
 import { AuthTest } from "../fake/auth"
 import { NpmTest } from "../fake/npm"
-import { isIndexingPlugin } from "@kilocode/kilo-indexing/detect" // kilocode_change
+import { isIndexingPlugin } from "@qronos-ai/kilo-indexing/detect" // kilocode_change
 import { isAtomicChatPlugin } from "@/kilocode/atomic-chat-feature" // kilocode_change
 
 const unexpectedHttp = HttpClient.make((request) =>

@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Markdown } from "@opencode-ai/ui/markdown"
-import { MarkedProvider } from "@opencode-ai/ui/context/marked"
+import { Markdown } from "@qronos-ai/ui/markdown"
+import { MarkedProvider } from "@qronos-ai/ui/context/marked"
 
 const meta: Meta = {
   title: "Components/Markdown",

@@ -1,1 +1,1 @@
-export * from "@kilocode/kilo-ui/context/diff"
+export * from "@qronos-ai/kilo-ui/context/diff"

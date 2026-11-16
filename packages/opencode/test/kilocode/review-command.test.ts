@@ -1,6 +1,6 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { Effect, Layer } from "effect"
 import { Command } from "../../src/command"
 import { parseReviewCommand, reviewCommand } from "../../src/kilocode/review/command"

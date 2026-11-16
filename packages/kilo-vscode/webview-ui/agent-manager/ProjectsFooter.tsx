@@ -1,9 +1,9 @@
 /** @jsxImportSource solid-js */
 
 import type { Component } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { DropdownMenu } from "@kilocode/kilo-ui/dropdown-menu"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { DropdownMenu } from "@qronos-ai/kilo-ui/dropdown-menu"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import type { LanguageContextValue } from "../src/context/language"
 
 interface ProjectsFooterProps {

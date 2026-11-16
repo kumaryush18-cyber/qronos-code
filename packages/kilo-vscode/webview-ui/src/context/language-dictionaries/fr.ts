@@ -1,6 +1,6 @@
 import { dict as app } from "../../i18n/fr"
-import { dict as ui } from "@kilocode/kilo-ui/i18n/fr"
-import { dict as kilo } from "@kilocode/kilo-i18n/fr"
+import { dict as ui } from "@qronos-ai/kilo-ui/i18n/fr"
+import { dict as kilo } from "@qronos-ai/kilo-i18n/fr"
 import { dict as english } from "../../../agent-manager/i18n/en"
 import { dict as am } from "../../../agent-manager/i18n/fr"
 

@@ -2,16 +2,16 @@
 //
 // Tests for the git-based diff generator that replaced the JS Myers path.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { $ } from "bun"
 import { describe, expect } from "bun:test"
 import { parsePatch } from "diff"
 import { Effect, Layer } from "effect"
 import path from "path"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
 import { DiffFull } from "../../src/kilocode/snapshot/diff-full"
 import { Filesystem } from "../../src/util/filesystem"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { tmpdirScoped } from "../fixture/fixture"
 import { testEffect } from "../lib/effect"
 

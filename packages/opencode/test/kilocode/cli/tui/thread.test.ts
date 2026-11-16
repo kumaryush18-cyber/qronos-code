@@ -2,8 +2,8 @@ import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { fileURLToPath } from "node:url"
-import { spawn, type Exit } from "@opencode-ai/core/pty/driver"
-import { sanitizedProcessEnv } from "@opencode-ai/core/util/opencode-process"
+import { spawn, type Exit } from "@qronos-ai/core/pty/driver"
+import { sanitizedProcessEnv } from "@qronos-ai/core/util/opencode-process"
 import { tmpdir } from "../../../fixture/fixture"
 import {
   embeddedRemoteExitClient,
@@ -249,7 +249,7 @@ describe("kilo tui thread", () => {
     const seen: string[] = []
     const started: string[] = []
 
-    mock.module("@kilocode/sdk/v2", () => ({
+    mock.module("@qronos-ai/sdk/v2", () => ({
       createKiloClient: () => ({
         kilo: {
           cloud: {

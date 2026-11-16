@@ -1,5 +1,5 @@
 import { createEffect, createMemo, createSignal, onCleanup } from "solid-js"
-import { createCaffeinationDriver } from "@opencode-ai/core/kilocode/caffeination"
+import { createCaffeinationDriver } from "@qronos-ai/core/kilocode/caffeination"
 import { useEvent } from "@tui/context/event"
 import { useKV } from "@tui/context/kv"
 import { useProject } from "@tui/context/project"

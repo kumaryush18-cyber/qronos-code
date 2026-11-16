@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import { createSignal } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import type { IconProps } from "@kilocode/kilo-ui/icon"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import type { IconProps } from "@qronos-ai/kilo-ui/icon"
 import { useVSCode } from "../../src/context/vscode"
 
 export function CopyButton(props: { text: string; label?: string; class?: string; icon?: IconProps["name"] }) {

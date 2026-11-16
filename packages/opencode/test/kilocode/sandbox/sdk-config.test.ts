@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
-import type { Config as ConfigV1 } from "@kilocode/sdk"
-import type { Config as ConfigV2 } from "@kilocode/sdk/v2"
+import type { Config as ConfigV1 } from "@qronos-ai/sdk"
+import type { Config as ConfigV2 } from "@qronos-ai/sdk/v2"
 
 const value = {
   sandbox: {

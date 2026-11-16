@@ -256,7 +256,7 @@ The list endpoint's `search` parameter searches titles only. To search chat cont
 The JavaScript SDK exposes the same endpoints:
 
 ```ts
-import { createKiloClient } from "@kilocode/sdk/v2/client"
+import { createKiloClient } from "@qronos-ai/sdk/v2/client"
 
 const auth = Buffer.from(`kilo:${process.env.KILO_SERVER_PASSWORD}`).toString("base64")
 const client = createKiloClient({

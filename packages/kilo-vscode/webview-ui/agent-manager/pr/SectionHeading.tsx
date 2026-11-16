@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import { Show } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 
 export function SectionHeading(props: {
   title: string

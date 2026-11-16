@@ -17,7 +17,7 @@ Object.assign(globalThis, {
 })
 const { createSignal } = await import("solid-js")
 const { render } = await import("solid-js/web")
-const { Icon } = await import("@kilocode/kilo-ui/icon")
+const { Icon } = await import("@qronos-ai/kilo-ui/icon")
 
 // PRBadge maps `failure` to a kilo-ui icon and `approved` to an upstream icon.
 // Switching between the two registries after mount used to throw

@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
 import { auth } from "@modelcontextprotocol/sdk/client/auth.js"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Effect } from "effect"
 import { McpAuth } from "../../../src/mcp/auth"
 import { McpOAuthPendingProvider, McpOAuthProvider, type McpOAuthConfig } from "../../../src/mcp/oauth-provider"

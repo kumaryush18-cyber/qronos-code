@@ -1,13 +1,13 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { expect } from "bun:test"
 import path from "path"
 import { Effect, Layer } from "effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { provideTmpdirInstance } from "../fixture/fixture"
 import { testEffect } from "../lib/effect"
 import { Env } from "../../src/env"
 import { Provider } from "../../src/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 const it = testEffect(Layer.mergeAll(AppNodeBuilder.build(Provider.node), AppNodeBuilder.build(Env.node), AppNodeBuilder.build(CrossSpawnSpawner.node)))
 
 function withNvidiaKey<A, E, R>(self: Effect.Effect<A, E, R>) {

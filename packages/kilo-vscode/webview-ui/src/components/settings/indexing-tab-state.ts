@@ -1,4 +1,4 @@
-import type { IndexingConfig } from "@kilocode/kilo-indexing/config"
+import type { IndexingConfig } from "@qronos-ai/kilo-indexing/config"
 
 export type IndexingScope = "global" | "project"
 export type IndexingInheritance = "none" | "inherited" | "partial"

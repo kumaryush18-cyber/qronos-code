@@ -15,7 +15,7 @@ export namespace CloudDefaults {
     readonly get: () => Effect.Effect<ModelStateInfo>
   }
 
-  export class ModelState extends Context.Service<ModelState, ModelStateInterface>()("@kilocode/CloudModelState") {}
+  export class ModelState extends Context.Service<ModelState, ModelStateInterface>()("@qronos-ai/CloudModelState") {}
 
   export const modelStateLayer = Layer.succeed(
     ModelState,

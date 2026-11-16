@@ -6,11 +6,11 @@
 // This module exports patch functions and data that the upstream provider.ts
 // calls at well-defined injection points (each marked with kilocode_change).
 
-import { createKilo, type KiloProvider, AI_SDK_PROVIDERS, PROMPTS } from "@kilocode/kilo-gateway"
+import { createKilo, type KiloProvider, AI_SDK_PROVIDERS, PROMPTS } from "@qronos-ai/kilo-gateway"
 import { DEFAULT_HEADERS } from "@/kilocode/const"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { optionalOmitUndefined } from "@opencode-ai/core/schema"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { optionalOmitUndefined } from "@qronos-ai/core/schema"
 import { ProviderError } from "@/provider/error"
 import { Effect, Schema } from "effect"
 import type { LanguageModelV3 } from "@ai-sdk/provider"
@@ -31,7 +31,7 @@ export const REQUEST_TIMEOUT_MS = 300_000 // 5 minutes
 type BundledSDK = { languageModel(modelId: string): LanguageModelV3 }
 
 export const KILO_BUNDLED_PROVIDERS: Record<string, () => Promise<(options: any) => BundledSDK>> = {
-  "@kilocode/kilo-gateway": async () => createKilo as unknown as (options: any) => BundledSDK,
+  "@qronos-ai/kilo-gateway": async () => createKilo as unknown as (options: any) => BundledSDK,
 }
 
 // ---------------------------------------------------------------------------

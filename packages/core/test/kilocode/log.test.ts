@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
-import { Log } from "@opencode-ai/core/util/log"
+import { Global } from "@qronos-ai/core/global"
+import { Log } from "@qronos-ai/core/util/log"
 import { tmpdir } from "../fixture/tmpdir"
 
 async function files(dir: string, retries = 50): Promise<string[]> {

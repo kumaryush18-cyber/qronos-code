@@ -1,5 +1,5 @@
 import { render } from "solid-js/web"
-import "@kilocode/kilo-ui/styles"
+import "@qronos-ai/kilo-ui/styles"
 import { MarketplaceApp } from "./MarketplaceApp"
 
 const root = document.getElementById("root")

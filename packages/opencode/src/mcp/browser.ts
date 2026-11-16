@@ -1,6 +1,6 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Context, Effect, Layer } from "effect"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 
 export interface Interface {
   readonly open: (url: string) => Effect.Effect<void, Error>

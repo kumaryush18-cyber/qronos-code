@@ -1,5 +1,5 @@
-import type { DesktopTheme } from "@opencode-ai/ui/theme/types"
-import { DEFAULT_THEMES as UPSTREAM_THEMES } from "@opencode-ai/ui/theme/default-themes"
+import type { DesktopTheme } from "@qronos-ai/ui/theme/types"
+import { DEFAULT_THEMES as UPSTREAM_THEMES } from "@qronos-ai/ui/theme/default-themes"
 import kiloJson from "./themes/kilo.json"
 import kiloVscodeJson from "./themes/kilo-vscode.json"
 
@@ -20,7 +20,7 @@ export {
   carbonfoxTheme,
   gruvboxTheme,
   auraTheme,
-} from "@opencode-ai/ui/theme/default-themes"
+} from "@qronos-ai/ui/theme/default-themes"
 
 export const kiloTheme = kiloJson as DesktopTheme
 export const kiloVscodeTheme = kiloVscodeJson as DesktopTheme

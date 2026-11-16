@@ -15,7 +15,7 @@ Kilo CLI is an open source AI coding agent that generates code from natural lang
 - **Typecheck**: `bun turbo typecheck` (uses `tsgo`, not `tsc`). Includes the JetBrains plugin and requires Java 21; do not run `java -version` as a routine preflight. Only check Java when a Gradle/Java command fails with a Java-version or missing-Java error. If missing, install via SDKMAN: `sdk install java 21-tem && sdk use java 21-tem`. If SDKMAN is not installed, see https://sdkman.io/install.
 - **Test**: `bun test` from `packages/opencode/` (NOT from root -- root blocks tests)
 - **Single test**: `bun test ./test/tool/tool-define.test.ts` from `packages/opencode/`
-- **CLI build artifact size check**: after `bun run script/build.ts --single --skip-install` in `packages/opencode/`, use `du -h dist/*/*/bin/kilo` (scoped package output lives under `dist/@kilocode/`)
+- **CLI build artifact size check**: after `bun run script/build.ts --single --skip-install` in `packages/opencode/`, use `du -h dist/*/*/bin/kilo` (scoped package output lives under `dist/@qronos-ai/`)
 - **SDK regen**: After changing server endpoints in `packages/opencode/src/server/`, run `./script/generate.ts` from root to regenerate `packages/sdk/js/`
 - **Knip** (unused exports): `bun run knip` from `packages/kilo-vscode/`. CI runs this — all exported types/functions must be imported somewhere. Remove or unexport unused exports before pushing.
 - **Source links**: After adding or changing URLs in `packages/kilo-vscode/`, `packages/kilo-vscode/webview-ui/`, or `packages/opencode/src/`, run `bun run script/extract-source-links.ts` from the repo root and commit the updated `packages/kilo-docs/source-links.md`. CI runs this check — the build fails if the file is stale.
@@ -42,7 +42,7 @@ Never run root `bun test`; the root script prints `do not run tests from root` a
 
 ## Products
 
-All products are clients of the **CLI** (`packages/opencode/`), which contains the AI agent runtime, HTTP server, and session management. Each client spawns or connects to a `kilo serve` process and communicates via HTTP + SSE using `@kilocode/sdk`.
+All products are clients of the **CLI** (`packages/opencode/`), which contains the AI agent runtime, HTTP server, and session management. Each client spawns or connects to a `kilo serve` process and communicates via HTTP + SSE using `@qronos-ai/sdk`.
 
 | Product | Package | Description |
 |---|---|---|
@@ -65,15 +65,15 @@ Turborepo + Bun workspaces. The packages you'll work with most:
 
 | Package | Name | Purpose |
 |---|---|---|
-| `packages/opencode/` | `@kilocode/cli` | Core CLI -- agents, tools, sessions, server, TUI. This is where most work happens. |
-| `packages/sdk/js/` | `@kilocode/sdk` | Auto-generated TypeScript SDK (client for the server API). Do not edit `src/gen/` by hand. |
+| `packages/opencode/` | `@qronos-ai/cli` | Core CLI -- agents, tools, sessions, server, TUI. This is where most work happens. |
+| `packages/sdk/js/` | `@qronos-ai/sdk` | Auto-generated TypeScript SDK (client for the server API). Do not edit `src/gen/` by hand. |
 | `packages/kilo-vscode/` | `kilo-code` | VS Code extension with sidebar chat + Agent Manager. See its own `AGENTS.md` for details. |
-| `packages/kilo-gateway/` | `@kilocode/kilo-gateway` | Kilo auth, provider routing, API integration |
-| `packages/kilo-telemetry/` | `@kilocode/kilo-telemetry` | PostHog analytics + OpenTelemetry |
-| `packages/kilo-i18n/` | `@kilocode/kilo-i18n` | Internationalization / translations |
-| `packages/kilo-ui/` | `@kilocode/kilo-ui` | SolidJS component library shared by the extension webview and docs screenshot stories |
-| `packages/util/` | `@opencode-ai/util` | Shared utilities (error, path, retry, slug, etc.) |
-| `packages/plugin/` | `@kilocode/plugin` | Plugin/tool interface definitions |
+| `packages/kilo-gateway/` | `@qronos-ai/kilo-gateway` | Kilo auth, provider routing, API integration |
+| `packages/kilo-telemetry/` | `@qronos-ai/kilo-telemetry` | PostHog analytics + OpenTelemetry |
+| `packages/kilo-i18n/` | `@qronos-ai/kilo-i18n` | Internationalization / translations |
+| `packages/kilo-ui/` | `@qronos-ai/kilo-ui` | SolidJS component library shared by the extension webview and docs screenshot stories |
+| `packages/util/` | `@qronos-ai/util` | Shared utilities (error, path, retry, slug, etc.) |
+| `packages/plugin/` | `@qronos-ai/plugin` | Plugin/tool interface definitions |
 
 ## Commits and PR Titles
 
@@ -220,7 +220,7 @@ For decision rules on when to keep changes inline vs. extract Kilo logic, marker
 1. **Never push new work to GitHub** unless the owner asks for it in that exact message.
 2. **Read `PLAN.md` first.** Work proceeds phase by phase; each phase has a gate.
 3. **Correctness before renaming.** Do not mass-rename ids while the build is red.
-4. **Do not rename internal package folders** (`kilo-vscode`, `@kilocode/sdk`, ...).
+4. **Do not rename internal package folders** (`kilo-vscode`, `@qronos-ai/sdk`, ...).
    Only user-visible surfaces get Qronos branding.
 5. Mark our divergence from upstream with `qronos_change` comments, same style as
    the existing `kilocode_change` markers.

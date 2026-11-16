@@ -1,38 +1,38 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
-import { Slug } from "@opencode-ai/core/util/slug"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
+import { Slug } from "@qronos-ai/core/util/slug"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import path from "path"
 import { BackgroundJob } from "@/background/job"
 import { Decimal } from "decimal.js"
-import type { ProviderMetadata, Usage } from "@opencode-ai/llm"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
-import { Database } from "@opencode-ai/core/database/database"
-import { makeRuntime } from "@opencode-ai/core/effect/runtime"
+import type { ProviderMetadata, Usage } from "@qronos-ai/llm"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
+import { Database } from "@qronos-ai/core/database/database"
+import { makeRuntime } from "@qronos-ai/core/effect/runtime"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { EventV2 } from "@opencode-ai/core/event"
-import { SessionV2 } from "@opencode-ai/core/session"
-import { SessionExecution } from "@opencode-ai/core/session/execution"
+import { EventV2 } from "@qronos-ai/core/event"
+import { SessionV2 } from "@qronos-ai/core/session"
+import { SessionExecution } from "@qronos-ai/core/session/execution"
 
 import { NotFoundError } from "@/storage/storage"
 import { eq, and, gte, isNull, desc, like, sql, inArray, lt, or } from "drizzle-orm"
 import type { SQL } from "drizzle-orm"
-import { PartTable, SessionTable } from "@opencode-ai/core/session/sql"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
+import { PartTable, SessionTable } from "@qronos-ai/core/session/sql"
+import { ProjectTable } from "@qronos-ai/core/project/sql"
 import { MessageV2 } from "./message-v2"
 import type { InstanceContext } from "../project/instance-context"
 import { InstanceState } from "@/effect/instance-state"
 import { Snapshot } from "@/snapshot"
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { ProjectV2 } from "@qronos-ai/core/project"
+import { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { SessionID, MessageID, PartID } from "./schema"
-import { SessionMessage } from "@opencode-ai/core/session/message" // kilocode_change - shared Revert.State brand
+import { SessionMessage } from "@qronos-ai/core/session/message" // kilocode_change - shared Revert.State brand
 
 import type { Provider } from "@/provider/provider"
 import { Permission } from "@/permission"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 // kilocode_change start - Kilo session behavior extensions
 import { BackgroundProcess } from "@/kilocode/background-process"
 import * as SandboxInheritance from "@/kilocode/sandbox/inheritance"
@@ -46,11 +46,11 @@ import * as SandboxPolicy from "@/kilocode/sandbox/policy"
 import { carryForkDiff } from "@/kilocode/session-portability/cumulative-diff" // kilocode_change
 // kilocode_change end
 import { Effect, Layer, Option, Context, Schema, Types } from "effect"
-import { NonNegativeInt, optionalOmitUndefined } from "@opencode-ai/core/schema"
-import { AbsolutePath } from "@opencode-ai/core/schema" // kilocode_change
+import { NonNegativeInt, optionalOmitUndefined } from "@qronos-ai/core/schema"
+import { AbsolutePath } from "@qronos-ai/core/schema" // kilocode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 
 const runtime = makeRuntime(Database.Service, AppNodeBuilder.build(Database.node))
 

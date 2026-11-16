@@ -16,7 +16,7 @@ import { controlPlaneHandlers } from "../../../src/server/routes/instance/httpap
 import { globalHandlers } from "../../../src/server/routes/instance/httpapi/handlers/global"
 import { authorizationLayer } from "../../../src/server/routes/instance/httpapi/middleware/authorization"
 import { schemaErrorLayer } from "../../../src/server/routes/instance/httpapi/middleware/schema-error"
-import { MoveSession } from "@opencode-ai/core/control-plane/move-session"
+import { MoveSession } from "@qronos-ai/core/control-plane/move-session"
 import { pollWithTimeout, testEffect } from "../../lib/effect"
 
 const apiLayer = HttpRouter.serve(

@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Avatar } from "@opencode-ai/ui/avatar"
+import { Avatar } from "@qronos-ai/ui/avatar"
 
 const meta: Meta<typeof Avatar> = {
   title: "Components/Avatar",

@@ -1,6 +1,6 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { Ripgrep } from "@qronos-ai/core/ripgrep"
 import { PlanExitTool } from "./plan"
 import { Session } from "@/session/session"
 import { SessionCompaction } from "@/session/compaction" // kilocode_change - compaction service for the experimental compact tool
@@ -15,7 +15,7 @@ import { GlobTool } from "./glob"
 import { GrepTool } from "./grep"
 import { ReadTool } from "./read"
 import { TaskTool } from "./task"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@qronos-ai/core/database/database"
 import { TodoWriteTool } from "./todo"
 import { WebFetchTool } from "./webfetch"
 import { WriteTool } from "./write"
@@ -23,7 +23,7 @@ import { InvalidTool } from "./invalid"
 import { SkillTool } from "./skill"
 import * as Tool from "./tool"
 import { Config } from "@/config/config"
-import { type ToolContext as PluginToolContext, type ToolDefinition } from "@kilocode/plugin"
+import { type ToolContext as PluginToolContext, type ToolDefinition } from "@qronos-ai/plugin"
 import type { JSONSchema7, JSONSchema7Definition } from "@ai-sdk/provider"
 import { Schema } from "effect"
 import z from "zod"
@@ -40,20 +40,20 @@ import { SessionDrain } from "@/kilocode/session/drain" // kilocode_change
 import { RepoOverviewTool } from "@/kilocode/tool/repo-overview" // kilocode_change
 import { ContextInfoTool, CompactTool } from "@/kilocode/tool/context" // kilocode_change
 import { RepoCloneTool } from "./repo_clone" // kilocode_change
-import { Flag } from "@opencode-ai/core/flag/flag" // kilocode_change
-import { stripZodFormat } from "@opencode-ai/core/kilocode/json-schema-format" // kilocode_change
+import { Flag } from "@qronos-ai/core/flag/flag" // kilocode_change
+import { stripZodFormat } from "@qronos-ai/core/kilocode/json-schema-format" // kilocode_change
 import { Auth } from "@/auth" // kilocode_change
 import { Env } from "@/env" // kilocode_change - websearch resolves its config via Env.Service
 import { LspTool } from "./lsp"
 import * as Truncate from "./truncate"
 import { ApplyPatchTool } from "./apply_patch"
-import { Glob } from "@opencode-ai/core/util/glob"
+import { Glob } from "@qronos-ai/core/util/glob"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect, Layer, Context, Option, Result } from "effect" // kilocode_change
 import { ChildProcessSpawner } from "effect/unstable/process/ChildProcessSpawner"
 import { HttpClient } from "effect/unstable/http" // kilocode_change
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { Format } from "../format"
 import { InstanceState } from "@/effect/instance-state"
 import { EffectBridge } from "@/effect/bridge"
@@ -61,7 +61,7 @@ import { Question } from "../question"
 import { Todo } from "../session/todo"
 import { LSP } from "@/lsp/lsp"
 import { Instruction } from "../session/instruction"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Bus } from "../bus"
 import { Agent } from "../agent/agent"
@@ -73,14 +73,14 @@ import { Git } from "@/git" // kilocode_change
 import { BackgroundJob } from "@/background/job"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as ToolNetwork from "@/kilocode/sandbox/network" // kilocode_change
-import { MemoryService } from "@kilocode/kilo-memory/effect/service" // kilocode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { RepositoryCache } from "@opencode-ai/core/repository-cache" // kilocode_change
-import { RipgrepBinary } from "@opencode-ai/core/ripgrep/binary" // kilocode_change
-import { AppProcess } from "@opencode-ai/core/process" // kilocode_change
+import { MemoryService } from "@qronos-ai/kilo-memory/effect/service" // kilocode_change
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { RepositoryCache } from "@qronos-ai/core/repository-cache" // kilocode_change
+import { RipgrepBinary } from "@qronos-ai/core/ripgrep/binary" // kilocode_change
+import { AppProcess } from "@qronos-ai/core/process" // kilocode_change
 import { MCP } from "@/mcp"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { McpCatalog } from "@/mcp/catalog"
 import { InstanceRef } from "@/effect/instance-ref" // kilocode_change
 

@@ -1,5 +1,5 @@
 {
-  "name": "@kilocode/kilo-ui",
+  "name": "@qronos-ai/kilo-ui",
   "version": "7.8.28",
   "type": "module",
   "license": "MIT",
@@ -99,7 +99,7 @@
     "./audio/*": "./src/assets/audio/*"
   },
   "peerDependencies": {
-    "@opencode-ai/ui": "workspace:*",
+    "@qronos-ai/ui": "workspace:*",
     "solid-js": "catalog:"
   },
   "devDependencies": {
@@ -122,9 +122,9 @@
     "test:visual:update": "playwright test --update-snapshots"
   },
   "dependencies": {
-    "@kilocode/sdk": "workspace:*",
+    "@qronos-ai/sdk": "workspace:*",
     "@kobalte/core": "0.13.11",
-    "@opencode-ai/core": "workspace:*",
+    "@qronos-ai/core": "workspace:*",
     "@pierre/diffs": "catalog:",
     "@solid-primitives/lifecycle": "0.1.2",
     "diff": "catalog:",

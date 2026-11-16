@@ -30,7 +30,7 @@ For a one-shot pin/unpin/regen that also cleans every leftover CLI binary and bu
 
 | Ask | Do |
 |---|---|
-| Unpin / use local repo CLI | Set `kilo.cli.pinned=false`, then run `./gradlew :backend:buildRepoCli` from `packages/kilo-jetbrains/`. `:backend:stageRepoCli` bundles `packages/opencode/dist/@kilocode/cli-<os>-<arch>/bin/`; runtime extracts it instead of downloading. |
+| Unpin / use local repo CLI | Set `kilo.cli.pinned=false`, then run `./gradlew :backend:buildRepoCli` from `packages/kilo-jetbrains/`. `:backend:stageRepoCli` bundles `packages/opencode/dist/@qronos-ai/cli-<os>-<arch>/bin/`; runtime extracts it instead of downloading. |
 | Re-pin / use release CLI | Set `kilo.cli.pinned=true`. This is the default and the only releasable state. |
 
 `kilo.cli.pinned=false` is dev-only: OpenAPI generation runs from local `packages/opencode/` source and the local binary is bundled. Production Gradle builds, `script/build-version.sh`, and the release scripts hard-fail on `false`, so restore `true` before releasing.
@@ -60,11 +60,11 @@ CLI releases also attempt a pin bump PR automatically after publishing and label
 - **Marketplace version build**: Use `script/build-version.sh <version>` from `packages/kilo-jetbrains/` to clean, build, sign, and verify the JetBrains Marketplace plugin ZIP. Pass `--skip-verification` only when explicitly needed.
 - **Test version build**: If the user asks for a JetBrains test build, still require a version and use `script/build-version.sh <version> --skip-signing --skip-verification` from `packages/kilo-jetbrains/` so no signing secrets are needed. Add `--skip-clean` only when the user wants a faster incremental test build.
 - **Typecheck**: `bun run typecheck` or `./gradlew typecheck` from `packages/kilo-jetbrains/` — compiles all Kotlin sources including the generated API client. A cold pinned build downloads the pinned CLI release via `generateOpenApiSpec` and needs network access; Gradle-cached incremental runs skip the download. Repo CLI mode (`-Pkilo.cli.pinned=false`) generates the spec from local source and bundles the staged local CLI binary.
-- **Build local repo CLI for JetBrains dev**: `./gradlew :backend:buildRepoCli` from `packages/kilo-jetbrains/` builds `packages/opencode/dist/@kilocode/cli-<os>-<arch>/bin/`. `stageRepoCli` intentionally does not depend on this task; missing binaries fail with instructions instead of silently starting a slow CLI build.
+- **Build local repo CLI for JetBrains dev**: `./gradlew :backend:buildRepoCli` from `packages/kilo-jetbrains/` builds `packages/opencode/dist/@qronos-ai/cli-<os>-<arch>/bin/`. `stageRepoCli` intentionally does not depend on this task; missing binaries fail with instructions instead of silently starting a slow CLI build.
 - **Full build**: `bun run build` from `packages/kilo-jetbrains/` (runs Gradle `buildPlugin`).
 - **Gradle only**: `./gradlew buildPlugin` from `packages/kilo-jetbrains/`.
 - **Java checks**: Do not run `java -version` as a routine preflight. Gradle commands already fail clearly when Java is missing or incompatible; check Java only when diagnosing that failure mode.
-- **Via Turbo**: `bun turbo build --filter=@kilocode/kilo-jetbrains` from repo root.
+- **Via Turbo**: `bun turbo build --filter=@qronos-ai/kilo-jetbrains` from repo root.
 - **Run split mode**: `./gradlew --no-configuration-cache runIdeSplitMode` or the checked-in `Run IDE (Split Mode)` configuration — launches backend and frontend locally. Emulate latency via the Split Mode widget — internal mode is already on for every dev run (see below).
 - **Run split backend**: `./gradlew --no-configuration-cache runIdeBackend` — if it exits shortly after startup, check for an orphaned Java process from a previous backend run and kill it before restarting.
 - **Corrupt IDE extraction**: if `runIdeBackend` or `runIdeSplitMode` fails before startup with `coroutinesJavaAgentFile` / `Collection contains no element matching the predicate`, the extracted IDE under `.intellijPlatform/ides/` is likely incomplete. Health check: `ls .intellijPlatform/ides/*/lib/*.jar | wc -l` should be in the hundreds. Repair by removing `.intellijPlatform/ides`, `.intellijPlatform/localPlatformArtifacts`, `.intellijPlatform/layoutIndex`, and `.intellijPlatform/coroutines-javaagent.jar`, then rerun the Gradle task.

@@ -2,8 +2,8 @@ import "./init-projectors"
 
 import { NodeHttpServer } from "@effect/platform-node"
 import { serverUrls } from "@/kilocode/cli/server-urls" // kilocode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { Pty } from "@opencode-ai/core/pty" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { Pty } from "@qronos-ai/core/pty" // kilocode_change
 import { ConfigProvider, Context, Effect, Exit, Layer, Scope } from "effect"
 import { HttpRouter, HttpServer } from "effect/unstable/http"
 import { OpenApi } from "effect/unstable/httpapi"
@@ -13,7 +13,7 @@ import { HttpApiApp } from "./routes/instance/httpapi/server"
 import { disposeMiddleware } from "./routes/instance/httpapi/lifecycle"
 import { WebSocketTracker } from "./routes/instance/httpapi/websocket-tracker"
 import { PublicApi } from "./routes/instance/httpapi/public"
-import type { CorsOptions } from "@opencode-ai/server/cors"
+import type { CorsOptions } from "@qronos-ai/server/cors"
 import { lazy } from "@/util/lazy"
 import * as KiloListener from "@/kilocode/server/listener" // kilocode_change
 

@@ -1,6 +1,6 @@
 import type { JSX } from "solid-js"
 import type { RGBA } from "@opentui/core"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 
 export interface LinkProps {
   href: string

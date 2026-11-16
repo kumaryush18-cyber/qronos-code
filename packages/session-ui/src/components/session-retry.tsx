@@ -1,9 +1,9 @@
 import { createEffect, createMemo, createSignal, on, onCleanup, Show } from "solid-js"
-import type { SessionStatus } from "@kilocode/sdk/v2/client"
-import { useI18n } from "@opencode-ai/ui/context/i18n"
-import { Card } from "@opencode-ai/ui/card"
-import { Tooltip } from "@opencode-ai/ui/tooltip"
-import { Spinner } from "@opencode-ai/ui/spinner"
+import type { SessionStatus } from "@qronos-ai/sdk/v2/client"
+import { useI18n } from "@qronos-ai/ui/context/i18n"
+import { Card } from "@qronos-ai/ui/card"
+import { Tooltip } from "@qronos-ai/ui/tooltip"
+import { Spinner } from "@qronos-ai/ui/spinner"
 
 export function SessionRetry(props: { status: SessionStatus; show?: boolean }) {
   const i18n = useI18n()

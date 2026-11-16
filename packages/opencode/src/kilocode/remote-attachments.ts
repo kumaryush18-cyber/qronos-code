@@ -18,8 +18,8 @@
 // other ingress paths never touch this code (decision 6).
 import path from "node:path"
 import fs from "node:fs/promises"
-import { Global } from "@opencode-ai/core/global"
-import * as Log from "@opencode-ai/core/util/log"
+import { Global } from "@qronos-ai/core/global"
+import * as Log from "@qronos-ai/core/util/log"
 import { PartID, type SessionID } from "@/session/schema"
 import type { SessionPrompt } from "@/session/prompt"
 

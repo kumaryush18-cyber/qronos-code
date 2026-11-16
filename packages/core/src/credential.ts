@@ -4,8 +4,8 @@ import { asc, desc, eq } from "drizzle-orm" // kilocode_change
 // kilocode_change start
 import { Context, Effect, Layer, Option, Schema, Semaphore } from "effect"
 // kilocode_change end
-import { Credential } from "@opencode-ai/schema/credential"
-import { Integration } from "@opencode-ai/schema/integration"
+import { Credential } from "@qronos-ai/schema/credential"
+import { Integration } from "@qronos-ai/schema/integration"
 import { Database } from "./database/database"
 import { makeGlobalNode } from "./effect/app-node"
 import { CredentialTable } from "./credential/sql"

@@ -1,13 +1,13 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Effect, Layer, Context, Schema, Scope } from "effect"
 import { formatPatch, structuredPatch } from "diff"
 import { InstanceState } from "@/effect/instance-state"
-import { Watcher } from "@opencode-ai/core/filesystem/watcher"
+import { Watcher } from "@qronos-ai/core/filesystem/watcher"
 import { Git } from "@/git"
 import { diffRefs, patchAllRefs, statsRefs } from "@/kilocode/git-refs" // kilocode_change
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { EventV2 } from "@opencode-ai/core/event"
-import { VcsEvent } from "@opencode-ai/schema/vcs-event"
+import { EventV2 } from "@qronos-ai/core/event"
+import { VcsEvent } from "@qronos-ai/schema/vcs-event"
 
 const PATCH_CONTEXT_LINES = 2_147_483_647
 const MAX_PATCH_BYTES = 10_000_000

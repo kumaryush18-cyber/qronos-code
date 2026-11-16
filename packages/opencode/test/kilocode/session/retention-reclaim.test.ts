@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
 import { statSync } from "node:fs"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@qronos-ai/core/database/database"
 import { KiloSessionRetention } from "../../../src/kilocode/session/retention"
 import { tmpdir } from "../../fixture/fixture"
 

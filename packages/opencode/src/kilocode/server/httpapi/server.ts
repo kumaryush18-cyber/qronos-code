@@ -1,13 +1,13 @@
 import { Layer } from "effect"
 import { FetchHttpClient, HttpMiddleware, HttpRouter, HttpServer } from "effect/unstable/http"
-import { CorsConfig, isAllowedCorsOrigin, type CorsOptions } from "@opencode-ai/server/cors"
+import { CorsConfig, isAllowedCorsOrigin, type CorsOptions } from "@qronos-ai/server/cors"
 import { compressionLayer } from "@/server/routes/instance/httpapi/middleware/compression"
 import { corsVaryFix } from "@/server/routes/instance/httpapi/middleware/cors-vary"
 import { errorLayer } from "@/server/routes/instance/httpapi/middleware/error"
 import { fenceLayer } from "@/server/routes/instance/httpapi/middleware/fence"
 import * as AnacondaDesktop from "@/kilocode/anaconda-desktop/service"
 import { SessionHost } from "@/kilocode/session-hosting"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock"
 import { AppNodeBuilderV1 } from "@/effect/app-node-builder-v1" // kilocode_change - defaultLayer aliases are gone
 
 import { KiloViewers } from "@/kilocode/presence/service" // kilocode_change

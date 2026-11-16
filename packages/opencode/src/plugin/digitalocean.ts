@@ -1,8 +1,8 @@
-import type { Hooks, PluginInput } from "@kilocode/plugin"
-import type { Model } from "@kilocode/sdk/v2"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import type { Hooks, PluginInput } from "@qronos-ai/plugin"
+import type { Model } from "@qronos-ai/sdk/v2"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { createServer } from "http"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 
 const DO_OAUTH_CLIENT_ID = "b1a6c5158156caac821fd1b30253ca8acb52454a48fa744420e41889cb589f82"
 const DO_AUTHORIZE_URL = "https://cloud.digitalocean.com/v1/oauth/authorize"

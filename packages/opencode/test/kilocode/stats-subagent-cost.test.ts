@@ -3,18 +3,18 @@
 // tool propagates each child session's total cost up to the parent's
 // tool-wrapper assistant message (#6321).
 
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { SessionProjector } from "@qronos-ai/core/session/projector"
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@qronos-ai/core/database/database"
 import { aggregateSessionStats } from "../../src/cli/cmd/stats"
 import { MessageV2 } from "../../src/session/message-v2"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { Session } from "../../src/session/session"
 import { MessageID, PartID, SessionID } from "../../src/session/schema"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { testEffect } from "../lib/effect"
 
 void Log.init({ print: false })

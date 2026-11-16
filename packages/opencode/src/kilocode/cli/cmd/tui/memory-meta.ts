@@ -1,4 +1,4 @@
-import { MemoryMarkerMeta } from "@kilocode/kilo-memory/marker-meta"
+import { MemoryMarkerMeta } from "@qronos-ai/kilo-memory/marker-meta"
 
 export namespace MemoryTuiMeta {
   export function fromParts(parts: readonly MemoryMarkerMeta.Part[]) {

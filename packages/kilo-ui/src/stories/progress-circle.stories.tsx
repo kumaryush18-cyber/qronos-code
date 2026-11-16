@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { ProgressCircle } from "@opencode-ai/ui/progress-circle"
+import { ProgressCircle } from "@qronos-ai/ui/progress-circle"
 
 const meta: Meta<typeof ProgressCircle> = {
   title: "Components/ProgressCircle",

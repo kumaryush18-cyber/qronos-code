@@ -4,7 +4,7 @@ import os from "node:os"
 import path from "node:path"
 import { appendSessionDiffs, mergeSessionDiffs } from "../../src/kilocode/session-portability/cumulative-diff"
 import { extractSessionDiffs, restoreSessionDiffs } from "../../src/kilocode/session-portability/session-diff-restore"
-import { fetchCloudSessionForImport } from "@kilocode/kilo-gateway"
+import { fetchCloudSessionForImport } from "@qronos-ai/kilo-gateway"
 
 const dirs: string[] = []
 

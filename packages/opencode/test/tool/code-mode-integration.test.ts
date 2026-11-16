@@ -20,8 +20,8 @@ import {
 import { Cause, Effect, Exit, Layer, ManagedRuntime } from "effect" // kilocode_change
 import { InstanceRef } from "@/effect/instance-ref" // kilocode_change
 import { TestConfig } from "../fixture/config" // kilocode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { Database } from "@opencode-ai/core/database/database" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { Database } from "@qronos-ai/core/database/database" // kilocode_change
 
 const PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
 

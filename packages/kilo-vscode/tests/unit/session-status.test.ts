@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test"
 import { seedSessionStatuses, seedSessionWakeups } from "../../src/session-status"
-import type { SessionStatus } from "@kilocode/sdk/v2/client"
+import type { SessionStatus } from "@qronos-ai/sdk/v2/client"
 
 /**
  * Minimal fake client that satisfies the KiloClient.session.status() call.

@@ -2,7 +2,7 @@ import type { Argv } from "yargs"
 import { UI } from "../ui"
 import * as prompts from "@clack/prompts"
 import { Installation } from "../../installation"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import fs from "fs/promises"
 import path from "path"
 import os from "os"
@@ -130,10 +130,10 @@ async function showRemovalSummary(targets: RemovalTargets, method: Installation.
 
   if (method !== "curl" && method !== "unknown") {
     const cmds: Record<string, string> = {
-      npm: "npm uninstall -g @kilocode/cli", // kilocode_change
-      pnpm: "pnpm uninstall -g @kilocode/cli", // kilocode_change
-      bun: "bun remove -g @kilocode/cli", // kilocode_change
-      yarn: "yarn global remove @kilocode/cli", // kilocode_change
+      npm: "npm uninstall -g @qronos-ai/cli", // kilocode_change
+      pnpm: "pnpm uninstall -g @qronos-ai/cli", // kilocode_change
+      bun: "bun remove -g @qronos-ai/cli", // kilocode_change
+      yarn: "yarn global remove @qronos-ai/cli", // kilocode_change
       brew: `brew uninstall ${KiloBrew.name}`, // kilocode_change
       choco: "choco uninstall kilo", // kilocode_change
       scoop: "scoop uninstall kilo", // kilocode_change
@@ -181,10 +181,10 @@ async function executeUninstall(method: Installation.Method, targets: RemovalTar
 
   if (method !== "curl" && method !== "unknown") {
     const cmds: Record<string, string[]> = {
-      npm: ["npm", "uninstall", "-g", "@kilocode/cli"], // kilocode_change
-      pnpm: ["pnpm", "uninstall", "-g", "@kilocode/cli"], // kilocode_change
-      bun: ["bun", "remove", "-g", "@kilocode/cli"], // kilocode_change
-      yarn: ["yarn", "global", "remove", "@kilocode/cli"], // kilocode_change
+      npm: ["npm", "uninstall", "-g", "@qronos-ai/cli"], // kilocode_change
+      pnpm: ["pnpm", "uninstall", "-g", "@qronos-ai/cli"], // kilocode_change
+      bun: ["bun", "remove", "-g", "@qronos-ai/cli"], // kilocode_change
+      yarn: ["yarn", "global", "remove", "@qronos-ai/cli"], // kilocode_change
       brew: ["brew", "uninstall", KiloBrew.name], // kilocode_change
       choco: ["choco", "uninstall", "kilo"], // kilocode_change
       scoop: ["scoop", "uninstall", "kilo"], // kilocode_change

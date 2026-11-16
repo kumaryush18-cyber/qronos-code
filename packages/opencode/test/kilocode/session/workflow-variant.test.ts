@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { resolve } from "../../../src/kilocode/session/workflow-variant"
 
 const selected = { variants: { high: {} } }

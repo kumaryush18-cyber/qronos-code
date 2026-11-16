@@ -1,13 +1,13 @@
 import { ProviderAuth } from "@/provider/auth"
 import { Config } from "@/config/config"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@qronos-ai/core/models-dev"
 import { Provider } from "@/provider/provider"
 
 import { mapValues, pickBy } from "remeda" // kilocode_change
 import { ModelCache } from "@/provider/model-cache" // kilocode_change
 import { Auth } from "@/auth" // kilocode_change
 import { organization, recommend } from "@/kilocode/provider/catalog" // kilocode_change
-import { ModelV2 } from "@opencode-ai/core/model" // kilocode_change
+import { ModelV2 } from "@qronos-ai/core/model" // kilocode_change
 import { Option } from "effect" // kilocode_change
 import {
   disposeAllInstancesAfterProviderAuthCallback,
@@ -21,7 +21,7 @@ import { HttpServerRequest, HttpServerResponse } from "effect/unstable/http"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { InstanceHttpApi } from "../api"
 import { ProviderAuthApiError } from "../groups/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 
 function mapProviderAuthError<A, R>(self: Effect.Effect<A, ProviderAuth.Error, R>) {
   return self.pipe(

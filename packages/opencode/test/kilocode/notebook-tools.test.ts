@@ -1,4 +1,4 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
 import { Agent } from "@/agent/agent"
 import { Notebook } from "@/kilocode/notebook/service"

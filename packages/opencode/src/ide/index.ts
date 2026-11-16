@@ -1,6 +1,6 @@
 import { Schema } from "effect"
-import { NamedError } from "@opencode-ai/core/util/error"
-import { IdeEvent } from "@opencode-ai/schema/ide-event"
+import { NamedError } from "@qronos-ai/core/util/error"
+import { IdeEvent } from "@qronos-ai/schema/ide-event"
 
 const SUPPORTED_IDES = [
   { name: "Windsurf" as const, cmd: "windsurf" },

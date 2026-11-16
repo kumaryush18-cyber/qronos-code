@@ -11,7 +11,7 @@ const table = `bun outdated v1.3.14 (0d9b296a)
 |-----------------------------------|----------------------|----------------------|----------------------|------------------------|
 | @babel/core (dev)                 | 7.29.6               | 7.29.7               | 7.29.7               | kilo-code              |
 |-----------------------------------|----------------------|----------------------|----------------------|------------------------|
-| solid-js                          | 1.9.12               | 1.9.12               | 1.10.0               | catalog (@kilocode/kilo-ui) |
+| solid-js                          | 1.9.12               | 1.9.12               | 1.10.0               | catalog (@qronos-ai/kilo-ui) |
 |-----------------------------------|----------------------|----------------------|----------------------|------------------------|
 | chromium-bidi                     | 0.8.0                | 0.8.0                | 0.8.0 *              | kilo-code              |
 `
@@ -63,7 +63,7 @@ describe("outdated report", () => {
     expect(out.count).toBe(4)
     expect(out.text).toContain("1 major, 2 minor, 1 patch")
     expect(out.text).toContain("`zod` 3.25.76 -> 4.6.5 (kilo-code)")
-    expect(out.text).toContain("`solid-js` 1.9.12 -> 1.10.0 (@kilocode/kilo-ui) [root catalog]")
+    expect(out.text).toContain("`solid-js` 1.9.12 -> 1.10.0 (@qronos-ai/kilo-ui) [root catalog]")
     expect(out.text).toContain("<https://example.test/run|Workflow run>")
   })
 

@@ -1,4 +1,4 @@
-import { StoredToolContent } from "@opencode-ai/llm"
+import { StoredToolContent } from "@qronos-ai/llm"
 import { Schema } from "effect"
 
 const decode = Schema.decodeUnknownSync(StoredToolContent)

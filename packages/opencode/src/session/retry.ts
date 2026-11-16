@@ -1,5 +1,5 @@
-import type { NamedError } from "@opencode-ai/core/util/error"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import type { NamedError } from "@qronos-ai/core/util/error"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Cause, Clock, Duration, Effect, Schedule } from "effect"
 import { MessageV2 } from "./message-v2"
 import { isKiloError } from "@/kilocode/kilo-errors" // kilocode_change

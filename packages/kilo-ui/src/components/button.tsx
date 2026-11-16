@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/button"
+export * from "@qronos-ai/ui/button"

@@ -7,8 +7,8 @@
 // Events never carry parameter values, config contents, paths, or error text.
 
 import { Effect } from "effect"
-import { Telemetry } from "@kilocode/kilo-telemetry"
-import * as Log from "@opencode-ai/core/util/log"
+import { Telemetry } from "@qronos-ai/kilo-telemetry"
+import * as Log from "@qronos-ai/core/util/log"
 import * as Api from "./api"
 import * as Detection from "./detection"
 import type { MarketplaceInstallPayload, Scope } from "./schema"

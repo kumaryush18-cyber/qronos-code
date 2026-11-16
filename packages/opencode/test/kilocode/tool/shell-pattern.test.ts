@@ -6,12 +6,12 @@
 // real ShellPermission scanner so quoting is decided by the parser, not by a
 // second hand-written lexer.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { afterEach, describe, expect, test } from "bun:test"
 import { Effect, Layer } from "effect"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import type { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { hardenExplore, patchAgents } from "../../../src/kilocode/agent"
 import { Permission } from "../../../src/permission"
 import { ShellPermission } from "../../../src/tool/shell"

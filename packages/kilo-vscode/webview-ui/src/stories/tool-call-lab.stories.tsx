@@ -8,7 +8,7 @@ import type {
   ReasoningPart,
   TextPart,
   ToolPart,
-} from "@kilocode/sdk/v2"
+} from "@qronos-ai/sdk/v2"
 import { StoryProviders, defaultMockData, mockSessionValue } from "./StoryProviders"
 import { AssistantMessage } from "../components/chat/AssistantMessage"
 import { ErrorDisplay } from "../components/chat/ErrorDisplay"

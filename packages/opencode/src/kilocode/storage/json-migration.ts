@@ -1,20 +1,20 @@
 import { drizzle, type SQLiteBunDatabase } from "drizzle-orm/bun-sqlite"
 import type { NodeSQLiteDatabase } from "drizzle-orm/node-sqlite"
 import { Database as BunDatabase } from "bun:sqlite"
-import { Global } from "@opencode-ai/core/global"
-import { Database } from "@opencode-ai/core/database/database"
-import * as Log from "@opencode-ai/core/util/log"
-import { ProjectTable } from "@opencode-ai/core/project/sql"
-import { SessionTable, MessageTable, PartTable, TodoTable } from "@opencode-ai/core/session/sql"
-import { SessionShareTable } from "@opencode-ai/core/share/sql"
+import { Global } from "@qronos-ai/core/global"
+import { Database } from "@qronos-ai/core/database/database"
+import * as Log from "@qronos-ai/core/util/log"
+import { ProjectTable } from "@qronos-ai/core/project/sql"
+import { SessionTable, MessageTable, PartTable, TodoTable } from "@qronos-ai/core/session/sql"
+import { SessionShareTable } from "@qronos-ai/core/share/sql"
 import path from "path"
 import { existsSync } from "fs"
 import { Filesystem } from "@/util/filesystem"
-import { Glob } from "@opencode-ai/core/util/glob"
+import { Glob } from "@qronos-ai/core/util/glob"
 import { EOL } from "os"
 import { Effect } from "effect"
 import { errorMessage } from "@/util/error"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 
 const log = Log.create({ service: "json-migration" })
 

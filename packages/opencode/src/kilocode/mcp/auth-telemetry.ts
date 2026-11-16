@@ -9,8 +9,8 @@
 // A server is identified only when its effective config matches a public marketplace method.
 
 import { Cause, Context, Effect, Exit } from "effect"
-import { Telemetry, type McpAuthCompletedProperties } from "@kilocode/kilo-telemetry"
-import * as Log from "@opencode-ai/core/util/log"
+import { Telemetry, type McpAuthCompletedProperties } from "@qronos-ai/kilo-telemetry"
+import * as Log from "@qronos-ai/core/util/log"
 import { fetchMcps } from "../marketplace/api"
 import { buildMcpEntry } from "../marketplace/mcp-entry"
 import type { McpMarketplaceItem } from "../marketplace/schema"

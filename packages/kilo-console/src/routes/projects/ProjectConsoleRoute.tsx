@@ -12,14 +12,14 @@ import {
   Show,
   Suspense,
 } from "solid-js"
-import { Badge } from "@kilocode/kilo-web-ui/badge"
-import { Button } from "@kilocode/kilo-web-ui/button"
-import { Card } from "@kilocode/kilo-web-ui/card"
-import { Icon } from "@kilocode/kilo-web-ui/icon"
-import { ResizeHandle } from "@kilocode/kilo-web-ui/resize-handle"
-import { Spinner } from "@kilocode/kilo-web-ui/spinner"
-import { FileComponentProvider } from "@kilocode/kilo-web-ui/context/file"
-import type { SessionReviewDiffStyle } from "@kilocode/kilo-web-ui/session-review"
+import { Badge } from "@qronos-ai/kilo-web-ui/badge"
+import { Button } from "@qronos-ai/kilo-web-ui/button"
+import { Card } from "@qronos-ai/kilo-web-ui/card"
+import { Icon } from "@qronos-ai/kilo-web-ui/icon"
+import { ResizeHandle } from "@qronos-ai/kilo-web-ui/resize-handle"
+import { Spinner } from "@qronos-ai/kilo-web-ui/spinner"
+import { FileComponentProvider } from "@qronos-ai/kilo-web-ui/context/file"
+import type { SessionReviewDiffStyle } from "@qronos-ai/kilo-web-ui/session-review"
 import { ConfirmDialog } from "../../components/ConfirmDialog"
 import { LoadingScreen } from "../../components/LoadingScreen"
 import { PromptDialog } from "../../components/PromptDialog"
@@ -65,9 +65,9 @@ const GhosttyTerminal = lazy(() =>
   import("./terminal/GhosttyTerminal").then((mod) => ({ default: mod.GhosttyTerminal })),
 )
 const SessionReview = lazy(() =>
-  import("@kilocode/kilo-web-ui/session-review").then((mod) => ({ default: mod.SessionReview })),
+  import("@qronos-ai/kilo-web-ui/session-review").then((mod) => ({ default: mod.SessionReview })),
 )
-const File = lazy(() => import("@kilocode/kilo-web-ui/file").then((mod) => ({ default: mod.File })))
+const File = lazy(() => import("@qronos-ai/kilo-web-ui/file").then((mod) => ({ default: mod.File })))
 
 const ui = new Set(["3017", "3018"])
 

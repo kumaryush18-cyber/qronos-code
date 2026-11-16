@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import type { Component } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
+import { Button } from "@qronos-ai/kilo-ui/button"
 import { useVSCode } from "../src/context/vscode"
 import { useLanguage } from "../src/context/language"
 

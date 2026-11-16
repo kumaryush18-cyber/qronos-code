@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/line-comment-annotations"
+export * from "@qronos-ai/ui/line-comment-annotations"

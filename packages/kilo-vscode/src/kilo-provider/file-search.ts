@@ -1,6 +1,6 @@
 import * as path from "path"
 import * as vscode from "vscode"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { braceExpand, minimatch } from "minimatch"
 import { mergeFileSearchResults } from "./file-search-results"
 import { mergeFileSearchItems, type FileSearchItem } from "./file-search-items"

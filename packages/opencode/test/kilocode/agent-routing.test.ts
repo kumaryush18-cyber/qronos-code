@@ -1,6 +1,6 @@
 import { afterEach, expect, test } from "bun:test"
-import { Global } from "@opencode-ai/core/global"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { Global } from "@qronos-ai/core/global"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import path from "path"
 import { Effect, Layer } from "effect"
 import { Agent } from "../../src/agent/agent"

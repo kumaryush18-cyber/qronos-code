@@ -12,7 +12,7 @@ import type { MessageID, PartID, SessionV1 } from "../v1/session"
 import { WorkspaceV2 } from "../workspace"
 import { Timestamps } from "../database/schema.sql"
 import type { SystemContext } from "../system-context/index"
-import type { Revert } from "@opencode-ai/schema/revert"
+import type { Revert } from "@qronos-ai/schema/revert"
 import { RecallPartIndex } from "../kilocode/session/recall-part-index" // kilocode_change
 import { RecallMessageIndex } from "../kilocode/session/recall-message-index" // kilocode_change
 import { sql } from "drizzle-orm" // kilocode_change

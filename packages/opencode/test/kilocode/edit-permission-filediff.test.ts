@@ -3,7 +3,7 @@
 // permission-ask metadata. Without `filediff`, the VS Code extension's
 // PermissionDock cannot render the inline diff preview.
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { afterAll, afterEach, describe, test, expect } from "bun:test"
 import path from "path"
 import { Effect, Layer, ManagedRuntime } from "effect"
@@ -11,7 +11,7 @@ import { EditTool } from "../../src/tool/edit"
 import { provideTestInstance } from "../fixture/fixture"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture"
 import { LSP } from "../../src/lsp/lsp"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Format } from "../../src/format"
 import { Agent } from "../../src/agent/agent"
 import { Bus } from "../../src/bus"

@@ -16,7 +16,7 @@ export namespace SessionHost {
     readonly default: Effect.Effect<Provider | undefined>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/SessionHost") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/SessionHost") {}
 
   export interface Options {
     readonly env?: CloudAuth.Environment

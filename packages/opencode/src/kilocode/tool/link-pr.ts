@@ -2,7 +2,7 @@ import { Tool } from "@/tool/tool"
 import { Instance } from "@/kilocode/instance"
 import { enabled as prEnabled, linkMatchesWorktree, parsePrUrl } from "@/kilo-sessions/pr-link"
 import { Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import DESCRIPTION from "./link-pr.txt"
 
 const log = Log.create({ service: "link-pr-tool" })

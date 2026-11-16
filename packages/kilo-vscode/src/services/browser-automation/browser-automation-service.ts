@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import type { KiloConnectionService } from "../cli-backend"
 import { playwrightCommand } from "./settings"
 import { canonicalizePath, samePath } from "../../agent-manager/project/paths"

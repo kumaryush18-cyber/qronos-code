@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 
 export async function hasGit(client: KiloClient, directory: string): Promise<boolean> {
   return Promise.resolve()

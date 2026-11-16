@@ -1,5 +1,5 @@
 import { describe, expect, it, mock } from "bun:test"
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import { forkText } from "../../src/agent-manager/fork-handoff"
 import { forkSession, type ForkContext } from "../../src/agent-manager/fork-session"
 

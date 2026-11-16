@@ -1,7 +1,7 @@
 // kilocode_change - new file
 import { describe, expect, test } from "bun:test"
 import { Effect, Layer, ManagedRuntime } from "effect"
-import { EventV2 } from "@opencode-ai/core/event"
+import { EventV2 } from "@qronos-ai/core/event"
 import { EventV2Bridge } from "../../src/event-v2-bridge"
 import { InstanceRef } from "../../src/effect/instance-ref"
 import { disposeInstance } from "../../src/effect/instance-registry"

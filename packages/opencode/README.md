@@ -8,18 +8,18 @@ Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate fa
 
 [Website](https://kilo.ai) · [Install](https://kilo.ai/install) · [IDE](https://kilo.ai/landing/vs-code) · [CLI](https://kilo.ai/cli) · [Docs](https://kilo.ai/docs) · [Models](https://kilo.ai/leaderboard) · [Gateway](https://kilo.ai/gateway) · [Pricing](https://kilo.ai/pricing) · [Kilo Pass](https://kilo.ai/pricing/kilo-pass)
 
-[500+ models](https://kilo.ai/leaderboard). One open source agent in [VS Code](https://kilo.ai/vscode-marketplace), [JetBrains](https://plugins.jetbrains.com/plugin/27133-kilo-code), [CLI](https://www.npmjs.com/package/@kilocode/cli), [Slack](https://kilo.ai/slack), and [Cloud](https://kilo.ai/cloud).
+[500+ models](https://kilo.ai/leaderboard). One open source agent in [VS Code](https://kilo.ai/vscode-marketplace), [JetBrains](https://plugins.jetbrains.com/plugin/27133-kilo-code), [CLI](https://www.npmjs.com/package/@qronos-ai/cli), [Slack](https://kilo.ai/slack), and [Cloud](https://kilo.ai/cloud).
 
 ## Install
 
 ```bash
-npm install -g @kilocode/cli
+npm install -g @qronos-ai/cli
 ```
 
 Or run directly with npx:
 
 ```bash
-npx --package @kilocode/cli kilo
+npx --package @qronos-ai/cli kilo
 ```
 
 ## Getting Started

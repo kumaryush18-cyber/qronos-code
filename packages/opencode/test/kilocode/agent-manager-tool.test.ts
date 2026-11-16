@@ -1,9 +1,9 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
 import { Cause, Effect, Exit, Layer, ManagedRuntime, Queue, Schema } from "effect"
 import { MessageID, SessionID } from "../../src/session/schema"
 import { provideTmpdirInstance } from "../fixture/fixture"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { AgentManagerTool, Params } from "../../src/kilocode/tool/agent-manager"
 import { AgentManagerEvent, type AgentManagerStart } from "../../src/kilocode/agent-manager/event"
 import { AgentManager } from "../../src/kilocode/agent-manager/service"
@@ -13,8 +13,8 @@ import * as ToolJsonSchema from "../../src/tool/json-schema"
 import { Truncate } from "../../src/tool/truncate"
 import { Agent } from "../../src/agent/agent"
 import { Provider } from "../../src/provider/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 
 const providers = {
   test: {

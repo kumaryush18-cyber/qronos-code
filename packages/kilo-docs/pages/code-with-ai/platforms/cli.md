@@ -55,7 +55,7 @@ Upgrade the Kilo CLI:
 
 Or use npm:
 
-`npm update -g @kilocode/cli`
+`npm update -g @qronos-ai/cli`
 
 ## What you can do with Kilo Code CLI
 
@@ -376,7 +376,7 @@ In Ask and Plan modes, `external_directory` allow rules can still permit reads o
 
 ## Configuration
 
-The Kilo CLI is a fork of [OpenCode](https://opencode.ai) and supports the same configuration options. The CLI you install with `npm install -g @kilocode/cli` (Kilo CLI 1.0) is built from [Kilo-Org/kilocode](https://github.com/Kilo-Org/kilocode). For comprehensive configuration documentation, see the [OpenCode Config documentation](https://opencode.ai/docs/config).
+The Kilo CLI is a fork of [OpenCode](https://opencode.ai) and supports the same configuration options. The CLI you install with `npm install -g @qronos-ai/cli` (Kilo CLI 1.0) is built from [Kilo-Org/kilocode](https://github.com/Kilo-Org/kilocode). For comprehensive configuration documentation, see the [OpenCode Config documentation](https://opencode.ai/docs/config).
 
 ### Config File Location (Kilo CLI 1.0)
 

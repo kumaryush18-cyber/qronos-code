@@ -1,6 +1,6 @@
 import { describe, expect, spyOn, test } from "bun:test"
 import { Effect, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { KiloToolRegistry } from "../../src/kilocode/tool/registry"
 import { Agent } from "../../src/agent/agent"
 import * as Truncate from "../../src/tool/truncate"

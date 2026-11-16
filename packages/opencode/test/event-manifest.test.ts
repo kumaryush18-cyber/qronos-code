@@ -1,13 +1,13 @@
 import { describe, expect, test } from "bun:test"
-import { SessionEvent } from "@opencode-ai/core/session/event"
-import { EventManifest as SchemaEventManifest } from "@opencode-ai/schema/event-manifest"
+import { SessionEvent } from "@qronos-ai/core/session/event"
+import { EventManifest as SchemaEventManifest } from "@qronos-ai/schema/event-manifest"
 import { Todo } from "@/session/todo"
 import { EventManifest } from "@/event-manifest"
-import { Drained, Interrupted } from "@opencode-ai/schema/kilocode/session-drain" // kilocode_change
-import { Availability as SessionHostAvailability } from "@opencode-ai/schema/kilocode/session-host-event" // kilocode_change
-import { Continuation as SessionHostContinuation } from "@opencode-ai/schema/kilocode/session-host-event" // kilocode_change
-import { Pending as WakeupPending } from "@opencode-ai/schema/kilocode/wakeup-event" // kilocode_change
-import { AuthUrl } from "@opencode-ai/schema/mcp-event" // kilocode_change
+import { Drained, Interrupted } from "@qronos-ai/schema/kilocode/session-drain" // kilocode_change
+import { Availability as SessionHostAvailability } from "@qronos-ai/schema/kilocode/session-host-event" // kilocode_change
+import { Continuation as SessionHostContinuation } from "@qronos-ai/schema/kilocode/session-host-event" // kilocode_change
+import { Pending as WakeupPending } from "@qronos-ai/schema/kilocode/wakeup-event" // kilocode_change
+import { AuthUrl } from "@qronos-ai/schema/mcp-event" // kilocode_change
 
 describe("public event manifest", () => {
   test("contains every latest public wire type once", () => {

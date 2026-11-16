@@ -1,4 +1,4 @@
-import type { TuiPluginApi } from "@kilocode/plugin/tui"
+import type { TuiPluginApi } from "@qronos-ai/plugin/tui"
 import { createMemo, For, type Accessor } from "solid-js"
 import { DEFAULT_THEMES, useTheme } from "../../context/theme"
 import { KILO_TIPS } from "@/kilocode/cli/cmd/tui/feature-plugins/home/tips" // kilocode_change

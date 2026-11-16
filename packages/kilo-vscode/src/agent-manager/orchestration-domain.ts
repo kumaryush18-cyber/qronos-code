@@ -1,5 +1,5 @@
 import * as fs from "fs"
-import type { KiloClient, SessionStatus } from "@kilocode/sdk/v2/client"
+import type { KiloClient, SessionStatus } from "@qronos-ai/sdk/v2/client"
 import { sameDirectory } from "../kilo-provider-utils"
 import { isRunningStatus } from "../session-status"
 import type { LocalStats, WorktreeStats } from "./GitStatsPoller"

@@ -1,4 +1,4 @@
-import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@kilocode/plugin/tui"
+import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@qronos-ai/plugin/tui"
 import { createEffect, createMemo, createResource, createSignal, For, onCleanup, onMount, Show } from "solid-js"
 import { useLocal } from "@tui/context/local"
 import * as Model from "@tui/util/model"

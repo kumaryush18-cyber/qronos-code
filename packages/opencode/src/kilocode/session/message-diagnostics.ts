@@ -1,5 +1,5 @@
 import type { ModelMessage } from "ai"
-import { Log } from "@opencode-ai/core/util/log"
+import { Log } from "@qronos-ai/core/util/log"
 
 const log = Log.create({ service: "kilocode.message.diagnostics" })
 

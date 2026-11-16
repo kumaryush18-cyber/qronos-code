@@ -1,7 +1,7 @@
 import type { Argv } from "yargs"
 import type { Auth } from "@/auth"
-import * as Log from "@opencode-ai/core/util/log"
-import { InstallationBuildKind, InstallationVersion } from "@opencode-ai/core/installation/version"
+import * as Log from "@qronos-ai/core/util/log"
+import { InstallationBuildKind, InstallationVersion } from "@qronos-ai/core/installation/version"
 import { KiloShutdown } from "@/kilocode/cli/shutdown"
 import { createHelpCommand } from "@/kilocode/help-command"
 import { hasLazyCommandSelection } from "@/kilocode/cli/lazy-commands"
@@ -77,7 +77,7 @@ export namespace KiloCli {
     const { KiloLog } = await import("@/kilocode/log")
     await KiloLog.init()
 
-    const gateway = await import("@kilocode/kilo-gateway")
+    const gateway = await import("@qronos-ai/kilo-gateway")
     if (!process.env[gateway.ENV_FEATURE])
       process.env[gateway.ENV_FEATURE] = process.argv.includes("serve") ? "unknown" : "cli"
     if (!process.env[gateway.ENV_VERSION]) process.env[gateway.ENV_VERSION] = InstallationVersion
@@ -94,8 +94,8 @@ export namespace KiloCli {
       ? await runtime.KiloCliBootstrapRuntime.getGlobal()
       : await app!.AppRuntime.runPromise((await import("@/config/config")).Config.Service.use((c) => c.getGlobal()))
 
-    const { Global } = await import("@opencode-ai/core/global")
-    const { Telemetry } = await import("@kilocode/kilo-telemetry")
+    const { Global } = await import("@qronos-ai/core/global")
+    const { Telemetry } = await import("@qronos-ai/kilo-telemetry")
     await Telemetry.init({
       dataPath: Global.Path.data,
       version: InstallationVersion,
@@ -136,7 +136,7 @@ export namespace KiloCli {
   // Runs from the `finally` block on every exit path.
   export async function shutdown(): Promise<void> {
     if (info) return
-    const { Telemetry } = await import("@kilocode/kilo-telemetry")
+    const { Telemetry } = await import("@qronos-ai/kilo-telemetry")
     const code = typeof process.exitCode === "number" ? process.exitCode : undefined
     Telemetry.trackCliExit(code)
     const { SessionExport } = await import("@/kilocode/session-export")

@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { t } from "../services/i18n"
 import type { McpAuthResult } from "../services/mcp-auth"
 

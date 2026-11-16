@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
 import { Effect, Exit } from "effect"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Git } from "../../../src/git"
 import { Continuation } from "../../../src/kilocode/session-hosting/continuation"
 import { $ } from "bun"

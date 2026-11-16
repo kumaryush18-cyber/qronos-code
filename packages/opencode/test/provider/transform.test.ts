@@ -2,9 +2,9 @@ import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
 import { ProviderTransform } from "@/provider/transform"
 import { LLMRequestPrep } from "@/session/llm/request"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ModelsDev } from "@qronos-ai/core/models-dev"
 import { generateText, jsonSchema, type ModelMessage } from "ai"
 import { createAmazonBedrock, type AmazonBedrockLanguageModelOptions } from "@ai-sdk/amazon-bedrock"
 import { createAnthropic } from "@ai-sdk/anthropic"
@@ -3739,7 +3739,7 @@ describe("ProviderTransform.message - cache control on gateway", () => {
       api: {
         id: "openai/gpt-5.6",
         url: "https://api.kilo.ai/api/gateway",
-        npm: "@kilocode/kilo-gateway",
+        npm: "@qronos-ai/kilo-gateway",
       },
       id: "openai/gpt-5.6",
     })
@@ -4679,7 +4679,7 @@ describe("ProviderTransform.variants", () => {
   })
 
   // kilocode_change start
-  describe("@kilocode/kilo-gateway", () => {
+  describe("@qronos-ai/kilo-gateway", () => {
     test("mercury-2 uses server-provided variants from kilo gateway", () => {
       const serverVariants = {
         low: { reasoningEffort: "low" },
@@ -4692,7 +4692,7 @@ describe("ProviderTransform.variants", () => {
         api: {
           id: "inception/mercury-2",
           url: "https://gateway.kilo.ai",
-          npm: "@kilocode/kilo-gateway",
+          npm: "@qronos-ai/kilo-gateway",
         },
         variants: serverVariants,
       })
@@ -6069,7 +6069,7 @@ describe("ProviderTransform.variants", () => {
 
   // kilocode_change start
   describe("ProviderTransform.smallOptions", () => {
-    describe("@kilocode/kilo-gateway", () => {
+    describe("@qronos-ai/kilo-gateway", () => {
       test("claude models use their default reasoning effort", () => {
         const model = createMockModel({
           id: "kilo/anthropic/claude-sonnet-4",
@@ -6077,7 +6077,7 @@ describe("ProviderTransform.variants", () => {
           api: {
             id: "anthropic/claude-sonnet-4",
             url: "https://gateway.kilo.ai",
-            npm: "@kilocode/kilo-gateway",
+            npm: "@qronos-ai/kilo-gateway",
           },
         })
         const result = ProviderTransform.smallOptions(model)
@@ -6091,7 +6091,7 @@ describe("ProviderTransform.variants", () => {
           api: {
             id: "openai/gpt-4",
             url: "https://gateway.kilo.ai",
-            npm: "@kilocode/kilo-gateway",
+            npm: "@qronos-ai/kilo-gateway",
           },
         })
         const result = ProviderTransform.smallOptions(model)
@@ -6105,7 +6105,7 @@ describe("ProviderTransform.variants", () => {
           api: {
             id: "google/gemini-2.0-flash",
             url: "https://gateway.kilo.ai",
-            npm: "@kilocode/kilo-gateway",
+            npm: "@qronos-ai/kilo-gateway",
           },
         })
         const result = ProviderTransform.smallOptions(model)
@@ -6388,9 +6388,9 @@ describe("ProviderTransform.options - OpenAI Responses API params guard", () => 
     expect(result.reasoningSummary).toBe("auto")
   })
 
-  test("includes reasoningSummary for @kilocode/kilo-gateway", () => {
+  test("includes reasoningSummary for @qronos-ai/kilo-gateway", () => {
     const result = ProviderTransform.options({
-      model: gpt5Model("@kilocode/kilo-gateway", "kilo"),
+      model: gpt5Model("@qronos-ai/kilo-gateway", "kilo"),
       sessionID,
     })
     expect(result.reasoningSummary).toBe("auto")

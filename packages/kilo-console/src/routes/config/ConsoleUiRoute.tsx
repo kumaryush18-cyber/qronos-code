@@ -1,7 +1,7 @@
 import { Show } from "solid-js"
-import { Button } from "@kilocode/kilo-web-ui/button"
-import { Card } from "@kilocode/kilo-web-ui/card"
-import { Spinner } from "@kilocode/kilo-web-ui/spinner"
+import { Button } from "@qronos-ai/kilo-web-ui/button"
+import { Card } from "@qronos-ai/kilo-web-ui/card"
+import { Spinner } from "@qronos-ai/kilo-web-ui/spinner"
 import { CustomSelect, type SelectOption } from "../../components/CustomSelect"
 import { ConfigPage } from "./ConfigPage"
 import {

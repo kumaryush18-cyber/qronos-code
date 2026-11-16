@@ -5,8 +5,8 @@ import {
   type ByokEntry,
   type CodingPlanQuotaWindow,
   type CodingPlanSubscription,
-} from "@kilocode/kilo-gateway"
-import type { ProviderUsage } from "@opencode-ai/schema/kilocode/provider-usage"
+} from "@qronos-ai/kilo-gateway"
+import type { ProviderUsage } from "@qronos-ai/schema/kilocode/provider-usage"
 
 export { fetchByokEntries, fetchCodingPlanSubscriptions, fetchCodingPlanUsage }
 

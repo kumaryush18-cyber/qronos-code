@@ -2,7 +2,7 @@
 import { $ } from "bun"
 import { join } from "node:path"
 import { existsSync } from "node:fs"
-import { Script } from "@opencode-ai/script"
+import { Script } from "@qronos-ai/script"
 import { Manifest, Policy } from "../../../script/kilocode/sbom/index"
 import { upload } from "../../../script/kilocode/release"
 import { CHECKSUMS } from "./sbom"

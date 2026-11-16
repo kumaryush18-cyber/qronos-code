@@ -6,8 +6,8 @@
  * in the Session route. Kept out of `routes/session/index.tsx` so the
  * upstream-shared session route stays free of Kilo telemetry plumbing.
  */
-import { Telemetry } from "@kilocode/kilo-telemetry"
-import type { AssistantMessage, Message } from "@kilocode/sdk/v2"
+import { Telemetry } from "@qronos-ai/kilo-telemetry"
+import type { AssistantMessage, Message } from "@qronos-ai/sdk/v2"
 import type { DialogContext } from "@tui/ui/dialog"
 import type { ToastContext } from "@tui/ui/toast"
 

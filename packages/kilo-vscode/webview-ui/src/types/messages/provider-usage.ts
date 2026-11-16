@@ -1,4 +1,4 @@
-import type { ProviderUsage } from "@kilocode/sdk/v2/client"
+import type { ProviderUsage } from "@qronos-ai/sdk/v2/client"
 
 export type ProviderUsageData = ProviderUsage
 

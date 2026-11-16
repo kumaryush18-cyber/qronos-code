@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Cause, Effect, Exit } from "effect"
 import { Image } from "@/image/image"
 import { KiloAttachment } from "@/kilocode/session/attachment" // kilocode_change - pin boundary/fallback agreement

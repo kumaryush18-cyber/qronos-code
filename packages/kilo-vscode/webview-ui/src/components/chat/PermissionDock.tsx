@@ -10,11 +10,11 @@
  */
 
 import { Component, For, Show, createEffect, createMemo, createSignal, onCleanup } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { DockPrompt } from "@kilocode/kilo-ui/dock-prompt"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { DockPrompt } from "@qronos-ai/kilo-ui/dock-prompt"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { useSession } from "../../context/session"
 import { useLanguage } from "../../context/language"
 import { useConfig } from "../../context/config"

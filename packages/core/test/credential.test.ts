@@ -3,14 +3,14 @@ import { Database as SQLite } from "bun:sqlite" // kilocode_change
 import { describe, expect } from "bun:test"
 import { eq } from "drizzle-orm" // kilocode_change
 import { Effect, Layer } from "effect"
-import { Credential } from "@opencode-ai/core/credential"
-import { CredentialTable } from "@opencode-ai/core/credential/sql" // kilocode_change
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { Integration } from "@opencode-ai/core/integration"
+import { Credential } from "@qronos-ai/core/credential"
+import { CredentialTable } from "@qronos-ai/core/credential/sql" // kilocode_change
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { Integration } from "@qronos-ai/core/integration"
 // kilocode_change start
-import { Database } from "@opencode-ai/core/database/database"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Global } from "@opencode-ai/core/global"
+import { Database } from "@qronos-ai/core/database/database"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { Global } from "@qronos-ai/core/global"
 // kilocode_change end
 import { tmpdir } from "./fixture/tmpdir"
 import { it } from "./lib/effect"

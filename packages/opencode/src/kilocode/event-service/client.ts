@@ -1,1 +1,1 @@
-export * from "@kilocode/kilo-gateway/event-service"
+export * from "@qronos-ai/kilo-gateway/event-service"

@@ -5,9 +5,9 @@
 // in `beforeEach`; the module must not mutate process-level flags at import.
 
 import { afterEach, beforeEach, expect, mock, setSystemTime, test } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { Database } from "@opencode-ai/core/database/database"
-import { ContinuationIntentTable } from "@opencode-ai/core/kilocode/continuation/sql"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { Database } from "@qronos-ai/core/database/database"
+import { ContinuationIntentTable } from "@qronos-ai/core/kilocode/continuation/sql"
 import { eq } from "drizzle-orm"
 import { Effect, Layer } from "effect"
 import { Auth } from "../../../src/auth"

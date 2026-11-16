@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { Effect, Stream } from "effect"
-import { LLMEvent } from "@opencode-ai/llm"
+import { LLMEvent } from "@qronos-ai/llm"
 import { KiloLLM } from "@/kilocode/session/llm"
 
 describe("kilocode.session.llm.timeout", () => {

@@ -21,7 +21,7 @@ function delivery(bom: any, name: string) {
 describe("target", () => {
   test("maps every published archive name to its pinned Bun artifact", async () => {
     expect(Sbom.target("linux-x64")).toEqual({
-      name: "@kilocode/cli-linux-x64",
+      name: "@qronos-ai/cli-linux-x64",
       os: "linux",
       arch: "x64",
       abi: undefined,
@@ -44,8 +44,8 @@ describe("target", () => {
   }, 30_000)
 
   test("accepts the npm package name form", () => {
-    expect(Sbom.target("@kilocode/cli-linux-arm64-musl")).toMatchObject({
-      name: "@kilocode/cli-linux-arm64-musl",
+    expect(Sbom.target("@qronos-ai/cli-linux-arm64-musl")).toMatchObject({
+      name: "@qronos-ai/cli-linux-arm64-musl",
       os: "linux",
       arch: "arm64",
       abi: "musl",
@@ -93,7 +93,7 @@ describe("archive", () => {
       await Bun.write(file, "a")
       const result = await Sbom.archive({ file, target: Sbom.target("linux-x64-musl"), release })
       const root = (await Bun.file(result.sidecar).json()).metadata.component
-      expect(root.name).toBe("@kilocode/cli-linux-x64-musl")
+      expect(root.name).toBe("@qronos-ai/cli-linux-x64-musl")
       expect(root.purl).toBe("pkg:npm/%40kilocode/cli-linux-x64-musl@9.9.9")
     } finally {
       await fs.promises.rm(dir, { recursive: true, force: true })
@@ -172,7 +172,7 @@ describe("npm package", () => {
     try {
       const file = path.join(dir, "kilocode-cli-9.9.9.tgz")
       await Bun.write(file, "a")
-      const result = await Sbom.npmPackage({ file, name: "@kilocode/cli", release })
+      const result = await Sbom.npmPackage({ file, name: "@qronos-ai/cli", release })
       const bom = await Bun.file(result.sidecar).json()
       expect(await validate(bom)).toEqual([])
       const root = bom.dependencies.find((item: any) => item.ref.startsWith("kilocode:artifact:"))

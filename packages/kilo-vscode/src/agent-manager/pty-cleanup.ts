@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import type { ScriptTerminalManager } from "./ScriptTerminalManager"
 import type { SessionTerminalManager } from "./SessionTerminalManager"
 import type { TerminalRouter } from "./terminal-routing"

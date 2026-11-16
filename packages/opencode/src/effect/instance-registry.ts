@@ -1,4 +1,4 @@
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace" // kilocode_change
+import type { WorkspaceV2 } from "@qronos-ai/core/workspace" // kilocode_change
 import { dispose } from "@/kilocode/effect/instance-registry" // kilocode_change
 
 const disposers = new Set<(directory: string, workspaceID?: WorkspaceV2.ID) => Promise<void>>() // kilocode_change

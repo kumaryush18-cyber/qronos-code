@@ -82,7 +82,7 @@ export namespace TestCli {
       conditions: ["browser"],
       plugins: [createSolidTransformPlugin()],
       // Keep the native TUI variants dynamic and the memory package singleton shared.
-      external: ["node-gyp", "@opentui/core-*", "@kilocode/kilo-memory", "@kilocode/kilo-memory/*"],
+      external: ["node-gyp", "@opentui/core-*", "@qronos-ai/kilo-memory", "@qronos-ai/kilo-memory/*"],
       naming: { entry: "cli.js", asset: "[name]-[hash].[ext]" },
     })
     if (!result.success) throw new AggregateError(result.logs, "Failed to build CLI subprocess test bundle")

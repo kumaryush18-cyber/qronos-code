@@ -3,8 +3,8 @@ import os from "os"
 import fs from "fs/promises"
 import { rmSync, writeFileSync, mkdirSync } from "fs"
 import { Effect } from "effect"
-import { Global } from "@opencode-ai/core/global"
-import * as Log from "@opencode-ai/core/util/log"
+import { Global } from "@qronos-ai/core/global"
+import * as Log from "@qronos-ai/core/util/log"
 import type { SessionID } from "@/session/schema"
 
 /**

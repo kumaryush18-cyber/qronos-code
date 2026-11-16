@@ -3,10 +3,10 @@
  * Transform package names and branding from opencode to kilo
  *
  * This script transforms:
- * - opencode-ai -> @kilocode/cli
- * - @opencode-ai/cli -> @kilocode/cli
- * - @opencode-ai/sdk -> @kilocode/sdk
- * - @opencode-ai/plugin -> @kilocode/plugin
+ * - opencode-ai -> @qronos-ai/cli
+ * - @qronos-ai/cli -> @qronos-ai/cli
+ * - @qronos-ai/sdk -> @qronos-ai/sdk
+ * - @qronos-ai/plugin -> @qronos-ai/plugin
  * - OPENCODE_* -> KILO_* (env variables, excluding OPENCODE_API_KEY)
  * - x-opencode-* -> x-kilo-* (HTTP headers)
  * - opencode.db -> kilo.db (database filename)
@@ -30,41 +30,41 @@ export interface TransformOptions {
 
 const PACKAGE_PATTERNS = [
   // In package.json name field
-  { pattern: /"name":\s*"opencode-ai"/, replacement: '"name": "@kilocode/cli"' },
-  { pattern: /"name":\s*"@opencode-ai\/cli"/, replacement: '"name": "@kilocode/cli"' },
+  { pattern: /"name":\s*"opencode-ai"/, replacement: '"name": "@qronos-ai/cli"' },
+  { pattern: /"name":\s*"@opencode-ai\/cli"/, replacement: '"name": "@qronos-ai/cli"' },
 
   // In dependencies/devDependencies
-  { pattern: /"opencode-ai":\s*"/g, replacement: '"@kilocode/cli": "' },
-  { pattern: /"@opencode-ai\/cli":\s*"/g, replacement: '"@kilocode/cli": "' },
-  { pattern: /"@opencode-ai\/sdk":\s*"/g, replacement: '"@kilocode/sdk": "' },
-  { pattern: /"@opencode-ai\/plugin":\s*"/g, replacement: '"@kilocode/plugin": "' },
+  { pattern: /"opencode-ai":\s*"/g, replacement: '"@qronos-ai/cli": "' },
+  { pattern: /"@opencode-ai\/cli":\s*"/g, replacement: '"@qronos-ai/cli": "' },
+  { pattern: /"@opencode-ai\/sdk":\s*"/g, replacement: '"@qronos-ai/sdk": "' },
+  { pattern: /"@opencode-ai\/plugin":\s*"/g, replacement: '"@qronos-ai/plugin": "' },
 
   // In any string context (mock.module, dynamic references, etc.)
-  // Only cli, sdk, and plugin are renamed — other @opencode-ai/* packages
-  // (e.g. @opencode-ai/ui, @opencode-ai/util) keep their upstream names.
-  { pattern: /@opencode-ai\/cli(?=\/|"|'|`|$)/g, replacement: "@kilocode/cli" },
-  { pattern: /@opencode-ai\/sdk(?=\/|"|'|`|$)/g, replacement: "@kilocode/sdk" },
-  { pattern: /@opencode-ai\/plugin(?=\/|"|'|`|$)/g, replacement: "@kilocode/plugin" },
+  // Only cli, sdk, and plugin are renamed — other @qronos-ai/* packages
+  // (e.g. @qronos-ai/ui, @qronos-ai/util) keep their upstream names.
+  { pattern: /@opencode-ai\/cli(?=\/|"|'|`|$)/g, replacement: "@qronos-ai/cli" },
+  { pattern: /@opencode-ai\/sdk(?=\/|"|'|`|$)/g, replacement: "@qronos-ai/sdk" },
+  { pattern: /@opencode-ai\/plugin(?=\/|"|'|`|$)/g, replacement: "@qronos-ai/plugin" },
 
-  // In import statements (supports subpaths like @opencode-ai/sdk/v2)
-  { pattern: /from\s+["']opencode-ai["']/g, replacement: 'from "@kilocode/cli"' },
-  { pattern: /from\s+["']@opencode-ai\/cli(\/[^"']*)?["']/g, replacement: 'from "@kilocode/cli$1"' },
-  { pattern: /from\s+["']@opencode-ai\/sdk(\/[^"']*)?["']/g, replacement: 'from "@kilocode/sdk$1"' },
-  { pattern: /from\s+["']@opencode-ai\/plugin(\/[^"']*)?["']/g, replacement: 'from "@kilocode/plugin$1"' },
+  // In import statements (supports subpaths like @qronos-ai/sdk/v2)
+  { pattern: /from\s+["']opencode-ai["']/g, replacement: 'from "@qronos-ai/cli"' },
+  { pattern: /from\s+["']@opencode-ai\/cli(\/[^"']*)?["']/g, replacement: 'from "@qronos-ai/cli$1"' },
+  { pattern: /from\s+["']@opencode-ai\/sdk(\/[^"']*)?["']/g, replacement: 'from "@qronos-ai/sdk$1"' },
+  { pattern: /from\s+["']@opencode-ai\/plugin(\/[^"']*)?["']/g, replacement: 'from "@qronos-ai/plugin$1"' },
 
-  // In require statements (supports subpaths like @opencode-ai/sdk/v2)
-  { pattern: /require\(["']opencode-ai["']\)/g, replacement: 'require("@kilocode/cli")' },
-  { pattern: /require\(["']@opencode-ai\/cli(\/[^"']*)?["']\)/g, replacement: 'require("@kilocode/cli$1")' },
-  { pattern: /require\(["']@opencode-ai\/sdk(\/[^"']*)?["']\)/g, replacement: 'require("@kilocode/sdk$1")' },
-  { pattern: /require\(["']@opencode-ai\/plugin(\/[^"']*)?["']\)/g, replacement: 'require("@kilocode/plugin$1")' },
+  // In require statements (supports subpaths like @qronos-ai/sdk/v2)
+  { pattern: /require\(["']opencode-ai["']\)/g, replacement: 'require("@qronos-ai/cli")' },
+  { pattern: /require\(["']@opencode-ai\/cli(\/[^"']*)?["']\)/g, replacement: 'require("@qronos-ai/cli$1")' },
+  { pattern: /require\(["']@opencode-ai\/sdk(\/[^"']*)?["']\)/g, replacement: 'require("@qronos-ai/sdk$1")' },
+  { pattern: /require\(["']@opencode-ai\/plugin(\/[^"']*)?["']\)/g, replacement: 'require("@qronos-ai/plugin$1")' },
 
   // Internal placeholder hostname used for in-process RPC (never resolved by DNS)
   { pattern: /opencode\.internal/g, replacement: "kilo.internal" },
 
   // In npx/npm commands
-  { pattern: /npx opencode-ai/g, replacement: "npx @kilocode/cli" },
-  { pattern: /npm install opencode-ai/g, replacement: "npm install @kilocode/cli" },
-  { pattern: /bun add opencode-ai/g, replacement: "bun add @kilocode/cli" },
+  { pattern: /npx opencode-ai/g, replacement: "npx @qronos-ai/cli" },
+  { pattern: /npm install opencode-ai/g, replacement: "npm install @qronos-ai/cli" },
+  { pattern: /bun add opencode-ai/g, replacement: "bun add @qronos-ai/cli" },
 
   // SDK public API renames (Opencode → Kilo)
   // Order matters: longer names first to avoid partial matches

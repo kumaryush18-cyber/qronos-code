@@ -1,4 +1,4 @@
-import "@kilocode/kilo-ui/styles"
+import "@qronos-ai/kilo-ui/styles"
 import "../src/styles/chat.css"
 import { createSignal, lazy, Match, onCleanup, Show, Switch } from "solid-js"
 import { render } from "solid-js/web"

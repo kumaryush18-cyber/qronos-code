@@ -1,14 +1,14 @@
 import path from "node:path"
 import { Cause, Effect, Schema } from "effect"
 import { Auth } from "@/auth"
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@qronos-ai/core/database/database"
 import { Storage } from "@/storage/storage"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { WorkspaceRef } from "@/effect/instance-ref"
 import { Session } from "@/session/session"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import type { DeepMutable } from "@opencode-ai/core/schema"
-import { MessageTable, PartTable } from "@opencode-ai/core/session/sql"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
+import type { DeepMutable } from "@qronos-ai/core/schema"
+import { MessageTable, PartTable } from "@qronos-ai/core/session/sql"
 import { Instance } from "@/kilocode/instance"
 import { Identifier } from "@/id/id"
 import {
@@ -16,10 +16,10 @@ import {
   fetchCloudSessionForImport,
   getToken,
   prepareSessionImport,
-} from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
 import { baseKey } from "@/kilocode/session-portability/cumulative-diff"
 import { extractSessionDiffs, restoreSessionDiffs } from "@/kilocode/session-portability/session-diff-restore"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 
 const log = Log.create({ service: "import-cloud-session" })
 

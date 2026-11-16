@@ -1,6 +1,6 @@
 import { createServer } from "node:http"
-import type { IntegrationOAuthMethodRegistration } from "@kilocode/plugin/v2/effect/integration"
-import { define } from "@kilocode/plugin/v2/effect/plugin"
+import type { IntegrationOAuthMethodRegistration } from "@qronos-ai/plugin/v2/effect/integration"
+import { define } from "@qronos-ai/plugin/v2/effect/plugin"
 import { Deferred, Effect } from "effect"
 import type { Scope } from "effect"
 import { Credential } from "../../credential"

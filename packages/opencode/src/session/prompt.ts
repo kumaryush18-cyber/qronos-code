@@ -1,9 +1,9 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import path from "path"
 import fs from "node:fs" // kilocode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import os from "os"
 import { KiloSessionPrompt } from "@/kilocode/session/prompt" // kilocode_change
 import { KiloAttachment } from "@/kilocode/session/attachment" // kilocode_change
@@ -27,8 +27,8 @@ import { CommandTimeout } from "@/kilocode/command-timeout" // kilocode_change
 import { Suggestion } from "@/kilocode/suggestion" // kilocode_change
 import { Question } from "@/question" // kilocode_change
 import { BUILTIN_COMMANDS } from "@/kilocode/session/builtin-commands" // kilocode_change
-import { zod } from "@opencode-ai/core/effect-zod" // kilocode_change
-import { withStatics } from "@opencode-ai/core/schema" // kilocode_change
+import { zod } from "@qronos-ai/core/effect-zod" // kilocode_change
+import { withStatics } from "@qronos-ai/core/schema" // kilocode_change
 import { SessionID, MessageID, PartID } from "./schema"
 import type { NotFoundError } from "@/storage/storage"
 import { MessageV2 } from "./message-v2"
@@ -43,35 +43,35 @@ import { SessionCompaction } from "./compaction"
 import { SystemPrompt } from "./system"
 import { Instruction } from "./instruction"
 import { Plugin } from "../plugin"
-import { MAX_STEPS_PROMPT } from "@opencode-ai/core/session/runner/max-steps"
+import { MAX_STEPS_PROMPT } from "@qronos-ai/core/session/runner/max-steps"
 import { ToolRegistry } from "@/tool/registry"
 import { MCP } from "../mcp"
 import { LSP } from "@/lsp/lsp"
 import { ulid } from "ulid"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import * as Stream from "effect/Stream"
 import { Command } from "../command"
 import { pathToFileURL, fileURLToPath } from "url"
 import { Config } from "@/config/config"
 import { ConfigMarkdown } from "@/config/markdown"
 import { SessionSummary } from "./summary"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@qronos-ai/core/util/error"
 import { SessionProcessor } from "./processor"
 import { Tool } from "@/tool/tool"
 import { Permission } from "@/permission"
 import { SessionStatus } from "./status"
 import { LLM } from "./llm"
-import { Shell } from "@opencode-ai/core/shell"
+import { Shell } from "@qronos-ai/core/shell"
 import { ShellID } from "@/tool/shell/id"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Truncate } from "@/tool/truncate"
 import { Image } from "@/image/image"
 import { decodeDataUrl } from "@/util/data-url"
 import { Cause, Effect, Exit, Latch, Layer, Option, Scope, Context, Schema, Types } from "effect"
 import * as DateTime from "effect/DateTime" // kilocode_change
-import { SessionEvent } from "@opencode-ai/core/session/event" // kilocode_change
-import { SessionMessage } from "@opencode-ai/core/session/message" // kilocode_change
+import { SessionEvent } from "@qronos-ai/core/session/event" // kilocode_change
+import { SessionMessage } from "@qronos-ai/core/session/message" // kilocode_change
 import { InstanceState } from "@/effect/instance-state"
 import { InstanceRef } from "@/effect/instance-ref"
 import { Instance } from "@/kilocode/instance"
@@ -82,16 +82,16 @@ import { SessionRunState } from "./run-state"
 import { SessionDrain } from "@/kilocode/session/drain" // kilocode_change
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { Database } from "@opencode-ai/core/database/database"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { Database } from "@qronos-ai/core/database/database"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import * as KiloConfiguredReference from "@/kilocode/reference" // kilocode_change
 import { eq } from "drizzle-orm"
-import { SessionTable } from "@opencode-ai/core/session/sql"
+import { SessionTable } from "@qronos-ai/core/session/sql"
 import { SessionReminders } from "./reminders"
 import { SessionTools } from "./tools"
-import { LLMEvent } from "@opencode-ai/llm"
-import { RepositoryCache } from "@opencode-ai/core/repository-cache" // kilocode_change
+import { LLMEvent } from "@qronos-ai/llm"
+import { RepositoryCache } from "@qronos-ai/core/repository-cache" // kilocode_change
 import { SessionResume } from "@/kilocode/session-resume" // kilocode_change
 import { SessionResumeImport } from "@/kilocode/session-resume/import" // kilocode_change
 import { KiloSessionContinuation } from "@/kilocode/session/continuation" // kilocode_change

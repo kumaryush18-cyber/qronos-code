@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2"
+import type { KiloClient } from "@qronos-ai/sdk/v2"
 import open from "open"
 import type { DialogContext } from "@tui/ui/dialog"
 import type { ToastContext } from "@tui/ui/toast"

@@ -19,7 +19,7 @@ The Kilo Community is [on Discord](https://kilo.ai/discord).
 ## Prerequisites
 
 - **Bun `1.4.4`** - The exact official npm package is required for all packages. Install it as shown below.
-- **Java 21** — required by the JetBrains plugin. The root `bun turbo typecheck` and `bun turbo test:ci` commands include `@kilocode/kilo-jetbrains` and will fail without Java 21.
+- **Java 21** — required by the JetBrains plugin. The root `bun turbo typecheck` and `bun turbo test:ci` commands include `@qronos-ai/kilo-jetbrains` and will fail without Java 21.
 
   The preferred way to install Java is via [SDKMAN](https://sdkman.io/install):
 
@@ -38,7 +38,7 @@ The Kilo Community is [on Discord](https://kilo.ai/discord).
   If you don't plan to work on the JetBrains plugin, you can still run non-JetBrains checks directly:
 
   ```bash
-  bun turbo typecheck --filter=!@kilocode/kilo-jetbrains
+  bun turbo typecheck --filter=!@qronos-ai/kilo-jetbrains
   ```
 
 Use Node.js 24.22.1 or newer with npm from a trusted source to install the pinned Bun release:
@@ -111,9 +111,9 @@ Linux visual CI prefers Ubuntu's official HTTPS archive for Playwright system pa
 From the repo root:
 
 ```bash
-bun run --filter @kilocode/kilo-docs test
-bun run --filter @kilocode/kilo-docs build
-bun run --filter @kilocode/kilo-docs dev
+bun run --filter @qronos-ai/kilo-docs test
+bun run --filter @qronos-ai/kilo-docs build
+bun run --filter @qronos-ai/kilo-docs dev
 ```
 
 For manual docs validation, run the docs site locally, preview the affected page, and check changed links and rendered content.
@@ -159,8 +159,8 @@ Use `./gradlew runIde` only for a monolithic sandbox. JetBrains dev runs do not 
 Or via the root turbo filter to run only JetBrains checks from the repo root:
 
 ```bash
-bun turbo typecheck --filter=@kilocode/kilo-jetbrains
-bun turbo test:ci --filter=@kilocode/kilo-jetbrains
+bun turbo typecheck --filter=@qronos-ai/kilo-jetbrains
+bun turbo test:ci --filter=@qronos-ai/kilo-jetbrains
 ```
 
 ### Running against a different directory
@@ -222,7 +222,7 @@ To compile a standalone executable:
 Then run it with:
 
 ```bash
-./packages/opencode/dist/@kilocode/cli-<platform>/bin/kilo
+./packages/opencode/dist/@qronos-ai/cli-<platform>/bin/kilo
 ```
 
 Replace `<platform>` with your platform (e.g., `darwin-arm64`, `linux-x64`).

@@ -1,7 +1,7 @@
 // kilocode_change - new file
 import { Duration, Effect, Schema } from "effect"
 import { HttpClient, HttpClientRequest } from "effect/unstable/http"
-import { KILO_API_BASE } from "@kilocode/kilo-gateway"
+import { KILO_API_BASE } from "@qronos-ai/kilo-gateway"
 
 export const KILO_EXA_URL = `${KILO_API_BASE}/api/exa/search`
 export const MAX_KILO_EXA_RESULTS = 10

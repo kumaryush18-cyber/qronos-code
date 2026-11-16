@@ -18,7 +18,7 @@ Before you begin, make sure you have the following installed:
 1. **Git** - For version control
 2. **Bun `1.4.4`** - The exact official npm package is required for installing dependencies and running scripts
 3. **Visual Studio Code** - Our recommended IDE for development
-4. **Java 21** - Required only when running JetBrains plugin checks or repo-level checks that include `@kilocode/kilo-jetbrains`
+4. **Java 21** - Required only when running JetBrains plugin checks or repo-level checks that include `@qronos-ai/kilo-jetbrains`
 
 ## Getting Started
 
@@ -223,9 +223,9 @@ bun run package
 From the repo root:
 
 ```bash
-bun run --filter @kilocode/kilo-docs test
-bun run --filter @kilocode/kilo-docs build
-bun run --filter @kilocode/kilo-docs dev
+bun run --filter @qronos-ai/kilo-docs test
+bun run --filter @qronos-ai/kilo-docs build
+bun run --filter @qronos-ai/kilo-docs dev
 ```
 
 For manual documentation validation, run the docs site locally, preview the affected page, and check the changed links and rendered content.
@@ -245,7 +245,7 @@ For CLI and extension changes, useful evidence can include:
 For docs changes, useful evidence can include:
 
 - `bun run script/check-md-table-padding.ts --fix`
-- `bun run --filter @kilocode/kilo-docs test`
+- `bun run --filter @qronos-ai/kilo-docs test`
 - Previewing the changed docs page locally, as described in [Documentation Contributions](/docs/contributing#documentation-contributions)
 
 If you cannot complete a relevant command, include all of the following in the PR:

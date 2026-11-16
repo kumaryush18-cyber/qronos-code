@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/progress"
+export * from "@qronos-ai/ui/progress"

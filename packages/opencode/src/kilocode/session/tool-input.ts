@@ -1,6 +1,6 @@
-import type { EventV2 } from "@opencode-ai/core/event"
-import { SessionEvent } from "@opencode-ai/core/session/event"
-import { SessionMessage } from "@opencode-ai/core/session/message"
+import type { EventV2 } from "@qronos-ai/core/event"
+import { SessionEvent } from "@qronos-ai/core/session/event"
+import { SessionMessage } from "@qronos-ai/core/session/message"
 import { DateTime } from "effect"
 import type { SessionID } from "@/session/schema"
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@kilocode/kilo-e2e",
+  "name": "@qronos-ai/kilo-e2e",
   "version": "7.8.28",
   "private": true,
   "type": "module",

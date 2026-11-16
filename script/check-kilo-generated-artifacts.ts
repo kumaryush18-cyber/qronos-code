@@ -5,7 +5,7 @@
  * Guards generated Kilo config dependency artifacts.
  *
  * Kilo loads project config from .kilo/ and .kilocode/ and installs
- * @kilocode/plugin there at runtime. npm writes package.json, lockfiles,
+ * @qronos-ai/plugin there at runtime. npm writes package.json, lockfiles,
  * .gitignore, and node_modules as generated local state. These paths must stay
  * untracked so background installs do not create recurring branch diffs.
  */

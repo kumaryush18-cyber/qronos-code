@@ -2,8 +2,8 @@ import type {
   IndexingConfigInput,
   IndexingTelemetryEvent,
   VectorStoreSearchResult,
-} from "@kilocode/kilo-indexing/engine"
-import type { IndexingStatus } from "@kilocode/kilo-indexing/status"
+} from "@qronos-ai/kilo-indexing/engine"
+import type { IndexingStatus } from "@qronos-ai/kilo-indexing/status"
 import type { IndexingWarning } from "./indexing-warning"
 
 export type InitInput = {

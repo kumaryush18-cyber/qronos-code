@@ -1,14 +1,14 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { $ } from "bun"
 import { afterEach, describe, expect, test } from "bun:test"
 import { Effect, Fiber, Layer, Logger, Option, Schema } from "effect"
 import { NodeFileSystem, NodePath } from "@effect/platform-node"
 import path from "path"
-import { Global } from "@opencode-ai/core/global"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
-import { Npm } from "@opencode-ai/core/npm"
+import { Global } from "@qronos-ai/core/global"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
+import { Npm } from "@qronos-ai/core/npm"
 import { HttpClient } from "effect/unstable/http"
 import { Account } from "../../../src/account/account"
 import { Auth } from "../../../src/auth"
@@ -23,7 +23,7 @@ import { KilocodeConfig } from "../../../src/kilocode/config/config"
 import { provideTestInstance } from "../../fixture/fixture"
 import { Filesystem } from "../../../src/util/filesystem"
 import { disposeAllInstances, tmpdir } from "../../fixture/fixture"
-import { LayerNodePlatform } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNodePlatform } from "@qronos-ai/core/effect/app-node-platform"
 
 const infra = AppNodeBuilder.build(CrossSpawnSpawner.node).pipe(
   Layer.provideMerge(Layer.mergeAll(NodeFileSystem.layer, NodePath.layer)),
@@ -76,7 +76,7 @@ function decode(input: unknown): Config.Info {
 }
 
 const cfg: Partial<Config.Info> = {
-  plugin: ["@kilocode/kilo-indexing"],
+  plugin: ["@qronos-ai/kilo-indexing"],
   indexing: {
     provider: "ollama",
     vectorStore: "qdrant",
@@ -1179,7 +1179,7 @@ describe("project plugin dependencies", () => {
       })
 
       expect(pending).toBe(true)
-      expect(calls).toEqual([{ dir: config, name: "@kilocode/plugin" }])
+      expect(calls).toEqual([{ dir: config, name: "@qronos-ai/plugin" }])
     })
   })
 
@@ -1206,14 +1206,14 @@ describe("project plugin dependencies", () => {
           ),
       })
 
-      expect(calls).toEqual([{ dir: config, name: "@kilocode/plugin" }])
+      expect(calls).toEqual([{ dir: config, name: "@qronos-ai/plugin" }])
     })
   })
 
   test("does not install dependencies for built-in or package plugins", async () => {
     await sandbox(async (dir) => {
       await writeConfig(path.join(dir, ".kilo"), {
-        plugin: ["@kilocode/kilo-indexing", "opencode-gitlab-auth"],
+        plugin: ["@qronos-ai/kilo-indexing", "opencode-gitlab-auth"],
       })
       const calls: string[] = []
       const npm = Layer.mock(Npm.Service)({
@@ -1249,7 +1249,7 @@ describe("project plugin dependencies", () => {
           Effect.fail(
             new Npm.InstallFailedError({
               dir,
-              add: ["@kilocode/plugin"],
+              add: ["@qronos-ai/plugin"],
               cause: new Error("test install failure"),
             }),
           ),

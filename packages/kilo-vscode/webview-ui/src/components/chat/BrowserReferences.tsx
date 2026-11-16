@@ -1,7 +1,7 @@
 import { For, Show, createSignal, type Component } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { browserFeedbackData, type BrowserReference } from "../../../../src/shared/browser-feedback"
 import { useLanguage } from "../../context/language"
 

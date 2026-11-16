@@ -6,12 +6,12 @@
  */
 
 import { Component, Show, createMemo, createSignal, onMount, type Accessor, type JSX } from "solid-js"
-import { List } from "@kilocode/kilo-ui/list"
-import { ContextMenu } from "@kilocode/kilo-ui/context-menu"
-import { Dialog } from "@kilocode/kilo-ui/dialog"
-import { Button } from "@kilocode/kilo-ui/button"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { useDialog } from "@kilocode/kilo-ui/context/dialog"
+import { List } from "@qronos-ai/kilo-ui/list"
+import { ContextMenu } from "@qronos-ai/kilo-ui/context-menu"
+import { Dialog } from "@qronos-ai/kilo-ui/dialog"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { useDialog } from "@qronos-ai/kilo-ui/context/dialog"
 import { useSession } from "../../context/session"
 import { useLanguage } from "../../context/language"
 import { formatRelativeDate } from "../../utils/date"

@@ -1,4 +1,4 @@
-import type { TuiPlugin, TuiPluginApi, TuiPluginModule, TuiSidebarBackgroundProcessItem } from "@kilocode/plugin/tui"
+import type { TuiPlugin, TuiPluginApi, TuiPluginModule, TuiSidebarBackgroundProcessItem } from "@qronos-ai/plugin/tui"
 import { createMemo, createSignal, For, Show } from "solid-js"
 
 const id = "internal:kilo-sidebar-background-processes"

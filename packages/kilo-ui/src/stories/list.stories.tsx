@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { List } from "@opencode-ai/ui/list"
+import { List } from "@qronos-ai/ui/list"
 
 const meta: Meta = {
   title: "Components/List",

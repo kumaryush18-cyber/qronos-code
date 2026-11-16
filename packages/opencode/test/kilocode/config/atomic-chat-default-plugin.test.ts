@@ -1,11 +1,11 @@
 import { describe, expect, spyOn, test } from "bun:test"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@qronos-ai/core/npm"
 import type { ConfigPlugin } from "@/config/plugin"
 import { hasAtomicChatPlugin } from "@/kilocode/atomic-chat-feature"
 import { KilocodeDefaultPlugins } from "@/kilocode/config/default-plugins"
 import { PluginLoader } from "@/plugin/loader"
 
-const atomic = "@kilocode/plugin-atomic-chat"
+const atomic = "@qronos-ai/plugin-atomic-chat"
 
 describe("kilocode default atomic chat plugin", () => {
   test("injects atomic chat without registering an external plugin origin", () => {

@@ -32,7 +32,7 @@ import { DaemonCommand } from "./cli/cmd/daemon"
 import { KiloConsoleCommand } from "./cli/cmd/console"
 import { CloudCommand } from "./cli/cmd/cloud"
 import { HelpCommand } from "./help-command"
-import { InstallationBuildKind } from "@opencode-ai/core/installation/version"
+import { InstallationBuildKind } from "@qronos-ai/core/installation/version"
 
 // Synthetic entry for the yargs built-in .completion() command so that
 // generateHelp --all and cli-reference.md include it automatically.

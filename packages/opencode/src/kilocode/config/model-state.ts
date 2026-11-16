@@ -1,6 +1,6 @@
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
-import { Global } from "@opencode-ai/core/global"
+import * as Log from "@qronos-ai/core/util/log"
+import { Global } from "@qronos-ai/core/global"
 import z from "zod"
 import { Filesystem } from "@/util/filesystem"
 import { isRecord } from "@/util/record"

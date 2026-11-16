@@ -1,4 +1,4 @@
-// Replicated from packages/core/src/util/retry.ts to avoid adding @opencode-ai/core
+// Replicated from packages/core/src/util/retry.ts to avoid adding @qronos-ai/core
 // as a dependency of the extension. Keep in sync with the original.
 
 const TRANSIENT = [

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, mock } from "bun:test"
-import { createKiloClient } from "@kilocode/sdk/v2/client"
+import { createKiloClient } from "@qronos-ai/sdk/v2/client"
 import * as vscode from "vscode"
 import { MarketplaceService } from "../../src/services/marketplace"
 import {

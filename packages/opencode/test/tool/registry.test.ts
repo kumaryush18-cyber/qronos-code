@@ -3,7 +3,7 @@ import path from "path"
 import fs from "fs/promises"
 import { fileURLToPath, pathToFileURL } from "url"
 import { Effect, Exit, Layer, Result, Schema } from "effect" // kilocode_change
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { ToolRegistry } from "@/tool/registry"
 import { Tool } from "@/tool/tool"
 import { disposeAllInstances, TestInstance } from "../fixture/fixture"
@@ -18,9 +18,9 @@ import { ToolJsonSchema } from "@/tool/json-schema"
 import { MessageID, SessionID } from "@/session/schema"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as SandboxNetwork from "@/kilocode/sandbox/network" // kilocode_change
-import { run as runSandbox, type Profile } from "@kilocode/sandbox" // kilocode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { run as runSandbox, type Profile } from "@qronos-ai/sandbox" // kilocode_change
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { MCP } from "@/mcp"
 import type { Tool as MCPToolDef } from "@modelcontextprotocol/sdk/types.js"
 import z from "zod" // kilocode_change
@@ -673,7 +673,7 @@ describe("tool.registry", () => {
         yield* Effect.promise(() =>
           Bun.write(
             path.join(plugin, "package.json"),
-            JSON.stringify({ name: "@kilocode/plugin", type: "module", exports: { ".": "./dist/index.js" } }), // kilocode_change
+            JSON.stringify({ name: "@qronos-ai/plugin", type: "module", exports: { ".": "./dist/index.js" } }), // kilocode_change
           ),
         )
         yield* Effect.promise(() =>
@@ -693,7 +693,7 @@ describe("tool.registry", () => {
           Bun.write(
             path.join(customTools, "addition.ts"),
             [
-              'import { tool } from "@kilocode/plugin"', // kilocode_change
+              'import { tool } from "@qronos-ai/plugin"', // kilocode_change
               "export default tool({",
               "  description: 'Use this tool to add two numbers and return their sum.',",
               "  args: {",
@@ -810,7 +810,7 @@ describe("tool.registry", () => {
           JSON.stringify({
             name: "custom-tools",
             dependencies: {
-              "@kilocode/plugin": "^0.0.0",
+              "@qronos-ai/plugin": "^0.0.0",
               cowsay: "^1.6.0",
             },
           }),
@@ -825,7 +825,7 @@ describe("tool.registry", () => {
             packages: {
               "": {
                 dependencies: {
-                  "@kilocode/plugin": "^0.0.0",
+                  "@qronos-ai/plugin": "^0.0.0",
                   cowsay: "^1.6.0",
                 },
               },

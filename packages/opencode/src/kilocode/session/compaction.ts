@@ -1,6 +1,6 @@
 import { Effect } from "effect"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import type { MessageV2 } from "@/session/message-v2"
 import { MessageID, PartID, type SessionID } from "@/session/schema"
 import { KiloSessionPromptQueue } from "./prompt-queue"

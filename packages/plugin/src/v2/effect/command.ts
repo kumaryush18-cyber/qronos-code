@@ -1,4 +1,4 @@
-import type { CommandV2Info } from "@kilocode/sdk/v2/types"
+import type { CommandV2Info } from "@qronos-ai/sdk/v2/types"
 import type { Hooks } from "./registration.js"
 
 export interface CommandDraft {

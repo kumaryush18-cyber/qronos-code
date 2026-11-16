@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { getMigrationErrorMessage } from "../errors/migration-error"
 import type { MigrationSessionProgress, MigrationSessionSelection } from "../legacy-types"
 import { createSessionID } from "./lib/ids"

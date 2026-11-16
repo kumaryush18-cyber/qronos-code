@@ -1,6 +1,6 @@
 import { For, Show } from "solid-js"
-import { Button } from "@kilocode/kilo-web-ui/button"
-import { Card } from "@kilocode/kilo-web-ui/card"
+import { Button } from "@qronos-ai/kilo-web-ui/button"
+import { Card } from "@qronos-ai/kilo-web-ui/card"
 import { CustomSelect, type SelectOption } from "../../components/CustomSelect"
 import { SearchField } from "../../components/SearchField"
 import { ConfigPage, ConfigToggle as Toggle } from "./ConfigPage"

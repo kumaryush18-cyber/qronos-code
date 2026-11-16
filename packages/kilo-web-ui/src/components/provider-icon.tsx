@@ -1,5 +1,5 @@
 import { splitProps, type Component } from "solid-js"
-import { ProviderIcon as Icon, type ProviderIconProps } from "@kilocode/kilo-ui/provider-icon"
+import { ProviderIcon as Icon, type ProviderIconProps } from "@qronos-ai/kilo-ui/provider-icon"
 
 export type { ProviderIconProps }
 

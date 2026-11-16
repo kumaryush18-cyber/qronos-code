@@ -1,4 +1,4 @@
-import { isBusy } from "@opencode-ai/core/kilocode/sqlite-error"
+import { isBusy } from "@qronos-ai/core/kilocode/sqlite-error"
 
 export { isBusy }
 

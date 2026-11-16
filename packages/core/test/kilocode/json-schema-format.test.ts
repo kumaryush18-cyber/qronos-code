@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test"
 import { Schema } from "effect"
 import z from "zod"
 
-import { toJsonSchema, ZodOverride } from "@opencode-ai/core/effect-zod"
+import { toJsonSchema, ZodOverride } from "@qronos-ai/core/effect-zod"
 
 describe("stripZodFormat", () => {
   test("tool schemas keep string check patterns without non-standard formats", () => {

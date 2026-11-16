@@ -1,9 +1,9 @@
 import { sql } from "drizzle-orm"
 import { Effect, Schema } from "effect"
 import { randomUUID } from "node:crypto"
-import { Database } from "@opencode-ai/core/database/database"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import * as Log from "@opencode-ai/core/util/log"
+import { Database } from "@qronos-ai/core/database/database"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import * as Log from "@qronos-ai/core/util/log"
 import { SessionID } from "@/session/schema"
 
 type DB = Database.Interface["db"]

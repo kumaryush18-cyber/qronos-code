@@ -1,6 +1,6 @@
 import { Component, createMemo, createSignal, For, Show } from "solid-js"
-import { Card } from "@kilocode/kilo-ui/card"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
+import { Card } from "@qronos-ai/kilo-ui/card"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
 
 import { useConfig } from "../../../context/config"
 import { useLanguage } from "../../../context/language"

@@ -1,9 +1,9 @@
 import { createSignal, createMemo, createEffect, For, Show } from "solid-js"
-import { TextField } from "@kilocode/kilo-ui/text-field"
-import { Select } from "@kilocode/kilo-ui/select"
-import { Tag } from "@kilocode/kilo-ui/tag"
-import { Spinner } from "@kilocode/kilo-ui/spinner"
-import { Checkbox } from "@kilocode/kilo-ui/checkbox"
+import { TextField } from "@qronos-ai/kilo-ui/text-field"
+import { Select } from "@qronos-ai/kilo-ui/select"
+import { Tag } from "@qronos-ai/kilo-ui/tag"
+import { Spinner } from "@qronos-ai/kilo-ui/spinner"
+import { Checkbox } from "@qronos-ai/kilo-ui/checkbox"
 import type {
   MarketplaceItem,
   McpMarketplaceItem,

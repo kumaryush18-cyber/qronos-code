@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/context/helper"
+export * from "@qronos-ai/ui/context/helper"

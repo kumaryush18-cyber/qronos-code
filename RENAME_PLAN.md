@@ -38,7 +38,7 @@ keep the last green state.
 
 ### Phase 1 — package scope (biggest, riskiest)
 
-- `@kilocode/*` → `@qronos-ai/*`, `@opencode-ai/*` → `@qronos-ai/upstream-*`.
+- `@qronos-ai/*` → `@qronos-ai/*`, `@qronos-ai/*` → `@qronos-ai/upstream-*`.
 - Rewrite `package.json` of all 36 packages, every `import`, `bun.lock`,
   `turbo.json`, `tsconfig` paths.
 - Do it with a script, not by hand: one codemod, reviewed as a diff.

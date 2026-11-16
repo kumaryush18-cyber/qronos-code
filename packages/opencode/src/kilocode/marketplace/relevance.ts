@@ -1,7 +1,7 @@
 import { Cause, Duration, Effect } from "effect"
 import { minimatch } from "minimatch"
-import type { Ripgrep } from "@opencode-ai/core/ripgrep"
-import { allowed } from "@opencode-ai/core/kilocode/fff"
+import type { Ripgrep } from "@qronos-ai/core/ripgrep"
+import { allowed } from "@qronos-ai/core/kilocode/fff"
 import type { MarketplaceItem } from "./schema"
 
 // Each search stops at the first match, so a found pattern costs only a short walk.

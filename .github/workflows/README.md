@@ -72,7 +72,7 @@ Four of the six workflows post to Slack. All of them use the `SECURITY_ALERTS_SL
 
 ## Fork-safety notes
 
-kilocode is a fork of opencode sharing one `bun.lock` with upstream-owned `@opencode-ai/*` packages. Two things exist specifically to avoid friction with upstream syncs:
+kilocode is a fork of opencode sharing one `bun.lock` with upstream-owned `@qronos-ai/*` packages. Two things exist specifically to avoid friction with upstream syncs:
 
 - `dependabot-auto-merge.yml` only auto-merges a PR if every changed file (besides the shared `bun.lock`) lives under a `kilo`-named path. Anything touching shared/upstream code is left for a human.
 - The root `bun` block has version updates turned off. It scans ~17 upstream-owned packages and cannot be scoped by path, so its PRs almost always touched upstream files. Those dependencies come in with upstream merges.

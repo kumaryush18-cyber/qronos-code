@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { Npm } from "@opencode-ai/core/npm"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
+import { Npm } from "@qronos-ai/core/npm"
 import { Effect, Layer, Logger } from "effect"
 import { HttpClient } from "effect/unstable/http"
 import path from "path"
@@ -305,7 +305,7 @@ describe("V2 configuration loading", () => {
 
       // kilocode_change - Kilo injects its built-in plugins during load, so the
       // unsupported native "plugins" entry is omitted but the projection is not empty.
-      expect(config.plugin).toEqual(["@kilocode/kilo-indexing", "@kilocode/plugin-atomic-chat"])
+      expect(config.plugin).toEqual(["@qronos-ai/kilo-indexing", "@qronos-ai/plugin-atomic-chat"])
       expect(config.plugin).not.toContain("native-only")
       expect(messages).toContainEqual([
         "configuration compatibility diagnostic",

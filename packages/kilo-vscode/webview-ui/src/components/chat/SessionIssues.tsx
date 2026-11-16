@@ -1,7 +1,7 @@
 import { For, Show, type Component } from "solid-js"
-import { DropdownMenu } from "@kilocode/kilo-ui/dropdown-menu"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { DropdownMenu } from "@qronos-ai/kilo-ui/dropdown-menu"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { useLanguage } from "../../context/language"
 import type { SessionIssue } from "./session-issues"
 

@@ -1,9 +1,9 @@
 export * as ConfigMCPV1 from "./mcp"
 
 import { Schema, SchemaGetter } from "effect" // kilocode_change
-import { zod } from "@opencode-ai/core/effect-zod" // kilocode_change
+import { zod } from "@qronos-ai/core/effect-zod" // kilocode_change
 import { PositiveInt } from "../../schema"
-import { withStatics } from "@opencode-ai/core/schema" // kilocode_change
+import { withStatics } from "@qronos-ai/core/schema" // kilocode_change
 
 const LocalCanonical = Schema.Struct({
   // kilocode_change

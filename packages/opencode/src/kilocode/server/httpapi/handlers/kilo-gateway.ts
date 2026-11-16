@@ -6,7 +6,7 @@ import {
   getCloudSessions,
   getOrganizationId,
   getToken,
-} from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
 import {
   HEADER_FEATURE,
   resolveKiloGatewayUrl,
@@ -16,16 +16,16 @@ import {
   fetchKiloPassState,
   fetchOrganizationModes,
   fetchProfile,
-} from "@kilocode/kilo-gateway"
-import { DIRECT_FIM_ENV, requestMistralFim, resolveFimTarget } from "@kilocode/kilo-gateway/fim"
-import { buildKiloHeaders } from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
+import { DIRECT_FIM_ENV, requestMistralFim, resolveFimTarget } from "@qronos-ai/kilo-gateway/fim"
+import { buildKiloHeaders } from "@qronos-ai/kilo-gateway"
 import { Effect, Schema } from "effect"
 import * as Stream from "effect/Stream"
 import { HttpServerRequest, HttpServerResponse } from "effect/unstable/http"
 import { HttpApiBuilder, HttpApiError } from "effect/unstable/httpapi"
-import * as Log from "@opencode-ai/core/util/log"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { Database } from "@opencode-ai/core/database/database"
+import * as Log from "@qronos-ai/core/util/log"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { Database } from "@qronos-ai/core/database/database"
 import { KilocodeConfig } from "@/kilocode/config/config"
 import { ClaudeMigration } from "@/kilocode/config/claude-migration"
 import { Auth } from "@/auth"

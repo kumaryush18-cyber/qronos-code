@@ -9,8 +9,8 @@
  */
 
 import { Component, For, Show, createMemo, createSignal, createEffect, on, onMount, onCleanup } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { useSession } from "../../context/session"
 import { calcTokenUsage, collapseCostBreakdown, sessionCost } from "../../context/session-utils"
 import { useLanguage } from "../../context/language"

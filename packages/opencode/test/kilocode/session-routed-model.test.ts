@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
-import type { Part, StepFinishPart } from "@kilocode/sdk/v2"
+import type { Part, StepFinishPart } from "@qronos-ai/sdk/v2"
 import { RoutedModelMeta } from "../../src/kilocode/cli/cmd/tui/routes/session/routed-model-meta"
 import { KiloRoutedModel } from "../../src/kilocode/session/routed-model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { LLMAISDK } from "../../src/session/llm/ai-sdk"
 
 describe("session routed model", () => {

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/animated-number"
+export * from "@qronos-ai/ui/animated-number"

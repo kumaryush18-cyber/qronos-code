@@ -1,13 +1,13 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { AISDK } from "@opencode-ai/core/aisdk" // kilocode_change
-import { Catalog } from "@opencode-ai/core/catalog"
-import { ModelV2 } from "@opencode-ai/core/model" // kilocode_change
-import { PluginV2 } from "@opencode-ai/core/plugin"
-import { PluginHost } from "@opencode-ai/core/plugin/host"
-import { ProviderPlugins } from "@opencode-ai/core/plugin/provider"
-import { KiloPlugin } from "@opencode-ai/core/plugin/provider/kilo"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { AISDK } from "@qronos-ai/core/aisdk" // kilocode_change
+import { Catalog } from "@qronos-ai/core/catalog"
+import { ModelV2 } from "@qronos-ai/core/model" // kilocode_change
+import { PluginV2 } from "@qronos-ai/core/plugin"
+import { PluginHost } from "@qronos-ai/core/plugin/host"
+import { ProviderPlugins } from "@qronos-ai/core/plugin/provider"
+import { KiloPlugin } from "@qronos-ai/core/plugin/provider/kilo"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -143,7 +143,7 @@ describe("KiloPlugin", () => {
 
         expect(updated?.api).toEqual({
           type: "aisdk",
-          package: "@kilocode/kilo-gateway",
+          package: "@qronos-ai/kilo-gateway",
           url: "https://api.qronos.me/v1",
         })
         expect(updated?.request.body.kilocodeToken).toBe("stored-token")
@@ -154,10 +154,10 @@ describe("KiloPlugin", () => {
             api: {
               id: ModelV2.ID.make("kilo-auto/free"),
               type: "aisdk",
-              package: "@kilocode/kilo-gateway",
+              package: "@qronos-ai/kilo-gateway",
             },
           }),
-          package: "@kilocode/kilo-gateway",
+          package: "@qronos-ai/kilo-gateway",
           options: updated?.request.body ?? {},
         })
         expect(result.sdk).toBeDefined()

@@ -1,9 +1,9 @@
 import { Cause, Context, Effect, Layer } from "effect"
 import { EffectBridge } from "@/effect/bridge"
 import { KiloSessions } from "@/kilo-sessions/kilo-sessions"
-import * as Log from "@opencode-ai/core/util/log"
-import { Global } from "@opencode-ai/core/global"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import * as Log from "@qronos-ai/core/util/log"
+import { Global } from "@qronos-ai/core/global"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import path from "node:path"
 import { Bus } from "@/bus"
 import { Config } from "@/config/config"
@@ -14,16 +14,16 @@ import { SessionExport } from "@/kilocode/session-export"
 import { createWorkspaceProvider } from "@/kilocode/session-export/workspace-provider"
 import { Instance } from "@/kilocode/instance"
 import { InstanceRef } from "@/effect/instance-ref"
-import { Identity } from "@kilocode/kilo-telemetry"
+import { Identity } from "@qronos-ai/kilo-telemetry"
 import { MemoryLifecycle } from "@/kilocode/memory/turn"
-import { MemoryService } from "@kilocode/kilo-memory/effect/service"
+import { MemoryService } from "@qronos-ai/kilo-memory/effect/service"
 import { MemoryEvents } from "@/kilocode/memory/events"
 import { installMemoryRuntime } from "@/kilocode/memory/runtime"
 import { KiloToolRegistry } from "@/kilocode/tool/registry"
 import { Wakeup } from "@/kilocode/wakeup"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { KilocodeWatcher } from "@/kilocode/watcher"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 
 const log = Log.create({ service: "kilocode-bootstrap" })
 
@@ -32,7 +32,7 @@ export namespace KilocodeBootstrap {
     readonly init: () => Effect.Effect<void, unknown>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/Bootstrap") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/Bootstrap") {}
 
   export const layer = Layer.effect(
     Service,

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/hover-card"
+export * from "@qronos-ai/ui/hover-card"

@@ -1,18 +1,18 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform"
 import { Effect, Layer, Schema, Context, Stream } from "effect"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
 import { withTransientReadRetry } from "@/util/effect-http-client"
 import { errorMessage } from "@/util/error"
 import { ChildProcess } from "effect/unstable/process"
-import { AppProcess } from "@opencode-ai/core/process"
+import { AppProcess } from "@qronos-ai/core/process"
 import path from "path"
-import { makeRuntime } from "@opencode-ai/core/effect/runtime"
+import { makeRuntime } from "@qronos-ai/core/effect/runtime"
 import semver from "semver"
-import { InstallationChannel, InstallationVersion } from "@opencode-ai/core/installation/version"
-import { NpmConfig } from "@opencode-ai/core/npm-config"
+import { InstallationChannel, InstallationVersion } from "@qronos-ai/core/installation/version"
+import { NpmConfig } from "@qronos-ai/core/npm-config"
 // kilocode_change start
 import {
   Brew as KiloBrew,
@@ -23,7 +23,7 @@ import {
 } from "@/kilocode/installation"
 import { latest as kiloLatest } from "@/kilocode/installation/latest"
 // kilocode_change end
-import { InstallationEvent } from "@opencode-ai/schema/installation-event"
+import { InstallationEvent } from "@qronos-ai/schema/installation-event"
 
 export type Method = "curl" | "npm" | "yarn" | "pnpm" | "bun" | "brew" | "scoop" | "choco" | "unknown"
 

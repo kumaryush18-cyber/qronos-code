@@ -5,8 +5,8 @@ import type {
   RequestPermissionResponse,
   SessionUpdate,
 } from "@agentclientprotocol/sdk"
-import type { Event, KiloClient } from "@kilocode/sdk/v2"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import type { Event, KiloClient } from "@qronos-ai/sdk/v2"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { createTwoFilesPatch } from "diff"
 import { Effect, ManagedRuntime } from "effect"
 import { mkdtemp, rm } from "node:fs/promises"

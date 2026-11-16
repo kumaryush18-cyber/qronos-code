@@ -1,8 +1,8 @@
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@qronos-ai/core/database/database"
 import { inArray } from "drizzle-orm"
-import { EventSequenceTable } from "@opencode-ai/core/event/sql"
+import { EventSequenceTable } from "@qronos-ai/core/event/sql"
 import { Workspace } from "@/control-plane/workspace"
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import type { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { Effect } from "effect"
 
 export const HEADER = "x-kilo-sync"

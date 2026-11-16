@@ -1,5 +1,5 @@
 import { AllowEverythingPermission } from "@/kilocode/permission/allow-everything" // kilocode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { Permission } from "@/permission"
 // kilocode_change start
 import { SessionID } from "@/session/schema"

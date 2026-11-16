@@ -1,5 +1,5 @@
 // kilocode_change - new file
-import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@kilocode/plugin/tui"
+import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@qronos-ai/plugin/tui"
 import { createMemo, createResource, Show } from "solid-js"
 import { Process } from "@/util/process"
 

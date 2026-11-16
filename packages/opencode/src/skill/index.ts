@@ -1,25 +1,25 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import path from "path"
 import { Effect, Layer, Context, Schema } from "effect"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@qronos-ai/core/util/error"
 import type { Agent } from "@/agent/agent"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { InstanceState } from "@/effect/instance-state"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { Permission } from "@/permission"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Config } from "@/config/config"
-import { FrontmatterError } from "@opencode-ai/core/v1/config/error"
+import { FrontmatterError } from "@qronos-ai/core/v1/config/error"
 import { ConfigMarkdown } from "@/config/markdown"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { Glob } from "@opencode-ai/core/util/glob"
+import { Glob } from "@qronos-ai/core/util/glob"
 import { Discovery } from "./discovery"
 import { BUILTIN_SKILLS } from "../kilocode/skills/builtin" // kilocode_change
 import { primaryPaths } from "../kilocode/primary-worktree" // kilocode_change
 import { Git } from "@/git" // kilocode_change
 import { ClaudeMigration } from "@/kilocode/config/claude-migration" // kilocode_change
 import { isRecord } from "@/util/record"
-import { Flag } from "@opencode-ai/core/flag/flag" // kilocode_change
+import { Flag } from "@qronos-ai/core/flag/flag" // kilocode_change
 import { escapeHtml } from "@/util/html"
 import { trustedInProject } from "../kilocode/skill/trust" // kilocode_change
 import * as SkillPaths from "../kilocode/skill/paths" // kilocode_change

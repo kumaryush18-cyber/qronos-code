@@ -184,7 +184,7 @@ jobs:
 
       - name: Run non-CLI unit tests
         if: matrix.settings.run && matrix.settings.packages
-        run: bun turbo test:ci --output-logs=errors-only --log-order=grouped --log-prefix=task --filter='!@kilocode/cli' --filter='!@kilocode/kilo-jetbrains'
+        run: bun turbo test:ci --output-logs=errors-only --log-order=grouped --log-prefix=task --filter='!@qronos-ai/cli' --filter='!@qronos-ai/kilo-jetbrains'
         env:
           KILO_EXPERIMENTAL_DISABLE_FILEWATCHER: "true" # kilocode_change - non-CLI tests use the watcher-free unit-test profile
 
@@ -218,7 +218,7 @@ jobs:
       # kilocode_change start - run Kilo CLI tests through platform-specific shards
       - name: Run CLI unit tests
         if: matrix.settings.run
-        run: bun turbo test:ci --output-logs=errors-only --log-order=grouped --log-prefix=task --filter='@kilocode/cli'
+        run: bun turbo test:ci --output-logs=errors-only --log-order=grouped --log-prefix=task --filter='@qronos-ai/cli'
         env:
           KILO_EXPERIMENTAL_DISABLE_FILEWATCHER: "true" # kilocode_change - was Windows-only; the CLI now starts a watcher per instance, too heavy/racy for unit tests. Watcher tests opt back in.
           KILO_TEST_PROFILE: ${{ matrix.settings.os == 'macos' && 'darwin' || '' }}
@@ -306,7 +306,7 @@ jobs:
         working-directory: packages/client
         run: bun run check:generated
       - name: Run HttpApi exerciser gates
-        run: bun turbo test:httpapi --filter='@kilocode/cli'
+        run: bun turbo test:httpapi --filter='@qronos-ai/cli'
         env:
           KILO_EXPERIMENTAL_DISABLE_FILEWATCHER: "true" # kilocode_change - a watcher per scenario instance is too heavy for the exerciser
 

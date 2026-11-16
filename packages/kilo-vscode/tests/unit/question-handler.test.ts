@@ -1,5 +1,5 @@
 import { describe, expect, it, spyOn } from "bun:test"
-import type { QuestionRequest } from "@kilocode/sdk/v2/client"
+import type { QuestionRequest } from "@qronos-ai/sdk/v2/client"
 import {
   fetchAndSendPendingQuestions,
   handleQuestionReject,

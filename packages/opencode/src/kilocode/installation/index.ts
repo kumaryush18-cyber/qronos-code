@@ -1,5 +1,5 @@
 export const Npm = {
-  name: "@kilocode/cli",
+  name: "@qronos-ai/cli",
   path: "@kilocode%2fcli",
 }
 

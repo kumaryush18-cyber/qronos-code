@@ -9,9 +9,9 @@ if (process.platform === "win32" && !("type" in process)) {
 
 import path from "node:path"
 import { pathToFileURL } from "node:url"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { Client, type ClientOptions } from "@modelcontextprotocol/sdk/client/index.js"
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js"
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js"
@@ -25,11 +25,11 @@ import {
   ToolListChangedNotificationSchema,
 } from "@modelcontextprotocol/sdk/types.js"
 import { Config } from "@/config/config"
-import { ConfigMCPV1 } from "@opencode-ai/core/v1/config/mcp"
-import { NamedError } from "@opencode-ai/core/util/error"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { ConfigMCPV1 } from "@qronos-ai/core/v1/config/mcp"
+import { NamedError } from "@qronos-ai/core/util/error"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { withTimeout } from "@/util/timeout"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { McpOAuthPendingProvider, McpOAuthProvider, OAUTH_CALLBACK_PATH } from "./oauth-provider"
 import { McpOAuthCallback } from "./oauth-callback"
 import { McpAuth } from "./auth"
@@ -44,10 +44,10 @@ import { EffectBridge } from "@/effect/bridge"
 import { model as modelEnv } from "@/kilocode/process/env" // kilocode_change
 import { InstanceState } from "@/effect/instance-state"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import * as SandboxNetwork from "@/kilocode/sandbox/network" // kilocode_change
 import { McpCatalog } from "./catalog"
-import { McpEvent } from "@opencode-ai/schema/mcp-event"
+import { McpEvent } from "@qronos-ai/schema/mcp-event"
 import { McpBrowser } from "./browser"
 import { authFailure } from "@/kilocode/mcp/auth-failure" // kilocode_change
 import * as KiloAuthTelemetry from "@/kilocode/mcp/auth-telemetry" // kilocode_change

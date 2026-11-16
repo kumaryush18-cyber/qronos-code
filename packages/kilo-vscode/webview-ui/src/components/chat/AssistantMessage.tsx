@@ -16,16 +16,16 @@ import {
   ToolApprovalProvider,
   resolveToolApproval,
   useGrowIn,
-} from "@kilocode/kilo-ui/message-part"
-import type { MessageFeedbackControls } from "@kilocode/kilo-ui/message-part"
-import { useToolMotion, useToolSize } from "@kilocode/kilo-ui/tool-motion"
+} from "@qronos-ai/kilo-ui/message-part"
+import type { MessageFeedbackControls } from "@qronos-ai/kilo-ui/message-part"
+import { useToolMotion, useToolSize } from "@qronos-ai/kilo-ui/tool-motion"
 import type {
   AssistantMessage as SDKAssistantMessage,
   Part as SDKPart,
   Message as SDKMessage,
   ToolPart,
-} from "@kilocode/sdk/v2"
-import { useData } from "@kilocode/kilo-ui/context/data"
+} from "@qronos-ai/sdk/v2"
+import { useData } from "@qronos-ai/kilo-ui/context/data"
 import { useSession } from "../../context/session"
 import { useDisplay } from "../../context/display"
 import { useConfig } from "../../context/config"
@@ -39,7 +39,7 @@ import type { TurnTiming } from "../../context/transcript-rows"
 import { color as timelineColor } from "../../utils/timeline/colors"
 import type { Part as TimelinePart, QuestionRequest } from "../../types/messages"
 import type { TimelineHighlight } from "../../utils/timeline/highlight"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { QuestionDock } from "./QuestionDock"
 import { SuggestBar } from "./SuggestBar"
 import { toolDefaultOpen } from "./tool-default-open"

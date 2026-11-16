@@ -1,7 +1,7 @@
 import { Identifier } from "@/id/id"
 import { SessionID } from "@/session/schema"
-import { NonNegativeInt, optionalOmitUndefined, withStatics } from "@opencode-ai/core/schema"
-import { zod, ZodOverride } from "@opencode-ai/core/effect-zod"
+import { NonNegativeInt, optionalOmitUndefined, withStatics } from "@qronos-ai/core/schema"
+import { zod, ZodOverride } from "@qronos-ai/core/effect-zod"
 import { Context, Effect, Schema, Types } from "effect"
 import z from "zod"
 import { jitter, next, validate } from "./cron"
@@ -124,7 +124,7 @@ export class Fire extends Context.Service<
       options?: { inPlace?: boolean; kind?: "wakeup" | "cron" },
     ) => Effect.Effect<void>
   }
->()("@kilocode/WakeupFire") {}
+>()("@qronos-ai/WakeupFire") {}
 
 // ISO-8601 date-time. The offset is optional; when present it is absolute, and
 // when omitted `Date.parse` interprets the wall clock in the host timezone.

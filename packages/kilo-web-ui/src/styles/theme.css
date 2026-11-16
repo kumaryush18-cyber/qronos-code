@@ -1,27 +1,27 @@
 @font-face {
   font-family: "Inter Variable";
-  src: url("@kilocode/kilo-web-ui/fonts/Inter-Variable.woff2") format("woff2-variations");
+  src: url("@qronos-ai/kilo-web-ui/fonts/Inter-Variable.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Inter Variable";
-  src: url("@kilocode/kilo-web-ui/fonts/Inter-Variable-Italic.woff2") format("woff2-variations");
+  src: url("@qronos-ai/kilo-web-ui/fonts/Inter-Variable-Italic.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Roboto Mono Variable";
-  src: url("@kilocode/kilo-web-ui/fonts/RobotoMono-Variable.woff2") format("woff2-variations");
+  src: url("@qronos-ai/kilo-web-ui/fonts/RobotoMono-Variable.woff2") format("woff2-variations");
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "JetBrains Mono Variable";
-  src: url("@kilocode/kilo-web-ui/fonts/JetBrainsMono-Variable.woff2") format("woff2-variations");
+  src: url("@qronos-ai/kilo-web-ui/fonts/JetBrainsMono-Variable.woff2") format("woff2-variations");
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;

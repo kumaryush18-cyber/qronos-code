@@ -39,7 +39,7 @@
  * `util/rpc.ts` stays byte-identical to upstream and never conflicts on a fork merge.
  */
 
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 
 type Definition = {
   [method: string]: (input: any) => any

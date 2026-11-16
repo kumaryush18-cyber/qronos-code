@@ -1,4 +1,4 @@
-import type { Session, Agent, Event, ProviderListResponse } from "@kilocode/sdk/v2/client"
+import type { Session, Agent, Event, ProviderListResponse } from "@qronos-ai/sdk/v2/client"
 import type { SyncPayload } from "./services/cli-backend/sdk-sse-adapter"
 import { prettifyError } from "zod/v4"
 import type { CloudSessionMessage, IndexingStatus } from "./services/cli-backend/types"

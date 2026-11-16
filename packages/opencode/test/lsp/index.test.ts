@@ -1,8 +1,8 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, spyOn, test } from "bun:test"
 import path from "path"
 import fs from "fs/promises"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Deferred, Effect, Layer } from "effect"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Config } from "@/config/config"
@@ -10,11 +10,11 @@ import { RuntimeFlags } from "@/effect/runtime-flags"
 import { LSP } from "@/lsp/lsp"
 import * as LSPServer from "@/lsp/server"
 import * as launch from "../../src/lsp/launch" // kilocode_change - spy on spawn
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { provideTestInstance, provideTmpdirInstance, TestInstance, tmpdir } from "../fixture/fixture" // kilocode_change
 import { awaitWithTimeout, testEffect } from "../lib/effect"
 import { type InstanceContext } from "../../src/project/instance-context"
-import { Flag } from "@opencode-ai/core/flag/flag" // kilocode_change
+import { Flag } from "@qronos-ai/core/flag/flag" // kilocode_change
 import { TsCheck } from "../../src/kilocode/ts-check" // kilocode_change
 
 // kilocode_change - Typescript.spawn ignores ctx, so a cast is fine here.

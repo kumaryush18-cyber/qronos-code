@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@kilocode/kilo-gateway",
+  "name": "@qronos-ai/kilo-gateway",
   "version": "7.8.28",
   "type": "module",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "test:ci": "mkdir -p .artifacts/unit && bun test test --dots --reporter=junit --reporter-outfile=.artifacts/unit/junit.xml"
   },
   "dependencies": {
-    "@kilocode/plugin": "workspace:*",
+    "@qronos-ai/plugin": "workspace:*",
     "@ai-sdk/anthropic": "3.0.82",
     "@ai-sdk/openai": "3.0.88",
     "@ai-sdk/openai-compatible": "2.0.54",

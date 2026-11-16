@@ -1,5 +1,5 @@
 import { AppLayer } from "@/effect/app-runtime"
-import { memoMap } from "@opencode-ai/core/effect/memo-map"
+import { memoMap } from "@qronos-ai/core/effect/memo-map"
 import { Layer, Scope } from "effect"
 
 export function build<A, E, R>(layer: Layer.Layer<A, E, R>, scope: Scope.Scope) {

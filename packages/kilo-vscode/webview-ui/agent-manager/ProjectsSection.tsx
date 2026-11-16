@@ -14,7 +14,7 @@ import {
   type JSX,
 } from "solid-js"
 import { DragDropProvider, DragDropSensors, DragOverlay, createDraggable, type DragEvent } from "@thisbeyond/solid-dnd"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import type { LanguageContextValue } from "../src/context/language"
 import type { AgentProjectSnapshot } from "../src/types/messages"
 import { ProjectsFooter } from "./ProjectsFooter"

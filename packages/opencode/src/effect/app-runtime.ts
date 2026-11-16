@@ -1,19 +1,19 @@
 import { Layer, ManagedRuntime } from "effect"
 import { attach } from "./run-service"
-import * as Observability from "@opencode-ai/core/observability"
+import * as Observability from "@qronos-ai/core/observability"
 
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Database } from "@opencode-ai/core/database/database"
-import { Credential } from "@opencode-ai/core/credential" // kilocode_change
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { Database } from "@qronos-ai/core/database/database"
+import { Credential } from "@qronos-ai/core/credential" // kilocode_change
 import { Auth } from "@/auth"
 import { Account } from "@/account/account"
 import { Config } from "@/config/config"
 import { Git } from "@/git"
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
+import { Ripgrep } from "@qronos-ai/core/ripgrep"
 import { Storage } from "@/storage/storage"
 import { Snapshot } from "@/snapshot"
 import { Plugin } from "@/plugin"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@qronos-ai/core/models-dev"
 import { ModelCache } from "@/provider/model-cache" // kilocode_change
 import { Provider } from "@/provider/provider"
 import { ProviderAuth } from "@/provider/auth"
@@ -46,11 +46,11 @@ import { Vcs } from "@/project/vcs"
 import { Workspace } from "@/control-plane/workspace"
 import { Worktree } from "@/worktree"
 import { Installation } from "@/installation"
-import { MemoryService } from "@kilocode/kilo-memory/effect/service" // kilocode_change
+import { MemoryService } from "@qronos-ai/kilo-memory/effect/service" // kilocode_change
 import { ShareNext } from "@/share/share-next"
 import { SessionShare } from "@/share/session"
-import { Npm } from "@opencode-ai/core/npm"
-import { memoMap } from "@opencode-ai/core/effect/memo-map"
+import { Npm } from "@qronos-ai/core/npm"
+import { memoMap } from "@qronos-ai/core/effect/memo-map"
 import { BackgroundJob } from "@/background/job"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 // kilocode_change start
@@ -60,15 +60,15 @@ import { AgentManager } from "@/kilocode/agent-manager/service"
 import { Wakeup } from "@/kilocode/wakeup"
 // kilocode_change end
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { AppNodeBuilderV1 } from "./app-node-builder-v1"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { EventV2 } from "@opencode-ai/core/event" // kilocode_change
-import { ProjectV2 } from "@opencode-ai/core/project" // kilocode_change
-import { ProjectCopy } from "@opencode-ai/core/project/copy" // kilocode_change
-import { MoveSession } from "@opencode-ai/core/control-plane/move-session" // kilocode_change
-import { PtyTicket } from "@opencode-ai/core/pty/ticket" // kilocode_change
-import { Pty } from "@opencode-ai/core/pty" // kilocode_change
+import { SessionProjector } from "@qronos-ai/core/session/projector"
+import { EventV2 } from "@qronos-ai/core/event" // kilocode_change
+import { ProjectV2 } from "@qronos-ai/core/project" // kilocode_change
+import { ProjectCopy } from "@qronos-ai/core/project/copy" // kilocode_change
+import { MoveSession } from "@qronos-ai/core/control-plane/move-session" // kilocode_change
+import { PtyTicket } from "@qronos-ai/core/pty/ticket" // kilocode_change
+import { Pty } from "@qronos-ai/core/pty" // kilocode_change
 
 // kilocode_change start - retain Kilo runtime services in the upstream node graph
 const memory = LayerNode.make({ service: MemoryService.Service, layer: MemoryService.layer, deps: [] })

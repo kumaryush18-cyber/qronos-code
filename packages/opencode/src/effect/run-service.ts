@@ -1,12 +1,12 @@
 import { Effect, Fiber, Layer, ManagedRuntime } from "effect"
 import * as Context from "effect/Context"
 import { InstanceRef, WorkspaceRef } from "./instance-ref"
-import * as Observability from "@opencode-ai/core/observability"
+import * as Observability from "@qronos-ai/core/observability"
 import { WorkspaceContext } from "@/control-plane/workspace-context"
 import type { InstanceContext } from "@/project/instance-context"
 import { context as instanceContext } from "@/project/instance-context" // kilocode_change
 import { LocalContext } from "@/util/local-context" // kilocode_change
-import { memoMap } from "@opencode-ai/core/effect/memo-map"
+import { memoMap } from "@qronos-ai/core/effect/memo-map"
 
 type Refs = {
   instance?: InstanceContext

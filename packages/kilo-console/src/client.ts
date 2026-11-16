@@ -1,4 +1,4 @@
-import { createKiloClient, type Config as EffectiveConfig } from "@kilocode/sdk/v2/client"
+import { createKiloClient, type Config as EffectiveConfig } from "@qronos-ai/sdk/v2/client"
 import type {
   AgentBuilderPreviewResponse,
   AgentBuilderSaveResponse,
@@ -31,7 +31,7 @@ import type {
   Worktree,
   WorktreeDiffItem,
   WorktreeListResponse,
-} from "@kilocode/sdk/v2/client"
+} from "@qronos-ai/sdk/v2/client"
 
 export type Scope = "global" | "project"
 

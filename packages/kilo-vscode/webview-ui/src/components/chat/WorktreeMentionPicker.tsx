@@ -1,6 +1,6 @@
 import { createMemo, onMount } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { List } from "@kilocode/kilo-ui/list"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { List } from "@qronos-ai/kilo-ui/list"
 import { useLanguage } from "../../context/language"
 import type { WorktreeReference } from "../../hooks/file-mention-utils"
 

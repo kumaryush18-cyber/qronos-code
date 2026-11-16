@@ -4,7 +4,7 @@
  * This module provides TUI-specific functionality for kilo-gateway.
  * It requires OpenCode TUI dependencies to be injected at runtime.
  *
- * Import from "@kilocode/kilo-gateway/tui" for TUI features.
+ * Import from "@qronos-ai/kilo-gateway/tui" for TUI features.
  */
 
 // ============================================================================

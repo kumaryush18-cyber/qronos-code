@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 
 // vscode mock is provided by the shared preload (tests/setup/vscode-mock.ts)
 const { KiloProvider } = await import("../../src/KiloProvider")

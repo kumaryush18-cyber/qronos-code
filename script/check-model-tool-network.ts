@@ -6,7 +6,7 @@
 // children. In-process tools must use the policy-aware HTTP capability instead of direct fetch,
 // sockets, or ad hoc clients. Keep this narrow scan to prevent future tool implementations from
 // accidentally bypassing that boundary; trusted provider and model-inference code is intentionally
-// outside the scanned directories. Runtime enforcement remains in @kilocode/sandbox.
+// outside the scanned directories. Runtime enforcement remains in @qronos-ai/sandbox.
 
 import path from "node:path"
 import { host, opaque } from "../packages/opencode/src/kilocode/sandbox/network-tools"
@@ -146,7 +146,7 @@ if (invalid.length > 0 || drift.length > 0 || structure.length > 0) {
     console.error("")
   }
   console.error(
-    "Use the @kilocode/sandbox network capability or classify an opaque client at the common tool boundary.",
+    "Use the @qronos-ai/sandbox network capability or classify an opaque client at the common tool boundary.",
   )
   process.exit(1)
 }

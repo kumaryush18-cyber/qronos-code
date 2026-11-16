@@ -1,6 +1,6 @@
 import { Component, createSignal, createMemo, createEffect, Switch, Match, Show, onMount, onCleanup } from "solid-js"
-import { DataProvider } from "@kilocode/kilo-ui/context/data"
-import { BoardNavigationProvider } from "@kilocode/kilo-ui/context/board-navigation"
+import { DataProvider } from "@qronos-ai/kilo-ui/context/data"
+import { BoardNavigationProvider } from "@qronos-ai/kilo-ui/context/board-navigation"
 import Settings from "./components/settings/Settings"
 import ProfileView from "./components/profile/ProfileView"
 import { useVSCode } from "./context/vscode"
@@ -33,7 +33,7 @@ registerExpandedTaskTool()
 registerVscodeToolOverrides()
 import HistoryView from "./components/history/HistoryView"
 import { MigrationWizard } from "./components/migration"
-import type { Message as SDKMessage, Part as SDKPart } from "@kilocode/sdk/v2"
+import type { Message as SDKMessage, Part as SDKPart } from "@qronos-ai/sdk/v2"
 import { cycleAgent as cycle } from "./context/session-agent"
 import { routeChatInput } from "./utils/chat-input-route"
 import "./styles/chat.css"

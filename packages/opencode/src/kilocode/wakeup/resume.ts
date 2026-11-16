@@ -1,6 +1,6 @@
 import { Instance, provide } from "@/kilocode/instance"
 import { InstanceRef } from "@/effect/instance-ref"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import type { InstanceContext } from "@/project/instance-context"
 import { GoalLink } from "@/kilocode/session/goal/link"
 import { GoalState } from "@/kilocode/session/goal/state"

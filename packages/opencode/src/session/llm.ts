@@ -1,16 +1,16 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { llmClient } from "@opencode-ai/core/effect/app-node-platform"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { llmClient } from "@qronos-ai/core/effect/app-node-platform"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { Provider } from "@/provider/provider"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
-import { Log } from "@opencode-ai/core/util/log" // kilocode_change
+import { SessionV1 } from "@qronos-ai/core/v1/session"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
+import { Log } from "@qronos-ai/core/util/log" // kilocode_change
 import { Context, Effect, Layer } from "effect"
 import * as Stream from "effect/Stream"
 import { streamText, wrapLanguageModel, type ModelMessage, type Tool } from "ai"
-import type { LLMEvent } from "@opencode-ai/llm"
-import { LLMClient } from "@opencode-ai/llm/route"
-import type { LLMClientService } from "@opencode-ai/llm/route"
+import type { LLMEvent } from "@qronos-ai/llm"
+import { LLMClient } from "@qronos-ai/llm/route"
+import type { LLMClientService } from "@qronos-ai/llm/route"
 import { GitLabWorkflowLanguageModel } from "gitlab-ai-provider"
 import { ProviderTransform } from "@/provider/transform"
 import { Config } from "@/config/config"
@@ -20,7 +20,7 @@ import { usable } from "./overflow" // kilocode_change
 import { Plugin } from "@/plugin"
 import { Permission } from "@/permission"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { EventV2 } from "@opencode-ai/core/event"
+import { EventV2 } from "@qronos-ai/core/event"
 import { Wildcard } from "@/util/wildcard"
 import { SessionID } from "@/session/schema"
 import { Auth } from "@/auth"
@@ -38,7 +38,7 @@ import { KiloCustomRouter } from "@/kilocode/auto-routing/router"
 import { openaiMessages, openaiTools } from "@/kilocode/auto-routing/messages"
 import { organization, token } from "@/kilocode/provider/catalog"
 import { KiloRoutedModel } from "@/kilocode/session/routed-model"
-import { Identity } from "@kilocode/kilo-telemetry"
+import { Identity } from "@qronos-ai/kilo-telemetry"
 // kilocode_change end
 import { EffectBridge } from "@/effect/bridge"
 import { RuntimeFlags } from "@/effect/runtime-flags"
@@ -304,7 +304,7 @@ const live: Layer.Layer<
 
       const instance = yield* InstanceState.context
       // kilocode_change start - capture eligible session export request start
-      const isKilo = input.model.api.npm === "@kilocode/kilo-gateway"
+      const isKilo = input.model.api.npm === "@qronos-ai/kilo-gateway"
       const exporting = SessionExport.enabled
       const org = yield* exporting && isKilo && input.model.isFree === true
         ? Effect.promise(() => getActiveOrg())
@@ -341,7 +341,7 @@ const live: Layer.Layer<
       }
       // kilocode_change end
 
-      // Runtime seam: native is an opt-in adapter over @opencode-ai/llm. It
+      // Runtime seam: native is an opt-in adapter over @qronos-ai/llm. It
       // either returns a ready LLMEvent stream or a concrete fallback reason.
       if (flags.experimentalNativeLlm) {
         const native = LLMNativeRuntime.stream({

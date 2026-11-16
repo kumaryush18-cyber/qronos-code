@@ -1,1 +1,1 @@
-export * from "@kilocode/kilo-ui/icon"
+export * from "@qronos-ai/kilo-ui/icon"

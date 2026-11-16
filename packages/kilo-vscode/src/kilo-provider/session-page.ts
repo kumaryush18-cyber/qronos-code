@@ -1,4 +1,4 @@
-import type { KiloClient, Session } from "@kilocode/sdk/v2/client"
+import type { KiloClient, Session } from "@qronos-ai/sdk/v2/client"
 import { retry } from "../services/cli-backend/retry"
 
 export const SESSION_PAGE_LIMIT = 50

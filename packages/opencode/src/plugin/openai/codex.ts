@@ -1,7 +1,7 @@
-import type { Hooks, PluginInput } from "@kilocode/plugin"
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import type { Hooks, PluginInput } from "@qronos-ai/plugin"
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
 import { escapeHtml } from "@/util/html"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { OAUTH_DUMMY_KEY } from "../../auth"
 import os from "os"
 import { setTimeout as sleep } from "node:timers/promises"

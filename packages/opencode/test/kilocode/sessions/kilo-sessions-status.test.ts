@@ -2,8 +2,8 @@ process.env["KILO_DISABLE_SESSION_INGEST"] = "0"
 delete process.env["KILO_REMOTE"]
 
 import { expect, spyOn } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { Effect, Layer } from "effect"
 import { Auth } from "../../../src/auth"
 import { Bus } from "../../../src/bus"

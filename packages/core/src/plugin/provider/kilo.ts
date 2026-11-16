@@ -1,4 +1,4 @@
-import { createKilo, KILO_OPENROUTER_BASE } from "@kilocode/kilo-gateway" // kilocode_change
+import { createKilo, KILO_OPENROUTER_BASE } from "@qronos-ai/kilo-gateway" // kilocode_change
 import { Effect } from "effect"
 import { ProviderV2 } from "../../provider" // kilocode_change
 import { define } from "../internal"
@@ -20,7 +20,7 @@ export const KiloPlugin = define({
 
             provider.api = {
               type: "aisdk",
-              package: "@kilocode/kilo-gateway",
+              package: "@qronos-ai/kilo-gateway",
               url: KILO_OPENROUTER_BASE,
             }
             // kilocode_change end

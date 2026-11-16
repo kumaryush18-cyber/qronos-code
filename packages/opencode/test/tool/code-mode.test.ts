@@ -1,7 +1,7 @@
 import { afterAll, describe, expect, test } from "bun:test" // kilocode_change
 import { CODE_MODE_TOOL, CodeModeTool, Parameters, describeCatalog } from "@/tool/code-mode"
 import type { Tool as MCPToolDef } from "@modelcontextprotocol/sdk/types.js"
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import type { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { Agent } from "@/agent/agent"
 import { MCP } from "@/mcp"
 import { Permission } from "@/permission"
@@ -13,8 +13,8 @@ import { MessageID, SessionID } from "@/session/schema"
 import { Cause, Effect, Exit, Layer, ManagedRuntime, Schema } from "effect" // kilocode_change
 import { InstanceRef } from "@/effect/instance-ref" // kilocode_change
 import { TestConfig } from "../fixture/config" // kilocode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { Database } from "@opencode-ai/core/database/database" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { Database } from "@qronos-ai/core/database/database" // kilocode_change
 import * as SandboxNetwork from "@/kilocode/sandbox/network" // kilocode_change
 
 const ctx: Tool.Context = {

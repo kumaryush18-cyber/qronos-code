@@ -1,9 +1,9 @@
 /** Shared sandbox lock control used by the chat prompt and Agent Manager. */
 
 import { type Component, type JSX } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { useLanguage } from "../../context/language"
 
 export interface SandboxButtonBaseProps {

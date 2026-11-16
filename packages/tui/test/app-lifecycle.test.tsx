@@ -1,9 +1,9 @@
 import { expect, mock, test } from "bun:test"
-import type { TuiPluginApi } from "@kilocode/plugin/tui"
+import type { TuiPluginApi } from "@qronos-ai/plugin/tui"
 import { createTestRenderer } from "@opentui/core/testing"
 import { Effect } from "effect"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
-import { Global } from "@opencode-ai/core/global"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
+import { Global } from "@qronos-ai/core/global"
 import { createTuiResolvedConfig } from "./fixture/tui-runtime"
 import { createEventSource, createFetch, directory, json } from "./fixture/tui-sdk"
 

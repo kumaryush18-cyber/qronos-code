@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@kilocode/kilo-indexing",
+  "name": "@qronos-ai/kilo-indexing",
   "version": "7.8.28",
   "type": "module",
   "license": "MIT",
@@ -36,8 +36,8 @@
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "3.1005.0",
     "@aws-sdk/credential-provider-ini": "3.972.31",
-    "@kilocode/kilo-gateway": "workspace:*",
-    "@kilocode/plugin": "workspace:*",
+    "@qronos-ai/kilo-gateway": "workspace:*",
+    "@qronos-ai/plugin": "workspace:*",
     "@lancedb/lancedb": "0.26.2",
     "@parcel/watcher": "2.5.1",
     "@qdrant/js-client-rest": "1.17.0",

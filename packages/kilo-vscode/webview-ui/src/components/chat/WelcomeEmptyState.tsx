@@ -1,6 +1,6 @@
 import { type Component, type JSX, createSignal, For, Show } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { useDialog } from "@kilocode/kilo-ui/context/dialog"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { useDialog } from "@qronos-ai/kilo-ui/context/dialog"
 import { useSession } from "../../context/session"
 import { useLanguage } from "../../context/language"
 import { recentSessions } from "../../context/session-utils"

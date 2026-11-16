@@ -1,4 +1,4 @@
-import { define } from "@kilocode/plugin/v2/effect"
+import { define } from "@qronos-ai/plugin/v2/effect"
 import { Effect } from "effect"
 
 export default define({

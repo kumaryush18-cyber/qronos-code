@@ -1,4 +1,4 @@
-import type { Event, EventSessionTurnClose } from "@kilocode/sdk/v2"
+import type { Event, EventSessionTurnClose } from "@qronos-ai/sdk/v2"
 import { createEffect, createMemo, onCleanup } from "solid-js"
 import { createStore } from "solid-js/store"
 import { KiloTerminalTitle } from "./terminal-title"

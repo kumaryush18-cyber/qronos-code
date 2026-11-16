@@ -1,7 +1,7 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { Config } from "@/config/config"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { Provider } from "@/provider/provider"
 
 import { generateObject, streamObject, type ModelMessage } from "ai"
@@ -17,7 +17,7 @@ import PROMPT_SUMMARY from "./prompt/summary.txt"
 import PROMPT_TITLE from "./prompt/title.txt"
 import { Permission } from "@/permission"
 import { mergeDeep, pipe, sortBy, values } from "remeda"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { KilocodePaths } from "@/kilocode/paths" // kilocode_change
 import path from "path"
 import { Plugin } from "@/plugin"
@@ -26,15 +26,15 @@ import { Effect, Context, Layer, Schema } from "effect"
 import { InstanceState } from "@/effect/instance-state"
 import * as Option from "effect/Option"
 import * as OtelTracer from "@effect/opentelemetry/Tracer"
-import type { DeepMutable } from "@opencode-ai/core/schema" // kilocode_change
+import type { DeepMutable } from "@qronos-ai/core/schema" // kilocode_change
 // kilocode_change start
 import * as KiloAgent from "@/kilocode/agent"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as KiloReference from "@/kilocode/reference"
 // kilocode_change end
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { LocationServiceMap, locationServiceMapLayer } from "@opencode-ai/core/location-services"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { LocationServiceMap, locationServiceMapLayer } from "@qronos-ai/core/location-services"
 // kilocode_change
 
 export const Info = Schema.Struct({

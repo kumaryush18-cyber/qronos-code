@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { Window } from "happy-dom"
-import type { AssistantMessage, FilePart, ToolPart } from "@kilocode/sdk/v2"
+import type { AssistantMessage, FilePart, ToolPart } from "@qronos-ai/sdk/v2"
 
 const window = new Window({ url: "http://localhost" })
 Object.assign(globalThis, {
@@ -26,9 +26,9 @@ Object.assign(globalThis, {
 })
 
 const { render } = await import("solid-js/web")
-const { Part } = await import("@kilocode/kilo-ui/message-part")
-const { DialogProvider } = await import("@kilocode/kilo-ui/context/dialog")
-const { MarkedProvider } = await import("@kilocode/kilo-ui/context/marked")
+const { Part } = await import("@qronos-ai/kilo-ui/message-part")
+const { DialogProvider } = await import("@qronos-ai/kilo-ui/context/dialog")
+const { MarkedProvider } = await import("@qronos-ai/kilo-ui/context/marked")
 const { isRenderable } = await import("../../webview-ui/src/utils/transcript-parts")
 
 const url = "data:image/png;base64,iVBORw0KGgo="

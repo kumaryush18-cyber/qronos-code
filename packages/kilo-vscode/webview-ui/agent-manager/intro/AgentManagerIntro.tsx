@@ -1,6 +1,6 @@
 import { Show, createSignal, type JSX } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Popover } from "@kilocode/kilo-ui/popover"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Popover } from "@qronos-ai/kilo-ui/popover"
 import { useLanguage } from "../../src/context/language"
 import { useVSCode } from "../../src/context/vscode"
 import { useConfig } from "../../src/context/config"

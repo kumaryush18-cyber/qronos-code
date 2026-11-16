@@ -31,7 +31,7 @@ const RIPGREP = "15.1.0"
 const BUBBLEWRAP = "0.11.2"
 
 export type Target = {
-  /** npm package name, e.g. `@kilocode/cli-linux-x64-musl`. */
+  /** npm package name, e.g. `@qronos-ai/cli-linux-x64-musl`. */
   name: string
   os: string
   arch: string
@@ -53,7 +53,7 @@ export function target(input: string): Target {
   const parts = slug.split("-")
   const os = parts[0] === "windows" ? "win32" : parts[0]
   return {
-    name: `@kilocode/cli-${slug}`,
+    name: `@qronos-ai/cli-${slug}`,
     os,
     arch: parts[1],
     abi: parts.includes("musl") ? "musl" : undefined,
@@ -316,7 +316,7 @@ export async function npmPackage(input: {
 }) {
   const subject = await Artifact.subject(input.file)
   const rootRef = `kilocode:artifact:${subject.name}`
-  const binary = input.name.startsWith("@kilocode/cli-")
+  const binary = input.name.startsWith("@qronos-ai/cli-")
 
   const [component, scan] = await Promise.all([
     binary
@@ -387,7 +387,7 @@ async function wrapper(input: { version: string; subject: string }): Promise<Gra
     "windows-arm64",
     "windows-x64",
     "windows-x64-baseline",
-  ].map((item) => `@kilocode/cli-${item}`)
+  ].map((item) => `@qronos-ai/cli-${item}`)
 
   return {
     components: names.map((name) => ({

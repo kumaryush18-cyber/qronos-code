@@ -1,4 +1,4 @@
-import type { KiloClient, SessionStatus } from "@kilocode/sdk/v2/client"
+import type { KiloClient, SessionStatus } from "@qronos-ai/sdk/v2/client"
 
 /**
  * The CLI derives `scheduled` for a session asleep on a pending wakeup. It is

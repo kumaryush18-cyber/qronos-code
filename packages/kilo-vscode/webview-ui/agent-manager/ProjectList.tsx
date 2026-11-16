@@ -1,6 +1,6 @@
 import { createEffect, createMemo, createSignal, type Component } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { TooltipKeybind } from "@kilocode/kilo-ui/tooltip"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { TooltipKeybind } from "@qronos-ai/kilo-ui/tooltip"
 import type {
   AgentManagerSidebarTarget,
   AgentManagerStateMessage,
@@ -12,7 +12,7 @@ import type {
   WorktreeGitStats,
 } from "../src/types/messages"
 import type { LanguageContextValue } from "../src/context/language"
-import { useDialog } from "@kilocode/kilo-ui/context/dialog"
+import { useDialog } from "@qronos-ai/kilo-ui/context/dialog"
 import { useVSCode } from "../src/context/vscode"
 import { ProjectsSection } from "./ProjectsSection"
 import { ProjectSidebarBody } from "./ProjectSidebarBody"

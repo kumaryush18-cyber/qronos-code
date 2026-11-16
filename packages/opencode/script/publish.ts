@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import { $ } from "bun"
 import pkg from "../package.json"
-import { Script } from "@opencode-ai/script"
+import { Script } from "@qronos-ai/script"
 import { fileURLToPath } from "url"
 // kilocode_change start
 import fs from "node:fs"

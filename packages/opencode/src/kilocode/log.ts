@@ -1,5 +1,5 @@
-import * as Log from "@opencode-ai/core/util/log"
-import { InstallationBuildKind } from "@opencode-ai/core/installation/version"
+import * as Log from "@qronos-ai/core/util/log"
+import { InstallationBuildKind } from "@qronos-ai/core/installation/version"
 
 export namespace KiloLog {
   export function init() {

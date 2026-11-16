@@ -1,5 +1,5 @@
 import { describe, expect, it, mock } from "bun:test"
-import type { NotebookRequest } from "@kilocode/sdk/v2/client"
+import type { NotebookRequest } from "@qronos-ai/sdk/v2/client"
 import * as vscode from "vscode"
 import { KiloConnectionService } from "../../src/services/cli-backend/connection-service"
 import type { SSEPayload } from "../../src/services/cli-backend/sdk-sse-adapter"

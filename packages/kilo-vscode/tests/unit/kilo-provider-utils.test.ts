@@ -36,7 +36,7 @@ import type {
   EventServerConnected,
   TextPart,
   AssistantMessage,
-} from "@kilocode/sdk/v2/client"
+} from "@qronos-ai/sdk/v2/client"
 
 type SyncEventMessagePartUpdated = Extract<SyncPayload, { name: "message.part.updated.1" }>
 type SyncEventMessageUpdated = Extract<SyncPayload, { name: "message.updated.1" }>

@@ -1,21 +1,21 @@
 import { $ } from "bun"
-import * as Observability from "@opencode-ai/core/observability"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import * as Observability from "@qronos-ai/core/observability"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
 import * as fs from "fs/promises"
 import os from "os"
 import path from "path"
 import { Effect, Context, Layer, ManagedRuntime } from "effect"
 import type * as PlatformError from "effect/PlatformError"
 import type * as Scope from "effect/Scope"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
-import { Database } from "@opencode-ai/core/database/database" // kilocode_change
-import { ProjectV2 } from "@opencode-ai/core/project" // kilocode_change
-import { ProjectTable } from "@opencode-ai/core/project/sql" // kilocode_change
-import { AbsolutePath } from "@opencode-ai/core/schema" // kilocode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
+import { Database } from "@qronos-ai/core/database/database" // kilocode_change
+import { ProjectV2 } from "@qronos-ai/core/project" // kilocode_change
+import { ProjectTable } from "@qronos-ai/core/project/sql" // kilocode_change
+import { AbsolutePath } from "@qronos-ai/core/schema" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
 import type { Config } from "@/config/config"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { InstanceRef } from "../../src/effect/instance-ref"
 import { InstanceBootstrap } from "../../src/project/bootstrap-service"
 import { context as instanceContext, type InstanceContext } from "../../src/project/instance-context" // kilocode_change

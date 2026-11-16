@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/resize-handle"
+export * from "@qronos-ai/ui/resize-handle"

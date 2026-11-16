@@ -1,8 +1,8 @@
-import { SessionV2 } from "@opencode-ai/core/session"
+import { SessionV2 } from "@qronos-ai/core/session"
 import { DateTime, Effect, Stream } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/unstable/httpapi"
 import { Api } from "../api"
-import { SessionsCursor } from "@opencode-ai/protocol/groups/session"
+import { SessionsCursor } from "@qronos-ai/protocol/groups/session"
 import {
   ConflictError,
   InvalidCursorError,
@@ -10,8 +10,8 @@ import {
   ServiceUnavailableError,
   SessionNotFoundError,
   UnknownError,
-} from "@opencode-ai/protocol/errors"
-import { Location } from "@opencode-ai/core/location" // kilocode_change
+} from "@qronos-ai/protocol/errors"
+import { Location } from "@qronos-ai/core/location" // kilocode_change
 
 const DefaultSessionsLimit = 50
 const DefaultSessionHistoryLimit = 50

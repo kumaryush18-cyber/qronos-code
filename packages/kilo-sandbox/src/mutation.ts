@@ -185,7 +185,7 @@ export const mutate: Runner = (profile, request) =>
     }),
   )
 
-const CurrentRunner = Context.Reference<Runner>("@kilocode/sandbox/CurrentMutationRunner", {
+const CurrentRunner = Context.Reference<Runner>("@qronos-ai/sandbox/CurrentMutationRunner", {
   defaultValue: () => mutate,
 })
 

@@ -8,7 +8,7 @@ import {
   WorkspaceRoutingQueryFields,
 } from "@/server/routes/instance/httpapi/middleware/workspace-routing"
 import { described } from "@/server/routes/instance/httpapi/groups/metadata"
-import { ProviderUsage } from "@opencode-ai/schema/kilocode/provider-usage"
+import { ProviderUsage } from "@qronos-ai/schema/kilocode/provider-usage"
 import { AnacondaDesktopApi } from "./anaconda-desktop"
 import {
   Failure as AgentManagerFailure,
@@ -39,8 +39,8 @@ import {
   MarketplaceRemoveResult,
 } from "@/kilocode/marketplace/schema"
 import { CommandFiles } from "@/kilocode/command-files"
-import { Token } from "@opencode-ai/schema/kilocode/session-drain"
-import { PendingInfo as WakeupPending } from "@opencode-ai/schema/kilocode/wakeup-event"
+import { Token } from "@qronos-ai/schema/kilocode/session-drain"
+import { PendingInfo as WakeupPending } from "@qronos-ai/schema/kilocode/wakeup-event"
 
 const root = "/kilocode"
 const Scope = Schema.Literals(["global", "project"])

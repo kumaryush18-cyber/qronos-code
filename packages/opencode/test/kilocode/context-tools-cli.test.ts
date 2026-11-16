@@ -3,7 +3,7 @@
 // experimental flags are set on the `serve` subprocess and the `run`
 // subprocess attaches to it.
 import { describe, expect } from "bun:test"
-import { createKiloClient } from "@kilocode/sdk/v2"
+import { createKiloClient } from "@qronos-ai/sdk/v2"
 import { Effect } from "effect"
 import { cliIt } from "../lib/cli-process"
 import { awaitWithTimeout } from "../lib/effect"

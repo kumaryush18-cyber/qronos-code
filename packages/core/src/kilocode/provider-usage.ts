@@ -2,7 +2,7 @@ export * as ProviderUsage from "./provider-usage"
 
 import { Context, Effect, Layer, Schema } from "effect"
 import { createHash } from "node:crypto"
-import { ProviderUsage as Contract } from "@opencode-ai/schema/kilocode/provider-usage"
+import { ProviderUsage as Contract } from "@qronos-ai/schema/kilocode/provider-usage"
 import { Catalog } from "../catalog"
 import { makeGlobalNode, makeLocationNode } from "../effect/app-node"
 import { Integration } from "../integration"
@@ -228,7 +228,7 @@ export interface Interface {
   readonly refresh: () => Effect.Effect<Contract.Info, ServiceError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@kilocode/ProviderUsage") {}
+export class Service extends Context.Service<Service, Interface>()("@qronos-ai/ProviderUsage") {}
 
 export interface TransportInterface {
   readonly fetch: typeof fetch
@@ -237,7 +237,7 @@ export interface TransportInterface {
   readonly usage: typeof Cloud.fetchCodingPlanUsage
 }
 
-export class Transport extends Context.Service<Transport, TransportInterface>()("@kilocode/ProviderUsageTransport") {}
+export class Transport extends Context.Service<Transport, TransportInterface>()("@qronos-ai/ProviderUsageTransport") {}
 
 const transportLayer = Layer.succeed(Transport, {
   fetch,

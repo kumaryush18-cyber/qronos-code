@@ -79,7 +79,7 @@ Detection short-circuits workspace load **before** the 3× `/agent` 500 retries.
 - Frontend controller test (`session/controller/…`): `KiloWorkspaceStatusDto.UNSUPPORTED` state produces a `ConnectionChanged.ShowNotice`, and `retryConnection()` does not call `workspace.reload()` for UNSUPPORTED.
 
 ### 8. Changeset
-- Add `.changeset/<slug>.md` (`"@kilocode/kilo-jetbrains": patch`) describing the user-facing behavior: "Show a clear notice (with guidance to run in a Dev Container) instead of a generic error when a project is opened through a Dev Container/remote virtual filesystem Kilo can't access."
+- Add `.changeset/<slug>.md` (`"@qronos-ai/kilo-jetbrains": patch`) describing the user-facing behavior: "Show a clear notice (with guidance to run in a Dev Container) instead of a generic error when a project is opened through a Dev Container/remote virtual filesystem Kilo can't access."
 
 ## Out of scope
 - Actually supporting Model 2 (running the CLI in-container via Eel/IJent, port forwarding, path translation). This plan only adds graceful communication.

@@ -11,8 +11,8 @@ import { provideTestInstance, tmpdir } from "../fixture/fixture"
 import type { Tool } from "../../src/tool/tool"
 import { SessionID, MessageID, PartID } from "../../src/session/schema"
 import { RemoteSender } from "../../src/kilo-sessions/remote-sender"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 beforeEach(() => {
   spyOn(RemoteSender, "create").mockReturnValue({ handle() {}, dispose() {} })
 })

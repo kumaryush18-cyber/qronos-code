@@ -7,7 +7,7 @@ import {
 } from "../../webview-ui/src/context/indexing-utils"
 import { mapSSEEventToWebviewMessage } from "../../src/kilo-provider-utils"
 import { configFeatures } from "../../src/features"
-import type { EventIndexingStatus, IndexingStatus } from "@kilocode/sdk/v2/client"
+import type { EventIndexingStatus, IndexingStatus } from "@qronos-ai/sdk/v2/client"
 
 function makeStatus(overrides: Partial<IndexingStatus> = {}): IndexingStatus {
   return {
@@ -139,16 +139,16 @@ describe("indexing feature detection", () => {
   it("detects supported indexing plugin specifiers", () => {
     expect(configFeatures({ plugin: ["kilo-indexing"] }).indexing).toBe(true)
     expect(configFeatures({ plugin: ["kilo-indexing@1.2.3"] }).indexing).toBe(true)
-    expect(configFeatures({ plugin: ["@kilocode/kilo-indexing"] }).indexing).toBe(true)
-    expect(configFeatures({ plugin: ["@kilocode/kilo-indexing@1.2.3"] }).indexing).toBe(true)
+    expect(configFeatures({ plugin: ["@qronos-ai/kilo-indexing"] }).indexing).toBe(true)
+    expect(configFeatures({ plugin: ["@qronos-ai/kilo-indexing@1.2.3"] }).indexing).toBe(true)
     expect(configFeatures({ plugin: ["file:///tmp/.opencode/plugin/kilo-indexing.js"] }).indexing).toBe(true)
-    expect(configFeatures({ plugin: ["file:///tmp/node_modules/@kilocode/kilo-indexing/index.js"] }).indexing).toBe(
+    expect(configFeatures({ plugin: ["file:///tmp/node_modules/@qronos-ai/kilo-indexing/index.js"] }).indexing).toBe(
       true,
     )
   })
 
   it("ignores unrelated plugin lists", () => {
-    expect(configFeatures({ plugin: ["@kilocode/kilo-gateway"] }).indexing).toBe(false)
+    expect(configFeatures({ plugin: ["@qronos-ai/kilo-gateway"] }).indexing).toBe(false)
     expect(configFeatures({ plugin: ["file:///tmp/.opencode/plugin/index.js"] }).indexing).toBe(false)
     expect(configFeatures({}).indexing).toBe(false)
   })

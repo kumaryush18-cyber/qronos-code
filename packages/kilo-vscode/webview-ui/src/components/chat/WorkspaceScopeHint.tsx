@@ -1,5 +1,5 @@
 import { createSignal, onCleanup, onMount, Show } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
 import { useLanguage } from "../../context/language"
 import { useVSCode } from "../../context/vscode"
 import type { WorkspaceScopeMessage } from "../../types/messages"

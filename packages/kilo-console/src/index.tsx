@@ -1,4 +1,4 @@
-import "@kilocode/kilo-web-ui/styles"
+import "@qronos-ai/kilo-web-ui/styles"
 import { Router, Route } from "@solidjs/router"
 import { lazy } from "solid-js"
 import { render } from "solid-js/web"

@@ -8,7 +8,7 @@ import { RuntimeFlags } from "@/effect/runtime-flags"
 import { MCP } from "@/mcp"
 import { Project } from "@/project/project"
 import { Provider } from "@/provider/provider" // kilocode_change
-import { ModelV2 } from "@opencode-ai/core/model" // kilocode_change
+import { ModelV2 } from "@qronos-ai/core/model" // kilocode_change
 import { Session } from "@/session/session"
 import type { SessionID } from "@/session/schema"
 import { ToolJsonSchema } from "@/tool/json-schema"
@@ -21,7 +21,7 @@ import { Worktree } from "@/worktree"
 import { Effect, Option } from "effect"
 import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse"
 import { HttpApiBuilder, HttpApiError } from "effect/unstable/httpapi"
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
 import path from "path" // kilocode_change
 import { InstanceHttpApi } from "../api"
 import {

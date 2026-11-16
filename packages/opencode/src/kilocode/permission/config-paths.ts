@@ -1,6 +1,6 @@
 import path from "path"
 import { existsSync, realpathSync } from "fs"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { KilocodePaths } from "@/kilocode/paths"
 
 export namespace ConfigProtection {

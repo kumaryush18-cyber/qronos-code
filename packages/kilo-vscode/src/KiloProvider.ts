@@ -1,7 +1,7 @@
 import * as path from "path"
 import { existsSync, readFileSync } from "fs"
 import * as vscode from "vscode"
-import { TRANSIENT as MEMORY_TRANSIENT } from "@kilocode/kilo-memory/schema"
+import { TRANSIENT as MEMORY_TRANSIENT } from "@qronos-ai/kilo-memory/schema"
 import type {
   KiloClient,
   ProviderUsage,
@@ -11,8 +11,8 @@ import type {
   TextPartInput,
   FilePartInput,
   Config,
-} from "@kilocode/sdk/v2/client"
-import { MaxCostNudge, type MaxCostChoice } from "@opencode-ai/core/kilocode/cost/max-cost-nudge"
+} from "@qronos-ai/sdk/v2/client"
+import { MaxCostNudge, type MaxCostChoice } from "@qronos-ai/core/kilocode/cost/max-cost-nudge"
 import { type KiloConnectionService, ServerStartupError } from "./services/cli-backend"
 import { previewSound, testOSNotification } from "./services/attention"
 import type { EditorContext, IndexingStatus } from "./services/cli-backend/types"
@@ -173,7 +173,7 @@ import type { StoredProviderKey } from "./provider-actions"
 import { createCatalogRetry } from "./kilo-provider/catalog-retry"
 import { AnacondaDesktopBridge } from "./anaconda-desktop/bridge"
 import { fetchOpenAIModels, FetchModelsError } from "./shared/fetch-models"
-import type { Agent } from "@kilocode/sdk/v2/client"
+import type { Agent } from "@qronos-ai/sdk/v2/client"
 import { configFeatures, serverFeatures } from "./features"
 import { fetchSnapshot } from "./kilo-provider/config-snapshot"
 import { createAutoApproveBridge } from "./kilo-provider/auto-approve"
@@ -181,7 +181,7 @@ import type { KiloProviderOptions } from "./kilo-provider/options"
 import { watchRestore } from "./kilo-provider/prompt-focus"
 import type { ProjectRef, SessionRef, WorktreeRef } from "./agent-manager/project/route"
 import { indexingConsentStore, registeredProjects } from "./indexing-consent"
-import { fetchKiloEmbeddingModelCatalog } from "@kilocode/kilo-gateway"
+import { fetchKiloEmbeddingModelCatalog } from "@qronos-ai/kilo-gateway"
 import { fetchImageModels } from "./image-generation/models"
 import { fetchSpeechToTextModels } from "./speech-to-text/catalog"
 import { SPEECH_TO_TEXT_MODELS } from "./speech-to-text/models"

@@ -1,9 +1,9 @@
 import { Effect } from "effect"
 import { Snapshot } from "@/snapshot"
 import { Storage } from "@/storage/storage"
-import { makeRuntime } from "@opencode-ai/core/effect/runtime"
+import { makeRuntime } from "@qronos-ai/core/effect/runtime"
 import type { SessionID } from "@/session/schema"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 
 export type PortableDiff = Snapshot.FileDiff & {
   after?: string

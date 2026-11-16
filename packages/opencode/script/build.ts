@@ -17,7 +17,7 @@ process.chdir(dir)
 
 const generated = await import("./generate.ts")
 
-import { Script } from "@opencode-ai/script"
+import { Script } from "@qronos-ai/script"
 import pkg from "../package.json"
 // kilocode_change start
 import { stageBubblewrap } from "./kilocode/bubblewrap"

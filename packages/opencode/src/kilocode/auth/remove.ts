@@ -1,6 +1,6 @@
 import { Auth } from "@/auth"
-import { Integration } from "@opencode-ai/core/integration"
-import { Credential } from "@opencode-ai/core/credential"
+import { Integration } from "@qronos-ai/core/integration"
+import { Credential } from "@qronos-ai/core/credential"
 import { Effect } from "effect"
 
 export const remove = Effect.fn("KiloAuth.remove")(function* (key: string) {

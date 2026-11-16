@@ -5,8 +5,8 @@
  * pending permissions after SSE reconnections. No vscode dependency.
  */
 
-import type { KiloClient, PermissionRequest } from "@kilocode/sdk/v2/client"
-import { permissionSettled, respondToPermission } from "@kilocode/sdk/permission"
+import type { KiloClient, PermissionRequest } from "@qronos-ai/sdk/v2/client"
+import { permissionSettled, respondToPermission } from "@qronos-ai/sdk/permission"
 import { retry } from "../../services/cli-backend/retry"
 import { isNotFoundError } from "./not-found"
 

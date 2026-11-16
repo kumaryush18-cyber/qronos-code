@@ -110,7 +110,7 @@ jobs:
 
       - name: Install Kilo CLI
         run: |
-          npm install -g @kilocode/cli
+          npm install -g @qronos-ai/cli
           kilo --version
 
       - name: Resolve watermark
@@ -195,7 +195,7 @@ jobs:
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_API_KEY }}
         run: |
           set -o pipefail
-          { bun run --filter @kilocode/kilo-docs build && bun run --filter @kilocode/kilo-docs test; } 2>&1 | tee docs-sync-out/verify.log
+          { bun run --filter @qronos-ai/kilo-docs build && bun run --filter @qronos-ai/kilo-docs test; } 2>&1 | tee docs-sync-out/verify.log
 
       - name: Fix verify failures (one pass)
         id: fix
@@ -219,7 +219,7 @@ jobs:
           # abort here once the CLI half of this PR ships: a mid-stream session error
           # (or an auto-rejected ask) exits 1, verify2.log is never written, and
           # `Re-verify status` reports VERIFIED=false even when the docs build fine.
-          { bun run --filter @kilocode/kilo-docs build && bun run --filter @kilocode/kilo-docs test; } 2>&1 | tee docs-sync-out/verify2.log
+          { bun run --filter @qronos-ai/kilo-docs build && bun run --filter @qronos-ai/kilo-docs test; } 2>&1 | tee docs-sync-out/verify2.log
 
       - name: Re-verify status
         id: verified

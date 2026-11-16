@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import type { Event, KiloClient } from "@kilocode/sdk/v2/client"
+import type { Event, KiloClient } from "@qronos-ai/sdk/v2/client"
 import { replyOnce } from "../kilo-provider/handlers/permission-handler"
 import { retry } from "../services/cli-backend/retry"
 import type { KiloConnectionService } from "../services/cli-backend/connection-service"

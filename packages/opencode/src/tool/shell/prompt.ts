@@ -1,6 +1,6 @@
 import { Schema } from "effect"
 import DESCRIPTION from "./shell.txt"
-import { PositiveInt } from "@opencode-ai/core/schema"
+import { PositiveInt } from "@qronos-ai/core/schema"
 import { sessionTmp } from "@/kilocode/tool/shell-tmp" // kilocode_change
 import { ShellID } from "./id"
 

@@ -1,9 +1,9 @@
-import { Database } from "@opencode-ai/core/database/database"
-import { SessionTable, MessageTable, PartTable } from "@opencode-ai/core/session/sql"
+import { Database } from "@qronos-ai/core/database/database"
+import { SessionTable, MessageTable, PartTable } from "@qronos-ai/core/session/sql"
 import { SessionID, MessageID, PartID } from "../../session/schema"
-import { SessionMessage } from "@opencode-ai/core/session/message" // kilocode_change - shared Revert.State brand
-import { ProjectV2 } from "@opencode-ai/core/project"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { SessionMessage } from "@qronos-ai/core/session/message" // kilocode_change - shared Revert.State brand
+import { ProjectV2 } from "@qronos-ai/core/project"
+import { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { SessionImportType } from "./types"
 import { Project } from "../../project/project"
 import { AppRuntime } from "../../effect/app-runtime"

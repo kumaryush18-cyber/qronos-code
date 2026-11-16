@@ -1,4 +1,4 @@
-import type { ClientCustomRouterEntry } from "@kilocode/kilo-gateway"
+import type { ClientCustomRouterEntry } from "@qronos-ai/kilo-gateway"
 import type { Provider } from "@/provider/provider"
 
 const MODALITIES = ["text", "audio", "image", "video", "pdf"] as const

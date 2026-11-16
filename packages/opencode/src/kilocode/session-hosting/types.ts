@@ -1,4 +1,4 @@
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Effect, Redacted, Schema } from "effect"
 import path from "node:path"
 

@@ -1,4 +1,4 @@
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Context, Duration, Effect, Layer, Option, Redacted, Result, Schema } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/unstable/http"
 import * as DesktopPlatform from "./platform"
@@ -41,7 +41,7 @@ export interface Interface {
   readonly discover: () => Effect.Effect<DiscoveryResult>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@kilocode/AnacondaDesktopDiscovery") {}
+export class Service extends Context.Service<Service, Interface>()("@qronos-ai/AnacondaDesktopDiscovery") {}
 
 interface Options {
   readonly timeout?: Duration.Input

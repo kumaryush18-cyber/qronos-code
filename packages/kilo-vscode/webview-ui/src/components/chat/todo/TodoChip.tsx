@@ -28,9 +28,9 @@ import {
   on,
   onCleanup,
 } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Popover } from "@kilocode/kilo-ui/popover"
-import { Spinner } from "@kilocode/kilo-ui/spinner"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Popover } from "@qronos-ai/kilo-ui/popover"
+import { Spinner } from "@qronos-ai/kilo-ui/spinner"
 import { useLanguage } from "../../../context/language"
 import { useSession } from "../../../context/session"
 import { useRunBoundary } from "../run-boundary"

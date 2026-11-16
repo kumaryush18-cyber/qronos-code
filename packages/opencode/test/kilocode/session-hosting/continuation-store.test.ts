@@ -1,5 +1,5 @@
-import { Database } from "@opencode-ai/core/database/database"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { Database } from "@qronos-ai/core/database/database"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { expect } from "bun:test"
 import { Effect } from "effect"
 import { Continuation } from "../../../src/kilocode/session-hosting/continuation"

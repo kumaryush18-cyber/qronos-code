@@ -1,15 +1,15 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { ConfigPermissionV1 } from "@opencode-ai/core/v1/config/permission"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { ConfigPermissionV1 } from "@qronos-ai/core/v1/config/permission"
 import * as Config from "@/config/config" // kilocode_change
 import { InstanceState } from "@/effect/instance-state"
-import { Wildcard } from "@opencode-ai/core/util/wildcard"
+import { Wildcard } from "@qronos-ai/core/util/wildcard"
 import { Deferred, Effect, Layer, Context } from "effect"
 import os from "os"
 import z from "zod" // kilocode_change
-import { zod } from "@opencode-ai/core/effect-zod" // kilocode_change
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
-import { Database } from "@opencode-ai/core/database/database" // kilocode_change
+import { zod } from "@qronos-ai/core/effect-zod" // kilocode_change
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
+import { Database } from "@qronos-ai/core/database/database" // kilocode_change
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { SessionID } from "@/session/schema" // kilocode_change - used by AllowEverythingInput
 // kilocode_change start

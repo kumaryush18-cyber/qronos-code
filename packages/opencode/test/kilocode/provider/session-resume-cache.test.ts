@@ -3,10 +3,10 @@ import path from "node:path"
 import { SessionResume } from "../../../src/kilocode/session-resume"
 import { ProviderTransform } from "../../../src/provider/transform"
 import { MessageV2 } from "../../../src/session/message-v2"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import type { Provider } from "../../../src/provider/provider"
-import type { Part as V1Part, WithParts } from "@opencode-ai/core/v1/session"
+import type { Part as V1Part, WithParts } from "@qronos-ai/core/v1/session"
 
 function cacheType(message: { providerOptions?: unknown }) {
   const anthropic = message.providerOptions as { anthropic?: { cacheControl?: { type?: unknown } } } | undefined

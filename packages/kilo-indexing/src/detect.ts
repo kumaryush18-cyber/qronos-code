@@ -1,4 +1,4 @@
-export const INDEXING_PLUGIN_NAMES = ["kilo-indexing", "@kilocode/kilo-indexing"] as const
+export const INDEXING_PLUGIN_NAMES = ["kilo-indexing", "@qronos-ai/kilo-indexing"] as const
 
 // RATIONALE: PluginSpec is string | [string, Record] — accept both forms.
 type Candidate = string | readonly [string, ...unknown[]]
@@ -74,10 +74,10 @@ function normalizePath(value: string): string {
   }
 
   const scoped = parts.findIndex((part, i) => part === "@kilocode" && parts[i + 1] === "kilo-indexing")
-  if (scoped >= 0) return "@kilocode/kilo-indexing"
+  if (scoped >= 0) return "@qronos-ai/kilo-indexing"
 
   const workspace = parts.findIndex((part, i) => part === "packages" && parts[i + 1] === "kilo-indexing")
-  if (workspace >= 0) return "@kilocode/kilo-indexing"
+  if (workspace >= 0) return "@qronos-ai/kilo-indexing"
 
   return stem(value)
 }

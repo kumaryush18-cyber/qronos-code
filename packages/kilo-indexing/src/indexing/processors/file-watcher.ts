@@ -72,7 +72,7 @@ function loadParcelWatcher(): typeof import("@parcel/watcher") | undefined {
   if (parcelModule !== undefined) return parcelModule ?? undefined
   try {
     // The platform binding stays a dynamic require so bun-compiled multi-platform
-    // binaries resolve the right prebuild at runtime (mirrors @kilocode/core).
+    // binaries resolve the right prebuild at runtime (mirrors @qronos-ai/core).
     const libc = typeof KILO_LIBC === "undefined" ? undefined : KILO_LIBC
     const suffix = process.platform === "linux" ? `-${libc || "glibc"}` : ""
     const binding = require(`@parcel/watcher-${process.platform}-${process.arch}${suffix}`)

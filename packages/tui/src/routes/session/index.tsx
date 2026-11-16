@@ -36,7 +36,7 @@ import type {
   ReasoningPart,
   SessionStatus,
   StepFinishPart, // kilocode_change
-} from "@kilocode/sdk/v2"
+} from "@qronos-ai/sdk/v2"
 import { useLocal } from "../../context/local"
 import { Locale } from "../../util/locale"
 import { webSearchProviderLabel } from "../../util/tool-display"

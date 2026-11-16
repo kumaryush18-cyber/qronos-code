@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@kilocode/kilo-i18n",
+  "name": "@qronos-ai/kilo-i18n",
   "version": "7.8.28",
   "type": "module",
   "license": "MIT",

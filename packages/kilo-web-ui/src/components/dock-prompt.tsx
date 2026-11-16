@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/dock-prompt"
+export * from "@qronos-ai/ui/dock-prompt"

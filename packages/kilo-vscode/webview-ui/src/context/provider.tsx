@@ -8,7 +8,7 @@ import { batch, createContext, useContext, createSignal, createMemo, onCleanup }
 import type { ParentComponent, Accessor } from "solid-js"
 import { useVSCode } from "./vscode"
 import type { Provider, ProviderModel, ModelSelection, ExtensionMessage, ProviderAuthState } from "../types/messages"
-import type { ProviderAuthMethod, ProviderFailure } from "@kilocode/sdk/v2/client"
+import type { ProviderAuthMethod, ProviderFailure } from "@qronos-ai/sdk/v2/client"
 import { flattenModels, findModel as _findModel, isModelValid as isValid } from "./provider-utils"
 import { KILO_AUTO } from "../../../src/shared/provider-model"
 

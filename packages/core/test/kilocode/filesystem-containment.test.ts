@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 
 describe("kilocode filesystem containment", () => {
   test("keeps dot-prefixed child names internal", () => {

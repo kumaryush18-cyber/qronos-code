@@ -5,21 +5,21 @@ import { Provider } from "@/provider/provider"
 import { Session } from "@/session/session"
 import { KiloSession } from "@/kilocode/session"
 import { SessionID } from "@/session/schema"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { MessageV2 } from "@/session/message-v2"
 import { Storage } from "@/storage/storage"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { Auth } from "@/auth"
 import { makeRuntime } from "@/effect/run-service"
 import { IngestQueue } from "@/kilo-sessions/ingest-queue"
 import { StatusSync } from "@/kilo-sessions/status-sync"
 import { IngestDrain } from "@/kilo-sessions/ingest-drain"
 import { clearInFlightCache, withInFlightCache } from "@/kilo-sessions/inflight-cache"
-import type * as SDK from "@kilocode/sdk/v2"
+import type * as SDK from "@qronos-ai/sdk/v2"
 import z from "zod"
 import { Context, Effect, Layer, Schema } from "effect"
-import { KILO_API_BASE } from "@kilocode/kilo-gateway"
+import { KILO_API_BASE } from "@qronos-ai/kilo-gateway"
 import { Config } from "@/config/config"
 import { InstanceState } from "@/effect/instance-state"
 import { Instance } from "@/kilocode/instance"
@@ -55,14 +55,14 @@ import { KiloSessionTitle } from "@/kilocode/session/title"
 import { resolveDerivedSessionStatus, type DerivedSessionStatus } from "@/kilocode/session/scheduled"
 import { Wakeup } from "@/kilocode/wakeup"
 import { SessionStatus } from "@/session/status"
-import { Telemetry } from "@kilocode/kilo-telemetry"
+import { Telemetry } from "@qronos-ai/kilo-telemetry"
 import { Question } from "@/question"
 import { Permission } from "@/permission"
 import { withTimeout } from "@/util/timeout"
 import { Snapshot } from "@/snapshot"
 import { cumulativeSessionDiff } from "@/kilocode/session-portability/cumulative-diff"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 import { KiloShutdown } from "@/kilocode/cli/shutdown"
 
 async function provide<R>(input: { directory: string; fn: () => R }): Promise<R> {
@@ -94,7 +94,7 @@ export namespace KiloSessions {
     ) => Effect.Effect<{ ok: true } | { ok: false; reason: string }, never>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/KiloSessions") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/KiloSessions") {}
 
   const log = Log.create({ service: "kilo-sessions" })
   const attachedLog = { warn: (msg: string, meta?: unknown) => log.warn(msg, meta as never) }

@@ -34,7 +34,7 @@ describe("image output modalities", () => {
       options({
         providerID: "kilo",
         api: "google/gemini-nano-banana-2.1",
-        npm: "@kilocode/kilo-gateway",
+        npm: "@qronos-ai/kilo-gateway",
         image: true,
       }).modalities,
     ).toEqual(["image", "text"])
@@ -53,14 +53,14 @@ describe("image output modalities", () => {
 
   test("leaves text-only models unchanged", () => {
     expect(
-      options({ providerID: "kilo", api: "anthropic/claude-sonnet-4.6", npm: "@kilocode/kilo-gateway", image: false })
+      options({ providerID: "kilo", api: "anthropic/claude-sonnet-4.6", npm: "@qronos-ai/kilo-gateway", image: false })
         .modalities,
     ).toBeUndefined()
   })
 
   test("does not steer auto routers to image models", () => {
     expect(
-      options({ providerID: "kilo", api: "openrouter/auto", npm: "@kilocode/kilo-gateway", image: true }).modalities,
+      options({ providerID: "kilo", api: "openrouter/auto", npm: "@qronos-ai/kilo-gateway", image: true }).modalities,
     ).toBeUndefined()
   })
 

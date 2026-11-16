@@ -56,7 +56,7 @@ jobs:
 
       - name: Install Kilo
         if: inputs.bump || inputs.version
-        run: bun i -g @kilocode/cli
+        run: bun i -g @qronos-ai/cli
       # kilocode_change end
 
       - id: version
@@ -207,33 +207,33 @@ jobs:
           - target: darwin-arm64
             runner: macos-15
             uname: arm64
-            package: "@kilocode/cli-darwin-arm64"
+            package: "@qronos-ai/cli-darwin-arm64"
             mode: host
           - target: darwin-x64
             runner: macos-15-intel
             uname: x86_64
-            package: "@kilocode/cli-darwin-x64"
+            package: "@qronos-ai/cli-darwin-x64"
             mode: host
           - target: linux-arm64
             runner: ubuntu-24.04-arm
             uname: aarch64
-            package: "@kilocode/cli-linux-arm64"
+            package: "@qronos-ai/cli-linux-arm64"
             mode: host
           - target: linux-x64
             runner: ubuntu-24.04
             uname: x86_64
-            package: "@kilocode/cli-linux-x64"
+            package: "@qronos-ai/cli-linux-x64"
             mode: host
           - target: alpine-arm64
             runner: ubuntu-24.04-arm
             uname: aarch64
-            package: "@kilocode/cli-linux-arm64-musl"
+            package: "@qronos-ai/cli-linux-arm64-musl"
             mode: alpine
             platform: linux/arm64
           - target: alpine-x64
             runner: ubuntu-24.04
             uname: x86_64
-            package: "@kilocode/cli-linux-x64-musl"
+            package: "@qronos-ai/cli-linux-x64-musl"
             mode: alpine
             platform: linux/amd64
     steps:
@@ -331,10 +331,10 @@ jobs:
         include:
           - arch: arm64
             runner: windows-11-arm
-            package: "@kilocode/cli-windows-arm64"
+            package: "@qronos-ai/cli-windows-arm64"
           - arch: x64
             runner: windows-2025
-            package: "@kilocode/cli-windows-x64"
+            package: "@qronos-ai/cli-windows-x64"
     steps:
       - uses: actions/download-artifact@v8
         with:
@@ -438,7 +438,7 @@ jobs:
           # DefaultAzureCredential fallback). Mint a Key Vault token from the azure/login
           # OIDC session and pass it via -kva.
           token="$(az account get-access-token --resource https://vault.azure.net --query accessToken -o tsv)"
-          for exe in dist/@kilocode/cli-windows-*/bin/kilo.exe; do
+          for exe in dist/@qronos-ai/cli-windows-*/bin/kilo.exe; do
             AzureSignTool sign -v \
               -kvu "${{ secrets.AZURE_KEY_VAULT_URI }}" \
               -kvc "${{ secrets.AZURE_CERT_NAME }}" \
@@ -468,7 +468,7 @@ jobs:
           cd dist
           # --force-local: git-bash tar reads $RUNNER_TEMP's "D:\..." colon as an
           # rmt remote-tape "host:path" and dies with "Cannot connect to D".
-          tar --zstd --force-local -cf "$RUNNER_TEMP/kilo-windows-signed.tar.zst" ./@kilocode/cli-windows-*/bin/kilo.exe
+          tar --zstd --force-local -cf "$RUNNER_TEMP/kilo-windows-signed.tar.zst" ./@qronos-ai/cli-windows-*/bin/kilo.exe
 
       - uses: actions/upload-artifact@v7
         with:

@@ -1,5 +1,5 @@
 import { For, type Accessor } from "solid-js"
-import { Tabs } from "@kilocode/kilo-ui/tabs"
+import { Tabs } from "@qronos-ai/kilo-ui/tabs"
 import { useLanguage } from "../../src/context/language"
 import { examples } from "./examples"
 

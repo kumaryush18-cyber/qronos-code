@@ -1,8 +1,8 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { afterEach, describe, expect } from "bun:test"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import * as AppProcess from "@opencode-ai/core/process"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import * as AppProcess from "@qronos-ai/core/process"
 import {
   mutate,
   run as sandbox,
@@ -10,7 +10,7 @@ import {
   type MutationRequest,
   type MutationRunner,
   type Profile,
-} from "@kilocode/sandbox"
+} from "@qronos-ai/sandbox"
 import { Effect, Exit, Layer } from "effect"
 import { ChildProcess } from "effect/unstable/process"
 import fs from "node:fs/promises"

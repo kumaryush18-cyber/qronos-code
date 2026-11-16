@@ -1,11 +1,11 @@
-import { useFilteredList } from "@opencode-ai/ui/hooks"
-import { getDirectory, getFilename } from "@opencode-ai/core/util/path"
+import { useFilteredList } from "@qronos-ai/ui/hooks"
+import { getDirectory, getFilename } from "@qronos-ai/core/util/path"
 import { createSignal, For, onMount, Show, splitProps, type JSX } from "solid-js"
-import { Button } from "@opencode-ai/ui/button"
-import { FileIcon } from "@opencode-ai/ui/file-icon"
-import { Icon } from "@opencode-ai/ui/icon"
+import { Button } from "@qronos-ai/ui/button"
+import { FileIcon } from "@qronos-ai/ui/file-icon"
+import { Icon } from "@qronos-ai/ui/icon"
 import { installLineCommentStyles } from "./line-comment-styles"
-import { useI18n } from "@opencode-ai/ui/context/i18n"
+import { useI18n } from "@qronos-ai/ui/context/i18n"
 
 installLineCommentStyles()
 

@@ -8,7 +8,7 @@ import {
   resolveKiloAiGatewayBase,
   resolveKiloOpenRouterBaseUrl,
   supportsTools,
-} from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
 import { Context, Effect, Layer, Redacted, Schema } from "effect"
 import z from "zod"
 import type { CloudAuth } from "./auth"
@@ -56,7 +56,7 @@ export namespace CloudCatalog {
     readonly defaultModel: (input: Input) => Effect.Effect<string, CatalogError>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/CloudCatalog") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/CloudCatalog") {}
 
   export const layer = (options: Options = {}) => {
     const fetcher = options.fetch ?? ((request: Request) => globalThis.fetch(request))

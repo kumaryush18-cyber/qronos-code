@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import { messages, parse } from "../../src/kilocode/branch-name"
 import { MessageV2 } from "../../src/session/message-v2"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { MessageID, PartID, SessionID } from "../../src/session/schema"
 
 function user(text: string, synthetic = false): MessageV2.WithParts {

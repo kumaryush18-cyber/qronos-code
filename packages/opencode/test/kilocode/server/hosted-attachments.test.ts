@@ -1,7 +1,7 @@
 import * as Attachments from "@/kilocode/server/hosted-attachments"
 import { hosted, provider } from "./hosted-fixture"
 import { HostedWorkspaceID } from "@/kilocode/session-hosting/types"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { describe, expect, test } from "bun:test"
 import { Schema } from "effect"
 

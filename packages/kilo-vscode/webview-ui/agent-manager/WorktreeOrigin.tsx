@@ -3,7 +3,7 @@
 /** @jsxImportSource solid-js */
 
 import { Show, createMemo, createSignal, type Component } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { DeferredPopover } from "../src/components/shared/DeferredPopover"
 import { BRANCH_LIMIT, BranchSelect, BranchSelectPopover } from "../src/components/shared/BranchSelect"
 import { useLanguage } from "../src/context/language"

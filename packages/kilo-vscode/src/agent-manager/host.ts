@@ -8,7 +8,7 @@
  * files listed in the architecture test allowlist.
  */
 
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import type { ProjectRef, SessionRef, WorktreeRef } from "./project/route"
 import type { PRMergeMethod } from "./types"
 

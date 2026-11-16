@@ -1,5 +1,5 @@
 import { Command } from "../../command"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { Effect, Schema } from "effect"
 import DESCRIPTION from "./tool.txt"
 import { Tool } from "../../tool/tool"

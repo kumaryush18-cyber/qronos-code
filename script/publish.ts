@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { Script } from "@opencode-ai/script"
+import { Script } from "@qronos-ai/script"
 import { $ } from "bun"
 import { fileURLToPath } from "url"
 import { apply } from "./kilocode/changeset-version" // kilocode_change
@@ -101,7 +101,7 @@ await import(`../packages/sdk/js/script/publish.ts`)
 console.log("\n=== plugin ===\n")
 await import(`../packages/plugin/script/publish.ts`)
 
-// kilocode_change - Kilo does not publish the upstream-owned @opencode-ai/ui package
+// kilocode_change - Kilo does not publish the upstream-owned @qronos-ai/ui package
 
 // kilocode_change start
 console.log("\n=== vscode ===\n")

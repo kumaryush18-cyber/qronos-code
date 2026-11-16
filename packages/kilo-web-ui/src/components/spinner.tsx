@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/spinner"
+export * from "@qronos-ai/ui/spinner"

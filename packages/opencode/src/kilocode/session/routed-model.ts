@@ -1,6 +1,6 @@
-import type { LLMEvent, ProviderMetadata } from "@opencode-ai/llm"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import type { LLMEvent, ProviderMetadata } from "@qronos-ai/llm"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 export namespace KiloRoutedModel {
   const ns = "kilocode"
   const key = "routedModelID"

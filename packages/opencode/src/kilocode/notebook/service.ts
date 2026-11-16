@@ -4,8 +4,8 @@ import { registerDisposer } from "@/effect/instance-registry"
 import { Identifier } from "@/id/id"
 import { capture } from "@/kilocode/instance"
 import { Context, Deferred, Duration, Effect, Layer, LayerMap, Schema } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import * as Log from "@qronos-ai/core/util/log"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { ErrorCode, Event, type Failure, type Request, RequestID, type Result } from "./protocol"
 
 const log = Log.create({ service: "notebook-host" })
@@ -41,7 +41,7 @@ interface State {
   dispose: () => Effect.Effect<void>
 }
 
-class StateService extends Context.Service<StateService, State>()("@kilocode/NotebookState") {}
+class StateService extends Context.Service<StateService, State>()("@qronos-ai/NotebookState") {}
 
 const context = Effect.gen(function* () {
   const ctx = (yield* InstanceRef) ?? capture()
@@ -67,7 +67,7 @@ export interface Interface {
   readonly reject: (input: { requestID: RequestID; error: Failure }) => Effect.Effect<void, NotFoundError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@kilocode/Notebook") {}
+export class Service extends Context.Service<Service, Interface>()("@qronos-ai/Notebook") {}
 
 export function layer(timeout: Duration.Input = "10 minutes") {
   return Layer.effect(

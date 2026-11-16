@@ -1,4 +1,4 @@
-import type { KiloClient, Session } from "@kilocode/sdk/v2/client"
+import type { KiloClient, Session } from "@qronos-ai/sdk/v2/client"
 import { sanitizeBranchName, versionedName } from "./branch-name"
 import type { CreateWorktreeResult } from "./WorktreeManager"
 import type { WorktreeStateManager } from "./WorktreeStateManager"

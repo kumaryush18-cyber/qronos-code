@@ -1,6 +1,6 @@
 import type { Info as CommandInfo } from "@/command"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import type { MessageV2 } from "@/session/message-v2"
 import type { SessionPrompt } from "@/session/prompt"
 import type { Info as SessionInfo } from "@/session/session"

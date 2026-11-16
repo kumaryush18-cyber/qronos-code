@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/text-field"
+export * from "@qronos-ai/ui/text-field"

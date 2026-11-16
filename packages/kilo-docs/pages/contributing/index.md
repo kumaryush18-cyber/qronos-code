@@ -190,9 +190,9 @@ Documentation improvements are highly valued contributions:
 2. Test your documentation changes and run the docs site locally from the repo root:
 
    ```bash
-   bun run --filter @kilocode/kilo-docs test
-   bun run --filter @kilocode/kilo-docs build
-   bun run --filter @kilocode/kilo-docs dev
+   bun run --filter @qronos-ai/kilo-docs test
+   bun run --filter @qronos-ai/kilo-docs build
+   bun run --filter @qronos-ai/kilo-docs dev
    ```
 
    For manual validation, preview the affected page and check changed links and rendered content.

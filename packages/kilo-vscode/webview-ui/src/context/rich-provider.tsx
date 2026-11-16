@@ -1,11 +1,11 @@
 import { createContext, onCleanup, onMount, useContext, type ParentComponent } from "solid-js"
-import { MarkedProvider } from "@kilocode/kilo-ui/context/marked"
-import { CodeComponentProvider } from "@kilocode/kilo-ui/context/code"
-import { DiffComponentProvider } from "@kilocode/kilo-ui/context/diff"
-import { FileComponentProvider } from "@kilocode/kilo-ui/context/file"
-import { Code } from "@kilocode/kilo-ui/code"
-import { Diff } from "@kilocode/kilo-ui/diff"
-import { File } from "@kilocode/kilo-ui/file"
+import { MarkedProvider } from "@qronos-ai/kilo-ui/context/marked"
+import { CodeComponentProvider } from "@qronos-ai/kilo-ui/context/code"
+import { DiffComponentProvider } from "@qronos-ai/kilo-ui/context/diff"
+import { FileComponentProvider } from "@qronos-ai/kilo-ui/context/file"
+import { Code } from "@qronos-ai/kilo-ui/code"
+import { Diff } from "@qronos-ai/kilo-ui/diff"
+import { File } from "@qronos-ai/kilo-ui/file"
 import { useVSCode } from "./vscode"
 
 const Context = createContext(false)

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/typewriter"
+export * from "@qronos-ai/ui/typewriter"

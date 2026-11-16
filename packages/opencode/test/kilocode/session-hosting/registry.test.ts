@@ -1,4 +1,4 @@
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Effect, Layer, Schema } from "effect"
 import { expect } from "bun:test"
 import { create } from "../../../src/kilocode/session-hosting/registry"

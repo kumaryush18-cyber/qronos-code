@@ -6,9 +6,9 @@
  * to inject the RemoteIndicator alongside the standard directory, MCP,
  * and version information.
  */
-import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@kilocode/plugin/tui"
+import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@qronos-ai/plugin/tui"
 import { createMemo, Match, Show, Switch } from "solid-js"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { RemoteIndicator } from "@/kilocode/remote-tui"
 
 const id = "internal:kilo-home-footer"

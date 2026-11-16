@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/text-shimmer"
+export * from "@qronos-ai/ui/text-shimmer"

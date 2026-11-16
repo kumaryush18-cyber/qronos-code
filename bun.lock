@@ -3,12 +3,12 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@kilocode/kilo",
+      "name": "@qronos-ai/kilo",
       "dependencies": {
         "@aws-sdk/client-s3": "3.1160.0",
-        "@kilocode/plugin": "workspace:*",
-        "@kilocode/sdk": "workspace:*",
-        "@opencode-ai/script": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
+        "@qronos-ai/script": "workspace:*",
         "heap-snapshot-toolkit": "1.1.3",
         "typescript": "catalog:",
       },
@@ -37,17 +37,17 @@
       },
     },
     "packages/client": {
-      "name": "@opencode-ai/client",
+      "name": "@qronos-ai/client",
       "version": "7.8.28",
       "dependencies": {
-        "@opencode-ai/protocol": "workspace:*",
-        "@opencode-ai/schema": "workspace:*",
+        "@qronos-ai/protocol": "workspace:*",
+        "@qronos-ai/schema": "workspace:*",
       },
       "devDependencies": {
         "@effect/platform-node": "catalog:",
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/httpapi-codegen": "workspace:*",
-        "@opencode-ai/server": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/httpapi-codegen": "workspace:*",
+        "@qronos-ai/server": "workspace:*",
         "@tsconfig/bun": "catalog:",
         "@types/bun": "catalog:",
         "@typescript/native-preview": "catalog:",
@@ -61,7 +61,7 @@
       ],
     },
     "packages/codemode": {
-      "name": "@opencode-ai/codemode",
+      "name": "@qronos-ai/codemode",
       "version": "7.8.28",
       "dependencies": {
         "acorn": "8.15.0",
@@ -75,7 +75,7 @@
       },
     },
     "packages/core": {
-      "name": "@opencode-ai/core",
+      "name": "@qronos-ai/core",
       "version": "7.8.28",
       "bin": {
         "opencode": "./bin/opencode",
@@ -106,17 +106,17 @@
         "@effect/platform-node": "catalog:",
         "@effect/sql-sqlite-bun": "catalog:",
         "@ff-labs/fff-bun": "0.9.4",
-        "@kilocode/kilo-gateway": "workspace:*",
-        "@kilocode/kilo-indexing": "workspace:*",
-        "@kilocode/plugin": "workspace:*",
-        "@kilocode/sandbox": "workspace:*",
+        "@qronos-ai/kilo-gateway": "workspace:*",
+        "@qronos-ai/kilo-indexing": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
+        "@qronos-ai/sandbox": "workspace:*",
         "@lydell/node-pty": "catalog:",
         "@npmcli/arborist": "9.4.0",
         "@npmcli/config": "10.8.1",
-        "@opencode-ai/effect-drizzle-sqlite": "workspace:*",
-        "@opencode-ai/effect-sqlite-node": "workspace:*",
-        "@opencode-ai/llm": "workspace:*",
-        "@opencode-ai/schema": "workspace:*",
+        "@qronos-ai/effect-drizzle-sqlite": "workspace:*",
+        "@qronos-ai/effect-sqlite-node": "workspace:*",
+        "@qronos-ai/llm": "workspace:*",
+        "@qronos-ai/schema": "workspace:*",
         "@openrouter/ai-sdk-provider": "2.9.0",
         "@opentelemetry/api": "1.9.0",
         "@opentelemetry/context-async-hooks": "2.8.0",
@@ -152,7 +152,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@opencode-ai/http-recorder": "workspace:*",
+        "@qronos-ai/http-recorder": "workspace:*",
         "@parcel/watcher-darwin-arm64": "2.5.1",
         "@parcel/watcher-darwin-x64": "2.5.1",
         "@parcel/watcher-linux-arm64-glibc": "2.5.1",
@@ -174,7 +174,7 @@
       },
     },
     "packages/effect-drizzle-sqlite": {
-      "name": "@opencode-ai/effect-drizzle-sqlite",
+      "name": "@qronos-ai/effect-drizzle-sqlite",
       "version": "7.8.28",
       "dependencies": {
         "drizzle-orm": "catalog:",
@@ -188,7 +188,7 @@
       },
     },
     "packages/effect-sqlite-node": {
-      "name": "@opencode-ai/effect-sqlite-node",
+      "name": "@qronos-ai/effect-sqlite-node",
       "version": "7.8.28",
       "dependencies": {
         "effect": "catalog:",
@@ -200,7 +200,7 @@
       },
     },
     "packages/http-recorder": {
-      "name": "@opencode-ai/http-recorder",
+      "name": "@qronos-ai/http-recorder",
       "version": "7.8.28",
       "dependencies": {
         "@effect/platform-node": "4.0.0-beta.83",
@@ -221,7 +221,7 @@
       },
     },
     "packages/httpapi-codegen": {
-      "name": "@opencode-ai/httpapi-codegen",
+      "name": "@qronos-ai/httpapi-codegen",
       "version": "7.8.28",
       "dependencies": {
         "effect": "catalog:",
@@ -234,12 +234,12 @@
       },
     },
     "packages/kilo-console": {
-      "name": "@kilocode/kilo-console",
+      "name": "@qronos-ai/kilo-console",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/kilo-indexing": "workspace:*",
-        "@kilocode/kilo-web-ui": "workspace:*",
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/kilo-indexing": "workspace:*",
+        "@qronos-ai/kilo-web-ui": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "@pierre/diffs": "catalog:",
         "@solidjs/router": "catalog:",
         "ghostty-web": "0.4.0",
@@ -256,7 +256,7 @@
       },
     },
     "packages/kilo-docs": {
-      "name": "@kilocode/kilo-docs",
+      "name": "@qronos-ai/kilo-docs",
       "version": "7.8.28",
       "dependencies": {
         "@docsearch/css": "^4",
@@ -286,7 +286,7 @@
       },
     },
     "packages/kilo-e2e": {
-      "name": "@kilocode/kilo-e2e",
+      "name": "@qronos-ai/kilo-e2e",
       "version": "7.8.28",
       "dependencies": {
         "zod": "catalog:",
@@ -298,14 +298,14 @@
       },
     },
     "packages/kilo-gateway": {
-      "name": "@kilocode/kilo-gateway",
+      "name": "@qronos-ai/kilo-gateway",
       "version": "7.8.28",
       "dependencies": {
         "@ai-sdk/anthropic": "3.0.82",
         "@ai-sdk/openai": "3.0.88",
         "@ai-sdk/openai-compatible": "2.0.54",
         "@clack/prompts": "1.0.0-alpha.1",
-        "@kilocode/plugin": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
         "@openrouter/ai-sdk-provider": "2.9.0",
         "ai": "catalog:",
         "open": "11.0.4",
@@ -332,7 +332,7 @@
       ],
     },
     "packages/kilo-i18n": {
-      "name": "@kilocode/kilo-i18n",
+      "name": "@qronos-ai/kilo-i18n",
       "version": "7.8.28",
       "devDependencies": {
         "@tsconfig/node22": "catalog:",
@@ -342,13 +342,13 @@
       },
     },
     "packages/kilo-indexing": {
-      "name": "@kilocode/kilo-indexing",
+      "name": "@qronos-ai/kilo-indexing",
       "version": "7.8.28",
       "dependencies": {
         "@aws-sdk/client-bedrock-runtime": "3.1005.0",
         "@aws-sdk/credential-provider-ini": "3.972.31",
-        "@kilocode/kilo-gateway": "workspace:*",
-        "@kilocode/plugin": "workspace:*",
+        "@qronos-ai/kilo-gateway": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
         "@lancedb/lancedb": "0.26.2",
         "@parcel/watcher": "2.5.1",
         "@qdrant/js-client-rest": "1.17.0",
@@ -374,11 +374,11 @@
       },
     },
     "packages/kilo-jetbrains": {
-      "name": "@kilocode/kilo-jetbrains",
+      "name": "@qronos-ai/kilo-jetbrains",
       "version": "7.8.28",
     },
     "packages/kilo-memory": {
-      "name": "@kilocode/kilo-memory",
+      "name": "@qronos-ai/kilo-memory",
       "version": "7.8.28",
       "dependencies": {
         "effect": "catalog:",
@@ -392,7 +392,7 @@
       },
     },
     "packages/kilo-sandbox": {
-      "name": "@kilocode/sandbox",
+      "name": "@qronos-ai/sandbox",
       "version": "7.8.28",
       "dependencies": {
         "@anthropic-ai/sandbox-runtime": "catalog:",
@@ -407,10 +407,10 @@
       },
     },
     "packages/kilo-telemetry": {
-      "name": "@kilocode/kilo-telemetry",
+      "name": "@qronos-ai/kilo-telemetry",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/kilo-gateway": "workspace:*",
+        "@qronos-ai/kilo-gateway": "workspace:*",
         "posthog-node": "4.4.0",
       },
       "devDependencies": {
@@ -421,12 +421,12 @@
       },
     },
     "packages/kilo-ui": {
-      "name": "@kilocode/kilo-ui",
+      "name": "@qronos-ai/kilo-ui",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "@kobalte/core": "0.13.11",
-        "@opencode-ai/core": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
         "@pierre/diffs": "catalog:",
         "@solid-primitives/lifecycle": "0.1.2",
         "@solid-primitives/media": "2.3.3",
@@ -454,7 +454,7 @@
         "vite-plugin-solid": "2.11.10",
       },
       "peerDependencies": {
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "solid-js": "catalog:",
       },
     },
@@ -463,17 +463,17 @@
       "version": "1.0.0",
       "dependencies": {
         "@anthropic-ai/sdk": "^0.39.0",
-        "@kilocode/kilo-gateway": "workspace:*",
-        "@kilocode/kilo-i18n": "workspace:*",
-        "@kilocode/kilo-indexing": "workspace:*",
-        "@kilocode/kilo-memory": "workspace:*",
-        "@kilocode/kilo-ui": "workspace:*",
-        "@kilocode/plugin": "workspace:*",
-        "@kilocode/sandbox": "workspace:*",
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/kilo-gateway": "workspace:*",
+        "@qronos-ai/kilo-i18n": "workspace:*",
+        "@qronos-ai/kilo-indexing": "workspace:*",
+        "@qronos-ai/kilo-memory": "workspace:*",
+        "@qronos-ai/kilo-ui": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
+        "@qronos-ai/sandbox": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "@lottiefiles/dotlottie-web": "0.63.0",
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "@pierre/diffs": "catalog:",
         "@thisbeyond/solid-dnd": "0.7.5",
         "@vscode/codicons": "^0.0.44",
@@ -538,12 +538,12 @@
       },
     },
     "packages/kilo-web-ui": {
-      "name": "@kilocode/kilo-web-ui",
+      "name": "@qronos-ai/kilo-web-ui",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/kilo-ui": "workspace:*",
+        "@qronos-ai/kilo-ui": "workspace:*",
         "@kobalte/core": "catalog:",
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "@pierre/diffs": "catalog:",
         "solid-js": "catalog:",
       },
@@ -555,10 +555,10 @@
       },
     },
     "packages/llm": {
-      "name": "@opencode-ai/llm",
+      "name": "@qronos-ai/llm",
       "version": "7.8.28",
       "dependencies": {
-        "@opencode-ai/schema": "workspace:*",
+        "@qronos-ai/schema": "workspace:*",
         "@smithy/eventstream-codec": "4.2.14",
         "@smithy/util-utf8": "4.2.2",
         "aws4fetch": "1.0.20",
@@ -567,14 +567,14 @@
       "devDependencies": {
         "@clack/prompts": "1.0.0-alpha.1",
         "@effect/platform-node": "catalog:",
-        "@opencode-ai/http-recorder": "workspace:*",
+        "@qronos-ai/http-recorder": "workspace:*",
         "@tsconfig/bun": "catalog:",
         "@types/bun": "catalog:",
         "@typescript/native-preview": "catalog:",
       },
     },
     "packages/opencode": {
-      "name": "@kilocode/cli",
+      "name": "@qronos-ai/cli",
       "version": "7.8.28",
       "bin": {
         "kilo": "./bin/kilo",
@@ -611,28 +611,28 @@
         "@ff-labs/fff-bun": "0.9.4",
         "@gitlab/gitlab-ai-provider": "3.6.0",
         "@gitlab/opencode-gitlab-auth": "1.3.3",
-        "@kilocode/kilo-gateway": "workspace:*",
-        "@kilocode/kilo-indexing": "workspace:*",
-        "@kilocode/kilo-memory": "workspace:*",
-        "@kilocode/kilo-telemetry": "workspace:*",
-        "@kilocode/plugin": "workspace:*",
-        "@kilocode/plugin-atomic-chat": "workspace:*",
-        "@kilocode/sandbox": "workspace:*",
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/kilo-gateway": "workspace:*",
+        "@qronos-ai/kilo-indexing": "workspace:*",
+        "@qronos-ai/kilo-memory": "workspace:*",
+        "@qronos-ai/kilo-telemetry": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
+        "@qronos-ai/plugin-atomic-chat": "workspace:*",
+        "@qronos-ai/sandbox": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "@lydell/node-pty": "catalog:",
         "@modelcontextprotocol/sdk": "1.32.1",
         "@npmcli/arborist": "9.4.0",
         "@octokit/graphql": "9.0.2",
         "@octokit/rest": "catalog:",
         "@openauthjs/openauth": "catalog:",
-        "@opencode-ai/codemode": "workspace:*",
-        "@opencode-ai/llm": "workspace:*",
-        "@opencode-ai/protocol": "workspace:*",
-        "@opencode-ai/schema": "workspace:*",
-        "@opencode-ai/script": "workspace:*",
-        "@opencode-ai/server": "workspace:*",
-        "@opencode-ai/tui": "workspace:*",
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/codemode": "workspace:*",
+        "@qronos-ai/llm": "workspace:*",
+        "@qronos-ai/protocol": "workspace:*",
+        "@qronos-ai/schema": "workspace:*",
+        "@qronos-ai/script": "workspace:*",
+        "@qronos-ai/server": "workspace:*",
+        "@qronos-ai/tui": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "@openrouter/ai-sdk-provider": "2.9.0",
         "@opentelemetry/api": "1.9.0",
         "@opentelemetry/context-async-hooks": "2.8.0",
@@ -709,9 +709,9 @@
         "@babel/core": "7.29.6",
         "@effect/language-service": "0.84.2",
         "@octokit/webhooks-types": "7.6.1",
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/http-recorder": "workspace:*",
-        "@opencode-ai/script": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/http-recorder": "workspace:*",
+        "@qronos-ai/script": "workspace:*",
         "@parcel/watcher-darwin-arm64": "2.5.1",
         "@parcel/watcher-darwin-x64": "2.5.1",
         "@parcel/watcher-linux-arm64-glibc": "2.5.1",
@@ -743,11 +743,11 @@
       },
     },
     "packages/plugin": {
-      "name": "@kilocode/plugin",
+      "name": "@qronos-ai/plugin",
       "version": "7.8.28",
       "dependencies": {
         "@ai-sdk/provider": "3.0.8",
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "effect": "catalog:",
         "zod": "catalog:",
       },
@@ -772,10 +772,10 @@
       ],
     },
     "packages/plugin-atomic-chat": {
-      "name": "@kilocode/plugin-atomic-chat",
+      "name": "@qronos-ai/plugin-atomic-chat",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/plugin": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
       },
       "devDependencies": {
         "@tsconfig/node22": "catalog:",
@@ -786,10 +786,10 @@
       },
     },
     "packages/protocol": {
-      "name": "@opencode-ai/protocol",
+      "name": "@qronos-ai/protocol",
       "version": "7.8.28",
       "dependencies": {
-        "@opencode-ai/schema": "workspace:*",
+        "@qronos-ai/schema": "workspace:*",
         "effect": "catalog:",
       },
       "devDependencies": {
@@ -799,7 +799,7 @@
       },
     },
     "packages/schema": {
-      "name": "@opencode-ai/schema",
+      "name": "@qronos-ai/schema",
       "version": "7.8.28",
       "dependencies": {
         "effect": "catalog:",
@@ -811,7 +811,7 @@
       },
     },
     "packages/script": {
-      "name": "@opencode-ai/script",
+      "name": "@qronos-ai/script",
       "version": "7.8.28",
       "dependencies": {
         "semver": "^7.6.3",
@@ -822,12 +822,12 @@
       },
     },
     "packages/sdk-next": {
-      "name": "@opencode-ai/sdk-next",
+      "name": "@qronos-ai/sdk-next",
       "version": "7.8.28",
       "dependencies": {
-        "@opencode-ai/client": "workspace:*",
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/server": "workspace:*",
+        "@qronos-ai/client": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/server": "workspace:*",
         "effect": "catalog:",
       },
       "devDependencies": {
@@ -837,7 +837,7 @@
       },
     },
     "packages/sdk/js": {
-      "name": "@kilocode/sdk",
+      "name": "@qronos-ai/sdk",
       "version": "7.8.28",
       "dependencies": {
         "cross-spawn": "catalog:",
@@ -852,11 +852,11 @@
       },
     },
     "packages/server": {
-      "name": "@opencode-ai/server",
+      "name": "@qronos-ai/server",
       "version": "7.8.28",
       "dependencies": {
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/protocol": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/protocol": "workspace:*",
         "drizzle-orm": "catalog:",
         "effect": "catalog:",
       },
@@ -867,14 +867,14 @@
       },
     },
     "packages/session-ui": {
-      "name": "@opencode-ai/session-ui",
+      "name": "@qronos-ai/session-ui",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "@kobalte/core": "catalog:",
-        "@opencode-ai/client": "workspace:*",
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/client": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "@pierre/diffs": "catalog:",
         "@shikijs/stream": "catalog:",
         "@shikijs/transformers": "3.9.2",
@@ -909,11 +909,11 @@
       },
     },
     "packages/storybook": {
-      "name": "@opencode-ai/storybook",
+      "name": "@qronos-ai/storybook",
       "version": "7.8.28",
       "devDependencies": {
-        "@opencode-ai/session-ui": "workspace:*",
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/session-ui": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "@solidjs/meta": "catalog:",
         "@storybook/addon-a11y": "^10.6.2",
         "@storybook/addon-docs": "^10.6.2",
@@ -934,13 +934,13 @@
       },
     },
     "packages/tui": {
-      "name": "@opencode-ai/tui",
+      "name": "@qronos-ai/tui",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/plugin": "workspace:*",
-        "@kilocode/sdk": "workspace:*",
-        "@opencode-ai/core": "workspace:*",
-        "@opencode-ai/ui": "workspace:*",
+        "@qronos-ai/plugin": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
+        "@qronos-ai/ui": "workspace:*",
         "@opentui/core": "catalog:",
         "@opentui/keymap": "catalog:",
         "@opentui/solid": "catalog:",
@@ -959,12 +959,12 @@
       },
     },
     "packages/ui": {
-      "name": "@opencode-ai/ui",
+      "name": "@qronos-ai/ui",
       "version": "7.8.28",
       "dependencies": {
-        "@kilocode/sdk": "workspace:*",
+        "@qronos-ai/sdk": "workspace:*",
         "@kobalte/core": "catalog:",
-        "@opencode-ai/core": "workspace:*",
+        "@qronos-ai/core": "workspace:*",
         "@pierre/diffs": "catalog:",
         "@shikijs/stream": "catalog:",
         "@shikijs/transformers": "3.9.2",
@@ -1094,7 +1094,7 @@
     "@npmcli/package-json": {
       "glob": "^14.0.2",
     },
-    "@opencode-ai/plugin": {
+    "@qronos-ai/plugin": {
       "zod": "^4.6.6",
     },
     "@opentui/core": "catalog:",
@@ -1706,7 +1706,7 @@
 
     "@gitlab/gitlab-ai-provider": ["@gitlab/gitlab-ai-provider@3.6.0", "", { "dependencies": { "@anthropic-ai/sdk": "^0.71.0", "@anycable/core": "^0.9.2", "graphql-request": "^6.1.0", "isomorphic-ws": "^5.0.0", "openai": "^6.16.0", "socket.io-client": "^4.8.1", "vscode-jsonrpc": "^8.2.1", "zod": "^3.25.76" }, "peerDependencies": { "@ai-sdk/provider": ">=2.0.0", "@ai-sdk/provider-utils": ">=3.0.0" } }, "sha512-8LmcIQ86xkMtC7L4P1/QYVEC+yKMTRerfPeniaaQGalnzXKtX6iMHLjLPOL9Rxp55lOXi6ed0WrFuJzZx+fNRg=="],
 
-    "@gitlab/opencode-gitlab-auth": ["@gitlab/opencode-gitlab-auth@1.3.3", "", { "dependencies": { "@fastify/rate-limit": "^10.2.0", "@opencode-ai/plugin": "*", "fastify": "^5.2.0", "open": "^10.0.0" } }, "sha512-FT+KsCmAJjtqWr1YAq0MywGgL9kaLQ4apmsoowAXrPqHtoYf2i/nY10/A+L06kNj22EATeEDRpbB1NWXMto/SA=="],
+    "@gitlab/opencode-gitlab-auth": ["@gitlab/opencode-gitlab-auth@1.3.3", "", { "dependencies": { "@fastify/rate-limit": "^10.2.0", "@qronos-ai/plugin": "*", "fastify": "^5.2.0", "open": "^10.0.0" } }, "sha512-FT+KsCmAJjtqWr1YAq0MywGgL9kaLQ4apmsoowAXrPqHtoYf2i/nY10/A+L06kNj22EATeEDRpbB1NWXMto/SA=="],
 
     "@graphql-typed-document-node/core": ["@graphql-typed-document-node/core@3.2.0", "", { "peerDependencies": { "graphql": "^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0" } }, "sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ=="],
 
@@ -1824,37 +1824,37 @@
 
     "@jsdevtools/ono": ["@jsdevtools/ono@7.1.3", "", {}, "sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg=="],
 
-    "@kilocode/cli": ["@kilocode/cli@workspace:packages/opencode"],
+    "@qronos-ai/cli": ["@qronos-ai/cli@workspace:packages/opencode"],
 
-    "@kilocode/kilo-console": ["@kilocode/kilo-console@workspace:packages/kilo-console"],
+    "@qronos-ai/kilo-console": ["@qronos-ai/kilo-console@workspace:packages/kilo-console"],
 
-    "@kilocode/kilo-docs": ["@kilocode/kilo-docs@workspace:packages/kilo-docs"],
+    "@qronos-ai/kilo-docs": ["@qronos-ai/kilo-docs@workspace:packages/kilo-docs"],
 
-    "@kilocode/kilo-e2e": ["@kilocode/kilo-e2e@workspace:packages/kilo-e2e"],
+    "@qronos-ai/kilo-e2e": ["@qronos-ai/kilo-e2e@workspace:packages/kilo-e2e"],
 
-    "@kilocode/kilo-gateway": ["@kilocode/kilo-gateway@workspace:packages/kilo-gateway"],
+    "@qronos-ai/kilo-gateway": ["@qronos-ai/kilo-gateway@workspace:packages/kilo-gateway"],
 
-    "@kilocode/kilo-i18n": ["@kilocode/kilo-i18n@workspace:packages/kilo-i18n"],
+    "@qronos-ai/kilo-i18n": ["@qronos-ai/kilo-i18n@workspace:packages/kilo-i18n"],
 
-    "@kilocode/kilo-indexing": ["@kilocode/kilo-indexing@workspace:packages/kilo-indexing"],
+    "@qronos-ai/kilo-indexing": ["@qronos-ai/kilo-indexing@workspace:packages/kilo-indexing"],
 
-    "@kilocode/kilo-jetbrains": ["@kilocode/kilo-jetbrains@workspace:packages/kilo-jetbrains"],
+    "@qronos-ai/kilo-jetbrains": ["@qronos-ai/kilo-jetbrains@workspace:packages/kilo-jetbrains"],
 
-    "@kilocode/kilo-memory": ["@kilocode/kilo-memory@workspace:packages/kilo-memory"],
+    "@qronos-ai/kilo-memory": ["@qronos-ai/kilo-memory@workspace:packages/kilo-memory"],
 
-    "@kilocode/kilo-telemetry": ["@kilocode/kilo-telemetry@workspace:packages/kilo-telemetry"],
+    "@qronos-ai/kilo-telemetry": ["@qronos-ai/kilo-telemetry@workspace:packages/kilo-telemetry"],
 
-    "@kilocode/kilo-ui": ["@kilocode/kilo-ui@workspace:packages/kilo-ui"],
+    "@qronos-ai/kilo-ui": ["@qronos-ai/kilo-ui@workspace:packages/kilo-ui"],
 
-    "@kilocode/kilo-web-ui": ["@kilocode/kilo-web-ui@workspace:packages/kilo-web-ui"],
+    "@qronos-ai/kilo-web-ui": ["@qronos-ai/kilo-web-ui@workspace:packages/kilo-web-ui"],
 
-    "@kilocode/plugin": ["@kilocode/plugin@workspace:packages/plugin"],
+    "@qronos-ai/plugin": ["@qronos-ai/plugin@workspace:packages/plugin"],
 
-    "@kilocode/plugin-atomic-chat": ["@kilocode/plugin-atomic-chat@workspace:packages/plugin-atomic-chat"],
+    "@qronos-ai/plugin-atomic-chat": ["@qronos-ai/plugin-atomic-chat@workspace:packages/plugin-atomic-chat"],
 
-    "@kilocode/sandbox": ["@kilocode/sandbox@workspace:packages/kilo-sandbox"],
+    "@qronos-ai/sandbox": ["@qronos-ai/sandbox@workspace:packages/kilo-sandbox"],
 
-    "@kilocode/sdk": ["@kilocode/sdk@workspace:packages/sdk/js"],
+    "@qronos-ai/sdk": ["@qronos-ai/sdk@workspace:packages/sdk/js"],
 
     "@kobalte/core": ["@kobalte/core@0.13.11", "", { "dependencies": { "@floating-ui/dom": "^1.5.1", "@internationalized/date": "^3.4.0", "@internationalized/number": "^3.2.1", "@kobalte/utils": "^0.9.1", "@solid-primitives/props": "^3.1.8", "@solid-primitives/resize-observer": "^2.0.26", "solid-presence": "^0.1.8", "solid-prevent-scroll": "^0.1.4" }, "peerDependencies": { "solid-js": "^1.8.15" } }, "sha512-hK7TYpdib/XDb/r/4XDBFaO9O+3ZHz4ZWryV4/3BfES+tSQVgg2IJupDnztKXB0BqbSRy/aWlHKw1SPtNPYCFQ=="],
 
@@ -2048,43 +2048,43 @@
 
     "@openauthjs/openauth": ["@openauthjs/openauth@0.0.0-20250322224806", "", { "dependencies": { "@standard-schema/spec": "1.0.0-beta.3", "aws4fetch": "1.0.20", "jose": "5.9.6" }, "peerDependencies": { "arctic": "^2.2.2", "hono": "^4.0.0" } }, "sha512-p5IWSRXvABcwocH2dNI0w8c1QJelIOFulwhKk+aLLFfUbs8u1pr7kQbYe8yCSM2+bcLHiwbogpUQc2ovrGwCuw=="],
 
-    "@opencode-ai/client": ["@opencode-ai/client@workspace:packages/client"],
+    "@qronos-ai/client": ["@qronos-ai/client@workspace:packages/client"],
 
-    "@opencode-ai/codemode": ["@opencode-ai/codemode@workspace:packages/codemode"],
+    "@qronos-ai/codemode": ["@qronos-ai/codemode@workspace:packages/codemode"],
 
-    "@opencode-ai/core": ["@opencode-ai/core@workspace:packages/core"],
+    "@qronos-ai/core": ["@qronos-ai/core@workspace:packages/core"],
 
-    "@opencode-ai/effect-drizzle-sqlite": ["@opencode-ai/effect-drizzle-sqlite@workspace:packages/effect-drizzle-sqlite"],
+    "@qronos-ai/effect-drizzle-sqlite": ["@qronos-ai/effect-drizzle-sqlite@workspace:packages/effect-drizzle-sqlite"],
 
-    "@opencode-ai/effect-sqlite-node": ["@opencode-ai/effect-sqlite-node@workspace:packages/effect-sqlite-node"],
+    "@qronos-ai/effect-sqlite-node": ["@qronos-ai/effect-sqlite-node@workspace:packages/effect-sqlite-node"],
 
-    "@opencode-ai/http-recorder": ["@opencode-ai/http-recorder@workspace:packages/http-recorder"],
+    "@qronos-ai/http-recorder": ["@qronos-ai/http-recorder@workspace:packages/http-recorder"],
 
-    "@opencode-ai/httpapi-codegen": ["@opencode-ai/httpapi-codegen@workspace:packages/httpapi-codegen"],
+    "@qronos-ai/httpapi-codegen": ["@qronos-ai/httpapi-codegen@workspace:packages/httpapi-codegen"],
 
-    "@opencode-ai/llm": ["@opencode-ai/llm@workspace:packages/llm"],
+    "@qronos-ai/llm": ["@qronos-ai/llm@workspace:packages/llm"],
 
-    "@opencode-ai/plugin": ["@opencode-ai/plugin@1.18.14", "", { "dependencies": { "@ai-sdk/provider": "3.0.8", "@opencode-ai/sdk": "1.18.14", "effect": "4.0.0-beta.83", "zod": "4.1.8" }, "peerDependencies": { "@opentui/core": ">=0.4.5", "@opentui/keymap": ">=0.4.5", "@opentui/solid": ">=0.4.5" }, "optionalPeers": ["@opentui/core", "@opentui/keymap", "@opentui/solid"] }, "sha512-M7gmzsQTE6z81fMZb8AaNd3u/FdQ8h7hhtQ59rWHnZMFMWusHXZM2S2BL1Z3E8kGWeveVluOVfTKtxJhCurXtw=="],
+    "@qronos-ai/plugin": ["@qronos-ai/plugin@1.18.14", "", { "dependencies": { "@ai-sdk/provider": "3.0.8", "@qronos-ai/sdk": "1.18.14", "effect": "4.0.0-beta.83", "zod": "4.1.8" }, "peerDependencies": { "@opentui/core": ">=0.4.5", "@opentui/keymap": ">=0.4.5", "@opentui/solid": ">=0.4.5" }, "optionalPeers": ["@opentui/core", "@opentui/keymap", "@opentui/solid"] }, "sha512-M7gmzsQTE6z81fMZb8AaNd3u/FdQ8h7hhtQ59rWHnZMFMWusHXZM2S2BL1Z3E8kGWeveVluOVfTKtxJhCurXtw=="],
 
-    "@opencode-ai/protocol": ["@opencode-ai/protocol@workspace:packages/protocol"],
+    "@qronos-ai/protocol": ["@qronos-ai/protocol@workspace:packages/protocol"],
 
-    "@opencode-ai/schema": ["@opencode-ai/schema@workspace:packages/schema"],
+    "@qronos-ai/schema": ["@qronos-ai/schema@workspace:packages/schema"],
 
-    "@opencode-ai/script": ["@opencode-ai/script@workspace:packages/script"],
+    "@qronos-ai/script": ["@qronos-ai/script@workspace:packages/script"],
 
-    "@opencode-ai/sdk": ["@opencode-ai/sdk@1.18.14", "", { "dependencies": { "cross-spawn": "7.0.6" } }, "sha512-Yd8vPDT5DW++Hs2904Q/Vvk/m1U79aKFSRusgAfBQ+AGhfoT40LdeL5eiJtVy0xBUIZF/8DEZjkWaeof9Y59PA=="],
+    "@qronos-ai/sdk": ["@qronos-ai/sdk@1.18.14", "", { "dependencies": { "cross-spawn": "7.0.6" } }, "sha512-Yd8vPDT5DW++Hs2904Q/Vvk/m1U79aKFSRusgAfBQ+AGhfoT40LdeL5eiJtVy0xBUIZF/8DEZjkWaeof9Y59PA=="],
 
-    "@opencode-ai/sdk-next": ["@opencode-ai/sdk-next@workspace:packages/sdk-next"],
+    "@qronos-ai/sdk-next": ["@qronos-ai/sdk-next@workspace:packages/sdk-next"],
 
-    "@opencode-ai/server": ["@opencode-ai/server@workspace:packages/server"],
+    "@qronos-ai/server": ["@qronos-ai/server@workspace:packages/server"],
 
-    "@opencode-ai/session-ui": ["@opencode-ai/session-ui@workspace:packages/session-ui"],
+    "@qronos-ai/session-ui": ["@qronos-ai/session-ui@workspace:packages/session-ui"],
 
-    "@opencode-ai/storybook": ["@opencode-ai/storybook@workspace:packages/storybook"],
+    "@qronos-ai/storybook": ["@qronos-ai/storybook@workspace:packages/storybook"],
 
-    "@opencode-ai/tui": ["@opencode-ai/tui@workspace:packages/tui"],
+    "@qronos-ai/tui": ["@qronos-ai/tui@workspace:packages/tui"],
 
-    "@opencode-ai/ui": ["@opencode-ai/ui@workspace:packages/ui"],
+    "@qronos-ai/ui": ["@qronos-ai/ui@workspace:packages/ui"],
 
     "@openrouter/ai-sdk-provider": ["@openrouter/ai-sdk-provider@2.9.0", "", { "peerDependencies": { "ai": "^6.0.0", "zod": "^3.25.0 || ^4.0.0" } }, "sha512-Seva+NCa0WUQnJIUE5GzHsUv1WTIeyqwz0ELl2VtS6NP+eF+77yCXGFVOMbvoCM7QMjlnhv7931e89R+8pJdcQ=="],
 
@@ -4132,9 +4132,9 @@
 
     "openapi-types": ["openapi-types@12.1.3", "", {}, "sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw=="],
 
-    "opencode-gitlab-auth": ["opencode-gitlab-auth@2.1.0", "", { "dependencies": { "@fastify/rate-limit": "^10.2.0", "@opencode-ai/plugin": "*", "fastify": "^5.2.0", "open": "^10.0.0" } }, "sha512-ZCDYaY0V8Se6hOH2tqZqqcskrd0xLTgfiGhU0J1igkUP52oFtN9eSwxOPLT0ctvNXUq8b+zOmJ4sskAQoC/IUA=="],
+    "opencode-gitlab-auth": ["opencode-gitlab-auth@2.1.0", "", { "dependencies": { "@fastify/rate-limit": "^10.2.0", "@qronos-ai/plugin": "*", "fastify": "^5.2.0", "open": "^10.0.0" } }, "sha512-ZCDYaY0V8Se6hOH2tqZqqcskrd0xLTgfiGhU0J1igkUP52oFtN9eSwxOPLT0ctvNXUq8b+zOmJ4sskAQoC/IUA=="],
 
-    "opencode-poe-auth": ["opencode-poe-auth@0.0.1", "", { "dependencies": { "open": "^10.0.0", "poe-oauth": "*" }, "peerDependencies": { "@opencode-ai/plugin": "*" } }, "sha512-cXqTlS6AXHzo1oBdosnxbT47ZJEZ9WXn050X8Re6wZ1vaNnTpB/l2fMQt90evT7RBK0fB8UjXQUDMKyd7bbiqg=="],
+    "opencode-poe-auth": ["opencode-poe-auth@0.0.1", "", { "dependencies": { "open": "^10.0.0", "poe-oauth": "*" }, "peerDependencies": { "@qronos-ai/plugin": "*" } }, "sha512-cXqTlS6AXHzo1oBdosnxbT47ZJEZ9WXn050X8Re6wZ1vaNnTpB/l2fMQt90evT7RBK0fB8UjXQUDMKyd7bbiqg=="],
 
     "openid-client": ["openid-client@5.6.4", "", { "dependencies": { "jose": "^4.15.4", "lru-cache": "^6.0.0", "object-hash": "^2.2.0", "oidc-token-hash": "^5.0.3" } }, "sha512-T1h3B10BRPKfcObdBklX639tVz+xh34O7GjofqrqiAQdm7eHsQ00ih18x6wuJ/E6FxdtS2u3FmUGPDeEcMwzNA=="],
 
@@ -5204,9 +5204,9 @@
 
     "@jridgewell/trace-mapping/@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
-    "@kilocode/kilo-docs/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+    "@qronos-ai/kilo-docs/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
-    "@kilocode/plugin/@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
+    "@qronos-ai/plugin/@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
 
     "@manypkg/find-root/find-up": ["find-up@4.1.0", "", { "dependencies": { "locate-path": "^5.0.0", "path-exists": "^4.0.0" } }, "sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw=="],
 
@@ -5256,23 +5256,23 @@
 
     "@openauthjs/openauth/jose": ["jose@5.9.6", "", {}, "sha512-AMlnetc9+CV9asI19zHmrgS/WYsWUwCn2R7RzlbJWD7F9eWYUTGyBmU9o6PxngtLGOiDGPRu+Uc4fhKzbpteZQ=="],
 
-    "@opencode-ai/core/@types/semver": ["@types/semver@7.7.1", "", {}, "sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA=="],
+    "@qronos-ai/core/@types/semver": ["@types/semver@7.7.1", "", {}, "sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA=="],
 
-    "@opencode-ai/plugin/@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
+    "@qronos-ai/plugin/@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
 
-    "@opencode-ai/plugin/zod": ["zod@4.6.7", "", {}, "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="],
+    "@qronos-ai/plugin/zod": ["zod@4.6.7", "", {}, "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="],
 
-    "@opencode-ai/session-ui/@solid-primitives/resize-observer": ["@solid-primitives/resize-observer@2.1.3", "", { "dependencies": { "@solid-primitives/event-listener": "^2.4.3", "@solid-primitives/rootless": "^1.5.2", "@solid-primitives/static-store": "^0.1.2", "@solid-primitives/utils": "^6.3.2" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-zBLje5E06TgOg93S7rGPldmhDnouNGhvfZVKOp+oG2XU8snA+GoCSSCz1M+jpNAg5Ek2EakU5UVQqL152WmdXQ=="],
+    "@qronos-ai/session-ui/@solid-primitives/resize-observer": ["@solid-primitives/resize-observer@2.1.3", "", { "dependencies": { "@solid-primitives/event-listener": "^2.4.3", "@solid-primitives/rootless": "^1.5.2", "@solid-primitives/static-store": "^0.1.2", "@solid-primitives/utils": "^6.3.2" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-zBLje5E06TgOg93S7rGPldmhDnouNGhvfZVKOp+oG2XU8snA+GoCSSCz1M+jpNAg5Ek2EakU5UVQqL152WmdXQ=="],
 
-    "@opencode-ai/storybook/@types/react": ["@types/react@18.0.25", "", { "dependencies": { "@types/prop-types": "*", "@types/scheduler": "*", "csstype": "^3.0.2" } }, "sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g=="],
+    "@qronos-ai/storybook/@types/react": ["@types/react@18.0.25", "", { "dependencies": { "@types/prop-types": "*", "@types/scheduler": "*", "csstype": "^3.0.2" } }, "sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g=="],
 
-    "@opencode-ai/storybook/react": ["react@18.2.0", "", { "dependencies": { "loose-envify": "^1.1.0" } }, "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="],
+    "@qronos-ai/storybook/react": ["react@18.2.0", "", { "dependencies": { "loose-envify": "^1.1.0" } }, "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="],
 
-    "@opencode-ai/storybook/react-dom": ["react-dom@18.2.0", "", { "dependencies": { "loose-envify": "^1.1.0", "scheduler": "^0.23.0" }, "peerDependencies": { "react": "^18.2.0" } }, "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="],
+    "@qronos-ai/storybook/react-dom": ["react-dom@18.2.0", "", { "dependencies": { "loose-envify": "^1.1.0", "scheduler": "^0.23.0" }, "peerDependencies": { "react": "^18.2.0" } }, "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="],
 
-    "@opencode-ai/ui/@solid-primitives/resize-observer": ["@solid-primitives/resize-observer@2.1.3", "", { "dependencies": { "@solid-primitives/event-listener": "^2.4.3", "@solid-primitives/rootless": "^1.5.2", "@solid-primitives/static-store": "^0.1.2", "@solid-primitives/utils": "^6.3.2" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-zBLje5E06TgOg93S7rGPldmhDnouNGhvfZVKOp+oG2XU8snA+GoCSSCz1M+jpNAg5Ek2EakU5UVQqL152WmdXQ=="],
+    "@qronos-ai/ui/@solid-primitives/resize-observer": ["@solid-primitives/resize-observer@2.1.3", "", { "dependencies": { "@solid-primitives/event-listener": "^2.4.3", "@solid-primitives/rootless": "^1.5.2", "@solid-primitives/static-store": "^0.1.2", "@solid-primitives/utils": "^6.3.2" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-zBLje5E06TgOg93S7rGPldmhDnouNGhvfZVKOp+oG2XU8snA+GoCSSCz1M+jpNAg5Ek2EakU5UVQqL152WmdXQ=="],
 
-    "@opencode-ai/ui/tailwindcss": ["tailwindcss@4.1.11", "", {}, "sha512-2E9TBm6MDD/xKYe+dvJZAmg3yxIEDNRc0jwlNyDg/4Fil2QcSLjFKGVff0lAf1jjeaArlG/M75Ey/EYr/OJtBA=="],
+    "@qronos-ai/ui/tailwindcss": ["tailwindcss@4.1.11", "", {}, "sha512-2E9TBm6MDD/xKYe+dvJZAmg3yxIEDNRc0jwlNyDg/4Fil2QcSLjFKGVff0lAf1jjeaArlG/M75Ey/EYr/OJtBA=="],
 
     "@opentui/core/marked": ["marked@17.0.1", "", { "bin": { "marked": "bin/marked.js" } }, "sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg=="],
 
@@ -5928,11 +5928,11 @@
 
     "@octokit/request/@octokit/types/@octokit/openapi-types": ["@octokit/openapi-types@28.0.0", "", {}, "sha512-0rFyLuyHvIj6uuZWuDslxkowFYdPXoNIkeAv4b27dzm2Tf4vGWXnPsMcxs7d65kLdMERgP3wc1AEPlqMz8e1cQ=="],
 
-    "@opencode-ai/session-ui/@solid-primitives/resize-observer/@solid-primitives/rootless": ["@solid-primitives/rootless@1.5.4", "", { "dependencies": { "@solid-primitives/utils": "^6.4.1" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-TOIZa1VUfVJ+9nkCcRajw3U4t9vBOP1HxX1WHNTbXq32mXwlqTvUnC4CRIilohcryBkT9u2ZkhUDSHRTaGp55g=="],
+    "@qronos-ai/session-ui/@solid-primitives/resize-observer/@solid-primitives/rootless": ["@solid-primitives/rootless@1.5.4", "", { "dependencies": { "@solid-primitives/utils": "^6.4.1" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-TOIZa1VUfVJ+9nkCcRajw3U4t9vBOP1HxX1WHNTbXq32mXwlqTvUnC4CRIilohcryBkT9u2ZkhUDSHRTaGp55g=="],
 
-    "@opencode-ai/storybook/react-dom/scheduler": ["scheduler@0.23.2", "", { "dependencies": { "loose-envify": "^1.1.0" } }, "sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ=="],
+    "@qronos-ai/storybook/react-dom/scheduler": ["scheduler@0.23.2", "", { "dependencies": { "loose-envify": "^1.1.0" } }, "sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ=="],
 
-    "@opencode-ai/ui/@solid-primitives/resize-observer/@solid-primitives/rootless": ["@solid-primitives/rootless@1.5.4", "", { "dependencies": { "@solid-primitives/utils": "^6.4.1" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-TOIZa1VUfVJ+9nkCcRajw3U4t9vBOP1HxX1WHNTbXq32mXwlqTvUnC4CRIilohcryBkT9u2ZkhUDSHRTaGp55g=="],
+    "@qronos-ai/ui/@solid-primitives/resize-observer/@solid-primitives/rootless": ["@solid-primitives/rootless@1.5.4", "", { "dependencies": { "@solid-primitives/utils": "^6.4.1" }, "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-TOIZa1VUfVJ+9nkCcRajw3U4t9vBOP1HxX1WHNTbXq32mXwlqTvUnC4CRIilohcryBkT9u2ZkhUDSHRTaGp55g=="],
 
     "@oxc-resolver/binding-wasm32-wasi/@emnapi/core/@emnapi/wasi-threads": ["@emnapi/wasi-threads@1.2.2", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA=="],
 

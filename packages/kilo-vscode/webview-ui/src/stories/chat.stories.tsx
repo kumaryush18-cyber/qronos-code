@@ -8,11 +8,11 @@
  */
 
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import type { AssistantMessage } from "@kilocode/sdk/v2"
+import type { AssistantMessage } from "@qronos-ai/sdk/v2"
 import { batch, createEffect, createSignal, onCleanup, onMount } from "solid-js"
 import { StoryProviders, defaultMockData, mockSessionValue } from "./StoryProviders"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { ChatView } from "../components/chat/ChatView"
 import { SessionDock } from "../components/chat/SessionDock"
 import { ErrorDisplay } from "../components/chat/ErrorDisplay"

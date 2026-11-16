@@ -1,4 +1,4 @@
-import type { KiloClient, McpStatus } from "@kilocode/sdk/v2/client"
+import type { KiloClient, McpStatus } from "@qronos-ai/sdk/v2/client"
 import * as vscode from "vscode"
 import type { SSEPayload } from "../cli-backend/sdk-sse-adapter"
 import { needsAuthNames } from "./status"

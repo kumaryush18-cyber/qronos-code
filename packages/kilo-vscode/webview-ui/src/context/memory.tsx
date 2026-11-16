@@ -4,8 +4,8 @@ import { useServer } from "./server"
 import { useSession } from "./session"
 import { useVSCode } from "./vscode"
 import { useLanguage } from "./language"
-import { showToast } from "@kilocode/kilo-ui/toast"
-import type { MemoryStatusResponse } from "@kilocode/sdk/v2"
+import { showToast } from "@qronos-ai/kilo-ui/toast"
+import type { MemoryStatusResponse } from "@qronos-ai/sdk/v2"
 import type { ExtensionMessage } from "../types/messages"
 
 export interface MemoryContextValue {

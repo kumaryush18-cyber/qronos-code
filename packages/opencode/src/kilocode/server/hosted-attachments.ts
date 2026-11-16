@@ -1,5 +1,5 @@
 import type { HostedSessionID, HostedWorkspaceID, Provider } from "@/kilocode/session-hosting/types"
-import { ascending } from "@opencode-ai/schema/identifier"
+import { ascending } from "@qronos-ai/schema/identifier"
 import { Schema } from "effect"
 
 /**

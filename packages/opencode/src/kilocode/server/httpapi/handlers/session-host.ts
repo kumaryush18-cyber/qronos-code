@@ -18,7 +18,7 @@ import {
   type WorkspaceProfileDefaultInput,
   type WorkspaceSessionStartBody,
 } from "@/kilocode/session-hosting/types"
-import { SessionHostEvent } from "@opencode-ai/schema/kilocode/session-host-event"
+import { SessionHostEvent } from "@qronos-ai/schema/kilocode/session-host-event"
 import {
   ConflictError,
   InvalidRequestError,
@@ -29,7 +29,7 @@ import {
 } from "@/server/routes/instance/httpapi/errors"
 import { InstanceHttpApi } from "@/server/routes/instance/httpapi/api"
 import { Effect } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import {
   SessionHostContinuationError,

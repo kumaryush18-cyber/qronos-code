@@ -1,7 +1,7 @@
 import { dirname } from "node:path"
 import { Effect } from "effect"
-import { batchMutations, enabled, ensureDirectory } from "@kilocode/sandbox"
-import type { FSUtil } from "@opencode-ai/core/fs-util"
+import { batchMutations, enabled, ensureDirectory } from "@qronos-ai/sandbox"
+import type { FSUtil } from "@qronos-ai/core/fs-util"
 import * as Encoding from "../encoding"
 import * as Bom from "@/util/bom"
 

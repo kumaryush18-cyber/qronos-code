@@ -1,5 +1,5 @@
 import { Context, Deferred, Effect, Layer } from "effect"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { InstanceState } from "@/effect/instance-state"
 import { isDisposing, registerBeforeDisposer } from "@/kilocode/effect/instance-registry"
 import { capture, type InstanceContext } from "@/kilocode/instance"

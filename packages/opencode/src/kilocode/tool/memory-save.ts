@@ -2,8 +2,8 @@ import { Effect } from "effect"
 import { Instance } from "@/kilocode/instance"
 import * as Tool from "@/tool/tool"
 import { ConfigProtection } from "@/kilocode/permission/config-paths"
-import { MemoryService } from "@kilocode/kilo-memory/effect/service"
-import { MemoryTool } from "@kilocode/kilo-memory/tool"
+import { MemoryService } from "@qronos-ai/kilo-memory/effect/service"
+import { MemoryTool } from "@qronos-ai/kilo-memory/tool"
 
 export const MemorySaveTool = Tool.define(
   "kilo_memory_save",

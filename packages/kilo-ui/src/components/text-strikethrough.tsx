@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/text-strikethrough"
+export * from "@qronos-ai/ui/text-strikethrough"

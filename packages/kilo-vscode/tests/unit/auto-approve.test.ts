@@ -2,7 +2,7 @@ import { describe, expect, it } from "bun:test"
 import * as vscode from "vscode"
 import { registerToggleAutoApprove, type AutoApproveController } from "../../src/commands/toggle-auto-approve"
 import { createAutoApproveBridge } from "../../src/kilo-provider/auto-approve"
-import type { Event, KiloClient } from "@kilocode/sdk/v2/client"
+import type { Event, KiloClient } from "@qronos-ai/sdk/v2/client"
 import type { KiloConnectionService } from "../../src/services/cli-backend/connection-service"
 
 type ConfigEvent = { affectsConfiguration(key: string): boolean }

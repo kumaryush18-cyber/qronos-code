@@ -707,7 +707,7 @@ class KiloCliDataParserTest {
                     "error": {
                         "name": "UnknownError",
                         "data": {
-                            "message": "Cannot find module '@kilocode/plugin' from '/workspace/.opencode/tool/github-triage.ts'",
+                            "message": "Cannot find module '@qronos-ai/plugin' from '/workspace/.opencode/tool/github-triage.ts'",
                             "ref": "err_123"
                         }
                     }
@@ -719,7 +719,7 @@ class KiloCliDataParserTest {
             assertTrue(result is ChatEventDto.Error)
             assertEquals("ses_1", result.sessionID)
             assertEquals("UnknownError", result.error?.type)
-            assertEquals("Cannot find module '@kilocode/plugin' from '/workspace/.opencode/tool/github-triage.ts'", result.error?.message)
+            assertEquals("Cannot find module '@qronos-ai/plugin' from '/workspace/.opencode/tool/github-triage.ts'", result.error?.message)
             assertEquals(listOf("message", "ref"), result.error?.dataKeys)
             assertEquals("err_123", result.error?.ref)
         }

@@ -1,6 +1,6 @@
 import { discoverAuthorizationServerMetadata, refreshAuthorization } from "@modelcontextprotocol/sdk/client/auth.js"
 import { Effect } from "effect"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import type { McpAuth } from "../../mcp/auth"
 
 // Some MCP servers reject an expired access token with `403` instead of `401`. The MCP SDK

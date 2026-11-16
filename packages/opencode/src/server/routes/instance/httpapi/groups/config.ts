@@ -1,5 +1,5 @@
 import { Config } from "@/config/config"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
 import { Provider } from "@/provider/provider"
 import { Schema } from "effect" // kilocode_change
 import { HttpApi, HttpApiEndpoint, HttpApiError, HttpApiGroup, OpenApi } from "effect/unstable/httpapi"

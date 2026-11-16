@@ -1,9 +1,9 @@
 /** @jsxImportSource solid-js */
 import { For, Show, createMemo, createSignal } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Spinner } from "@kilocode/kilo-ui/spinner"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Spinner } from "@qronos-ai/kilo-ui/spinner"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import type { PRStatus } from "../../src/types/messages"
 import type { PRCheck, CheckStatus } from "./pr-types"
 import type { CheckBucket } from "./pr-check-groups"

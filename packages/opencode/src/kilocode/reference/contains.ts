@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import type { Resolved } from "@/kilocode/reference"
 
 export namespace KiloReference {

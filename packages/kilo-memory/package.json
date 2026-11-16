@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@kilocode/kilo-memory",
+  "name": "@qronos-ai/kilo-memory",
   "version": "7.8.28",
   "type": "module",
   "license": "MIT",

@@ -8,7 +8,7 @@ process.env["KILO_DISABLE_SESSION_INGEST"] = "0"
 delete process.env["KILO_DISABLE_SHARE"]
 
 import { afterEach, beforeEach, expect, mock, test } from "bun:test"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { Layer } from "effect"
 import { Auth } from "../../../src/auth"
 import { Bus } from "../../../src/bus"

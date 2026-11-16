@@ -1,13 +1,13 @@
 import { describe, expect } from "bun:test"
-import { makeGlobalNode } from "@opencode-ai/core/effect/app-node"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { makeGlobalNode } from "@qronos-ai/core/effect/app-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform"
 import { Effect, Layer, Stream } from "effect"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
 import { Installation } from "../../src/installation"
-import { InstallationChannel } from "@opencode-ai/core/installation/version"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { InstallationChannel } from "@qronos-ai/core/installation/version"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { testEffect } from "../lib/effect"
 
 const encoder = new TextEncoder()

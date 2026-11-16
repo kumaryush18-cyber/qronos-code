@@ -1,4 +1,4 @@
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import type { Target } from "@/control-plane/types"
 import { Workspace } from "@/control-plane/workspace"
 import { WorkspaceAdapterRuntime } from "@/control-plane/workspace-adapter-runtime"
@@ -9,7 +9,7 @@ import { getWorkspaceRouteSessionID, isLocalWorkspaceRoute, workspaceProxyURL } 
 import { forkTargetDirectory } from "@/kilocode/server/routes/fork-routing" // kilocode_change - fork honors explicit target directory
 import { HostedRouting, type Routed } from "@/kilocode/server/routes/hosted-routing" // kilocode_change - opaque hosted attachments
 import { NotFoundError } from "@/storage/storage"
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@qronos-ai/core/flag/flag"
 import { Context, Data, Effect, Layer, Option, Schema } from "effect"
 import { HttpClient, HttpServerRequest, HttpServerResponse } from "effect/unstable/http"
 import { HttpApiMiddleware } from "effect/unstable/httpapi"

@@ -1,14 +1,14 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { describe, expect, test } from "bun:test"
 import { Effect, Layer } from "effect"
 import type { Agent } from "../../src/agent/agent"
-import { NamedError } from "@opencode-ai/core/util/error"
+import { NamedError } from "@qronos-ai/core/util/error"
 import { Skill } from "../../src/skill"
 import { Permission } from "../../src/permission"
 import type { Provider } from "../../src/provider/provider"
 import { SystemPrompt } from "../../src/session/system"
 import { MCP } from "../../src/mcp" // kilocode_change - restore upstream MCP coverage in Kilo's AppNodeBuilder harness
-import { LocationServiceMap } from "@opencode-ai/core/location-services"
+import { LocationServiceMap } from "@qronos-ai/core/location-services"
 import { testEffect } from "../lib/effect"
 import { Config } from "../../src/config/config" // kilocode_change
 

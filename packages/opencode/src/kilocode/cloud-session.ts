@@ -1,5 +1,5 @@
 import { errorMessage } from "@/util/error"
-import { Log } from "@opencode-ai/core/util/log"
+import { Log } from "@qronos-ai/core/util/log"
 import { UI } from "@/cli/ui"
 
 const log = Log.create({ service: "kilocode.cloud-session" })

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/session-review"
+export * from "@qronos-ai/ui/session-review"

@@ -13,11 +13,11 @@ import {
   type ServerCapabilities,
   type Tool,
 } from "@modelcontextprotocol/sdk/types.js"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
 import { Cause, Effect, Exit } from "effect"
 import type { MCP as MCPNS } from "../../src/mcp/index"
 import * as SandboxNetwork from "../../src/kilocode/sandbox/network" // kilocode_change
-import { run as runSandbox, type Profile } from "@kilocode/sandbox" // kilocode_change
+import { run as runSandbox, type Profile } from "@qronos-ai/sandbox" // kilocode_change
 import { MCP } from "../../src/mcp/index"
 import { McpOAuthCallback } from "../../src/mcp/oauth-callback"
 import { TestInstance } from "../fixture/fixture"

@@ -16,11 +16,11 @@ import {
   untrack,
   type Component,
 } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
-import { FileIcon } from "@kilocode/kilo-ui/file-icon"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { showToast } from "@kilocode/kilo-ui/toast"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
+import { FileIcon } from "@qronos-ai/kilo-ui/file-icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { showToast } from "@qronos-ai/kilo-ui/toast"
 import {
   createHold,
   hasPopup,

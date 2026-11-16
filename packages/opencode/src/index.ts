@@ -3,15 +3,15 @@ import { hideBin } from "yargs/helpers"
 // kilocode_change - upstream account console intentionally omitted; KiloCli registers `kilo console` for local settings
 import { UI } from "./cli/ui"
 import { TuiThreadCommand } from "./cli/cmd/tui" // kilocode_change - yargs requires the default command builder eagerly
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { FormatError } from "./cli/error"
 import { EOL } from "os"
 // kilocode_change - upstream web command intentionally omitted; Kilo does not ship an embedded web UI
 import { errorMessage } from "./util/error"
 import { Heap } from "./cli/heap"
 import { KiloCli } from "@/kilocode/cli/setup" // kilocode_change
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
-import { ensureProcessMetadata } from "@opencode-ai/core/util/opencode-process" // kilocode_change
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
+import { ensureProcessMetadata } from "@qronos-ai/core/util/opencode-process" // kilocode_change
 // kilocode_change start - defer heavy command implementations until yargs selects them
 import {
   AcpCommand,

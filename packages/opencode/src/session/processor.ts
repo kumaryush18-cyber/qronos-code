@@ -1,8 +1,8 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { PermissionV1 } from "@opencode-ai/core/v1/permission"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { PermissionV1 } from "@qronos-ai/core/v1/permission"
 import { Image } from "@/image/image"
 import { KiloAttachment } from "@/kilocode/session/attachment" // kilocode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Cause, Deferred, Effect, Exit, Layer, Context, Scope, Schema } from "effect"
 import * as Stream from "effect/Stream"
 import { Agent } from "@/agent/agent"
@@ -36,8 +36,8 @@ import { Suggestion } from "@/kilocode/suggestion"
 import { errorMessage } from "@/util/error"
 import { isRecord } from "@/util/record"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { Database } from "@opencode-ai/core/database/database"
-import { Usage, type LLMEvent } from "@opencode-ai/llm"
+import { Database } from "@qronos-ai/core/database/database"
+import { Usage, type LLMEvent } from "@qronos-ai/llm"
 
 const DOOM_LOOP_THRESHOLD = 3
 export type Result = "compact" | "stop" | "continue"

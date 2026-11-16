@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 
 import { type Component, Show, createSignal, onCleanup, onMount } from "solid-js"
-import { Dialog } from "@kilocode/kilo-ui/dialog"
-import { Button } from "@kilocode/kilo-ui/button"
+import { Dialog } from "@qronos-ai/kilo-ui/dialog"
+import { Button } from "@qronos-ai/kilo-ui/button"
 import { useVSCode } from "../src/context/vscode"
 import { useLanguage } from "../src/context/language"
 import { joinPath, repoName } from "./project-utils"

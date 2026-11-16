@@ -1,11 +1,11 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient, path } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { httpClient, path } from "@qronos-ai/core/effect/app-node-platform"
 import { NodePath } from "@effect/platform-node"
 import { Effect, Layer, Path, Schema, Context } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
 import { withTransientReadRetry } from "@/util/effect-http-client"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Global } from "@opencode-ai/core/global"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { Global } from "@qronos-ai/core/global"
 import { isSafeSegment, isSafeRelativePath } from "@/kilocode/skill/discovery-validate" // kilocode_change
 
 const skillConcurrency = 4

@@ -1,6 +1,6 @@
 import { Effect, Layer } from "effect"
 import { Agent } from "@/agent/agent"
-import { MemoryService } from "@kilocode/kilo-memory/effect/service"
+import { MemoryService } from "@qronos-ai/kilo-memory/effect/service"
 import type { Tool } from "@/tool/tool"
 import * as Truncate from "@/tool/truncate"
 

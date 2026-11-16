@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import path from "node:path"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { target } from "../../src/kilocode/skill-remove"
 
 const info = (location: string) => ({

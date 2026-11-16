@@ -3,7 +3,7 @@ import path from "path"
 import fs from "fs/promises"
 import { describe, expect, test } from "bun:test"
 import { ConfigProtection } from "../../../src/kilocode/permission/config-paths"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { KilocodePaths } from "../../../src/kilocode/paths"
 import { tmpdir } from "../../fixture/fixture"
 

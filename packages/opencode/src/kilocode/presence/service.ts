@@ -1,7 +1,7 @@
 import { Auth } from "@/auth"
 import { EventServiceClient } from "@/kilocode/event-service/client"
-import { KILO_EVENT_SERVICE_URL } from "@kilocode/kilo-gateway"
-import * as Log from "@opencode-ai/core/util/log"
+import { KILO_EVENT_SERVICE_URL } from "@qronos-ai/kilo-gateway"
+import * as Log from "@qronos-ai/core/util/log"
 import { Context, Effect, Layer } from "effect"
 import type { Platform } from "./context"
 import {
@@ -50,7 +50,7 @@ export namespace KiloViewers {
     readonly invalidateAuth: () => Effect.Effect<void>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/KiloViewers") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/KiloViewers") {}
 
   export const layer = Layer.effect(
     Service,

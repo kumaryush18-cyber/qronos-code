@@ -1,4 +1,4 @@
-import type { KiloModelsResult } from "@kilocode/kilo-gateway"
+import type { KiloModelsResult } from "@qronos-ai/kilo-gateway"
 
 export function retryable(result: KiloModelsResult) {
   if (!result.error) return Object.keys(result.models).length === 0

@@ -1,5 +1,5 @@
 import { RGBA, TextAttributes } from "@opentui/core"
-import { openUrl } from "@opencode-ai/core/open" // kilocode_change - backport upstream browser URL validation
+import { openUrl } from "@qronos-ai/core/open" // kilocode_change - backport upstream browser URL validation
 import { createSignal } from "solid-js"
 import { selectedForeground, useTheme } from "../context/theme"
 import { useDialog, type DialogContext } from "../ui/dialog"

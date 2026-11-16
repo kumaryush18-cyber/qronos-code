@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import type { Model } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { SessionID } from "@/session/schema"
 import { KiloSessionPrompt } from "@/kilocode/session/prompt"
 
@@ -13,7 +13,7 @@ function model(id: string, reasoning = true): Model {
     api: {
       id,
       url: "https://api.kilo.ai/api/openrouter",
-      npm: "@kilocode/kilo-gateway",
+      npm: "@qronos-ai/kilo-gateway",
     },
     name: id,
     capabilities: {

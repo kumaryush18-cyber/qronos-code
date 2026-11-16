@@ -1,4 +1,4 @@
-import { zeroID } from "@opencode-ai/core/kilocode/zero-id"
+import { zeroID } from "@qronos-ai/core/kilocode/zero-id"
 import { imageMime } from "../diff/shared/image"
 import type { Batch, Meta } from "./local-diff-batch"
 import type { WorktreeDiffEntry } from "./types"

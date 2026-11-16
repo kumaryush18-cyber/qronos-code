@@ -1,8 +1,8 @@
 export * as EventV2 from "./event"
 
 import { Cause, Context, Effect, Layer, Option, PubSub, Queue, Schema, Stream } from "effect"
-import { Event } from "@opencode-ai/schema/event"
-import type { Data, Definition, Payload } from "@opencode-ai/schema/event"
+import { Event } from "@qronos-ai/schema/event"
+import type { Data, Definition, Payload } from "@qronos-ai/schema/event"
 import { and, asc, eq, gt, inArray } from "drizzle-orm"
 import { Database } from "./database/database"
 import { EventSequenceTable, EventTable } from "./event/sql"
@@ -11,11 +11,11 @@ import * as EventBatch from "./kilocode/event-batch" // kilocode_change
 import { Location } from "./location"
 import { makeGlobalNode } from "./effect/app-node"
 import { isDeepStrictEqual } from "node:util"
-import { Durable } from "@opencode-ai/schema/durable-event-manifest"
+import { Durable } from "@qronos-ai/schema/durable-event-manifest"
 
 export const ID = Event.ID
-export type ID = import("@opencode-ai/schema/event").ID
-export type { Data, Definition, Payload } from "@opencode-ai/schema/event"
+export type ID = import("@qronos-ai/schema/event").ID
+export type { Data, Definition, Payload } from "@qronos-ai/schema/event"
 
 export type Subscriber<D extends Definition = Definition> = (event: Payload<D>) => Effect.Effect<void>
 export type Unsubscribe = Effect.Effect<void>

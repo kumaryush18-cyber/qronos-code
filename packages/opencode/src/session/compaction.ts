@@ -1,7 +1,7 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { SessionV1 } from "@opencode-ai/core/v1/session"
-import { ConfigV1 } from "@opencode-ai/core/v1/config/config"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { SessionV1 } from "@qronos-ai/core/v1/session"
+import { ConfigV1 } from "@qronos-ai/core/v1/config/config"
 import { Session } from "./session"
 import { SessionID, MessageID, PartID } from "./schema"
 import { Provider } from "@/provider/provider"
@@ -17,7 +17,7 @@ import { Effect, Layer, Context } from "effect"
 import * as DateTime from "effect/DateTime" // kilocode_change
 import { InstanceState } from "@/effect/instance-state"
 import { isOverflow as overflow, usable } from "./overflow"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 // kilocode_change start
 import { KiloSessionPromptQueue } from "@/kilocode/session/prompt-queue"
 import { KiloCompactionPayloadRecovery } from "@/kilocode/session/compaction-payload-recovery"
@@ -27,13 +27,13 @@ import { KiloSession } from "@/kilocode/session"
 // kilocode_change end
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { SessionEvent } from "@opencode-ai/core/session/event" // kilocode_change
-import { SessionMessage } from "@opencode-ai/core/session/message" // kilocode_change
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { Database } from "@opencode-ai/core/database/database" // kilocode_change
-import { buildPrompt } from "@opencode-ai/core/session/compaction"
-import { SessionCompactionEvent } from "@opencode-ai/schema/session-compaction-event"
+import { SessionEvent } from "@qronos-ai/core/session/event" // kilocode_change
+import { SessionMessage } from "@qronos-ai/core/session/message" // kilocode_change
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { Database } from "@qronos-ai/core/database/database" // kilocode_change
+import { buildPrompt } from "@qronos-ai/core/session/compaction"
+import { SessionCompactionEvent } from "@qronos-ai/schema/session-compaction-event"
 
 export const Event = SessionCompactionEvent
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test"
 import path from "node:path"
 import { Project, SyntaxKind } from "ts-morph"
-import type { UiI18nParams, UiI18nPluralKey, UiPluralCategory } from "@kilocode/kilo-ui/context/i18n"
+import type { UiI18nParams, UiI18nPluralKey, UiPluralCategory } from "@qronos-ai/kilo-ui/context/i18n"
 import type { LanguageContextValue, LanguageProvider } from "../../webview-ui/src/context/language"
 import {
   LOCALES,
@@ -146,8 +146,8 @@ describe("language dictionary cache", () => {
       const locale = module.getBaseNameWithoutExtension()
       expect(module.getImportDeclarations().map((item) => item.getModuleSpecifierValue())).toEqual([
         `../../i18n/${locale}`,
-        `@kilocode/kilo-ui/i18n/${locale}`,
-        ...(locale === "fa" ? [] : [`@kilocode/kilo-i18n/${locale}`]),
+        `@qronos-ai/kilo-ui/i18n/${locale}`,
+        ...(locale === "fa" ? [] : [`@qronos-ai/kilo-i18n/${locale}`]),
         "../../../agent-manager/i18n/en",
         `../../../agent-manager/i18n/${locale}`,
       ])
@@ -163,7 +163,7 @@ describe("language dictionary cache", () => {
           .getImportDeclarations()
           .filter((item) => item.getNamedImports().some((name) => name.getName() === "dict"))
           .map((item) => item.getModuleSpecifierValue()),
-      ).toEqual(["@kilocode/kilo-ui/i18n/en", "../i18n/en", "../../agent-manager/i18n/en", "@kilocode/kilo-i18n/en"])
+      ).toEqual(["@qronos-ai/kilo-ui/i18n/en", "../i18n/en", "../../agent-manager/i18n/en", "@qronos-ai/kilo-i18n/en"])
       expect(state.requests).toHaveLength(0)
       expect(Object.keys(state.cache)).toEqual(["en"])
       expect(await state.load("en")).toBe(state.cache.en)
@@ -213,8 +213,8 @@ describe("language dictionary cache", () => {
     for (const locale of LOCALES) {
       const [app, ui, kilo, am] = await Promise.all([
         import(path.resolve(path.dirname(file), `../i18n/${locale}.ts`)),
-        import(`@kilocode/kilo-ui/i18n/${locale}`),
-        locale === "fa" ? { dict: {} } : import(`@kilocode/kilo-i18n/${locale}`),
+        import(`@qronos-ai/kilo-ui/i18n/${locale}`),
+        locale === "fa" ? { dict: {} } : import(`@qronos-ai/kilo-i18n/${locale}`),
         import(path.resolve(path.dirname(file), `../../agent-manager/i18n/${locale}.ts`)),
       ])
       const expected =

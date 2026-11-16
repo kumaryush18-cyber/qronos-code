@@ -1,6 +1,6 @@
-import { Location } from "@opencode-ai/core/location"
-import { Project } from "@opencode-ai/core/project"
-import { AbsolutePath } from "@opencode-ai/core/schema"
+import { Location } from "@qronos-ai/core/location"
+import { Project } from "@qronos-ai/core/project"
+import { AbsolutePath } from "@qronos-ai/core/schema"
 import { Effect, Layer } from "effect"
 import { tmpdir } from "./tmpdir"
 

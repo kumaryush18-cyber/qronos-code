@@ -1,6 +1,6 @@
 import { expect } from "bun:test"
 import { Effect, Fiber } from "effect"
-import { createKiloClient, type Event, type KiloClient } from "@kilocode/sdk/v2"
+import { createKiloClient, type Event, type KiloClient } from "@qronos-ai/sdk/v2"
 import path from "node:path"
 import { mkdir } from "node:fs/promises"
 import { pathToFileURL } from "node:url"

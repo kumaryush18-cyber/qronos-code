@@ -1,4 +1,4 @@
-# @kilocode/kilo-gateway
+# @qronos-ai/kilo-gateway
 
 Unified Kilo Gateway package for OpenCode providing authentication, AI provider integration, and API access.
 
@@ -12,7 +12,7 @@ Unified Kilo Gateway package for OpenCode providing authentication, AI provider 
 ## Installation
 
 ```bash
-bun add @kilocode/kilo-gateway
+bun add @qronos-ai/kilo-gateway
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ bun add @kilocode/kilo-gateway
 ### Plugin Registration
 
 ```typescript
-import { KiloAuthPlugin } from "@kilocode/kilo-gateway"
+import { KiloAuthPlugin } from "@qronos-ai/kilo-gateway"
 
 // Register with OpenCode
 const plugins = [KiloAuthPlugin]
@@ -29,7 +29,7 @@ const plugins = [KiloAuthPlugin]
 ### Provider Usage
 
 ```typescript
-import { createKilo } from "@kilocode/kilo-gateway"
+import { createKilo } from "@qronos-ai/kilo-gateway"
 
 const provider = createKilo({
   kilocodeToken: process.env.KILOCODE_API_KEY,
@@ -42,7 +42,7 @@ const model = provider.languageModel("anthropic/claude-sonnet-4")
 ### API Access
 
 ```typescript
-import { fetchProfile, fetchBalance } from "@kilocode/kilo-gateway"
+import { fetchProfile, fetchBalance } from "@qronos-ai/kilo-gateway"
 
 const profile = await fetchProfile(token)
 const balance = await fetchBalance(token)

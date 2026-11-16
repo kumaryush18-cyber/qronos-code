@@ -1,8 +1,8 @@
 /** @jsxImportSource solid-js */
 
 import type { Component } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import type { LanguageContextValue } from "../src/context/language"
 
 interface Props {

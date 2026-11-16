@@ -1,4 +1,4 @@
-import type { KilocodeSessionModelUsageResponse } from "@kilocode/sdk/v2"
+import type { KilocodeSessionModelUsageResponse } from "@qronos-ai/sdk/v2"
 import type { Part, TokenUsage } from "./parts"
 
 export type SessionModelUsage = KilocodeSessionModelUsageResponse

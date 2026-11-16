@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 
 import { createMemo, createSignal, type Component } from "solid-js"
-import { Dialog } from "@kilocode/kilo-ui/dialog"
+import { Dialog } from "@qronos-ai/kilo-ui/dialog"
 import "./agent-manager.css"
 import "./agent-manager-review.css"
 import { BRANCH_LIMIT, BranchSelect } from "../src/components/shared/BranchSelect"

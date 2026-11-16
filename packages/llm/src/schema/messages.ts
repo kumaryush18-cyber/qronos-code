@@ -1,5 +1,5 @@
 import { Schema, SchemaGetter } from "effect" // kilocode_change
-import { ToolContent, ToolFileContent, ToolTextContent } from "@opencode-ai/schema/llm"
+import { ToolContent, ToolFileContent, ToolTextContent } from "@qronos-ai/schema/llm"
 import { JsonSchema, MessageRole, ProviderMetadata } from "./ids"
 import { CacheHint, CachePolicy, GenerationOptions, HttpOptions, ModelSchema, ProviderOptions } from "./options"
 import { isRecord } from "../utils/record"
@@ -42,7 +42,7 @@ export type MediaPart = Schema.Schema.Type<typeof MediaPart>
 
 export { ToolContent, ToolFileContent, ToolTextContent }
 
-export { StoredToolContent } from "@opencode-ai/schema/llm" // kilocode_change - shared with the durable event schema
+export { StoredToolContent } from "@qronos-ai/schema/llm" // kilocode_change - shared with the durable event schema
 
 // kilocode_change start - Kilo keeps a tolerant tool-result value union
 const toolResultValueSchema = Schema.Union([

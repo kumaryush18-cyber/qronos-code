@@ -2,8 +2,8 @@ import { describe, expect, test } from "bun:test"
 import { Database } from "bun:sqlite"
 import { accessSync, chmodSync, constants } from "fs"
 import path from "path"
-import { DbPreflight } from "@opencode-ai/core/kilocode/db-preflight"
-import { Database as KiloDatabase } from "@opencode-ai/core/database/database"
+import { DbPreflight } from "@qronos-ai/core/kilocode/db-preflight"
+import { Database as KiloDatabase } from "@qronos-ai/core/database/database"
 import { tmpdir } from "../fixture/tmpdir"
 
 const writable = (file: string) => {

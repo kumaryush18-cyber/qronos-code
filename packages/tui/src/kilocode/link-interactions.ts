@@ -1,7 +1,7 @@
 import { getLinkId, MouseButton, TextAttributes, type MouseEvent, type OptimizedBuffer } from "@opentui/core"
 import { useRenderer } from "@opentui/solid"
 import { onCleanup } from "solid-js"
-import { openUrl } from "@opencode-ai/core/open"
+import { openUrl } from "@qronos-ai/core/open"
 import { useToast } from "../ui/toast"
 
 const clickDelay = 250

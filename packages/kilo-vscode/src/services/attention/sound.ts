@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import type { TuiAttentionSoundName } from "@kilocode/plugin/tui"
+import type { TuiAttentionSoundName } from "@qronos-ai/plugin/tui"
 import { exec } from "../../util/process"
 
 export const CustomSoundIDs = [

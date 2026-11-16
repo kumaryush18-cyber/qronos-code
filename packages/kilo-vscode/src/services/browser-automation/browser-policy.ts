@@ -1,4 +1,4 @@
-import { isPublicAddress, parseDestination } from "@kilocode/sandbox/destination"
+import { isPublicAddress, parseDestination } from "@qronos-ai/sandbox/destination"
 import { isIP } from "node:net"
 
 export function parse(value: string): URL {

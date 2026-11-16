@@ -31,14 +31,14 @@ if (!existsSync(cliDistDir)) {
 }
 
 const targets = [
-  { target: "linux-x64", cliDir: "@kilocode/cli-linux-x64", binary: "kilo" },
-  { target: "linux-arm64", cliDir: "@kilocode/cli-linux-arm64", binary: "kilo" },
-  { target: "alpine-x64", cliDir: "@kilocode/cli-linux-x64-musl", binary: "kilo" },
-  { target: "alpine-arm64", cliDir: "@kilocode/cli-linux-arm64-musl", binary: "kilo" },
-  { target: "darwin-x64", cliDir: "@kilocode/cli-darwin-x64", binary: "kilo" },
-  { target: "darwin-arm64", cliDir: "@kilocode/cli-darwin-arm64", binary: "kilo" },
-  { target: "win32-x64", cliDir: "@kilocode/cli-windows-x64", binary: "kilo.exe" },
-  { target: "win32-arm64", cliDir: "@kilocode/cli-windows-arm64", binary: "kilo.exe" },
+  { target: "linux-x64", cliDir: "@qronos-ai/cli-linux-x64", binary: "kilo" },
+  { target: "linux-arm64", cliDir: "@qronos-ai/cli-linux-arm64", binary: "kilo" },
+  { target: "alpine-x64", cliDir: "@qronos-ai/cli-linux-x64-musl", binary: "kilo" },
+  { target: "alpine-arm64", cliDir: "@qronos-ai/cli-linux-arm64-musl", binary: "kilo" },
+  { target: "darwin-x64", cliDir: "@qronos-ai/cli-darwin-x64", binary: "kilo" },
+  { target: "darwin-arm64", cliDir: "@qronos-ai/cli-darwin-arm64", binary: "kilo" },
+  { target: "win32-x64", cliDir: "@qronos-ai/cli-windows-x64", binary: "kilo.exe" },
+  { target: "win32-arm64", cliDir: "@qronos-ai/cli-windows-arm64", binary: "kilo.exe" },
 ]
 
 const binDir = join(import.meta.dir, "..", "bin")

@@ -1,7 +1,7 @@
 import type { ModelMessage } from "ai"
 import * as Stream from "effect/Stream"
-import type { LLMEvent } from "@opencode-ai/llm"
-import type { Logger } from "@opencode-ai/core/util/log"
+import type { LLMEvent } from "@qronos-ai/llm"
+import type { Logger } from "@qronos-ai/core/util/log"
 import type { Provider } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { KiloSessionOverflow } from "./overflow"
@@ -9,7 +9,7 @@ import { KiloSessionOverflow } from "./overflow"
 const SAFETY = 2048
 const MIN_OUTPUT = 1024
 const CLAUDE = new Set([
-  "@kilocode/kilo-gateway",
+  "@qronos-ai/kilo-gateway",
   "@ai-sdk/anthropic",
   "@ai-sdk/amazon-bedrock",
   "@ai-sdk/google-vertex/anthropic",

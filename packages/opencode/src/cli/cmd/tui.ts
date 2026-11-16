@@ -4,15 +4,15 @@ import path from "path"
 import { text as streamText } from "node:stream/consumers"
 import { fileURLToPath } from "url"
 import { UI } from "@/cli/ui"
-import { errorMessage } from "@opencode-ai/tui/util/error"
+import { errorMessage } from "@qronos-ai/tui/util/error"
 import { withTimeout } from "@/util/timeout"
 import { withNetworkOptions, resolveNetworkOptionsNoConfig, hasArg } from "@/cli/network"
 import { Filesystem } from "@/util/filesystem"
-import type { GlobalEvent } from "@kilocode/sdk/v2"
-import type { EventSource } from "@opencode-ai/tui/context/sdk"
+import type { GlobalEvent } from "@qronos-ai/sdk/v2"
+import type { EventSource } from "@qronos-ai/tui/context/sdk"
 import { writeHeapSnapshot } from "v8"
 import type { StartInput } from "@/kilocode/cli/cmd/tui/thread" // kilocode_change - runtime imports deferred into handlers
-import { win32InstallCtrlCGuard } from "@opencode-ai/tui/terminal-win32"
+import { win32InstallCtrlCGuard } from "@qronos-ai/tui/terminal-win32"
 import { validate as validateSession } from "@/kilocode/cli/cmd/tui" // kilocode_change
 // kilocode_change start - correlate the TUI worker with its parent process
 import {
@@ -20,10 +20,10 @@ import {
   KILO_RUN_ID,
   ensureRunID,
   sanitizedProcessEnv,
-} from "@opencode-ai/core/util/opencode-process"
+} from "@qronos-ai/core/util/opencode-process"
 // kilocode_change end
 import type { RemoteExitBridgeClient } from "@/kilocode/cli/cmd/tui/remote-exit-bridge" // kilocode_change - runtime import deferred
-import type { Exit } from "@opencode-ai/tui/context/exit" // kilocode_change
+import type { Exit } from "@qronos-ai/tui/context/exit" // kilocode_change
 import { KiloRpc } from "@/kilocode/util/rpc" // kilocode_change - gates requests on worker readiness
 
 declare global {
@@ -458,7 +458,7 @@ export const TuiThreadCommand = cmd({
         // kilocode_change start - import cloud session before TUI renders
         if (args.cloudFork && args.session) {
           UI.println("Importing session from cloud...")
-          const { createKiloClient } = await import("@kilocode/sdk/v2")
+          const { createKiloClient } = await import("@qronos-ai/sdk/v2")
           const sdk = createKiloClient({
             baseUrl: transport.url,
             fetch: transport.fetch,

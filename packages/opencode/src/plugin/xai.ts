@@ -1,7 +1,7 @@
-import type { Hooks, PluginInput } from "@kilocode/plugin"
+import type { Hooks, PluginInput } from "@qronos-ai/plugin"
 import { OAUTH_DUMMY_KEY } from "../auth"
 import { createServer } from "http"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import { escapeHtml } from "@/util/html" // kilocode_change - retained OAuth error page uses escaped diagnostics
 
 // Public Grok-CLI OAuth client. xAI's auth server rejects loopback OAuth from

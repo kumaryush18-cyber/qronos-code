@@ -32,8 +32,8 @@ async function logs(dataHome: string) {
 }
 
 export async function render(file: string, args: string[] = ["--pure"], timeout = 60_000) {
-  const { spawn } = await import("@opencode-ai/core/pty/driver")
-  const { KiloPtyTermination } = await import("@opencode-ai/core/kilocode/pty/termination")
+  const { spawn } = await import("@qronos-ai/core/pty/driver")
+  const { KiloPtyTermination } = await import("@qronos-ai/core/kilocode/pty/termination")
   const dir = await mkdtemp(path.join(os.tmpdir(), "kilo-pty-render-"))
   const env: Record<string, string> = {}
   for (const key of ["PATH", "SystemRoot", "SYSTEMROOT", "ComSpec", "LANG", "LC_ALL", "LC_CTYPE", "LANGUAGE"]) {
@@ -193,7 +193,7 @@ export const PtySmokeCommand = cmd({
   describe: false,
   async handler() {
     if (process.env.KILO_PTY_SMOKE !== "1") throw new Error("PTY smoke command is release-only")
-    const { PtySmoke } = await import("@opencode-ai/core/kilocode/pty/smoke")
+    const { PtySmoke } = await import("@qronos-ai/core/kilocode/pty/smoke")
     await PtySmoke.smoke()
     await render(process.execPath)
     console.log("Compiled TUI startup smoke test passed")

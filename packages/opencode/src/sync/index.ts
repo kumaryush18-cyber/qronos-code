@@ -7,18 +7,18 @@ import { eq } from "drizzle-orm"
 import { GlobalBus } from "@/bus/global"
 import { Bus as ProjectBus } from "@/bus"
 import { BusEvent } from "@/bus/bus-event"
-import { EventSequenceTable, EventTable } from "@opencode-ai/core/event/sql" // kilocode_change - upstream moved the event tables to core
+import { EventSequenceTable, EventTable } from "@qronos-ai/core/event/sql" // kilocode_change - upstream moved the event tables to core
 import { EventID } from "./schema"
 import { Context, Effect, Layer, Schema as EffectSchema } from "effect"
-import type { DeepMutable } from "@opencode-ai/core/schema"
-import { EventV2 } from "@opencode-ai/core/event"
+import type { DeepMutable } from "@qronos-ai/core/schema"
+import { EventV2 } from "@qronos-ai/core/event"
 import { EventManifest } from "@/event-manifest" // kilocode_change
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { InstanceState } from "@/effect/instance-state"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import { EffectBridge } from "@/effect/bridge"
 import * as EventWire from "@/kilocode/event-wire" // kilocode_change
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 
 // Keep `Event["data"]` mutable because projectors mutate the persisted shape
 // when writing to the database. Bus payloads (`Properties`) stay readonly —

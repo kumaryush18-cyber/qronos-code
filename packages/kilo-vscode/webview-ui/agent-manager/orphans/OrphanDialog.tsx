@@ -7,11 +7,11 @@
  * see `worktree-recovery.ts` — so this component only ever collects a selection and hands it off.
  */
 import { Component, For, Show, createSignal } from "solid-js"
-import { Dialog } from "@kilocode/kilo-ui/dialog"
-import { Button } from "@kilocode/kilo-ui/button"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Checkbox } from "@kilocode/kilo-ui/checkbox"
+import { Dialog } from "@qronos-ai/kilo-ui/dialog"
+import { Button } from "@qronos-ai/kilo-ui/button"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Checkbox } from "@qronos-ai/kilo-ui/checkbox"
 import { useLanguage } from "../../src/context/language"
 import {
   defaultOrphanSelection,

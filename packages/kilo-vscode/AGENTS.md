@@ -20,12 +20,12 @@ Kilo Code is an open source AI coding agent platform. It ships as a CLI and edit
 
 ### Products and How They Relate
 
-All products are thin clients over the **CLI** (`packages/opencode/`, published as `@kilocode/cli`). The CLI is a fork of upstream [OpenCode](https://github.com/anomalyco/opencode) with Kilo-specific additions (gateway auth, telemetry, migration, code review, branding). It contains the full AI agent runtime, tool execution, session management, provider integrations (500+ models), and an HTTP API server.
+All products are thin clients over the **CLI** (`packages/opencode/`, published as `@qronos-ai/cli`). The CLI is a fork of upstream [OpenCode](https://github.com/anomalyco/opencode) with Kilo-specific additions (gateway auth, telemetry, migration, code review, branding). It contains the full AI agent runtime, tool execution, session management, provider integrations (500+ models), and an HTTP API server.
 
-The VS Code extension spawns or connects to a `kilo serve` process and communicates via HTTP REST + SSE using the auto-generated `@kilocode/sdk`. CLI clients can also use in-process transports, as shown below.
+The VS Code extension spawns or connects to a `kilo serve` process and communicates via HTTP REST + SSE using the auto-generated `@qronos-ai/sdk`. CLI clients can also use in-process transports, as shown below.
 
 ```
-                        @kilocode/cli  (packages/opencode/)
+                        @qronos-ai/cli  (packages/opencode/)
                      ┌────────────────────────────────┐
                      │  AI agents, tools, sessions,    │
                      │  providers, config, MCP, LSP    │
@@ -49,21 +49,21 @@ The VS Code extension spawns or connects to a `kilo serve` process and communica
 | Package | Name | Role |
 |---|---|---|
 | `packages/kilo-vscode/` | `kilo-code` | **This package.** VS Code extension. |
-| `packages/kilo-gateway/` | `@kilocode/kilo-gateway` | Auth (device flow), AI provider routing (OpenRouter), Kilo API integration (profile, balance, teams) |
-| `packages/kilo-ui/` | `@kilocode/kilo-ui` | SolidJS component library (40+ components, built on `@kobalte/core`). Shared by this extension's webview and docs screenshot stories |
-| `packages/kilo-telemetry/` | `@kilocode/kilo-telemetry` | PostHog analytics + OpenTelemetry tracing for the CLI |
-| `packages/kilo-i18n/` | `@kilocode/kilo-i18n` | Translation strings (16 languages) |
-| `packages/kilo-docs/` | `@kilocode/kilo-docs` | Documentation site (Next.js + Markdoc) |
+| `packages/kilo-gateway/` | `@qronos-ai/kilo-gateway` | Auth (device flow), AI provider routing (OpenRouter), Kilo API integration (profile, balance, teams) |
+| `packages/kilo-ui/` | `@qronos-ai/kilo-ui` | SolidJS component library (40+ components, built on `@kobalte/core`). Shared by this extension's webview and docs screenshot stories |
+| `packages/kilo-telemetry/` | `@qronos-ai/kilo-telemetry` | PostHog analytics + OpenTelemetry tracing for the CLI |
+| `packages/kilo-i18n/` | `@qronos-ai/kilo-i18n` | Translation strings (16 languages) |
+| `packages/kilo-docs/` | `@qronos-ai/kilo-docs` | Documentation site (Next.js + Markdoc) |
 
 ### Upstream OpenCode Packages (not Kilo-specific)
 
 | Package | Name | Role |
 |---|---|---|
-| `packages/opencode/` | `@kilocode/cli` | Core CLI — forked from upstream OpenCode. AI agents, tools, sessions, server. |
-| `packages/sdk/js/` | `@kilocode/sdk` | Auto-generated TypeScript SDK client for the server API. Do not edit `src/gen/` or `src/v2/gen/` by hand. |
-| `packages/ui/` | `@opencode-ai/ui` | Shared UI primitives |
-| `packages/core/` | `@opencode-ai/core` | Shared runtime and utilities (`src/util/`) |
-| `packages/plugin/` | `@kilocode/plugin` | Plugin/tool interface definitions |
+| `packages/opencode/` | `@qronos-ai/cli` | Core CLI — forked from upstream OpenCode. AI agents, tools, sessions, server. |
+| `packages/sdk/js/` | `@qronos-ai/sdk` | Auto-generated TypeScript SDK client for the server API. Do not edit `src/gen/` or `src/v2/gen/` by hand. |
+| `packages/ui/` | `@qronos-ai/ui` | Shared UI primitives |
+| `packages/core/` | `@qronos-ai/core` | Shared runtime and utilities (`src/util/`) |
+| `packages/plugin/` | `@qronos-ai/plugin` | Plugin/tool interface definitions |
 
 ## Commands
 
@@ -190,12 +190,12 @@ Current implementations are in [project/](src/agent-manager/project/) and [index
 
 ## Webview UI (kilo-ui)
 
-New webview features must use **`@kilocode/kilo-ui`** components instead of raw HTML elements with inline styles. This is a Solid.js component library built on `@kobalte/core`.
+New webview features must use **`@qronos-ai/kilo-ui`** components instead of raw HTML elements with inline styles. This is a Solid.js component library built on `@kobalte/core`.
 
-- Import via deep subpaths: `import { Button } from "@kilocode/kilo-ui/button"`
+- Import via deep subpaths: `import { Button } from "@qronos-ai/kilo-ui/button"`
 - Available components include `Button`, `IconButton`, `Dialog`, `Spinner`, `Card`, `Tabs`, `Tooltip`, `Toast`, `Code`, `Markdown`, and more
 - Provider composition is defined by `ProviderShell.Root`, `.Session`, and `.Chat` in [provider-shell.tsx](webview-ui/src/context/provider-shell.tsx); follow that implementation rather than a copied provider order.
-- Global styles imported via `import "@kilocode/kilo-ui/styles"` in [`index.tsx`](webview-ui/src/index.tsx)
+- Global styles imported via `import "@qronos-ai/kilo-ui/styles"` in [`index.tsx`](webview-ui/src/index.tsx)
 - [`chat.css`](webview-ui/src/styles/chat.css) imports the focused stylesheets in [styles/](webview-ui/src/styles/). When replacing a component with kilo-ui, remove obsolete rules from the owning stylesheet.
 - Extension-specific CSS stays with its feature: chat styles under `webview-ui/src/styles/`, Agent Manager styles under `webview-ui/agent-manager/`. Reusable component styles belong in `packages/kilo-ui/`.
 - **Check existing webview usages first**: `webview-ui/src/` and `packages/kilo-ui/src/stories/` show how kilo-ui components are composed. Do not rely only on the component API in isolation.

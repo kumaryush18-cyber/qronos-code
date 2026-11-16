@@ -20,25 +20,25 @@ describe("indexing plugin detection", () => {
   test("normalizes supported plugin forms", () => {
     expect(normalizePluginName("kilo-indexing")).toBe("kilo-indexing")
     expect(normalizePluginName("kilo-indexing@1.2.3")).toBe("kilo-indexing")
-    expect(normalizePluginName("@kilocode/kilo-indexing")).toBe("@kilocode/kilo-indexing")
-    expect(normalizePluginName("@kilocode/kilo-indexing@1.2.3")).toBe("@kilocode/kilo-indexing")
-    expect(normalizePluginName("../../packages/kilo-indexing")).toBe("@kilocode/kilo-indexing")
+    expect(normalizePluginName("@qronos-ai/kilo-indexing")).toBe("@qronos-ai/kilo-indexing")
+    expect(normalizePluginName("@qronos-ai/kilo-indexing@1.2.3")).toBe("@qronos-ai/kilo-indexing")
+    expect(normalizePluginName("../../packages/kilo-indexing")).toBe("@qronos-ai/kilo-indexing")
     expect(normalizePluginName("file:///tmp/.opencode/plugin/kilo-indexing.js")).toBe("kilo-indexing")
-    expect(normalizePluginName("file:///tmp/node_modules/@kilocode/kilo-indexing/index.js")).toBe(
-      "@kilocode/kilo-indexing",
+    expect(normalizePluginName("file:///tmp/node_modules/@qronos-ai/kilo-indexing/index.js")).toBe(
+      "@qronos-ai/kilo-indexing",
     )
-    expect(normalizePluginName("file:///tmp/repo/packages/kilo-indexing/src/index.ts")).toBe("@kilocode/kilo-indexing")
+    expect(normalizePluginName("file:///tmp/repo/packages/kilo-indexing/src/index.ts")).toBe("@qronos-ai/kilo-indexing")
   })
 
   test("detects supported indexing plugin specifiers", () => {
     const values = [
       "kilo-indexing",
       "kilo-indexing@1.2.3",
-      "@kilocode/kilo-indexing",
-      "@kilocode/kilo-indexing@1.2.3",
+      "@qronos-ai/kilo-indexing",
+      "@qronos-ai/kilo-indexing@1.2.3",
       "../../packages/kilo-indexing",
       "file:///tmp/.opencode/plugin/kilo-indexing.js",
-      "file:///tmp/node_modules/@kilocode/kilo-indexing/index.js",
+      "file:///tmp/node_modules/@qronos-ai/kilo-indexing/index.js",
       "file:///tmp/repo/packages/kilo-indexing/src/index.ts",
     ]
 
@@ -48,14 +48,14 @@ describe("indexing plugin detection", () => {
   })
 
   test("ignores unrelated plugin specifiers", () => {
-    expect(isIndexingPlugin("@kilocode/kilo-gateway")).toBe(false)
+    expect(isIndexingPlugin("@qronos-ai/kilo-gateway")).toBe(false)
     expect(isIndexingPlugin("file:///tmp/.opencode/plugin/index.js")).toBe(false)
-    expect(hasIndexingPlugin(["@kilocode/kilo-gateway", "foo@1.0.0"])).toBe(false)
+    expect(hasIndexingPlugin(["@qronos-ai/kilo-gateway", "foo@1.0.0"])).toBe(false)
   })
 
   test("detects indexing plugin in merged plugin lists", () => {
     expect(
-      hasIndexingPlugin(["@kilocode/kilo-gateway", "file:///tmp/node_modules/@kilocode/kilo-indexing/index.js"]),
+      hasIndexingPlugin(["@qronos-ai/kilo-gateway", "file:///tmp/node_modules/@qronos-ai/kilo-indexing/index.js"]),
     ).toBe(true)
   })
 })

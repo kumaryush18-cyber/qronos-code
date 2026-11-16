@@ -8,8 +8,8 @@
 // kilocode_change - preserve named-reference mutation constraint documentation
 export * as EditTool from "./edit"
 
-import { ToolFailure } from "@opencode-ai/llm"
-import { FileDiff } from "@opencode-ai/schema/file-diff"
+import { ToolFailure } from "@qronos-ai/llm"
+import { FileDiff } from "@qronos-ai/schema/file-diff"
 import { createTwoFilesPatch, diffLines } from "diff"
 import { Effect, Layer, Schema } from "effect"
 import { makeLocationNode } from "../effect/app-node"

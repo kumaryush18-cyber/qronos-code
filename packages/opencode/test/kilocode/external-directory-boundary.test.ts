@@ -9,7 +9,7 @@ import { SessionID, MessageID } from "../../src/session/schema"
 import { assertExternalDirectory } from "../../src/tool/external-directory"
 import type { Tool } from "../../src/tool/tool"
 import { Filesystem } from "../../src/util/filesystem"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { tmpdir } from "../fixture/fixture"
 
 const base: Omit<Tool.Context, "ask"> = {

@@ -1,8 +1,8 @@
 /// <reference lib="webworker" />
 
 import { ShikiStreamTokenizer } from "@shikijs/stream"
-import { createMarkdownParser } from "@opencode-ai/ui/context/marked-parser"
-import { OpenCodeTheme } from "@opencode-ai/ui/context/marked-theme"
+import { createMarkdownParser } from "@qronos-ai/ui/context/marked-parser"
+import { OpenCodeTheme } from "@qronos-ai/ui/context/marked-theme"
 import {
   bundledLanguages,
   createHighlighter,

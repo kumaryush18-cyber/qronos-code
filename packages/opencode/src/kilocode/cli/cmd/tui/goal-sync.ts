@@ -1,4 +1,4 @@
-import type { Session } from "@kilocode/sdk/v2"
+import type { Session } from "@qronos-ai/sdk/v2"
 import type { useSDK } from "@tui/context/sdk"
 import { createEffect, onCleanup } from "solid-js"
 

@@ -1,5 +1,5 @@
 import { type Component, For, Show, createSignal } from "solid-js"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 import { DeferredPopover } from "../src/components/shared/DeferredPopover"
 
 export interface InlineOption<T extends string> {

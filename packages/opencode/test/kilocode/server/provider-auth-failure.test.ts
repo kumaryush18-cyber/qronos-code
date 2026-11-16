@@ -1,6 +1,6 @@
 import { describe, expect } from "bun:test"
 import { NodeHttpServer } from "@effect/platform-node"
-import { ModelsDev } from "@opencode-ai/core/models-dev"
+import { ModelsDev } from "@qronos-ai/core/models-dev"
 import { Effect, Layer } from "effect"
 import { HttpClient, HttpRouter } from "effect/unstable/http"
 import { HttpApi, HttpApiBuilder } from "effect/unstable/httpapi"

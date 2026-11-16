@@ -1,4 +1,4 @@
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { Process } from "@/util/process"
 import { arch, homedir } from "node:os"
 import path from "path"
@@ -23,7 +23,7 @@ export interface Interface {
   readonly open: () => Effect.Effect<void, PlatformError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@kilocode/AnacondaDesktopPlatform") {}
+export class Service extends Context.Service<Service, Interface>()("@qronos-ai/AnacondaDesktopPlatform") {}
 
 function value(info: Info, key: string) {
   const direct = info.env[key]

@@ -6,9 +6,9 @@ import { Session } from "@/session/session"
 import { SessionID } from "@/session/schema"
 import { Storage } from "@/storage/storage"
 import { EventV2Bridge } from "@/event-v2-bridge"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
-import { WakeupEvent } from "@opencode-ai/schema/kilocode/wakeup-event"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock"
+import { WakeupEvent } from "@qronos-ai/schema/kilocode/wakeup-event"
 import { Context, Effect, Fiber, Layer, Option, Semaphore } from "effect"
 import { fireLayer, text as wakeupText } from "./resume"
 import * as schema from "./schema"
@@ -60,7 +60,7 @@ export namespace Wakeup {
     readonly cronCancel: (id: ID, sessionID?: SessionID) => Effect.Effect<CronInfo | undefined>
   }
 
-  export class Service extends Context.Service<Service, Interface>()("@kilocode/Wakeup") {}
+  export class Service extends Context.Service<Service, Interface>()("@qronos-ai/Wakeup") {}
 
   const key = (info: { sessionID: SessionID; id: ID }) => ["wakeup", String(info.sessionID), String(info.id)]
   const cronKey = (info: { sessionID: SessionID; id: ID }) => ["cron", String(info.sessionID), String(info.id)]

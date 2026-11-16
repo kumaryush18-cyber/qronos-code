@@ -1,5 +1,5 @@
-import type { Hooks } from "@kilocode/plugin"
-import * as Log from "@opencode-ai/core/util/log" // kilocode_change
+import type { Hooks } from "@qronos-ai/plugin"
+import * as Log from "@qronos-ai/core/util/log" // kilocode_change
 import { ModalModels } from "./models"
 
 const log = Log.create({ service: "plugin.modal" }) // kilocode_change

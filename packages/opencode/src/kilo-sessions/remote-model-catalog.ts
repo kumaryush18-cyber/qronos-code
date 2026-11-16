@@ -1,6 +1,6 @@
-import type { ProviderListResponse } from "@kilocode/sdk/v2/client"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import type { ProviderListResponse } from "@qronos-ai/sdk/v2/client"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { Provider } from "@/provider/provider"
 import z from "zod"
 

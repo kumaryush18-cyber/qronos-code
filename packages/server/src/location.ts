@@ -1,11 +1,11 @@
-import { Location } from "@opencode-ai/core/location"
-import { LocationServiceMap } from "@opencode-ai/core/location-services"
-import { AbsolutePath } from "@opencode-ai/core/schema"
-import { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import { Location } from "@qronos-ai/core/location"
+import { LocationServiceMap } from "@qronos-ai/core/location-services"
+import { AbsolutePath } from "@qronos-ai/core/schema"
+import { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { Effect, Layer } from "effect"
 import { HttpServerRequest } from "effect/unstable/http"
 import { HttpApiMiddleware } from "effect/unstable/httpapi"
-import { InvalidRequestError } from "@opencode-ai/protocol/errors" // kilocode_change
+import { InvalidRequestError } from "@qronos-ai/protocol/errors" // kilocode_change
 
 export type LocationServices = Layer.Success<ReturnType<(typeof LocationServiceMap.Service)["get"]>>
 

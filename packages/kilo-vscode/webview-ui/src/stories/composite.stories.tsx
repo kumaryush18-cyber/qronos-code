@@ -8,7 +8,7 @@
  */
 
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import type { AssistantMessage as SDKAssistantMessage, ReasoningPart, TextPart, ToolPart } from "@kilocode/sdk/v2"
+import type { AssistantMessage as SDKAssistantMessage, ReasoningPart, TextPart, ToolPart } from "@qronos-ai/sdk/v2"
 import { StoryProviders, defaultMockData, mockSessionValue } from "./StoryProviders"
 import { AssistantMessage } from "../components/chat/AssistantMessage"
 import { For } from "solid-js"
@@ -17,8 +17,8 @@ import { TranscriptRowView } from "../components/chat/TranscriptRow"
 import { messageTurns } from "../context/session-queue"
 import { transcriptRows } from "../context/transcript-rows"
 import { ChatView } from "../components/chat/ChatView"
-import { Part } from "@kilocode/kilo-ui/message-part"
-import { AgentAvatarPalette } from "@kilocode/kilo-ui/agent-avatar"
+import { Part } from "@qronos-ai/kilo-ui/message-part"
+import { AgentAvatarPalette } from "@qronos-ai/kilo-ui/agent-avatar"
 import { registerVscodeToolOverrides } from "../components/chat/VscodeToolOverrides"
 import { SessionContext } from "../context/session"
 import { ServerContext } from "../context/server"
@@ -958,7 +958,7 @@ const editPermission: PermissionRequest = {
     filediff: {
       file: "src/components/App.tsx",
       patch:
-        '===================================================================\n--- src/components/App.tsx\n+++ src/components/App.tsx\n@@ -1,3 +1,4 @@\n import { Button } from "@kilocode/kilo-ui/button"\n+import { Card } from "@kilocode/kilo-ui/card"\n \n export function App() {\n',
+        '===================================================================\n--- src/components/App.tsx\n+++ src/components/App.tsx\n@@ -1,3 +1,4 @@\n import { Button } from "@qronos-ai/kilo-ui/button"\n+import { Card } from "@qronos-ai/kilo-ui/card"\n \n export function App() {\n',
       additions: 1,
       deletions: 0,
     },
@@ -979,7 +979,7 @@ const applyPatchPermission: PermissionRequest = {
         relativePath: "src/components/App.tsx",
         type: "update",
         patch:
-          '===================================================================\n--- src/components/App.tsx\n+++ src/components/App.tsx\n@@ -1,3 +1,4 @@\n import { Button } from "@kilocode/kilo-ui/button"\n+import { Card } from "@kilocode/kilo-ui/card"\n \n export function App() {\n',
+          '===================================================================\n--- src/components/App.tsx\n+++ src/components/App.tsx\n@@ -1,3 +1,4 @@\n import { Button } from "@qronos-ai/kilo-ui/button"\n+import { Card } from "@qronos-ai/kilo-ui/card"\n \n export function App() {\n',
         additions: 1,
         deletions: 0,
       },

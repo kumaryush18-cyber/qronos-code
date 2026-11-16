@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test"
-import type { Event } from "@kilocode/sdk/v2"
+import type { Event } from "@qronos-ai/sdk/v2"
 import { createRoot, createSignal } from "solid-js"
 import { createStore } from "solid-js/store"
 import { KiloTerminalActivity as Activity } from "../../src/kilocode/cli/cmd/tui/terminal-activity"

@@ -1,4 +1,4 @@
-import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@kilocode/plugin/tui"
+import type { TuiPlugin, TuiPluginApi, TuiPluginModule } from "@qronos-ai/plugin/tui"
 import { RemoteIndicator } from "@/kilocode/remote-tui"
 
 const id = "internal:remote"

@@ -1,5 +1,5 @@
 import type { ValidComponent } from "solid-js"
-import { createSimpleContext } from "@opencode-ai/ui/context/helper"
+import { createSimpleContext } from "@qronos-ai/ui/context/helper"
 
 const ctx = createSimpleContext<ValidComponent, { component: ValidComponent }>({
   name: "DiffComponent",

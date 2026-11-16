@@ -1,11 +1,11 @@
 import * as InstanceState from "@/effect/instance-state"
 import { WorkspaceRef } from "@/effect/instance-ref" // kilocode_change - preserve the shared location key shape
-import { FileSystem } from "@opencode-ai/core/filesystem"
-import { LocationServiceMap } from "@opencode-ai/core/location-services" // kilocode_change - reuse the server location map
-import { Ripgrep } from "@opencode-ai/core/ripgrep"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Location } from "@opencode-ai/core/location"
-import { AbsolutePath, RelativePath } from "@opencode-ai/core/schema"
+import { FileSystem } from "@qronos-ai/core/filesystem"
+import { LocationServiceMap } from "@qronos-ai/core/location-services" // kilocode_change - reuse the server location map
+import { Ripgrep } from "@qronos-ai/core/ripgrep"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { Location } from "@qronos-ai/core/location"
+import { AbsolutePath, RelativePath } from "@qronos-ai/core/schema"
 import { Effect, Option } from "effect" // kilocode_change - location map is provided by the server
 import ignore from "ignore"
 import path from "path"

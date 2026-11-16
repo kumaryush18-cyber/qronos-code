@@ -1,16 +1,16 @@
 export * as ConfigAgent from "./agent"
 
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { Exit, Schema } from "effect"
-import { Glob } from "@opencode-ai/core/util/glob"
-import { ConfigAgentV1 } from "@opencode-ai/core/v1/config/agent"
+import { Glob } from "@qronos-ai/core/util/glob"
+import { ConfigAgentV1 } from "@qronos-ai/core/v1/config/agent"
 import { configEntryNameFromPath } from "./entry-name"
 import * as ConfigMarkdown from "./markdown"
 import { ConfigParse } from "./parse"
 import { ConfigVariable } from "./variable" // kilocode_change
 // kilocode_change start
-import { ConfigErrorV1 as ConfigError, FrontmatterError } from "@opencode-ai/core/v1/config/error"
+import { ConfigErrorV1 as ConfigError, FrontmatterError } from "@qronos-ai/core/v1/config/error"
 import { KilocodeConfig } from "@/kilocode/config/config"
 import { report } from "@/kilocode/config/report"
 import type { Warning } from "./config"

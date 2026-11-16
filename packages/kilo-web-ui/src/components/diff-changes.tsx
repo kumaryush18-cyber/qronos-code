@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/diff-changes"
+export * from "@qronos-ai/ui/diff-changes"

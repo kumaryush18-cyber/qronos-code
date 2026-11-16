@@ -1,6 +1,6 @@
 import { ConfigPlugin } from "@/config/plugin"
-import { Npm } from "@opencode-ai/core/npm"
-import { ConfigPluginV1 } from "@opencode-ai/core/v1/config/plugin"
+import { Npm } from "@qronos-ai/core/npm"
+import { ConfigPluginV1 } from "@qronos-ai/core/v1/config/plugin"
 import { Effect, Exit } from "effect"
 
 export function needsLocalPluginDependency(plugins: readonly ConfigPluginV1.Spec[]) {
@@ -12,7 +12,7 @@ export function installLocalPluginDependency(npm: Npm.Interface, dir: string, ve
     .install(dir, {
       add: [
         {
-          name: "@kilocode/plugin",
+          name: "@qronos-ai/plugin",
           version: local ? undefined : version,
         },
       ],

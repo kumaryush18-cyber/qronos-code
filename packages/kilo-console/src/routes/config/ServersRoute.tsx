@@ -1,5 +1,5 @@
-import { Button } from "@kilocode/kilo-web-ui/button"
-import { Card } from "@kilocode/kilo-web-ui/card"
+import { Button } from "@qronos-ai/kilo-web-ui/button"
+import { Card } from "@qronos-ai/kilo-web-ui/card"
 import { For, Show, createMemo, createSignal } from "solid-js"
 import { useConfig } from "../../context/config"
 import { ConfigPage, ConfigTag as Tag, ConfigToolbar } from "./ConfigPage"

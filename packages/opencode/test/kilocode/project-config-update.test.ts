@@ -1,25 +1,25 @@
 // kilocode_change - new file
 
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { expect, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { Effect, Layer, Option } from "effect"
 import { NodeFileSystem, NodePath } from "@effect/platform-node"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock"
 import { Config } from "../../src/config/config"
 import { Auth } from "../../src/auth"
 import { Account } from "../../src/account/account"
 import { Env } from "../../src/env"
 import { Git } from "../../src/git"
-import { Npm } from "@opencode-ai/core/npm"
+import { Npm } from "@qronos-ai/core/npm"
 import { provideTestInstance } from "../fixture/fixture"
 import { Filesystem } from "../../src/util/filesystem"
-import { CrossSpawnSpawner } from "@opencode-ai/core/cross-spawn-spawner"
+import { CrossSpawnSpawner } from "@qronos-ai/core/cross-spawn-spawner"
 import { HttpClient } from "effect/unstable/http"
 import { tmpdir } from "../fixture/fixture"
-import { LayerNodePlatform } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNodePlatform } from "@qronos-ai/core/effect/app-node-platform"
 
 const infra = AppNodeBuilder.build(CrossSpawnSpawner.node).pipe(
   Layer.provideMerge(Layer.mergeAll(NodeFileSystem.layer, NodePath.layer)),

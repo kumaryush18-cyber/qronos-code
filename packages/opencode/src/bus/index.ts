@@ -4,17 +4,17 @@
 // Full migration of Kilo callers onto core EventV2 is tracked as a dedicated follow-up.
 import { Effect, Exit, Fiber, Layer, PubSub, Scope, Context, Stream, Schema } from "effect" // kilocode_change
 import { EffectBridge } from "@/effect/bridge"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { BusEvent } from "./bus-event"
 import { GlobalBus } from "./global"
 import { InstanceState } from "@/effect/instance-state"
 import { makeRuntime } from "@/effect/run-service"
-import { serviceUse } from "@opencode-ai/core/effect/service-use"
+import { serviceUse } from "@qronos-ai/core/effect/service-use"
 import { Identifier } from "@/id/id"
 import { context as instanceContext, type InstanceContext } from "@/project/instance-context" // kilocode_change
 import { InstanceRef } from "@/effect/instance-ref"
 import { LocalContext } from "@/util/local-context" // kilocode_change
-import { LayerNode } from "@opencode-ai/core/effect/layer-node" // kilocode_change
+import { LayerNode } from "@qronos-ai/core/effect/layer-node" // kilocode_change
 
 const log = Log.create({ service: "bus" })
 

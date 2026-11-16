@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import type { KiloClient, Session } from "@kilocode/sdk/v2/client"
+import type { KiloClient, Session } from "@qronos-ai/sdk/v2/client"
 import type { KiloConnectionService } from "../services/cli-backend"
 import { getErrorMessage } from "../kilo-provider-utils"
 import { resolveLocalDiffTarget } from "../diff/shared/target"

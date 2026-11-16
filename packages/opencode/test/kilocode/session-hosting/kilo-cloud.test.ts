@@ -3,7 +3,7 @@ import { ATTACHMENT_TTL_MS, PROVIDER, provider as kiloCloud } from "@/kilocode/s
 import { create } from "@/kilocode/session-hosting/registry"
 import { key } from "@/kilocode/session-hosting/types"
 import type { HostedSessionID } from "@/kilocode/session-hosting/types"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Effect, Layer, Schema } from "effect"
 import { expect } from "bun:test"
 import { testEffect } from "../../lib/effect"

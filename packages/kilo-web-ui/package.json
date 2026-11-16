@@ -1,5 +1,5 @@
 {
-  "name": "@kilocode/kilo-web-ui",
+  "name": "@qronos-ai/kilo-web-ui",
   "version": "7.8.28",
   "type": "module",
   "license": "MIT",
@@ -136,8 +136,8 @@
   },
   "dependencies": {
     "@kobalte/core": "catalog:",
-    "@kilocode/kilo-ui": "workspace:*",
-    "@opencode-ai/ui": "workspace:*",
+    "@qronos-ai/kilo-ui": "workspace:*",
+    "@qronos-ai/ui": "workspace:*",
     "@pierre/diffs": "catalog:",
     "solid-js": "catalog:"
   },

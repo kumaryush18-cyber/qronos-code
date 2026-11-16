@@ -13,7 +13,7 @@
  * architecture test happy and makes the manager easy to unit test.
  */
 
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import path from "node:path"
 import { block } from "./pty-cleanup"
 

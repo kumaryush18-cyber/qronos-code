@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/sticky-accordion-header"
+export * from "@qronos-ai/ui/sticky-accordion-header"

@@ -1,4 +1,4 @@
-import { Markdown } from "@kilocode/kilo-ui/markdown"
+import { Markdown } from "@qronos-ai/kilo-ui/markdown"
 import type { ComponentProps } from "solid-js"
 import { RichProvider } from "../../context/rich-provider"
 

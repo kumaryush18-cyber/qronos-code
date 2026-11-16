@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import { DateTime, Effect } from "effect"
-import { Credential } from "@opencode-ai/core/credential"
-import { Integration } from "@opencode-ai/core/integration"
-import { ModelV2 } from "@opencode-ai/core/model"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { SessionRunnerModel } from "@opencode-ai/core/session/runner/model"
+import { Credential } from "@qronos-ai/core/credential"
+import { Integration } from "@qronos-ai/core/integration"
+import { ModelV2 } from "@qronos-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { SessionRunnerModel } from "@qronos-ai/core/session/runner/model"
 import { it } from "../lib/effect"
 
 describe("SessionRunnerModel Kilo credentials", () => {

@@ -1,5 +1,5 @@
-import type { Event } from "@kilocode/sdk/v2"
-import type { TuiAttentionSoundName, TuiPlugin, TuiPluginApi } from "@kilocode/plugin/tui"
+import type { Event } from "@qronos-ai/sdk/v2"
+import type { TuiAttentionSoundName, TuiPlugin, TuiPluginApi } from "@qronos-ai/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 
 const id = "internal:notifications"

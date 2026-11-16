@@ -1,5 +1,5 @@
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { onCleanup, Show, type Component } from "solid-js"
 import type { SpeechToText } from "./useSpeechToText"
 import { speechShortcutLabel, speechShortcutValue, toggleSpeech } from "./shortcut"

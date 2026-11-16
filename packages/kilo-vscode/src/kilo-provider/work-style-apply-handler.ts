@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import type { Config } from "@kilocode/sdk/v2/client"
+import type { Config } from "@qronos-ai/sdk/v2/client"
 import type { KiloConnectionService } from "../services/cli-backend/connection-service"
 import type { WorkStyle, WorkStyleConfig, WorkStyleState } from "../shared/work-style-presets"
 import { applyWorkStyle, type WorkStyleSettingSnapshot } from "./work-style-apply"

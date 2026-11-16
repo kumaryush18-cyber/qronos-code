@@ -1,6 +1,6 @@
 import * as os from "os"
 import * as vscode from "vscode"
-import type { GlobalEvent, SessionStatus } from "@kilocode/sdk/v2/client"
+import type { GlobalEvent, SessionStatus } from "@qronos-ai/sdk/v2/client"
 import { buildWebviewHtml, getWebviewFontSize } from "./utils"
 import { watchFontSizeConfig } from "./kilo-provider/font-size"
 import { mapSSEEventToWebviewMessage, sameDirectory } from "./kilo-provider-utils"

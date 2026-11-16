@@ -1,5 +1,5 @@
 import { For, type Accessor } from "solid-js"
-import { Button } from "@kilocode/kilo-ui/button"
+import { Button } from "@qronos-ai/kilo-ui/button"
 import { useLanguage } from "../../src/context/language"
 import { examples } from "./examples"
 

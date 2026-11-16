@@ -1,4 +1,4 @@
-import type { TuiPlugin } from "@kilocode/plugin/tui"
+import type { TuiPlugin } from "@qronos-ai/plugin/tui"
 import type { InternalTuiPlugin } from "@/plugin/tui/internal"
 import { MemoryPermission } from "@/kilocode/cli/cmd/tui/permissions"
 

@@ -1,5 +1,5 @@
-import type { PermissionV1 } from "@opencode-ai/core/v1/permission"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import type { PermissionV1 } from "@qronos-ai/core/v1/permission"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 // kilocode_change start - use Kilo CLI branding
 // CLI entry point for `kilo run` and `kilo --mini`.
 //
@@ -24,7 +24,7 @@ import { UI } from "../ui"
 import { effectCmd } from "../effect-cmd"
 import { EOL } from "os"
 import { Filesystem } from "@/util/filesystem"
-import type { KiloClient, Session, ToolPart } from "@kilocode/sdk/v2"
+import type { KiloClient, Session, ToolPart } from "@qronos-ai/sdk/v2"
 import { FormatError, FormatUnknownError } from "../error"
 import { INTERACTIVE_INPUT_ERROR, resolveInteractiveStdin } from "./run/runtime.stdin"
 import { readPipedStdin } from "./run-stdin" // kilocode_change - bounded piped-stdin read

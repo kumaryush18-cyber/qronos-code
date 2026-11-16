@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/motion-spring"
+export * from "@qronos-ai/ui/motion-spring"

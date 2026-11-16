@@ -1,5 +1,5 @@
 import { expect, spyOn, test } from "bun:test"
-import { createKiloClient, type GlobalEvent, type Session } from "@kilocode/sdk/v2"
+import { createKiloClient, type GlobalEvent, type Session } from "@qronos-ai/sdk/v2"
 import { createRoot, createSignal } from "solid-js"
 import { createStore, produce } from "solid-js/store"
 import { GoalSync } from "@/kilocode/cli/cmd/tui/goal-sync"

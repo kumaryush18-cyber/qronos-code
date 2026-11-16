@@ -1,6 +1,6 @@
-import { fetchKiloEmbeddingModelCatalog, resolveKiloGatewayBaseUrl } from "@kilocode/kilo-gateway"
-import type { Config, IndexingConfig, KiloEmbeddingModelCatalog } from "@kilocode/sdk/v2"
-import * as Log from "@opencode-ai/core/util/log"
+import { fetchKiloEmbeddingModelCatalog, resolveKiloGatewayBaseUrl } from "@qronos-ai/kilo-gateway"
+import type { Config, IndexingConfig, KiloEmbeddingModelCatalog } from "@qronos-ai/sdk/v2"
+import * as Log from "@qronos-ai/core/util/log"
 import { createMemo, type Accessor } from "solid-js"
 
 export type IndexingScope = "global" | "project"

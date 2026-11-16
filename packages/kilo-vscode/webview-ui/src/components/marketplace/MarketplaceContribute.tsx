@@ -1,4 +1,4 @@
-import { Button } from "@kilocode/kilo-ui/button"
+import { Button } from "@qronos-ai/kilo-ui/button"
 import { useVSCode } from "../../context/vscode"
 import { useLanguage } from "../../context/language"
 

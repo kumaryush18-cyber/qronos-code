@@ -2,7 +2,7 @@ import type { Argv } from "yargs"
 import { Effect } from "effect"
 import { Auth } from "@/auth"
 import { Provider } from "@/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { organization, token } from "@/kilocode/provider/catalog"
 import { cmd } from "@/cli/cmd/cmd"
 import { CliError, effectCmd, fail } from "@/cli/effect-cmd"
@@ -21,7 +21,7 @@ import {
   type CustomRouterListEntry,
   type CustomRouterReference,
   type CustomRouterSummary,
-} from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
 import { clientEntry, linkChoice } from "@/kilocode/auto-routing/entries"
 import { KiloCustomRouter } from "@/kilocode/auto-routing/router"
 import { KiloAutoEval } from "@/kilocode/auto-routing/eval"
@@ -233,7 +233,7 @@ export const AutoEvalCommand = effectCmd({
       })
       .option("cli-version", {
         type: "string",
-        describe: "published @kilocode/cli version to install in the eval image (default: this CLI's version)",
+        describe: "published @qronos-ai/cli version to install in the eval image (default: this CLI's version)",
       })
       .option("debug-config", {
         type: "boolean",

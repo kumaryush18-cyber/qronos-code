@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, test } from "bun:test"
 import { ConfigProvider, Effect, Layer } from "effect"
 import { HttpRouter } from "effect/unstable/http"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { MemoryPaths } from "../../../src/kilocode/server/httpapi/groups/memory"
 import { KiloToolRegistry } from "../../../src/kilocode/tool/registry"
 import * as HttpApiServer from "../../../src/server/routes/instance/httpapi/server"

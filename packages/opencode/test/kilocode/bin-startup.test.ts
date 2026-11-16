@@ -55,7 +55,7 @@ async function fixture() {
   await copyFile(source, wrapper)
   await mkdir(dirname(helperTarget), { recursive: true })
   await copyFile(helper, helperTarget)
-  await writeFile(join(pkg, "package.json"), JSON.stringify({ name: "@kilocode/cli", type: "commonjs" }))
+  await writeFile(join(pkg, "package.json"), JSON.stringify({ name: "@qronos-ai/cli", type: "commonjs" }))
   await writeFile(
     preload,
     `const os = require("node:os")

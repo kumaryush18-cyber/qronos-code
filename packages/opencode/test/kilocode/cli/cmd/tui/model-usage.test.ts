@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import type { Session } from "@kilocode/sdk/v2"
+import type { Session } from "@qronos-ai/sdk/v2"
 import {
   failed,
   formatCost,

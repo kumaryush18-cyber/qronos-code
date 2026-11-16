@@ -1,6 +1,6 @@
 /** @jsxImportSource @opentui/solid */
 import { describe, expect, test } from "bun:test"
-import type { BackgroundProcessInfo, GlobalEvent, Session } from "@kilocode/sdk/v2"
+import type { BackgroundProcessInfo, GlobalEvent, Session } from "@qronos-ai/sdk/v2"
 import { normalizeSyncEvent } from "@tui/context/event"
 import { json, mount, wait } from "../../../tui/test/cli/cmd/tui/sync-fixture"
 

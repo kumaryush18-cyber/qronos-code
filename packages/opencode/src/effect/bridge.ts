@@ -1,6 +1,6 @@
 import { Context, Effect, Exit, Fiber } from "effect"
 import { WorkspaceContext } from "@/control-plane/workspace-context"
-import type { WorkspaceV2 } from "@opencode-ai/core/workspace"
+import type { WorkspaceV2 } from "@qronos-ai/core/workspace"
 import { InstanceRef, WorkspaceRef } from "./instance-ref"
 import { attachWith } from "./run-service"
 import { Instance, type InstanceContext } from "@/kilocode/instance" // kilocode_change

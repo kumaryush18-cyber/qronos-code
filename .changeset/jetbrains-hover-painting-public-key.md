@@ -1,5 +1,5 @@
 ---
-"@kilocode/kilo-jetbrains": patch
+"@qronos-ai/kilo-jetbrains": patch
 ---
 
 Fix the JetBrains plugin so Marketplace publishing passes plugin verification again.

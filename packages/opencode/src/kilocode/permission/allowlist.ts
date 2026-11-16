@@ -1,4 +1,4 @@
-import { Wildcard } from "@opencode-ai/core/util/wildcard"
+import { Wildcard } from "@qronos-ai/core/util/wildcard"
 import type { Ruleset } from "@/kilocode/permission/rule"
 
 // A scoped policy can be written either as an explicit catch-all deny or as an

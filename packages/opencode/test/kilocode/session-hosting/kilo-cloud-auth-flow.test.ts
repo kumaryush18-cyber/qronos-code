@@ -1,6 +1,6 @@
 import { Auth } from "@/auth"
 import { provider as kiloCloud } from "@/kilocode/session-hosting/kilo-cloud"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { expect } from "bun:test"
 import { Effect, Layer, Schema } from "effect"
 import { testEffect } from "../../lib/effect"

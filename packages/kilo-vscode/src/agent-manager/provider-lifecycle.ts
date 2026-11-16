@@ -1,4 +1,4 @@
-import type { KiloClient, Session } from "@kilocode/sdk/v2/client"
+import type { KiloClient, Session } from "@qronos-ai/sdk/v2/client"
 import { getErrorMessage } from "../kilo-provider-utils"
 import { isRunningStatus } from "../session-status"
 import type { AgentManagerOutMessage } from "./types"

@@ -2,8 +2,8 @@
 
 import { type Component, For, Show, createMemo, type JSXElement, type ParentProps } from "solid-js"
 import type { BranchInfo } from "../../types/messages"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Spinner } from "@kilocode/kilo-ui/spinner"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Spinner } from "@qronos-ai/kilo-ui/spinner"
 import { formatRelativeDate } from "../../utils/date"
 import { useLanguage } from "../../context/language"
 import { DeferredPopover } from "./DeferredPopover"

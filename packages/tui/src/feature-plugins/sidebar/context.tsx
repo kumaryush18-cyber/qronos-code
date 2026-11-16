@@ -1,5 +1,5 @@
-import type { AssistantMessage } from "@kilocode/sdk/v2"
-import type { TuiPlugin, TuiPluginApi } from "@kilocode/plugin/tui"
+import type { AssistantMessage } from "@qronos-ai/sdk/v2"
+import type { TuiPlugin, TuiPluginApi } from "@qronos-ai/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 import { createMemo, createSignal, Show } from "solid-js" // kilocode_change
 

@@ -1,7 +1,7 @@
 import { Component, For, Show, createEffect, createMemo, createSignal } from "solid-js"
-import { Select } from "@kilocode/kilo-ui/select"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Icon } from "@kilocode/kilo-ui/icon"
+import { Select } from "@qronos-ai/kilo-ui/select"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
 
 import { useLanguage } from "../../context/language"
 import type { PermissionConfig, PermissionLevel, PermissionRule, PermissionRuleItem } from "../../types/messages"

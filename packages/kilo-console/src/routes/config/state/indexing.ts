@@ -1,7 +1,7 @@
-import type { IndexingConfig } from "@kilocode/sdk/v2/client"
-import { isFileExtension } from "@kilocode/kilo-indexing/file-extensions"
+import type { IndexingConfig } from "@qronos-ai/sdk/v2/client"
+import { isFileExtension } from "@qronos-ai/kilo-indexing/file-extensions"
 
-export { parseFileExtensions } from "@kilocode/kilo-indexing/file-extensions"
+export { parseFileExtensions } from "@qronos-ai/kilo-indexing/file-extensions"
 
 function record(input: unknown): input is Record<string, unknown> {
   return typeof input === "object" && input !== null && !Array.isArray(input)

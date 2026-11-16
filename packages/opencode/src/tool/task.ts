@@ -1,7 +1,7 @@
 import * as Tool from "./tool"
 import DESCRIPTION from "./task.txt"
 import { ToolJsonSchema } from "./json-schema"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { BackgroundJob } from "@/background/job"
 import { Session } from "@/session/session"
 import { SessionID, MessageID } from "../session/schema"
@@ -25,7 +25,7 @@ import { Cause } from "effect" // kilocode_change
 import { EffectBridge } from "@/effect/bridge"
 import { RuntimeFlags } from "@/effect/runtime-flags"
 import * as SandboxPolicy from "@/kilocode/sandbox/policy" // kilocode_change
-import { Database } from "@opencode-ai/core/database/database"
+import { Database } from "@qronos-ai/core/database/database"
 
 export interface TaskPromptOps {
   cancel(sessionID: SessionID): Effect.Effect<void>

@@ -1,1 +1,1 @@
-export * from "@opencode-ai/ui/pierre/selection-bridge"
+export * from "@qronos-ai/ui/pierre/selection-bridge"

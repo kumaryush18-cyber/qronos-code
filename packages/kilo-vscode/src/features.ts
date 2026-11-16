@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2"
+import type { KiloClient } from "@qronos-ai/sdk/v2"
 import * as vscode from "vscode"
 
 type PluginSpec = string | [string, Record<string, unknown>]

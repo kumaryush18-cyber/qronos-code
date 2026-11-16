@@ -7,9 +7,9 @@ import { FSUtil } from "./fs-util"
 import { Location } from "./location"
 import { PositiveInt, RelativePath } from "./schema"
 import { FileSystemSearch } from "./filesystem/search"
-import { Entry, FileSystem, FindInput, Match } from "@opencode-ai/schema/filesystem"
+import { Entry, FileSystem, FindInput, Match } from "@qronos-ai/schema/filesystem"
 import * as SearchTarget from "./kilocode/search-target" // kilocode_change
-export { Entry, Match, Submatch } from "@opencode-ai/schema/filesystem"
+export { Entry, Match, Submatch } from "@qronos-ai/schema/filesystem"
 
 export const ReadInput = Schema.Struct({
   path: RelativePath,

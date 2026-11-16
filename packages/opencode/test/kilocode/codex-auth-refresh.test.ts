@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { CodexAuthExpiredError, refreshCodexAuth } from "../../src/kilocode/provider/codex-refresh"
 import { MessageV2 } from "../../src/session/message-v2"
-import { ProviderV2 } from "@opencode-ai/core/provider"
+import { ProviderV2 } from "@qronos-ai/core/provider"
 import { spawn } from "child_process"
 import fs from "fs/promises"
 import os from "os"

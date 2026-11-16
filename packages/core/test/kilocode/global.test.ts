@@ -1,7 +1,7 @@
 import fs from "fs/promises"
 import path from "path"
 import { describe, expect, test } from "bun:test"
-import { resolveState } from "@opencode-ai/core/kilocode/global"
+import { resolveState } from "@qronos-ai/core/kilocode/global"
 import { tmpdir } from "../fixture/tmpdir"
 
 const skip = process.platform === "win32" || process.getuid?.() === 0

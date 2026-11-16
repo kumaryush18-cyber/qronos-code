@@ -4,17 +4,17 @@
 // transitively load flag.ts to ensure the env is captured at load time.
 process.env.KILO_SESSION_RETRY_LIMIT = "2"
 
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { SessionProjector } from "@opencode-ai/core/session/projector"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { SessionProjector } from "@qronos-ai/core/session/projector"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { NodeFileSystem } from "@effect/platform-node"
 import { afterEach, describe, expect, spyOn, test } from "bun:test"
 import { APICallError } from "ai"
 import { Context, Effect, Exit, Fiber, Layer, Schedule } from "effect"
 import * as TestClock from "effect/testing/TestClock"
 import * as Stream from "effect/Stream"
-import type { LLMEvent } from "@opencode-ai/llm"
-import { Database } from "@opencode-ai/core/database/database"
+import type { LLMEvent } from "@qronos-ai/llm"
+import { Database } from "@qronos-ai/core/database/database"
 import path from "path"
 import { Agent as AgentSvc } from "../../src/agent/agent"
 import { Bus } from "../../src/bus"
@@ -25,8 +25,8 @@ import { Image } from "../../src/image/image"
 import { Permission } from "../../src/permission"
 import { Plugin } from "../../src/plugin"
 import type { Provider } from "../../src/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import { Session } from "../../src/session/session"
 import { LLM } from "../../src/session/llm"
 import { MessageV2 } from "../../src/session/message-v2"
@@ -38,8 +38,8 @@ import { SessionStatus } from "../../src/session/status"
 import { SessionSummary } from "../../src/session/summary"
 import { Snapshot } from "../../src/snapshot"
 import { SyncEvent } from "../../src/sync"
-import * as Log from "@opencode-ai/core/util/log"
-import * as CrossSpawnSpawner from "@opencode-ai/core/cross-spawn-spawner"
+import * as Log from "@qronos-ai/core/util/log"
+import * as CrossSpawnSpawner from "@qronos-ai/core/cross-spawn-spawner"
 import { provideTmpdirProject } from "../fixture/fixture"
 import { testEffect } from "../lib/effect"
 
@@ -350,7 +350,7 @@ describe("session processor retry limit", () => {
 
   it.effect("only positive integers enable the limit", () =>
     Effect.promise(async () => {
-      const { Flag } = await import("@opencode-ai/core/flag/flag")
+      const { Flag } = await import("@qronos-ai/core/flag/flag")
 
       delete process.env.KILO_SESSION_RETRY_LIMIT
       expect(Flag.KILO_SESSION_RETRY_LIMIT).toBeUndefined()
@@ -371,7 +371,7 @@ describe("session processor retry limit", () => {
 
   it.effect("reads env at access time (dynamic getter)", () =>
     Effect.promise(async () => {
-      const { Flag } = await import("@opencode-ai/core/flag/flag")
+      const { Flag } = await import("@qronos-ai/core/flag/flag")
       delete process.env.KILO_SESSION_RETRY_LIMIT
       expect(Flag.KILO_SESSION_RETRY_LIMIT).toBeUndefined()
       process.env.KILO_SESSION_RETRY_LIMIT = "5"

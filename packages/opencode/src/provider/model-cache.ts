@@ -1,17 +1,17 @@
 // kilocode_change - new file
-import { fetchKiloModels, type KiloModelsResult } from "@kilocode/kilo-gateway"
+import { fetchKiloModels, type KiloModelsResult } from "@qronos-ai/kilo-gateway"
 import { Context, Deferred, Duration, Effect, Exit, Fiber, Layer, Schema, Scope } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
 import { Config } from "../config/config"
 import { Auth } from "../auth"
 import { compatible, organization, token } from "@/kilocode/provider/catalog"
 import { delay, retryable } from "@/kilocode/provider/catalog-recovery"
-import * as ModelsRefresh from "@opencode-ai/core/kilocode/models-refresh"
-import type { Provider } from "@opencode-ai/core/models-dev"
-import * as Log from "@opencode-ai/core/util/log"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform" // kilocode_change
+import * as ModelsRefresh from "@qronos-ai/core/kilocode/models-refresh"
+import type { Provider } from "@qronos-ai/core/models-dev"
+import * as Log from "@qronos-ai/core/util/log"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform" // kilocode_change
 
 type Models = Provider["models"]
 type KiloOptions = NonNullable<Parameters<typeof fetchKiloModels>[0]>
@@ -26,7 +26,7 @@ export interface KiloModels {
 }
 
 export class KiloModelsService extends Context.Service<KiloModelsService, KiloModels>()(
-  "@kilocode/ModelCache/KiloModels",
+  "@qronos-ai/ModelCache/KiloModels",
 ) {}
 
 export const kiloModelsLayer = Layer.succeed(
@@ -51,7 +51,7 @@ export interface Interface {
   readonly clear: (providerID: string) => Effect.Effect<void>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@kilocode/ModelCache") {}
+export class Service extends Context.Service<Service, Interface>()("@qronos-ai/ModelCache") {}
 
 const log = Log.create({ service: "model-cache" })
 const ttl = Duration.minutes(5)

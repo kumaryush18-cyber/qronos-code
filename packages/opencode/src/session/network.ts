@@ -5,17 +5,17 @@ import { Bus } from "../bus"
 import { BusEvent } from "../bus/bus-event"
 import { QuestionID } from "../question/schema"
 import { SessionID } from "../session/schema"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { InstanceState } from "@/effect/instance-state"
 import { InstanceRef } from "@/effect/instance-ref"
 import { capture } from "@/kilocode/instance"
 import type { InstanceContext } from "@/project/instance-context"
 import { makeRuntime } from "@/effect/run-service"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { fn } from "@/kilocode/fn"
 import { MCP } from "../mcp"
-import { zod } from "@opencode-ai/core/effect-zod"
-import { withStatics } from "@opencode-ai/core/schema"
+import { zod } from "@qronos-ai/core/effect-zod"
+import { withStatics } from "@qronos-ai/core/schema"
 import z from "zod"
 
 export namespace SessionNetwork {
@@ -121,7 +121,7 @@ export namespace SessionNetwork {
   }
 
   class StateService extends Context.Service<StateService, { readonly get: () => Effect.Effect<StateShape> }>()(
-    "@kilocode/SessionNetwork.State",
+    "@qronos-ai/SessionNetwork.State",
   ) {}
 
   const stateLayer = Layer.effect(

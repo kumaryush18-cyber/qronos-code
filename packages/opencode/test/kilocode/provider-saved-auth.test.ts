@@ -1,8 +1,8 @@
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder"
 import { expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { ModelV2 } from "@opencode-ai/core/model"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { ModelV2 } from "@qronos-ai/core/model"
 import type { Auth } from "../../src/auth"
 import { Config } from "../../src/config/config"
 import { ModelsDev } from "../../src/provider/models"
@@ -279,7 +279,7 @@ for (const scenario of scenarios) {
       const config: Config.Info = {
         provider: {
           qronos: {
-            npm: "@kilocode/kilo-gateway",
+            npm: "@qronos-ai/kilo-gateway",
             env: ["KILO_API_KEY"],
             options: { ...scenario.options, headers: { "x-custom": "preserved" }, fetch },
             models: { "test-model": { name: "Test Model", limit: { context: 128000, output: 4096 } } },

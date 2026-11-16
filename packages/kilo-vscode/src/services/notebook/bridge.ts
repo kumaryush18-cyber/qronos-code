@@ -6,7 +6,7 @@ import type {
   NotebookFailure,
   NotebookRequest,
   NotebookResult,
-} from "@kilocode/sdk/v2/client"
+} from "@qronos-ai/sdk/v2/client"
 import { FileIgnoreController } from "../autocomplete/shims/FileIgnoreController"
 import type { ConnectionState, KiloConnectionService } from "../cli-backend/connection-service"
 import type { SSEPayload } from "../cli-backend/sdk-sse-adapter"

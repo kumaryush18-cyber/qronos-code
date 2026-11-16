@@ -1,5 +1,5 @@
 import { Effect } from "effect"
-import { AgentV2 } from "@opencode-ai/core/agent"
+import { AgentV2 } from "@qronos-ai/core/agent"
 import { isRecord } from "../../server/httpapi-exercise/assertions"
 import { request } from "../../server/httpapi-exercise/backend"
 import { pollWithTimeout } from "../../lib/effect"

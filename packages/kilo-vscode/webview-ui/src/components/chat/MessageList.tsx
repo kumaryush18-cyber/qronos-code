@@ -18,9 +18,9 @@ import {
   on,
   onCleanup,
 } from "solid-js"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
-import { Spinner } from "@kilocode/kilo-ui/spinner"
-import { createAutoScroll } from "@kilocode/kilo-ui/hooks"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
+import { Spinner } from "@qronos-ai/kilo-ui/spinner"
+import { createAutoScroll } from "@qronos-ai/kilo-ui/hooks"
 import { useSession } from "../../context/session"
 import { useServer } from "../../context/server"
 import { useVSCode } from "../../context/vscode"

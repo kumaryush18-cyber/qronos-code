@@ -2,13 +2,13 @@
 import { Config } from "@/config/config"
 import { Auth } from "@/auth"
 import { ModelCache } from "./model-cache"
-import * as Core from "@opencode-ai/core/models-dev"
+import * as Core from "@qronos-ai/core/models-dev"
 import { Context, Effect, Layer } from "effect"
-import { AI_SDK_PROVIDERS, KILO_OPENROUTER_BASE, PROMPTS } from "@kilocode/kilo-gateway"
+import { AI_SDK_PROVIDERS, KILO_OPENROUTER_BASE, PROMPTS } from "@qronos-ai/kilo-gateway"
 import { overlay } from "@/kilocode/anaconda-desktop/provider"
 import { compatible, organization, token } from "@/kilocode/provider/catalog"
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 
 export const Model = Core.Model
 export type Model = Core.Model
@@ -98,7 +98,7 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
           name: "Qronos AI Universal Gateway",
           env: ["QRONOS_API_KEY", "KILO_API_KEY"],
           api: KILO_OPENROUTER_BASE.endsWith("/") ? KILO_OPENROUTER_BASE : `${KILO_OPENROUTER_BASE}/`,
-          npm: "@kilocode/kilo-gateway",
+          npm: "@qronos-ai/kilo-gateway",
           models,
         }
         if (valid && !org && Object.keys(fetched).length === 0)

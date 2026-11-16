@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 import { ScriptTerminalManager, type ScriptTerminalView } from "../../src/agent-manager/ScriptTerminalManager"
 import { buildScriptTerminalWsUrl } from "../../src/agent-manager/script-terminal-url"
 import { RunScriptManager, type RunStatus } from "../../src/agent-manager/run/manager"

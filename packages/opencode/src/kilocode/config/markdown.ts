@@ -1,5 +1,5 @@
 import { ConfigVariable } from "@/config/variable"
-import { InvalidError } from "@opencode-ai/core/v1/config/error"
+import { InvalidError } from "@qronos-ai/core/v1/config/error"
 import { Filesystem } from "@/util/filesystem"
 import { ConfigVariableGuard } from "./variable"
 import path from "node:path"

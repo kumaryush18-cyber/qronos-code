@@ -1,16 +1,16 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { httpClient } from "@opencode-ai/core/effect/app-node-platform"
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { httpClient } from "@qronos-ai/core/effect/app-node-platform"
 import path from "path"
-import { SessionV1 } from "@opencode-ai/core/v1/session"
+import { SessionV1 } from "@qronos-ai/core/v1/session"
 import { Effect, Layer, Context } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/unstable/http"
 import { Config } from "@/config/config"
 import { InstanceState } from "@/effect/instance-state"
 import { RuntimeFlags } from "@/effect/runtime-flags"
-import { Flag } from "@opencode-ai/core/flag/flag"
-import { FSUtil } from "@opencode-ai/core/fs-util"
+import { Flag } from "@qronos-ai/core/flag/flag"
+import { FSUtil } from "@qronos-ai/core/fs-util"
 import { withTransientReadRetry } from "@/util/effect-http-client"
-import { Global } from "@opencode-ai/core/global"
+import { Global } from "@qronos-ai/core/global"
 import { KilocodeInstruction } from "@/kilocode/session/instruction" // kilocode_change
 import { ClaudeMigration } from "@/kilocode/config/claude-migration" // kilocode_change
 import type { KilocodeMarkdown } from "@/kilocode/config/markdown" // kilocode_change

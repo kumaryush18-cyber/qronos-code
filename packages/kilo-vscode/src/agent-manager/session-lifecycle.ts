@@ -1,4 +1,4 @@
-import type { Session } from "@kilocode/sdk/v2/client"
+import type { Session } from "@qronos-ai/sdk/v2/client"
 import { sessionToWebview } from "../kilo-provider-utils"
 import { samePath } from "./project/paths"
 import type { ProjectContexts } from "./project/contexts"

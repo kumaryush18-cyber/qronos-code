@@ -7,8 +7,8 @@ import { Process } from "@/util/process"
 import { errorMessage } from "@/util/error"
 import type { Auth } from "@/auth"
 import type { Provider } from "@/provider/provider"
-import { ProviderV2 } from "@opencode-ai/core/provider"
-import { InstallationVersion } from "@opencode-ai/core/installation/version"
+import { ProviderV2 } from "@qronos-ai/core/provider"
+import { InstallationVersion } from "@qronos-ai/core/installation/version"
 import {
   fetchClientEvalCase,
   fetchClientEvalPlan,
@@ -21,7 +21,7 @@ import {
   type ClientEvalPlanItem,
   type CustomRouterEntryRef,
   type CustomRouterSummary,
-} from "@kilocode/kilo-gateway"
+} from "@qronos-ai/kilo-gateway"
 import { parseKiloRunEvents } from "./eval-events"
 import { KiloCustomRouter } from "./router"
 import {
@@ -82,7 +82,7 @@ export namespace KiloAutoEval {
     const version = cli.version
     const image = evalImageTag(version)
     if (!(await docker("image", "inspect", image))) {
-      UI.println(`Building the eval image ${image} (node:22-slim + @kilocode/cli@${version})...`)
+      UI.println(`Building the eval image ${image} (node:22-slim + @qronos-ai/cli@${version})...`)
       await buildImage(image, version)
     }
 

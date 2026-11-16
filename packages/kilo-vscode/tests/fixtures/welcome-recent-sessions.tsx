@@ -31,7 +31,7 @@ Object.assign(globalThis, {
 })
 
 const { render } = await import("solid-js/web")
-const { DialogProvider } = await import("@kilocode/kilo-ui/context/dialog")
+const { DialogProvider } = await import("@qronos-ai/kilo-ui/context/dialog")
 const { LanguageContext } = await import("../../webview-ui/src/context/language")
 const { SessionContext } = await import("../../webview-ui/src/context/session")
 const { VSCodeProvider } = await import("../../webview-ui/src/context/vscode")

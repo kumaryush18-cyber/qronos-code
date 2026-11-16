@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test"
-import { createKiloClient } from "@kilocode/sdk/v2/client"
+import { createKiloClient } from "@qronos-ai/sdk/v2/client"
 import * as vscode from "vscode"
 import { marketplaceBundles } from "../../src/services/marketplace/bundles"
 

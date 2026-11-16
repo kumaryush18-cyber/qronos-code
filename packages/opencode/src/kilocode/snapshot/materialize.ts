@@ -1,8 +1,8 @@
 import { Effect } from "effect"
 import path from "path"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import * as Log from "@opencode-ai/core/util/log"
-import { Hash } from "@opencode-ai/core/util/hash"
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import * as Log from "@qronos-ai/core/util/log"
+import { Hash } from "@qronos-ai/core/util/hash"
 
 export namespace KiloSnapshotMaterialize {
   const log = Log.create({ service: "snapshot.materialize" })

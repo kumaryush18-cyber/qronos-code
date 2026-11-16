@@ -1,27 +1,27 @@
-import { LayerNode } from "@opencode-ai/core/effect/layer-node"
-import { AppNodeBuilder } from "@opencode-ai/core/effect/app-node-builder" // kilocode_change
+import { LayerNode } from "@qronos-ai/core/effect/layer-node"
+import { AppNodeBuilder } from "@qronos-ai/core/effect/app-node-builder" // kilocode_change
 import { Cause, Duration, Effect, Layer, Schedule, Schema, Semaphore, Context } from "effect"
 import { Struct, Fiber } from "effect" // kilocode_change
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
 import { formatPatch, structuredPatch } from "diff"
 import path from "path"
-import { AppProcess } from "@opencode-ai/core/process"
+import { AppProcess } from "@qronos-ai/core/process"
 import { InstanceState } from "@/effect/instance-state"
-import { FSUtil } from "@opencode-ai/core/fs-util"
-import { Hash } from "@opencode-ai/core/util/hash"
-import { EffectFlock } from "@opencode-ai/core/util/effect-flock" // kilocode_change
+import { FSUtil } from "@qronos-ai/core/fs-util"
+import { Hash } from "@qronos-ai/core/util/hash"
+import { EffectFlock } from "@qronos-ai/core/util/effect-flock" // kilocode_change
 import { Config } from "@/config/config"
-import { Global } from "@opencode-ai/core/global"
-import { Info } from "@opencode-ai/schema/file-diff"
+import { Global } from "@qronos-ai/core/global"
+import { Info } from "@qronos-ai/schema/file-diff"
 // kilocode_change start
-import { Flag } from "@opencode-ai/core/flag/flag"
+import { Flag } from "@qronos-ai/core/flag/flag"
 import { DiffFull } from "../kilocode/snapshot/diff-full"
 import { KiloSnapshotTrack } from "../kilocode/snapshot/track"
 import { KiloSnapshotPrepare } from "../kilocode/snapshot/prepare"
 import { KiloSnapshotMaterialize } from "../kilocode/snapshot/materialize"
 import type { MessageID, SessionID } from "../session/schema"
-import { withStatics } from "@opencode-ai/core/schema"
-import { zod } from "@opencode-ai/core/effect-zod"
+import { withStatics } from "@qronos-ai/core/schema"
+import { zod } from "@qronos-ai/core/effect-zod"
 import { KiloSnapshotLock } from "../kilocode/snapshot/lock"
 // kilocode_change end
 

@@ -1,8 +1,8 @@
 import { Show, For, lazy, useContext, type Component } from "solid-js"
 import type { EnrichedModel } from "../../context/provider"
 import { SessionContext } from "../../context/session"
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { Tooltip } from "@kilocode/kilo-ui/tooltip"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { Tooltip } from "@qronos-ai/kilo-ui/tooltip"
 import { useLanguage } from "../../context/language"
 import {
   autoChoices,

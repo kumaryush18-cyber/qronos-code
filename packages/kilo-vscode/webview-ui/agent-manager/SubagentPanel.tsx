@@ -5,9 +5,9 @@
  * the child transcript while still consuming the same webview event stream.
  */
 
-import { Icon } from "@kilocode/kilo-ui/icon"
-import { AgentAvatar, AgentAvatarPalette } from "@kilocode/kilo-ui/agent-avatar"
-import { IconButton } from "@kilocode/kilo-ui/icon-button"
+import { Icon } from "@qronos-ai/kilo-ui/icon"
+import { AgentAvatar, AgentAvatarPalette } from "@qronos-ai/kilo-ui/agent-avatar"
+import { IconButton } from "@qronos-ai/kilo-ui/icon-button"
 import { createEffect, createMemo, on, type Accessor, type Component } from "solid-js"
 import { DataBridge } from "../src/App"
 import { ChatView } from "../src/components/chat"

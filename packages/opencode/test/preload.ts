@@ -109,7 +109,7 @@ if (process.env["KILO_DB"] !== ":memory:") {
   throw new Error(`unit test preload: KILO_DB must be ":memory:", got "${process.env["KILO_DB"]}"`)
 }
 {
-  const { Database } = await import("@opencode-ai/core/database/database")
+  const { Database } = await import("@qronos-ai/core/database/database")
   const resolved = Database.path()
   if (resolved !== ":memory:") {
     throw new Error(`unit test preload: database path must resolve to ":memory:", got "${resolved}"`)

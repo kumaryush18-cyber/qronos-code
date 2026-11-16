@@ -1,6 +1,6 @@
 /** @jsxImportSource solid-js */
 import type { Meta, StoryObj } from "storybook-solidjs-vite"
-import { Accordion } from "@opencode-ai/ui/accordion"
+import { Accordion } from "@qronos-ai/ui/accordion"
 
 const meta: Meta = {
   title: "Components/Accordion",

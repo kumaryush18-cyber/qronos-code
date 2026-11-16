@@ -1,4 +1,4 @@
-import type { KiloClient } from "@kilocode/sdk/v2/client"
+import type { KiloClient } from "@qronos-ai/sdk/v2/client"
 
 export interface PromoteHandoffInput {
   client: KiloClient

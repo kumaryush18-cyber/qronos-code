@@ -1,15 +1,15 @@
 export * as ConfigCommand from "./command"
 
 import path from "path"
-import * as Log from "@opencode-ai/core/util/log"
+import * as Log from "@qronos-ai/core/util/log"
 import { Cause, Exit, Schema } from "effect"
 import { SchemaIssue } from "effect" // kilocode_change - preserve Effect issue details in Kilo warnings
-import { Glob } from "@opencode-ai/core/util/glob"
-import { ConfigCommandV1 } from "@opencode-ai/core/v1/config/command"
+import { Glob } from "@qronos-ai/core/util/glob"
+import { ConfigCommandV1 } from "@qronos-ai/core/v1/config/command"
 import { configEntryNameFromPath } from "./entry-name"
 import * as ConfigMarkdown from "./markdown"
 // kilocode_change start
-import { FrontmatterError } from "@opencode-ai/core/v1/config/error"
+import { FrontmatterError } from "@qronos-ai/core/v1/config/error"
 import { KilocodeConfig } from "@/kilocode/config/config"
 import { report } from "@/kilocode/config/report"
 import type { Warning } from "./config"
