@@ -249,7 +249,7 @@ export function registerQronosCommands(useSDK: () => UseSDK) {
                 onSelect={async (orgId) => {
                   try {
                     // Switch to team immediately using server endpoint
-                    const result = await sdk.client.qronos.organization.set({
+                    const result = await sdk.client.qronosGateway.organization.set({
                       organizationId: orgId,
                     })
                     if (result.error) {

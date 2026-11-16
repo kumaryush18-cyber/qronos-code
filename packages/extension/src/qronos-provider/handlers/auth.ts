@@ -150,7 +150,7 @@ export async function handleSetOrganization(ctx: AuthContext, organizationId: st
 
   console.log("[Qronos New] QronosProvider: Switching organization:", organizationId ?? "personal")
   try {
-    await ctx.client.qronos.organization.set({ organizationId }, { throwOnError: true })
+    await ctx.client.qronosGateway.organization.set({ organizationId }, { throwOnError: true })
   } catch (error) {
     console.error("[Qronos New] QronosProvider: Failed to switch organization:", error)
     // Re-fetch current profile to reset webview state — best-effort

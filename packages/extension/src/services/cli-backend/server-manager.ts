@@ -158,7 +158,6 @@ export class ServerManager {
           ...indexingEnv,
           QRONOS_TELEMETRY_LEVEL: vscode.env.isTelemetryEnabled ? "all" : "off",
           QRONOS_APP_NAME: "qronos-code",
-          QRONOS_EDITOR_NAME: vscode.env.appName,
           QRONOS_PLATFORM: "vscode",
           QRONOS_MACHINE_ID: vscode.env.machineId,
           QRONOS_APP_VERSION: this.context.extension.packageJSON.version,

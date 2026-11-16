@@ -423,7 +423,7 @@ export async function loadQronosProfile(input: ProjectQuery): Promise<QronosProf
 
 export async function setQronosOrganization(input: ProjectQuery, organizationId: string | null) {
   const sdk = client(input)
-  const result = await sdk.qronos.organization.set({ ...directory(input), organizationId })
+  const result = await sdk.qronosGateway.organization.set({ ...directory(input), organizationId })
   demand("Switch Qronos account", result)
   await sdk.global.dispose()
 }

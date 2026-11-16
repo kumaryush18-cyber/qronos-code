@@ -2,8 +2,6 @@ import type { ProviderFailure } from "@qronos-ai/sdk/v2/client"
 
 // qronos_change - one provider id only. The gateway is `qronos`; `qronos` is gone.
 export const QRONOS_PROVIDER_ID = "qronos"
-/** @deprecated use QRONOS_PROVIDER_ID - kept so older call sites keep compiling */
-export const QRONOS_PROVIDER_ID = QRONOS_PROVIDER_ID
 // qronos_change - must match the real id served by https://api.qronos.me/v1/models.
 // The gateway uses `<family>-<version>-<tier>` (claude-5.5-sonnet), not `claude-sonnet-5.5`.
 export const QRONOS_DEFAULT_MODEL = "claude-5.5-sonnet"

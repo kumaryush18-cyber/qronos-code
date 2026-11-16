@@ -59,7 +59,7 @@ export async function fetchProviderData(client: QronosClient, dir: string) {
           .then((r) => r.data ?? {})
           .catch(() => ({}))
       : Promise.resolve({})
-  const qronosRequest = client.qronos
+  const qronosRequest = client.qronosGateway
     .authStatus({ directory: dir }, { throwOnError: true })
     .then((r) => r.data)
     .catch(() => undefined)

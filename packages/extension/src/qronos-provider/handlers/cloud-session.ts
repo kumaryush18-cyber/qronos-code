@@ -80,7 +80,7 @@ export async function handleRequestCloudSessionData(ctx: CloudSessionContext, se
   }
 
   try {
-    const result = await ctx.client.qronos.cloud.session.get({ id: sessionId }, { signal: AbortSignal.timeout(TIMEOUT) })
+    const result = await ctx.client.qronosGateway.cloud.session.get({ id: sessionId }, { signal: AbortSignal.timeout(TIMEOUT) })
     const data = result.data as CloudSessionData | undefined
     if (!data) {
       ctx.postMessage({
@@ -149,7 +149,7 @@ export async function handleImportAndSend(
   // Step 1: Import the cloud session with fresh IDs
   let session: Session | undefined
   try {
-    const result = await ctx.client.qronos.cloud.session.import(
+    const result = await ctx.client.qronosGateway.cloud.session.import(
       {
         sessionId: cloudSessionId,
         directory: dir,
