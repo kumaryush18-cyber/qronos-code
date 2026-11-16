@@ -8,10 +8,10 @@
     "noUncheckedIndexedAccess": false,
     // qronos_change - resolve Qronos integrations retained during upstream's standalone TUI extraction
     "paths": {
-      "@/*": ["../opencode/src/*"],
+      "@/*": ["../cli/src/*"],
       "@tui/*": ["./src/*"]
     }
   },
   // qronos_change - include ambient declarations used by retained Qronos imports from opencode
-  "include": ["src", "test", "../opencode/src/*.d.ts"]
+  "include": ["src", "test", "../cli/src/*.d.ts"]
 }
