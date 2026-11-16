@@ -21,6 +21,8 @@ body.vscode-high-contrast {
 /* qronos_change - the panel is always dark, like the Qronos landing page, even
    when the editor theme is light. The same values are set for every body class
    so no component can pick up a white surface. */
+html,
+html[data-theme],
 body.vscode-light,
 body.vscode-high-contrast-light,
 body.vscode-dark,
@@ -36,40 +38,42 @@ body.vscode-high-contrast {
   --q-text-dim: #8d968c;
 
   /* qronos_change - parts of the UI read VS Code theme variables directly
-     (code blocks, cards, dropdowns, inputs). On a light editor theme those
-     resolve to white, which is what made the model picker and the profile
-     cards unreadable. Pin the surfaces to the dark palette here. */
-  --vscode-editor-background: #0b0c0d;
-  --vscode-editor-foreground: #e7ece6;
-  --vscode-sideBar-background: #0b0c0d;
-  --vscode-panel-background: #0b0c0d;
-  --vscode-editorWidget-background: #101214;
-  --vscode-editorWidget-border: rgba(255, 255, 255, 0.12);
-  --vscode-textCodeBlock-background: #14171a;
-  --vscode-input-background: #0e1011;
-  --vscode-input-border: rgba(255, 255, 255, 0.12);
-  --vscode-dropdown-background: #101214;
-  --vscode-dropdown-listBackground: #101214;
-  --vscode-menu-background: #101214;
-  --vscode-quickInput-background: #101214;
-  --vscode-list-hoverBackground: rgba(255, 255, 255, 0.06);
-  --vscode-toolbar-hoverBackground: rgba(255, 255, 255, 0.08);
-  --vscode-button-background: #1b1f22;
-  --vscode-button-foreground: #e7ece6;
-  --vscode-button-secondaryBackground: #14171a;
-  --vscode-button-secondaryForeground: #e7ece6;
-  --vscode-badge-background: #1b1f22;
-  --vscode-badge-foreground: #e7ece6;
-  --vscode-foreground: #e7ece6;
-  --vscode-descriptionForeground: #9aa39a;
-  --vscode-panel-border: rgba(255, 255, 255, 0.08);
-  --vscode-contrastBorder: transparent;
-  --vscode-focusBorder: #c9ff73;
-  --vscode-textLink-foreground: #c9ff73;
-  --vscode-editorWarning-foreground: #e3b341;
-  --vscode-errorForeground: #ff7b72;
-  --vscode-testing-iconPassed: #3fb950;
-  --vscode-terminal-ansiGreen: #3fb950;
+     (code blocks, cards, dropdowns, inputs) and the ui-kit bridge turns them
+     into --surface-* tokens at the html element. On a light editor theme those
+     resolve to white, which made the model picker, the tool output blocks and
+     the profile cards unreadable. Pin them to the dark palette at the root,
+     because a value declared on html is computed there, not on body. */
+  --vscode-editor-background: #0b0c0d !important;
+  --vscode-editor-foreground: #e7ece6 !important;
+  --vscode-sideBar-background: #0b0c0d !important;
+  --vscode-panel-background: #0b0c0d !important;
+  --vscode-editorWidget-background: #101214 !important;
+  --vscode-editorWidget-border: rgba(255, 255, 255, 0.12) !important;
+  --vscode-textCodeBlock-background: #14171a !important;
+  --vscode-input-background: #0e1011 !important;
+  --vscode-input-border: rgba(255, 255, 255, 0.12) !important;
+  --vscode-dropdown-background: #101214 !important;
+  --vscode-dropdown-listBackground: #101214 !important;
+  --vscode-menu-background: #101214 !important;
+  --vscode-quickInput-background: #101214 !important;
+  --vscode-list-hoverBackground: rgba(255, 255, 255, 0.06) !important;
+  --vscode-toolbar-hoverBackground: rgba(255, 255, 255, 0.08) !important;
+  --vscode-button-background: #1b1f22 !important;
+  --vscode-button-foreground: #e7ece6 !important;
+  --vscode-button-secondaryBackground: #14171a !important;
+  --vscode-button-secondaryForeground: #e7ece6 !important;
+  --vscode-badge-background: #1b1f22 !important;
+  --vscode-badge-foreground: #e7ece6 !important;
+  --vscode-foreground: #e7ece6 !important;
+  --vscode-descriptionForeground: #9aa39a !important;
+  --vscode-panel-border: rgba(255, 255, 255, 0.08) !important;
+  --vscode-contrastBorder: transparent !important;
+  --vscode-focusBorder: #c9ff73 !important;
+  --vscode-textLink-foreground: #c9ff73 !important;
+  --vscode-editorWarning-foreground: #e3b341 !important;
+  --vscode-errorForeground: #ff7b72 !important;
+  --vscode-testing-iconPassed: #3fb950 !important;
+  --vscode-terminal-ansiGreen: #3fb950 !important;
 }
 
 body {

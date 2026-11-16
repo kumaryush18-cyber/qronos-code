@@ -30,12 +30,29 @@ export const GravityAd: Component<GravityAdProps> = (props) => {
       })
 
       if (!res.ok) return
-      const data = await res.json()
+      const raw = await res.json()
+      // qronos_change - the Qronos ad gateway answers with a nested creative
+      // object ({ creative: { headline, body, cta }, click_url, imp_url }).
+      // Accept that shape as well as the flat one, otherwise every real ad was
+      // dropped before it could be shown.
+      const data: GravityAdData | null = raw?.creative
+        ? {
+            brandName: raw.creative.headline,
+            title: raw.creative.headline,
+            adText: raw.creative.body ?? "",
+            cta: raw.creative.cta,
+            url: raw.click_url,
+            clickUrl: raw.click_url,
+            impUrl: raw.imp_url,
+            isTest: raw.isTest,
+          }
+        : (raw as GravityAdData)
       if (data && data.adText && !data.isTest) {
         setAd(data)
         // Fire background impression tracker if present
-        if (data.impUrl) {
-          fetch(data.impUrl, { mode: "no-cors" }).catch(() => {})
+        for (const tracker of [data.impUrl, raw?.imp_url]) {
+          if (!tracker) continue
+          fetch(tracker, { mode: "no-cors" }).catch(() => {})
         }
       }
     } catch {
