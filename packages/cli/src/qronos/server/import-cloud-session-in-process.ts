@@ -26,7 +26,7 @@ const log = Log.create({ service: "import-cloud-session" })
 /**
  * In-process cloud-session import. Shared by the HTTP `cloudSessionImport`
  * handler and the remote `create_session` clone path. Yields its own service
- * graph (never closing over qronosGatewayHandlers group variables) and fails
+ * graph (never closing over qronosHandlers group variables) and fails
  * typed errors that the callers translate into their own wire shapes.
  */
 export namespace CloudSessionImportInProcess {

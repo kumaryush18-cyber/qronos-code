@@ -49,7 +49,7 @@ export function DialogQronosOrganization(props: DialogQronosOrganizationProps) {
           const orgId = option.value
 
           // Update auth to include organization ID using server endpoint
-          await sdk.client.qronosGateway.organization.set({
+          await sdk.client.qronos.organization.set({
             organizationId: orgId,
           })
 

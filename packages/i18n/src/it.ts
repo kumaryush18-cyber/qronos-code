@@ -2,9 +2,9 @@
 // Keys here will override any matching keys from upstream translations
 export const dict = {
   // Qronos Gateway provider translations
-  "provider.connect.qronosGateway.byok.prefix": "Per ulteriori statistiche sull'utilizzo, utilizza ",
-  "provider.connect.qronosGateway.byok.link": "BYOK tramite Qronos's Gateway",
-  "provider.connect.qronosGateway.byok.suffix": ".",
+  "provider.connect.qronos.byok.prefix": "Per ulteriori statistiche sull'utilizzo, utilizza ",
+  "provider.connect.qronos.byok.link": "BYOK tramite Qronos's Gateway",
+  "provider.connect.qronos.byok.suffix": ".",
 
   // Provider settings translations
   "settings.providers.group.recommended": "Consigliati",

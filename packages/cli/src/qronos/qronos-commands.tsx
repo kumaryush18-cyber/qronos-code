@@ -118,7 +118,7 @@ export function registerQronosCommands(useSDK: () => UseSDK) {
             }
 
             // Fetch profile and balance using server endpoint
-            const response = await sdk.client.qronosGateway.profile()
+            const response = await sdk.client.qronos.profile()
 
             if (response.error || !response.data) {
               dialog.replace(() => (
@@ -216,7 +216,7 @@ export function registerQronosCommands(useSDK: () => UseSDK) {
         run: async () => {
           try {
             // Fetch profile to get organizations
-            const response = await sdk.client.qronosGateway.profile()
+            const response = await sdk.client.qronos.profile()
 
             if (response.error || !response.data) {
               dialog.replace(() => (
@@ -249,7 +249,7 @@ export function registerQronosCommands(useSDK: () => UseSDK) {
                 onSelect={async (orgId) => {
                   try {
                     // Switch to team immediately using server endpoint
-                    const result = await sdk.client.qronosGateway.organization.set({
+                    const result = await sdk.client.qronos.organization.set({
                       organizationId: orgId,
                     })
                     if (result.error) {

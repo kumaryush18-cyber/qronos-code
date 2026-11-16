@@ -584,7 +584,7 @@ const ProviderConnectDialog: Component<ProviderConnectDialogProps> = (props) => 
         />
         <div class="dialog-confirm-actions provider-connect-actions">
           <div class="provider-connect-byok">
-            {language.t("provider.connect.qronosGateway.byok.prefix")}
+            {language.t("provider.connect.qronos.byok.prefix")}
             <a
               href="https://qronos.me/docs"
               onClick={(e) => {
@@ -594,9 +594,9 @@ const ProviderConnectDialog: Component<ProviderConnectDialogProps> = (props) => 
               }}
               class="provider-connect-byok-link"
             >
-              {language.t("provider.connect.qronosGateway.byok.link")}
+              {language.t("provider.connect.qronos.byok.link")}
             </a>
-            {language.t("provider.connect.qronosGateway.byok.suffix")}
+            {language.t("provider.connect.qronos.byok.suffix")}
           </div>
           <Button variant="ghost" size="large" type="button" onClick={back}>
             {language.t("common.goBack")}

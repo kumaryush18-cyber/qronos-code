@@ -541,7 +541,7 @@ describe("QronosProvider indexing refresh", () => {
     const profile = Promise.withResolvers<{ data: null }>()
     const calls: string[] = []
     fixture.service.getClient = () => fixture.client
-    fixture.client.qronosGateway.profile = () => profile.promise
+    fixture.client.qronos.profile = () => profile.promise
     fixture.internal.fetchAndSendIndexingStatus = async () => {
       calls.push("indexing")
     }

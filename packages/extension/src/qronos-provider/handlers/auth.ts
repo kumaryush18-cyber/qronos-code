@@ -80,7 +80,7 @@ export async function handleLogin(ctx: AuthContext, attempt: number, getAttempt:
 
           // qronos_change - never invent a profile. If the gateway does not answer,
           // the webview shows that it could not load instead of a fake account.
-          const profileResult = await ctx.client?.qronosGateway.profile().catch(() => null)
+          const profileResult = await ctx.client?.qronos.profile().catch(() => null)
           if (profileResult?.data) {
             ctx.postMessage({ type: "profileData", data: profileResult.data })
           } else {
@@ -151,12 +151,12 @@ export async function handleSetOrganization(ctx: AuthContext, organizationId: st
 
   console.log("[Qronos New] QronosProvider: Switching organization:", organizationId ?? "personal")
   try {
-    await ctx.client.qronosGateway.organization.set({ organizationId }, { throwOnError: true })
+    await ctx.client.qronos.organization.set({ organizationId }, { throwOnError: true })
   } catch (error) {
     console.error("[Qronos New] QronosProvider: Failed to switch organization:", error)
     // Re-fetch current profile to reset webview state — best-effort
     try {
-      const result = await ctx.client.qronosGateway.profile()
+      const result = await ctx.client.qronos.profile()
       ctx.postMessage({ type: "profileData", data: result.data ?? null })
     } catch (profileError) {
       console.error("[Qronos New] QronosProvider: Failed to refresh profile after org switch error:", profileError)
@@ -170,7 +170,7 @@ export async function handleSetOrganization(ctx: AuthContext, organizationId: st
 
   // Org switch succeeded — refresh profile and providers independently (best-effort)
   try {
-    const result = await ctx.client.qronosGateway.profile()
+    const result = await ctx.client.qronos.profile()
     ctx.postMessage({ type: "profileData", data: result.data ?? null })
   } catch (error) {
     console.error("[Qronos New] QronosProvider: Failed to refresh profile after org switch:", error)
@@ -197,7 +197,7 @@ export async function handleRefreshProfile(ctx: AuthContext): Promise<void> {
   console.log("[Qronos] 🔄 Refreshing profile...")
 
   if (ctx.client) {
-    const result = await ctx.client.qronosGateway.profile().catch(() => ({ data: null }))
+    const result = await ctx.client.qronos.profile().catch(() => ({ data: null }))
     ctx.postMessage({ type: "profileData", data: result.data ?? null })
   } else {
     ctx.postMessage({ type: "profileData", data: null })

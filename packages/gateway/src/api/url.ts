@@ -39,7 +39,7 @@ function resolve(options: UrlOptions, name: "gateway" | "openrouter"): string {
   return gateway(raw) ?? route(raw, name)
 }
 
-export function resolveQronosGatewayBaseUrl(options: UrlOptions = {}): string {
+export function resolveQronosBaseUrl(options: UrlOptions = {}): string {
   return resolve(options, "gateway")
 }
 
@@ -48,6 +48,6 @@ export function resolveQronosOpenRouterBaseUrl(options: UrlOptions = {}): string
 }
 
 /** Resolve a Qronos AI gateway endpoint, e.g. `fim/completions`, against the configured gateway base. */
-export function resolveQronosGatewayUrl(path: string): string {
+export function resolveQronosUrl(path: string): string {
   return `${QRONOS_AI_GATEWAY_BASE}/${path}`
 }

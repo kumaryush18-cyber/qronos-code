@@ -6,7 +6,7 @@ import { BackgroundProcessPaths } from "../../../src/qronos/server/httpapi/group
 import { BranchNamePaths } from "../../../src/qronos/server/httpapi/groups/branch-name"
 import { ConfigConsolePaths } from "../../../src/qronos/server/httpapi/groups/config-console"
 import { IndexingPaths, QronosEmbeddingModel } from "../../../src/qronos/server/httpapi/groups/indexing"
-import { QronosGatewayPaths } from "../../../src/qronos/server/httpapi/groups/gateway"
+import { QronosPaths } from "../../../src/qronos/server/httpapi/groups/gateway"
 import { QronosPaths } from "../../../src/qronos/server/httpapi/groups/qronos"
 import { MemoryPaths } from "../../../src/qronos/server/httpapi/groups/memory"
 import { SessionHostPaths } from "../../../src/qronos/server/httpapi/groups/session-host"
@@ -312,7 +312,7 @@ describe("Qronos PublicApi OpenAPI contract", () => {
 
   test("keeps personal organization resets nullable", () => {
     const spec = OpenApi.fromApi(PublicApi)
-    const body = spec.paths[QronosGatewayPaths.organization]?.post?.requestBody as Body | undefined
+    const body = spec.paths[QronosPaths.organization]?.post?.requestBody as Body | undefined
     const schema = body?.content?.["application/json"]?.schema
     const props = schema?.properties
     expect(props?.organizationId).toEqual({ anyOf: [{ type: "string" }, { type: "null" }] })
@@ -334,7 +334,7 @@ describe("Qronos PublicApi OpenAPI contract", () => {
       return body?.content?.["application/json"]?.schema
     }
 
-    const profile = response(QronosGatewayPaths.profile)?.properties
+    const profile = response(QronosPaths.profile)?.properties
     expect(profile?.balance).toEqual({ anyOf: [expect.objectContaining({ type: "object" }), { type: "null" }] })
     expect(profile?.qronosPass).toEqual({ anyOf: [expect.objectContaining({ type: "object" }), { type: "null" }] })
     expect(profile?.profile?.properties?.selectedOrganizationId).toEqual({ type: "string" })
@@ -343,14 +343,14 @@ describe("Qronos PublicApi OpenAPI contract", () => {
     expect(pass?.nextBillingAt).toEqual({ anyOf: [{ type: "string" }, { type: "null" }] })
     expect(profile?.currentOrgId).toEqual({ anyOf: [{ type: "string" }, { type: "null" }] })
 
-    const auth = response(QronosGatewayPaths.authStatus)?.properties
+    const auth = response(QronosPaths.authStatus)?.properties
     expect(auth).toEqual({
       authenticated: { type: "boolean" },
       type: { type: "string", enum: ["api", "oauth"] },
       organizationId: { type: "string" },
     })
 
-    const sessions = response(QronosGatewayPaths.cloudSessions)?.properties
+    const sessions = response(QronosPaths.cloudSessions)?.properties
     expect(sessions?.cliSessions?.items?.properties?.title).toEqual({
       anyOf: [{ type: "string" }, { type: "null" }],
     })
@@ -359,7 +359,7 @@ describe("Qronos PublicApi OpenAPI contract", () => {
 
   test("keeps transcription prompts in the public contract", () => {
     const spec = OpenApi.fromApi(PublicApi)
-    const body = spec.paths[QronosGatewayPaths.audioTranscriptions]?.post?.requestBody as Body | undefined
+    const body = spec.paths[QronosPaths.audioTranscriptions]?.post?.requestBody as Body | undefined
     const schema = body?.content?.["application/json"]?.schema
     expect(schema?.properties?.prompt).toEqual({ type: "string" })
   })
@@ -399,7 +399,7 @@ describe("Qronos PublicApi OpenAPI contract", () => {
 
   test("documents the transcription model catalog route", () => {
     const spec = OpenApi.fromApi(PublicApi)
-    const route = spec.paths[QronosGatewayPaths.transcriptionModels]?.get
+    const route = spec.paths[QronosPaths.transcriptionModels]?.get
     const query = (route?.parameters as Parameter[] | undefined)?.map((item) => item.name)
 
     expect(query).toEqual(["directory", "workspace"])

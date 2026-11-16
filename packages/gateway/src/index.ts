@@ -53,7 +53,7 @@ export {
   type QronosEmbeddingModelCatalog,
   type QronosEmbeddingModelCatalogIssue,
 } from "./api/embedding-models.js"
-export { resolveQronosGatewayBaseUrl, resolveQronosGatewayUrl, resolveQronosOpenRouterBaseUrl } from "./api/url.js"
+export { resolveQronosBaseUrl, resolveQronosUrl, resolveQronosOpenRouterBaseUrl } from "./api/url.js"
 export {
   AUTOCOMPLETE_MODELS,
   DEFAULT_AUTOCOMPLETE_MODEL,

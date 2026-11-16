@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { getQronosUrlFromToken } from "../auth/token.js"
 import { getDefaultHeaders, buildQronosHeaders } from "../headers.js"
-import { resolveQronosGatewayBaseUrl, resolveQronosGatewayUrl } from "./url.js"
+import { resolveQronosBaseUrl, resolveQronosUrl } from "./url.js"
 import { QRONOS_OPENROUTER_BASE, MODELS_FETCH_TIMEOUT_MS, PROMPTS, AI_SDK_PROVIDERS } from "./constants.js"
 
 export type QronosModelsResult = {
@@ -169,7 +169,7 @@ export async function fetchQronosTranscriptionModels(options?: {
 }): Promise<QronosTranscriptionModelsResult> {
   const token = options?.qronosToken
   const organizationId = options?.qronosOrganizationId
-  const url = new URL("transcription-models", resolveQronosGatewayBaseUrl({ baseURL: options?.baseURL, token }))
+  const url = new URL("transcription-models", resolveQronosBaseUrl({ baseURL: options?.baseURL, token }))
   const response = await fetch(url, {
     headers: {
       ...getDefaultHeaders(),
@@ -223,7 +223,7 @@ async function fetchRawQronosModels(options?: {
 
   // Construct base URL
   const defaultBaseURL = organizationId
-    ? resolveQronosGatewayUrl(`organizations/${organizationId}`)
+    ? resolveQronosUrl(`organizations/${organizationId}`)
     : QRONOS_OPENROUTER_BASE
 
   const baseURL = options?.baseURL ?? defaultBaseURL

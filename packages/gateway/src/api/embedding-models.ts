@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { resolveQronosGatewayBaseUrl } from "./url.js"
+import { resolveQronosBaseUrl } from "./url.js"
 
 export type QronosEmbeddingModel = {
   id: string
@@ -67,7 +67,7 @@ function wait(ms: number, signal?: AbortSignal) {
 }
 
 export async function fetchQronosEmbeddingModelCatalog(options: Options = {}): Promise<QronosEmbeddingModelCatalog> {
-  const url = new URL("embedding-models", resolveQronosGatewayBaseUrl({ baseURL: options.baseURL, token: options.token }))
+  const url = new URL("embedding-models", resolveQronosBaseUrl({ baseURL: options.baseURL, token: options.token }))
   const requested = options.attempts ?? 3
   const attempts = Number.isFinite(requested) ? Math.min(3, Math.max(1, Math.floor(requested))) : 3
   const issue = { current: undefined as QronosEmbeddingModelCatalogIssue | undefined }

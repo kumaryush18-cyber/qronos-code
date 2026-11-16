@@ -1,8 +1,8 @@
 export const dict = {
   // Qronos Gateway provider translations
-  "provider.connect.qronosGateway.byok.prefix": "Für weitere Nutzungsstatistiken ",
-  "provider.connect.qronosGateway.byok.link": "BYOK via Qronos's Gateway",
-  "provider.connect.qronosGateway.byok.suffix": " nutzen.",
+  "provider.connect.qronos.byok.prefix": "Für weitere Nutzungsstatistiken ",
+  "provider.connect.qronos.byok.link": "BYOK via Qronos's Gateway",
+  "provider.connect.qronos.byok.suffix": " nutzen.",
 
   // Provider settings translations
   "settings.providers.group.recommended": "Empfohlen",

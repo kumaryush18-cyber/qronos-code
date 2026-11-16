@@ -203,7 +203,7 @@ export const CloudSessionData = Schema.Struct({
   messages: Schema.Array(CloudMessage),
 })
 
-export const QronosGatewayPaths = {
+export const QronosPaths = {
   modes: `${root}/modes`,
   profile: `${root}/profile`,
   authStatus: `${root}/auth-status`,
@@ -218,11 +218,11 @@ export const QronosGatewayPaths = {
   cloudSessionImport: `${root}/cloud/session/import`,
 } as const
 
-export const QronosGatewayApi = HttpApi.make("qronos-gateway")
+export const QronosApi = HttpApi.make("qronos-gateway")
   .add(
     HttpApiGroup.make("qronos-gateway")
       .add(
-        HttpApiEndpoint.get("profile", QronosGatewayPaths.profile, {
+        HttpApiEndpoint.get("profile", QronosPaths.profile, {
           query: WorkspaceRoutingQuery,
           success: described(ProfileWithBalance, "Profile data"),
           error: [HttpApiError.BadRequest, HttpApiError.Unauthorized],
@@ -233,7 +233,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Fetch user profile and organizations from Qronos Gateway",
           }),
         ),
-        HttpApiEndpoint.get("authStatus", QronosGatewayPaths.authStatus, {
+        HttpApiEndpoint.get("authStatus", QronosPaths.authStatus, {
           query: WorkspaceRoutingQuery,
           success: described(AuthStatus, "Qronos authentication status"),
           error: HttpApiError.BadRequest,
@@ -244,7 +244,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Check whether a locally stored Qronos credential can authenticate Gateway requests",
           }),
         ),
-        HttpApiEndpoint.get("modes", QronosGatewayPaths.modes, {
+        HttpApiEndpoint.get("modes", QronosPaths.modes, {
           query: WorkspaceRoutingQuery,
           success: described(OrganizationModes, "Organization modes list"),
         }).annotateMerge(
@@ -254,7 +254,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Fetch custom modes defined for the current organization",
           }),
         ),
-        HttpApiEndpoint.post("fim", QronosGatewayPaths.fim, {
+        HttpApiEndpoint.post("fim", QronosPaths.fim, {
           query: WorkspaceRoutingQuery,
           payload: FimBody,
           success: Schema.String.pipe(HttpApiSchema.asText({ contentType: "text/event-stream" })),
@@ -266,7 +266,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Proxy a Fill-in-the-Middle completion request to the Qronos Gateway",
           }),
         ),
-        HttpApiEndpoint.post("audioTranscriptions", QronosGatewayPaths.audioTranscriptions, {
+        HttpApiEndpoint.post("audioTranscriptions", QronosPaths.audioTranscriptions, {
           query: WorkspaceRoutingQuery,
           payload: AudioTranscriptionsBody,
           success: described(TranscriptionResponse, "Transcription response"),
@@ -278,7 +278,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Proxy an audio transcription request to the Qronos Gateway",
           }),
         ),
-        HttpApiEndpoint.get("imageModels", QronosGatewayPaths.imageModels, {
+        HttpApiEndpoint.get("imageModels", QronosPaths.imageModels, {
           query: WorkspaceRoutingQuery,
           success: described(Schema.Array(ImageModel), "Image-capable model list"),
           error: [HttpApiError.BadRequest, HttpApiError.Unauthorized],
@@ -289,7 +289,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "List image-capable models from the Qronos Gateway OpenRouter passthrough",
           }),
         ),
-        HttpApiEndpoint.get("transcriptionModels", QronosGatewayPaths.transcriptionModels, {
+        HttpApiEndpoint.get("transcriptionModels", QronosPaths.transcriptionModels, {
           query: WorkspaceRoutingQuery,
           success: described(Schema.Array(TranscriptionModel), "Speech-to-text model list"),
           error: [HttpApiError.BadRequest, HttpApiError.Unauthorized],
@@ -300,7 +300,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "List transcription-capable models from the Qronos Gateway catalog",
           }),
         ),
-        HttpApiEndpoint.get("notifications", QronosGatewayPaths.notifications, {
+        HttpApiEndpoint.get("notifications", QronosPaths.notifications, {
           query: WorkspaceRoutingQuery,
           success: described(Schema.Array(Notification), "Notifications list"),
           error: [HttpApiError.BadRequest, HttpApiError.Unauthorized],
@@ -311,7 +311,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Fetch notifications from Qronos Gateway for CLI display",
           }),
         ),
-        HttpApiEndpoint.post("organization", QronosGatewayPaths.organization, {
+        HttpApiEndpoint.post("organization", QronosPaths.organization, {
           query: WorkspaceRoutingQuery,
           payload: OrganizationBody,
           success: described(Schema.Boolean, "Organization updated successfully"),
@@ -323,7 +323,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Switch to a different Qronos Gateway organization",
           }),
         ),
-        HttpApiEndpoint.get("cloudSessions", QronosGatewayPaths.cloudSessions, {
+        HttpApiEndpoint.get("cloudSessions", QronosPaths.cloudSessions, {
           query: {
             ...WorkspaceRoutingQueryFields,
             cursor: Schema.optional(Schema.String),
@@ -339,7 +339,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Fetch cloud CLI sessions from Qronos API",
           }),
         ),
-        HttpApiEndpoint.get("cloudSession", QronosGatewayPaths.cloudSession, {
+        HttpApiEndpoint.get("cloudSession", QronosPaths.cloudSession, {
           params: { id: Schema.String },
           query: WorkspaceRoutingQuery,
           success: described(CloudSessionData, "Cloud session data"),
@@ -351,7 +351,7 @@ export const QronosGatewayApi = HttpApi.make("qronos-gateway")
             description: "Fetch full session data from the Qronos cloud for preview",
           }),
         ),
-        HttpApiEndpoint.post("cloudSessionImport", QronosGatewayPaths.cloudSessionImport, {
+        HttpApiEndpoint.post("cloudSessionImport", QronosPaths.cloudSessionImport, {
           query: WorkspaceRoutingQuery,
           payload: CloudSessionImportBody,
           success: described(CloudSessionData.fields.info, "Imported session info"),

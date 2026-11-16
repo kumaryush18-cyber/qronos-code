@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import path from "node:path"
 import { resolveQronosAiGatewayBase } from "../../src/api/constants"
-import { resolveQronosGatewayBaseUrl, resolveQronosGatewayUrl, resolveQronosOpenRouterBaseUrl } from "../../src/api/url"
+import { resolveQronosBaseUrl, resolveQronosUrl, resolveQronosOpenRouterBaseUrl } from "../../src/api/url"
 
 const src = path.resolve(import.meta.dir, "../../src")
 
@@ -25,9 +25,9 @@ function probe(env: Record<string, string>) {
     await embedding.fetchQronosEmbeddingModelCatalog({ attempts: 1 })
     console.log(JSON.stringify({
       openrouter: constants.QRONOS_OPENROUTER_BASE,
-      gateway: url.resolveQronosGatewayBaseUrl(),
+      gateway: url.resolveQronosBaseUrl(),
       router: url.resolveQronosOpenRouterBaseUrl(),
-      audio: url.resolveQronosGatewayUrl("audio/transcriptions"),
+      audio: url.resolveQronosUrl("audio/transcriptions"),
       fim: fim.resolveFimTarget().url,
       calls,
     }))
@@ -117,16 +117,16 @@ describe("gateway traffic by environment", () => {
 
 describe("Qronos API URL resolvers", () => {
   test("resolves the AI gateway root by default", () => {
-    expect(resolveQronosGatewayBaseUrl()).toBe("https://api.qronos.me/v1/")
+    expect(resolveQronosBaseUrl()).toBe("https://api.qronos.me/v1/")
     expect(resolveQronosOpenRouterBaseUrl()).toBe("https://api.qronos.me/v1/")
-    expect(resolveQronosGatewayUrl("fim/completions")).toBe("https://api.qronos.me/v1/fim/completions")
+    expect(resolveQronosUrl("fim/completions")).toBe("https://api.qronos.me/v1/fim/completions")
   })
 
   test("keeps the configured AI gateway base on the gateway root", () => {
     expect(resolveQronosOpenRouterBaseUrl({ baseURL: "https://api.qronos.me/v1/" })).toBe(
       "https://api.qronos.me/v1/",
     )
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://api.qronos.me/v1?x=1" })).toBe(
+    expect(resolveQronosBaseUrl({ baseURL: "https://api.qronos.me/v1?x=1" })).toBe(
       "https://api.qronos.me/v1/",
     )
   })
@@ -135,20 +135,20 @@ describe("Qronos API URL resolvers", () => {
     expect(resolveQronosOpenRouterBaseUrl({ baseURL: "https://proxy.test/api/v1/custom" })).toBe(
       "https://proxy.test/api/openrouter/",
     )
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://proxy.test/dev/api/v1" })).toBe(
+    expect(resolveQronosBaseUrl({ baseURL: "https://proxy.test/dev/api/v1" })).toBe(
       "https://proxy.test/dev/api/gateway/",
     )
   })
 
   test("normalizes root API base overrides", () => {
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://example.test" })).toBe("https://example.test/api/gateway/")
+    expect(resolveQronosBaseUrl({ baseURL: "https://example.test" })).toBe("https://example.test/api/gateway/")
     expect(resolveQronosOpenRouterBaseUrl({ baseURL: "https://example.test/" })).toBe(
       "https://example.test/api/openrouter/",
     )
   })
 
   test("replaces existing Qronos API route paths", () => {
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://example.test/api/openrouter/" })).toBe(
+    expect(resolveQronosBaseUrl({ baseURL: "https://example.test/api/openrouter/" })).toBe(
       "https://example.test/api/gateway/",
     )
     expect(resolveQronosOpenRouterBaseUrl({ baseURL: "https://example.test/api/gateway/" })).toBe(
@@ -157,7 +157,7 @@ describe("Qronos API URL resolvers", () => {
   })
 
   test("preserves path prefixes before api", () => {
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://example.test/dev/api/openrouter/" })).toBe(
+    expect(resolveQronosBaseUrl({ baseURL: "https://example.test/dev/api/openrouter/" })).toBe(
       "https://example.test/dev/api/gateway/",
     )
     expect(resolveQronosOpenRouterBaseUrl({ baseURL: "https://example.test/dev" })).toBe(
@@ -166,13 +166,13 @@ describe("Qronos API URL resolvers", () => {
   })
 
   test("strips search and hash components", () => {
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://example.test/api/openrouter/?x=1#frag" })).toBe(
+    expect(resolveQronosBaseUrl({ baseURL: "https://example.test/api/openrouter/?x=1#frag" })).toBe(
       "https://example.test/api/gateway/",
     )
   })
 
   test("prefers token-derived URL when token contains one", () => {
-    expect(resolveQronosGatewayBaseUrl({ baseURL: "https://fallback.test", token: "https://token.test:opaque" })).toBe(
+    expect(resolveQronosBaseUrl({ baseURL: "https://fallback.test", token: "https://token.test:opaque" })).toBe(
       "https://token.test/api/gateway/",
     )
     expect(resolveQronosOpenRouterBaseUrl({ token: "https://token.test:opaque" })).toBe(
@@ -181,7 +181,7 @@ describe("Qronos API URL resolvers", () => {
   })
 
   test("resolves child endpoint URLs", () => {
-    expect(new URL("embedding-models", resolveQronosGatewayBaseUrl({ baseURL: "https://example.test" })).toString()).toBe(
+    expect(new URL("embedding-models", resolveQronosBaseUrl({ baseURL: "https://example.test" })).toString()).toBe(
       "https://example.test/api/gateway/embedding-models",
     )
   })

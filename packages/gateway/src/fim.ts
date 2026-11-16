@@ -1,4 +1,4 @@
-import { resolveQronosGatewayUrl } from "./api/url.js"
+import { resolveQronosUrl } from "./api/url.js"
 import { DEFAULT_AUTOCOMPLETE_MODEL, getAutocompleteModel, type DirectAutocompleteProviderID } from "./autocomplete.js"
 
 export { requestMistralFim } from "./mistral-fim-endpoint.js"
@@ -11,7 +11,7 @@ export type FimTarget =
   | { provider: "qronos"; model: string; url: string }
   | { provider: "mistral"; model: string }
 
-const QRONOS_FIM_URL = resolveQronosGatewayUrl("fim/completions")
+const QRONOS_FIM_URL = resolveQronosUrl("fim/completions")
 
 function qronosTarget(model?: string): FimTarget {
   return { provider: "qronos", model: model ?? DEFAULT_AUTOCOMPLETE_MODEL.requestModel, url: QRONOS_FIM_URL }

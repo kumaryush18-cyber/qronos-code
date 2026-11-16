@@ -1,4 +1,4 @@
-import { resolveQronosGatewayBaseUrl } from "@qronos-ai/gateway"
+import { resolveQronosBaseUrl } from "@qronos-ai/gateway"
 import { HEADER_FEATURE, HEADER_ORGANIZATIONID } from "@qronos-ai/gateway"
 import { MAX_ITEM_TOKENS } from "../constants"
 import type { EmbedderInfo, EmbeddingResponse, IEmbedder } from "../interfaces/embedder"
@@ -30,7 +30,7 @@ export class QronosEmbedder implements IEmbedder {
     }
 
     this.embedder = new OpenAICompatibleEmbedder(
-      resolveQronosGatewayBaseUrl({ baseURL: input.baseUrl, token: input.apiKey }),
+      resolveQronosBaseUrl({ baseURL: input.baseUrl, token: input.apiKey }),
       input.apiKey,
       this.model,
       MAX_ITEM_TOKENS,

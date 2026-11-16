@@ -20,7 +20,7 @@ export interface RateInput {
   next: Rating | null
 }
 
-export function isQronosGateway(providerID: string): boolean {
+export function isQronos(providerID: string): boolean {
   return providerID === "qronos"
 }
 
@@ -32,7 +32,7 @@ export function buildFeedbackProperties(input: RateInput, previousRating?: Ratin
   }
   if (input.variant) properties.variant = input.variant
   if (previousRating) properties.previousRating = previousRating
-  if (isQronosGateway(input.providerID)) {
+  if (isQronos(input.providerID)) {
     properties.sessionID = input.sessionID
     properties.messageID = input.messageID
     properties.parentMessageID = input.parentMessageID

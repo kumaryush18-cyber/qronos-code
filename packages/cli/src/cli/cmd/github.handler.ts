@@ -339,12 +339,12 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
             ? ""
             : providers[provider].env.map((e) => `\n          ${e}: \${{ secrets.${e} }}`).join("")
 
-        const qronosGatewayEnv =
+        const qronosEnv =
           provider === "qronos"
             ? `\n          QRONOS_API_KEY: \${{ secrets.QRONOS_API_KEY }}\n          QRONOS_ORG_ID: \${{ secrets.QRONOS_ORG_ID }}`
             : ""
 
-        const envStr = providerEnvStr || qronosGatewayEnv ? `\n        env:${providerEnvStr}${qronosGatewayEnv}` : ""
+        const envStr = providerEnvStr || qronosEnv ? `\n        env:${providerEnvStr}${qronosEnv}` : ""
 
         await Filesystem.write(
           path.join(app.root, WORKFLOW_FILE),

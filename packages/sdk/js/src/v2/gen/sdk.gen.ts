@@ -7184,7 +7184,9 @@ export class Cloud extends HeyApiClient {
   }
 }
 
-export class QronosGateway extends HeyApiClient {
+// qronos_change - the generated client has a single class: both API groups carry the
+// qronos tag, so every method and nested service lives on Qronos.
+export class Qronos extends HeyApiClient {
   /**
    * Get Qronos Gateway profile
    *
@@ -8587,7 +8589,6 @@ export class SessionImport extends HeyApiClient {
   }
 }
 
-export class Qronos extends HeyApiClient {
   /**
    * Resume an interrupted session
    *
@@ -12876,11 +12877,6 @@ export class QronosClient extends HeyApiClient {
   private _indexing?: Indexing
   get indexing(): Indexing {
     return (this._indexing ??= new Indexing({ client: this.client }))
-  }
-
-  private _qronosGateway?: QronosGateway
-  get qronosGateway(): QronosGateway {
-    return (this._qronosGateway ??= new QronosGateway({ client: this.client }))
   }
 
   private _qronos?: Qronos

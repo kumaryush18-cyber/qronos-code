@@ -9,7 +9,7 @@ import { fetchQronosNotifications, QronosNotificationSchema } from "../api/notif
 import { fetchQronosImageModels } from "../api/models.js"
 import { fetchOrganizationModes, clearModesCache } from "../api/modes.js"
 import { QRONOS_OPENROUTER_BASE, HEADER_FEATURE, HEADER_ORGANIZATIONID } from "../api/constants.js"
-import { resolveQronosGatewayUrl } from "../api/url.js"
+import { resolveQronosUrl } from "../api/url.js"
 import { buildQronosHeaders } from "../headers.js"
 import type { ImportDeps, DrizzleDb } from "../cloud-sessions.js"
 import {
@@ -385,7 +385,7 @@ export function createQronosRoutes(deps: QronosRoutesDeps) {
           [HEADER_FEATURE]: "vscode-extension",
         }
 
-        const response = await fetch(resolveQronosGatewayUrl("audio/transcriptions"), {
+        const response = await fetch(resolveQronosUrl("audio/transcriptions"), {
           method: "POST",
           headers,
           signal: c.req.raw.signal,

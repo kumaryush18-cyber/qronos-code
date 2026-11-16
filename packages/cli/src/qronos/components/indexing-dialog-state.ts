@@ -1,4 +1,4 @@
-import { fetchQronosEmbeddingModelCatalog, resolveQronosGatewayBaseUrl } from "@qronos-ai/gateway"
+import { fetchQronosEmbeddingModelCatalog, resolveQronosBaseUrl } from "@qronos-ai/gateway"
 import type { Config, IndexingConfig, QronosEmbeddingModelCatalog } from "@qronos-ai/sdk/v2"
 import * as Log from "@qronos-ai/core/util/log"
 import { createMemo, type Accessor } from "solid-js"
@@ -8,7 +8,7 @@ export type IndexingScope = "global" | "project"
 const log = Log.create({ service: "indexing-model-catalog" })
 
 export async function loadQronosEmbeddingModels(onError?: (message: string) => void) {
-  const endpoint = new URL("embedding-models", resolveQronosGatewayBaseUrl()).toString()
+  const endpoint = new URL("embedding-models", resolveQronosBaseUrl()).toString()
   log.info("loading Qronos embedding model catalog", { endpoint })
   const catalog = await fetchQronosEmbeddingModelCatalog({
     onError: (issue) => {

@@ -55,7 +55,7 @@ const [runtime, gateway, server, fixture] = await (async () => {
   }
 })()
 const { AppRuntime } = runtime
-const { QronosGatewayPaths } = gateway
+const { QronosPaths } = gateway
 const HttpApiApp = server
 const { disposeAllInstances, tmpdir } = fixture
 
@@ -121,7 +121,7 @@ async function request(directory: string, body: unknown) {
   )
   try {
     return await HttpApiApp.webHandler().handler(
-      new Request(`http://localhost${QronosGatewayPaths.cloudSessionImport}`, {
+      new Request(`http://localhost${QronosPaths.cloudSessionImport}`, {
         method: "POST",
         headers: { "content-type": "application/json", "x-qronos-directory": directory },
         body: JSON.stringify({ sessionId: "ses_cloud" }),

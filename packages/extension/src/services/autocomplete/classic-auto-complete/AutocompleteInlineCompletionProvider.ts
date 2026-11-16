@@ -671,7 +671,7 @@ export class AutocompleteInlineCompletionProvider implements vscode.InlineComple
   private async hasBalance(): Promise<boolean> {
     try {
       const client = await this.connectionService.getClientAsync()
-      const result = await client.qronosGateway.profile().catch(() => null)
+      const result = await client.qronos.profile().catch(() => null)
       return (result?.data?.balance?.balance ?? 0) > 0
     } catch {
       return false

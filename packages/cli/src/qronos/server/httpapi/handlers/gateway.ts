@@ -9,7 +9,7 @@ import {
 } from "@qronos-ai/gateway"
 import {
   HEADER_FEATURE,
-  resolveQronosGatewayUrl,
+  resolveQronosUrl,
   clearModesCache,
   fetchBalance,
   fetchQronosNotifications,
@@ -50,7 +50,7 @@ function logError(route: string, err: unknown) {
   log.error("unhandled error", { route, err })
 }
 
-export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qronos-gateway", (handlers) =>
+export const qronosHandlers = HttpApiBuilder.group(InstanceHttpApi, "qronos-gateway", (handlers) =>
   Effect.gen(function* () {
     const auth = yield* Auth.Service
     const config = yield* Config.Service
@@ -60,7 +60,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
     const database = yield* Database.Service
     const storage = yield* Storage.Service
 
-    const profile = Effect.fn("QronosGatewayHttpApi.profile")(function* () {
+    const profile = Effect.fn("QronosHttpApi.profile")(function* () {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
       // qronos_change - a device-flow sign-in stores a plain API key (type "api"),
       // not an oauth bunde. Accept any usable token here, otherwise a signed-in
@@ -81,7 +81,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       return { profile, balance, qronosPass, currentOrgId }
     })
 
-    const authStatus = Effect.fn("QronosGatewayHttpApi.authStatus")(function* () {
+    const authStatus = Effect.fn("QronosHttpApi.authStatus")(function* () {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
       const cfg = yield* config.get()
       const organizationId = catalogOrganization(cfg.provider?.qronos?.options, info)
@@ -93,7 +93,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       }
     })
 
-    const proxyAuth = Effect.fn("QronosGatewayHttpApi.proxyAuth")(function* () {
+    const proxyAuth = Effect.fn("QronosHttpApi.proxyAuth")(function* () {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
       return {
         auth: info,
@@ -102,7 +102,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       }
     })
 
-    const modes = Effect.fn("QronosGatewayHttpApi.modes")(function* () {
+    const modes = Effect.fn("QronosHttpApi.modes")(function* () {
       const info = yield* auth.get("qronos").pipe(Effect.catch(() => Effect.succeed(undefined)))
       if (!info || info.type !== "oauth" || !info.access || !info.accountId) return { modes: [] }
 
@@ -113,7 +113,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       )
     })
 
-    const fim = Effect.fn("QronosGatewayHttpApi.fim")(function* (ctx: { payload: typeof FimBody.Type }) {
+    const fim = Effect.fn("QronosHttpApi.fim")(function* (ctx: { payload: typeof FimBody.Type }) {
       const target = resolveFimTarget(ctx.payload.provider, ctx.payload.model)
       const info = target.provider === "qronos" ? yield* proxyAuth() : undefined
       const token = yield* Effect.gen(function* () {
@@ -189,7 +189,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       )
     })
 
-    const audioTranscriptions = Effect.fn("QronosGatewayHttpApi.audioTranscriptions")(function* (ctx: {
+    const audioTranscriptions = Effect.fn("QronosHttpApi.audioTranscriptions")(function* (ctx: {
       payload: typeof AudioTranscriptionsBody.Type
     }) {
       const info = yield* proxyAuth()
@@ -199,7 +199,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       const request = yield* HttpServerRequest.HttpServerRequest
       const response = yield* Effect.tryPromise({
         try: () =>
-          fetch(resolveQronosGatewayUrl("audio/transcriptions"), {
+          fetch(resolveQronosUrl("audio/transcriptions"), {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -219,7 +219,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       })
     })
 
-    const notifications = Effect.fn("QronosGatewayHttpApi.notifications")(function* () {
+    const notifications = Effect.fn("QronosHttpApi.notifications")(function* () {
       // Locally-detected notice about leftover opencode config; appended so it reuses each client's dismissal path.
       const notice = QronosConfig.opencodeConfigNotification({
         directory: Instance.directory,
@@ -242,7 +242,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       return append(cloud)
     })
 
-    const organization = Effect.fn("QronosGatewayHttpApi.organization")(function* (ctx) {
+    const organization = Effect.fn("QronosHttpApi.organization")(function* (ctx) {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
       // qronos_change - API-key sign-ins have no organization to switch, so keep
       // the stored entry untouched instead of failing the whole call.
@@ -265,7 +265,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       return true
     })
 
-    const cloudSessions = Effect.fn("QronosGatewayHttpApi.cloudSessions")(function* (ctx) {
+    const cloudSessions = Effect.fn("QronosHttpApi.cloudSessions")(function* (ctx) {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.BadRequest({})))
       const token = getToken(info)
       if (!token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
@@ -290,7 +290,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       )
     })
 
-    const cloudSession = Effect.fn("QronosGatewayHttpApi.cloudSession")(function* (ctx) {
+    const cloudSession = Effect.fn("QronosHttpApi.cloudSession")(function* (ctx) {
       const info = yield* auth.get("qronos").pipe(Effect.mapError(() => new HttpApiError.Unauthorized({})))
       const token = getToken(info)
       if (!token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
@@ -311,7 +311,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       return result.data
     })
 
-    const cloudSessionImport = Effect.fn("QronosGatewayHttpApi.cloudSessionImport")(function* (ctx) {
+    const cloudSessionImport = Effect.fn("QronosHttpApi.cloudSessionImport")(function* (ctx) {
       // Load the helper lazily: a static top-level import pulls the HTTP
       // handler graph into the remote-sender module graph and breaks the
       // create_session test's module init. Run the helper's Effect on the
@@ -351,7 +351,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       }
     })
 
-    const imageModels = Effect.fn("QronosGatewayHttpApi.imageModels")(function* () {
+    const imageModels = Effect.fn("QronosHttpApi.imageModels")(function* () {
       const info = yield* proxyAuth()
       if (!info.auth) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
       if (!info.token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
@@ -374,7 +374,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
       return result.models
     })
 
-    const transcriptionModels = Effect.fn("QronosGatewayHttpApi.transcriptionModels")(function* () {
+    const transcriptionModels = Effect.fn("QronosHttpApi.transcriptionModels")(function* () {
       const info = yield* proxyAuth()
       if (!info.auth) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
       if (!info.token) return yield* Effect.fail(new HttpApiError.Unauthorized({}))
