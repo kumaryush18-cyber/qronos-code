@@ -33,8 +33,10 @@ jobs:
       - name: package names are all @qronos-ai
         run: |
           set +e
-          bad=$(grep -h '"name"' packages/*/package.json packages/sdk/js/package.json package.json \
-            | grep -v "@qronos-ai/\|qronos-code" | head -10)
+          # jq reads the real package name; a plain grep also catches the
+          # "name" fields inside contributes (view titles like "Qronos AI").
+          bad=$(for f in package.json packages/*/package.json packages/sdk/js/package.json; do
+                  jq -r .name "$f"; done | grep -v '@qronos-ai/\|^qronos-code$' | head -10)
           if [ -n "$bad" ]; then
             echo "Unexpected package name:"; echo "$bad"; exit 1
           fi
