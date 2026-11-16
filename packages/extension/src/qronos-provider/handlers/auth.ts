@@ -78,21 +78,22 @@ export async function handleLogin(ctx: AuthContext, attempt: number, getAttempt:
           ctx.invalidateProviders()
           await ctx.disposeGlobal()
 
-          const profileData = {
-            profile: {
-              email: session.email || "developer@qronos.me",
-              name: session.username || "Qronos Developer",
-              hasPersonalAccount: true,
-            },
-            balance: { balance: 10_000_000 },
-            qronosPass: {
-              currentPeriodBaseCreditsUsd: 100,
-              currentPeriodUsageUsd: 0,
-              currentPeriodBonusCreditsUsd: 0,
-            },
-            currentOrgId: null,
+          // qronos_change - never invent a profile. If the gateway does not answer,
+          // the webview shows that it could not load instead of a fake account.
+          const profileResult = await ctx.client?.qronosGateway.profile().catch(() => null)
+          if (profileResult?.data) {
+            ctx.postMessage({ type: "profileData", data: profileResult.data })
+          } else {
+            ctx.postMessage({
+              type: "profileData",
+              data: {
+                profile: { email: session.email, name: session.username, hasPersonalAccount: true },
+                balance: null,
+                qronosPass: null,
+                currentOrgId: null,
+              },
+            })
           }
-          ctx.postMessage({ type: "profileData", data: profileData })
           ctx.postMessage({ type: "deviceAuthComplete" })
           await ctx.fetchAndSendProviders()
           resolve()
@@ -194,28 +195,6 @@ export async function handleSetOrganization(ctx: AuthContext, organizationId: st
 /** Handle profile refresh request. */
 export async function handleRefreshProfile(ctx: AuthContext): Promise<void> {
   console.log("[Qronos] 🔄 Refreshing profile...")
-  const authService = QronosAuthService.getInstance()
-  const token = await authService.getStoredToken()
-
-  if (token) {
-    const session = authService.getSession()
-    const profileData = {
-      profile: {
-        email: session?.email || "developer@qronos.me",
-        name: session?.username || "Qronos Developer",
-        hasPersonalAccount: true,
-      },
-      balance: { balance: 10_000_000 },
-      qronosPass: {
-        currentPeriodBaseCreditsUsd: 100,
-        currentPeriodUsageUsd: 0,
-        currentPeriodBonusCreditsUsd: 0,
-      },
-      currentOrgId: null,
-    }
-    ctx.postMessage({ type: "profileData", data: profileData })
-    return
-  }
 
   if (ctx.client) {
     const result = await ctx.client.qronosGateway.profile().catch(() => ({ data: null }))

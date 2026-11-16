@@ -900,28 +900,9 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
     if (this.connectionState === "connected" && this.client) {
       console.log("[Qronos New] QronosProvider: 👤 syncWebviewState fetching profile...")
       const profileResult = await retry(() => this.client!.qronosGateway.profile()).catch(() => ({ data: null }))
-      let profileData = profileResult.data ?? null
-      if (!profileData) {
-        const authService = QronosAuthService.getInstance()
-        const token = await authService.getStoredToken()
-        if (token) {
-          const session = authService.getSession()
-          profileData = {
-            profile: {
-              email: session?.email || "developer@qronos.me",
-              name: session?.username || "Qronos Developer",
-              hasPersonalAccount: true,
-            },
-            balance: { balance: 10_000_000 },
-            qronosPass: {
-              currentPeriodBaseCreditsUsd: 100,
-              currentPeriodUsageUsd: 0,
-              currentPeriodBonusCreditsUsd: 0,
-            },
-            currentOrgId: null,
-          } as any
-        }
-      }
+      // qronos_change - the profile comes from the gateway or it is null.
+      // Filling in a demo account hid real failures behind fake numbers.
+      const profileData = profileResult.data ?? null
       console.log("[Qronos New] QronosProvider: 👤 syncWebviewState profile:", profileData ? "received" : "null")
       this.postMessage({
         type: "profileData",
@@ -2948,21 +2929,12 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
         }
       }
     } catch (err) {
-      console.warn("[Qronos] Live model fetch failed, using fallback:", err)
+      console.warn("[Qronos] Live model fetch failed:", err)
     }
-    return {
-      "claude-sonnet-5.5": { id: "claude-sonnet-5.5", name: "Claude Sonnet 5.5", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "claude-haiku-5.5": { id: "claude-haiku-5.5", name: "Claude Haiku 5.5", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "claude-opus-5.5": { id: "claude-opus-5.5", name: "Claude Opus 5.5", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "gpt-6-sol": { id: "gpt-6-sol", name: "GPT 6 Sol", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "gpt-6-luna": { id: "gpt-6-luna", name: "GPT 6 Luna", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "glm-5.3": { id: "glm-5.3", name: "GLM 5.3", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "glm-5.3-flash": { id: "glm-5.3-flash", name: "GLM 5.3 Flash", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "deepseek-v4-pro": { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "claude-opus-5": { id: "claude-opus-5", name: "Claude Opus 5", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "kimi-k3": { id: "kimi-k3", name: "Kimi K3", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-      "mercury-3": { id: "mercury-3", name: "Mercury 3", providerID: "qronos", contextWindow: 1000000, maxTokens: 64000, variants: reasoningVariants },
-    }
+    // qronos_change - no fallback catalogue. A made-up list let the picker
+    // select models the gateway does not serve, and the request then failed with
+    // "Model not found".
+    return {}
   }
 
   /** Fetch providers and send to webview. Coalesced: at most one in-flight + one queued. */

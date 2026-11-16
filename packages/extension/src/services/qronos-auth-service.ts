@@ -97,10 +97,9 @@ export class QronosAuthService {
   }
 
   public async getStoredToken(): Promise<string | undefined> {
-    if (!this.context) return process.env.QRONOS_API_KEY || process.env.QRONOS_API_KEY
+    if (!this.context) return process.env.QRONOS_API_KEY
     return (
       (await this.context.secrets.get("qronos.apiKey")) ||
-      process.env.QRONOS_API_KEY ||
       process.env.QRONOS_API_KEY
     )
   }
