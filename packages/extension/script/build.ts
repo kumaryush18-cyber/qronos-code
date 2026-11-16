@@ -23,7 +23,7 @@ if (packageJson.version !== version) {
   await Bun.write(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n")
 }
 
-const cliDistDir = process.env.CLI_DIST_DIR || join(import.meta.dir, "..", "..", "opencode", "dist")
+const cliDistDir = process.env.CLI_DIST_DIR || join(import.meta.dir, "..", "..", "cli", "dist")
 console.log(`Using CLI dist directory: ${cliDistDir}`)
 
 if (!existsSync(cliDistDir)) {

@@ -13,8 +13,8 @@ import { copySandboxResources, copyTreeSitterResources } from "../src/services/c
 
 const qronosVscodeDir = join(import.meta.dir, "..")
 const packagesDir = join(qronosVscodeDir, "..")
-const opencodeDir = join(packagesDir, "opencode")
-const opencodeSrcDir = join(opencodeDir, "src")
+const cliDir = join(packagesDir, "cli")
+const cliSrcDir = join(cliDir, "src")
 const targetBinDir = join(qronosVscodeDir, "bin")
 const targetBinPath = join(targetBinDir, "qronos")
 
@@ -27,7 +27,7 @@ function log(msg: string) {
 }
 
 function sourceBinaryPath(): string {
-  return join(opencodeDir, "dist", `@qronos-ai/cli-${process.platform}-${process.arch}`, "bin", "qronos")
+  return join(cliDir, "dist", `@qronos-ai/cli-${process.platform}-${process.arch}`, "bin", "qronos")
 }
 
 async function rebuild() {
@@ -43,7 +43,7 @@ async function rebuild() {
     const start = performance.now()
 
     const args = installed ? ["run", "build", "--single", "--skip-install"] : ["run", "build", "--single"]
-    const result = await $`bun ${args}`.cwd(opencodeDir).nothrow().quiet()
+    const result = await $`bun ${args}`.cwd(cliDir).nothrow().quiet()
     if (result.exitCode !== 0) {
       log(`Build failed (exit ${result.exitCode}):\n${result.stderr.toString()}`)
       return
@@ -76,12 +76,12 @@ async function rebuild() {
 await rebuild()
 
 // Watch for changes
-log(`Watching ${relative(qronosVscodeDir, opencodeSrcDir)}/ for changes...`)
+log(`Watching ${relative(qronosVscodeDir, cliSrcDir)}/ for changes...`)
 
 const debounce = 500
 let timer: ReturnType<typeof setTimeout> | null = null
 
-watch(opencodeSrcDir, { recursive: true }, (_event, filename) => {
+watch(cliSrcDir, { recursive: true }, (_event, filename) => {
   if (!filename) return
   // Skip test files
   if (filename.endsWith(".test.ts") || filename.endsWith(".test.tsx")) return

@@ -33,7 +33,7 @@ const compiledOnly = process.argv.includes("--compiled")
 const qronosVscodeDir = join(import.meta.dir, "..")
 const packagesDir = join(qronosVscodeDir, "..")
 const repoDir = join(packagesDir, "..")
-const opencodeDir = join(packagesDir, "opencode")
+const cliDir = join(packagesDir, "cli")
 const sandboxDir = join(packagesDir, "sandbox")
 const rootFile = join(repoDir, "package.json")
 
@@ -90,7 +90,7 @@ async function cliInputs() {
   }
 
   // The CLI build embeds the console even though it is not a package dependency.
-  for (const dir of [opencodeDir, join(packagesDir, "console")]) {
+  for (const dir of [cliDir, join(packagesDir, "console")]) {
     const pkg: Package = await Bun.file(join(dir, "package.json")).json()
     if (!pkg.name) throw new Error(`Workspace package at ${dir} has no name`)
     visit(pkg.name)
@@ -191,7 +191,7 @@ function platformTag(): string {
 }
 
 async function findQronosBinaryInOpencodeDist(): Promise<string | null> {
-  const distDir = join(opencodeDir, "dist")
+  const distDir = join(cliDir, "dist")
 
   try {
     readdirSync(distDir)
@@ -245,13 +245,13 @@ async function ensureBuiltBinary(): Promise<string> {
   if (found) return found
 
   log(
-    `No prebuilt binary found under ${relative(qronosVscodeDir, join(opencodeDir, "dist"))} - attempting build via bun.`,
+    `No prebuilt binary found under ${relative(qronosVscodeDir, join(cliDir, "dist"))} - attempting build via bun.`,
   )
 
   if (!Bun.which("bun")) {
     throw new Error(
       `Bun is required to build the CLI binary, but was not found on PATH. ` +
-        `Install bun, or build the CLI separately in ${opencodeDir} and re-run.`,
+        `Install bun, or build the CLI separately in ${cliDir} and re-run.`,
     )
   }
 
@@ -259,16 +259,16 @@ async function ensureBuiltBinary(): Promise<string> {
   const bun = String(pkg.packageManager)
   log("Building CLI binary...")
   try {
-    await $`bunx ${bun} run build --single --skip-install`.cwd(opencodeDir)
+    await $`bunx ${bun} run build --single --skip-install`.cwd(cliDir)
   } catch (err) {
     log(`Pinned bunx build failed (${err}), running via active bun runtime...`)
-    await $`bun run script/build.ts --single --skip-install`.cwd(opencodeDir)
+    await $`bun run script/build.ts --single --skip-install`.cwd(cliDir)
   }
 
   const built = await findQronosBinaryInOpencodeDist()
   if (!built) {
     throw new Error(
-      `CLI build completed but no binary was found in ${join(opencodeDir, "dist")} (expected dist/**/bin/qronos).`,
+      `CLI build completed but no binary was found in ${join(cliDir, "dist")} (expected dist/**/bin/qronos).`,
     )
   }
   return built
@@ -304,7 +304,7 @@ async function writeSourceWrapper() {
     [
       "#!/usr/bin/env bash",
       "set -euo pipefail",
-      `cd ${JSON.stringify(opencodeDir)}`,
+      `cd ${JSON.stringify(cliDir)}`,
       `exec ${JSON.stringify(bun)} --conditions=node src/index.ts "$@"`,
       "",
     ].join("\n"),
@@ -351,9 +351,9 @@ async function main() {
     }
   }
 
-  const opencodePkgFile = Bun.file(join(opencodeDir, "package.json"))
-  if (!(await opencodePkgFile.exists())) {
-    throw new Error(`Expected opencode package at ${opencodeDir}, but it does not exist.`)
+  const cliPkgFile = Bun.file(join(cliDir, "package.json"))
+  if (!(await cliPkgFile.exists())) {
+    throw new Error(`Expected cli package at ${cliDir}, but it does not exist.`)
   }
 
   const sourceBinPath = await ensureBuiltBinary().catch(async (err) => {
@@ -378,7 +378,7 @@ async function main() {
 
 function removeDist() {
   // Also remove the prebuilt dist so ensureBuiltBinary() triggers a fresh build
-  const distDir = join(opencodeDir, "dist")
+  const distDir = join(cliDir, "dist")
   if (!existsSync(distDir)) return
   rmSync(distDir, { recursive: true })
   log(`Removed ${relative(qronosVscodeDir, distDir)} to force rebuild.`)
