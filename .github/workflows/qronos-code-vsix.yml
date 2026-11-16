@@ -69,6 +69,27 @@ jobs:
             exit 1
           fi
 
+      # A compiled binary can build fine and still die on the first request, as
+      # happened when two HTTP API groups shared one name. Start it for real.
+      - name: Smoke test the server
+        if: runner.os == 'Linux'
+        working-directory: packages/extension
+        run: |
+          ./bin/qronos serve --port 4599 > "$RUNNER_TEMP/serve.log" 2>&1 &
+          pid=$!
+          for i in $(seq 1 40); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4599/qronos/profile || true)
+            if [ "$code" = "200" ]; then break; fi
+            sleep 1
+          done
+          echo "status: $code"
+          kill "$pid" 2>/dev/null || true
+          if [ "$code" != "200" ]; then
+            echo "::error::the compiled CLI did not answer /qronos/profile (got '$code')"
+            tail -30 "$RUNNER_TEMP/serve.log"
+            exit 1
+          fi
+
       - name: Prepare SDK
         working-directory: packages/extension
         run: bun run prepare:sdk
