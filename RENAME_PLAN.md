@@ -99,3 +99,74 @@ returns only the files listed in `ATTRIBUTION.md`.
 1. Build the VSIX from the copy, install it, use it for a day.
 2. If nothing breaks, rename the GitHub repo's default branch to the new tree.
 3. Keep the old branch `legacy/kilocode-names` forever as a fallback.
+
+## Status — 2026-11-16
+
+Phases 1–5 were executed together on `kumaryush18-cyber/qronos-rename`, because
+the word pass has to run once anyway; every step was pushed and checked by CI
+before the next one started.
+
+| Gate | Command | Result |
+| --- | --- | --- |
+| No old scope, no `kilo` word, no `kilo` path | `rename-sweep` | pass |
+| Package names | `rename-sweep` | pass |
+| Host + webview typecheck | `rename-sweep` | pass |
+| Installer linux-x64 / win32-x64 / darwin-arm64 | `qronos-code-vsix` | pass |
+| JetBrains Kotlin compile | `kotlin-and-docs-check` | pass |
+| Docs site build | `kotlin-and-docs-check` | pass |
+
+Facts worth remembering:
+
+- 9,779 files changed in the folder + word pass.
+- The word pass merged names that only differed by branding. Every merge had to
+  be split again by hand: two SDK client classes (`Qronos` and
+  `QronosGateway`), two Effect APIs (`qronos` and `qronos-gateway`), duplicate
+  object keys, duplicate i18n keys, duplicate env keys.
+- `packages/sdk/js/src/v2/gen/sdk.gen.ts` is generated. Regenerating it from the
+  new spec keeps the split; do not hand-edit it again.
+
+## Phase 6 and later — what is still open
+
+### Phase 6 — prove the product, not just the build
+
+1. Run the JetBrains `:test` task (only `compileTestKotlin` is green today).
+2. Install the linux VSIX in a clean VS Code and do one sign-in + one chat turn.
+3. Repeat on Windows and macOS with the matching installer.
+4. Confirm `bin/qronos` inside the package reports the Qronos version.
+
+**Gate:** sign-in, model list and one chat turn work on all three systems.
+
+### Phase 7 — switch over
+
+1. Point `kumaryush18-cyber/qronos-code` at this tree, or make this repo the
+   main development repo.
+2. Keep `qronos-code` as an archive with a README that points here.
+3. Update the installed dev extension to the new package name
+   (`qronos-ai.qronos-code` stays the same, so a reload is enough).
+
+**Gate:** the extension you use daily comes from this repo.
+
+### Phase 8 — make the package smaller
+
+The linux VSIX is 206 MB, mostly `bin/qronos` (312 MB raw) and `bin/ffmpeg`
+(68 MB). Candidate removals: `tests/`, `.storybook/`, KaTeX fonts,
+`playwright-core`, `chromium-bidi`.
+
+**Gate:** package under 120 MB and a chat turn still works.
+
+### Phase 9 — release and publish
+
+1. GitHub Release with the three installers attached.
+2. `vsce publish` to the marketplace under the `qronos-ai` publisher.
+3. JetBrains Marketplace: vendor account, signing key, review, pricing.
+4. Docs: host `packages/docs` somewhere permanent.
+
+**Gate:** a stranger can install from a public page, without a build.
+
+### Phase 10 — upstream policy
+
+`UPSTREAM.md` option B: cherry-pick security and serious fixes only, never a
+full merge. Do one dry run of the cherry-pick helper on the new tree and write
+down how long it takes.
+
+**Gate:** one upstream fix lands through the helper without touching branding.
