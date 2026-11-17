@@ -9,7 +9,6 @@ These pages contain design proposals and roadmaps for features under considerati
 
 | Feature | Status | Description |
 |---|---|---|
-| [Enterprise MCP Controls](/docs/contributing/features/enterprise-mcp-controls) | Proposal | Organization policy controls for MCP server configuration |
 | [Onboarding Improvements](/docs/contributing/features/onboarding-improvements) | Partial | Welcome-screen work and proposed onboarding improvements |
 | [Agent Observability](/docs/contributing/features/agent-observability) | Partial | Current operational metrics and planned agent-quality signals |
 | [Benchmarking](/docs/contributing/features/benchmarking) | Partial | Current smoke-eval evidence and broader evaluation roadmap |

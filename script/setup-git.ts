@@ -7,7 +7,7 @@
  * `merge.conflictStyle=zdiff3` makes conflict markers include the common
  * ancestor (|||||||) alongside ours/theirs. That base section is what
  * mergiraf's syntax-aware resolution feeds on during upstream opencode
- * merges (see script/upstream/merge.ts) and it makes manual resolution
+ * merges and it makes manual resolution
  * dramatically easier than the default 2-way `merge` markers.
  *
  * Runs from `postinstall`. Safe to re-run — `git config` is idempotent.

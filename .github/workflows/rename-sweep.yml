@@ -1,9 +1,14 @@
 name: rename-sweep
 
-# Gate for the whole rebrand: no old scope, package name or word may survive
-# outside the files that are allowed to quote it (licence, attribution and the
-# upstream cherry-pick helper). Runs in seconds, so it fails before a broken
-# vsix can be built.
+# Gate for the whole rebrand: no old scope, package name or word may survive.
+#
+# Two exceptions are allowed on purpose and nowhere else:
+#   - LICENSE / NOTICE / packages/*/LICENSE / packages/*/NOTICE: MIT requires the
+#     original copyright notice to stay, so the old name must appear there.
+#   - packages/cli/src/provider/models.ts: removes the dead third-party catalogue
+#     entry published under the old name. That is data cleanup, never branding.
+#
+# Runs in seconds, so it fails before a broken vsix can be built.
 
 on:
   workflow_dispatch:
@@ -21,22 +26,19 @@ jobs:
           set +e
           hits=$(grep -rn "@kilocode/\|@opencode-ai/" \
             --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
-            --exclude-dir=.github --exclude-dir=.qronos \
-            --exclude=NOTICE --exclude=ATTRIBUTION.md --exclude=LICENSE \
-            --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md --exclude=BASELINE.md \
-            --exclude-dir=upstream . | head -20)
+            --exclude-dir=.github --exclude-dir=.qronos . | head -20)
           [ -n "$hits" ] && { echo "$hits"; exit 1; }
           echo "clean"
 
-      - name: No kilo word left in code or docs
+      - name: No old product word left in code or docs
         run: |
           set +e
           hits=$(grep -rIni "kilocode\|\bkilo\b" \
             --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
-            --exclude-dir=.github --exclude-dir=.qronos --exclude-dir=upstream \
-            --exclude=NOTICE --exclude=ATTRIBUTION.md --exclude=LICENSE \
-            --exclude=RENAME_PLAN.md --exclude=UPSTREAM.md --exclude=BASELINE.md \
-            --exclude=PLAN.md . | grep -v "qronos-legacy" | head -20)
+            --exclude-dir=.github --exclude-dir=.qronos . \
+            | grep -v -E "^(\./)?(packages/[^/]+/)?(LICENSE|NOTICE):" \
+            | grep -v -E "^(\./)?packages/cli/src/provider/models\.ts:" \
+            | head -20)
           [ -n "$hits" ] && { echo "Old name still present:"; echo "$hits"; exit 1; }
           echo "clean"
 
@@ -48,7 +50,7 @@ jobs:
           [ -n "$bad" ] && { echo "Unexpected package name:"; echo "$bad"; exit 1; }
           echo "clean"
 
-      - name: No kilo in any tracked path
+      - name: No old name in any tracked path
         run: |
           set +e
           bad=$(git ls-files | grep -i "kilo" | head -10)

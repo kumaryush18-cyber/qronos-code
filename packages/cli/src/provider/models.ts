@@ -52,12 +52,16 @@ export const layer: Layer.Layer<Service, never, Core.Service | Config.Service | 
         // qronos_change - the catalogue that models.dev still publishes under the old
         // product name lists 456 vendor-prefixed models the gateway does not serve.
         // It must never reach the picker.
-        delete providers.kilo // qronos-legacy - old catalogue id
-        delete providers.kilocode // qronos-legacy - old catalogue id
         // qronos_change - models.dev publishes the upstream "qronos" gateway with 465
         // vendor-prefixed ids (anthropic/claude-haiku-5.5). api.qronos.me only accepts
         // bare ids (claude-haiku-5.5), so that entry must never reach the picker.
         delete providers.qronos
+        // qronos_change - third-party catalogue cleanup, not branding. models.dev
+        // still publishes the old product's gateway with 456 vendor-prefixed
+        // models that api.qronos.me does not serve. Without these two lines the
+        // picker lists that dead provider again.
+        delete (providers as Record<string, unknown>).kilo
+        delete (providers as Record<string, unknown>).kilocode
 
         const cfg = yield* config.get()
         const disabled = new Set(cfg.disabled_providers ?? [])

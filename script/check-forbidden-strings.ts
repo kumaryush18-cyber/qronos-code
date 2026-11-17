@@ -5,7 +5,7 @@
  * Greps tracked files for forbidden strings that must not appear in the repo.
  *
  * Each entry is a literal substring (no regex / globs) plus a one-line reason.
- * If a hit is genuinely legitimate (e.g. inside upstream-merge tooling), fix the
+ * If a hit is genuinely legitimate (e.g. attribution files), fix the
  * call site rather than weakening the rule -- the list is intentionally
  * narrow so it stays low-noise.
  */
@@ -32,14 +32,13 @@ const forbidden: { pattern: string; reason: string; allow?: string[] }[] = [
       "packages/extension/AGENTS.md",
       "packages/docs/source-links.md",
       "patches/",
-      "script/upstream/",
       "translations/",
     ],
   },
   {
     pattern: "sst/opencode",
     reason: "old upstream org path -- should be Qronos-Org/qronos",
-    allow: [".qronos/agent/upstream-merge.md", "script/upstream/"],
+    allow: [".qronos/agent/upstream-merge.md"],
   },
   { pattern: `"HTTP-Referer": "https://opencode.ai/"`, reason: "attributes outbound LLM traffic to upstream" },
   { pattern: `"http-referer": "https://opencode.ai/"`, reason: "attributes outbound LLM traffic to upstream" },
