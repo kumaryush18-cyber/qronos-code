@@ -69,9 +69,6 @@ export const ContributingNav: NavSection[] = [
         children: "Overview",
       },
       {
-        children: "Enterprise MCP Controls",
-      },
-      {
         href: "/contributing/features/onboarding-improvements",
         children: "Onboarding Improvements",
       },
