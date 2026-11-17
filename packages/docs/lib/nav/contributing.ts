@@ -69,7 +69,6 @@ export const ContributingNav: NavSection[] = [
         children: "Overview",
       },
       {
-        href: "/contributing/features/enterprise-mcp-controls",
         children: "Enterprise MCP Controls",
       },
       {
