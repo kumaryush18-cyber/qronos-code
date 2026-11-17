@@ -992,12 +992,6 @@ module.exports = [
     permanent: true,
   },
   {
-    source: "/docs/contributing/architecture/enterprise-mcp-controls",
-    destination: "/docs/contributing/features/enterprise-mcp-controls",
-    basePath: false,
-    permanent: true,
-  },
-  {
     source: "/docs/contributing/architecture/onboarding-improvements",
     destination: "/docs/contributing/features/onboarding-improvements",
     basePath: false,
