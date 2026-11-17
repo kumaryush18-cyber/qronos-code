@@ -5843,9 +5843,19 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
     return deferred.promise
   }
   /** Post a message to the webview. Public so toolbar button commands can send messages. */
+  // qronos_change - the chat row remounts often, so remember the last answer and
+  // do not ask the gateway again for a few minutes. Without this the panel sent a
+  // request every couple of seconds.
+  private adCache: { at: number; ad: Record<string, string> | null } | null = null
+  private static readonly AD_CACHE_MS = 5 * 60_000
+
   private async requestChatAd(prompt?: string): Promise<void> {
     // qronos_change - same route and placement as the Qronos signup card, which
     // is the one Gravity actually fills for this publisher.
+    if (this.adCache && Date.now() - this.adCache.at < QronosProvider.AD_CACHE_MS) {
+      this.postMessage({ type: "qronosAdResult", ad: this.adCache.ad })
+      return
+    }
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), 6000)
     try {
@@ -5880,6 +5890,7 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
             }
           : null
       debugLog("ad", `http ${response.status} ads=${Array.isArray(raw?.ads) ? raw.ads.length : 0} ad=${ad ? ad.brandName ?? "yes" : "none"}`)
+      this.adCache = { at: Date.now(), ad: ad as Record<string, string> | null }
       this.postMessage({ type: "qronosAdResult", ad })
     } catch (error) {
       debugLog("ad", error as Error)
