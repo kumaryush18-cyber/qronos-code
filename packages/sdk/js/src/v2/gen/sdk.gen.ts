@@ -7184,8 +7184,8 @@ export class Cloud extends HeyApiClient {
   }
 }
 
-// qronos_change - generated output has a single client class: both API groups
-// carry the qronos tag, so every method and nested service lives on Qronos.
+// qronos_change - generated output carries a single client class: both API groups
+// share the qronos tag, so every method and nested service lives on Qronos.
 export class Qronos extends HeyApiClient {
   /**
    * Get Qronos Gateway profile
@@ -7409,6 +7409,7 @@ export class Qronos extends HeyApiClient {
   get cloud(): Cloud {
     return (this._cloud ??= new Cloud({ client: this.client }))
   }
+
   /**
    * Resume an interrupted session
    *
@@ -7967,6 +7968,1184 @@ export class Qronos extends HeyApiClient {
   private _sessionImport?: SessionImport
   get sessionImport(): SessionImport {
     return (this._sessionImport ??= new SessionImport({ client: this.client }))
+  }
+}
+
+export class Heap extends HeyApiClient {
+  /**
+   * Write heap snapshot
+   *
+   * Write a heap snapshot for the CLI process to the log directory.
+   */
+  public snapshot<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosHeapSnapshotResponses,
+      QronosHeapSnapshotErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/heap/snapshot",
+      ...options,
+      ...params,
+    })
+  }
+}
+
+export class Marketplace extends HeyApiClient {
+  /**
+   * List marketplace items
+   *
+   * Fetch marketplace catalog items and detect the items installed for the routed workspace.
+   */
+  public list<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).get<
+      QronosMarketplaceListResponses,
+      QronosMarketplaceListErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/marketplace",
+      ...options,
+      ...params,
+    })
+  }
+
+  /**
+   * Install a marketplace item
+   *
+   * Install a marketplace MCP server, agent, skill, or plugin into project or global Qronos config.
+   */
+  public install<ThrowOnError extends boolean = false>(
+    parameters: {
+      directory?: string
+      workspace?: string
+      item: MarketplaceInstallItem
+      target?: "project" | "global"
+      parameters?: {
+        [key: string]: unknown
+      }
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "item" },
+            { in: "body", key: "target" },
+            { in: "body", key: "parameters" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosMarketplaceInstallResponses,
+      QronosMarketplaceInstallErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/marketplace/install",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Remove a marketplace item
+   *
+   * Remove a marketplace MCP server, agent, skill, or plugin from project or global Qronos config.
+   */
+  public remove<ThrowOnError extends boolean = false>(
+    parameters: {
+      directory?: string
+      workspace?: string
+      item: MarketplaceItemRef
+      scope: "project" | "global"
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "item" },
+            { in: "body", key: "scope" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosMarketplaceRemoveResponses,
+      QronosMarketplaceRemoveErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/marketplace/remove",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+}
+
+export class Snapshot extends HeyApiClient {
+  /**
+   * Prepare a snapshot repository
+   *
+   * Initialize and seed snapshots for the routed directory without creating a session or tracking ref.
+   */
+  public prepare<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosSnapshotPrepareResponses,
+      QronosSnapshotPrepareErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/snapshot/prepare",
+      ...options,
+      ...params,
+    })
+  }
+}
+
+export class ProviderUsage extends HeyApiClient {
+  /**
+   * Get provider usage
+   *
+   * Get cache-aware, secret-free provider plan usage and personal billing status.
+   */
+  public get<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).get<
+      QronosProviderUsageGetResponses,
+      QronosProviderUsageGetErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/provider-usage",
+      ...options,
+      ...params,
+    })
+  }
+
+  /**
+   * Refresh provider usage
+   *
+   * Refresh provider plan usage while coalescing concurrent source requests.
+   */
+  public refresh<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosProviderUsageRefreshResponses,
+      QronosProviderUsageRefreshErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/provider-usage/refresh",
+      ...options,
+      ...params,
+    })
+  }
+}
+
+export class Notebook extends HeyApiClient {
+  /**
+   * List pending notebook requests
+   *
+   * List pending native notebook requests for the routed workspace.
+   */
+  public list<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).get<
+      QronosNotebookListResponses,
+      QronosNotebookListErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/notebook",
+      ...options,
+      ...params,
+    })
+  }
+
+  /**
+   * Reply to a notebook request
+   *
+   * Complete a pending native notebook request with a structured result.
+   */
+  public reply<ThrowOnError extends boolean = false>(
+    parameters: {
+      requestID: NotebookRequestId
+      directory?: string
+      workspace?: string
+      result: NotebookResult
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "path", key: "requestID" },
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "result" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosNotebookReplyResponses,
+      QronosNotebookReplyErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/notebook/{requestID}/reply",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Reject a notebook request
+   *
+   * Complete a pending native notebook request with a structured host error.
+   */
+  public reject<ThrowOnError extends boolean = false>(
+    parameters: {
+      requestID: NotebookRequestId
+      directory?: string
+      workspace?: string
+      error: NotebookFailure
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "path", key: "requestID" },
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "error" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosNotebookRejectResponses,
+      QronosNotebookRejectErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/notebook/{requestID}/reject",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+}
+
+export class AgentManager extends HeyApiClient {
+  /**
+   * List pending Agent Manager requests
+   *
+   * List pending native Agent Manager orchestration requests for the routed workspace.
+   */
+  public list<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).get<
+      QronosAgentManagerListResponses,
+      QronosAgentManagerListErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/agent-manager",
+      ...options,
+      ...params,
+    })
+  }
+
+  /**
+   * Reply to an Agent Manager request
+   *
+   * Complete a pending Agent Manager orchestration request with a structured result.
+   */
+  public reply<ThrowOnError extends boolean = false>(
+    parameters: {
+      requestID: AgentManagerRequestId
+      directory?: string
+      workspace?: string
+      result: AgentManagerResult
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "path", key: "requestID" },
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "result" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosAgentManagerReplyResponses,
+      QronosAgentManagerReplyErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/agent-manager/{requestID}/reply",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Reject an Agent Manager request
+   *
+   * Complete a pending Agent Manager orchestration request with a structured host error.
+   */
+  public reject<ThrowOnError extends boolean = false>(
+    parameters: {
+      requestID: AgentManagerRequestId
+      directory?: string
+      workspace?: string
+      error: AgentManagerFailure
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "path", key: "requestID" },
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "error" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosAgentManagerRejectResponses,
+      QronosAgentManagerRejectErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/agent-manager/{requestID}/reject",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+}
+
+export class BackgroundJob extends HeyApiClient {
+  /**
+   * Cancel background job
+   *
+   * Cancel one background subagent job and its session tree.
+   */
+  public cancel<ThrowOnError extends boolean = false>(
+    parameters: {
+      jobID: string
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "path", key: "jobID" },
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosBackgroundJobCancelResponses,
+      QronosBackgroundJobCancelErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/background-jobs/{jobID}/cancel",
+      ...options,
+      ...params,
+    })
+  }
+
+  /**
+   * Promote background job
+   *
+   * Continue one foreground subagent in the background.
+   */
+  public promote<ThrowOnError extends boolean = false>(
+    parameters: {
+      jobID: string
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "path", key: "jobID" },
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosBackgroundJobPromoteResponses,
+      QronosBackgroundJobPromoteErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/background-jobs/{jobID}/promote",
+      ...options,
+      ...params,
+    })
+  }
+}
+
+export class Retention extends HeyApiClient {
+  /**
+   * Get session retention status
+   *
+   * Read the machine-wide session retention policy and the state of the most recent cleanup pass.
+   */
+  public status<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).get<
+      QronosRetentionStatusResponses,
+      QronosRetentionStatusErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/retention",
+      ...options,
+      ...params,
+    })
+  }
+
+  /**
+   * Run session retention
+   *
+   * Run one machine-wide session retention pass. Does nothing unless the retention policy is enabled in qronos.json; `force` bypasses the minimum spacing between scheduled passes, never the enable check.
+   */
+  public run<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+      force?: boolean
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "force" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosRetentionRunResponses,
+      QronosRetentionRunErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/retention/run",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Stop the active session retention pass
+   *
+   * Ask the machine-wide retention pass to stop before deleting more sessions. Already-deleted sessions stay deleted; the interrupted pass still records its partial result and honors the spacing window.
+   */
+  public cancel<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosRetentionCancelResponses,
+      QronosRetentionCancelErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/retention/cancel",
+      ...options,
+      ...params,
+    })
+  }
+}
+
+export class Migrate extends HeyApiClient {
+  /**
+   * Migrate external sessions into Qronos
+   *
+   * Discover Claude Code and OpenAI Codex JSONL transcripts for a directory and migrate them into new Qronos sessions, one session per transcript. Sources that were already migrated are skipped, so calling this repeatedly is a no-op once everything has landed.
+   */
+  public sessions<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+      cwd?: string
+      formats?: Array<"claude" | "codex">
+      ids?: Array<string>
+      agent?: string
+      model?: string
+      force?: boolean
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "cwd" },
+            { in: "body", key: "formats" },
+            { in: "body", key: "ids" },
+            { in: "body", key: "agent" },
+            { in: "body", key: "model" },
+            { in: "body", key: "force" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosMigrateSessionsResponses,
+      QronosMigrateSessionsErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/migrate/sessions",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Discover migratable external session transcripts
+   *
+   * Enumerate Claude Code and OpenAI Codex JSONL transcripts for a directory and preview each, marking the ones already migrated, so callers can render a picker before migrating. Read-only; writes nothing.
+   */
+  public discover<ThrowOnError extends boolean = false>(
+    parameters?: {
+      directory?: string
+      workspace?: string
+      cwd?: string
+      formats?: Array<"claude" | "codex">
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "cwd" },
+            { in: "body", key: "formats" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosMigrateDiscoverResponses,
+      QronosMigrateDiscoverErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/migrate/sessions/discover",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+}
+
+export class SessionImport extends HeyApiClient {
+  /**
+   * Insert project for session import
+   *
+   * Insert or update a project row used by legacy session import.
+   */
+  public project<ThrowOnError extends boolean = false>(
+    parameters: {
+      directory?: string
+      workspace?: string
+      id: string
+      worktree: string
+      vcs?: string
+      name?: string
+      iconUrl?: string
+      iconColor?: string
+      timeCreated: number
+      timeUpdated: number
+      timeInitialized?: number
+      sandboxes: Array<string>
+      commands?: {
+        start?: string
+      }
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "id" },
+            { in: "body", key: "worktree" },
+            { in: "body", key: "vcs" },
+            { in: "body", key: "name" },
+            { in: "body", key: "iconUrl" },
+            { in: "body", key: "iconColor" },
+            { in: "body", key: "timeCreated" },
+            { in: "body", key: "timeUpdated" },
+            { in: "body", key: "timeInitialized" },
+            { in: "body", key: "sandboxes" },
+            { in: "body", key: "commands" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosSessionImportProjectResponses,
+      QronosSessionImportProjectErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/session-import/project",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Insert session for session import
+   *
+   * Insert or update a session row used by legacy session import.
+   */
+  public session<ThrowOnError extends boolean = false>(
+    parameters: {
+      query_directory?: string
+      workspace?: string
+      id: string
+      projectID: string
+      force?: boolean
+      workspaceID?: string
+      parentID?: string
+      slug: string
+      body_directory: string
+      title: string
+      version: string
+      shareURL?: string
+      summary?: {
+        additions: number
+        deletions: number
+        files: number
+        diffs?: Array<{
+          [key: string]: unknown
+        }>
+      }
+      revert?: {
+        messageID: string
+        partID?: string
+        snapshot?: string
+        diff?: string
+        workspace?: "restored" | "snapshots-disabled" | "unavailable" | "not-a-git-repo"
+      }
+      permission?: {
+        [key: string]: unknown
+      }
+      timeCreated: number
+      timeUpdated: number
+      timeCompacting?: number
+      timeArchived?: number
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            {
+              in: "query",
+              key: "query_directory",
+              map: "directory",
+            },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "id" },
+            { in: "body", key: "projectID" },
+            { in: "body", key: "force" },
+            { in: "body", key: "workspaceID" },
+            { in: "body", key: "parentID" },
+            { in: "body", key: "slug" },
+            {
+              in: "body",
+              key: "body_directory",
+              map: "directory",
+            },
+            { in: "body", key: "title" },
+            { in: "body", key: "version" },
+            { in: "body", key: "shareURL" },
+            { in: "body", key: "summary" },
+            { in: "body", key: "revert" },
+            { in: "body", key: "permission" },
+            { in: "body", key: "timeCreated" },
+            { in: "body", key: "timeUpdated" },
+            { in: "body", key: "timeCompacting" },
+            { in: "body", key: "timeArchived" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosSessionImportSessionResponses,
+      QronosSessionImportSessionErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/session-import/session",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Insert message for session import
+   *
+   * Insert or update a message row used by legacy session import.
+   */
+  public message<ThrowOnError extends boolean = false>(
+    parameters: {
+      directory?: string
+      workspace?: string
+      id: string
+      sessionID: string
+      timeCreated: number
+      data:
+        | {
+            role: "user"
+            time: {
+              created: number
+            }
+            agent: string
+            model: {
+              providerID: string
+              modelID: string
+            }
+            tools?: {
+              [key: string]: boolean
+            }
+          }
+        | {
+            role: "assistant"
+            time: {
+              created: number
+              completed?: number
+            }
+            parentID: string
+            modelID: string
+            providerID: string
+            mode: string
+            agent: string
+            path: {
+              cwd: string
+              root: string
+            }
+            summary?: boolean
+            cost: number
+            tokens: {
+              total?: number
+              input: number
+              output: number
+              reasoning: number
+              cache: {
+                read: number
+                write: number
+              }
+            }
+            structured?: unknown
+            variant?: string
+            finish?: string
+          }
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "id" },
+            { in: "body", key: "sessionID" },
+            { in: "body", key: "timeCreated" },
+            { in: "body", key: "data" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosSessionImportMessageResponses,
+      QronosSessionImportMessageErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/session-import/message",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
+  }
+
+  /**
+   * Insert part for session import
+   *
+   * Insert or update a part row used by legacy session import.
+   */
+  public part<ThrowOnError extends boolean = false>(
+    parameters: {
+      directory?: string
+      workspace?: string
+      id: string
+      messageID: string
+      sessionID: string
+      timeCreated?: number
+      data:
+        | {
+            type: "text"
+            text: string
+            synthetic?: boolean
+            ignored?: boolean
+            time?: {
+              start: number
+              end?: number
+            }
+            metadata?: {
+              [key: string]: unknown
+            }
+          }
+        | {
+            type: "reasoning"
+            text: string
+            metadata?: {
+              [key: string]: unknown
+            }
+            time: {
+              start: number
+              end?: number
+            }
+          }
+        | {
+            type: "tool"
+            callID: string
+            tool: string
+            state:
+              | {
+                  status: "pending"
+                  input: {
+                    [key: string]: unknown
+                  }
+                  raw: string
+                }
+              | {
+                  status: "running"
+                  input: {
+                    [key: string]: unknown
+                  }
+                  title?: string
+                  metadata?: {
+                    [key: string]: unknown
+                  }
+                  time: {
+                    start: number
+                  }
+                }
+              | {
+                  status: "completed"
+                  input: {
+                    [key: string]: unknown
+                  }
+                  output: string
+                  title: string
+                  metadata: {
+                    [key: string]: unknown
+                  }
+                  time: {
+                    start: number
+                    end: number
+                    compacted?: number
+                  }
+                }
+              | {
+                  status: "error"
+                  input: {
+                    [key: string]: unknown
+                  }
+                  error: string
+                  metadata?: {
+                    [key: string]: unknown
+                  }
+                  time: {
+                    start: number
+                    end: number
+                  }
+                }
+            metadata?: {
+              [key: string]: unknown
+            }
+          }
+    },
+    options?: Options<never, ThrowOnError>,
+  ) {
+    const params = buildClientParams(
+      [parameters],
+      [
+        {
+          args: [
+            { in: "query", key: "directory" },
+            { in: "query", key: "workspace" },
+            { in: "body", key: "id" },
+            { in: "body", key: "messageID" },
+            { in: "body", key: "sessionID" },
+            { in: "body", key: "timeCreated" },
+            { in: "body", key: "data" },
+          ],
+        },
+      ],
+    )
+    return (options?.client ?? this.client).post<
+      QronosSessionImportPartResponses,
+      QronosSessionImportPartErrors,
+      ThrowOnError
+    >({
+      url: "/qronos/session-import/part",
+      ...options,
+      ...params,
+      headers: {
+        "Content-Type": "application/json",
+        ...options?.headers,
+        ...params.headers,
+      },
+    })
   }
 }
 
