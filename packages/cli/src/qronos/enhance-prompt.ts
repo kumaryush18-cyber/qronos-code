@@ -55,10 +55,19 @@ async function candidates(): Promise<Candidate[]> {
             ? svc.getLanguage(model).pipe(Effect.catch(() => Effect.succeed(undefined)))
             : Effect.succeed(undefined)
 
+        const gatewayID = "qronos" as Model["providerID"]
         const gatewaySmall = yield* svc
-          .getSmallModel("qronos" as Model["providerID"])
+          .getSmallModel(gatewayID)
           .pipe(Effect.catch(() => Effect.succeed(undefined)))
         add(gatewaySmall, yield* languageOf(gatewaySmall))
+
+        // No small model configured? Use the gateway's own first model so the
+        // rewrite never depends on a third-party provider being healthy.
+        if (out.length === 0) {
+          const gateway = yield* svc.getProvider(gatewayID).pipe(Effect.catch(() => Effect.succeed(undefined)))
+          const first = gateway ? Object.values(gateway.models)[0] : undefined
+          add(first, yield* languageOf(first))
+        }
 
         // The user's configured model stays as a fallback so a custom provider
         // keeps working when it is healthy.
