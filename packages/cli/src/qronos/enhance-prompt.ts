@@ -1,10 +1,11 @@
-import { generateText } from "ai"
+import { generateText, streamText } from "ai"
 import { randomUUID } from "crypto"
+import { Effect } from "effect"
 import { mergeDeep } from "remeda"
-import { Provider } from "@/provider/provider"
+import type { LanguageModelV3 } from "@ai-sdk/provider"
+import { Provider, type Model } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { AppRuntime } from "@/effect/app-runtime"
-import { Effect } from "effect"
 import * as Log from "@qronos-ai/core/util/log"
 import { opencodeSessionHeaders } from "@/qronos/provider/opencode-session-headers"
 
@@ -24,40 +25,125 @@ export function clean(text: string) {
   return stripped.replace(/^(['"])([\s\S]*)\1$/, "$2").trim()
 }
 
-/**
- * Lightweight prompt enhancement that mirrors the legacy singleCompletionHandler.
- * Calls generateText directly with a prompt-rewrite system instruction, no agent identity,
- * tools, or plugins. The user message is labeled as a draft so it stays rewrite input.
- */
-export async function enhancePrompt(text: string): Promise<string> {
-  log.info("enhancing", { length: text.length })
+type Candidate = { model: Model; language: LanguageModelV3 }
 
-  const resolved = await AppRuntime.runPromise(
+/**
+ * qronos_change - ordered list of models that may rewrite the prompt.
+ *
+ * The Qronos gateway comes first on purpose. A user's own custom provider is
+ * allowed to be buggy (some OpenAI-compatible routers answer a non-streaming
+ * request with a JSON body followed by an SSE `data: [DONE]` line), and the
+ * prompt box must not stop working because of that.
+ */
+async function candidates(): Promise<Candidate[]> {
+  return AppRuntime.runPromise(
     Provider.Service.use((svc) =>
       Effect.gen(function* () {
-        const ref = yield* svc.defaultModel()
-        const model = (yield* svc.getSmallModel(ref.providerID)) ?? (yield* svc.getModel(ref.providerID, ref.modelID))
-        const language = yield* svc.getLanguage(model)
-        return { model, language }
+        const out: Candidate[] = []
+        const seen = new Set<string>()
+
+        const add = (model: Model | undefined, language: LanguageModelV3 | undefined) => {
+          if (!model || !language) return
+          const key = `${model.providerID}/${model.id}`
+          if (seen.has(key)) return
+          seen.add(key)
+          out.push({ model, language })
+        }
+
+        const languageOf = (model: Model | undefined) =>
+          model
+            ? svc.getLanguage(model).pipe(Effect.catch(() => Effect.succeed(undefined)))
+            : Effect.succeed(undefined)
+
+        const gatewaySmall = yield* svc
+          .getSmallModel("qronos" as Model["providerID"])
+          .pipe(Effect.catch(() => Effect.succeed(undefined)))
+        add(gatewaySmall, yield* languageOf(gatewaySmall))
+
+        // The user's configured model stays as a fallback so a custom provider
+        // keeps working when it is healthy.
+        const ref = yield* svc.defaultModel().pipe(Effect.catch(() => Effect.succeed(undefined)))
+        if (ref) {
+          const small = yield* svc.getSmallModel(ref.providerID).pipe(Effect.catch(() => Effect.succeed(undefined)))
+          add(small, yield* languageOf(small))
+          const model = yield* svc
+            .getModel(ref.providerID, ref.modelID)
+            .pipe(Effect.catch(() => Effect.succeed(undefined)))
+          add(model, yield* languageOf(model))
+        }
+
+        return out
       }),
     ),
   )
+}
 
-  const result = await generateText({
-    model: resolved.language,
-    temperature: resolved.model.capabilities.temperature ? 0.7 : undefined,
+/** True when the provider answered with a body the AI SDK cannot parse. */
+function isMalformedResponse(error: unknown) {
+  const text = error instanceof Error ? `${error.name} ${error.message}` : String(error)
+  return /JSONParseError|Invalid JSON response|Unable to parse JSON|JSON parsing failed/i.test(text)
+}
+
+function request(candidate: Candidate, text: string) {
+  return {
+    model: candidate.language,
+    temperature: candidate.model.capabilities.temperature ? 0.7 : undefined,
     providerOptions: ProviderTransform.providerOptions(
-      resolved.model,
-      mergeDeep(ProviderTransform.smallOptions(resolved.model), resolved.model.options),
+      candidate.model,
+      mergeDeep(ProviderTransform.smallOptions(candidate.model), candidate.model.options),
     ),
-    maxRetries: 3,
+    maxRetries: 1,
     system: INSTRUCTION,
-    // Each call is a standalone rewrite, not part of a multi-turn conversation; a fresh ID
-    // per call still satisfies the opencode API's "stable per-conversation ID" requirement.
-    headers: opencodeSessionHeaders({ providerID: resolved.model.providerID, sessionID: randomUUID() }),
+    // Each call is a standalone rewrite, not part of a multi-turn conversation.
+    headers: opencodeSessionHeaders({ providerID: candidate.model.providerID, sessionID: randomUUID() }),
     messages: [{ role: "user" as const, content: `Draft prompt to enhance, not answer:\n\n${text}` }],
-  })
+  }
+}
 
-  log.info("enhanced", { length: result.text.length })
-  return clean(result.text)
+async function rewrite(candidate: Candidate, text: string): Promise<string> {
+  try {
+    const result = await generateText(request(candidate, text))
+    return result.text
+  } catch (error) {
+    if (!isMalformedResponse(error)) throw error
+    // qronos_change - retry the same call as a stream. Streaming reads the
+    // answer out of a body that has a trailing `data: [DONE]`, which is exactly
+    // what some OpenAI-compatible routers append to non-streaming replies.
+    log.info("retrying as stream", {
+      providerID: candidate.model.providerID,
+      modelID: candidate.model.id,
+    })
+    const streamed = streamText(request(candidate, text))
+    let out = ""
+    for await (const part of streamed.textStream) out += part
+    return out
+  }
+}
+
+export async function enhancePrompt(text: string): Promise<string> {
+  log.info("enhancing", { length: text.length })
+
+  const list = await candidates()
+  if (list.length === 0) throw new Error("No model is available to enhance the prompt.")
+
+  let lastError: unknown
+  for (const candidate of list) {
+    try {
+      const result = clean(await rewrite(candidate, text))
+      if (!result) continue
+      log.info("enhanced", { length: result.length, providerID: candidate.model.providerID, modelID: candidate.model.id })
+      return result
+    } catch (error) {
+      lastError = error
+      log.warn("candidate failed", {
+        providerID: candidate.model.providerID,
+        modelID: candidate.model.id,
+        error: error instanceof Error ? error.message : String(error),
+      })
+    }
+  }
+
+  throw lastError instanceof Error
+    ? lastError
+    : new Error("Prompt enhancement failed for every available model.")
 }

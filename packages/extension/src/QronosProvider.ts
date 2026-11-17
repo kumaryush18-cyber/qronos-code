@@ -2949,6 +2949,32 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
   }
 
   /** Fetch providers and send to webview. Coalesced: at most one in-flight + one queued. */
+  /**
+   * qronos_change - ids of the providers the user added to their own config.
+   *
+   * Only those may reach the picker. Everything else in the engine catalogue is
+   * a shipped default (openrouter, anthropic, github-copilot, ...) that this
+   * product does not offer.
+   */
+  private async customProviderIDs(client: QronosClient): Promise<Set<string>> {
+    const ids = new Set<string>()
+    try {
+      const global = await client.global.config.get({ throwOnError: true })
+      const config = (global.data ?? {}) as Record<string, unknown>
+      const disabled = new Set(
+        Array.isArray(config.disabled_providers) ? (config.disabled_providers as string[]) : [],
+      )
+      const providers = (config.provider ?? {}) as Record<string, unknown>
+      for (const id of Object.keys(providers)) {
+        if (disabled.has(id)) continue
+        ids.add(id)
+      }
+    } catch (error) {
+      debugLog("customProviderIDs", error)
+    }
+    return ids
+  }
+
   private async fetchAndSendProviders(): Promise<void> {
     const next = ++this.providersGeneration
     if (this.providersRefresh) {
@@ -2984,16 +3010,33 @@ export class QronosProvider implements vscode.WebviewViewProvider, TelemetryProp
             name: "⚡ Qronos AI Universal Gateway",
             models: qronosModels,
           }
-          // The extension ONLY exposes Qronos AI Universal Gateway.
-          // All external / third-party / legacy OpenRouter models are filtered out.
+          // qronos_change - the picker shows the Qronos gateway plus the providers
+          // the user added to their own config, and nothing else. The catalogue the
+          // engine ships with stays hidden, so no vendor appears unless the user
+          // configured it themselves.
+          const customProviderIDs = await this.customProviderIDs(client)
           const indexedProviders: Record<string, any> = {
             qronos: qronosProvider,
+          }
+          const connected = ["qronos"]
+          const defaults: Record<string, string> = { qronos: "claude-sonnet-5.5" }
+          for (const entry of (response as { all?: unknown }).all as Array<Record<string, any>> | undefined ?? []) {
+            const id = typeof entry?.id === "string" ? entry.id : ""
+            if (!id || id === "qronos" || !customProviderIDs.has(id)) continue
+            const models = entry.models && typeof entry.models === "object" ? (entry.models as Record<string, any>) : {}
+            if (Object.keys(models).length === 0) continue
+            indexedProviders[id] = { id, name: entry.name ?? id, models }
+            connected.push(id)
+            const recommended = (response.default as Record<string, string> | undefined)?.[id]
+            const modelID =
+              recommended && Object.hasOwn(models, recommended) ? recommended : Object.keys(models)[0]
+            if (modelID) defaults[id] = modelID
           }
           const message = {
             type: "providersLoaded",
             providers: indexedProviders,
-            connected: ["qronos"],
-            defaults: { qronos: "claude-sonnet-5.5" },
+            connected,
+            defaults,
             organizationId,
             ready: true,
             defaultSelection: {
