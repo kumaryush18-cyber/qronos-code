@@ -12,6 +12,88 @@ import { Env } from "@/env" // qronos_change - config via Env.Service instead of
 
 const MAX_RESULTS = 10 // qronos_change - cap numResults across all transports
 
+// qronos_change start - last-resort search with no key and no MCP server.
+// Bing answers plain HTML to a normal GET; DuckDuckGo often returns an
+// anti-bot challenge, so it is tried second. Results are labelled degraded so
+// the model knows they are scraped page titles, not a ranked search API.
+const HTML_ENGINES = [
+  { name: "bing", url: (q: string) => `https://www.bing.com/search?q=${encodeURIComponent(q)}` },
+  { name: "duckduckgo", url: (q: string) => `https://html.duckduckgo.com/html/?q=${encodeURIComponent(q)}` },
+]
+const BROWSER_UA =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
+function htmlToText(input: string) {
+  return input
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+/** Bing wraps every hit in /ck/a?u=a1<base64url>; DuckDuckGo uses /l/?uddg=. */
+export function unwrapEngineUrl(raw: string) {
+  const url = raw.replace(/&amp;/g, "&")
+  try {
+    const parsed = new URL(url, "https://www.bing.com")
+    const u = parsed.searchParams.get("u")
+    if (u?.startsWith("a1")) {
+      const decoded = Buffer.from(u.slice(2).replace(/-/g, "+").replace(/_/g, "/"), "base64").toString("utf8")
+      if (/^https?:/.test(decoded)) return decoded
+    }
+    const uddg = parsed.searchParams.get("uddg")
+    if (uddg && /^https?:/.test(uddg)) return uddg
+  } catch {}
+  return url
+}
+
+/** Pull title/link/snippet triples out of a Bing or DuckDuckGo results page. */
+export function parseHtmlResults(html: string, limit: number) {
+  const out: { title: string; url: string; snippet: string }[] = []
+  const patterns = [
+    /<li class="b_algo"[\s\S]*?<h2[^>]*>\s*<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>[\s\S]*?(?:<p[^>]*>([\s\S]*?)<\/p>)?/g,
+    /<a[^>]*class="result__a"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>[\s\S]*?(?:class="result__snippet"[^>]*>([\s\S]*?)<\/a>)?/g,
+  ]
+  for (const re of patterns) {
+    for (const match of html.matchAll(re)) {
+      const url = match[1] ? unwrapEngineUrl(match[1]) : undefined
+      if (!url || !/^https?:/.test(url)) continue
+      const title = htmlToText(match[2] ?? "")
+      if (!title) continue
+      if (out.some((item) => item.url === url)) continue
+      out.push({ title, url, snippet: htmlToText(match[3] ?? "") })
+      if (out.length >= limit) return out
+    }
+  }
+  return out
+}
+
+async function searchHtmlEngine(query: string, limit: number) {
+  for (const engine of HTML_ENGINES) {
+    try {
+      const res = await fetch(engine.url(query), {
+        headers: { "user-agent": BROWSER_UA, accept: "text/html,application/xhtml+xml" },
+      })
+      if (!res.ok) continue
+      const results = parseHtmlResults(await res.text(), limit)
+      if (results.length === 0) continue
+      const body = results
+        .map((r, i) => `${i + 1}. ${r.title}\n   ${r.url}${r.snippet ? `\n   ${r.snippet}` : ""}`)
+        .join("\n")
+      return `Search results (fallback via ${engine.name}; the search API was unreachable, so these are page titles):\n\n${body}`
+    } catch {
+      continue
+    }
+  }
+  return undefined
+}
+// qronos_change end
+
 export const Parameters = Schema.Struct({
   query: Schema.String.annotate({ description: "Websearch query" }),
   numResults: Schema.optional(Schema.Number).annotate({
@@ -213,10 +295,16 @@ export const WebSearchTool = Tool.define(
           for (const target of order) {
             const outcome = yield* Effect.exit(attempt(target))
             if (outcome._tag === "Success") {
-              result = Option.fromNullable(outcome.value ?? undefined)
+              result = Option.fromNullishOr(outcome.value ?? undefined) // qronos_change - fromNullable is not in this Effect build
               used = target
               break
             }
+          }
+          // qronos_change - both hosted MCP servers failed: scrape a plain
+          // results page rather than telling the user search is broken.
+          if (Option.isNone(result) && provider !== "qronos-exa") {
+            const scraped = yield* Effect.promise(() => searchHtmlEngine(params.query, params.numResults ?? 5))
+            if (scraped) result = Option.some(scraped)
           }
           // qronos_change end
 
