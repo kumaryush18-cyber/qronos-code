@@ -1,5 +1,41 @@
 # qronos-code
 
+## 1.1.0
+
+First release under the Qronos Code name.
+
+### Sign in and connect
+
+- Sign in with GitHub from the panel using a device code. No API key to copy.
+- The model list is read from your account every time instead of shipping a fixed catalogue, so removed or renamed
+  models show as unavailable instead of failing later.
+- Providers you configure yourself now appear in the model picker next to the Qronos models.
+
+### Chat and tools
+
+- Fixed a failure where Enhance Prompt answered 500 when a model returned malformed JSON. It now retries as a stream
+  and, if that also fails, says so without touching your draft.
+- Web search works without an API key. It tries Exa first, then Parallel, then a plain page fetch, and reports which
+  path answered.
+- Removed the audio recording dependency and hid voice input, because the gateway has no transcription route yet.
+  This removes 22 MB from the package.
+
+### Appearance
+
+- The panel stays dark on a light editor theme. Every theme selector now covers both the extension theme name and the
+  editor's own name.
+
+### Fixed after re-signing in
+
+- Signing in rotates the key on the server. The editor used to prefer a copy captured at startup, so chat answered
+  401 until the window was reloaded. The stored key now wins.
+
+### Cleanup
+
+- Removed the Batch Tool switch from Experimental settings. It had no code behind it.
+- Removed leftover references to the upstream product name from scripts, docs and build helpers. Only the MIT notices
+  keep the original attribution.
+
 ## 7.8.28
 
 ## 7.8.26
