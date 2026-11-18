@@ -4,9 +4,14 @@ import { fetchDefaultModel, getQronosUrlFromToken, QRONOS_API_BASE } from "@qron
 type Options = { qronosOrganizationId?: string; baseURL?: string; apiKey?: string; qronosToken?: string }
 
 export function token(options: Options | undefined, info: Auth.Info | undefined) {
-  if (process.env.QRONOS_API_KEY) return process.env.QRONOS_API_KEY
+  // qronos_change - the stored key comes first. Signing in rotates the key and
+  // revokes the old one, while process.env.QRONOS_API_KEY is captured once when
+  // the process starts; preferring the env copy made a fresh sign-in answer 401
+  // until the process restarted. Users with only an env key still work, because
+  // `info` is then undefined.
   if (info?.type === "oauth") return info.access
   if (info?.type === "api") return info.key
+  if (process.env.QRONOS_API_KEY) return process.env.QRONOS_API_KEY
   if (options?.qronosToken != null) return options.qronosToken
   return options?.apiKey || undefined
 }

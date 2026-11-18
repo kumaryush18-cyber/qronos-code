@@ -91,17 +91,7 @@ export async function activate(context: vscode.ExtensionContext) {
   // Create shared connection service (one server for all webviews)
   const connectionService = new QronosConnectionService(
     context,
-    async () => ({
-      ...(await browserBroker.env()),
-      // qronos_change start - signing in rotates the key server-side, and the CLI
-      // gives QRONOS_API_KEY priority over the stored auth file. Passing the key
-      // captured at extension start therefore pinned a dead key into every
-      // server this host spawned, so a fresh sign-in kept answering 401 until
-      // the window was reloaded. The CLI reads ~/.local/share/qronos/auth.json
-      // instead, which sign-in rewrites in place.
-      QRONOS_API_KEY: "",
-      // qronos_change end
-    }),
+    () => browserBroker.env(),
     (dir): Promise<void> => browserAutomationService.ready(dir),
   )
 
