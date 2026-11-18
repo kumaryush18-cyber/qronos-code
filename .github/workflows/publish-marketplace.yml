@@ -60,11 +60,12 @@ jobs:
         id: check
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          TRUSTED_PUBLISHING: ${{ vars.TRUSTED_PUBLISHING }}
           VERSION: ${{ steps.read.outputs.version }}
         run: |
-          if [ -z "$VSCE_PAT" ]; then
+          if [ -z "$VSCE_PAT" ] && [ "$TRUSTED_PUBLISHING" != "true" ]; then
             echo "publish=no" >> "$GITHUB_OUTPUT"
-            echo "::notice::VSCE_PAT is not set - building only, nothing will be published."
+            echo "::notice::no VSCE_PAT secret and no TRUSTED_PUBLISHING variable - building only, nothing will be published."
             exit 0
           fi
           url="https://marketplace.visualstudio.com/_apis/public/gallery/publishers/$PUBLISHER/vsextensions/$EXTENSION/$VERSION/vspackage"
@@ -91,6 +92,10 @@ jobs:
             target: win32-x64
           - os: macos-latest
             target: darwin-arm64
+          # Intel Macs need their own binary: the CLI is compiled for the host
+          # architecture, so this must run on an x64 macOS runner.
+          - os: macos-13
+            target: darwin-x64
     steps:
       - uses: actions/checkout@v4
         with:
@@ -186,6 +191,9 @@ jobs:
     needs: [gate, build]
     if: needs.gate.outputs.publish == 'yes'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # trusted publishing: no PAT to store or rotate
     steps:
       - uses: actions/checkout@v4
         with:
@@ -205,10 +213,20 @@ jobs:
           VERSION: ${{ needs.gate.outputs.version }}
         run: |
           set -euo pipefail
+          # Trusted publishing (Marketplace → Trusted Publishing) needs no
+          # secret: the workflow requests a 15-minute OIDC token instead. A PAT
+          # still works if one is stored, so both paths stay supported.
+          if [ -z "${VSCE_PAT:-}" ]; then
+            echo "authenticating with OIDC trusted publishing"
+            AUTH="--oidc"
+          else
+            echo "authenticating with the VSCE_PAT secret"
+            AUTH=""
+          fi
           # The Marketplace wants one publish per platform target for the same
           # version; the first one creates the version, the others attach the
           # remaining platforms to it. Order does not matter, retries do.
-          for target in linux-x64 win32-x64 darwin-arm64; do
+          for target in linux-x64 win32-x64 darwin-arm64 darwin-x64; do
             file=$(find vsix -name "qronos-code-$target.vsix" | head -1)
             if [ -z "$file" ]; then
               echo "::error::missing package for $target"
@@ -216,7 +234,7 @@ jobs:
             fi
             echo "publishing $target ($(wc -c < "$file") bytes)"
             for attempt in 1 2 3; do
-              if npx --yes @vscode/vsce publish --packagePath "$file" --target "$target" --githubBranch main; then
+              if npx --yes @vscode/vsce publish $AUTH --packagePath "$file" --target "$target" --githubBranch main; then
                 break
               fi
               if [ "$attempt" = "3" ]; then

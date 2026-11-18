@@ -1,54 +1,73 @@
-# ⚡ Qronos Code — Autonomous AI Agent for VS Code
+# Qronos Code
 
-<p align="center">
-  <img width="180" alt="Qronos Code Logo" src="assets/icons/logo-outline-black.png" />
-</p>
+**An autonomous AI coding agent for VS Code, running on the Qronos AI gateway.**
 
-<p align="center">
-  <strong>Autonomous AI coding agent in VS Code powered by Qronos AI.</strong><br>
-  Build, refactor, and iterate with 10M daily tokens, plan mode, autonomous terminal tools, and direct gateway integration.
-</p>
+Qronos Code reads your project, edits files, runs commands and tests the result. It signs in with GitHub, works
+inside a sandbox, and asks before it does anything risky.
 
-<p align="center">
-  <a href="https://qronos.me">Website</a> ·
-  <a href="https://qronos.me/dashboard">Dashboard</a> ·
-  <a href="https://github.com/kumaryush18-cyber/qronos-code">GitHub</a> ·
-  <a href="https://github.com/kumaryush18-cyber/qronos-cli">Qronos CLI</a>
-</p>
+[Website](https://qronos.me) · [Dashboard](https://qronos.me/dashboard) · [Privacy](https://qronos.me/privacy) ·
+[Terms](https://qronos.me/terms) · [Issues](https://github.com/kumaryush18-cyber/qronos-code/issues)
 
 ---
 
-## ⚡ Highlights
+## Install and start
 
-- **10,000,000 Free Daily Coding Tokens:** Every user receives 10M tokens refreshed daily at midnight UTC (`00:00 UTC`).
-- **1-Click GitHub Device Flow:** Sign in straight from your editor without leaving your coding flow.
-- **Qronos AI Universal Gateway:** Native access to frontier reasoning models:
-  - `Claude Sonnet 5.5` [PAID]
-  - `Claude Opus 5.5` [PAID]
-  - `DeepSeek V4 Flash` [FREE]
-  - `GLM 5.3` [FREE]
-  - `GPT-4o` [PAID]
-- **Autonomous Terminal Tools & Subagents:** The agent reads, writes, searches, and tests your codebase autonomously with smart error fallback.
-- **Multi-Mode Architecture:** Architect mode for planning, Coder mode for execution, and Debugger mode for rapid resolution.
+1. Install **Qronos Code** from the Marketplace (or from a platform `.vsix` attached to a release).
+2. Open the Qronos Code panel in the activity bar.
+3. Click **Sign in with GitHub**. A code appears; enter it on the GitHub page that opens.
+4. Pick a model in the selector and send your first message.
 
----
+That is the whole setup. No configuration file is required.
 
-## 🚀 Quick Start
+## What you get
 
-1. Install the **Qronos Code** extension.
-2. Click the **⚡ Qronos Code** status bar item or open the Qronos Code sidebar.
-3. Click **"Sign In with Qronos"** (or provide your `qr_...` API key).
-4. Authorize on GitHub with your 8-digit device code.
-5. Your **10M daily token allowance** is immediately active — start coding!
+- **GitHub sign-in** — one device code, no API key to copy.
+- **A real agent loop** — read, search, edit, run tests, and fix its own mistakes in the same session.
+- **Approval first** — every command and file write asks you, unless you turn on auto-approve.
+- **Sandboxed tools** — commands run in a confined process, not in your shell.
+- **Bring your own provider** — any OpenAI-compatible endpoint you configure appears in the model picker next to the
+  Qronos models.
+- **Web search** — works without an API key.
+- **Diff review** — every change is shown before it lands.
 
----
+Model names and prices change often, so the picker reads the live list from your account instead of shipping a fixed
+catalogue. If a model is unavailable, you see that instead of a stale name.
 
-## 🔒 Privacy & Transparency
+## Cost
 
-Qronos Code connects securely to the Qronos AI Universal Gateway (`https://api.qronos.me/v1`). Your local files remain on your machine, and file access tools require your approval unless you enable auto-approve.
+Qronos AI accounts include a daily token allowance, topped up every day at 00:00 UTC. Your usage and remaining
+allowance are visible in the panel. Paid models are billed to your account balance; free models cost nothing.
 
----
+You can also point the extension at your own provider key and pay that provider directly.
 
-## 📄 License
+## Privacy, short version
 
-MIT License — Copyright (c) 2026 Qronos AI.
+- Your code is sent only to the model provider you select, and only the parts the agent reads.
+- Sign-in credentials are stored on your machine, not in the cloud.
+- The full policy is at [qronos.me/privacy](https://qronos.me/privacy) and the terms at
+  [qronos.me/terms](https://qronos.me/terms).
+
+## Requirements
+
+- VS Code 1.90 or newer.
+- Linux x64, Windows x64, macOS Apple Silicon, or macOS Intel. Each platform ships its own package.
+- An internet connection for the model gateway. Everything else runs locally.
+
+## Troubleshooting
+
+**No models in the picker.** You are probably signed out. Sign in again; the list is fetched from your account, so an
+empty list means an empty session.
+
+**Signing in again did not help.** Reload the window once (`Ctrl+Shift+P` → *Developer: Reload Window*). A local
+backend keeps its own copy of credentials, and a reload is the fastest way to clear it.
+
+**A tool fails with a permission error.** Open the approval dialog and allow the directory, or enable auto-approve for
+that session only.
+
+**Report a problem.** Open an issue with the version from *Extensions → Qronos Code*, your OS, and the text of the
+error. Logs are at `~/.local/share/qronos/log/` (Linux/macOS) or `%LOCALAPPDATA%\qronos\log\` (Windows).
+
+## Licence
+
+MIT. Copyright (c) 2026 Qronos AI. This project is a fork of Kilo Code; the original MIT notices are kept in
+`LICENSE.txt` and `NOTICE`.
