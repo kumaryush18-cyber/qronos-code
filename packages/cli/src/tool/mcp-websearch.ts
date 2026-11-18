@@ -8,7 +8,10 @@ export const EXA_BASE_URL = "https://mcp.exa.ai/mcp"
 export const exaUrl = (apiKey: string | undefined) =>
   apiKey ? `${EXA_BASE_URL}?exaApiKey=${encodeURIComponent(apiKey)}` : EXA_BASE_URL
 // qronos_change end
-export const PARALLEL_URL = "https://mcp.parallel.ai/mcp" // qronos_change - current host from the Parallel docs
+// qronos_change - the newer mcp.parallel.ai host answered HTTP 429 ("free-tier
+// rate limit") to a keyless tools/list call, while this endpoint served a real
+// search without a key. Keep the one that works keyless; both are Parallel.
+export const PARALLEL_URL = "https://search.parallel.ai/mcp"
 
 const McpResult = Schema.Struct({
   result: Schema.Struct({
