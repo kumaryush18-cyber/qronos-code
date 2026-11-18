@@ -9,10 +9,10 @@
     "theme": "dark"
   },
   "publisher": "qronos-ai",
-  "homepage": "https://qronos.me",
+  "homepage": "https://github.com/kumaryush18-cyber/qronos-rename#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kumaryush18-cyber/qronos-code.git",
+    "url": "https://github.com/kumaryush18-cyber/qronos-rename.git",
     "directory": "packages/extension"
   },
   "engines": {
@@ -1397,5 +1397,8 @@
     "yaml": "2.8.3",
     "zod": "^4.6.6"
   },
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "bugs": {
+    "url": "https://github.com/kumaryush18-cyber/qronos-rename/issues"
+  }
 }

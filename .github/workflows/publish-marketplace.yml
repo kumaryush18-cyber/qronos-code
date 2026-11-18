@@ -1,0 +1,254 @@
+# Qronos Code — publish to the VS Code Marketplace on every push to main.
+#
+# How it decides what to do:
+#   1. Read the version from packages/extension/package.json.
+#   2. Ask the Marketplace whether that exact version already exists.
+#      - exists  -> nothing to do (a push that touches code but not the version
+#                   stays green instead of failing with "version already exists")
+#      - missing -> build the three platform binaries and publish them
+#   3. Without a VSCE_PAT secret the run builds and uploads artifacts only, and
+#      says so plainly, so a missing account never breaks the main branch.
+#
+# One-time setup before the first real publish:
+#   - create the publisher "qronos-ai" at https://marketplace.visualstudio.com/manage
+#   - add the token as the repository secret VSCE_PAT (never commit it)
+#
+# Bump the version in packages/extension/package.json to ship a new build. The
+# Marketplace refuses to overwrite a version, so the version IS the release.
+name: publish-marketplace
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/extension/package.json"
+      - "packages/extension/src/**"
+      - "packages/extension/webview-ui/src/**"
+      - "packages/extension/assets/**"
+      - "packages/cli/src/**"
+      - "packages/sdk/js/src/**"
+  workflow_dispatch:
+
+concurrency:
+  group: publish-marketplace-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PUBLISHER: qronos-ai
+  EXTENSION: qronos-code
+
+jobs:
+  gate:
+    name: decide
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.read.outputs.version }}
+      publish: ${{ steps.check.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Read the version
+        id: read
+        run: |
+          version=$(node -p "require('./packages/extension/package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "extension version: $version"
+
+      - name: Is this version already live?
+        id: check
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          VERSION: ${{ steps.read.outputs.version }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then
+            echo "publish=no" >> "$GITHUB_OUTPUT"
+            echo "::notice::VSCE_PAT is not set - building only, nothing will be published."
+            exit 0
+          fi
+          url="https://marketplace.visualstudio.com/_apis/public/gallery/publishers/$PUBLISHER/vsextensions/$EXTENSION/$VERSION/vspackage"
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "$url" || echo 000)
+          echo "marketplace lookup for $VERSION: HTTP $code"
+          if [ "$code" = "200" ]; then
+            echo "publish=no" >> "$GITHUB_OUTPUT"
+            echo "::notice::$EXTENSION $VERSION is already published - bump the version to ship a change."
+          else
+            echo "publish=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    name: build ${{ matrix.target }}
+    needs: gate
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux-x64
+          - os: windows-latest
+            target: win32-x64
+          - os: macos-latest
+            target: darwin-arm64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      # The Linux CLI build compiles the bubblewrap sandbox helper with Zig;
+      # without it the build silently falls back to a dev wrapper script.
+      - name: Setup Zig for the Linux sandbox helper
+        if: runner.os == 'Linux'
+        run: |
+          curl --fail --location --retry 3 \
+            https://ziglang.org/download/0.14.0/zig-linux-x86_64-0.14.0.tar.xz \
+            --output "$RUNNER_TEMP/zig.tar.xz"
+          echo "473ec26806133cf4d1918caf1a410f8403a13d979726a9045b421b685031a982  $RUNNER_TEMP/zig.tar.xz" | sha256sum --check --status
+          tar -xJf "$RUNNER_TEMP/zig.tar.xz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/zig-linux-x86_64-0.14.0" >> "$GITHUB_PATH"
+
+      - name: Build the CLI binary
+        working-directory: packages/extension
+        run: bun run prepare:cli-binary
+
+      - name: Verify the binary is real
+        shell: bash
+        working-directory: packages/extension
+        run: |
+          size=$(wc -c < bin/qronos || wc -c < bin/qronos.exe)
+          echo "binary size: $size bytes"
+          if [ "$size" -lt 10000000 ]; then
+            echo "::error::bin/qronos is only $size bytes - that is a dev wrapper"
+            exit 1
+          fi
+
+      # A compiled binary can build fine and still die on its first request.
+      - name: Smoke test the server
+        if: runner.os == 'Linux'
+        working-directory: packages/extension
+        run: |
+          ./bin/qronos serve --port 4599 > "$RUNNER_TEMP/serve.log" 2>&1 &
+          pid=$!
+          for i in $(seq 1 40); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4599/qronos/profile || true)
+            if [ "$code" != "000" ] && [ -n "$code" ]; then break; fi
+            sleep 1
+          done
+          echo "status: $code"
+          kill "$pid" 2>/dev/null || true
+          if [ "$code" = "000" ] || [ -z "$code" ]; then
+            echo "::error::the compiled CLI did not answer /qronos/profile (got '$code')"
+            tail -30 "$RUNNER_TEMP/serve.log"
+            exit 1
+          fi
+
+      - name: Prepare the SDK
+        working-directory: packages/extension
+        run: bun run prepare:sdk
+
+      - name: Bundle extension and webview
+        working-directory: packages/extension
+        run: bun esbuild.js
+
+      - name: Package
+        working-directory: packages/extension
+        run: >
+          bunx @vscode/vsce package
+          --no-dependencies
+          --allow-missing-repository
+          --target ${{ matrix.target }}
+          -o qronos-code-${{ matrix.target }}.vsix
+
+      - name: Report the package size
+        shell: bash
+        working-directory: packages/extension
+        run: |
+          bytes=$(wc -c < qronos-code-${{ matrix.target }}.vsix)
+          echo "### ${{ matrix.target }}: $((bytes / 1048576)) MB" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qronos-code-${{ matrix.target }}
+          path: packages/extension/qronos-code-${{ matrix.target }}.vsix
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    name: publish to the Marketplace
+    needs: [gate, build]
+    if: needs.gate.outputs.publish == 'yes'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: vsix
+
+      - name: Publish each platform
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          VERSION: ${{ needs.gate.outputs.version }}
+        run: |
+          set -euo pipefail
+          # The Marketplace wants one publish per platform target for the same
+          # version; the first one creates the version, the others attach the
+          # remaining platforms to it. Order does not matter, retries do.
+          for target in linux-x64 win32-x64 darwin-arm64; do
+            file=$(find vsix -name "qronos-code-$target.vsix" | head -1)
+            if [ -z "$file" ]; then
+              echo "::error::missing package for $target"
+              exit 1
+            fi
+            echo "publishing $target ($(wc -c < "$file") bytes)"
+            for attempt in 1 2 3; do
+              if npx --yes @vscode/vsce publish --packagePath "$file" --target "$target" --githubBranch main; then
+                break
+              fi
+              if [ "$attempt" = "3" ]; then
+                echo "::error::publishing $target failed three times"
+                exit 1
+              fi
+              echo "retrying $target in 20s (attempt $attempt failed)"
+              sleep 20
+            done
+          done
+          echo "### published $PUBLISHER.$EXTENSION $VERSION" >> "$GITHUB_STEP_SUMMARY"
+
+  release:
+    name: github release
+    needs: [gate, publish]
+    if: needs.gate.outputs.publish == 'yes'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: vsix
+
+      - name: Attach the installers to a GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.gate.outputs.version }}
+          name: Qronos Code ${{ needs.gate.outputs.version }}
+          draft: false
+          files: vsix/**/*.vsix
+          body: |
+            Qronos Code ${{ needs.gate.outputs.version }}
+
+            Install a platform package, then sign in with GitHub inside the panel.
