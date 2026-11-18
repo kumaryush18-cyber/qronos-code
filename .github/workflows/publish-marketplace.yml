@@ -239,7 +239,9 @@ jobs:
             fi
             echo "publishing $target ($(wc -c < "$file") bytes)"
             for attempt in 1 2 3; do
-              if npx --yes @vscode/vsce publish $AUTH --packagePath "$file" --target "$target" --githubBranch main; then
+              # The target is already inside the package, and vsce refuses
+              # --packagePath together with --target, so pass the path only.
+              if npx --yes @vscode/vsce publish $AUTH --packagePath "$file" --githubBranch main; then
                 break
               fi
               if [ "$attempt" = "3" ]; then
