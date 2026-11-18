@@ -33,11 +33,15 @@ jobs:
       - name: No old product word left in code or docs
         run: |
           set +e
+          # qronos_change - two files may name the upstream project: the MIT
+          # notices, and the README attribution line. Hiding the fork would be
+          # dishonest, so the README exception is deliberate.
           hits=$(grep -rIni "kilocode\|\bkilo\b" \
             --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
             --exclude-dir=.github --exclude-dir=.qronos . \
             | grep -v -E "^(\./)?(packages/[^/]+/)?(LICENSE|NOTICE):" \
             | grep -v -E "^(\./)?packages/cli/src/provider/models\.ts:" \
+            | grep -v -E "^(./)?packages/extension/README\.md:" \
             | head -20)
           [ -n "$hits" ] && { echo "Old name still present:"; echo "$hits"; exit 1; }
           echo "clean"
