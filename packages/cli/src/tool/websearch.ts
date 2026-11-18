@@ -140,29 +140,30 @@ export const WebSearchTool = Tool.define(
           )
           // qronos_change end
           const title = webSearchProviderLabel(provider)
-          // qronos_change start - Qronos-REST Exa transport
+          // qronos_change start - free MCP transports, gateway only on request
           // Precedence:
-          //   provider="qronos-exa"          -> qronos-rest  (auth required)
-          //   provider="exa" + EXA_API_KEY -> mcp-exa-byok     (BYOK wins)
-          //   provider="exa" + Qronos auth   -> qronos-rest        (new default for authed users)
-          //   provider="exa" + no auth     -> mcp-exa-unauth   (preserves current fallback)
-          //   provider="parallel"          -> mcp-parallel     (unchanged)
+          //   provider="qronos-exa"        -> qronos-rest (explicit opt-in, auth required)
+          //   provider="exa" + EXA_API_KEY -> mcp-exa-byok   (own key bypasses Exa's cap)
+          //   provider="exa"               -> mcp-exa-unauth (free, ~50/day per IP)
+          //   provider="parallel"          -> mcp-parallel   (free, never billed past the limit)
+          // The gateway used to be the default for signed-in users, but
+          // api.qronos.me/api/exa/search answers with the website HTML, so every
+          // search failed. Both hosted MCP servers answer without a key.
           const qronosToken = yield* Effect.gen(function* () {
             if (provider !== "exa" && provider !== "qronos-exa") return undefined as string | undefined
             const info = yield* authSvc.get("qronos")
             if (!info) return undefined
             return info.type === "api" ? info.key : info.type === "oauth" ? info.access : undefined
           })
-          const transport =
-            provider === "qronos-exa"
+          const transportFor = (target: WebSearchProvider) =>
+            target === "qronos-exa"
               ? "qronos-rest"
-              : provider === "parallel"
+              : target === "parallel"
                 ? "mcp-parallel"
-                : provider === "exa" && exaKey
+                : exaKey
                   ? "mcp-exa-byok"
-                  : provider === "exa" && qronosToken
-                    ? "qronos-rest"
-                    : "mcp-exa-unauth"
+                  : "mcp-exa-unauth"
+          const transport = transportFor(provider)
           // qronos_change end
           // qronos_change start - add transport to metadata
           yield* ctx.metadata({
@@ -185,26 +186,44 @@ export const WebSearchTool = Tool.define(
             },
           })
 
-          // qronos_change start - dispatch Qronos-REST transport
-          const result = yield* transport === "qronos-rest"
-            ? qronosToken
-              ? QronosExa.callQronosExa(
-                  http,
-                  {
-                    query: params.query,
-                    type: params.type,
-                    numResults: params.numResults,
-                  },
-                  qronosToken,
+          // qronos_change start - one attempt per provider, other free MCP as fallback
+          const attempt = (target: WebSearchProvider) =>
+            Effect.gen(function* () {
+              if (target !== "qronos-exa")
+                return yield* callProvider(http, target, params, ctx, { exa: exaKey, parallel: parallelKey })
+              if (!qronosToken)
+                return yield* Effect.die(
+                  new Error(
+                    "QRONOS_WEBSEARCH_PROVIDER=qronos-exa requires Qronos auth; run `qronos auth login`",
+                  ),
                 )
-              : Effect.die(new Error("QRONOS_WEBSEARCH_PROVIDER=qronos-exa requires Qronos auth; run `qronos auth login`"))
-            : callProvider(http, provider, params, ctx, { exa: exaKey, parallel: parallelKey }) // qronos_change
+              return yield* QronosExa.callQronosExa(
+                http,
+                { query: params.query, type: params.type, numResults: params.numResults },
+                qronosToken,
+              )
+            })
+
+          // A rate limited free tier or an unreachable host must not end the
+          // search: fall through to the other provider once, then report.
+          let result = Option.none<string>()
+          let used = provider
+          const order: WebSearchProvider[] =
+            provider === "parallel" ? ["parallel", "exa"] : provider === "exa" ? ["exa", "parallel"] : [provider]
+          for (const target of order) {
+            const outcome = yield* Effect.exit(attempt(target))
+            if (outcome._tag === "Success") {
+              result = Option.fromNullable(outcome.value ?? undefined)
+              used = target
+              break
+            }
+          }
           // qronos_change end
 
           return {
-            output: result ?? "No search results found. Please try a different query.",
+            output: Option.getOrElse(result, () => "No search results found. Please try a different query."),
             title: `${title}: ${params.query}`,
-            metadata: { provider, transport }, // qronos_change - add transport
+            metadata: { provider: used, transport: transportFor(used) }, // qronos_change - record the one that answered
           }
         }).pipe(Effect.orDie),
     }

@@ -8,7 +8,7 @@ export const EXA_BASE_URL = "https://mcp.exa.ai/mcp"
 export const exaUrl = (apiKey: string | undefined) =>
   apiKey ? `${EXA_BASE_URL}?exaApiKey=${encodeURIComponent(apiKey)}` : EXA_BASE_URL
 // qronos_change end
-export const PARALLEL_URL = "https://search.parallel.ai/mcp"
+export const PARALLEL_URL = "https://mcp.parallel.ai/mcp" // qronos_change - current host from the Parallel docs
 
 const McpResult = Schema.Struct({
   result: Schema.Struct({
