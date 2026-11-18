@@ -82,6 +82,10 @@ jobs:
     name: build ${{ matrix.target }}
     needs: gate
     runs-on: ${{ matrix.os }}
+    # GitHub throttles the last Intel macOS runners hard. A target that cannot
+    # get a runner must not hold back the platforms that did build; the publish
+    # step skips whatever artifact is missing and names it in the log.
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
@@ -229,8 +233,9 @@ jobs:
           for target in linux-x64 win32-x64 darwin-arm64 darwin-x64; do
             file=$(find vsix -name "qronos-code-$target.vsix" | head -1)
             if [ -z "$file" ]; then
-              echo "::error::missing package for $target"
-              exit 1
+              echo "::warning::no package for $target (its runner did not finish) - skipping it"
+              echo "- $target: skipped, build did not finish" >> "$GITHUB_STEP_SUMMARY"
+              continue
             fi
             echo "publishing $target ($(wc -c < "$file") bytes)"
             for attempt in 1 2 3; do

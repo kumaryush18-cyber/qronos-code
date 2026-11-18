@@ -64,18 +64,9 @@ const ExperimentalTab: Component = () => {
           </Switch>
         </SettingsRow>
 
-        <SettingsRow
-          title={language.t("settings.experimental.batch.title")}
-          description={language.t("settings.experimental.batch.description")}
-        >
-          <Switch
-            checked={experimental().batch_tool ?? false}
-            onChange={(checked) => updateExperimental("batch_tool", checked)}
-            hideLabel
-          >
-            {language.t("settings.experimental.batch.title")}
-          </Switch>
-        </SettingsRow>
+        {/* qronos_change - the Batch Tool switch was removed: nothing in the CLI
+            backend reads experimental.batch_tool and no batch tool exists, so the
+            toggle promised a feature that could not run. */}
 
         <SettingsRow
           title={language.t("settings.experimental.imageGeneration.title")}
