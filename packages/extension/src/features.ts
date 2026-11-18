@@ -26,7 +26,11 @@ export function configFeatures(
     indexing: false,
     sandboxControls: process.platform !== "win32",
     backgroundSubagents,
-    speechToText: !remote,
+    // qronos_change - the microphone needs GET /models/transcriptions and
+    // POST /audio/transcriptions on the gateway. api.qronos.me serves neither,
+    // so the button opened a recorder that could never return text. Hidden until
+    // the gateway has the route; re-enable by returning !remote again.
+    speechToText: false,
   }
 }
 

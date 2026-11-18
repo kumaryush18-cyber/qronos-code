@@ -15,7 +15,6 @@ import path from "node:path"
 import { Artifact, Deps, Manifest, Policy, Scan, compose, serialize } from "../../../script/qronos/sbom/index"
 import type { Component, Manifest as ManifestType } from "../../../script/qronos/sbom/index"
 import * as Cli from "../../cli/script/qronos/sbom"
-import { packages as ffmpeg } from "./ffmpeg-helper"
 
 const repo = path.resolve(import.meta.dir, "../../..")
 
@@ -41,28 +40,13 @@ function constraint(target: string) {
 }
 
 /**
- * The FFmpeg helper is fetched with `npm pack` during VSIX assembly, so it is
- * outside the frozen install and has to be modelled from the pinned spec.
- * Windows ARM64 intentionally ships none and must not claim one.
+ * qronos_change - the VSIX no longer carries the FFmpeg helper: voice input had
+ * no transcription route on the gateway, so the 68 MB binary was dropped from
+ * packaging. Kept as a function so a future audio feature can model the helper
+ * again; it must never claim a component that is not in the package.
  */
-function helper(target: string): Component[] {
-  const spec = ffmpeg[target]
-  if (!spec) return []
-  const at = spec.lastIndexOf("@")
-  const name = spec.slice(0, at)
-  const version = spec.slice(at + 1)
-  return [
-    {
-      type: "application",
-      name,
-      version,
-      purl: Deps.purl(name, version),
-      licenses: ["LGPL-2.1-or-later"],
-      delivery: "contained",
-      platform: target,
-      description: "Bundled FFmpeg helper used for speech input",
-    },
-  ]
+function helper(_target: string): Component[] {
+  return []
 }
 
 export type Release = { version: string; channel?: string; commit?: string }

@@ -13,7 +13,6 @@ import {
   sanitizeSandboxResources,
 } from "../src/services/cli-backend/cli-resources"
 import { currentBwrapTarget, ensureBwrapForTarget } from "./bwrap-helper"
-import { currentFfmpegTarget, ensureFfmpegForTarget } from "./ffmpeg-helper"
 
 const forceRebuild = process.argv.includes("--force")
 const compiledOnly = process.argv.includes("--compiled")
@@ -286,7 +285,10 @@ async function bundleQronosSandboxWorker() {
 }
 
 async function ensureLocalHelpers() {
-  await ensureFfmpegForTarget(currentFfmpegTarget(), targetBinDir)
+  // qronos_change - ffmpeg (68 MB unpacked, 22 MB in the vsix) only ever served
+  // the microphone. api.qronos.me has no /audio/transcriptions route, so voice
+  // input cannot work and the helper is dead weight. Speech input stays off in
+  // features.ts until the gateway serves that route again.
   if (process.env.QRONOS_SKIP_BUNDLED_BWRAP === "1") return
   if (await sanitizeSandboxResources(targetBinDir, true)) return
   await ensureBwrapForTarget(currentBwrapTarget())
