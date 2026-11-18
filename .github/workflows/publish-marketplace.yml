@@ -96,10 +96,10 @@ jobs:
             target: win32-x64
           - os: macos-latest
             target: darwin-arm64
-          # Intel Macs need their own binary: the CLI is compiled for the host
-          # architecture, so this must run on an x64 macOS runner.
-          - os: macos-13
-            target: darwin-x64
+          # Intel Macs (darwin-x64) need an x64 macOS runner and GitHub throttles
+          # macos-13 for hours, which blocked every release. Ship the three
+          # platforms that always get a runner; add Intel by hand with the
+          # workflow_dispatch run below when its runner is available.
     steps:
       - uses: actions/checkout@v4
         with:
@@ -230,7 +230,7 @@ jobs:
           # The Marketplace wants one publish per platform target for the same
           # version; the first one creates the version, the others attach the
           # remaining platforms to it. Order does not matter, retries do.
-          for target in linux-x64 win32-x64 darwin-arm64 darwin-x64; do
+          for target in linux-x64 win32-x64 darwin-arm64; do
             file=$(find vsix -name "qronos-code-$target.vsix" | head -1)
             if [ -z "$file" ]; then
               echo "::warning::no package for $target (its runner did not finish) - skipping it"
