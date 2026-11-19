@@ -221,7 +221,7 @@ export const qronosGatewayHandlers = HttpApiBuilder.group(InstanceHttpApi, "qron
 
     const notifications = Effect.fn("QronosHttpApi.notifications")(function* () {
       // Locally-detected notice about leftover opencode config; appended so it reuses each client's dismissal path.
-      const notice = QronosConfig.opencodeConfigNotification({
+      const notice = QronosConfig.qronosConfigNotification({
         directory: Instance.directory,
         worktree: Instance.worktree,
         scanProject: !Flag.QRONOS_DISABLE_PROJECT_CONFIG,

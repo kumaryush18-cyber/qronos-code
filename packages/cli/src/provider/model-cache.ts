@@ -124,13 +124,13 @@ export const layer: Layer.Layer<
     })
 
     const authOptions = Effect.fn("ModelCache.authOptions")(function* (providerID: string) {
-      if (providerID !== "qronos" && providerID !== "qronos" && providerID !== "apertis") return {}
+      if (providerID !== "qronos" && providerID !== "apertis") return {}
       const config = yield* cfg.get()
       const options: Options = {}
 
-      if (providerID === "qronos" || providerID === "qronos") {
-        const item = config.provider?.[providerID] || config.provider?.["qronos"] || config.provider?.["qronos"]
-        const info = yield* auth.get("qronos").pipe(Effect.catchAll(() => auth.get("qronos"))).pipe(Effect.orDie)
+      if (providerID === "qronos") {
+        const item = config.provider?.[providerID] || config.provider?.["qronos"]
+        const info = yield* auth.get("qronos").pipe(Effect.orDie)
         options.qronosOrganizationId = organization(item?.options, info)
         options.qronosToken = token(item?.options, info)
         log.debug("auth options resolved", {

@@ -119,10 +119,10 @@ export namespace QronosConfigSources {
   }
 
   async function projectSources(input: Input): Promise<Pending[]> {
-    const qronos = await projectFiles("qronos", input)
-    const qronos = await projectFiles("opencode", input)
+    const qronosFiles = await projectFiles("qronos", input)
+    const legacyFiles = await projectFiles("opencode", input)
     return Promise.all(
-      [...qronos, ...opencode].map((file) =>
+      [...qronosFiles, ...legacyFiles].map((file) =>
         fileSource({ kind: "project-file", scope: "project", label: "Project config", file }),
       ),
     )
