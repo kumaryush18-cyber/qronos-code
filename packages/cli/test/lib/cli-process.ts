@@ -201,7 +201,7 @@ export type QronosCli = {
 export type CliFixture = {
   readonly llm: TestLLMServer["Service"]
   readonly home: string
-  readonly opencode: QronosCli
+  readonly qronos: QronosCli
 }
 
 // Provisions a TestLLMServer + tmpdir + spawn helper and invokes fn. Cleans

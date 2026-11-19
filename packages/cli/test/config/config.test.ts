@@ -936,7 +936,7 @@ const accountTokenIt = configIt({
     config: () =>
       Effect.succeed(
         Option.some({
-          provider: { opencode: { options: { apiKey: "{env:QRONOS_CONSOLE_TOKEN}" } } },
+          provider: { qronos: { options: { apiKey: "{env:QRONOS_CONSOLE_TOKEN}" } } },
         }),
       ),
     token: () => Effect.succeed(Option.some(AccessToken.make("st_test_token"))),

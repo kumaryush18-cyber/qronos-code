@@ -75,7 +75,7 @@ describe("tui thread", () => {
     expect(args.mdns).toBe(false)
   })
 
-  cliIt.live("rejects mini-only options without --mini", ({ opencode }) =>
+  cliIt.live("rejects mini-only options without --mini", ({ qronos }) =>
     Effect.gen(function* () {
       const result = yield* opencode.spawn(["--replay-limit", "10"])
 
@@ -84,7 +84,7 @@ describe("tui thread", () => {
     }),
   )
 
-  cliIt.live("routes attached sessions to mini mode", ({ opencode }) =>
+  cliIt.live("routes attached sessions to mini mode", ({ qronos }) =>
     Effect.gen(function* () {
       const result = yield* opencode.spawn(["attach", "http://127.0.0.1:1", "--mini"])
 
@@ -93,7 +93,7 @@ describe("tui thread", () => {
     }),
   )
 
-  cliIt.live("rejects network options in mini mode", ({ opencode }) =>
+  cliIt.live("rejects network options in mini mode", ({ qronos }) =>
     Effect.gen(function* () {
       const result = yield* opencode.spawn(["--mini", "--port", "4096"])
 
