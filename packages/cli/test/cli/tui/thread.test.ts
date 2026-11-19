@@ -77,27 +77,27 @@ describe("tui thread", () => {
 
   cliIt.live("rejects mini-only options without --mini", ({ qronos }) =>
     Effect.gen(function* () {
-      const result = yield* opencode.spawn(["--replay-limit", "10"])
+      const result = yield* qronos.spawn(["--replay-limit", "10"])
 
-      opencode.expectExit(result, 1)
+      qronos.expectExit(result, 1)
       expect(result.stderr).toContain("--replay-limit requires --mini")
     }),
   )
 
   cliIt.live("routes attached sessions to mini mode", ({ qronos }) =>
     Effect.gen(function* () {
-      const result = yield* opencode.spawn(["attach", "http://127.0.0.1:1", "--mini"])
+      const result = yield* qronos.spawn(["attach", "http://127.0.0.1:1", "--mini"])
 
-      opencode.expectExit(result, 1)
+      qronos.expectExit(result, 1)
       expect(result.stderr).toContain("--mini requires a TTY stdout")
     }),
   )
 
   cliIt.live("rejects network options in mini mode", ({ qronos }) =>
     Effect.gen(function* () {
-      const result = yield* opencode.spawn(["--mini", "--port", "4096"])
+      const result = yield* qronos.spawn(["--mini", "--port", "4096"])
 
-      opencode.expectExit(result, 1)
+      qronos.expectExit(result, 1)
       expect(result.stderr).toContain("--port cannot be used with --mini")
     }),
   )
