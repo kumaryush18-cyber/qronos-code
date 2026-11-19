@@ -192,7 +192,7 @@ export async function resolvePathPluginTarget(spec: string) {
   throw new Error(`Plugin directory ${file} is missing package.json or index file`)
 }
 
-export async function checkPluginCompatibility(target: string, opencodeVersion: string, pkg?: PluginPackage) {
+export async function checkPluginCompatibility(target: string, qronosVersion: string, pkg?: PluginPackage) {
   if (!semver.valid(qronosVersion) || semver.major(qronosVersion) === 0) return
   const hit = pkg ?? (await readPluginPackage(target).catch(() => undefined))
   if (!hit) return
