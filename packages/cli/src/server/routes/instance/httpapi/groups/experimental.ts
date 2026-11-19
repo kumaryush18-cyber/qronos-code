@@ -137,7 +137,7 @@ export const ExperimentalApi = HttpApi.make("experimental")
           OpenApi.annotations({
             identifier: "experimental.capabilities.get",
             summary: "Get experimental capabilities",
-            description: "Get experimental features enabled on the OpenCode server.",
+            description: "Get experimental features enabled on the Qronos server.",
           }),
         ),
         HttpApiEndpoint.get("console", ExperimentalPaths.console, {
