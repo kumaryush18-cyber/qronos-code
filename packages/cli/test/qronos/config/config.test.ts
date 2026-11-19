@@ -1542,7 +1542,7 @@ describe("opencode config migration notice", () => {
 
     // Isolate the global config dir so a real ~/.config/opencode on the host cannot interfere.
     await withGlobalConfig(path.join(globalTmp.path, "qronos"), () => {
-      const found = QronosConfig.detectOpencodeConfig({ directory: tmp.path, scanProject: true })
+      const found = QronosConfig.detectQronosConfig({ directory: tmp.path, scanProject: true })
       expect(found).toEqual([path.join(tmp.path, ".opencode")])
     })
   })
@@ -1554,7 +1554,7 @@ describe("opencode config migration notice", () => {
     await Filesystem.write(path.join(qronosDir, "opencode.json"), JSON.stringify({ model: "test/legacy" }))
 
     await withGlobalConfig(path.join(globalTmp.path, "qronos"), () => {
-      const found = QronosConfig.detectOpencodeConfig({ directory: tmp.path, scanProject: true })
+      const found = QronosConfig.detectQronosConfig({ directory: tmp.path, scanProject: true })
       expect(found).toEqual([qronosDir])
     })
   })
@@ -1565,7 +1565,7 @@ describe("opencode config migration notice", () => {
     await Filesystem.write(path.join(tmp.path, ".opencode", "opencode.json"), JSON.stringify({ model: "test/legacy" }))
 
     await withGlobalConfig(path.join(globalTmp.path, "qronos"), () => {
-      const found = QronosConfig.detectOpencodeConfig({ directory: tmp.path, scanProject: false })
+      const found = QronosConfig.detectQronosConfig({ directory: tmp.path, scanProject: false })
       expect(found).toEqual([])
     })
   })

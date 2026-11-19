@@ -509,7 +509,7 @@ export function withCliFixture<A, E>(
       } satisfies AcpHandle
     })
 
-    const opencode: QronosCli = { run, startRun, serve, acp, spawn, expectExit, parseJsonEvents }
+    const qronos: QronosCli = { run, startRun, serve, acp, spawn, expectExit, parseJsonEvents }
 
     return yield* fn({ llm, home, qronos })
     // FetchHttpClient is provided so test bodies can `yield* HttpClient.HttpClient`
