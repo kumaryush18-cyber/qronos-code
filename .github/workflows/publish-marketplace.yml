@@ -45,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # the version bump is committed back to main
+      actions: write # and a fresh run is dispatched for it
     outputs:
       version: ${{ steps.read.outputs.version }}
       publish: ${{ steps.check.outputs.publish }}
@@ -117,7 +118,18 @@ jobs:
           git commit -am "chore(release): v$next [skip bump]"
           git push origin HEAD:main
           echo "bumped=yes" >> "$GITHUB_OUTPUT"
-          echo "::notice::committed v$next - a new run will publish it."
+          echo "::notice::committed v$next"
+
+      # A push made with GITHUB_TOKEN does not start workflows, so the bump
+      # commit needs an explicit dispatch. The dispatched run reads the new
+      # version, finds it missing on the Marketplace and publishes it.
+      - name: Start the run that publishes the bumped version
+        if: steps.bump.outputs.bumped == 'yes'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run publish-marketplace.yml --ref main
+          echo "::notice::dispatched publish-marketplace for the bumped version"
 
   build:
     name: build ${{ matrix.target }}
