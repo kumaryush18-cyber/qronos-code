@@ -201,10 +201,10 @@ export function createTuiApiAdapters(input: Input): Omit<TuiPluginApi, "lifecycl
     keymap: input.keymap,
     mode: {
       current() {
-        return Keymap.getOpencodeModeStack(input.keymap).current()
+        return Keymap.getQronosModeStack(input.keymap).current()
       },
       push(mode) {
-        return Keymap.getOpencodeModeStack(input.keymap).push(mode)
+        return Keymap.getQronosModeStack(input.keymap).push(mode)
       },
     },
     route: {
