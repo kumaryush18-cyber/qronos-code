@@ -10,11 +10,11 @@ import { TestTuiContexts } from "../../fixture/tui-environment"
 import { discoverEditorConnection } from "@qronos-ai/tui/editor"
 
 const originalClaudePort = process.env.CLAUDE_CODE_SSE_PORT
-const originalOpencodePort = process.env.QRONOS_EDITOR_SSE_PORT
+const originalQronosPort = process.env.QRONOS_EDITOR_SSE_PORT
 
 afterEach(() => {
   process.env.CLAUDE_CODE_SSE_PORT = originalClaudePort
-  process.env.QRONOS_EDITOR_SSE_PORT = originalOpencodePort
+  process.env.QRONOS_EDITOR_SSE_PORT = originalQronosPort
 })
 
 function nextTick() {

@@ -8,7 +8,7 @@ import { useLocal } from "@tui/context/local" // qronos_change
 import type { AssistantMessage } from "@qronos-ai/sdk/v2"
 import { Locale } from "../../util/locale"
 import { useTerminalDimensions } from "@opentui/solid"
-import { useCommandShortcut, useOpencodeKeymap } from "../../keymap"
+import { useCommandShortcut, useQronosKeymap } from "../../keymap"
 import { useSubagentKeys } from "../../qronos/subagent-keys" // qronos_change
 
 export function SubagentFooter() {
@@ -73,7 +73,7 @@ export function SubagentFooter() {
   })
 
   const { theme } = useTheme()
-  const keymap = useOpencodeKeymap()
+  const keymap = useQronosKeymap()
   const parentShortcut = useCommandShortcut("session.parent")
   const previousShortcut = useCommandShortcut("session.child.previous")
   const nextShortcut = useCommandShortcut("session.child.next")

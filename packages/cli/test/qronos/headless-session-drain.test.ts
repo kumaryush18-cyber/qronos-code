@@ -184,7 +184,7 @@ function probe(home: string, mode: "foreground" | "busy" | "idle" | "intake") {
 }
 
 function scenario(
-  { home, llm, opencode }: CliFixture,
+  { home, llm, qronos }: CliFixture,
   mode: "foreground" | "busy" | "idle",
   opts: { attach?: boolean; resume?: boolean; daemon?: boolean; abort?: boolean; scope?: "session" } = {},
 ) {
@@ -225,7 +225,7 @@ function scenario(
     }, reply().wait(child.promise).text("CHILD_RESULT_SENTINEL").stop())
     if (mode === "foreground") child.open()
     const env = environment(home, llm.url, { ...opts, plugin: mode === "foreground" ? undefined : tap.plugin })
-    const server = opts.attach || opts.resume ? yield* opencode.serve({ env, readyTimeoutMs: 30_000 }) : undefined
+    const server = opts.attach || opts.resume ? yield* qronos.serve({ env, readyTimeoutMs: 30_000 }) : undefined
     const session =
       (opts.resume || opts.abort) && server
         ? yield* Effect.promise(() =>
@@ -234,17 +234,17 @@ function scenario(
         : undefined
     if (opts.daemon) {
       yield* Effect.addFinalizer(() =>
-        opencode
+        qronos
           .spawn(["daemon", "stop", "--json"], { env })
-          .pipe(Effect.tap((result) => Effect.sync(() => opencode.expectExit(result, 0)))),
+          .pipe(Effect.tap((result) => Effect.sync(() => qronos.expectExit(result, 0)))),
       )
-      const result = yield* opencode.spawn(["daemon", "start", "--hostname", "127.0.0.1", "--port", "0", "--json"], {
+      const result = yield* qronos.spawn(["daemon", "start", "--hostname", "127.0.0.1", "--port", "0", "--json"], {
         env,
       })
-      opencode.expectExit(result, 0)
+      qronos.expectExit(result, 0)
       expect(JSON.parse(result.stdout).running).toBe(true)
     }
-    const run = yield* opencode.startRun("Exercise background completion.", {
+    const run = yield* qronos.startRun("Exercise background completion.", {
       model: "test/parent",
       agent: "code",
       format: "json",
@@ -329,8 +329,8 @@ function scenario(
       expect(yield* llm.pending).toBe(1)
       return
     }
-    opencode.expectExit(result, 0)
-    const events = opencode.parseJsonEvents(result.stdout)
+    qronos.expectExit(result, 0)
+    const events = qronos.parseJsonEvents(result.stdout)
     const texts = events.filter((event) => event.type === "text").map((event) => (event.part as { text: string }).text)
     expect(texts.filter((text) => text === "FINAL_AFTER_CHILD")).toHaveLength(1)
     expect(events.some((event) => event.type === "error")).toBe(false)
@@ -374,12 +374,12 @@ for (const [name, mode] of [
 ] as const) {
   cliIt.live(
     name,
-    ({ home, llm, opencode }) =>
+    ({ home, llm, qronos }) =>
       Effect.gen(function* () {
         const tap = mode === "intake" ? yield* probe(home, "intake") : undefined
         const release = gate()
         yield* Effect.addFinalizer(() => Effect.sync(release.open))
-        const server = yield* opencode.serve({
+        const server = yield* qronos.serve({
           env: environment(home, llm.url, { plugin: tap?.plugin }),
           readyTimeoutMs: 30_000,
         })
@@ -445,11 +445,11 @@ for (const [name, mode] of [
 
 cliIt.live(
   "SDK drain follows the session directory and validates acknowledgments",
-  ({ home, opencode }) =>
+  ({ home, qronos }) =>
     Effect.gen(function* () {
       const directory = path.join(home, "caller")
       yield* Effect.promise(() => mkdir(directory))
-      const server = yield* opencode.serve({
+      const server = yield* qronos.serve({
         env: { QRONOS_SERVER_PASSWORD: "", QRONOS_SERVER_USERNAME: "qronos" },
         readyTimeoutMs: 30_000,
       })

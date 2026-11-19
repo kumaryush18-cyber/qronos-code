@@ -1003,7 +1003,7 @@ describe("unset propagation across layered config files", () => {
 
   test("removes nested sentinels from jsonc siblings while preserving comments", async () => {
     await using globalTmp = await tmpdir()
-    const opencode = path.join(globalTmp.path, "opencode.jsonc")
+    const qronos = path.join(globalTmp.path, "opencode.jsonc")
     const prev = Global.Path.config
     ;(Global.Path as { config: string }).config = globalTmp.path
     await clear()
@@ -1012,7 +1012,7 @@ describe("unset propagation across layered config files", () => {
     try {
       await Filesystem.write(path.join(globalTmp.path, "qronos.jsonc"), '{ "username": "marius" }\n')
       await Filesystem.write(
-        opencode,
+        qronos,
         [
           "{",
           "  // Preserve this comment while clearing overrides.",
@@ -1028,7 +1028,7 @@ describe("unset propagation across layered config files", () => {
 
       await saveGlobal(decode({ agent: { explore: { model: null } } }))
 
-      const written = await Bun.file(opencode).text()
+      const written = await Bun.file(qronos).text()
       expect(written).toContain("// Preserve this comment while clearing overrides.")
       expect(written).not.toContain('"model"')
       expect(written).toContain('"description": "Keep me"')
@@ -1550,12 +1550,12 @@ describe("opencode config migration notice", () => {
   test("detects a global opencode config directory", async () => {
     await using globalTmp = await tmpdir()
     await using tmp = await tmpdir()
-    const opencodeDir = path.join(globalTmp.path, "opencode")
-    await Filesystem.write(path.join(opencodeDir, "opencode.json"), JSON.stringify({ model: "test/legacy" }))
+    const qronosDir = path.join(globalTmp.path, "opencode")
+    await Filesystem.write(path.join(qronosDir, "opencode.json"), JSON.stringify({ model: "test/legacy" }))
 
     await withGlobalConfig(path.join(globalTmp.path, "qronos"), () => {
       const found = QronosConfig.detectOpencodeConfig({ directory: tmp.path, scanProject: true })
-      expect(found).toEqual([opencodeDir])
+      expect(found).toEqual([qronosDir])
     })
   })
 

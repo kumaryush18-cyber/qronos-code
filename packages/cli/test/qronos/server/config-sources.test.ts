@@ -96,7 +96,7 @@ describe("config source routes", () => {
 
     const envFile = path.join(tmp.path, "env.json")
     const projectFile = path.join(tmp.path, "qronos.json")
-    const opencodeFile = path.join(tmp.path, ".opencode", "qronos.jsonc")
+    const qronosFile = path.join(tmp.path, ".opencode", "qronos.jsonc")
     const qronosFile = path.join(tmp.path, ".qronos", "qronos.jsonc")
     const configFile = path.join(tmp.path, ".qronos", "qronos.jsonc")
     const extraFile = path.join(tmp.path, "extra", "opencode.json")
@@ -114,7 +114,7 @@ describe("config source routes", () => {
     expect(order(body, envFile)).toBeLessThan(order(body, projectFile))
     expect(order(body, projectFile)).toBeLessThan(order(body, qronosFile))
     expect(order(body, qronosFile)).toBeLessThan(order(body, configFile))
-    expect(body.sources.some((source) => source.path === opencodeFile)).toBe(false)
+    expect(body.sources.some((source) => source.path === qronosFile)).toBe(false)
     expect(order(body, configFile)).toBeLessThan(order(body, extraFile))
     expect(inline?.order).toBeGreaterThan(order(body, extraFile))
     expect(inline?.order).toBeLessThan(order(body, managedFile))

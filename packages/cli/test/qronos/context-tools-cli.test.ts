@@ -24,9 +24,9 @@ function toolNames(body: Record<string, unknown> | undefined) {
 describe("experimental self-context tools through the CLI", () => {
   cliIt.live(
     "does not offer get_context_info or compact when experimental features are off",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
-        const server = yield* opencode.serve({
+        const server = yield* qronos.serve({
           env: { QRONOS_EXPERIMENTAL: "false", QRONOS_EXPERIMENTAL_CONTEXT_TOOLS: "false" },
         })
         const client = createQronosClient({ baseUrl: server.url })
@@ -35,11 +35,11 @@ describe("experimental self-context tools through the CLI", () => {
         if (!sessionID) throw new Error("test session was not created")
 
         yield* llm.text("NO_TOOLS")
-        const result = yield* opencode.run("list your context tools", {
+        const result = yield* qronos.run("list your context tools", {
           extraArgs: ["--attach", server.url, "--session", sessionID, "--auto"],
           timeoutMs: 90_000,
         })
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         const body = (yield* llm.inputs).find(
           (input) =>
@@ -58,9 +58,9 @@ describe("experimental self-context tools through the CLI", () => {
 
   cliIt.live(
     "reports context information and compacts the context when experimental features are on",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
-        const server = yield* opencode.serve({ env: { QRONOS_EXPERIMENTAL: "1" } })
+        const server = yield* qronos.serve({ env: { QRONOS_EXPERIMENTAL: "1" } })
         const client = createQronosClient({ baseUrl: server.url })
         const session = yield* Effect.promise(() => client.session.create({ permission: [...permission] }))
         const sessionID = session.data?.id
@@ -77,14 +77,14 @@ describe("experimental self-context tools through the CLI", () => {
         )
 
         const result = yield* awaitWithTimeout(
-          opencode.run("Call get_context_info twice, then call compact, then stop.", {
+          qronos.run("Call get_context_info twice, then call compact, then stop.", {
             extraArgs: ["--attach", server.url, "--session", sessionID, "--auto"],
             timeoutMs: 90_000,
           }),
           "cli run did not finish",
           "90 seconds",
         )
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         // The experimental gate really opened: both ids were offered to the model.
         const prompt = (yield* llm.inputs).find(

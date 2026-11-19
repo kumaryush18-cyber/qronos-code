@@ -693,7 +693,7 @@ export namespace QronosConfig {
    * opencode configuration but no longer reads `.opencode` directories.
    * Returns the existing `.opencode` locations (global + project), highest first.
    */
-  export function detectOpencodeConfig(input: {
+  export function detectQronosConfig(input: {
     directory: string
     worktree?: string
     scanProject: boolean
@@ -726,7 +726,7 @@ export namespace QronosConfig {
    * The shape matches the gateway `Notification` schema so it can be appended
    * to the cloud notifications list and reuse each client's dismissal path.
    */
-  export function opencodeConfigNotification(input: { directory: string; worktree?: string; scanProject: boolean }) {
+  export function qronosConfigNotification(input: { directory: string; worktree?: string; scanProject: boolean }) {
     return undefined
   }
 }

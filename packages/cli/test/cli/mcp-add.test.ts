@@ -7,9 +7,9 @@ import { cliIt } from "../lib/cli-process"
 describe("opencode mcp add (non-interactive subprocess)", () => {
   cliIt.concurrent(
     "adds a remote server with HTTP headers",
-    ({ home, opencode }) =>
+    ({ home, qronos }) =>
       Effect.gen(function* () {
-        const result = yield* opencode.spawn([
+        const result = yield* qronos.spawn([
           "mcp",
           "add",
           "github",
@@ -20,7 +20,7 @@ describe("opencode mcp add (non-interactive subprocess)", () => {
           "--header",
           "X-Option=one=two",
         ])
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         const config = yield* Effect.promise(() =>
           Bun.file(path.join(home, ".config", "qronos", "qronos.json")).json(), // qronos_change
@@ -39,9 +39,9 @@ describe("opencode mcp add (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "adds a local server while preserving argv and environment values",
-    ({ home, opencode }) =>
+    ({ home, qronos }) =>
       Effect.gen(function* () {
-        const result = yield* opencode.spawn([
+        const result = yield* qronos.spawn([
           "mcp",
           "add",
           "local",
@@ -56,7 +56,7 @@ describe("opencode mcp add (non-interactive subprocess)", () => {
           "--label",
           "two words",
         ])
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         const config = yield* Effect.promise(() =>
           Bun.file(path.join(home, ".config", "qronos", "qronos.json")).json(), // qronos_change
@@ -76,15 +76,15 @@ describe("opencode mcp add (non-interactive subprocess)", () => {
   // qronos_change start
   cliIt.concurrent(
     "writes to QRONOS_CONFIG_DIR without touching the default profile",
-    ({ home, opencode }) =>
+    ({ home, qronos }) =>
       Effect.gen(function* () {
         const profile = path.join(home, "profile")
         yield* Effect.promise(() => mkdir(profile, { recursive: true }))
-        const result = yield* opencode.spawn(
+        const result = yield* qronos.spawn(
           ["mcp", "add", "profile", "--url", "https://example.com/profile"],
           { env: { QRONOS_CONFIG_DIR: profile } },
         )
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         const config = yield* Effect.promise(() => Bun.file(path.join(profile, "qronos.json")).json())
         expect(config.mcp.profile).toEqual({ type: "remote", url: "https://example.com/profile" })

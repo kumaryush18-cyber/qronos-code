@@ -8,14 +8,14 @@ import { fileLogger } from "../../src/observability/logging"
 import { resource } from "../../src/observability/otlp"
 
 const otelResourceAttributes = process.env.OTEL_RESOURCE_ATTRIBUTES
-const opencodeClient = process.env.QRONOS_CLIENT
+const qronosClient = process.env.QRONOS_CLIENT
 
 afterEach(() => {
   if (otelResourceAttributes === undefined) delete process.env.OTEL_RESOURCE_ATTRIBUTES
   else process.env.OTEL_RESOURCE_ATTRIBUTES = otelResourceAttributes
 
-  if (opencodeClient === undefined) delete process.env.QRONOS_CLIENT
-  else process.env.QRONOS_CLIENT = opencodeClient
+  if (qronosClient === undefined) delete process.env.QRONOS_CLIENT
+  else process.env.QRONOS_CLIENT = qronosClient
 })
 
 describe("resource", () => {

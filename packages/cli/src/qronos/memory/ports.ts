@@ -16,7 +16,7 @@ import type { Snapshot } from "@/snapshot"
 import { ProviderV2 } from "@qronos-ai/core/provider"
 import { ModelV2 } from "@qronos-ai/core/model"
 import { SessionID } from "@/session/schema"
-import { opencodeSessionHeaders } from "@/qronos/provider/opencode-session-headers"
+import { qronosSessionHeaders } from "@/qronos/provider/opencode-session-headers"
 
 const log = Log.create({ service: "memory.ports" })
 
@@ -195,7 +195,7 @@ async function memoryText(input: {
     topP: input.topP,
     topK: input.topK,
     maxRetries: 1,
-    headers: opencodeSessionHeaders({ providerID: input.source.providerID, sessionID: input.sessionID }),
+    headers: qronosSessionHeaders({ providerID: input.source.providerID, sessionID: input.sessionID }),
   }
   const work = async () => {
     if (!openai) return generateText(common)

@@ -312,7 +312,7 @@ async function call(
   start: number,
 ): Promise<Omit<Result, "model">> {
   try {
-    const { AppRuntime, RuntimeFlags, generateText, opencodeSessionHeaders } = await deps()
+    const { AppRuntime, RuntimeFlags, generateText, qronosSessionHeaders } = await deps()
     const language = await lang(model)
     const sessionID = randomUUID()
     const options = ProviderTransform.options({ model, sessionID })
@@ -334,7 +334,7 @@ async function call(
       topP,
       topK,
       providerOptions,
-      headers: opencodeSessionHeaders({ providerID: model.providerID, sessionID }),
+      headers: qronosSessionHeaders({ providerID: model.providerID, sessionID }),
     })
 
     return {

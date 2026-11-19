@@ -18,7 +18,7 @@ import { RouteProvider } from "@tui/context/route"
 import { SDKProvider } from "@tui/context/sdk"
 import { SyncProvider, useSync } from "@tui/context/sync"
 import { ThemeProvider } from "@tui/context/theme"
-import { OpencodeKeymapProvider, registerOpencodeKeymap, useOpencodeKeymap } from "@tui/keymap"
+import { QronosKeymapProvider, registerQronosKeymap, useQronosKeymap } from "@tui/keymap"
 import { FrecencyProvider } from "@tui/prompt/frecency"
 import { PromptHistoryProvider } from "@tui/prompt/history"
 import { PromptStashProvider } from "@tui/prompt/stash"
@@ -49,12 +49,12 @@ async function mount(root: string, vim = true) {
   }, events)
   const ready = Promise.withResolvers<{
     sync: ReturnType<typeof useSync>
-    keymap: ReturnType<typeof useOpencodeKeymap>
+    keymap: ReturnType<typeof useQronosKeymap>
   }>()
 
   function Content() {
     const sync = useSync()
-    const keymap = useOpencodeKeymap()
+    const keymap = useQronosKeymap()
     createEffect(() => {
       if (sync.status === "complete") ready.resolve({ sync, keymap })
     })
@@ -65,10 +65,10 @@ async function mount(root: string, vim = true) {
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
     const config = resolve({ vim }, { terminalSuspend: false })
-    onCleanup(registerOpencodeKeymap(keymap, renderer, config))
+    onCleanup(registerQronosKeymap(keymap, renderer, config))
     return (
       <TestTuiContexts paths={{ state: root }}>
-        <OpencodeKeymapProvider keymap={keymap}>
+        <QronosKeymapProvider keymap={keymap}>
           <TuiConfigProvider config={config}>
             <ArgsProvider>
               <KVProvider>
@@ -115,7 +115,7 @@ async function mount(root: string, vim = true) {
               </KVProvider>
             </ArgsProvider>
           </TuiConfigProvider>
-        </OpencodeKeymapProvider>
+        </QronosKeymapProvider>
       </TestTuiContexts>
     )
   }

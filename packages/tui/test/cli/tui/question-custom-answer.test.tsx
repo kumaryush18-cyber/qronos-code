@@ -54,7 +54,7 @@ async function mount(input: { root: string; requests: { path: string; body: unkn
     { KVProvider },
     { ThemeProvider },
     { TuiConfigProvider },
-    { OpencodeKeymapProvider, registerOpencodeKeymap, getOpencodeModeStack },
+    { QronosKeymapProvider, registerQronosKeymap, getQronosModeStack },
   ] = await Promise.all([
     import("../../../src/routes/session/question"),
     import("../../../src/context/sdk"),
@@ -71,10 +71,10 @@ async function mount(input: { root: string; requests: { path: string; body: unkn
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
     refs.keymap = keymap
-    onCleanup(registerOpencodeKeymap(keymap, renderer, config))
+    onCleanup(registerQronosKeymap(keymap, renderer, config))
     return (
       <TestTuiContexts directory={input.root} paths={{ home: input.root, state, worktree: input.root }}>
-        <OpencodeKeymapProvider keymap={keymap}>
+        <QronosKeymapProvider keymap={keymap}>
           <TuiConfigProvider config={config}>
             <KVProvider>
               <ThemeProvider mode="dark">
@@ -86,7 +86,7 @@ async function mount(input: { root: string; requests: { path: string; body: unkn
               </ThemeProvider>
             </KVProvider>
           </TuiConfigProvider>
-        </OpencodeKeymapProvider>
+        </QronosKeymapProvider>
       </TestTuiContexts>
     )
   }
@@ -96,7 +96,7 @@ async function mount(input: { root: string; requests: { path: string; body: unkn
     app,
     pushAutocompleteMode() {
       if (!refs.keymap) throw new Error("keymap not ready")
-      return getOpencodeModeStack(refs.keymap).push("autocomplete")
+      return getQronosModeStack(refs.keymap).push("autocomplete")
     },
     async cleanup() {
       app.renderer.destroy()

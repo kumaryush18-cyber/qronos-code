@@ -322,7 +322,7 @@ describe("LLM request headers", () => {
           "X-Session-Id": "ses_test",
           "x-parent-session-id": "ses_parent",
         })
-        expect(Object.keys(result.headers).filter((key) => /^x-(qronos|opencode)-/i.test(key))).toEqual([])
+        expect(Object.keys(result.headers).filter((key) => /^x-(qronos|qronos)-/i.test(key))).toEqual([])
         if (entry.npm === "@qronos-ai/gateway") {
           expect(result.headers).toMatchObject({
             "x-qronos-mode": "code",

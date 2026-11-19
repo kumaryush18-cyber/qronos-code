@@ -21,7 +21,7 @@ import { TuiTerminalEnvironmentProvider } from "../../src/context/runtime"
 import { SDKProvider } from "../../src/context/sdk"
 import { SyncProvider, useSync } from "../../src/context/sync"
 import { ThemeProvider } from "../../src/context/theme"
-import { OpencodeKeymapProvider, registerOpencodeKeymap } from "../../src/keymap"
+import { QronosKeymapProvider, registerQronosKeymap } from "../../src/keymap"
 import { createPluginRuntime, PluginRuntimeProvider } from "../../src/plugin/runtime"
 import { FrecencyProvider } from "../../src/prompt/frecency"
 import { PromptHistoryProvider } from "../../src/prompt/history"
@@ -148,12 +148,12 @@ async function mount(
       ...createPluginRuntime(),
       Slot: createSlot(createSolidSlotRegistry<Record<string, object>>(renderer, {})),
     }
-    onCleanup(registerOpencodeKeymap(keymap, renderer, config))
+    onCleanup(registerQronosKeymap(keymap, renderer, config))
     return (
       <TestTuiContexts directory={root} paths={{ home: root, state: root, worktree: root }}>
         <TuiTerminalEnvironmentProvider value={{ platform: process.platform }}>
           <ClipboardProvider value={{}}>
-            <OpencodeKeymapProvider keymap={keymap}>
+            <QronosKeymapProvider keymap={keymap}>
               <ArgsProvider>
                 <KVProvider>
                   <ToastProvider>
@@ -186,7 +186,7 @@ async function mount(
                   </ToastProvider>
                 </KVProvider>
               </ArgsProvider>
-            </OpencodeKeymapProvider>
+            </QronosKeymapProvider>
           </ClipboardProvider>
         </TuiTerminalEnvironmentProvider>
       </TestTuiContexts>

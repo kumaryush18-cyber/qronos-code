@@ -1,5 +1,5 @@
 import { render, TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@opentui/solid"
-import { registerOpencodeSpinner } from "./component/register-spinner"
+import { registerQronosSpinner } from "./component/register-spinner"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { Deferred, Effect } from "effect"
 import { Global } from "@qronos-ai/core/global"
@@ -76,10 +76,10 @@ import { CommandPaletteDialog } from "./component/command-palette"
 import {
   COMMAND_PALETTE_COMMAND,
   QRONOS_BASE_MODE,
-  OpencodeKeymapProvider,
-  registerOpencodeKeymap,
+  QronosKeymapProvider,
+  registerQronosKeymap,
   useBindings,
-  useOpencodeKeymap,
+  useQronosKeymap,
 } from "./keymap"
 
 import type { EventSource } from "./context/sdk"
@@ -93,7 +93,7 @@ import * as QronosApp from "@/qronos/cli/cmd/tui/app" // qronos_change
 import { kitty, resetTerminalState } from "@/qronos/cli/cmd/tui/util/terminal" // qronos_change
 import { hasDisplay } from "@/qronos/cli/cmd/tui/util/display" // qronos_change
 
-registerOpencodeSpinner()
+registerQronosSpinner()
 
 const appGlobalBindingCommands = [
   "session.list",
@@ -222,7 +222,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
       win32DisableProcessedInput()
       const keymap = createDefaultOpenTuiKeymap(renderer)
       yield* Effect.acquireRelease(
-        Effect.sync(() => registerOpencodeKeymap(keymap, renderer, input.config)),
+        Effect.sync(() => registerQronosKeymap(keymap, renderer, input.config)),
         (unregister) => Effect.sync(unregister),
       )
       yield* Effect.addFinalizer(() =>
@@ -291,7 +291,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                         }}
                       >
                         <ClipboardProvider>
-                          <OpencodeKeymapProvider keymap={keymap}>
+                          <QronosKeymapProvider keymap={keymap}>
                             <ArgsProvider {...input.args}>
                               <KVProvider>
                                 <ToastProvider>
@@ -356,7 +356,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                 </ToastProvider>
                               </KVProvider>
                             </ArgsProvider>
-                          </OpencodeKeymapProvider>
+                          </QronosKeymapProvider>
                         </ClipboardProvider>
                       </TuiStartupProvider>
                     </TuiTerminalEnvironmentProvider>
@@ -389,7 +389,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const dialog = useDialog()
   const local = useLocal()
   const kv = useKV()
-  const keymap = useOpencodeKeymap()
+  const keymap = useQronosKeymap()
   const event = useEvent()
   const sdk = useSDK()
   const toast = useToast()

@@ -5,7 +5,7 @@ import { extend, testRender, useRenderer } from "@opentui/solid" // qronos_chang
 import { createSignal } from "solid-js"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import type { QuestionRequest } from "@qronos-ai/sdk/v2"
-import { OpencodeKeymapProvider, registerOpencodeKeymap } from "@qronos-ai/tui/keymap"
+import { QronosKeymapProvider, registerQronosKeymap } from "@qronos-ai/tui/keymap"
 import {
   RUN_COMMAND_PANEL_ROWS,
   RUN_SUBAGENT_PANEL_ROWS,
@@ -183,10 +183,10 @@ async function renderFooter(
   function Harness() {
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
-    offKeymap = registerOpencodeKeymap(keymap, renderer, config)
+    offKeymap = registerQronosKeymap(keymap, renderer, config)
 
     return (
-      <OpencodeKeymapProvider keymap={keymap}>
+      <QronosKeymapProvider keymap={keymap}>
         <RunFooterView
           directory="/tmp"
           findFiles={async () => []}
@@ -220,7 +220,7 @@ async function renderFooter(
           onStatus={() => {}}
           onQueuedRemove={async () => true}
         />
-      </OpencodeKeymapProvider>
+      </QronosKeymapProvider>
     )
   }
 
@@ -969,10 +969,10 @@ test("direct footer shows editable prompts and additional queued work while runn
   function Harness() {
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
-    offKeymap = registerOpencodeKeymap(keymap, renderer, tuiConfig)
+    offKeymap = registerQronosKeymap(keymap, renderer, tuiConfig)
 
     return (
-      <OpencodeKeymapProvider keymap={keymap}>
+      <QronosKeymapProvider keymap={keymap}>
         <RunFooterView
           directory="/tmp"
           findFiles={async () => []}
@@ -1012,7 +1012,7 @@ test("direct footer shows editable prompts and additional queued work while runn
           onStatus={() => {}}
           onQueuedRemove={async () => true}
         />
-      </OpencodeKeymapProvider>
+      </QronosKeymapProvider>
     )
   }
 
@@ -1239,10 +1239,10 @@ test.skip("direct custom answer submits through keymap return binding", async ()
   function Harness() {
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
-    off = registerOpencodeKeymap(keymap, renderer, tuiConfig)
+    off = registerQronosKeymap(keymap, renderer, tuiConfig)
 
     return (
-      <OpencodeKeymapProvider keymap={keymap}>
+      <QronosKeymapProvider keymap={keymap}>
         <RunQuestionBody
           request={question}
           theme={RUN_THEME_FALLBACK.footer}
@@ -1251,7 +1251,7 @@ test.skip("direct custom answer submits through keymap return binding", async ()
           }}
           onReject={() => {}}
         />
-      </OpencodeKeymapProvider>
+      </QronosKeymapProvider>
     )
   }
 
@@ -1289,10 +1289,10 @@ test("direct permission rejection submits through keymap return binding", async 
   function Harness() {
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
-    off = registerOpencodeKeymap(keymap, renderer, tuiConfig)
+    off = registerQronosKeymap(keymap, renderer, tuiConfig)
 
     return (
-      <OpencodeKeymapProvider keymap={keymap}>
+      <QronosKeymapProvider keymap={keymap}>
         <RejectField
           theme={RUN_THEME_FALLBACK.footer}
           text=""
@@ -1305,7 +1305,7 @@ test("direct permission rejection submits through keymap return binding", async 
           }}
           onCancel={() => {}}
         />
-      </OpencodeKeymapProvider>
+      </QronosKeymapProvider>
     )
   }
 

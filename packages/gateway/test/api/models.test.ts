@@ -530,7 +530,7 @@ test("derives variants from reasoning_options and keeps legacy variants only wit
     name: id,
     context_length: 128000,
     supported_parameters: ["tools", "reasoning"],
-    opencode,
+    qronos,
   })
   stubFetch(
     async () =>

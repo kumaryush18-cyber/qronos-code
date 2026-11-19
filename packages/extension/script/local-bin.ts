@@ -189,7 +189,7 @@ function platformTag(): string {
   return `cli-${os}-${process.arch}`
 }
 
-async function findQronosBinaryInOpencodeDist(): Promise<string | null> {
+async function findQronosBinaryInQronosDist(): Promise<string | null> {
   const distDir = join(cliDir, "dist")
 
   try {
@@ -240,7 +240,7 @@ async function findQronosBinaryInOpencodeDist(): Promise<string | null> {
 }
 
 async function ensureBuiltBinary(): Promise<string> {
-  const found = await findQronosBinaryInOpencodeDist()
+  const found = await findQronosBinaryInQronosDist()
   if (found) return found
 
   log(
@@ -264,7 +264,7 @@ async function ensureBuiltBinary(): Promise<string> {
     await $`bun run script/build.ts --single --skip-install`.cwd(cliDir)
   }
 
-  const built = await findQronosBinaryInOpencodeDist()
+  const built = await findQronosBinaryInQronosDist()
   if (!built) {
     throw new Error(
       `CLI build completed but no binary was found in ${join(cliDir, "dist")} (expected dist/**/bin/qronos).`,

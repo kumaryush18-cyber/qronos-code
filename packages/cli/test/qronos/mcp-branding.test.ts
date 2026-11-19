@@ -27,7 +27,7 @@ describe("Qronos MCP branding", () => {
     // `name: "opencode"` is the upstream default and appears in the protocol
     // handshake / client identification fields. Any new `new Client({ ... })`
     // must use the Qronos brand.
-    const opencodeClientName = /name:\s*"opencode"/g
-    expect(src.match(opencodeClientName)).toBeNull()
+    const qronosClientName = /name:\s*"opencode"/g
+    expect(src.match(qronosClientName)).toBeNull()
   })
 })

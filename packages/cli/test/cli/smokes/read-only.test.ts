@@ -24,10 +24,10 @@ describe("opencode read-only commands (smoke)", () => {
   // and the command should report that cleanly.
   cliIt.live(
     "mcp list: exits 0",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["mcp", "list"])
-        opencode.expectExit(r, 0, "mcp list")
+        const r = yield* qronos.spawn(["mcp", "list"])
+        qronos.expectExit(r, 0, "mcp list")
       }),
     60_000,
   )
@@ -40,10 +40,10 @@ describe("opencode read-only commands (smoke)", () => {
   // test passes on a clean CI runner without env-var leakage.
   cliIt.live(
     "providers list: exits 0 and prints the credentials section",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["providers", "list"])
-        opencode.expectExit(r, 0, "providers list")
+        const r = yield* qronos.spawn(["providers", "list"])
+        qronos.expectExit(r, 0, "providers list")
         expect(r.stdout).toContain("Credentials")
       }),
     60_000,
@@ -53,10 +53,10 @@ describe("opencode read-only commands (smoke)", () => {
   // should appear because it's wired into the test provider config.
   cliIt.live(
     "models: exits 0 and lists the test model",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["models"])
-        opencode.expectExit(r, 0, "models")
+        const r = yield* qronos.spawn(["models"])
+        qronos.expectExit(r, 0, "models")
         expect(r.stdout).toContain("test/test-model")
       }),
     60_000,
@@ -67,10 +67,10 @@ describe("opencode read-only commands (smoke)", () => {
   // similar. We don't pin the message — just exit cleanly.
   cliIt.live(
     "agent list: exits 0",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["agent", "list"])
-        opencode.expectExit(r, 0, "agent list")
+        const r = yield* qronos.spawn(["agent", "list"])
+        qronos.expectExit(r, 0, "agent list")
       }),
     60_000,
   )
@@ -79,10 +79,10 @@ describe("opencode read-only commands (smoke)", () => {
   // empty DB. Exit 0 with no sessions.
   cliIt.live(
     "session list: exits 0",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["session", "list"])
-        opencode.expectExit(r, 0, "session list")
+        const r = yield* qronos.spawn(["session", "list"])
+        qronos.expectExit(r, 0, "session list")
       }),
     60_000,
   )
@@ -94,10 +94,10 @@ describe("opencode read-only commands (smoke)", () => {
   // crashing the formatter with "undefined is not an object".
   cliIt.live(
     "session list --all: exits 0",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["session", "list", "--all"])
-        opencode.expectExit(r, 0, "session list --all")
+        const r = yield* qronos.spawn(["session", "list", "--all"])
+        qronos.expectExit(r, 0, "session list --all")
       }),
     60_000,
   )
@@ -106,10 +106,10 @@ describe("opencode read-only commands (smoke)", () => {
   // `stats` aggregates token usage from the session DB. Empty DB → all zeros.
   cliIt.live(
     "stats: exits 0",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["stats"])
-        opencode.expectExit(r, 0, "stats")
+        const r = yield* qronos.spawn(["stats"])
+        qronos.expectExit(r, 0, "stats")
       }),
     60_000,
   )
@@ -120,10 +120,10 @@ describe("opencode read-only commands (smoke)", () => {
   // Accept either form — both prove the resolver ran without crashing.
   cliIt.live(
     "db path: exits 0 and prints a path or :memory:",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const r = yield* opencode.spawn(["db", "path"])
-        opencode.expectExit(r, 0, "db path")
+        const r = yield* qronos.spawn(["db", "path"])
+        qronos.expectExit(r, 0, "db path")
         expect(r.stdout.trim()).toMatch(/^(:memory:|[/\\].+\.(db|sqlite|sqlite3))$/i)
       }),
     60_000,

@@ -6,7 +6,7 @@ import { USER_AGENT } from "@/installation"
  * chat path gets this from `LLMRequestPrep.prepare` (session/llm/request.ts); any other
  * caller that resolves a language model and invokes the `ai` SDK directly must attach it here.
  */
-export function opencodeSessionHeaders(input: { providerID: string; sessionID: string }): Record<string, string> {
+export function qronosSessionHeaders(input: { providerID: string; sessionID: string }): Record<string, string> {
   return input.providerID.startsWith("opencode")
     ? {
         "x-opencode-session": input.sessionID,

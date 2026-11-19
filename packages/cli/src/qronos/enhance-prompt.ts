@@ -7,7 +7,7 @@ import { Provider, type Model } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { AppRuntime } from "@/effect/app-runtime"
 import * as Log from "@qronos-ai/core/util/log"
-import { opencodeSessionHeaders } from "@/qronos/provider/opencode-session-headers"
+import { qronosSessionHeaders } from "@/qronos/provider/opencode-session-headers"
 
 const log = Log.create({ service: "enhance-prompt" })
 
@@ -104,7 +104,7 @@ function request(candidate: Candidate, text: string) {
     maxRetries: 1,
     system: INSTRUCTION,
     // Each call is a standalone rewrite, not part of a multi-turn conversation.
-    headers: opencodeSessionHeaders({ providerID: candidate.model.providerID, sessionID: randomUUID() }),
+    headers: qronosSessionHeaders({ providerID: candidate.model.providerID, sessionID: randomUUID() }),
     messages: [{ role: "user" as const, content: `Draft prompt to enhance, not answer:\n\n${text}` }],
   }
 }

@@ -422,8 +422,8 @@ function preflight(options: Options): Problem[] {
     }
   }
 
-  const opencode = join(root, "..", "cli")
-  if (!existsSync(join(opencode, "script", "build.ts")) || !existsSync(join(opencode, "package.json"))) {
+  const qronos = join(root, "..", "cli")
+  if (!existsSync(join(qronos, "script", "build.ts")) || !existsSync(join(qronos, "package.json"))) {
     problems.push({
       message: "local CLI sources are missing under packages/cli",
       fix: "Run from a full qronos checkout so :backend:buildRepoCli can build the local CLI.",

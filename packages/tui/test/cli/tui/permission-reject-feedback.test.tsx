@@ -16,7 +16,7 @@ import { ThemeProvider } from "../../../src/context/theme"
 import { ExitProvider } from "../../../src/context/exit"
 import { EpilogueProvider } from "../../../src/context/epilogue"
 import { ToastProvider } from "../../../src/ui/toast"
-import { OpencodeKeymapProvider, registerOpencodeKeymap } from "../../../src/keymap"
+import { QronosKeymapProvider, registerQronosKeymap } from "../../../src/keymap"
 import { TuiConfigProvider } from "../../../src/config"
 import { createPluginRuntime, PluginRuntimeProvider } from "../../../src/plugin/runtime"
 import { PermissionPrompt } from "../../../src/routes/session/permission"
@@ -100,10 +100,10 @@ async function mount(
       ...createPluginRuntime(),
       Slot: createSlot(createSolidSlotRegistry<Record<string, object>>(renderer, {})),
     }
-    onCleanup(registerOpencodeKeymap(keymap, renderer, config))
+    onCleanup(registerQronosKeymap(keymap, renderer, config))
     return (
       <TestTuiContexts directory={root} paths={{ home: root, state: root, worktree: root }}>
-        <OpencodeKeymapProvider keymap={keymap}>
+        <QronosKeymapProvider keymap={keymap}>
           <ArgsProvider>
             <KVProvider>
               <ToastProvider>
@@ -134,7 +134,7 @@ async function mount(
               </ToastProvider>
             </KVProvider>
           </ArgsProvider>
-        </OpencodeKeymapProvider>
+        </QronosKeymapProvider>
       </TestTuiContexts>
     )
   }

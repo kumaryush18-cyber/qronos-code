@@ -88,7 +88,7 @@ import { collapseToolOutput } from "../../util/collapse-tool-output"
 import { usePluginRuntime } from "../../plugin/runtime"
 import { DialogRetryAction } from "../../component/dialog-retry-action"
 import { getRevertDiffFiles } from "../../util/revert-diff"
-import { QRONOS_BASE_MODE, useBindings, useCommandShortcut, useOpencodeKeymap } from "../../keymap"
+import { QRONOS_BASE_MODE, useBindings, useCommandShortcut, useQronosKeymap } from "../../keymap"
 import { usePathFormatter } from "../../context/path-format"
 // qronos_change start
 import { QronosErrorBlock } from "@/qronos/components/qronos-error-display"
@@ -445,7 +445,7 @@ export function Session() {
     seeded = true
     r.set(route.prompt)
   }
-  const keymap = useOpencodeKeymap()
+  const keymap = useQronosKeymap()
   const dialog = useDialog()
   const renderer = useRenderer()
 

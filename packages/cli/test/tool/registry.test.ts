@@ -461,8 +461,8 @@ describe("tool.registry", () => {
   it.instance("loads tools from .qronos/tool (singular)" /* qronos_change */, () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const opencode = path.join(test.directory, ".qronos") // qronos_change
-      const tool = path.join(opencode, "tool")
+      const qronos = path.join(test.directory, ".qronos") // qronos_change
+      const tool = path.join(qronos, "tool")
       yield* Effect.promise(() => fs.mkdir(tool, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -579,8 +579,8 @@ describe("tool.registry", () => {
   it.instance("loads tools from .qronos/tools (plural)" /* qronos_change */, () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const opencode = path.join(test.directory, ".qronos") // qronos_change
-      const tools = path.join(opencode, "tools")
+      const qronos = path.join(test.directory, ".qronos") // qronos_change
+      const tools = path.join(qronos, "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -659,13 +659,13 @@ describe("tool.registry", () => {
     () =>
       Effect.gen(function* () {
         const test = yield* TestInstance
-        const opencode = path.join(test.directory, ".qronos") // qronos_change
-        const customTools = path.join(opencode, "tools")
-        const plugin = path.join(opencode, "node_modules", "@qronos", "plugin") // qronos_change
+        const qronos = path.join(test.directory, ".qronos") // qronos_change
+        const customTools = path.join(qronos, "tools")
+        const plugin = path.join(qronos, "node_modules", "@qronos", "plugin") // qronos_change
         yield* Effect.promise(() => fs.mkdir(path.join(plugin, "dist"), { recursive: true }))
         yield* Effect.promise(() => fs.mkdir(customTools, { recursive: true }))
         yield* Effect.promise(() =>
-          fs.cp(path.dirname(fileURLToPath(import.meta.resolve("zod"))), path.join(opencode, "node_modules", "zod"), {
+          fs.cp(path.dirname(fileURLToPath(import.meta.resolve("zod"))), path.join(qronos, "node_modules", "zod"), {
             dereference: true,
             recursive: true,
           }),
@@ -801,12 +801,12 @@ describe("tool.registry", () => {
   it.instance("loads tools with external dependencies without crashing", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const opencode = path.join(test.directory, ".qronos") // qronos_change
-      const tools = path.join(opencode, "tools")
+      const qronos = path.join(test.directory, ".qronos") // qronos_change
+      const tools = path.join(qronos, "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(opencode, "package.json"),
+          path.join(qronos, "package.json"),
           JSON.stringify({
             name: "custom-tools",
             dependencies: {
@@ -818,7 +818,7 @@ describe("tool.registry", () => {
       )
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(opencode, "package-lock.json"),
+          path.join(qronos, "package-lock.json"),
           JSON.stringify({
             name: "custom-tools",
             lockfileVersion: 3,
@@ -834,7 +834,7 @@ describe("tool.registry", () => {
         ),
       )
 
-      const cowsay = path.join(opencode, "node_modules", "cowsay")
+      const cowsay = path.join(qronos, "node_modules", "cowsay")
       yield* Effect.promise(() => fs.mkdir(cowsay, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(

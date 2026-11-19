@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs"
 import { Location } from "@qronos-ai/core/location"
 import { AbsolutePath } from "@qronos-ai/core/schema"
 
-const opencode = new URL("../../src/", import.meta.url)
+const qronos = new URL("../../src/", import.meta.url)
 const server = new URL("../../../server/src/", import.meta.url)
 
 function source(root: URL, path: string) {
@@ -14,8 +14,8 @@ function source(root: URL, path: string) {
 describe("shared location service map keys", () => {
   test("all location route consumers include workspaceID in their cache key", () => {
     const consumers = [
-      [opencode, "server/routes/instance/httpapi/handlers/file.ts"],
-      [opencode, "server/routes/instance/httpapi/handlers/pty.ts"],
+      [qronos, "server/routes/instance/httpapi/handlers/file.ts"],
+      [qronos, "server/routes/instance/httpapi/handlers/pty.ts"],
       [server, "middleware/session-location.ts"],
     ] as const
 

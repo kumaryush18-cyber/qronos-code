@@ -22,7 +22,7 @@ export const Default: Story = {
     <HoverCard
       trigger={
         <a href="#" style={{ color: "var(--text-interactive-base)" }}>
-          @opencode
+          @qronos
         </a>
       }
     >
@@ -31,7 +31,7 @@ export const Default: Story = {
           <Avatar fallback="OC" size="large" />
           <div>
             <div style={{ "font-weight": "600" }}>OpenCode</div>
-            <div style={{ color: "var(--text-weak)", "font-size": "12px" }}>@opencode</div>
+            <div style={{ color: "var(--text-weak)", "font-size": "12px" }}>@qronos</div>
           </div>
         </div>
         <p style={{ "font-size": "13px", margin: "0" }}>AI-powered coding assistant built for developers.</p>

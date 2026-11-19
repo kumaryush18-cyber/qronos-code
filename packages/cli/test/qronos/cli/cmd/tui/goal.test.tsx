@@ -6,7 +6,7 @@ import { GoalPrompt } from "@/qronos/cli/cmd/tui/component/goal"
 import { resolve, TuiConfigProvider } from "@tui/config"
 import { KVProvider } from "@tui/context/kv"
 import { ThemeProvider } from "@tui/context/theme"
-import { OpencodeKeymapProvider, registerOpencodeKeymap } from "@tui/keymap"
+import { QronosKeymapProvider, registerQronosKeymap } from "@tui/keymap"
 import { DialogProvider } from "@tui/ui/dialog"
 import { ToastProvider } from "@tui/ui/toast"
 import { tmpdir } from "../../../../fixture/fixture"
@@ -62,10 +62,10 @@ test("small goal trigger opens native actions above the prompt or blocker", asyn
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
     const config = resolve({}, { terminalSuspend: false })
-    onCleanup(registerOpencodeKeymap(keymap, renderer, config))
+    onCleanup(registerQronosKeymap(keymap, renderer, config))
     return (
       <TestTuiContexts paths={{ state: tmp.path }}>
-        <OpencodeKeymapProvider keymap={keymap}>
+        <QronosKeymapProvider keymap={keymap}>
           <TuiConfigProvider config={config}>
             <KVProvider>
               <ThemeProvider mode="dark" source={{ discover: async () => ({}) }}>
@@ -80,7 +80,7 @@ test("small goal trigger opens native actions above the prompt or blocker", asyn
               </ThemeProvider>
             </KVProvider>
           </TuiConfigProvider>
-        </OpencodeKeymapProvider>
+        </QronosKeymapProvider>
       </TestTuiContexts>
     )
   }

@@ -10,7 +10,7 @@ import {
 } from "@opentui/core"
 import type { CommandContext } from "@opentui/keymap"
 import { createEffect, createMemo, onMount, createSignal, onCleanup, on, Show, Switch, Match } from "solid-js"
-import { registerOpencodeSpinner } from "../register-spinner"
+import { registerQronosSpinner } from "../register-spinner"
 import path from "path"
 import { fileURLToPath } from "url"
 import { useLocal } from "../../context/local"
@@ -63,7 +63,7 @@ import { GoalPrompt } from "@/qronos/cli/cmd/tui/component/goal"
 import { QronosSteer } from "../../qronos/steer"
 import { SteerLabel, useSubagent } from "../../qronos/steer-label"
 // qronos_change end
-import { QRONOS_BASE_MODE, useBindings, useCommandShortcut, useLeaderActive, useOpencodeKeymap } from "../../keymap"
+import { QRONOS_BASE_MODE, useBindings, useCommandShortcut, useLeaderActive, useQronosKeymap } from "../../keymap"
 import { useTuiConfig } from "../../config"
 // qronos_change start - vim modal editing for the prompt
 import { useVim, VimModeIndicator, vimToggleCommand } from "@/qronos/cli/cmd/tui/component/prompt"
@@ -72,7 +72,7 @@ import { usePromptWorkspace } from "./workspace"
 import { usePromptMove } from "./move"
 import { readLocalAttachment } from "./local-attachment"
 
-registerOpencodeSpinner()
+registerQronosSpinner()
 
 export type PromptProps = {
   sessionID?: string
@@ -181,7 +181,7 @@ export function Prompt(props: PromptProps) {
   const goal = createMemo(() => GoalPrompt.read(sync.session.get(props.sessionID ?? "")?.metadata)) // qronos_change
   const history = usePromptHistory()
   const stash = usePromptStash()
-  const keymap = useOpencodeKeymap()
+  const keymap = useQronosKeymap()
   const agentShortcut = useCommandShortcut("agent.cycle")
   const paletteShortcut = useCommandShortcut("command.palette.show")
   const variantShortcut = useCommandShortcut("variant.cycle")

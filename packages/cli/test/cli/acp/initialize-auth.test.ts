@@ -7,9 +7,9 @@ import { createAcpClient, expectErrorCode, initialize } from "./helpers"
 describe("opencode acp initialize/auth subprocess", () => {
   cliIt.live(
     "initialize responds with capabilities",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const initialized = yield* initialize(yield* createAcpClient({ opencode }))
+        const initialized = yield* initialize(yield* createAcpClient({ qronos }))
 
         expect(initialized.protocolVersion).toBe(1)
         expect(initialized.agentCapabilities?.promptCapabilities?.embeddedContext).toBe(true)
@@ -28,9 +28,9 @@ describe("opencode acp initialize/auth subprocess", () => {
 
   cliIt.live(
     "auth negotiation is explicit and safe",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const acp = yield* createAcpClient({ opencode })
+        const acp = yield* createAcpClient({ qronos })
         const initialized = yield* initialize(acp)
 
         expect(initialized.authMethods?.[0]?.id).toBe("qronos-login") // qronos_change
@@ -49,9 +49,9 @@ describe("opencode acp initialize/auth subprocess", () => {
 
   cliIt.live(
     "initialize without terminal-auth metadata keeps auth command implicit",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const acp = yield* createAcpClient({ opencode })
+        const acp = yield* createAcpClient({ qronos })
         const initialized = yield* acp.request<InitializeResponse>("initialize", { protocolVersion: 1 })
 
         expect(initialized.result?.authMethods?.[0]?.id).toBe("qronos-login") // qronos_change

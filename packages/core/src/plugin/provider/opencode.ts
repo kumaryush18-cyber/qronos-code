@@ -16,7 +16,7 @@ import { ProviderV2 } from "../../provider"
 // sync (see catalog.ts), so this gate stays live.
 //
 // Do not restore the console auth flow on future merges without a product decision.
-export const OpencodePlugin = define({
+export const OpencodeProviderPlugin = define({
   id: "opencode",
   effect: Effect.fn(function* (ctx) {
     yield* ctx.catalog.transform(

@@ -20,16 +20,16 @@ describe("qronos run piped stdin (subprocess)", () => {
   // the run proceeds, and the first step_start lands within 20s of spawn.
   cliIt.concurrent(
     "completes with an argv message while piped stdin stays open (regression)",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.text("hello from the test llm")
         const spawnedAt = Date.now()
-        const run = yield* opencode.startRun("say hi", { stdin: "pipe", format: "json" })
+        const run = yield* qronos.startRun("say hi", { stdin: "pipe", format: "json" })
         const result = yield* run.result
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
         expect(result.stdout).toContain("hello from the test llm")
 
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         const stepStart = events.find((event) => event.type === "step_start")
         expect(stepStart).toBeDefined()
         expect(typeof stepStart!.timestamp).toBe("number")
@@ -42,14 +42,14 @@ describe("qronos run piped stdin (subprocess)", () => {
   // message, so the read is unbound and the prompt arrives after stdin end().
   cliIt.concurrent(
     "uses the piped prompt as the run input when argv has no message",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.text("piped prompt received")
-        const run = yield* opencode.startRun(undefined, { stdin: "pipe" })
+        const run = yield* qronos.startRun(undefined, { stdin: "pipe" })
         yield* Effect.promise(() => run.stdin.write("summarize the piped notes\n"))
         run.stdin.end()
         const result = yield* run.result
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
         expect(result.stdout).toContain("piped prompt received")
         const input = JSON.stringify(yield* llm.inputs)
         expect(input).toContain("summarize the piped notes")
@@ -61,14 +61,14 @@ describe("qronos run piped stdin (subprocess)", () => {
   // before the silence timer, so `qronos run main < extra` keeps both parts.
   cliIt.concurrent(
     "appends piped text to the argv message when stdin ends before the bound fires",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.text("append preserved")
-        const run = yield* opencode.startRun("main", { stdin: "pipe" })
+        const run = yield* qronos.startRun("main", { stdin: "pipe" })
         yield* Effect.promise(() => run.stdin.write("extra"))
         run.stdin.end()
         const result = yield* run.result
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
         expect(result.stdout).toContain("append preserved")
         const input = JSON.stringify(yield* llm.inputs)
         expect(input).toContain("main")
@@ -84,12 +84,12 @@ describe("qronos run piped stdin (subprocess)", () => {
   // so the existing usage error still fires with exit 1.
   cliIt.concurrent(
     "exits 1 with the usage error on empty stdin EOF and no argv message",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const run = yield* opencode.startRun(undefined, { stdin: "pipe" })
+        const run = yield* qronos.startRun(undefined, { stdin: "pipe" })
         run.stdin.end()
         const result = yield* run.result
-        opencode.expectExit(result, 1)
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("You must provide a message or a command")
       }),
     60_000,

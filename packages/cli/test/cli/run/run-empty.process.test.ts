@@ -11,11 +11,11 @@ import { cliIt } from "../../lib/cli-process"
 describe("opencode run with an empty model completion (non-interactive subprocess)", () => {
   cliIt.concurrent(
     "exits nonzero with a stderr diagnostic",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.push(reply().stop())
-        const result = yield* opencode.run("say hi", { timeoutMs: 30_000 })
-        opencode.expectExit(result, 1)
+        const result = yield* qronos.run("say hi", { timeoutMs: 30_000 })
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("run ended without an assistant message")
         expect(result.stdout).toBe("")
       }),
@@ -24,13 +24,13 @@ describe("opencode run with an empty model completion (non-interactive subproces
 
   cliIt.concurrent(
     "emits an error record under --format json",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.push(reply().stop())
-        const result = yield* opencode.run("say hi", { format: "json", timeoutMs: 30_000 })
-        opencode.expectExit(result, 1)
+        const result = yield* qronos.run("say hi", { format: "json", timeoutMs: 30_000 })
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("run ended without an assistant message")
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         expect(events.at(-1)).toEqual({
           type: "error",
           timestamp: expect.any(Number),
@@ -47,7 +47,7 @@ describe("opencode run with an empty model completion (non-interactive subproces
   // not claim a silent model on top of it.
   cliIt.live(
     "request failure reports the real error without the empty-output diagnostic",
-    ({ home, opencode }) =>
+    ({ home, qronos }) =>
       Effect.gen(function* () {
         // 4 MiB of filler behind a PNG magic prefix: under the CLI's 10 MiB attach
         // cap, but the server rejects it because the bytes are not a decodable
@@ -56,14 +56,14 @@ describe("opencode run with an empty model completion (non-interactive subproces
         const big = Buffer.alloc(4 * 1024 * 1024, 7)
         Buffer.from([0x89, 0x50, 0x4e, 0x47]).copy(big, 0)
         yield* Effect.promise(() => Bun.write(`${home}/big.png`, big))
-        const server = yield* opencode.serve()
+        const server = yield* qronos.serve()
 
-        const result = yield* opencode.run("read the attachment", {
+        const result = yield* qronos.run("read the attachment", {
           extraArgs: ["--attach", server.url, `--file=${home}/big.png`, "--"],
           timeoutMs: 30_000,
         })
 
-        opencode.expectExit(result, 1)
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("InvalidRequestError")
         // The rejection carries a readable reason rather than an empty 400 body.
         expect(result.stderr).toContain("could not be decoded as a valid image")
@@ -74,22 +74,22 @@ describe("opencode run with an empty model completion (non-interactive subproces
 
   cliIt.live(
     "request failure emits only the real error record under --format json",
-    ({ home, opencode }) =>
+    ({ home, qronos }) =>
       Effect.gen(function* () {
         const big = Buffer.alloc(4 * 1024 * 1024, 7)
         Buffer.from([0x89, 0x50, 0x4e, 0x47]).copy(big, 0)
         yield* Effect.promise(() => Bun.write(`${home}/big.json.png`, big))
-        const server = yield* opencode.serve()
+        const server = yield* qronos.serve()
 
-        const result = yield* opencode.run("read the attachment", {
+        const result = yield* qronos.run("read the attachment", {
           format: "json",
           extraArgs: ["--attach", server.url, `--file=${home}/big.json.png`, "--"],
           timeoutMs: 30_000,
         })
 
-        opencode.expectExit(result, 1)
+        qronos.expectExit(result, 1)
         expect(result.stderr).not.toContain("run ended without an assistant message")
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         expect(events).toHaveLength(1)
         expect(events[0]).toEqual({
           type: "error",

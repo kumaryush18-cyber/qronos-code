@@ -4,10 +4,10 @@ import { cliIt } from "../../lib/cli-process"
 
 cliIt.live(
   "nested lazy command completion includes subcommands",
-  ({ opencode }) =>
+  ({ qronos }) =>
     Effect.gen(function* () {
-      const result = yield* opencode.spawn(["--get-yargs-completions", "auth", ""])
-      opencode.expectExit(result, 0, "auth completion")
+      const result = yield* qronos.spawn(["--get-yargs-completions", "auth", ""])
+      qronos.expectExit(result, 0, "auth completion")
       expect(result.stdout.split("\n")).toEqual(expect.arrayContaining(["list", "login", "logout"]))
     }),
   60_000,

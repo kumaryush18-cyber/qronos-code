@@ -31,7 +31,7 @@ try {
   assert.equal(svg()?.getAttribute("viewBox"), "0 0 20 20")
   assert.match(svg()?.innerHTML ?? "", /<path/)
   setName("circle-check")
-  assert.match(svg()?.innerHTML ?? "", /opencode-icon-circle-check/)
+  assert.match(svg()?.innerHTML ?? "", /qronos-icon-circle-check/)
   setName("circle-x-outline")
   assert.match(svg()?.innerHTML ?? "", /<path/)
   assert.doesNotMatch(svg()?.innerHTML ?? "", /<use/)

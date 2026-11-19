@@ -32,7 +32,7 @@ test("home/end keys move the text cursor in a dialog filter input", async () => 
     { ThemeProvider },
     { TuiConfigProvider },
     { ToastProvider },
-    { OpencodeKeymapProvider, registerOpencodeKeymap },
+    { QronosKeymapProvider, registerQronosKeymap },
   ] = await Promise.all([
     import("../src/ui/dialog"),
     import("../src/context/kv"),
@@ -59,7 +59,7 @@ test("home/end keys move the text cursor in a dialog filter input", async () => 
         "dialog.select.end": ["end", "f7"],
       },
     })
-    const off = registerOpencodeKeymap(keymap, renderer, resolvedConfig)
+    const off = registerQronosKeymap(keymap, renderer, resolvedConfig)
     onCleanup(off)
 
     return (
@@ -71,7 +71,7 @@ test("home/end keys move the text cursor in a dialog filter input", async () => 
           worktree: tmp.path,
         }}
       >
-        <OpencodeKeymapProvider keymap={keymap}>
+        <QronosKeymapProvider keymap={keymap}>
           <TuiConfigProvider config={resolvedConfig}>
             <KVProvider>
               <ThemeProvider mode="dark">
@@ -83,7 +83,7 @@ test("home/end keys move the text cursor in a dialog filter input", async () => 
               </ThemeProvider>
             </KVProvider>
           </TuiConfigProvider>
-        </OpencodeKeymapProvider>
+        </QronosKeymapProvider>
       </TestTuiContexts>
     )
   }

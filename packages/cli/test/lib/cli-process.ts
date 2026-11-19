@@ -31,8 +31,8 @@ import { testProviderConfig } from "./test-provider"
 import { it } from "./effect"
 import { TestCli } from "../../script/qronos/test-cli" // qronos_change
 
-const opencodeRoot = path.resolve(import.meta.dir, "../../")
-const cliEntry = path.join(opencodeRoot, "src/index.ts")
+const qronosRoot = path.resolve(import.meta.dir, "../../")
+const cliEntry = path.join(qronosRoot, "src/index.ts")
 // qronos_change start - reuse the runner's once-built CLI graph instead of transpiling it in every child
 const cliArgs = process.env[TestCli.ENV]
   ? ["run", process.env[TestCli.ENV]]
@@ -174,7 +174,7 @@ export type AcpHandle = {
   readonly exited: Promise<number>
 }
 
-export type OpencodeCli = {
+export type QronosCli = {
   // High-level: run a single prompt against the test model. Short-lived.
   readonly run: (message: string, opts?: RunOpts) => Effect.Effect<RunResult>
   readonly startRun: (message: string | undefined, opts?: RunOpts) => Effect.Effect<RunHandle, never, Scope.Scope> // qronos_change - undefined message = no argv prompt
@@ -201,7 +201,7 @@ export type OpencodeCli = {
 export type CliFixture = {
   readonly llm: TestLLMServer["Service"]
   readonly home: string
-  readonly opencode: OpencodeCli
+  readonly opencode: QronosCli
 }
 
 // Provisions a TestLLMServer + tmpdir + spawn helper and invokes fn. Cleans
@@ -509,9 +509,9 @@ export function withCliFixture<A, E>(
       } satisfies AcpHandle
     })
 
-    const opencode: OpencodeCli = { run, startRun, serve, acp, spawn, expectExit, parseJsonEvents }
+    const opencode: QronosCli = { run, startRun, serve, acp, spawn, expectExit, parseJsonEvents }
 
-    return yield* fn({ llm, home, opencode })
+    return yield* fn({ llm, home, qronos })
     // FetchHttpClient is provided so test bodies can `yield* HttpClient.HttpClient`
     // and hit endpoints on `opencode.serve()` without rolling their own fetch.
   }).pipe(

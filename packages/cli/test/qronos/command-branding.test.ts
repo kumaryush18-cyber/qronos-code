@@ -11,7 +11,7 @@ const files = [
   "src/mcp/index.ts",
 ]
 
-const command = /opencode\s+(--[a-z-]+|run|serve|auth|upgrade|agent|github|mcp)\b/g
+const command = /qronos\s+(--[a-z-]+|run|serve|auth|upgrade|agent|github|mcp)\b/g
 
 describe("Qronos command branding", () => {
   test("user-facing command help uses the `qronos` binary name", async () => {

@@ -7,7 +7,7 @@ import { Integration } from "@qronos-ai/core/integration"
 import { ModelV2 } from "@qronos-ai/core/model"
 import { PluginV2 } from "@qronos-ai/core/plugin"
 import { PluginHost } from "@qronos-ai/core/plugin/host"
-import { OpencodePlugin } from "@qronos-ai/core/plugin/provider/opencode"
+import { OpencodeProviderPlugin } from "@qronos-ai/core/plugin/provider/opencode"
 import { ProviderV2 } from "@qronos-ai/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
@@ -19,7 +19,7 @@ const addPlugin = Effect.fn(function* () {
   const host = yield* PluginHost.make(plugin)
   const events = yield* EventV2.Service
   const integration = yield* Integration.Service
-  yield* OpencodePlugin.effect(host).pipe(
+  yield* OpencodeProviderPlugin.effect(host).pipe(
     Effect.provideService(EventV2.Service, events),
     Effect.provideService(Integration.Service, integration),
   )

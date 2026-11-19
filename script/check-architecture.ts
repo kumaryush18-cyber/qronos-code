@@ -44,7 +44,7 @@ function isQronosOwned(filePath: string): boolean {
 const DOMAIN_SCOPES = ["packages/core/src", "packages/llm/src", "packages/schema/src"]
 const FORBIDDEN_IMPORT_PATTERNS = [
   { pattern: /from\s+["']@\/.*["']/, reason: "internal opencode alias (@/*) in domain package" },
-  { pattern: /from\s+["'].*packages\/opencode.*["']/, reason: "direct packages/cli import in domain package" },
+  { pattern: /from\s+["'].*packages\/qronos.*["']/, reason: "direct packages/cli import in domain package" },
   { pattern: /from\s+["']@qronos\/cli(?:[\/].*)?["']/, reason: "@qronos-ai/cli package import in domain package" },
   { pattern: /from\s+["'].*packages\/qronos-vscode.*["']/, reason: "packages/extension import in domain package" },
 ]

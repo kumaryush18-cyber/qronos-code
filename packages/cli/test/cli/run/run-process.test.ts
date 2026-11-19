@@ -14,11 +14,11 @@ describe("opencode run (non-interactive subprocess)", () => {
   // If this fails, all the others likely will too — debug here first.
   cliIt.concurrent(
     "exits 0 and writes the response to stdout on a successful prompt",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.text("hello from the test llm")
-        const result = yield* opencode.run("say hi")
-        opencode.expectExit(result, 0)
+        const result = yield* qronos.run("say hi")
+        qronos.expectExit(result, 0)
         expect(result.stdout).toBe("hello from the test llm\n")
       }),
     60_000,
@@ -26,7 +26,7 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "prints each completed text part in order around a tool continuation",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.push(
           reply().text("  before tool  ").tool("bash", {
@@ -36,11 +36,11 @@ describe("opencode run (non-interactive subprocess)", () => {
         )
         yield* llm.text("  after tool  ")
 
-        const result = yield* opencode.run("use a tool", {
+        const result = yield* qronos.run("use a tool", {
           extraArgs: ["--dangerously-skip-permissions"],
         })
 
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
         expect(result.stdout).toBe("before tool\nafter tool\n")
       }),
     60_000,
@@ -48,16 +48,16 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "prints reasoning before text only with --thinking",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.reason("  considering  ", { text: "  answer  " })
-        const thinking = yield* opencode.run("think", { extraArgs: ["--thinking"] })
-        opencode.expectExit(thinking, 0)
+        const thinking = yield* qronos.run("think", { extraArgs: ["--thinking"] })
+        qronos.expectExit(thinking, 0)
         expect(thinking.stdout).toBe("Thinking: considering\nanswer\n")
 
         yield* llm.reason("hidden", { text: "visible" })
-        const plain = yield* opencode.run("think again")
-        opencode.expectExit(plain, 0)
+        const plain = yield* qronos.run("think again")
+        qronos.expectExit(plain, 0)
         expect(plain.stdout).toBe("visible\n")
       }),
     60_000,
@@ -69,9 +69,9 @@ describe("opencode run (non-interactive subprocess)", () => {
   // would expire the timeout and produce a different (signal-killed) failure.
   cliIt.concurrent(
     "exits nonzero promptly when the model is unknown (regression for #27371)",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const result = yield* opencode.run("say hi", {
+        const result = yield* qronos.run("say hi", {
           model: "test/nonexistent-model",
           timeoutMs: 15_000,
         })
@@ -86,7 +86,7 @@ describe("opencode run (non-interactive subprocess)", () => {
   // is not accidentally used as the failure compatibility oracle.
   cliIt.concurrent(
     "unknown stream finish preserves partial output and exits 0",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.push(
           reply().text("partial response").tool("bash", {
@@ -97,7 +97,7 @@ describe("opencode run (non-interactive subprocess)", () => {
         yield* llm.fail("upstream provider exploded mid-stream")
         // qronos_change - settle bash up front so the run exercises the stream finish rather than
         // Qronos's auto-reject exit contract, which a plain headless run would trip first.
-        const result = yield* opencode.run("trigger midstream error", {
+        const result = yield* qronos.run("trigger midstream error", {
           timeoutMs: 30_000,
           permission: { bash: "deny" },
         })
@@ -111,11 +111,11 @@ describe("opencode run (non-interactive subprocess)", () => {
   // qronos_change start - Qronos headless runs must signal an unsuccessful session to automation
   cliIt.concurrent(
     "mid-stream session error exits nonzero with a stderr diagnostic",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.error(400, { error: { message: "upstream provider exploded mid-stream" } })
-        const result = yield* opencode.run("trigger midstream error", { timeoutMs: 30_000 })
-        opencode.expectExit(result, 1)
+        const result = yield* qronos.run("trigger midstream error", { timeoutMs: 30_000 })
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("upstream provider exploded mid-stream")
       }),
     60_000,
@@ -123,27 +123,27 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "mid-stream session error exits nonzero with stderr diagnostic under --format json",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.error(400, { error: { message: "upstream provider exploded mid-stream" } })
-        const result = yield* opencode.run("trigger midstream error", {
+        const result = yield* qronos.run("trigger midstream error", {
           format: "json",
           timeoutMs: 30_000,
         })
-        opencode.expectExit(result, 1)
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("upstream provider exploded mid-stream")
-        expect(opencode.parseJsonEvents(result.stdout).some((event) => event.type === "error")).toBe(true)
+        expect(qronos.parseJsonEvents(result.stdout).some((event) => event.type === "error")).toBe(true)
       }),
     60_000,
   )
 
   cliIt.concurrent(
     "auto-rejected permission in plain headless run exits nonzero",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.tool("bash", { command: "sed -n 1,5p README.md" })
-        const result = yield* opencode.run("run sed on readme", { timeoutMs: 45_000 })
-        opencode.expectExit(result, 1)
+        const result = yield* qronos.run("run sed on readme", { timeoutMs: 45_000 })
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("permission requested: bash")
         expect(result.stderr).toContain("auto-rejecting")
         expect(result.stderr).toContain("run ended with an auto-rejected permission; pass --auto for autonomous use")
@@ -153,16 +153,16 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "auto-rejected permission exits nonzero with stderr diagnostic under --format json",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.tool("bash", { command: "sed -n 1,5p README.md" })
-        const result = yield* opencode.run("run sed on readme", {
+        const result = yield* qronos.run("run sed on readme", {
           format: "json",
           timeoutMs: 75_000,
         })
-        opencode.expectExit(result, 1)
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain("run ended with an auto-rejected permission; pass --auto for autonomous use")
-        expect(opencode.parseJsonEvents(result.stdout).some((event) => event.type === "error")).toBe(true)
+        expect(qronos.parseJsonEvents(result.stdout).some((event) => event.type === "error")).toBe(true)
       }),
     90_000,
   )
@@ -173,13 +173,13 @@ describe("opencode run (non-interactive subprocess)", () => {
   // shape so a future event-emit change has to update this expectation.
   cliIt.concurrent(
     "--format json emits parseable line-delimited JSON to stdout",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.text("structured output")
-        const result = yield* opencode.run("say hi", { format: "json" })
-        opencode.expectExit(result, 0)
+        const result = yield* qronos.run("say hi", { format: "json" })
+        qronos.expectExit(result, 0)
 
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         expect(events.length).toBeGreaterThan(0)
         for (const evt of events) {
           expect(typeof evt.type).toBe("string")
@@ -207,15 +207,15 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "--format json emits a pure error record for a rejected prompt request",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const result = yield* opencode.run("use an unknown model", {
+        const result = yield* qronos.run("use an unknown model", {
           model: "test/nonexistent-model",
           format: "json",
         })
 
         expect(result.exitCode).not.toBe(0)
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         // qronos_change - upstream expects a single record. Qronos emits two, and has since before
         // this merge: session/prompt.ts getModel publishes a readable "Model not found" session.error
         // and then dies, and the die is masked into the generic request failure. Upstream only has the
@@ -238,7 +238,7 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "--format json preserves reasoning, tool, and continuation ordering",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.push(
           reply().reason("reasoning").text("before").tool("bash", {
@@ -248,13 +248,13 @@ describe("opencode run (non-interactive subprocess)", () => {
         )
         yield* llm.text("after")
 
-        const result = yield* opencode.run("exercise json records", {
+        const result = yield* qronos.run("exercise json records", {
           format: "json",
           extraArgs: ["--thinking", "--dangerously-skip-permissions"],
         })
 
         expect(result.exitCode).toBe(0)
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         expect(events.map((event) => event.type)).toEqual([
           "step_start",
           "reasoning",
@@ -287,7 +287,7 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "--format json records partial output for an unknown stream finish",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.push(
           reply().text("partial json").tool("bash", {
@@ -297,9 +297,9 @@ describe("opencode run (non-interactive subprocess)", () => {
         )
         yield* llm.fail("provider failed")
         // qronos_change - settle bash up front; see the note on the reason assertion below
-        const result = yield* opencode.run("fail after output", { format: "json", permission: { bash: "deny" } })
+        const result = yield* qronos.run("fail after output", { format: "json", permission: { bash: "deny" } })
 
-        const events = opencode.parseJsonEvents(result.stdout)
+        const events = qronos.parseJsonEvents(result.stdout)
         expect(result.exitCode).toBe(0)
         expect(events.map((event) => event.type)).toEqual([
           "step_start",
@@ -326,12 +326,12 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "auto-rejects requested permissions by default and allows them with the dangerous flag", // qronos_change
-    ({ home, llm, opencode }) =>
+    ({ home, llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.tool("bash", { command: "rm -f denied-file", description: "Remove a test file" })
         yield* llm.text("continued after rejection")
-        const denied = yield* opencode.run("request permission", { permission: { bash: "ask" } })
-        opencode.expectExit(denied, 1) // qronos_change
+        const denied = yield* qronos.run("request permission", { permission: { bash: "ask" } })
+        qronos.expectExit(denied, 1) // qronos_change
         expect(denied.stderr).toContain("permission requested: bash")
         expect(denied.stderr).toContain("run ended with an auto-rejected permission; pass --auto for autonomous use") // qronos_change
         expect(denied.stdout).toBe("")
@@ -339,22 +339,22 @@ describe("opencode run (non-interactive subprocess)", () => {
         yield* llm.reset
         yield* llm.tool("bash", { command: "rm -f allowed-file", description: "Remove a test file" })
         yield* llm.text("continued after approval")
-        const allowed = yield* opencode.run("request permission", {
+        const allowed = yield* qronos.run("request permission", {
           permission: { bash: "ask" },
           extraArgs: ["--dangerously-skip-permissions"],
         })
-        opencode.expectExit(allowed, 0)
+        qronos.expectExit(allowed, 0)
         expect(allowed.stderr).not.toContain("permission requested: bash")
         expect(allowed.stdout).toContain("continued after approval")
 
         yield* llm.reset
         yield* llm.tool("bash", { command: "touch explicitly-denied", description: "Create a denied marker" })
         yield* llm.text("continued after explicit denial")
-        const explicitlyDenied = yield* opencode.run("request denied permission", {
+        const explicitlyDenied = yield* qronos.run("request denied permission", {
           permission: { bash: "deny" },
           extraArgs: ["--dangerously-skip-permissions"],
         })
-        opencode.expectExit(explicitlyDenied, 0)
+        qronos.expectExit(explicitlyDenied, 0)
         expect(explicitlyDenied.stdout).toContain("continued after explicit denial")
         expect(yield* Effect.promise(() => Bun.file(`${home}/explicitly-denied`).exists())).toBe(false)
       }),
@@ -363,19 +363,19 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.live(
     "attach mode sends client-local file contents without a shared path",
-    ({ home, llm, opencode }) =>
+    ({ home, llm, qronos }) =>
       Effect.gen(function* () {
         const source = `${home}/client-only.txt`
         const sentinel = "client-only attachment sentinel"
         yield* Effect.promise(() => Bun.write(source, sentinel))
         yield* llm.text("attachment received")
-        const server = yield* opencode.serve()
+        const server = yield* qronos.serve()
 
-        const result = yield* opencode.run("read the attachment", {
+        const result = yield* qronos.run("read the attachment", {
           extraArgs: ["--attach", server.url, `--file=${source}`, "--"],
         })
 
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
         const input = JSON.stringify(yield* llm.inputs)
         expect(input).toContain(sentinel)
         expect(input).not.toContain(`file://${source}`)
@@ -385,9 +385,9 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "attach mode rejects local directories before prompt admission",
-    ({ home, opencode }) =>
+    ({ home, qronos }) =>
       Effect.gen(function* () {
-        const result = yield* opencode.run("read the directory", {
+        const result = yield* qronos.run("read the directory", {
           extraArgs: ["--attach", "http://127.0.0.1:1", `--file=${home}`, "--"],
         })
 
@@ -399,10 +399,10 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.live(
     "SIGINT interrupts an active non-interactive run without leaking the process",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.hang
-        const run = yield* opencode.startRun("wait forever")
+        const run = yield* qronos.startRun("wait forever")
         yield* llm.wait(1)
         const interrupted = Date.now() // qronos_change - assert signal handling, independent of contended CLI startup
         run.interrupt()
@@ -417,11 +417,11 @@ describe("opencode run (non-interactive subprocess)", () => {
   // qronos_change start - non-interactive runs exclude human-driven tools like suggest
   cliIt.concurrent(
     "qronos run --auto excludes suggest tool from LLM request",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
         yield* llm.text("done")
-        const result = yield* opencode.run("do work", { extraArgs: ["--auto"] })
-        opencode.expectExit(result, 0)
+        const result = yield* qronos.run("do work", { extraArgs: ["--auto"] })
+        qronos.expectExit(result, 0)
         expect(result.stdout).toBe("done\n")
         const inputs = yield* llm.inputs
         const tools = (inputs[0]?.body as any)?.tools as Array<{ function?: { name?: string } }> | undefined
@@ -434,9 +434,9 @@ describe("opencode run (non-interactive subprocess)", () => {
 
   cliIt.live(
     "qronos run auto-dismisses suggestion and exits cleanly if suggest tool is invoked in attached session",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
-        const server = yield* opencode.serve()
+        const server = yield* qronos.serve()
         const client = createQronosClient({ baseUrl: server.url })
         const session = yield* Effect.promise(() =>
           client.session.create({
@@ -454,10 +454,10 @@ describe("opencode run (non-interactive subprocess)", () => {
         )
         yield* llm.text("completed after dismissal")
 
-        const result = yield* opencode.run("do work", {
+        const result = yield* qronos.run("do work", {
           extraArgs: ["--attach", server.url, "--session", sessionID!, "--auto"],
         })
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         const messages = yield* Effect.promise(() => client.session.messages({ sessionID: sessionID! }))
         const assistant = messages.data?.findLast((m) => m.info.role === "assistant")

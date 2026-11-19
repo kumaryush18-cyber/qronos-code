@@ -133,7 +133,7 @@ declare module "@opentui/solid" {
   }
 }
 
-export function registerOpencodeSpinner() {
+export function registerQronosSpinner() {
   if (!getComponentCatalogue().spinner) extend({ spinner: SpinnerRenderable })
 }
 // qronos_change end

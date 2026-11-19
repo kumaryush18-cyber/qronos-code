@@ -39,9 +39,9 @@ const todos = [
 describe("todowrite end-to-end", () => {
   cliIt.live(
     "persists every sequential update through the real CLI session",
-    ({ llm, opencode }) =>
+    ({ llm, qronos }) =>
       Effect.gen(function* () {
-        const server = yield* opencode.serve()
+        const server = yield* qronos.serve()
         const client = createQronosClient({ baseUrl: server.url })
         const session = yield* Effect.promise(() =>
           client.session.create({
@@ -54,11 +54,11 @@ describe("todowrite end-to-end", () => {
         for (const list of todos) yield* llm.tool("todowrite", { todos: list })
         yield* llm.text("done")
 
-        const result = yield* opencode.run("complete this four-step task", {
+        const result = yield* qronos.run("complete this four-step task", {
           extraArgs: ["--attach", server.url, "--session", sessionID, "--auto"],
           timeoutMs: 90_000,
         })
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
 
         expect(JSON.stringify(yield* llm.inputs)).toContain(
           "After completing each item, call this tool before starting the next item",

@@ -32,12 +32,12 @@ for (const scenario of [
 ]) {
   cliIt.concurrent(
     `headless goal start and resume reject before ${scenario.name} or any request`,
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
         const calls: string[] = []
         using server = listen(calls)
         for (const action of ["Fix failing tests", "resume"]) {
-          const result = yield* opencode.spawn([
+          const result = yield* qronos.spawn([
             "run",
             "--attach",
             server.url.toString(),
@@ -47,7 +47,7 @@ for (const scenario of [
             ...scenario.args,
             action,
           ])
-          opencode.expectExit(result, 1)
+          qronos.expectExit(result, 1)
           expect(result.stderr).toContain(diagnostic)
           expect(calls).toEqual([])
         }
@@ -59,11 +59,11 @@ for (const scenario of [
 for (const text of ["Fix failing tests\n", " resume\n"]) {
   cliIt.concurrent(
     `piped goal ${JSON.stringify(text)} rejects before deferred session lookup`,
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
         const calls: string[] = []
         using server = listen(calls)
-        const child = yield* opencode.startRun(undefined, {
+        const child = yield* qronos.startRun(undefined, {
           command: "goal",
           stdin: "pipe",
           extraArgs: ["--session", "ses_goal", "--fork", "--share", "--attach", server.url.toString()],
@@ -71,7 +71,7 @@ for (const text of ["Fix failing tests\n", " resume\n"]) {
         yield* Effect.promise(() => child.stdin.write(text))
         child.stdin.end()
         const result = yield* child.result
-        opencode.expectExit(result, 1)
+        qronos.expectExit(result, 1)
         expect(result.stderr).toContain(diagnostic)
         expect(calls).toEqual([])
       }),
@@ -81,12 +81,12 @@ for (const text of ["Fix failing tests\n", " resume\n"]) {
 
 cliIt.concurrent(
   "headless goal status, pause, and clear still dispatch without sharing or draining",
-  ({ opencode }) =>
+  ({ qronos }) =>
     Effect.gen(function* () {
       const calls: string[] = []
       using server = listen(calls)
       for (const action of ["", "pause", "clear"]) {
-        const result = yield* opencode.spawn([
+        const result = yield* qronos.spawn([
           "run",
           "--attach",
           server.url.toString(),
@@ -97,7 +97,7 @@ cliIt.concurrent(
           "--share",
           action,
         ])
-        opencode.expectExit(result, 0)
+        qronos.expectExit(result, 0)
         expect(result.stdout).toBe(`Goal control: ${action || "status"}\n`)
       }
       expect(calls).toEqual(

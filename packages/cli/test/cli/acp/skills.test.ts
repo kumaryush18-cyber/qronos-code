@@ -9,13 +9,13 @@ import { createAcpClient, initialize, newSession, verifierConfig, verifierSkill 
 describe("opencode acp skills subprocess", () => {
   cliIt.live(
     "skill slash command appears through available_commands_update",
-    ({ home, llm, opencode }) =>
+    ({ home, llm, qronos }) =>
       Effect.gen(function* () {
         const skills = path.join(home, "skills")
         yield* Effect.promise(() => mkdir(path.join(skills, "verifier-skill"), { recursive: true }))
         yield* Effect.promise(() => Bun.write(path.join(skills, "verifier-skill", "SKILL.md"), verifierSkill))
         const acp = yield* createAcpClient(
-          { opencode },
+          { qronos },
           { QRONOS_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url, skills)) },
         )
         yield* initialize(acp)

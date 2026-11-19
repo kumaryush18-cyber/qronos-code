@@ -110,9 +110,9 @@ describe("Qronos CLI help-text snapshots", () => {
   // versus ~1 minute if we serialized.
   cliIt.live(
     "every documented command emits stable help text",
-    ({ opencode }) =>
+    ({ qronos }) =>
       Effect.gen(function* () {
-        const topLevel = yield* opencode.spawn(["--help"], { env: SNAPSHOT_ENV })
+        const topLevel = yield* qronos.spawn(["--help"], { env: SNAPSHOT_ENV })
         expect(topLevel.exitCode).toBe(0)
         expect(topLevel.stderr.endsWith("\n")).toBe(true)
         expect(topLevel.stderr).toContain("--mini")
@@ -130,7 +130,7 @@ describe("Qronos CLI help-text snapshots", () => {
           argvs,
           (argv) =>
             Effect.gen(function* () {
-              const result = yield* opencode.spawn([...argv, "--help"], { env: SNAPSHOT_ENV })
+              const result = yield* qronos.spawn([...argv, "--help"], { env: SNAPSHOT_ENV })
               if (result.exitCode !== 0) {
                 return yield* Effect.fail(`qronos ${argv.join(" ")}: exit ${result.exitCode}`) // qronos_change
               }
