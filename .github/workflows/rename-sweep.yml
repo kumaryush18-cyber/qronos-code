@@ -70,7 +70,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.4
       - name: bun install
         run: bun install --no-save
       - name: typecheck extension host
