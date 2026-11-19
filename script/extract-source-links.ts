@@ -88,7 +88,7 @@ const SKIP_DIRS = ["node_modules", ".storybook", "stories", "test", "tests", "__
 const SKIP_PATH_SEGMENTS = ["continuedev"]
 
 // Individual files to skip (data files full of non-user-facing URLs)
-const SKIP_FILES = ["check-forbidden-strings.ts"] // qronos_change
+const SKIP_FILES: string[] = [] // qronos_change
 
 function shouldExclude(url: string): boolean {
   return EXCLUDE_PATTERNS.some((re) => re.test(url))

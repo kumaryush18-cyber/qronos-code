@@ -1,19 +1,42 @@
 Qronos Code
 ===========
 
-This product is a derivative work. Parts of it come from:
+Copyright (c) 2026 Qronos AI
 
-  Kilo Code  — https://github.com/Kilo-Org/kilocode
+This product is a derivative work. Parts of it come from the projects below.
+Their copyright notices and the MIT permission notice are kept here, as the
+MIT License requires, and this file ships with every build.
+
+  Kilo Code  - https://github.com/Kilo-Org/kilocode
   Copyright (c) Kilo Code contributors
   Licensed under the MIT License
 
-  opencode   — https://github.com/sst/opencode
+  opencode   - https://github.com/sst/opencode
   Copyright (c) opencode contributors
   Licensed under the MIT License
 
-Both are licensed under the MIT License, which requires that their copyright
-notice and permission notice are kept. They are kept in LICENSE and in the
-source headers of the files that came from those projects.
+The vendored helper packages packages/http-recorder and packages/ui are also
+derived from opencode, Copyright (c) opencode contributors, MIT License.
 
-Modifications and the Qronos branding are:
-  Copyright (c) Qronos AI
+Modifications and the Qronos branding are Copyright (c) Qronos AI.
+
+MIT License
+-----------
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
