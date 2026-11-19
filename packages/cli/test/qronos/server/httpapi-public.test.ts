@@ -6,7 +6,7 @@ import { BackgroundProcessPaths } from "../../../src/qronos/server/httpapi/group
 import { BranchNamePaths } from "../../../src/qronos/server/httpapi/groups/branch-name"
 import { ConfigConsolePaths } from "../../../src/qronos/server/httpapi/groups/config-console"
 import { IndexingPaths, QronosEmbeddingModel } from "../../../src/qronos/server/httpapi/groups/indexing"
-import { QronosPaths } from "../../../src/qronos/server/httpapi/groups/gateway"
+import { QronosPaths as GatewayPaths } from "../../../src/qronos/server/httpapi/groups/gateway"
 import { QronosPaths } from "../../../src/qronos/server/httpapi/groups/qronos"
 import { MemoryPaths } from "../../../src/qronos/server/httpapi/groups/memory"
 import { SessionHostPaths } from "../../../src/qronos/server/httpapi/groups/session-host"
@@ -285,9 +285,9 @@ describe("Qronos PublicApi OpenAPI contract", () => {
       { method: "get", path: ConfigConsolePaths.tuiConfig },
       { method: "get", path: ConfigConsolePaths.tuiKeybinds },
       { method: "patch", path: ConfigConsolePaths.tuiConfig },
-      { method: "get", path: QronosPaths.providerUsage },
-      { method: "post", path: QronosPaths.providerUsageRefresh },
-      { method: "get", path: QronosPaths.sessionModelUsage },
+      { method: "get", path: GatewayPaths.providerUsage },
+      { method: "post", path: GatewayPaths.providerUsageRefresh },
+      { method: "get", path: GatewayPaths.sessionModelUsage },
       { method: "post", path: BranchNamePaths.generate },
       { method: "get", path: MemoryPaths.status },
       { method: "get", path: MemoryPaths.show },
@@ -375,8 +375,8 @@ describe("Qronos PublicApi OpenAPI contract", () => {
     }
     const fields = keys(usage).map((key) => key.toLowerCase())
 
-    expect(spec.paths[QronosPaths.providerUsage]?.get?.responses?.["200"]).toBeDefined()
-    expect(spec.paths[QronosPaths.providerUsageRefresh]?.post?.responses?.["200"]).toBeDefined()
+    expect(spec.paths[GatewayPaths.providerUsage]?.get?.responses?.["200"]).toBeDefined()
+    expect(spec.paths[GatewayPaths.providerUsageRefresh]?.post?.responses?.["200"]).toBeDefined()
     expect(schemas.ProviderUsageSnapshot?.properties?.windows).toBeDefined()
     for (const forbidden of [
       "key",

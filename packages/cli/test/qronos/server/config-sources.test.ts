@@ -96,7 +96,7 @@ describe("config source routes", () => {
 
     const envFile = path.join(tmp.path, "env.json")
     const projectFile = path.join(tmp.path, "qronos.json")
-    const qronosFile = path.join(tmp.path, ".opencode", "qronos.jsonc")
+    const legacyFile = path.join(tmp.path, ".opencode", "qronos.jsonc")
     const qronosFile = path.join(tmp.path, ".qronos", "qronos.jsonc")
     const configFile = path.join(tmp.path, ".qronos", "qronos.jsonc")
     const extraFile = path.join(tmp.path, "extra", "opencode.json")
