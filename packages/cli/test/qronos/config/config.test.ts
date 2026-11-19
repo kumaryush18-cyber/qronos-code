@@ -1578,7 +1578,7 @@ describe("opencode config migration notice", () => {
     await Filesystem.write(path.join(tmp.path, ".opencode", "opencode.json"), JSON.stringify({ model: "test/legacy" }))
 
     await withGlobalConfig(path.join(globalTmp.path, "qronos"), () => {
-      const notice = QronosConfig.qronosConfigNotification({ directory: tmp.path, scanProject: true })
+      const notice: any = QronosConfig.qronosConfigNotification({ directory: tmp.path, scanProject: true })
       expect(notice?.id).toBe(QronosConfig.OPENCODE_NOTIFICATION_ID)
       expect(notice?.message).toContain(path.join(tmp.path, ".opencode"))
       expect(notice?.action?.actionURL).toBe(QronosConfig.CONFIG_DOCS_URL)

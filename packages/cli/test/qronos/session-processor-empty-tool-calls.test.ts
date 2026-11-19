@@ -592,8 +592,7 @@ describe("session processor empty tool-calls", () => {
               reason: "other",
               usage: usage(),
               providerMetadata: {
-                qronos: { routedModelID: "openai/gpt-5.5-20260423" },
-                qronos: { vercelID: "fra1::test" },
+                qronos: { routedModelID: "openai/gpt-5.5-20260423", vercelID: "fra1::test" },
                 gateway: {
                   generationId: "gen_test",
                   routing: { finalProvider: "openai" },
