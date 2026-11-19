@@ -24,7 +24,7 @@ function loadDeps() {
     Provider: provider.Provider,
     RuntimeFlags: flags.RuntimeFlags,
     generateText: ai.generateText,
-    opencodeSessionHeaders: headers.opencodeSessionHeaders,
+    qronosSessionHeaders: headers.qronosSessionHeaders,
   }))
 }
 function deps() {
