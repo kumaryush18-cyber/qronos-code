@@ -13,6 +13,10 @@ inputs:
   target:
     description: Marketplace target triple, for example linux-x64
     required: true
+  build-target:
+    description: Pass to QRONOS_BUILD_TARGET when the package is cross-built (darwin-arm64 on Linux)
+    required: false
+    default: ""
 
 runs:
   using: composite
@@ -28,7 +32,7 @@ runs:
     # The Linux CLI build compiles the bubblewrap sandbox helper with Zig;
     # without it the build silently falls back to a dev wrapper script.
     - name: Setup Zig for the Linux sandbox helper
-      if: runner.os == 'Linux'
+      if: runner.os == 'Linux' && inputs.target == 'linux-x64'
       shell: bash
       run: |
         curl --fail --location --retry 3 \
@@ -41,6 +45,8 @@ runs:
     - name: Build the CLI binary
       shell: bash
       working-directory: packages/extension
+      env:
+        QRONOS_BUILD_TARGET: ${{ inputs.build-target }}
       run: bun run prepare:cli-binary
 
     - name: Verify the binary is real
@@ -55,8 +61,10 @@ runs:
         fi
 
     # A compiled binary can build fine and still die on its first request.
+    # A cross-built binary cannot run on this runner, so only the native
+    # Linux package is exercised.
     - name: Smoke test the server
-      if: runner.os == 'Linux'
+      if: inputs.target == 'linux-x64'
       shell: bash
       working-directory: packages/extension
       run: |

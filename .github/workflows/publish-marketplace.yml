@@ -147,7 +147,7 @@ jobs:
             target: linux-x64
           - os: windows-latest
             target: win32-x64
-          - os: macos-14
+          - os: ubuntu-latest
             target: darwin-arm64
     steps:
       - uses: actions/checkout@v4
@@ -157,6 +157,7 @@ jobs:
       - uses: ./.github/actions/build-vsix
         with:
           target: ${{ matrix.target }}
+          build-target: ${{ matrix.target == 'darwin-arm64' && 'darwin-arm64' || '' }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -182,7 +183,7 @@ jobs:
             target: linux-x64
           - os: windows-latest
             target: win32-x64
-          - os: macos-14
+          - os: ubuntu-latest
             target: darwin-arm64
     steps:
       - uses: actions/checkout@v4

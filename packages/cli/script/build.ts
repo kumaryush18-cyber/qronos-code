@@ -36,6 +36,11 @@ const singleFlag = process.argv.includes("--single")
 const baselineFlag = process.argv.includes("--baseline")
 const skipInstall = process.argv.includes("--skip-install")
 const sourcemapsFlag = process.argv.includes("--sourcemaps")
+// qronos_change - build one named platform even when it is not the host, so a
+// Linux runner can produce darwin-arm64. Format: os-arch, for example
+// darwin-arm64 or win32-x64.
+const targetFlagIndex = process.argv.indexOf("--target")
+const targetFlag = targetFlagIndex >= 0 ? process.argv[targetFlagIndex + 1] : undefined
 const plugin = createSolidTransformPlugin()
 
 // qronos_change start - codebase indexing
@@ -242,7 +247,11 @@ const allTargets: {
   },
 ]
 
-const targets = singleFlag
+const targets = targetFlag
+  ? allTargets.filter(
+      (item) => `${item.os}-${item.arch}` === targetFlag && item.avx2 !== false && item.abi === undefined,
+    )
+  : singleFlag
   ? allTargets.filter((item) => {
       if (item.os !== process.platform || item.arch !== process.arch) {
         return false
@@ -264,6 +273,9 @@ const targets = singleFlag
   : allTargets
 
 // qronos_change start
+if (targetFlag && targets.length === 0) {
+  throw new Error(`Unknown or unsupported --target ${targetFlag}`)
+}
 await $`rm -rf dist`
 const [qronosConsoleDist, qronosSandboxWorker, qronosSandboxNetwork] = await Promise.all([
   buildQronosConsole(),

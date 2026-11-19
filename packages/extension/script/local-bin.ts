@@ -185,6 +185,10 @@ async function writeVersion(kind: "compiled" | "wrapper") {
 }
 
 function platformTag(): string {
+  // qronos_change - a cross build (for example darwin-arm64 on a Linux runner)
+  // must not be labelled with the host platform.
+  const requested = process.env.QRONOS_BUILD_TARGET
+  if (requested) return `cli-${requested}`
   const os = process.platform === "win32" ? "windows" : process.platform
   return `cli-${os}-${process.arch}`
 }
@@ -256,12 +260,16 @@ async function ensureBuiltBinary(): Promise<string> {
 
   const pkg = await Bun.file(join(repoDir, "package.json")).json()
   const bun = String(pkg.packageManager)
-  log("Building CLI binary...")
+  // qronos_change - QRONOS_BUILD_TARGET lets a Linux runner produce the macOS
+  // package. Without it the build stays native and single-target.
+  const crossTarget = process.env.QRONOS_BUILD_TARGET
+  const args = crossTarget ? ["--target", crossTarget] : ["--single", "--skip-install"]
+  log(crossTarget ? `Building CLI binary for ${crossTarget}...` : "Building CLI binary...")
   try {
-    await $`bunx ${bun} run build --single --skip-install`.cwd(cliDir)
+    await $`bunx ${bun} run build ${args}`.cwd(cliDir)
   } catch (err) {
     log(`Pinned bunx build failed (${err}), running via active bun runtime...`)
-    await $`bun run script/build.ts --single --skip-install`.cwd(cliDir)
+    await $`bun run script/build.ts ${args}`.cwd(cliDir)
   }
 
   const built = await findQronosBinaryInQronosDist()
@@ -290,6 +298,9 @@ async function ensureLocalHelpers() {
   // input cannot work and the helper is dead weight. Speech input stays off in
   // features.ts until the gateway serves that route again.
   if (process.env.QRONOS_SKIP_BUNDLED_BWRAP === "1") return
+  // bubblewrap is Linux only, so a cross build never needs it.
+  const hostTarget = `${process.platform === "win32" ? "win32" : process.platform}-${process.arch}`
+  if (process.env.QRONOS_BUILD_TARGET && process.env.QRONOS_BUILD_TARGET !== hostTarget) return
   if (await sanitizeSandboxResources(targetBinDir, true)) return
   await ensureBwrapForTarget(currentBwrapTarget())
 }
