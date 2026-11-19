@@ -159,7 +159,7 @@ MIT. 저작자 표시와 라이선스 고지를 유지하는 한, 상업적 사�
 <details>
 <summary>Qronos CLI는 어디에서 왔나요?</summary>
 
-Qronos CLI는 [OpenCode](https://github.com/anomalyco/opencode)의 fork이며, Qronos agentic engineering 플랫폼에서 작동하도록 강화되었습니다.
+Qronos CLI는 [Qronos](https://github.com/anomalyco/qronos)의 fork이며, Qronos agentic engineering 플랫폼에서 작동하도록 강화되었습니다.
 
 </details>
 

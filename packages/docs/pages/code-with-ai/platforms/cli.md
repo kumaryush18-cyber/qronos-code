@@ -376,7 +376,7 @@ In Ask and Plan modes, `external_directory` allow rules can still permit reads o
 
 ## Configuration
 
-The Qronos CLI is a fork of [OpenCode](https://opencode.ai) and supports the same configuration options. The CLI you install with `npm install -g @qronos-ai/cli` (Qronos CLI 1.0) is built from [Qronos-Org/qronos](https://github.com/Qronos-Org/qronos). For comprehensive configuration documentation, see the [OpenCode Config documentation](https://opencode.ai/docs/config).
+The Qronos CLI is a fork of [opencode](https://opencode.ai) (MIT licensed, attribution kept in NOTICE) and supports the same configuration options. The CLI you install with `npm install -g @qronos-ai/cli` (Qronos CLI 1.0) is built from [Qronos-Org/qronos](https://github.com/Qronos-Org/qronos). For comprehensive configuration documentation, see the [upstream config documentation](https://opencode.ai/docs/config).
 
 ### Config File Location (Qronos CLI 1.0)
 
@@ -539,7 +539,7 @@ Use `{env:VARIABLE_NAME}` syntax in config files to reference environment variab
 `{env:VAR}` (and `{file:...}`) references are resolved **only** in trusted config: your global config (`~/.config/qronos`), a config passed via `QRONOS_CONFIG` / `QRONOS_CONFIG_CONTENT`, or organization/MDM-managed config. A project-level `qronos.json` / `opencode.json` committed to a repository **cannot** use `{env:VAR}` — the reference is ignored and a warning is logged. This prevents a malicious repository from exfiltrating your secrets to an attacker-controlled `baseURL` simply by being opened. `{file:...}` still works in project config, but only for files that resolve inside the project root — references that leave it (absolute paths outside the root, `../` traversal, and symlink escapes) are rejected.
 {% /callout %}
 
-For full details on all configuration options including compaction, file watchers, plugins, and experimental features, see the [OpenCode Config documentation](https://opencode.ai/docs/config).
+For full details on all configuration options including compaction, file watchers, plugins, and experimental features, see the [upstream config documentation](https://opencode.ai/docs/config).
 
 ## Interactive Mode
 

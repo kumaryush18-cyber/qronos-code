@@ -18,7 +18,7 @@ The migration **never modifies project files**. We only:
 
 ### 2. Combines with Existing Config (Never Overwrites)
 
-If you have existing opencode config with `instructions`, the Qronos rules are **combined**, not replaced:
+If you have existing qronos config with `instructions`, the Qronos rules are **combined**, not replaced:
 
 ```typescript
 // Example: User has opencode.json with:

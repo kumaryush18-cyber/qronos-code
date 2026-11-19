@@ -20,7 +20,7 @@ The legacy MCP Servers sub-tab (842 lines) had full server lifecycle management.
 | Edit Project MCP config | Button to open file | Not available |
 | Network timeout | Per-server dropdown (15s–60min) | Not available |
 | Server source badge | Shows "global" / "project" | Not displayed |
-| Empty state | N/A | "No MCP servers configured. Edit the opencode config file..." |
+| Empty state | N/A | "No MCP servers configured. Edit the qronos config file..." |
 
 ### Expandable Server Detail (Legacy Only)
 

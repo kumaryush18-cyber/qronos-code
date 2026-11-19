@@ -159,7 +159,7 @@ MIT। attribution এবং license notice রেখে আপনি এই cod
 <details>
 <summary>Qronos CLI কোথা থেকে এসেছে?</summary>
 
-Qronos CLI হলো [OpenCode](https://github.com/anomalyco/opencode)-এর একটি fork, Qronos agentic engineering platform-এর মধ্যে কাজ করার জন্য উন্নত করা হয়েছে।
+Qronos CLI হলো [Qronos](https://github.com/anomalyco/qronos)-এর একটি fork, Qronos agentic engineering platform-এর মধ্যে কাজ করার জন্য উন্নত করা হয়েছে।
 
 </details>
 

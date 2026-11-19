@@ -32,7 +32,7 @@ Desktop application and browser-based app issues, including `opencode web`, desk
 
 ### Core
 
-Core opencode server and harness issues, including sqlite, snapshots, memory, API behavior, agent context construction, tool execution, provider integrations, model behavior, documentation, and larger architectural features.
+Core qronos server and harness issues, including sqlite, snapshots, memory, API behavior, agent context construction, tool execution, provider integrations, model behavior, documentation, and larger architectural features.
 
 ### Inference
 

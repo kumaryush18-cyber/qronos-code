@@ -1,6 +1,6 @@
 # @qronos-ai/gateway
 
-Unified Qronos Gateway package for OpenCode providing authentication, AI provider integration, and API access.
+Unified Qronos Gateway package for Qronos providing authentication, AI provider integration, and API access.
 
 ## Features
 

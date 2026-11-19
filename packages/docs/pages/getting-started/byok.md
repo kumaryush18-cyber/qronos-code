@@ -54,7 +54,7 @@ These providers offer coding-focused subscriptions or dedicated endpoints. Bring
 - Neuralwatt
 - NVIDIA
 - Ollama Cloud
-- OpenCode Go
+- Qronos Go
 - OrcaRouter
 - Synthetic
 - Xiaomi Token Plan (Europe)

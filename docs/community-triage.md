@@ -49,9 +49,9 @@ Issues with no activity for 60 days are closed too. A close comment explains the
 - `QRONOS_AUTO_CLOSE_ENABLED` must be exactly `true` to close. Any other value makes the workflow log what it would close, and do nothing else. A manual run uses its "dryRun" box instead.
 - The sweep sets `awaiting-contributor`. `keep-open` is set by hand. The workflow reads both labels at run time, so a label that is a few days old does not close a PR that was active since.
 
-### Paused: opencode v2 migration
+### Paused: qronos v2 migration
 
-The team is migrating to opencode v2, and community reviews are paused until further notice. A community PR must not be closed because nobody had time to answer it. So `QRONOS_AUTO_CLOSE_ENABLED` must be kept set to `false` while the pause lasts. If it is set to `true`, `qronos-auto-close.yml` closes PRs, and the `awaiting-contributor` rule closes them after 14 days with no warning. Any other value, including unset, closes nothing.
+The team is migrating to qronos v2, and community reviews are paused until further notice. A community PR must not be closed because nobody had time to answer it. So `QRONOS_AUTO_CLOSE_ENABLED` must be kept set to `false` while the pause lasts. If it is set to `true`, `qronos-auto-close.yml` closes PRs, and the `awaiting-contributor` rule closes them after 14 days with no warning. Any other value, including unset, closes nothing.
 
 - Labels, priorities and the queue keep working.
 - To resume, set the variable to `true` (`gh variable set QRONOS_AUTO_CLOSE_ENABLED --body true`) and remove this note.

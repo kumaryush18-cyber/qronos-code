@@ -98,7 +98,7 @@ BYOK lets you use your own provider API keys with the Qronos AI Gateway. When a 
 | Neuralwatt | `neuralwatt` |
 | NVIDIA | `nvidia-byok` |
 | Ollama Cloud | `ollama-cloud` |
-| OpenCode Go | `opencode-go` |
+| Qronos Go | `opencode-go` |
 | OrcaRouter | `orcarouter` |
 | Synthetic | `synthetic` |
 | Xiaomi Token Plan (Europe) | `xiaomi-token-plan-ams` |

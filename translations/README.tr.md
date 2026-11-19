@@ -159,7 +159,7 @@ MIT. Atıf ve lisans bildirimlerini koruduğunuz sürece bu kodu ticari olarak d
 <details>
 <summary>Qronos CLI nereden geldi?</summary>
 
-Qronos CLI, Qronos agentic engineering platformunda çalışacak şekilde geliştirilmiş bir [OpenCode](https://github.com/anomalyco/opencode) fork'udur.
+Qronos CLI, Qronos agentic engineering platformunda çalışacak şekilde geliştirilmiş bir [Qronos](https://github.com/anomalyco/qronos) fork'udur.
 
 </details>
 

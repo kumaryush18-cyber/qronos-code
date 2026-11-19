@@ -159,7 +159,7 @@ MIT。你可以使用、修改和分发此代码，包括商业用途，只要�
 <details>
 <summary>Qronos CLI 从哪里来？</summary>
 
-Qronos CLI 是 [OpenCode](https://github.com/anomalyco/opencode) 的一个 fork，并增强为可在 Qronos agentic engineering 平台中使用。
+Qronos CLI 是 [Qronos](https://github.com/anomalyco/qronos) 的一个 fork，并增强为可在 Qronos agentic engineering 平台中使用。
 
 </details>
 

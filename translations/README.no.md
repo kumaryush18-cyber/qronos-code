@@ -159,7 +159,7 @@ MIT. Du kan bruke, endre og distribuere denne koden, også kommersielt, så leng
 <details>
 <summary>Hvor kommer Qronos CLI fra?</summary>
 
-Qronos CLI er en fork av [OpenCode](https://github.com/anomalyco/opencode), forbedret for å fungere i Qronos agentic engineering-plattformen.
+Qronos CLI er en fork av [Qronos](https://github.com/anomalyco/qronos), forbedret for å fungere i Qronos agentic engineering-plattformen.
 
 </details>
 

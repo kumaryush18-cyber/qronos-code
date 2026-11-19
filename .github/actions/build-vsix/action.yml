@@ -1,0 +1,103 @@
+# Build one platform package of Qronos Code.
+#
+# The same steps run in the first build pass and in the retry pass, so they
+# live here once. Both callers pass a target from the publish matrix.
+#
+#   linux-x64     ubuntu-latest
+#   win32-x64     windows-latest
+#   darwin-arm64  macos-14 (Apple silicon)
+name: build qronos-code vsix
+description: Compile the CLI binary, bundle the extension, package one platform target.
+
+inputs:
+  target:
+    description: Marketplace target triple, for example linux-x64
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install
+
+    # The Linux CLI build compiles the bubblewrap sandbox helper with Zig;
+    # without it the build silently falls back to a dev wrapper script.
+    - name: Setup Zig for the Linux sandbox helper
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        curl --fail --location --retry 3 \
+          https://ziglang.org/download/0.14.0/zig-linux-x86_64-0.14.0.tar.xz \
+          --output "$RUNNER_TEMP/zig.tar.xz"
+        echo "473ec26806133cf4d1918caf1a410f8403a13d979726a9045b421b685031a982  $RUNNER_TEMP/zig.tar.xz" | sha256sum --check --status
+        tar -xJf "$RUNNER_TEMP/zig.tar.xz" -C "$RUNNER_TEMP"
+        echo "$RUNNER_TEMP/zig-linux-x86_64-0.14.0" >> "$GITHUB_PATH"
+
+    - name: Build the CLI binary
+      shell: bash
+      working-directory: packages/extension
+      run: bun run prepare:cli-binary
+
+    - name: Verify the binary is real
+      shell: bash
+      working-directory: packages/extension
+      run: |
+        size=$(wc -c < bin/qronos || wc -c < bin/qronos.exe)
+        echo "binary size: $size bytes"
+        if [ "$size" -lt 10000000 ]; then
+          echo "::error::bin/qronos is only $size bytes - that is a dev wrapper"
+          exit 1
+        fi
+
+    # A compiled binary can build fine and still die on its first request.
+    - name: Smoke test the server
+      if: runner.os == 'Linux'
+      shell: bash
+      working-directory: packages/extension
+      run: |
+        ./bin/qronos serve --port 4599 > "$RUNNER_TEMP/serve.log" 2>&1 &
+        pid=$!
+        for i in $(seq 1 40); do
+          code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4599/qronos/profile || true)
+          if [ "$code" != "000" ] && [ -n "$code" ]; then break; fi
+          sleep 1
+        done
+        echo "status: $code"
+        kill "$pid" 2>/dev/null || true
+        if [ "$code" = "000" ] || [ -z "$code" ]; then
+          echo "::error::the compiled CLI did not answer /qronos/profile (got '$code')"
+          tail -30 "$RUNNER_TEMP/serve.log"
+          exit 1
+        fi
+
+    - name: Prepare the SDK
+      shell: bash
+      working-directory: packages/extension
+      run: bun run prepare:sdk
+
+    - name: Bundle extension and webview
+      shell: bash
+      working-directory: packages/extension
+      run: bun esbuild.js
+
+    - name: Package
+      shell: bash
+      working-directory: packages/extension
+      run: >
+        bunx @vscode/vsce package
+        --no-dependencies
+        --allow-missing-repository
+        --target ${{ inputs.target }}
+        -o qronos-code-${{ inputs.target }}.vsix
+
+    - name: Report the package size
+      shell: bash
+      working-directory: packages/extension
+      run: |
+        bytes=$(wc -c < qronos-code-${{ inputs.target }}.vsix)
+        echo "### ${{ inputs.target }}: $((bytes / 1048576)) MB" >> "$GITHUB_STEP_SUMMARY"
