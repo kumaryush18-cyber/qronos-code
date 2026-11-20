@@ -4,8 +4,19 @@
 # live here once. Both callers pass a target from the publish matrix.
 #
 #   linux-x64     ubuntu-latest
+#   linux-arm64   ubuntu-latest (cross build)
 #   win32-x64     windows-latest
-#   darwin-arm64  macos-14 (Apple silicon)
+#   darwin-arm64  ubuntu-latest (cross build)
+#   darwin-x64    ubuntu-latest (cross build)
+#
+# Signing is optional and driven by the job environment, never by this file:
+#
+#   macOS   APPLE_CERT_P12 (base64 .p12), APPLE_CERT_PASSWORD,
+#           APPLE_API_ISSUER, APPLE_API_KEY_ID, APPLE_API_KEY_P8 (base64 .p8)
+#   Windows WINDOWS_CERT_PFX (base64 .pfx), WINDOWS_CERT_PASSWORD
+#
+# When a value is missing the matching step prints why it skipped and the
+# package is published unsigned, exactly as before.
 name: build qronos-code vsix
 description: Compile the CLI binary, bundle the extension, package one platform target.
 
@@ -59,6 +70,95 @@ runs:
           echo "::error::bin/qronos is only $size bytes - that is a dev wrapper"
           exit 1
         fi
+
+    # Signing a macOS binary needs a Mac, and a Mac runner is not available on
+    # this account, so the cross build is signed with rcodesign instead.
+    # Notarization only accepts a bundle, so the binary is wrapped in a minimal
+    # .app, signed, notarized and stapled, then copied back out: Apple keeps the
+    # ticket for that hash and Gatekeeper finds it online.
+    - name: Sign and notarize the macOS binary
+      if: startsWith(inputs.target, 'darwin') && env.APPLE_CERT_P12 != ''
+      shell: bash
+      working-directory: packages/extension
+      env:
+        APPLE_CERT_P12: ${{ env.APPLE_CERT_P12 }}
+        APPLE_CERT_PASSWORD: ${{ env.APPLE_CERT_PASSWORD }}
+        APPLE_API_ISSUER: ${{ env.APPLE_API_ISSUER }}
+        APPLE_API_KEY_ID: ${{ env.APPLE_API_KEY_ID }}
+        APPLE_API_KEY_P8: ${{ env.APPLE_API_KEY_P8 }}
+      run: |
+        set -euo pipefail
+        work="$RUNNER_TEMP/sign"
+        mkdir -p "$work"
+        curl --fail --location --retry 3 \
+          https://github.com/indygreg/apple-platform-rs/releases/download/apple-codesign%2F0.29.0/apple-codesign-0.29.0-x86_64-unknown-linux-musl.tar.gz \
+          --output "$work/rcodesign.tar.gz"
+        tar -xzf "$work/rcodesign.tar.gz" -C "$work"
+        rcodesign="$(find "$work" -name rcodesign -type f | head -1)"
+        chmod +x "$rcodesign"
+
+        printf '%s' "$APPLE_CERT_P12" | base64 -d > "$work/cert.p12"
+        printf '%s' "$APPLE_CERT_PASSWORD" > "$work/cert-password.txt"
+        printf '%s' "$APPLE_API_KEY_P8" | base64 -d > "$work/key.p8"
+        "$rcodesign" encode-app-store-connect-api-key \
+          --issuer "$APPLE_API_ISSUER" --key "$work/key.p8" -o "$work/api-key.json"
+
+        app="$work/Qronos.app"
+        mkdir -p "$app/Contents/MacOS"
+        cp bin/qronos "$app/Contents/MacOS/qronos"
+        cp bin/qronos "$app/Contents/MacOS/qronos.program"
+        cat > "$app/Contents/Info.plist" <<'PLIST'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <plist version="1.0"><dict>
+          <key>CFBundleExecutable</key><string>qronos.program</string>
+          <key>CFBundleIdentifier</key><string>me.qronos.code.cli</string>
+          <key>CFBundleName</key><string>Qronos</string>
+          <key>CFBundleShortVersionString</key><string>1.0.0</string>
+          <key>CFBundleVersion</key><string>1</string>
+          <key>LSUIElement</key><true/>
+        </dict></plist>
+        PLIST
+
+        "$rcodesign" sign --for-notarization --code-signature-flags runtime \
+          --p12-file "$work/cert.p12" --p12-password-file "$work/cert-password.txt" "$app"
+        "$rcodesign" notary-submit --api-key-file "$work/api-key.json" --staple "$app"
+
+        cp "$app/Contents/MacOS/qronos" bin/qronos
+        chmod +x bin/qronos
+        rm -rf "$work"
+        echo "signed and notarized ${{ inputs.target }}"
+
+    - name: Skip macOS signing (no certificate)
+      if: startsWith(inputs.target, 'darwin') && env.APPLE_CERT_P12 == ''
+      shell: bash
+      run: echo "::notice::APPLE_CERT_P12 is not set, so ${{ inputs.target }} ships unsigned"
+
+    - name: Sign the Windows binary
+      if: runner.os == 'Windows' && env.WINDOWS_CERT_PFX != ''
+      shell: pwsh
+      working-directory: packages/extension
+      env:
+        WINDOWS_CERT_PFX: ${{ env.WINDOWS_CERT_PFX }}
+        WINDOWS_CERT_PASSWORD: ${{ env.WINDOWS_CERT_PASSWORD }}
+      run: |
+        $pfx = Join-Path $env:RUNNER_TEMP 'cert.pfx'
+        [IO.File]::WriteAllBytes($pfx, [Convert]::FromBase64String($env:WINDOWS_CERT_PFX))
+        $signtool = (Get-ChildItem "$env:ProgramFiles\Windows Kits\10\bin" -Recurse -Filter signtool.exe |
+          Where-Object { $_.FullName -match 'x64' } | Select-Object -Last 1).FullName
+        & $signtool sign /fd SHA256 /f $pfx /p $env:WINDOWS_CERT_PASSWORD `
+          /tr http://timestamp.digicert.com /td SHA256 `
+          "bin/qronos.exe"
+        if ($LASTEXITCODE -ne 0) { throw "signtool failed with $LASTEXITCODE" }
+        & $signtool verify /pa "bin/qronos.exe"
+        if ($LASTEXITCODE -ne 0) { throw "signtool verify failed with $LASTEXITCODE" }
+        Remove-Item $pfx -Force
+        echo "signed win32-x64"
+
+    - name: Skip Windows signing (no certificate)
+      if: runner.os == 'Windows' && env.WINDOWS_CERT_PFX == ''
+      shell: bash
+      run: echo "::notice::WINDOWS_CERT_PFX is not set, so win32-x64 ships unsigned"
 
     # A compiled binary can build fine and still die on its first request.
     # A cross-built binary cannot run on this runner, so only the native
