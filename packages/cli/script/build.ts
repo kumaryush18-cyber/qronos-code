@@ -314,10 +314,18 @@ for (const item of targets) {
     item.avx2 !== false
       ? process.execPath
       : await QronosBun.stage(item)
-  const bwrap =
-    item.os === "linux" && process.env.QRONOS_SKIP_BUNDLED_BWRAP !== "1"
-      ? await stageBubblewrap(item.arch, path.resolve(dir, `dist/${name}/bin`))
-      : undefined
+  // qronos_change - a cross build (linux-arm64 on an x64 runner) has no Zig for
+  // the target architecture on every host, and a missing sandbox helper must not
+  // cost the whole platform: warn, keep the binary, let the runtime fall back to
+  // a system bubblewrap.
+  let bwrap: string | undefined
+  if (item.os === "linux" && process.env.QRONOS_SKIP_BUNDLED_BWRAP !== "1") {
+    try {
+      bwrap = await stageBubblewrap(item.arch, path.resolve(dir, `dist/${name}/bin`))
+    } catch (error) {
+      console.warn(`warning: no bundled Bubblewrap helper for ${name}: ${(error as Error).message}`)
+    }
+  }
   // qronos_change end
 
   const workerPath = "./src/cli/tui/worker.ts"

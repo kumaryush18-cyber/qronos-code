@@ -42,8 +42,10 @@ runs:
 
     # The Linux CLI build compiles the bubblewrap sandbox helper with Zig;
     # without it the build silently falls back to a dev wrapper script.
+    # Zig cross-compiles the helper for both Linux targets, so arm64 gets the same
+    # sandbox as x64. If it is missing the build warns and ships without it.
     - name: Setup Zig for the Linux sandbox helper
-      if: runner.os == 'Linux' && inputs.target == 'linux-x64'
+      if: runner.os == 'Linux' && startsWith(inputs.target, 'linux')
       shell: bash
       run: |
         curl --fail --location --retry 3 \

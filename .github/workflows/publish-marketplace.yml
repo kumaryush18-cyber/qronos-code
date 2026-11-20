@@ -29,7 +29,10 @@ on:
       - "packages/extension/src/**"
       - "packages/extension/webview-ui/src/**"
       - "packages/extension/assets/**"
+      - ".github/actions/build-vsix/**"
+      - ".github/workflows/publish-marketplace.yml"
       - "packages/cli/src/**"
+      - "packages/cli/script/**"
       - "packages/sdk/js/src/**"
   workflow_dispatch:
 
