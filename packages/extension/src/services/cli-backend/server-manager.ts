@@ -153,6 +153,8 @@ export class ServerManager {
           // chance to run dispose(), so it is never orphaned. See parent-watchdog.ts.
           QRONOS_PARENT_PID: String(process.pid),
           QRONOS_CLIENT: "vscode",
+          // Sent to the admin panel heartbeat so it can show the editor build.
+          QRONOS_EDITOR_VERSION: vscode.version,
           QRONOS_ENABLE_QUESTION_TOOL: "true",
           QRONOS_FEATURE: "vscode-extension",
           ...indexingEnv,
