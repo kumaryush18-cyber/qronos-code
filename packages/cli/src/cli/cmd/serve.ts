@@ -21,6 +21,8 @@ export const ServeCommand = effectCmd({
     // qronos_change start
     const urls = server.urls
 
+    // qronos_change - tell the admin panel this machine runs the client.
+    void import("../../qronos/client-report").then((module) => module.startClientReport())
     console.log(`qronos server listening on ${urls.bind}`)
     if (urls.local !== urls.bind) console.log(`  Local:   ${urls.local}`)
     if (urls.network) console.log(`  Network: ${urls.network}`)
